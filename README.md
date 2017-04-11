@@ -1,4 +1,4 @@
-# evo-ebee
+# evobee
 Simulation of evolution of flower colours with bee pollination
 
 ### Authors

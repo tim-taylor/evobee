@@ -1,0 +1,3 @@
+// the configured options and settings for evobee
+#define evobee_VERSION_MAJOR @evobee_VERSION_MAJOR@
+#define evobee_VERSION_MINOR @evobee_VERSION_MINOR@
