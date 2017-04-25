@@ -5,6 +5,7 @@
 #include <boost/program_options.hpp>
 #include "res_path.h"
 #include "EvoBeeModel.h"
+#include "evobeeConfig.h"
 
 /*
 #include <random>
@@ -32,7 +33,8 @@ int main(int argc, char **argv)
     // Process program options
     try
     {
-        int opt;
+        int envSizeX = -1, envSizeY = -1;
+        //int opt;
         string config_file;
 
         // Declare a group of options that will be
@@ -49,14 +51,17 @@ int main(int argc, char **argv)
         // allowed both on command line and in
         // config file
         po::options_description config("Configuration");
-        config.add_options()("optimization",
-                             po::value<int>(&opt)->default_value(10),
-                             "optimization level")("include-path,I", po::value<vector<string>>()->composing(), "include path");
+        config.add_options()
+            ("env-size", po::value<int>(), "environment size for both x and y")
+            ("env-size-x", po::value<int>(), "environment size in x direction")
+            ("env-size-y", po::value<int>(), "environment size in y direction");
+            //("optimization", po::value<int>(&opt)->default_value(10), "optimization level")
+            //("include-path,I", po::value<vector<string>>()->composing(), "include path");
 
         // Hidden options, will be allowed both on command line and
         // in config file, but will not be shown to the user.
         po::options_description hidden("Hidden options");
-        hidden.add_options()("input-file", po::value<vector<string>>(), "input file");
+        //hidden.add_options()("input-file", po::value<vector<string>>(), "input file");
 
         po::options_description cmdline_options;
         cmdline_options.add(generic).add(config).add(hidden);
@@ -68,7 +73,7 @@ int main(int argc, char **argv)
         visible.add(generic).add(config);
 
         po::positional_options_description p;
-        p.add("input-file", -1);
+        //p.add("input-file", -1);
 
         po::variables_map vm;
         store(po::command_line_parser(argc, argv).options(cmdline_options).positional(p).run(), vm);
@@ -76,27 +81,55 @@ int main(int argc, char **argv)
 
         if (vm.count("help"))
         {
-            cout << visible << "\n";
+            cout << visible << endl;
             return 0;
         }
 
         if (vm.count("version"))
         {
-            cout << "Multiple sources example, version 1.0\n";
+            cout << "EvoBee version " << evobee_VERSION_MAJOR << "." << evobee_VERSION_MINOR << "."
+                << evobee_VERSION_PATCH << "." << evobee_VERSION_TWEAK << endl;
             return 0;
         }
 
         ifstream ifs(config_file.c_str());
         if (!ifs)
         {
-            cout << "can not open config file: " << config_file << "\n";
+            /*
+            cout << "Unable to open config file: " << config_file << endl;
             return 0;
+            */
         }
         else
         {
             store(parse_config_file(ifs, config_file_options), vm);
             notify(vm);
-        }        
+        }
+
+        if (vm.count("env-size")) {
+            envSizeX = envSizeY = vm["env-size"].as<int>();
+        }
+        if (vm.count("env-size-x")) {
+            envSizeX = vm["env-size-x"].as<int>();
+            if (vm.count("env-size")) {
+                cerr << "Warning: specification of env-size-x overrides that of env-size" << endl;
+            }
+        }
+        if (vm.count("env-size-y")) {
+            envSizeY = vm["env-size-y"].as<int>();
+            if (vm.count("env-size")) {
+                cerr << "Warning: specification of env-size-y overrides that of env-size" << endl;
+            }
+        }
+        if (envSizeX < 0) {
+            envSizeX = 100;
+        }
+        if (envSizeY < 0) {
+            envSizeY = 100;
+        }
+
+        cout << "Environment size set to " << envSizeX << "," << envSizeY << endl;       
+
 
         /*
     if (vm.count("include-path"))
@@ -112,11 +145,11 @@ int main(int argc, char **argv)
     }
     */
 
-        cout << "Optimization level is " << opt << "\n";
+        //cout << "Optimization level is " << opt << "\n";
     }
     catch (exception &e)
     {
-        cout << e.what() << "\n";
+        cerr << e.what() << endl;
         return 1;
     }
 
@@ -207,6 +240,7 @@ int main(int argc, char **argv)
     EvoBeeModel ebm;
 
     //A sleepy rendering loop, wait for 3 seconds and render and present the screen each time
+    /*
     for (int i = 0; i < 2; ++i)
     {
         //First clear the renderer
@@ -223,6 +257,7 @@ int main(int argc, char **argv)
         //Take a quick break after all that hard work
         SDL_Delay(1000);
     }
+    */
 
     SDL_DestroyTexture(tex);
     SDL_DestroyRenderer(ren);
