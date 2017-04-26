@@ -5,7 +5,7 @@ class Environment {
 
 public:
     Environment();
-    ~Environment() {};
+    ~Environment() {}
 };
 
 #endif /* _ENVIRONMENT_H */

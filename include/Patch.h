@@ -5,7 +5,7 @@ class Patch {
 
 public:
     Patch();
-    ~Patch() {};
+    ~Patch() {}
 };
 
 #endif /* _PATCH_H */

@@ -5,7 +5,7 @@ class Pollinator {
 
 public:
     Pollinator();
-    ~Pollinator() {};
+    ~Pollinator() {}
 };
 
 #endif /* _POLLINATOR_H */

@@ -5,7 +5,7 @@ class FloweringPlant {
 
 public:
     FloweringPlant();
-    ~FloweringPlant() {};
+    ~FloweringPlant() {}
 };
 
 #endif /* _FLOWERINGPLANT_H */

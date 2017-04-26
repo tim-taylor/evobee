@@ -1,21 +1,27 @@
 var indexSectionsWithContent =
 {
-  0: "efhlmp",
-  1: "efhlmp",
-  2: "efhlmp"
+  0: "efhlmprtv",
+  1: "efhlmpv",
+  2: "efhlmpv",
+  3: "r",
+  4: "t"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "files"
+  2: "files",
+  3: "functions",
+  4: "pages"
 };
 
 var indexSectionLabels =
 {
   0: "All",
   1: "Data Structures",
-  2: "Files"
+  2: "Files",
+  3: "Functions",
+  4: "Pages"
 };
 

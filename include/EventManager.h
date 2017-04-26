@@ -5,7 +5,7 @@ class EventManager {
 
 public:
     EventManager();
-    ~EventManager() {};
+    ~EventManager() {}
 };
 
 #endif /* _EVENTMANAGER_H */

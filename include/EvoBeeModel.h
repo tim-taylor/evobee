@@ -5,7 +5,7 @@ class EvoBeeModel {
 
 public:
     EvoBeeModel();
-    ~EvoBeeModel() {};
+    ~EvoBeeModel() {}
 };
 
 #endif /* _EVOBEEMODEL_H */

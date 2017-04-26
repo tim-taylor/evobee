@@ -1,11 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <SDL.h>
 #include <boost/program_options.hpp>
-#include "res_path.h"
-#include "EvoBeeModel.h"
 #include "evobeeConfig.h"
+#include "ModelParams.h"
+#include "EvoBeeExperiment.h"
 
 /*
 #include <random>
@@ -15,26 +14,64 @@
 namespace po = boost::program_options;
 using namespace std;
 
+// forward declaration of functions in this file
+void processConfigOptions(int argc, char **argv);
 
+
+/**
+*/
 int main(int argc, char **argv)
 {
-    /*
-    if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+    try
     {
-        std::cerr << "SDL_Init error: " << SDL_GetError() << std::endl;
+        processConfigOptions(argc, argv);
+        EvoBeeExperiment expt;
+        expt.run();
+    }
+    catch (exception &e)
+    {
+        cerr << "Unhandled exception: " << e.what() << endl;
         return 1;
     }
-    std::cout << "Resource path is: " << getResourcePath() << std::endl;
 
-    SDL_Quit();
     return 0;
-    */
+}
 
-    // Process program options
+/////////////////////////////////////////////
+// normal_distribution
+/*
+    const int nrolls = 1000000; // number of experiments
+    const int nstars = 700;   // maximum number of stars to distribute
+
+    std::default_random_engine generator;
+    std::normal_distribution<double> distribution(5.0, 2.0);
+
+    int p[10] = {};
+
+    for (int i = 0; i < nrolls; ++i)
+    {
+        double number = distribution(generator);
+        if ((number >= 0.0) && (number < 10.0))
+            ++p[int(number)];
+    }
+
+    std::cout << "normal_distribution (5.0,2.0):" << std::endl;
+
+    for (int i = 0; i < 10; ++i)
+    {
+        std::cout << std::setw(2) << i << "-" << std::setw(2) << (i + 1) << ": ";
+        std::cout << std::string(p[i] * nstars / nrolls, '*') << std::endl;
+    }
+    */
+////////////////////////////
+
+/**
+*/
+void processConfigOptions(int argc, char **argv)
+{
     try
     {
         int envSizeX = -1, envSizeY = -1;
-        //int opt;
         string config_file;
 
         // Declare a group of options that will be
@@ -43,9 +80,7 @@ int main(int argc, char **argv)
         generic.add_options()
             ("version,v", "display program version number")
             ("help,h", "display this help message")
-            ("config,c", 
-                po::value<string>(&config_file)->default_value("evobee.cfg"),
-                "configuration file");
+            ("config,c", po::value<string>(&config_file)->default_value("evobee.cfg"), "configuration file");
 
         // Declare a group of options that will be
         // allowed both on command line and in
@@ -54,9 +89,10 @@ int main(int argc, char **argv)
         config.add_options()
             ("env-size", po::value<int>(), "environment size for both x and y")
             ("env-size-x", po::value<int>(), "environment size in x direction")
-            ("env-size-y", po::value<int>(), "environment size in y direction");
-            //("optimization", po::value<int>(&opt)->default_value(10), "optimization level")
-            //("include-path,I", po::value<vector<string>>()->composing(), "include path");
+            ("env-size-y", po::value<int>(), "environment size in y direction")
+            ("vis", po::value<bool>(), "show realtime visualisation of run");
+        //("optimization", po::value<int>(&opt)->default_value(10), "optimization level")
+        //("include-path,I", po::value<vector<string>>()->composing(), "include path");
 
         // Hidden options, will be allowed both on command line and
         // in config file, but will not be shown to the user.
@@ -82,14 +118,14 @@ int main(int argc, char **argv)
         if (vm.count("help"))
         {
             cout << visible << endl;
-            return 0;
+            exit(0);
         }
 
         if (vm.count("version"))
         {
             cout << "EvoBee version " << evobee_VERSION_MAJOR << "." << evobee_VERSION_MINOR << "."
-                << evobee_VERSION_PATCH << "." << evobee_VERSION_TWEAK << endl;
-            return 0;
+                 << evobee_VERSION_PATCH << "." << evobee_VERSION_TWEAK << endl;
+            exit(0);
         }
 
         ifstream ifs(config_file.c_str());
@@ -106,192 +142,41 @@ int main(int argc, char **argv)
             notify(vm);
         }
 
-        if (vm.count("env-size")) {
+        if (vm.count("env-size"))
+        {
             envSizeX = envSizeY = vm["env-size"].as<int>();
         }
-        if (vm.count("env-size-x")) {
+        if (vm.count("env-size-x"))
+        {
             envSizeX = vm["env-size-x"].as<int>();
-            if (vm.count("env-size")) {
+            if (vm.count("env-size"))
+            {
                 cerr << "Warning: specification of env-size-x overrides that of env-size" << endl;
             }
         }
-        if (vm.count("env-size-y")) {
+        if (vm.count("env-size-y"))
+        {
             envSizeY = vm["env-size-y"].as<int>();
-            if (vm.count("env-size")) {
+            if (vm.count("env-size"))
+            {
                 cerr << "Warning: specification of env-size-y overrides that of env-size" << endl;
             }
         }
-        if (envSizeX < 0) {
-            envSizeX = 100;
+
+        ModelParams::setEnvSize(envSizeX, envSizeY);
+
+        cout << "Environment size set to (" << ModelParams::getEnvSizeX() << "," << ModelParams::getEnvSizeY() << ")" << endl;
+
+        if (vm.count("vis"))
+        {
+            ModelParams::setVisualisation(vm["vis"].as<bool>());
         }
-        if (envSizeY < 0) {
-            envSizeY = 100;
-        }
 
-        cout << "Environment size set to " << envSizeX << "," << envSizeY << endl;       
-
-
-        /*
-    if (vm.count("include-path"))
-    {
-        cout << "Include paths are: "
-             << vm["include-path"].as<vector<string>>() << "\n";
-    }
-
-    if (vm.count("input-file"))
-    {
-        cout << "Input files are: "
-             << vm["input-file"].as<vector<string>>() << "\n";
-    }
-    */
-
-        //cout << "Optimization level is " << opt << "\n";
+        cout << (ModelParams::getVisualisation() ? "Using" : "Not using") << " visualisation" << endl;
     }
     catch (exception &e)
     {
         cerr << e.what() << endl;
-        return 1;
+        exit(0);
     }
-
-    /*
-    try {
-        po::options_description desc("Allowed options");
-        desc.add_options()
-            ("help,h", "show this help message")
-            ("compression", po::value<double>(), "set compression level");
-
-        po::variables_map vm;
-        po::store(po::parse_command_line(argc, argv, desc), vm);
-        po::notify(vm);
-
-        if (vm.count("help")) {
-            cout << desc << "\n";
-            return 0;
-        }
-
-        if (vm.count("compression"))
-        {
-            cout << "Compression level was set to "
-                 << vm["compression"].as<double>() << ".\n";
-        }
-        else
-        {
-            cout << "Compression level was not set.\n";
-        }
-    }
-    catch (exception &e)
-    {
-        cerr << "error: " << e.what() << "\n";
-        return 1;
-    }
-    catch (...)
-    {
-        cerr << "Exception of unknown type!\n";
-    }
-    */
-
-    // Initialise SDL (test)
-
-    if (SDL_Init(SDL_INIT_VIDEO) != 0)
-    {
-        std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
-        return 1;
-    }
-
-    SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
-    if (win == nullptr)
-    {
-        std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
-        SDL_Quit();
-        return 1;
-    }
-
-    SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (ren == nullptr)
-    {
-        SDL_DestroyWindow(win);
-        std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
-        SDL_Quit();
-        return 1;
-    }
-
-    std::string imagePath = getResourcePath("test") + "hello.bmp";
-    SDL_Surface *bmp = SDL_LoadBMP(imagePath.c_str());
-    if (bmp == nullptr)
-    {
-        SDL_DestroyRenderer(ren);
-        SDL_DestroyWindow(win);
-        std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
-        SDL_Quit();
-        return 1;
-    }
-
-    SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, bmp);
-    SDL_FreeSurface(bmp);
-    if (tex == nullptr)
-    {
-        SDL_DestroyRenderer(ren);
-        SDL_DestroyWindow(win);
-        std::cout << "SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
-        SDL_Quit();
-        return 1;
-    }
-
-    EvoBeeModel ebm;
-
-    //A sleepy rendering loop, wait for 3 seconds and render and present the screen each time
-    /*
-    for (int i = 0; i < 2; ++i)
-    {
-        //First clear the renderer
-        SDL_RenderClear(ren);
-        //Draw the texture
-        SDL_RenderCopy(ren, tex, NULL, NULL);
-        //Update the screen
-        SDL_RenderPresent(ren);
-
-        // TT - added this otherwise image doesn't show until after the first delay..
-        //First clear the renderer
-        SDL_RenderClear(ren);
-
-        //Take a quick break after all that hard work
-        SDL_Delay(1000);
-    }
-    */
-
-    SDL_DestroyTexture(tex);
-    SDL_DestroyRenderer(ren);
-    SDL_DestroyWindow(win);
-    SDL_Quit();
-
-
-    /////////////////////////////////////////////
-    // normal_distribution
-    /*
-    const int nrolls = 1000000; // number of experiments
-    const int nstars = 700;   // maximum number of stars to distribute
-
-    std::default_random_engine generator;
-    std::normal_distribution<double> distribution(5.0, 2.0);
-
-    int p[10] = {};
-
-    for (int i = 0; i < nrolls; ++i)
-    {
-        double number = distribution(generator);
-        if ((number >= 0.0) && (number < 10.0))
-            ++p[int(number)];
-    }
-
-    std::cout << "normal_distribution (5.0,2.0):" << std::endl;
-
-    for (int i = 0; i < 10; ++i)
-    {
-        std::cout << std::setw(2) << i << "-" << std::setw(2) << (i + 1) << ": ";
-        std::cout << std::string(p[i] * nstars / nrolls, '*') << std::endl;
-    }
-    */
-    ////////////////////////////
-
-    return 0;
 }

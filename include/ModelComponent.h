@@ -5,7 +5,7 @@ class ModelComponent {
 
 public:
     ModelComponent();
-    ~ModelComponent() {};
+    ~ModelComponent() {}
 };
 
 #endif /* _MODELCOMPONENT_H */

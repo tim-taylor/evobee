@@ -5,7 +5,7 @@ class Logger {
 
 public:
     Logger();
-    ~Logger() {};
+    ~Logger() {}
 };
 
 #endif /* _LOGGER_H */

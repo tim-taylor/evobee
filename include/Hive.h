@@ -5,7 +5,7 @@ class Hive {
 
 public:
     Hive();
-    ~Hive() {};
+    ~Hive() {}
 };
 
 #endif /* _HIVE_H */

@@ -26,13 +26,16 @@ set(SOURCES
     src/evobee.cpp
     src/Environment.cpp
     src/EventManager.cpp
+    src/EvoBeeExperiment.cpp
     src/EvoBeeModel.cpp
     src/FloweringPlant.cpp
     src/Hive.cpp
     src/Logger.cpp
     src/ModelComponent.cpp
+    src/ModelParams.cpp
     src/Patch.cpp
     src/Pollinator.cpp
+    src/Visualiser.cpp
     )
 # Approach 2: automatic addition
 #file(GLOB SOURCES "src/*.cpp")
