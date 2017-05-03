@@ -9,6 +9,15 @@
 
 using namespace std;
 
-EvoBeeModel::EvoBeeModel() {
-    cout << "Hey there!!" << endl;
+EvoBeeModel::EvoBeeModel() :
+    m_iStep(0)
+{
+}
+
+/**
+@todo
+*/
+void EvoBeeModel::step() {
+    m_iStep++;
+    cout << "Model step " << m_iStep << endl;
 }

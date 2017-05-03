@@ -1,7 +1,8 @@
 <map id="src/EvoBeeExperiment.cpp" name="src/EvoBeeExperiment.cpp">
 <area shape="rect" id="node2" href="$ModelParams_8h_source.html" title="ModelParams.h" alt="" coords="5,80,119,107"/>
-<area shape="rect" id="node3" href="$EventManager_8h_source.html" title="EventManager.h" alt="" coords="103,155,221,181"/>
-<area shape="rect" id="node4" href="$Logger_8h_source.html" title="Logger.h" alt="" coords="257,155,329,181"/>
-<area shape="rect" id="node5" href="$Visualiser_8h_source.html" title="Visualiser.h" alt="" coords="377,155,467,181"/>
-<area shape="rect" id="node6" href="$EvoBeeExperiment_8h_source.html" title="EvoBeeExperiment.h" alt="" coords="245,80,391,107"/>
+<area shape="rect" id="node3" href="$EvoBeeModel_8h_source.html" title="EvoBeeModel.h" alt="" coords="89,155,203,181"/>
+<area shape="rect" id="node4" href="$EventManager_8h_source.html" title="EventManager.h" alt="" coords="227,155,345,181"/>
+<area shape="rect" id="node5" href="$Logger_8h_source.html" title="Logger.h" alt="" coords="369,155,441,181"/>
+<area shape="rect" id="node6" href="$Visualiser_8h_source.html" title="Visualiser.h" alt="" coords="465,155,555,181"/>
+<area shape="rect" id="node7" href="$EvoBeeExperiment_8h_source.html" title="EvoBeeExperiment.h" alt="" coords="245,80,391,107"/>
 </map>

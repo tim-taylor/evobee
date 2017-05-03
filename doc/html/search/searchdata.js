@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "efhlmprtv",
-  1: "efhlmpv",
-  2: "efhlmpv",
-  3: "r",
+  0: "efhlmprstuv",
+  1: "efhlmpsv",
+  2: "efhlmpsv",
+  3: "lrsu",
   4: "t"
 };
 

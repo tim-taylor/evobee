@@ -12,6 +12,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "ModelParams.h", "ModelParams_8h_source.html", null ],
     [ "Patch.h", "Patch_8h_source.html", null ],
     [ "Pollinator.h", "Pollinator_8h_source.html", null ],
-    [ "res_path.h", "res__path_8h_source.html", null ],
+    [ "SDL2_gfxPrimitives.h", "SDL2__gfxPrimitives_8h_source.html", null ],
+    [ "sdl_tools.h", "sdl__tools_8h.html", "sdl__tools_8h" ],
     [ "Visualiser.h", "Visualiser_8h_source.html", null ]
 ];

@@ -121,6 +121,13 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>setEnvSize</b>
 <tr class="memitem:a781d74573b6a0cfaebd4d9df689ad230"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a781d74573b6a0cfaebd4d9df689ad230"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>setVisualisation</b> (bool vis)</td></tr>
 <tr class="separator:a781d74573b6a0cfaebd4d9df689ad230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afad9c9104f4c03c20221f7e2d15f1394"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afad9c9104f4c03c20221f7e2d15f1394"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxScreenFrac</b> (float f)</td></tr>
+<tr class="separator:afad9c9104f4c03c20221f7e2d15f1394"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a430dc7c313f910df97c18066e400cad4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelParams.html#a430dc7c313f910df97c18066e400cad4">setMaxScreenFracW</a> (float fw)</td></tr>
+<tr class="separator:a430dc7c313f910df97c18066e400cad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1102369141dc9e1330ecb6739954add8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelParams.html#a1102369141dc9e1330ecb6739954add8">setMaxScreenFracH</a> (float fh)</td></tr>
+<tr class="separator:a1102369141dc9e1330ecb6739954add8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5ca25ed7b9b5b09c43702e5d6fdc311"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5ca25ed7b9b5b09c43702e5d6fdc311"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><b>getEnvSizeX</b> ()</td></tr>
 <tr class="separator:ab5ca25ed7b9b5b09c43702e5d6fdc311"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,12 +137,73 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>getEnvSizeY</b>
 <tr class="memitem:acd6b9159530a203fdd398e948d0b88bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd6b9159530a203fdd398e948d0b88bf"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>getVisualisation</b> ()</td></tr>
 <tr class="separator:acd6b9159530a203fdd398e948d0b88bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38fbe5f70f8c7525e1dfff897d2f6548"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38fbe5f70f8c7525e1dfff897d2f6548"></a>
+static float&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxScreenFracW</b> ()</td></tr>
+<tr class="separator:a38fbe5f70f8c7525e1dfff897d2f6548"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6776e765eda7e75bb89c59b6529142ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6776e765eda7e75bb89c59b6529142ca"></a>
+static float&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxScreenFracH</b> ()</td></tr>
+<tr class="separator:a6776e765eda7e75bb89c59b6529142ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to hold model parameters </p>
 
 <p>Definition at line <a class="el" href="ModelParams_8h_source.html#l00008">8</a> of file <a class="el" href="ModelParams_8h_source.html">ModelParams.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a1102369141dc9e1330ecb6739954add8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ModelParams::setMaxScreenFracH </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>fh</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
+
+<p>Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00053">53</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a430dc7c313f910df97c18066e400cad4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ModelParams::setMaxScreenFracW </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>fw</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
+
+<p>Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00036">36</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="ModelParams_8h_source.html">ModelParams.h</a></li>
 <li>src/<a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a></li>
 </ul>

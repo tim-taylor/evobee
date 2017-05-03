@@ -6,6 +6,11 @@ class EvoBeeModel {
 public:
     EvoBeeModel();
     ~EvoBeeModel() {}
+
+    void step();
+
+private:
+    int m_iStep;
 };
 
 #endif /* _EVOBEEMODEL_H */

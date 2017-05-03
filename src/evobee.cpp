@@ -90,7 +90,10 @@ void processConfigOptions(int argc, char **argv)
             ("env-size", po::value<int>(), "environment size for both x and y")
             ("env-size-x", po::value<int>(), "environment size in x direction")
             ("env-size-y", po::value<int>(), "environment size in y direction")
-            ("vis", po::value<bool>(), "show realtime visualisation of run");
+            ("vis", po::value<bool>(), "show realtime visualisation of run")
+            ("max-screen-frac", po::value<float>(), "max fraction of screen width or height for vis window")
+            ("max-screen-frac-w", po::value<float>(), "max fraction of screen width for vis window")
+            ("max-screen-frac-h", po::value<float>(), "max fraction of screen height for vis window");
         //("optimization", po::value<int>(&opt)->default_value(10), "optimization level")
         //("include-path,I", po::value<vector<string>>()->composing(), "include path");
 
@@ -173,6 +176,19 @@ void processConfigOptions(int argc, char **argv)
         }
 
         cout << (ModelParams::getVisualisation() ? "Using" : "Not using") << " visualisation" << endl;
+
+        if (vm.count("max-screen-frac"))
+        {
+            ModelParams::setMaxScreenFrac(vm["max-screen-frac"].as<float>());
+        }
+        if (vm.count("max-screen-frac-w"))
+        {
+            ModelParams::setMaxScreenFracW(vm["max-screen-frac-w"].as<float>());
+        }
+        if (vm.count("max-screen-frac-h"))
+        {
+            ModelParams::setMaxScreenFracH(vm["max-screen-frac-h"].as<float>());
+        }     
     }
     catch (exception &e)
     {

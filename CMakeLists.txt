@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
-project(evobee VERSION 0.1.1.1 LANGUAGES CXX)
+project(evobee VERSION 0.1.1.1)
+#project(evobee VERSION 0.1.1.1 LANGUAGES CXX)
 
 # configure a header file to pass some of the CMake settings to the source code
 configure_file(
@@ -39,17 +40,20 @@ set(SOURCES
     )
 # Approach 2: automatic addition
 #file(GLOB SOURCES "src/*.cpp")
+set(SDL2_GFX_SRCDIR "3rd-party/sdl2-gfx/src")
+file(GLOB SDL2_GFX_SOURCES "${SDL2_GFX_SRCDIR}/*.c")
 
 # include directories
 include_directories(
     "${PROJECT_SOURCE_DIR}/include"
+    "${SDL2_GFX_SRCDIR}"
     ${SDL2_INCLUDE_DIRS}
     ${SDL2IMAGE_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIRS}
 )
 
 # build targets
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES} ${SDL2_GFX_SOURCES})
 
 # link libraries
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${Boost_LIBRARIES})

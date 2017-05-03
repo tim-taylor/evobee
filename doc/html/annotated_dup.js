@@ -11,5 +11,7 @@ var annotated_dup =
     [ "ModelParams", "classModelParams.html", null ],
     [ "Patch", "classPatch.html", "classPatch" ],
     [ "Pollinator", "classPollinator.html", "classPollinator" ],
+    [ "SDL2_gfxBresenhamIterator", "structSDL2__gfxBresenhamIterator.html", "structSDL2__gfxBresenhamIterator" ],
+    [ "SDL2_gfxMurphyIterator", "structSDL2__gfxMurphyIterator.html", "structSDL2__gfxMurphyIterator" ],
     [ "Visualiser", "classVisualiser.html", "classVisualiser" ]
 ];

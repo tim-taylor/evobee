@@ -1,14 +1,7 @@
 #ifndef _EVOBEEEXPERIMENT_H
 #define _EVOBEEEXPERIMENT_H
 
-/*
-//class EvoBeeModel;
-//class ExecutionControl;
-class EventManager;
-class Logger;
-class Visualiser;
-*/
-
+#include "EvoBeeModel.h"
 #include "EventManager.h"
 #include "Logger.h"
 #include "Visualiser.h"
@@ -23,11 +16,13 @@ public:
 
     void run();
 
-    //EvoBeeModel         m_Model;
-    //ExecutionControl    m_ExptController;
+    EvoBeeModel         m_Model;
     EventManager        m_EventManager;
     Logger              m_Logger;
     Visualiser          m_Visualiser;
+
+private:
+    bool                m_bVis;
 };
 
 #endif /* _EVOBEEEXPERIMENT_H */

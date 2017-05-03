@@ -1,5 +1,6 @@
 <map id="EvoBeeExperiment" name="EvoBeeExperiment">
 <area shape="rect" id="node2" href="$classVisualiser.html" title="Visualiser" alt="" coords="5,5,84,32"/>
-<area shape="rect" id="node3" href="$classLogger.html" title="Logger" alt="" coords="125,5,186,32"/>
-<area shape="rect" id="node4" href="$classEventManager.html" title="EventManager" alt="" coords="210,5,317,32"/>
+<area shape="rect" id="node3" href="$classEvoBeeModel.html" title="EvoBeeModel" alt="" coords="108,5,211,32"/>
+<area shape="rect" id="node4" href="$classLogger.html" title="Logger" alt="" coords="235,5,297,32"/>
+<area shape="rect" id="node5" href="$classEventManager.html" title="EventManager" alt="" coords="321,5,427,32"/>
 </map>

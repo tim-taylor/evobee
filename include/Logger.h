@@ -6,6 +6,8 @@ class Logger {
 public:
     Logger();
     ~Logger() {}
+
+    void update();
 };
 
 #endif /* _LOGGER_H */

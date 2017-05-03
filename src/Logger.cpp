@@ -8,3 +8,10 @@
 
 Logger::Logger() {
 }
+
+/**
+@todo
+*/
+void Logger::update() {
+
+}
