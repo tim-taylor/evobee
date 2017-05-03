@@ -1,6 +1,15 @@
+/**
+ * @file
+ *
+ * Declaration of the EvoBeeModel class
+ */
+
 #ifndef _EVOBEEMODEL_H
 #define _EVOBEEMODEL_H
 
+/**
+ * The EvoBeeModel class ...
+ */
 class EvoBeeModel {
 
 public:

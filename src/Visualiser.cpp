@@ -1,7 +1,7 @@
 /**
- * @file Visualiser.cpp
+ * @file
  *
- * A desciption of the Visualiser.cpp file...
+ * Implementation of the Visualiser class
  */
 
 #include <SDL.h>

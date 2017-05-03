@@ -1,7 +1,16 @@
+/**
+ * @file
+ *
+ * Declaration of the ModelComponent class
+ */
+
 #ifndef _MODELCOMPONENT_H
 #define _MODELCOMPONENT_H
 
-class ModelComponent {
+/**
+ * The ModelComponent class ...
+ */
+ class ModelComponent {
 
 public:
     ModelComponent();

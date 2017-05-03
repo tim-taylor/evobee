@@ -1,8 +1,5 @@
-#ifndef SDL_CLEANUP_H
-#define SDL_CLEANUP_H
-
 /**
- * @file sdl_tools.h
+ * @file
  *
  * A collection of miscellanaeous useful functions relating to SDL2,
  * mostly derived from Will Usher's SDL2 Tutorial
@@ -10,22 +7,25 @@
  *
  */
 
+#ifndef _SDL_TOOLS_H
+#define _SDL_TOOLS_H
+
 #include <utility>
 #include <iostream>
 #include <string>
 #include <SDL.h>
 
 /**
-* Log an SDL error with some error message to the output stream of our choice
-* @param os The output stream to write the message to
-* @param msg The error message to write, format will be msg error: SDL_GetError()
-*/
+ * Log an SDL error with some error message to the output stream of our choice
+ * @param os The output stream to write the message to
+ * @param msg The error message to write, format will be msg error: SDL_GetError()
+ */
 void logSDLError(std::ostream &os, const std::string &msg){
 	os << msg << " error: " << SDL_GetError() << std::endl;
 }
 
 
-/*
+/**
  * Recurse through the list of arguments to clean up, cleaning up
  * the first one in the list each iteration.
  */
@@ -36,6 +36,7 @@ void sdl_cleanup(T *t, Args&&... args){
 	//Recurse to clean up the remaining arguments
 	sdl_cleanup(std::forward<Args>(args)...);
 }
+
 /*
  * These specializations serve to free the passed argument and also provide the
  * base cases for the recursive call above, eg. when args is only a single item
@@ -73,7 +74,6 @@ inline void sdl_cleanup<SDL_Surface>(SDL_Surface *surf){
 	}
 	SDL_FreeSurface(surf);
 }
-
 
 /*
  * Get the resource path for resources located in res/subDir
@@ -120,4 +120,4 @@ std::string getResourcePath(const std::string &subDir = ""){
 	return subDir.empty() ? baseRes : baseRes + subDir + PATH_SEP;
 }
 
-#endif
+#endif /* _SDL_TOOLS_H */

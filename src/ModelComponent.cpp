@@ -1,7 +1,7 @@
 /**
- * @file ModelComponent.cpp
+ * @file
  *
- * A desciption of the ModelComponent.cpp file...
+ * Implementation of the ModelComponent class
  */
 
 #include "ModelComponent.h"

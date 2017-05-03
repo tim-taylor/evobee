@@ -1,7 +1,7 @@
 /**
- * @file EvoBeeModel.cpp
+ * @file
  *
- * A desciption of the EvoBeeModel.cpp file...
+ * Implementation of the EvoBeeModel class
  */
 
 #include <iostream>

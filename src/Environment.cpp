@@ -1,7 +1,7 @@
 /**
- * @file Environment.cpp
+ * @file
  *
- * A desciption of the Environment.cpp file...
+ * Implementation of the Environment class
  */
 
 #include "Environment.h"

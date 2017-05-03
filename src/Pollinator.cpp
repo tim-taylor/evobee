@@ -1,8 +1,9 @@
 /**
- * @file Pollinator.cpp
+ * @file
  *
- * A desciption of the Pollinator.cpp file...
+ * Implementation of the Pollinator class
  */
+
 
 #include "Pollinator.h"
 

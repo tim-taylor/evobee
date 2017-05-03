@@ -1,3 +1,9 @@
+/**
+ * @file
+ *
+ * Implementation of the simulation's main method
+ */
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -19,7 +25,10 @@ void processConfigOptions(int argc, char **argv);
 
 
 /**
-*/
+ * Process arguments from command line and/or a config file and initialise 
+ * ModelParams accordingly, then create an EvoBeeExperiment object and
+ * call its run method.
+ */
 int main(int argc, char **argv)
 {
     try
@@ -91,6 +100,7 @@ void processConfigOptions(int argc, char **argv)
             ("env-size-x", po::value<int>(), "environment size in x direction")
             ("env-size-y", po::value<int>(), "environment size in y direction")
             ("vis", po::value<bool>(), "show realtime visualisation of run")
+            ("vis-update-period", po::value<int>(), "number of model steps between each visualisation update")
             ("max-screen-frac", po::value<float>(), "max fraction of screen width or height for vis window")
             ("max-screen-frac-w", po::value<float>(), "max fraction of screen width for vis window")
             ("max-screen-frac-h", po::value<float>(), "max fraction of screen height for vis window");
@@ -176,6 +186,11 @@ void processConfigOptions(int argc, char **argv)
         }
 
         cout << (ModelParams::getVisualisation() ? "Using" : "Not using") << " visualisation" << endl;
+
+        if (vm.count("vis-update-period"))
+        {
+            ModelParams::setVisUpdatePeriod(vm["vis-update-period"].as<int>());
+        }        
 
         if (vm.count("max-screen-frac"))
         {

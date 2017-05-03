@@ -1,16 +1,16 @@
 /**
- * @file EvoBeeExperiment.cpp
+ * @file
  *
- * A desciption of the EvoBeeExperiment.cpp file...
+ * Implementation of the EvoBeeExperiment class
  */
 
 #include "ModelParams.h"
-//#include "ExecutionConrtol.h"
 #include "EvoBeeModel.h"
 #include "EventManager.h"
 #include "Logger.h"
 #include "Visualiser.h"
 #include "EvoBeeExperiment.h"
+
 
 EvoBeeExperiment::EvoBeeExperiment() :
     m_Model(),
@@ -22,6 +22,7 @@ EvoBeeExperiment::EvoBeeExperiment() :
     if (m_bVis) {
         m_Visualiser.init();
     }
+    m_iVisUpdatePeriod = ModelParams::getVisUpdatePeriod();
 }
 
 /**
@@ -36,7 +37,7 @@ void EvoBeeExperiment::run() {
     {
         m_Model.step();
         m_Logger.update(); // question: should this run in a different thread?
-        if (m_bVis) 
+        if ((m_bVis) && (step % m_iVisUpdatePeriod == 0)) 
         {
             m_Visualiser.update(); // question: should this run in a different thread?
             // also, might want to be able to define a vis update interval in params, e.g.

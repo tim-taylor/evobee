@@ -1,17 +1,18 @@
 /**
- * @file ModelParams.cpp
+ * @file
  *
- * A desciption of the ModelParams.cpp file...
+ * Implementation of the ModelParams class
  */
 
 #include "ModelParams.h"
 
-
-bool ModelParams::m_bVisualisation = true;  ///< Use visualiation for this run?
-int  ModelParams::m_iEnvSizeX = 50;         ///< Environment size (num patches) in x direction
-int  ModelParams::m_iEnvSizeY = 50;         ///< Environment size (num patches) in y direction
-float ModelParams::m_fMaxScreenFracH = 0.8; ///< Max fraction of screen size for window height
-float ModelParams::m_fMaxScreenFracW = 0.8; ///< Max fraction of screen size for window width
+// Instantiate all static members
+bool  ModelParams::m_bVisualisation = true;
+int   ModelParams::m_iVisUpdatePeriod = 1;
+int   ModelParams::m_iEnvSizeX = 50;
+int   ModelParams::m_iEnvSizeY = 50;
+float ModelParams::m_fMaxScreenFracH = 0.8;
+float ModelParams::m_fMaxScreenFracW = 0.8;
 
 
 void ModelParams::setEnvSize(int x, int y)
@@ -65,4 +66,10 @@ void ModelParams::setMaxScreenFracH(float fh)
     {
         m_fMaxScreenFracH = fh;
     }    
+}
+
+void ModelParams::setVisUpdatePeriod(int p)
+{
+    if (p > 0)
+        m_iVisUpdatePeriod = p;
 }

@@ -1,11 +1,19 @@
+/**
+ * @file
+ *
+ * Declaration of the Visualiser class
+ */
+
 #ifndef _VISUALISER_H
 #define _VISUALISER_H
 
 class SDL_Window;
 class SDL_Renderer;
 
-
-class Visualiser {
+/**
+ * The Visualiser class ...
+ */
+ class Visualiser {
 
 public:
     Visualiser();

@@ -1,8 +1,9 @@
 /**
- * @file Patch.cpp
+ * @file
  *
- * A desciption of the Patch.cpp file...
+ * Implementation of the Patch class
  */
+
 
 #include "Patch.h"
 

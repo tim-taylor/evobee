@@ -1,7 +1,16 @@
+/**
+ * @file
+ *
+ * Declaration of the Patch class
+ */
+
 #ifndef _PATCH_H
 #define _PATCH_H
 
-class Patch {
+/**
+ * The Patch class ...
+ */
+ class Patch {
 
 public:
     Patch();

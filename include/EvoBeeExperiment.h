@@ -1,3 +1,9 @@
+/**
+ * @file
+ *
+ * Declaration of the EvoBeeExperiment class
+ */
+
 #ifndef _EVOBEEEXPERIMENT_H
 #define _EVOBEEEXPERIMENT_H
 
@@ -7,7 +13,8 @@
 #include "Visualiser.h"
 
 /**
-*/
+ * The EvoBeeExperiment class ...
+ */
 class EvoBeeExperiment {
 
 public:
@@ -23,6 +30,7 @@ public:
 
 private:
     bool                m_bVis;
+    int                 m_iVisUpdatePeriod;
 };
 
 #endif /* _EVOBEEEXPERIMENT_H */

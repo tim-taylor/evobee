@@ -1,7 +1,7 @@
 /**
- * @file EventManager.cpp
+ * @file
  *
- * A desciption of the EventManager.cpp file...
+ * Implementation of the EventManager class
  */
 
 #include "EventManager.h"

@@ -1,7 +1,7 @@
 /**
- * @file FloweringPlant.cpp
+ * @file
  *
- * A desciption of the FloweringPlant.cpp file...
+ * Implementation of the FlowerPlant class
  */
 
 #include "FloweringPlant.h"

@@ -1,7 +1,16 @@
+/**
+ * @file
+ *
+ * Declaration of the Logger class
+ */
+
 #ifndef _LOGGER_H
 #define _LOGGER_H
 
-class Logger {
+/**
+ * The Logger class ...
+ */
+ class Logger {
 
 public:
     Logger();

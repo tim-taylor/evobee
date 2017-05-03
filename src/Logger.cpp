@@ -1,7 +1,7 @@
 /**
- * @file Logger.cpp
+ * @file
  *
- * A desciption of the Logger.cpp file...
+ * Implementation of the Logger class
  */
 
 #include "Logger.h"

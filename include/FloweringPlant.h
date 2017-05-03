@@ -1,7 +1,16 @@
+/**
+ * @file
+ *
+ * Declaration of the FloweringPlant class
+ */
+
 #ifndef _FLOWERINGPLANT_H
 #define _FLOWERINGPLANT_H
 
-class FloweringPlant {
+/**
+ * The FloweringPlant class ...
+ */
+ class FloweringPlant {
 
 public:
     FloweringPlant();
