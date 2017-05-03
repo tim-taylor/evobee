@@ -1,0 +1,31 @@
+** EvoBee build and install instructions **
+===========================================
+
+
+External dependencies
+---------------------
+
+To compile evobee from source, you will need the following libraries
+(including header files) installed on your system:
+
+* Boost libraries (http://www.boost.org/)
+  -- specifically the program_options library
+  -- version 1.32.0 or higher
+
+* SDL 2.0 (https://www.libsdl.org/)
+
+
+To build EvoBee
+---------------
+
+The following instructions are for the Linux command line. Adapt
+as appropriate according to your OS.
+
+From the base directory of evobee:
+
+* cd build
+* cmake ..
+* make
+
+If all worked well, the evobee executable file should now be found
+in the build directory.

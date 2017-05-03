@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
-project(evobee VERSION 0.1.1.1)
-#project(evobee VERSION 0.1.1.1 LANGUAGES CXX)
+project(evobee VERSION 0.1.1.1 LANGUAGES CXX C)
 
 # configure a header file to pass some of the CMake settings to the source code
 configure_file(
