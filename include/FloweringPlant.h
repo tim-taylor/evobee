@@ -10,7 +10,7 @@
 /**
  * The FloweringPlant class ...
  */
- class FloweringPlant {
+class FloweringPlant {
 
 public:
     FloweringPlant();

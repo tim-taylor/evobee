@@ -13,7 +13,7 @@ class SDL_Renderer;
 /**
  * The Visualiser class ...
  */
- class Visualiser {
+class Visualiser {
 
 public:
     Visualiser();

@@ -10,7 +10,7 @@
 /**
  * The Patch class ...
  */
- class Patch {
+class Patch {
 
 public:
     Patch();

@@ -10,11 +10,11 @@
 /**
  * The Pollinator class ...
  */
- class Pollinator {
+class Pollinator {
 
 public:
     Pollinator();
-    ~Pollinator() {}
+    virtual ~Pollinator() {}
 };
 
 #endif /* _POLLINATOR_H */

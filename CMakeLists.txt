@@ -30,6 +30,8 @@ set(SOURCES
     src/EvoBeeModel.cpp
     src/FloweringPlant.cpp
     src/Hive.cpp
+    src/HoneyBee.cpp
+    src/Hymenoptera.cpp
     src/Logger.cpp
     src/ModelComponent.cpp
     src/ModelParams.cpp

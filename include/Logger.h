@@ -10,7 +10,7 @@
 /**
  * The Logger class ...
  */
- class Logger {
+class Logger {
 
 public:
     Logger();

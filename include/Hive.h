@@ -10,7 +10,7 @@
 /**
  * The Hive class ...
  */
- class Hive {
+class Hive {
 
 public:
     Hive();

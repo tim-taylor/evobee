@@ -10,11 +10,11 @@
 /**
  * The ModelComponent class ...
  */
- class ModelComponent {
+class ModelComponent {
 
 public:
     ModelComponent();
-    ~ModelComponent() {}
+    virtual ~ModelComponent() {}
 };
 
 #endif /* _MODELCOMPONENT_H */
