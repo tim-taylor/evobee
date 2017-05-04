@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structSDL2__gfxBresenhamIterator.html" title="The structure passed to the internal Bresenham iterator. " alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node1" href="$classPollinator.html" title="Pollinator" alt="" coords="5,5,81,32"/>
+<area shape="rect" id="node2" href="$classHymenoptera.html" title="Hymenoptera" alt="" coords="129,5,229,32"/>
+<area shape="rect" id="node3" href="$classHoneyBee.html" title="HoneyBee" alt="" coords="277,5,360,32"/>
 </map>

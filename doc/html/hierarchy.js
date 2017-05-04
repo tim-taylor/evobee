@@ -4,6 +4,7 @@ var hierarchy =
     [ "EventManager", "classEventManager.html", null ],
     [ "EvoBeeExperiment", "classEvoBeeExperiment.html", null ],
     [ "EvoBeeModel", "classEvoBeeModel.html", null ],
+    [ "Flower", "classFlower.html", null ],
     [ "FloweringPlant", "classFloweringPlant.html", null ],
     [ "Hive", "classHive.html", null ],
     [ "Logger", "classLogger.html", null ],
