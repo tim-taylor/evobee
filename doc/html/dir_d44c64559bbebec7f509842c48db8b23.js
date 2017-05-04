@@ -19,6 +19,12 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "Hive.h", "Hive_8h.html", [
       [ "Hive", "classHive.html", "classHive" ]
     ] ],
+    [ "HoneyBee.h", "HoneyBee_8h.html", [
+      [ "HoneyBee", "classHoneyBee.html", "classHoneyBee" ]
+    ] ],
+    [ "Hymenoptera.h", "Hymenoptera_8h.html", [
+      [ "Hymenoptera", "classHymenoptera.html", "classHymenoptera" ]
+    ] ],
     [ "Logger.h", "Logger_8h.html", [
       [ "Logger", "classLogger.html", "classLogger" ]
     ] ],

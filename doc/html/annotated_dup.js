@@ -6,6 +6,8 @@ var annotated_dup =
     [ "EvoBeeModel", "classEvoBeeModel.html", "classEvoBeeModel" ],
     [ "FloweringPlant", "classFloweringPlant.html", "classFloweringPlant" ],
     [ "Hive", "classHive.html", "classHive" ],
+    [ "HoneyBee", "classHoneyBee.html", "classHoneyBee" ],
+    [ "Hymenoptera", "classHymenoptera.html", "classHymenoptera" ],
     [ "Logger", "classLogger.html", "classLogger" ],
     [ "ModelComponent", "classModelComponent.html", "classModelComponent" ],
     [ "ModelParams", "classModelParams.html", null ],
