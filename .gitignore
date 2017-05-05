@@ -39,3 +39,4 @@ evobeeConfig.h
 evobee
 src/old/
 include/old/
+build/
