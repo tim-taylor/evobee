@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 project(evobee VERSION 0.1.1.1 LANGUAGES CXX C)
 
+# The following include is just for integration with the Visual Studio Code editor
+# It is specified as optional, so the rest of the build process will continue as
+# normal if this isn't available on your system
+include(CMakeToolsHelpers OPTIONAL)
+
 # configure a header file to pass some of the CMake settings to the source code
 configure_file(
     "${PROJECT_SOURCE_DIR}/include/evobeeConfig.h.in"
