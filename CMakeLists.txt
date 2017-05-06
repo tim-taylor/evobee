@@ -6,6 +6,22 @@ project(evobee VERSION 0.1.1.1 LANGUAGES CXX C)
 # normal if this isn't available on your system
 include(CMakeToolsHelpers OPTIONAL)
 
+# Set a default build type. You can override this on the command line as follows:
+#  cmake -D CMAKE_BUILD_TYPE=Release ..  
+# Avaiable build types are [Debug|Release|MinSizeRel|RelWithDebInfo]
+if(NOT CMAKE_BUILD_TYPE) 
+    set(CMAKE_BUILD_TYPE Debug)
+endif(NOT CMAKE_BUILD_TYPE)
+
+# Specify flags for specific build types 
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
+
+# We can also make our own build targets, e.g.
+#SET(CMAKE_BUILD_TYPE distribution)
+#SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-O3")
+#SET(CMAKE_C_FLAGS_DISTRIBUTION "-O3")
+
 # configure a header file to pass some of the CMake settings to the source code
 configure_file(
     "${PROJECT_SOURCE_DIR}/include/evobeeConfig.h.in"
