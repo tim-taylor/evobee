@@ -44,6 +44,7 @@ pkg_search_module(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
 # define sources
 # Approach 1: manual addition (preferred)
 set(SOURCES
+    src/Colour.cpp
     src/evobee.cpp
     src/Environment.cpp
     src/EventManager.cpp

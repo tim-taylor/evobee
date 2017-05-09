@@ -210,4 +210,6 @@ void processConfigOptions(int argc, char **argv)
         cerr << e.what() << endl;
         exit(0);
     }
+
+    ModelParams::setInitialised();
 }

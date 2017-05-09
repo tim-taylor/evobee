@@ -10,16 +10,20 @@
 #include "SDL2_gfxPrimitives.h"
 #include "sdl_tools.h"
 #include "ModelParams.h"
+#include "EvoBeeModel.h"
+#include "Environment.h"
+#include "Patch.h"
 #include "Visualiser.h"
 
 using namespace std;
 
-Visualiser::Visualiser() :
+Visualiser::Visualiser(EvoBeeModel* pModel) :
     m_iScreenW(640),
     m_iScreenH(480),
     m_iPatchSize(10),
     m_pWindow(nullptr),
-    m_pRenderer(nullptr)
+    m_pRenderer(nullptr),
+    m_pModel(pModel)
 {
 }
 
@@ -167,12 +171,6 @@ void Visualiser::update() {
     //while (!quit)
     {
         /*
-        if (SDL_PollEvent(&e))
-        {
-            if (e.type == SDL_QUIT)
-                quit = 1;
-        }*/
-
         while (SDL_PollEvent(&e))
         {
             if (e.type == SDL_QUIT)
@@ -188,24 +186,30 @@ void Visualiser::update() {
                 quit = true;
             }
         }
+        */
 
         SDL_SetRenderDrawColor(m_pRenderer, 0x0, 0x0, 0x0, 0xFF);
         SDL_RenderClear(m_pRenderer);
 
-        for (int x = 0; x < ModelParams::getEnvSizeX(); x++)
+        auto patches = m_pModel->getEnv().getPatches();
+        for (Patch& p : patches)
         {
-            for (int y = 0; y < ModelParams::getEnvSizeY(); y++)
-            {
-                boxColor(m_pRenderer, 
-                    x*m_iPatchSize, y*m_iPatchSize, 
-                    (x+1)*m_iPatchSize-1, (y+1)*m_iPatchSize-1, 
-                    0x20E020FF);
+            p.getColour().setMarkerPoint(400); //@todo this is just for testing
+            auto c = p.getColour().getRGB();
+            auto x = p.getPosX();
+            auto y = p.getPosY();
+            boxRGBA(m_pRenderer,
+                     x * m_iPatchSize,
+                     y * m_iPatchSize,
+                     (x + 1) * m_iPatchSize - 1, (y + 1) * m_iPatchSize - 1,
+                     c.r, c.g, c.b, 255);
 
-                rectangleColor(m_pRenderer, 
-                    x*m_iPatchSize, y*m_iPatchSize,
-                    (x+1)*m_iPatchSize-1, (y+1)*m_iPatchSize-1,
-                    0xD0D0D0FF);
-            }
+            //
+            rectangleRGBA(m_pRenderer,
+                           x * m_iPatchSize, y * m_iPatchSize,
+                           (x + 1) * m_iPatchSize - 1, (y + 1) * m_iPatchSize - 1,
+                           200, 200, 200, 255);
+            //
         }
 
         /*
@@ -216,6 +220,18 @@ void Visualiser::update() {
         */
 
         SDL_RenderPresent(m_pRenderer);
-        //SDL_Delay(10);
+
+        //while(!quit)
+        //{
+            while( SDL_PollEvent( &e ) != 0 )
+            {
+                if( e.type == SDL_QUIT )
+                {
+                    quit = true;
+                }
+            }
+        //}
+        
+        //SDL_Delay(3000);
     }
 }

@@ -9,6 +9,7 @@
 
 class SDL_Window;
 class SDL_Renderer;
+class EvoBeeModel;
 
 /**
  * The Visualiser class ...
@@ -16,7 +17,7 @@ class SDL_Renderer;
 class Visualiser {
 
 public:
-    Visualiser();
+    Visualiser(EvoBeeModel* pModel);
     ~Visualiser();
 
     int init();
@@ -28,6 +29,7 @@ private:
     int           m_iPatchSize;
     SDL_Window*   m_pWindow;
     SDL_Renderer* m_pRenderer;
+    EvoBeeModel*  m_pModel;
 };
 
 #endif /* _VISUALISER_H */

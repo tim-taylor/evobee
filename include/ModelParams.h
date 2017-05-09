@@ -22,13 +22,17 @@ public:
     static void setMaxScreenFracW(float fw);
     static void setMaxScreenFracH(float fh);
     static void setVisUpdatePeriod(int p);
+    static void setInitialised();
 
     static int   getEnvSizeX() {return m_iEnvSizeX;}
     static int   getEnvSizeY() {return m_iEnvSizeY;}
+    static int   getNumPatches() {return m_iEnvSizeX * m_iEnvSizeY;}
     static bool  getVisualisation() {return m_bVisualisation;}
     static float getMaxScreenFracW() {return m_fMaxScreenFracW;}
     static float getMaxScreenFracH() {return m_fMaxScreenFracH;}
     static int   getVisUpdatePeriod() {return m_iVisUpdatePeriod;}
+
+    static bool  initialised() {return m_bInitialised;}
 
 private:
     static bool  m_bVisualisation;   ///< Use visualiation for this run?
@@ -37,6 +41,7 @@ private:
     static float m_fMaxScreenFracW;  ///< Max fraction of screen size for vis window width
     static float m_fMaxScreenFracH;  ///< Max fraction of screen size for vis window height
     static int   m_iVisUpdatePeriod; ///< Number of model steps between each update of visualisation
+    static bool  m_bInitialised;     ///< Flag to indicate that parmas have been intiialised
 };
 
 #endif /* _MODELPARAMS_H */
