@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['visualiser',['Visualiser',['../classVisualiser.html',1,'']]]
+  ['rgb',['RGB',['../classColour_1_1RGB.html',1,'Colour']]]
 ];

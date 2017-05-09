@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['update',['update',['../classLogger.html#ad905325c0f6a7f835e7e54c66e7300b2',1,'Logger']]]
+  ['run',['run',['../classEvoBeeExperiment.html#a7219da5e7707008d2007e5c5a3a664c8',1,'EvoBeeExperiment']]]
 ];

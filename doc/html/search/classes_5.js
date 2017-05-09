@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['patch',['Patch',['../classPatch.html',1,'']]],
-  ['pollinator',['Pollinator',['../classPollinator.html',1,'']]]
+  ['modelcomponent',['ModelComponent',['../classModelComponent.html',1,'']]],
+  ['modelparams',['ModelParams',['../classModelParams.html',1,'']]]
 ];

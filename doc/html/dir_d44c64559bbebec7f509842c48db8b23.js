@@ -1,5 +1,9 @@
 var dir_d44c64559bbebec7f509842c48db8b23 =
 [
+    [ "Colour.h", "Colour_8h.html", [
+      [ "Colour", "classColour.html", "classColour" ],
+      [ "RGB", "classColour_1_1RGB.html", "classColour_1_1RGB" ]
+    ] ],
     [ "Environment.h", "Environment_8h.html", [
       [ "Environment", "classEnvironment.html", "classEnvironment" ]
     ] ],

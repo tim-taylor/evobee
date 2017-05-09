@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "Colour", "classColour.html", null ],
     [ "Environment", "classEnvironment.html", null ],
     [ "EventManager", "classEventManager.html", null ],
     [ "EvoBeeExperiment", "classEvoBeeExperiment.html", null ],
@@ -16,6 +17,7 @@ var hierarchy =
         [ "HoneyBee", "classHoneyBee.html", null ]
       ] ]
     ] ],
+    [ "Colour::RGB", "classColour_1_1RGB.html", null ],
     [ "SDL2_gfxBresenhamIterator", "structSDL2__gfxBresenhamIterator.html", null ],
     [ "SDL2_gfxMurphyIterator", "structSDL2__gfxMurphyIterator.html", null ],
     [ "Visualiser", "classVisualiser.html", null ]

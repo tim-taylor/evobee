@@ -105,17 +105,71 @@ $(document).ready(function(){initNavTree('classEnvironment.html','');});
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Environment Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="Environment_8h_source.html">Environment.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a2fc4efd2e54177f1617b26e23f62a12e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a2fc4efd2e54177f1617b26e23f62a12e">getPatchCoordsFromIdx</a> (int idx, int *retX, int *retY)</td></tr>
+<tr class="separator:a2fc4efd2e54177f1617b26e23f62a12e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73f2e24bc82e2dca4bc0080e7e45bbae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73f2e24bc82e2dca4bc0080e7e45bbae"></a>
+std::vector&lt; <a class="el" href="classPatch.html">Patch</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPatches</b> ()</td></tr>
+<tr class="separator:a73f2e24bc82e2dca4bc0080e7e45bbae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classEnvironment.html">Environment</a> class... </p>
 
-<p>Definition at line <a class="el" href="Environment_8h_source.html#l00013">13</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<p>Definition at line <a class="el" href="Environment_8h_source.html#l00016">16</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a2fc4efd2e54177f1617b26e23f62a12e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::getPatchCoordsFromIdx </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>retX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>retY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Helper function to calculate a patch's X and Y coordinates from its Index value </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idx</td><td>The Index value </td></tr>
+    <tr><td class="paramname">retX</td><td>Pointer to an int into which the X value will be returned </td></tr>
+    <tr><td class="paramname">retY</td><td>Pointer to an int into which the Y value will be returned </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="Environment_8cpp_source.html#l00028">28</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="Environment_8h_source.html">Environment.h</a></li>
 <li>src/<a class="el" href="Environment_8cpp_source.html">Environment.cpp</a></li>
 </ul>

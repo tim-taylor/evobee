@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['logger',['Logger',['../classLogger.html',1,'']]],
-  ['logger_2ecpp',['Logger.cpp',['../Logger_8cpp.html',1,'']]],
-  ['logger_2eh',['Logger.h',['../Logger_8h.html',1,'']]],
-  ['logsdlerror',['logSDLError',['../sdl__tools_8h.html#a343bdc6b0f085211d4043f2d9485476c',1,'sdl_tools.h']]]
+  ['getenv',['getEnv',['../classEvoBeeModel.html#a92fa9871c441c64e5993672824fd4055',1,'EvoBeeModel']]],
+  ['getpatchcoordsfromidx',['getPatchCoordsFromIdx',['../classEnvironment.html#a2fc4efd2e54177f1617b26e23f62a12e',1,'Environment']]]
 ];
