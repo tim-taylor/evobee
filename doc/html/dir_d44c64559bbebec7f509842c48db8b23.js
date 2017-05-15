@@ -26,6 +26,9 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "Hive.h", "Hive_8h.html", [
       [ "Hive", "classHive.html", "classHive" ]
     ] ],
+    [ "HiveConfig.h", "HiveConfig_8h.html", [
+      [ "HiveConfig", "structHiveConfig.html", "structHiveConfig" ]
+    ] ],
     [ "HoneyBee.h", "HoneyBee_8h.html", [
       [ "HoneyBee", "classHoneyBee.html", "classHoneyBee" ]
     ] ],
@@ -43,6 +46,9 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     ] ],
     [ "Patch.h", "Patch_8h.html", [
       [ "Patch", "classPatch.html", "classPatch" ]
+    ] ],
+    [ "PlantTypeDistributionConfig.h", "PlantTypeDistributionConfig_8h.html", [
+      [ "PlantTypeDistributionConfig", "structPlantTypeDistributionConfig.html", "structPlantTypeDistributionConfig" ]
     ] ],
     [ "Pollinator.h", "Pollinator_8h.html", [
       [ "Pollinator", "classPollinator.html", "classPollinator" ]

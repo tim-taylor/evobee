@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['environment',['Environment',['../classEnvironment.html',1,'']]],
+  ['environment',['Environment',['../classEnvironment.html',1,'Environment'],['../classEnvironment.html#a8b427c4448d8b7536666837521b9e83d',1,'Environment::Environment()']]],
   ['environment_2ecpp',['Environment.cpp',['../Environment_8cpp.html',1,'']]],
   ['environment_2eh',['Environment.h',['../Environment_8h.html',1,'']]],
   ['eventmanager',['EventManager',['../classEventManager.html',1,'']]],

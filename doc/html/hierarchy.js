@@ -8,10 +8,12 @@ var hierarchy =
     [ "Flower", "classFlower.html", null ],
     [ "FloweringPlant", "classFloweringPlant.html", null ],
     [ "Hive", "classHive.html", null ],
+    [ "HiveConfig", "structHiveConfig.html", null ],
     [ "Logger", "classLogger.html", null ],
     [ "ModelComponent", "classModelComponent.html", null ],
     [ "ModelParams", "classModelParams.html", null ],
     [ "Patch", "classPatch.html", null ],
+    [ "PlantTypeDistributionConfig", "structPlantTypeDistributionConfig.html", null ],
     [ "Pollinator", "classPollinator.html", [
       [ "Hymenoptera", "classHymenoptera.html", [
         [ "HoneyBee", "classHoneyBee.html", null ]
