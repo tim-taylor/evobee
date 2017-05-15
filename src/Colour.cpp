@@ -5,37 +5,88 @@
  */
 
 #include <iostream> // for testing - maybe not needed?
-#include <cstdlib> // for rand - maybe not needed in long term?
+#include <cstdlib>  // for rand - maybe not needed in long term?
+#include <cassert>
 #include "Colour.h"
 
-Colour::Colour()
+const int Colour::DEFAULT_MARKER_POINT = 500;
+
+
+Colour::Colour() :
+    m_iMarkerPoint(Colour::DEFAULT_MARKER_POINT),
+    m_bRgbFromMarkerPoint(true)
 {
-    m_iMarkerPoint = 500;
     updateRGB();
 }
 
 Colour::Colour(int mp) :
-    m_iMarkerPoint(mp)
+    m_iMarkerPoint(mp),
+    m_bRgbFromMarkerPoint(true)
 {
     updateRGB();
 }
 
-/// @todo - this should be derived from the marker point....
-void Colour::updateRGB() {
-    //
+Colour::Colour(unsigned short r, unsigned short g, unsigned short b) :
+    m_iMarkerPoint(-1),
+    m_bRgbFromMarkerPoint(false)
+{
+    setRGB(r,g,b);
+}
+
+void Colour::setRGB(unsigned short r, unsigned short g, unsigned short b)
+{
+    m_RGB.r = r;
+    m_RGB.g = g;
+    m_RGB.b = b;
+}
+
+void Colour::setRgbFromMarkerPoint(bool linked)
+{
+    m_bRgbFromMarkerPoint = linked;
+}
+
+template <int lo, int peak, int hi>
+int Colour::getIntensity(int lambda)
+{
+    if (lambda <= lo)
+    {
+        return 0;
+    }
+    else if (lambda <= peak)
+    {
+        return (255 * (lambda - lo)) / (peak - lo);
+    }
+    else if (lambda < hi)
+    {
+        return (255 * (hi - lambda)) / (peak - lambda);
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void Colour::updateRGB()
+{
+    assert(m_bRgbFromMarkerPoint);
+
+    // The following values for R, G and B intensity are based upon Fig 1 in
+    // Dyer, Paulk and Reser "Colour processing in complex environments..."
+    m_RGB.r = getIntensity<400, 550, 650>(m_iMarkerPoint);
+    m_RGB.g = getIntensity<300, 430, 510>(m_iMarkerPoint);
+    m_RGB.b = getIntensity<300, 350, 410>(m_iMarkerPoint);
+
+    /*
     m_RGB.r = rand() % 256;
     m_RGB.g = rand() % 256;
     m_RGB.b = rand() % 256;
-    //
-    /*
-    int n = rand() % 3;
-    switch (n) {
-        case 0: m_RGB.r=255; m_RGB.g=1; m_RGB.b=1; break;
-        case 1: m_RGB.r=1; m_RGB.g=255; m_RGB.b=1; break;
-        case 2: m_RGB.r=1; m_RGB.g=1; m_RGB.b=255; break;
-    }
-    std::cout << "R:" << m_RGB.r << ", G:" << m_RGB.g << ", B:" << m_RGB.b << std::endl;
     */
+}
+
+///
+void Colour::setMarkerPoint(int mp) {
+    m_iMarkerPoint = mp;
+    updateRGB();
 }
 
 /// Returns the colour in hexadecimal RRGGBBAA form.
@@ -47,9 +98,3 @@ unsigned long Colour::getHex() const {
            + (255 & 0xff));
 }
 */
-
-///
-void Colour::setMarkerPoint(int mp) {
-    m_iMarkerPoint = mp;
-    updateRGB();
-}

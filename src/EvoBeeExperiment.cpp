@@ -36,7 +36,7 @@ void EvoBeeExperiment::run() {
 
     // iterate increments in model and logger, and in visualiser if needed,
     // until halting criteria met
-    for (int step = 0; step < 150; ++step) 
+    for (int step = 0; step < ModelParams::getTerminationNumSteps(); ++step) 
     {
         m_Model.step();
         m_Logger.update(); // question: should this run in a different thread?

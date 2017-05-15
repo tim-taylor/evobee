@@ -15,7 +15,8 @@
 #include "Patch.h"
 #include "Visualiser.h"
 
-using namespace std;
+using std::cout;
+using std::cerr;
 
 Visualiser::Visualiser(EvoBeeModel* pModel) :
     m_iScreenW(640),
@@ -37,7 +38,7 @@ Visualiser::~Visualiser()
 
 int Visualiser::init()
 {
-    cout << "In vis::init" << endl;
+    std::cout << "In vis::init" << std::endl;
 
     // Initialise SDL (test)
 
@@ -191,10 +192,13 @@ void Visualiser::update() {
         SDL_SetRenderDrawColor(m_pRenderer, 0x0, 0x0, 0x0, 0xFF);
         SDL_RenderClear(m_pRenderer);
 
+        //static int step = 300; //@todo this is just for testing
+        //step += 2; //@todo this is just for testing
+
         auto patches = m_pModel->getEnv().getPatches();
         for (Patch& p : patches)
         {
-            p.getColour().setMarkerPoint(400); //@todo this is just for testing
+            //p.getColour().setMarkerPoint(380); //@todo this is just for testing
             auto c = p.getColour().getRGB();
             auto x = p.getPosX();
             auto y = p.getPosY();

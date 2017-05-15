@@ -17,7 +17,7 @@ class Environment;
 class Patch {
 
 public:
-    Patch(Environment* pEnv, int posIdx);
+    Patch(Environment* pEnv, int posIdx, Colour& backgroundCol, float temp);
     ~Patch() {}
 
     ///
@@ -35,6 +35,7 @@ public:
 private:
     Environment* m_pEnv;    ///< A pointer back to the owning Environment
     Colour m_Colour;        ///< The patch's background colour
+    float m_fTemp;          ///< Ambient temperature of the patch
     int m_posIdx;           ///< The patch's unique index number in the Environment
     int m_posX;             ///< The patch's x coordinate in Environment (derived from m_posIdx)
     int m_posY;             ///< The patch's y coordinate in Environment (derived from m_posIdx)

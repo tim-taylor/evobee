@@ -42,7 +42,7 @@ pkg_search_module(SDL2 REQUIRED sdl2)
 pkg_search_module(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
 
 # define sources
-# Approach 1: manual addition (preferred)
+# First explicitly specify all source files in the evobee project
 set(SOURCES
     src/Colour.cpp
     src/evobee.cpp
@@ -61,15 +61,17 @@ set(SOURCES
     src/Pollinator.cpp
     src/Visualiser.cpp
     )
-# Approach 2: automatic addition
-#file(GLOB SOURCES "src/*.cpp")
+# Now specify SDL2_GFX source files
 set(SDL2_GFX_SRCDIR "3rd-party/sdl2-gfx/src")
 file(GLOB SDL2_GFX_SOURCES "${SDL2_GFX_SRCDIR}/*.c")
+# And JSON source files
+set(JSON_SRCDIR "3rd-party/nlohmann-json")
 
 # include directories
 include_directories(
     "${PROJECT_SOURCE_DIR}/include"
     "${SDL2_GFX_SRCDIR}"
+    "${JSON_SRCDIR}"
     ${SDL2_INCLUDE_DIRS}
     ${SDL2IMAGE_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIRS}

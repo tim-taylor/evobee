@@ -8,9 +8,12 @@
 #include <fstream>
 #include <string>
 #include <boost/program_options.hpp>
+#include "json.hpp"
 #include "evobeeConfig.h"
 #include "ModelParams.h"
 #include "EvoBeeExperiment.h"
+#include "HiveConfig.h"
+#include "PlantTypeDistributionConfig.h"
 
 /*
 #include <random>
@@ -18,11 +21,34 @@
 */
 
 namespace po = boost::program_options;
-using namespace std;
+using std::cout;
+using std::cerr;
+using std::endl;
+using std::exception;
+using std::string;
+using std::ifstream;
+using std::vector;
+using json = nlohmann::json;
+
 
 // forward declaration of functions in this file
 void processConfigOptions(int argc, char **argv);
+void processJsonFile(ifstream& ifs);
 
+
+// helper functions for JSON conversion
+void from_json(const json& j, HiveConfig& hc) {
+    hc.type = j.at("pollinator-type").get<string>();
+    hc.num = j.at("pollinator-number").get<int>();
+    hc.x = j.at("pos-x").get<int>();
+    hc.y = j.at("pos-y").get<int>();
+}
+
+void from_json(const json& j, PlantTypeDistributionConfig& pc) {
+    pc.plantType = j.at("plant-type").get<string>();
+    pc.distribution = j.at("distribution").get<string>();
+    pc.density = j.at("density").get<float>();
+}
 
 /**
  * Process arguments from command line and/or a config file and initialise 
@@ -89,7 +115,7 @@ void processConfigOptions(int argc, char **argv)
         generic.add_options()
             ("version,v", "display program version number")
             ("help,h", "display this help message")
-            ("config,c", po::value<string>(&config_file)->default_value("evobee.cfg"), "configuration file");
+            ("config,c", po::value<string>(&config_file)->default_value("evobee.cfg.json"), "configuration file");
 
         // Declare a group of options that will be
         // allowed both on command line and in
@@ -103,7 +129,8 @@ void processConfigOptions(int argc, char **argv)
             ("vis-update-period", po::value<int>(), "number of model steps between each visualisation update")
             ("max-screen-frac", po::value<float>(), "max fraction of screen width or height for vis window")
             ("max-screen-frac-w", po::value<float>(), "max fraction of screen width for vis window")
-            ("max-screen-frac-h", po::value<float>(), "max fraction of screen height for vis window");
+            ("max-screen-frac-h", po::value<float>(), "max fraction of screen height for vis window")
+            ("hive", po::value<vector<string>>()->composing(), "hive specification");
         //("optimization", po::value<int>(&opt)->default_value(10), "optimization level")
         //("include-path,I", po::value<vector<string>>()->composing(), "include path");
 
@@ -145,14 +172,15 @@ void processConfigOptions(int argc, char **argv)
         if (!ifs)
         {
             /*
-            cout << "Unable to open config file: " << config_file << endl;
+            std::cout << "Unable to open config file: " << config_file << std::endl;
             return 0;
             */
         }
         else
         {
-            store(parse_config_file(ifs, config_file_options), vm);
-            notify(vm);
+            //store(parse_config_file(ifs, config_file_options), vm);
+            //notify(vm);
+            processJsonFile(ifs);
         }
 
         if (vm.count("env-size"))
@@ -185,7 +213,8 @@ void processConfigOptions(int argc, char **argv)
             ModelParams::setVisualisation(vm["vis"].as<bool>());
         }
 
-        cout << (ModelParams::getVisualisation() ? "Using" : "Not using") << " visualisation" << endl;
+        cout << (ModelParams::getVisualisation() ? "Using" : "Not using")
+            << " visualisation" << endl;
 
         if (vm.count("vis-update-period"))
         {
@@ -203,7 +232,16 @@ void processConfigOptions(int argc, char **argv)
         if (vm.count("max-screen-frac-h"))
         {
             ModelParams::setMaxScreenFracH(vm["max-screen-frac-h"].as<float>());
-        }     
+        }
+        if (vm.count("hive"))
+        {
+            vector<string> hives = vm["hive"].as<vector<string>>();
+            cout << "Hives specified:" << endl;
+            for (string hive : hives)
+            {
+                cout << hive << endl;
+            }
+        }
     }
     catch (exception &e)
     {
@@ -212,4 +250,112 @@ void processConfigOptions(int argc, char **argv)
     }
 
     ModelParams::setInitialised();
+}
+
+void processJsonFile(ifstream& ifs)
+{
+    json j;
+
+    try
+    {
+        ifs >> j;
+    }
+    catch (json::parse_error &e)
+    {
+        cerr << "Parse error: " << e.what() << endl;
+        exit(1);
+    }
+    catch (json::exception &e)
+    {
+        cerr << "JSON error: " << e.what() << endl;
+        exit(1);
+    }
+
+    try
+    {
+        auto itSP = j.find("SimulationParams");
+        if ((itSP != j.end()) && (itSP->is_object())) 
+        {
+            cout << "~~~~~ Simulation Params ~~~~~" << endl;
+            for (json::iterator it = itSP->begin(); it != itSP->end(); ++it)
+            {
+                if (it.key() == "visualisation" && it.value().is_boolean()) {
+                    cout << "Vis -> " << it.value() << endl;
+                    ModelParams::setVisualisation(it.value());
+                }
+                else if (it.key() == "rng-seed" && it.value().is_number()) {
+                    cout << "Seed -> " << it.value() << endl;
+                    ModelParams::setRngSeed(it.value());
+                }
+                else if (it.key() == "termination-num-steps" && it.value().is_number()) {
+                    cout << "Num steps -> " << it.value() << endl;
+                    ModelParams::setTerminationNumSteps(it.value());
+                }                
+                else {
+                    cerr << "Unexpected entry in SimulationParams section of json file: "
+                    << it.key() << " : " << it.value() << endl;
+                }
+            }
+        }
+
+        auto itEnv = j.find("Environment");
+        if ((itSP != j.end()) && (itSP->is_object()))
+        {
+            cout << "~~~~~ Environment Params ~~~~~" << endl;
+            for (json::iterator it = itEnv->begin(); it != itEnv->end(); ++it)
+            {
+                if (it.key() == "env-size-x" && it.value().is_number()) {
+                    cout << "Env size x -> " << it.value() << endl;
+                    ModelParams::setEnvSizeX(it.value());
+                }
+                else if (it.key() == "env-size-y" && it.value().is_number()) {
+                    cout << "Env size y -> " << it.value() << endl;
+                    ModelParams::setEnvSizeY(it.value());
+                }
+                else if (it.key() == "default-ambient-temp" && it.value().is_number()) {
+                    cout << "Default ambient temp -> " << it.value() << endl;
+                    ModelParams::setEnvDefaultAmbientTemp(it.value());
+                }
+                else if (it.key() == "Hives" && it.value().is_object()) {
+                    for (json::iterator itHives = it->begin(); itHives != it->end(); ++itHives)
+                    {
+                        if (itHives.key() == "Hive" && itHives.value().is_object()) {
+                            HiveConfig hc = itHives.value();
+                            ModelParams::addHiveConfig(hc);
+                            // NB for creating Pollinators, Flowers etc of right type,
+                            // use factory pattern:
+                            // https://en.wikibooks.org/wiki/C%2B%2B_Programming/Code/Design_Patterns#Factory
+                        }
+                        else {
+                            cerr << "Unexpected entry in Hives section of json file: "
+                            << itHives.key() << " : " << itHives.value() << endl;
+                        }                    
+                    }
+                }
+                else if (it.key() == "PlantTypeDistributions" && it.value().is_object()) {
+                    for (json::iterator itPTDs = it->begin(); itPTDs != it->end(); ++itPTDs)
+                    {
+                        if (itPTDs.key() == "PlantTypeDistribution" && itPTDs.value().is_object()) {
+                            PlantTypeDistributionConfig pc = itPTDs.value();
+                            ModelParams::addPlantTypeDistributionConfig(pc);
+                        }
+                        else {
+                            cerr << "Unexpected entry in PlantTypeDistributions section of json file: "
+                            << itPTDs.key() << " : " << itPTDs.value() << endl;
+                        }                    
+                    }
+                }
+                else {
+                    cerr << "Unexpected entry in Environment section of json file: "
+                    << it.key() << " : " << it.value() << endl;
+                }
+            }
+        }
+
+    }
+    catch (json::exception &e)
+    {
+        cerr << "Unexpected error when reading JSON file : " << e.what() << endl;
+        exit(1);
+    }
 }

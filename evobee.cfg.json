@@ -1,0 +1,28 @@
+{
+    "Environment" : {
+        "env-size-x" : 60,
+        "env-size-y" : 40,
+        "default-background-colour" : "green",
+        "default-ambient-temp": 20.0,
+        "Hives" : {
+            "Hive" : {
+                "pollinator-type" : "bumblebee",
+                "pollinator-number" : 10,
+                "pos-x" : 25,
+                "pos-y" : 25
+            }
+        },
+        "PlantTypeDistributions" : {
+            "PlantTypeDistribution" : {
+                "plant-type" : "default",
+                "distribution" : "random",
+                "density" : 0.2
+            }
+        }
+    },
+    "SimulationParams": {
+        "rng-seed" : -1,
+        "visualisation" : true,
+        "termination-num-steps" : 20
+    }
+}

@@ -8,10 +8,12 @@
 #include "Environment.h"
 #include "EvoBeeModel.h"
 
-using namespace std;
+using std::cout;
+using std::endl;
 
-EvoBeeModel::EvoBeeModel() :
-    m_iStep(0)
+EvoBeeModel::EvoBeeModel() : 
+    m_iStep(0),
+    m_Env()
 {
     ///@todo initialise Environment correctly
 }
@@ -19,7 +21,8 @@ EvoBeeModel::EvoBeeModel() :
 /**
 @todo
 */
-void EvoBeeModel::step() {
+void EvoBeeModel::step()
+{
     m_iStep++;
     cout << "Model step " << m_iStep << endl;
 }
