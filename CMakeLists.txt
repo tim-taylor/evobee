@@ -44,15 +44,17 @@ pkg_search_module(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
 # define sources
 # First explicitly specify all source files in the evobee project
 set(SOURCES
+    src/AbstractHive.cpp
     src/Colour.cpp
     src/evobee.cpp
     src/Environment.cpp
     src/EventManager.cpp
     src/EvoBeeExperiment.cpp
     src/EvoBeeModel.cpp
+    src/Flower.cpp
     src/FloweringPlant.cpp
-    src/Hive.cpp
     src/HoneyBee.cpp
+    #src/HoneyBeeHive.cpp
     src/Hymenoptera.cpp
     src/Logger.cpp
     src/ModelComponent.cpp

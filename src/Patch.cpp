@@ -11,7 +11,7 @@
 using std::cout;
 using std::endl;
 
-Patch::Patch(Environment* pEnv, int posIdx, Colour& col, float temp) :
+Patch::Patch(Environment* pEnv, int posIdx, const Colour& col, float temp) :
     m_pEnv(pEnv),
     m_Colour(col),
     m_fTemp(temp),

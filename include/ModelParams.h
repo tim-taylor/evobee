@@ -10,6 +10,7 @@
 #include <vector>
 #include "HiveConfig.h"
 #include "PlantTypeDistributionConfig.h"
+#include "Colour.h"
 
 /**
  * The ModelParams Class holds a record of all model parameters. 
@@ -24,6 +25,7 @@ public:
     static void setEnvSizeX(int x);
     static void setEnvSizeY(int y);
     static void setEnvDefaultAmbientTemp(float temp);
+    static void setEnvDefaultBackgroundColour(const Colour& col);
     static void setVisualisation(bool vis);
     static void setMaxScreenFrac(float f);
     static void setMaxScreenFracW(float fw);
@@ -46,6 +48,8 @@ public:
     static int   getVisUpdatePeriod() {return m_iVisUpdatePeriod;}
     static int   getTerminationNumSteps() {return m_iTerminationNumSteps;}
     static int   getRngSeed() {return m_iRngSeed;}
+    static const Colour & getEnvDefaultBackgroundColour() {return m_EnvDefaultBackgroundColour;}
+    static const std::vector<HiveConfig> & getHiveConfigs() {return m_Hives;}
 
     static bool  initialised() {return m_bInitialised;}
 
@@ -56,12 +60,13 @@ private:
     static float m_fMaxScreenFracW;         ///< Max fraction of screen size for vis window width
     static float m_fMaxScreenFracH;         ///< Max fraction of screen size for vis window height
     static float m_fEnvDefaultAmbientTemp;  ///< Default ambient temperature for all Patches (in Celsius)
+    static Colour m_EnvDefaultBackgroundColour; ///< Default colour of each Patch
     static int   m_iVisUpdatePeriod;        ///< Number of model steps between each update of visualisation
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
     static int   m_iRngSeed;                ///< Seed for RNG
     static int   m_iTerminationNumSteps;    ///< Terminate run after this number of steps
-    static std::vector<HiveConfig> m_hives; ///< Configuration info for each hive
-    static std::vector<PlantTypeDistributionConfig> m_plantDists; ///< Config of plant distributions
+    static std::vector<HiveConfig> m_Hives; ///< Configuration info for each hive
+    static std::vector<PlantTypeDistributionConfig> m_PlantDists; ///< Config of plant distributions
 };
 
 #endif /* _MODELPARAMS_H */

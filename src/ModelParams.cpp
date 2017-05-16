@@ -7,19 +7,20 @@
 #include "ModelParams.h"
 
 // Instantiate all static members
-bool  ModelParams::m_bVisualisation = true;
-int   ModelParams::m_iVisUpdatePeriod = 1;
-int   ModelParams::m_iEnvSizeX = 50;
-int   ModelParams::m_iEnvSizeY = 50;
-float ModelParams::m_fEnvDefaultAmbientTemp = 20.0;
-float ModelParams::m_fMaxScreenFracH = 0.8;
-float ModelParams::m_fMaxScreenFracW = 0.8;
-bool  ModelParams::m_bInitialised = false;
-int   ModelParams::m_iRngSeed = -1;
-int   ModelParams::m_iTerminationNumSteps = 100;
+bool   ModelParams::m_bVisualisation = true;
+int    ModelParams::m_iVisUpdatePeriod = 1;
+int    ModelParams::m_iEnvSizeX = 50;
+int    ModelParams::m_iEnvSizeY = 50;
+float  ModelParams::m_fEnvDefaultAmbientTemp = 20.0;
+Colour ModelParams::m_EnvDefaultBackgroundColour("green");
+float  ModelParams::m_fMaxScreenFracH = 0.8;
+float  ModelParams::m_fMaxScreenFracW = 0.8;
+bool   ModelParams::m_bInitialised = false;
+int    ModelParams::m_iRngSeed = -1;
+int    ModelParams::m_iTerminationNumSteps = 100;
 
-std::vector<HiveConfig> ModelParams::m_hives;
-std::vector<PlantTypeDistributionConfig> ModelParams::m_plantDists;
+std::vector<HiveConfig> ModelParams::m_Hives;
+std::vector<PlantTypeDistributionConfig> ModelParams::m_PlantDists;
 
 
 void ModelParams::setEnvSize(int x, int y)
@@ -90,6 +91,11 @@ void ModelParams::setEnvDefaultAmbientTemp(float temp)
     m_fEnvDefaultAmbientTemp = temp;
 }
 
+void ModelParams::setEnvDefaultBackgroundColour(const Colour& col)
+{
+    m_EnvDefaultBackgroundColour = col;
+}
+
 void ModelParams::setVisUpdatePeriod(int p)
 {
     if (p > 0)
@@ -113,10 +119,10 @@ void ModelParams::setInitialised()
 
 void ModelParams::addHiveConfig(HiveConfig& hc)
 {
-    m_hives.push_back(hc);
+    m_Hives.push_back(hc);
 }
 
 void ModelParams::addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc)
 {
-    m_plantDists.push_back(pc);
+    m_PlantDists.push_back(pc);
 }

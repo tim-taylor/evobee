@@ -8,7 +8,9 @@
 #define _ENVIRONMENT_H
 
 #include <vector>
+#include <memory>
 #include "Patch.h"
+#include "AbstractHive.h"
 
 /**
  * The Environment class...
@@ -30,6 +32,7 @@ public:
 
 private:
     std::vector<Patch> m_Patches; ///< All patches are stored in a 1D vector for speed of access
+    std::vector<std::shared_ptr<AbstractHive>>  m_Hives;   ///< Collection of all hives in the environment
     int m_iNumPatches;            ///< Number of patches (stored for convenience)
 };
 

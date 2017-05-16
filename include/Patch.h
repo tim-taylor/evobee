@@ -17,7 +17,7 @@ class Environment;
 class Patch {
 
 public:
-    Patch(Environment* pEnv, int posIdx, Colour& backgroundCol, float temp);
+    Patch(Environment* pEnv, int posIdx, const Colour& backgroundCol, float temp);
     ~Patch() {}
 
     ///

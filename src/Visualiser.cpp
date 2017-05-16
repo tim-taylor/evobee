@@ -199,7 +199,7 @@ void Visualiser::update() {
         for (Patch& p : patches)
         {
             //p.getColour().setMarkerPoint(380); //@todo this is just for testing
-            auto c = p.getColour().getRGB();
+            auto c = p.getColour().getDisplayRgb();
             auto x = p.getPosX();
             auto y = p.getPosY();
             boxRGBA(m_pRenderer,
@@ -208,12 +208,16 @@ void Visualiser::update() {
                      (x + 1) * m_iPatchSize - 1, (y + 1) * m_iPatchSize - 1,
                      c.r, c.g, c.b, 255);
 
-            //
-            rectangleRGBA(m_pRenderer,
-                           x * m_iPatchSize, y * m_iPatchSize,
-                           (x + 1) * m_iPatchSize - 1, (y + 1) * m_iPatchSize - 1,
-                           200, 200, 200, 255);
-            //
+            /*
+            if (m_iPatchSize > 1)
+            {
+                rectangleRGBA(m_pRenderer,
+                            x * m_iPatchSize,
+                            y * m_iPatchSize,
+                            (x + 1) * m_iPatchSize - 1, (y + 1) * m_iPatchSize - 1,
+                            200, 200, 200, 255);
+            }
+            */
         }
 
         /*

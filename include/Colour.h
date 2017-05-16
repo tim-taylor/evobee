@@ -7,14 +7,17 @@
 #ifndef _COLOUR_H
 #define _COLOUR_H
 
+#include <string>
+#include <map>
+
 /**
  * Defines a colour as conceptualised in the EvoBee model.
  * The Colour class contains both a Marker Point and an RGB value.
  * If the Marker Point is explicitly set (in the constructor or by using
- * the setMarkerPoint method), then if the RGB value is requested with the 
- * getRGB method, the returned value is derived from the Marker Point. On
+ * the setMarkerPoint() method), then if the RGB value is requested with the 
+ * getDisplayRgb() method, the returned value is derived from the Marker Point. On
  * the other hand, if the RGB value is explicitly set (in the constructor
- * or in the setRGB method), then the getRGB method will return the
+ * or in the setDisplayRgb() method), then the getDisplayRgb method will return the
  * set value (and the Marker Point will be ignored).
  */
 class Colour {
@@ -39,11 +42,17 @@ public:
     Colour(unsigned short r, unsigned short g, unsigned short b);
 
     /*
+     * Constructor taking a colour name (using CSS-defined colour names)
+     */
+    Colour(std::string name);
+
+    /*
      *
      */
     class RGB {
     public:
         RGB() {r=0x80; g=0x80; b=0x80;}
+        RGB(unsigned short r, unsigned short g, unsigned short b) {this->r = r; this->g = g; this->b = b;}
         unsigned short r;
         unsigned short g;
         unsigned short b;
@@ -52,12 +61,17 @@ public:
     /*
      *
      */
-    void setRgbFromMarkerPoint(bool linked);
+    void setDisplayRgbLinked(bool linked);
 
     /*
-     *
+     * Explicitly set the display colour (making it unlinked from Marker Point)
      */    
-    void setRGB(unsigned short r, unsigned short g, unsigned short b);
+    void setDisplayRgb(unsigned short r, unsigned short g, unsigned short b);
+
+    /*
+     * Explicitly set the display colour (making it unlinked from Marker Point)
+     */
+    bool setRgbFromName(std::string name);
 
     /*
      *
@@ -72,7 +86,7 @@ public:
     /*
      *
      */    
-    const RGB& getRGB() const {return m_RGB;}
+    const RGB& getDisplayRgb() const {return m_RGB;}
 
 private:
     void updateRGB();
@@ -84,6 +98,7 @@ private:
     Colour::RGB m_RGB;
     bool m_bRgbFromMarkerPoint;
 
+    static const std::map<std::string, RGB> m_sColourMap;
     static const int DEFAULT_MARKER_POINT;
 };
 

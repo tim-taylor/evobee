@@ -316,6 +316,10 @@ void processJsonFile(ifstream& ifs)
                     cout << "Default ambient temp -> " << it.value() << endl;
                     ModelParams::setEnvDefaultAmbientTemp(it.value());
                 }
+                else if (it.key() == "default-background-colour" && it.value().is_string()) {
+                    cout << "Default background colour -> " << it.value() << endl;
+                    ModelParams::setEnvDefaultBackgroundColour( Colour(it.value().get<std::string>()) );
+                }
                 else if (it.key() == "Hives" && it.value().is_object()) {
                     for (json::iterator itHives = it->begin(); itHives != it->end(); ++itHives)
                     {

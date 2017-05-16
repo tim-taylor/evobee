@@ -1,7 +1,7 @@
 {
     "Environment" : {
-        "env-size-x" : 60,
-        "env-size-y" : 40,
+        "env-size-x" : 80,
+        "env-size-y" : 80,
         "default-background-colour" : "green",
         "default-ambient-temp": 20.0,
         "Hives" : {
