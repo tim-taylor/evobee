@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['colour',['Colour',['../classColour.html',1,'']]]
+  ['abstracthive',['AbstractHive',['../classAbstractHive.html',1,'']]]
 ];

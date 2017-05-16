@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "AbstractHive", "classAbstractHive.html", "classAbstractHive" ],
     [ "Colour", "classColour.html", "classColour" ],
     [ "Environment", "classEnvironment.html", "classEnvironment" ],
     [ "EventManager", "classEventManager.html", "classEventManager" ],

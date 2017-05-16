@@ -1,5 +1,7 @@
 <map id="include/EvoBeeModel.h" name="include/EvoBeeModel.h">
-<area shape="rect" id="node2" href="$Environment_8h.html" title="Environment.h" alt="" coords="31,80,138,107"/>
-<area shape="rect" id="node4" href="$Patch_8h.html" title="Patch.h" alt="" coords="95,155,162,181"/>
-<area shape="rect" id="node5" href="$Colour_8h.html" title="Colour.h" alt="" coords="93,229,164,256"/>
+<area shape="rect" id="node2" href="$Environment_8h.html" title="Environment.h" alt="" coords="103,80,209,107"/>
+<area shape="rect" id="node5" href="$Patch_8h.html" title="Patch.h" alt="" coords="88,155,155,181"/>
+<area shape="rect" id="node9" href="$AbstractHive_8h.html" title="AbstractHive.h" alt="" coords="229,155,339,181"/>
+<area shape="rect" id="node6" href="$Colour_8h.html" title="Colour.h" alt="" coords="74,229,145,256"/>
+<area shape="rect" id="node10" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="263,229,361,256"/>
 </map>

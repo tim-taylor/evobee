@@ -1,5 +1,8 @@
 var hierarchy =
 [
+    [ "AbstractHive", "classAbstractHive.html", [
+      [ "Hive< H >", "classHive.html", null ]
+    ] ],
     [ "Colour", "classColour.html", null ],
     [ "Environment", "classEnvironment.html", null ],
     [ "EventManager", "classEventManager.html", null ],
@@ -7,7 +10,6 @@ var hierarchy =
     [ "EvoBeeModel", "classEvoBeeModel.html", null ],
     [ "Flower", "classFlower.html", null ],
     [ "FloweringPlant", "classFloweringPlant.html", null ],
-    [ "Hive", "classHive.html", null ],
     [ "HiveConfig", "structHiveConfig.html", null ],
     [ "Logger", "classLogger.html", null ],
     [ "ModelComponent", "classModelComponent.html", null ],

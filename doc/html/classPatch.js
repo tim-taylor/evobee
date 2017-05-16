@@ -1,6 +1,6 @@
 var classPatch =
 [
-    [ "Patch", "classPatch.html#a634cc44e8506ffd15619078ab0d4dc88", null ],
+    [ "Patch", "classPatch.html#a4ec1ebae015ff45bbac14e861a2ae04d", null ],
     [ "~Patch", "classPatch.html#aa048c71e9e5a671e111d1ecee25df183", null ],
     [ "getColour", "classPatch.html#a0d2fc9b671ac1c0fe429ad00b66ec03a", null ],
     [ "getPosX", "classPatch.html#a636534c6a9771cd61d0fa776414fb570", null ],

@@ -1,5 +1,8 @@
 var dir_d44c64559bbebec7f509842c48db8b23 =
 [
+    [ "AbstractHive.h", "AbstractHive_8h.html", [
+      [ "AbstractHive", "classAbstractHive.html", "classAbstractHive" ]
+    ] ],
     [ "Colour.h", "Colour_8h.html", [
       [ "Colour", "classColour.html", "classColour" ],
       [ "RGB", "classColour_1_1RGB.html", "classColour_1_1RGB" ]

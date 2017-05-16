@@ -1,13 +1,15 @@
 <map id="include/Colour.h" name="include/Colour.h">
-<area shape="rect" id="node2" href="$Colour_8cpp.html" title="src/Colour.cpp" alt="" coords="309,80,415,107"/>
-<area shape="rect" id="node3" href="$Environment_8cpp.html" title="src/Environment.cpp" alt="" coords="533,229,676,256"/>
-<area shape="rect" id="node4" href="$Patch_8h.html" title="include/Patch.h" alt="" coords="439,80,551,107"/>
-<area shape="rect" id="node5" href="$Patch_8cpp.html" title="src/Patch.cpp" alt="" coords="69,229,172,256"/>
-<area shape="rect" id="node6" href="$Visualiser_8cpp.html" title="src/Visualiser.cpp" alt="" coords="447,304,573,331"/>
-<area shape="rect" id="node7" href="$Environment_8h.html" title="include/Environment.h" alt="" coords="279,155,429,181"/>
-<area shape="rect" id="node8" href="$EvoBeeModel_8cpp.html" title="src/EvoBeeModel.cpp" alt="" coords="5,304,156,331"/>
-<area shape="rect" id="node9" href="$EvoBeeModel_8h.html" title="include/EvoBeeModel.h" alt="" coords="248,229,407,256"/>
-<area shape="rect" id="node10" href="$EvoBeeExperiment_8cpp.html" title="src/EvoBeeExperiment.cpp" alt="" coords="103,379,285,405"/>
-<area shape="rect" id="node11" href="$EvoBeeExperiment_8h.html" title="include/EvoBeeExperiment.h" alt="" coords="232,304,423,331"/>
-<area shape="rect" id="node12" href="$evobee_8cpp.html" title="src/evobee.cpp" alt="" coords="309,379,420,405"/>
+<area shape="rect" id="node2" href="$Colour_8cpp.html" title="src/Colour.cpp" alt="" coords="254,80,361,107"/>
+<area shape="rect" id="node3" href="$Environment_8cpp.html" title="src/Environment.cpp" alt="" coords="469,229,612,256"/>
+<area shape="rect" id="node4" href="$Patch_8h.html" title="include/Patch.h" alt="" coords="385,80,497,107"/>
+<area shape="rect" id="node13" href="$ModelParams_8h.html" title="include/ModelParams.h" alt="" coords="632,155,791,181"/>
+<area shape="rect" id="node5" href="$Patch_8cpp.html" title="src/Patch.cpp" alt="" coords="5,229,108,256"/>
+<area shape="rect" id="node6" href="$Visualiser_8cpp.html" title="src/Visualiser.cpp" alt="" coords="485,304,612,331"/>
+<area shape="rect" id="node7" href="$Environment_8h.html" title="include/Environment.h" alt="" coords="215,155,365,181"/>
+<area shape="rect" id="node8" href="$EvoBeeModel_8cpp.html" title="src/EvoBeeModel.cpp" alt="" coords="44,304,195,331"/>
+<area shape="rect" id="node9" href="$EvoBeeModel_8h.html" title="include/EvoBeeModel.h" alt="" coords="184,229,343,256"/>
+<area shape="rect" id="node10" href="$EvoBeeExperiment_8cpp.html" title="src/EvoBeeExperiment.cpp" alt="" coords="275,379,457,405"/>
+<area shape="rect" id="node11" href="$EvoBeeExperiment_8h.html" title="include/EvoBeeExperiment.h" alt="" coords="271,304,461,331"/>
+<area shape="rect" id="node12" href="$evobee_8cpp.html" title="src/evobee.cpp" alt="" coords="675,379,785,405"/>
+<area shape="rect" id="node14" href="$ModelParams_8cpp.html" title="src/ModelParams.cpp" alt="" coords="687,229,837,256"/>
 </map>

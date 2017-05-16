@@ -128,26 +128,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab9f2aec49ee59e2672281841ab5e73c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9f2aec49ee59e2672281841ab5e73c4"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Colour</b> (unsigned short r, unsigned short g, unsigned short b)</td></tr>
 <tr class="separator:ab9f2aec49ee59e2672281841ab5e73c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fc5187df09f1fb6af78d9389a0093ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6fc5187df09f1fb6af78d9389a0093ec"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRgbFromMarkerPoint</b> (bool linked)</td></tr>
-<tr class="separator:a6fc5187df09f1fb6af78d9389a0093ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affba78a27845c3c05ccfe23a3b122468"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affba78a27845c3c05ccfe23a3b122468"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRGB</b> (unsigned short r, unsigned short g, unsigned short b)</td></tr>
-<tr class="separator:affba78a27845c3c05ccfe23a3b122468"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adea832591f24e3c6235dbc59cfc12324"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adea832591f24e3c6235dbc59cfc12324"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Colour</b> (std::string name)</td></tr>
+<tr class="separator:adea832591f24e3c6235dbc59cfc12324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9baffcd78e196ebc37f9605de6ddc071"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9baffcd78e196ebc37f9605de6ddc071"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setDisplayRgbLinked</b> (bool linked)</td></tr>
+<tr class="separator:a9baffcd78e196ebc37f9605de6ddc071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab91761007933589e49458bc2bc805d7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab91761007933589e49458bc2bc805d7b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setDisplayRgb</b> (unsigned short r, unsigned short g, unsigned short b)</td></tr>
+<tr class="separator:ab91761007933589e49458bc2bc805d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bc5768344b8c68f1b54c50db7b61768"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bc5768344b8c68f1b54c50db7b61768"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setRgbFromName</b> (std::string name)</td></tr>
+<tr class="separator:a5bc5768344b8c68f1b54c50db7b61768"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee278cf7cfadcbf67329034eeb47b15e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee278cf7cfadcbf67329034eeb47b15e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setMarkerPoint</b> (int mp)</td></tr>
 <tr class="separator:aee278cf7cfadcbf67329034eeb47b15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31c2bd521437d5599ddc45d9d028957d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31c2bd521437d5599ddc45d9d028957d"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getMarkerPoint</b> () const </td></tr>
 <tr class="separator:a31c2bd521437d5599ddc45d9d028957d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06caded67c2b6e0d50bfab179d68ed86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06caded67c2b6e0d50bfab179d68ed86"></a>
-const <a class="el" href="classColour_1_1RGB.html">RGB</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getRGB</b> () const </td></tr>
-<tr class="separator:a06caded67c2b6e0d50bfab179d68ed86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e412dbac4fef2d455d26998caf3848a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e412dbac4fef2d455d26998caf3848a"></a>
+const <a class="el" href="classColour_1_1RGB.html">RGB</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getDisplayRgb</b> () const </td></tr>
+<tr class="separator:a9e412dbac4fef2d455d26998caf3848a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines a colour as conceptualised in the EvoBee model. The <a class="el" href="classColour.html">Colour</a> class contains both a Marker Point and an <a class="el" href="classColour_1_1RGB.html">RGB</a> value. If the Marker Point is explicitly set (in the constructor or by using the setMarkerPoint method), then if the <a class="el" href="classColour_1_1RGB.html">RGB</a> value is requested with the getRGB method, the returned value is derived from the Marker Point. On the other hand, if the <a class="el" href="classColour_1_1RGB.html">RGB</a> value is explicitly set (in the constructor or in the setRGB method), then the getRGB method will return the set value (and the Marker Point will be ignored). </p>
+<div class="textblock"><p>Defines a colour as conceptualised in the EvoBee model. The <a class="el" href="classColour.html">Colour</a> class contains both a Marker Point and an <a class="el" href="classColour_1_1RGB.html">RGB</a> value. If the Marker Point is explicitly set (in the constructor or by using the setMarkerPoint() method), then if the <a class="el" href="classColour_1_1RGB.html">RGB</a> value is requested with the getDisplayRgb() method, the returned value is derived from the Marker Point. On the other hand, if the <a class="el" href="classColour_1_1RGB.html">RGB</a> value is explicitly set (in the constructor or in the setDisplayRgb() method), then the getDisplayRgb method will return the set value (and the Marker Point will be ignored). </p>
 
-<p>Definition at line <a class="el" href="Colour_8h_source.html#l00020">20</a> of file <a class="el" href="Colour_8h_source.html">Colour.h</a>.</p>
+<p>Definition at line <a class="el" href="Colour_8h_source.html#l00023">23</a> of file <a class="el" href="Colour_8h_source.html">Colour.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="Colour_8h_source.html">Colour.h</a></li>
 <li>src/<a class="el" href="Colour_8cpp_source.html">Colour.cpp</a></li>
