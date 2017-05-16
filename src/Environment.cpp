@@ -12,7 +12,7 @@
 #include "Patch.h"
 #include "Colour.h"
 #include "AbstractHive.h"
-#include "HoneyBeeHive.h"
+#include "Hive.h"
 #include "HoneyBee.h"
 #include "Environment.h"
 
@@ -37,15 +37,10 @@ Environment::Environment()
     }
 
     // Initialise Hives
-    const std::vector<HiveConfig> & hcs = ModelParams::getHiveConfigs();
-    for (const HiveConfig& hc : hcs)
+    const std::vector<HiveConfig> & hconfigs = ModelParams::getHiveConfigs();
+    for (const HiveConfig& hconfig : hconfigs)
     {
-        // Okay, we need a Hive factory here to make a hive of the right type
-
-        // temp test code...
-        auto hp = std::make_shared<HoneyBeeHive<HoneyBee>>(hc);
-
-        m_Hives.push_back( hp );
+        m_Hives.push_back( AbstractHive::makeHive(hconfig) );
     }
 
     // Initialise Plants

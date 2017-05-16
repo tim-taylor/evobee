@@ -6,7 +6,7 @@
         "default-ambient-temp": 20.0,
         "Hives" : {
             "Hive" : {
-                "pollinator-type" : "bumblebee",
+                "pollinator-type" : "HoneyBee",
                 "pollinator-number" : 10,
                 "pos-x" : 25,
                 "pos-y" : 25

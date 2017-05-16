@@ -54,7 +54,6 @@ set(SOURCES
     src/Flower.cpp
     src/FloweringPlant.cpp
     src/HoneyBee.cpp
-    #src/HoneyBeeHive.cpp
     src/Hymenoptera.cpp
     src/Logger.cpp
     src/ModelComponent.cpp

@@ -7,7 +7,7 @@
 #ifndef _ABSTRACTHIVE_H
 #define _ABSTRACTHIVE_H
 
-#include "Pollinator.h"
+#include <memory>
 #include "HiveConfig.h"
 
 
@@ -17,9 +17,17 @@
 class AbstractHive {
 
 public:
-    AbstractHive();
+    //AbstractHive();
     AbstractHive(const HiveConfig& hc);
     virtual ~AbstractHive() {}
+
+    /*
+     * A static factory method to produce a Hive of the subtype specified
+     * by hc.type, and return a shared pointer to the created object
+     *
+     * 
+     */
+    static std::shared_ptr<AbstractHive> makeHive(const HiveConfig& hc);
 
 private:
     float m_fPosX;

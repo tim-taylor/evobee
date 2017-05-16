@@ -13,17 +13,19 @@
 #include "AbstractHive.h"
 
 /**
- * The HoneyBeeHive class ...
+ * The Hive template class ...
  */
 template<typename H>
 class Hive : public AbstractHive {
 
 public:
     //HoneyBeeHive();
-    Hive(const HiveConfig& hc) {
-
+    Hive(const HiveConfig& hc) :
+        AbstractHive(hc)
+    {
+        // The template class must be derived from the AbstractHive class
         static_assert( std::is_base_of<AbstractHive, Hive<H>>(), "" );
-        ///@todo
+
         m_Pollinators.reserve(hc.num);
         for (int i = 0; i < hc.num; ++i)
         {
