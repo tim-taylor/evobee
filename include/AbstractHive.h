@@ -1,7 +1,7 @@
 /**
  * @file
  *
- * Declaration of the Hive class
+ * Declaration of the AbstractHive class
  */
 
 #ifndef _ABSTRACTHIVE_H
@@ -24,8 +24,6 @@ public:
     /*
      * A static factory method to produce a Hive of the subtype specified
      * by hc.type, and return a shared pointer to the created object
-     *
-     * 
      */
     static std::shared_ptr<AbstractHive> makeHive(const HiveConfig& hc);
 
