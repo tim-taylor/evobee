@@ -17,7 +17,8 @@ AbstractHive::AbstractHive() {
 
 AbstractHive::AbstractHive(const HiveConfig &hc) :
     m_fPosX(hc.x),
-    m_fPosY(hc.y)
+    m_fPosY(hc.y),
+    m_bStartFromHive(true)
 {
 }
 

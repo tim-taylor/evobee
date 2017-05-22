@@ -14,7 +14,10 @@
  */
 struct PlantTypeDistributionConfig {
     std::string plantType;
-    std::string distribution;
+    int areaTopLeftX;
+    int areaTopLeftY;
+    int areaBottomRightX;
+    int areaBottomRightY;
     float density;
 };
 

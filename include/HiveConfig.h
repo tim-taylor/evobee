@@ -15,6 +15,7 @@
 struct HiveConfig {
     std::string type;
     int num;
+    bool startFromHive;
     float x;
     float y;
 };

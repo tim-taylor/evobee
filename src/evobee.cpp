@@ -40,15 +40,20 @@ void processJsonFile(ifstream& ifs);
 void from_json(const json& j, HiveConfig& hc) {
     hc.type = j.at("pollinator-type").get<string>();
     hc.num = j.at("pollinator-number").get<int>();
+    hc.startFromHive = j.at("start-from-hive").get<bool>();
     hc.x = j.at("pos-x").get<int>();
     hc.y = j.at("pos-y").get<int>();
 }
 
 void from_json(const json& j, PlantTypeDistributionConfig& pc) {
     pc.plantType = j.at("plant-type").get<string>();
-    pc.distribution = j.at("distribution").get<string>();
+    pc.areaTopLeftX = j.at("area-top-left-x").get<int>();
+    pc.areaTopLeftY = j.at("area-top-left-y").get<int>();
+    pc.areaBottomRightX = j.at("area-bottom-right-x").get<int>();
+    pc.areaBottomRightY = j.at("area-bottom-right-y").get<int>();
     pc.density = j.at("density").get<float>();
 }
+
 
 /**
  * Process arguments from command line and/or a config file and initialise 
@@ -72,33 +77,6 @@ int main(int argc, char **argv)
     return 0;
 }
 
-/////////////////////////////////////////////
-// normal_distribution
-/*
-    const int nrolls = 1000000; // number of experiments
-    const int nstars = 700;   // maximum number of stars to distribute
-
-    std::default_random_engine generator;
-    std::normal_distribution<double> distribution(5.0, 2.0);
-
-    int p[10] = {};
-
-    for (int i = 0; i < nrolls; ++i)
-    {
-        double number = distribution(generator);
-        if ((number >= 0.0) && (number < 10.0))
-            ++p[int(number)];
-    }
-
-    std::cout << "normal_distribution (5.0,2.0):" << std::endl;
-
-    for (int i = 0; i < 10; ++i)
-    {
-        std::cout << std::setw(2) << i << "-" << std::setw(2) << (i + 1) << ": ";
-        std::cout << std::string(p[i] * nstars / nrolls, '*') << std::endl;
-    }
-    */
-////////////////////////////
 
 /**
 */
@@ -254,7 +232,7 @@ void processConfigOptions(int argc, char **argv)
 
 void processJsonFile(ifstream& ifs)
 {
-    json j;
+    json j; ///@todo this should belong to Logger, so that it can then outpur the json object to log file
 
     try
     {
@@ -279,18 +257,30 @@ void processJsonFile(ifstream& ifs)
             cout << "~~~~~ Simulation Params ~~~~~" << endl;
             for (json::iterator it = itSP->begin(); it != itSP->end(); ++it)
             {
-                if (it.key() == "visualisation" && it.value().is_boolean()) {
-                    cout << "Vis -> " << it.value() << endl;
-                    ModelParams::setVisualisation(it.value());
-                }
-                else if (it.key() == "rng-seed" && it.value().is_number()) {
+                if (it.key() == "rng-seed" && it.value().is_number()) {
                     cout << "Seed -> " << it.value() << endl;
                     ModelParams::setRngSeed(it.value());
                 }
                 else if (it.key() == "termination-num-steps" && it.value().is_number()) {
                     cout << "Num steps -> " << it.value() << endl;
                     ModelParams::setTerminationNumSteps(it.value());
-                }                
+                }
+                else if (it.key() == "visualisation" && it.value().is_boolean()) {
+                    cout << "Vis -> " << it.value() << endl;
+                    ModelParams::setVisualisation(it.value());
+                }
+                else if (it.key() == "vis-update-period" && it.value().is_number()) {
+                    cout << "Vis update period -> " << it.value() << endl;
+                    ModelParams::setVisUpdatePeriod(it.value());
+                }
+                else if (it.key() == "vis-max-screen-frac-w" && it.value().is_number()) {
+                    cout << "Vis max screen fraction W -> " << it.value() << endl;
+                    ModelParams::setMaxScreenFracW(it.value());
+                }
+                else if (it.key() == "vis-max-screen-frac-h" && it.value().is_number()) {
+                    cout << "Vis max screen fraction H -> " << it.value() << endl;
+                    ModelParams::setMaxScreenFracH(it.value());
+                }
                 else {
                     cerr << "Unexpected entry in SimulationParams section of json file: "
                     << it.key() << " : " << it.value() << endl;
@@ -326,9 +316,6 @@ void processJsonFile(ifstream& ifs)
                         if (itHives.key() == "Hive" && itHives.value().is_object()) {
                             HiveConfig hc = itHives.value();
                             ModelParams::addHiveConfig(hc);
-                            // NB for creating Pollinators, Flowers etc of right type,
-                            // use factory pattern:
-                            // https://en.wikibooks.org/wiki/C%2B%2B_Programming/Code/Design_Patterns#Factory
                         }
                         else {
                             cerr << "Unexpected entry in Hives section of json file: "

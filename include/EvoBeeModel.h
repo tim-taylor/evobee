@@ -7,6 +7,7 @@
 #ifndef _EVOBEEMODEL_H
 #define _EVOBEEMODEL_H
 
+#include <random>
 #include "Environment.h"
 
 /**
@@ -23,6 +24,9 @@ public:
 
     /// Return a reference to the model's Environment object
     Environment& getEnv() {return m_Env;}
+
+    /// EvoBeeModel owns an RNG engine for use by all components in the model
+    static std::mt19937 m_sRngEngine;
 
 private:
     int m_iStep;

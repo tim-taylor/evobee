@@ -20,3 +20,9 @@ Patch::Patch(Environment* pEnv, int posIdx, const Colour& col, float temp) :
     m_pEnv->getPatchCoordsFromIdx(posIdx, &m_posX, &m_posY);
     //cout << "Initialised patch at (" << m_posX << "," << m_posY << ")" << endl;
 }
+
+void Patch::addPlant(float x, float y)
+{
+    ///@todo (and will need more params!)
+    cout << "Adding plant to Patch [" << m_posX << "," << m_posY << "] at coordinates (" << x << "," << y << ")" << endl;
+}

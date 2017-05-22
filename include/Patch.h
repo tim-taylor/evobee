@@ -32,6 +32,9 @@ public:
     ///
     int getPosY() const {return m_posY;}
 
+    ///
+    void addPlant(float x, float y);
+
 private:
     Environment* m_pEnv;    ///< A pointer back to the owning Environment
     Colour m_Colour;        ///< The patch's background colour

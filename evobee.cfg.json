@@ -1,28 +1,35 @@
 {
     "Environment" : {
-        "env-size-x" : 80,
-        "env-size-y" : 80,
+        "env-size-x" : 100,
+        "env-size-y" : 100,
         "default-background-colour" : "green",
         "default-ambient-temp": 20.0,
         "Hives" : {
             "Hive" : {
                 "pollinator-type" : "HoneyBee",
-                "pollinator-number" : 10,
+                "pollinator-number" : 100,
+                "start-from-hive" : true,
                 "pos-x" : 25,
                 "pos-y" : 25
             }
         },
         "PlantTypeDistributions" : {
             "PlantTypeDistribution" : {
-                "plant-type" : "default",
-                "distribution" : "random",
+                "plant-type" : "Plant1",
+                "area-top-left-x" : 10,
+                "area-top-left-y" : 10,
+                "area-bottom-right-x" : 19,
+                "area-bottom-right-y" : 19,
                 "density" : 0.2
             }
         }
     },
     "SimulationParams": {
+        "termination-num-steps" : 30,
         "rng-seed" : -1,
         "visualisation" : true,
-        "termination-num-steps" : 20
+        "vis-update-period" : 1,
+        "vis-max-screen-frac-w" : 0.85,
+        "vis-max-screen-frac-h" : 0.85
     }
 }

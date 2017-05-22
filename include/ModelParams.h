@@ -50,6 +50,7 @@ public:
     static int   getRngSeed() {return m_iRngSeed;}
     static const Colour & getEnvDefaultBackgroundColour() {return m_EnvDefaultBackgroundColour;}
     static const std::vector<HiveConfig> & getHiveConfigs() {return m_Hives;}
+    static const std::vector<PlantTypeDistributionConfig> & getPlantTypeDistributionConfigs() {return m_PlantDists;}
 
     static bool  initialised() {return m_bInitialised;}
 
