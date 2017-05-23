@@ -13,7 +13,9 @@
 #include "ModelParams.h"
 #include "EvoBeeExperiment.h"
 #include "HiveConfig.h"
+#include "PlantTypeConfig.h"
 #include "PlantTypeDistributionConfig.h"
+#include "ReflectanceInfo.h"
 
 /*
 #include <random>
@@ -37,7 +39,8 @@ void processJsonFile(ifstream& ifs);
 
 
 // helper functions for JSON conversion
-void from_json(const json& j, HiveConfig& hc) {
+void from_json(const json& j, HiveConfig& hc)
+{
     hc.type = j.at("pollinator-type").get<string>();
     hc.num = j.at("pollinator-number").get<int>();
     hc.startFromHive = j.at("start-from-hive").get<bool>();
@@ -45,13 +48,24 @@ void from_json(const json& j, HiveConfig& hc) {
     hc.y = j.at("pos-y").get<int>();
 }
 
-void from_json(const json& j, PlantTypeDistributionConfig& pc) {
-    pc.plantType = j.at("plant-type").get<string>();
+void from_json(const json& j, PlantTypeDistributionConfig& pc)
+{
+    pc.species = j.at("species").get<string>();
     pc.areaTopLeftX = j.at("area-top-left-x").get<int>();
     pc.areaTopLeftY = j.at("area-top-left-y").get<int>();
     pc.areaBottomRightX = j.at("area-bottom-right-x").get<int>();
     pc.areaBottomRightY = j.at("area-bottom-right-y").get<int>();
     pc.density = j.at("density").get<float>();
+}
+
+void from_json(const json& j, PlantTypeConfig& pt)
+{
+    pt.species = j.at("species").get<string>();
+    pt.flowerMPInitMin = j.at("flower-reflectance-mp-init-min").get<int>();
+    pt.flowerMPInitMax = j.at("flower-reflectance-mp-init-max").get<int>();
+    pt.antherInitPollen = j.at("anther-init-pollen").get<int>();
+    pt.stigmaMaxPollenCapacity = j.at("stigma-max-pollen-capacity").get<int>();
+    pt.nectarReward = j.at("nectar-reward").get<int>();
 }
 
 
@@ -306,9 +320,9 @@ void processJsonFile(ifstream& ifs)
                     cout << "Default ambient temp -> " << it.value() << endl;
                     ModelParams::setEnvDefaultAmbientTemp(it.value());
                 }
-                else if (it.key() == "default-background-colour" && it.value().is_string()) {
-                    cout << "Default background colour -> " << it.value() << endl;
-                    ModelParams::setEnvDefaultBackgroundColour( Colour(it.value().get<std::string>()) );
+                else if (it.key() == "background-reflectance-mp" && it.value().is_number()) {
+                    cout << "Default background reflectance MP -> " << it.value() << endl;
+                    ModelParams::setEnvBackgroundReflectanceMP(it.value());
                 }
                 else if (it.key() == "Hives" && it.value().is_object()) {
                     for (json::iterator itHives = it->begin(); itHives != it->end(); ++itHives)
@@ -342,6 +356,22 @@ void processJsonFile(ifstream& ifs)
                 }
             }
         }
+
+        auto itPTs = j.find("PlantTypes");
+        if ((itPTs != j.end()) && (itPTs->is_object()))
+        {
+            for (json::iterator itPT = itPTs->begin(); itPT != itPTs->end(); ++itPT)
+            {
+                if (itPT.key() == "PlantType" && itPT.value().is_object()) {
+                    PlantTypeConfig pc = itPT.value();
+                    ModelParams::addPlantTypeConfig(pc);
+                }
+                else {
+                    cerr << "Unexpected entry in PlantTypes section of json file: "
+                    << itPT.key() << " : " << itPT.value() << endl;
+                }                    
+            }            
+        }        
 
     }
     catch (json::exception &e)

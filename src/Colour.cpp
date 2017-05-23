@@ -7,12 +7,127 @@
 #include <iostream> // for testing - maybe not needed?
 #include <cstdlib>  // for rand - maybe not needed in long term?
 #include <cassert>
+#include <map>
 #include "Colour.h"
 
-const int Colour::DEFAULT_MARKER_POINT = 500;
+const std::map<MarkerPoint, Colour::RGB> Colour::m_sMarkerPoint2RgbMap{
+    {360, {1.0, 0.0, 0.0, 255}},
+    {370, {0.9, 0.0, 0.1, 255}},
+    {380, {0.8, 0.0, 0.2, 255}},
+    {390, {0.7, 0.0, 0.3, 255}},
+    {400, {0.6, 0.0, 0.4, 255}},
+    {410, {0.5, 0.0, 0.5, 255}},
+    {420, {0.4, 0.0, 0.6, 255}},
+    {430, {0.3, 0.0, 0.7, 255}},
+    {440, {0.2, 0.0, 0.8, 255}},
+    {450, {0.1, 0.0, 0.9, 255}},
+    {460, {0.0, 0.0, 1.0, 255}},
+    {470, {0.0, 0.1, 0.9, 255}},
+    {480, {0.0, 0.2, 0.8, 255}},
+    {490, {0.0, 0.3, 0.7, 255}},
+    {500, {0.0, 0.4, 0.6, 255}},
+    {510, {0.0, 0.5, 0.5, 255}},
+    {520, {0.0, 0.6, 0.4, 255}},
+    {530, {0.0, 0.7, 0.3, 255}},
+    {540, {0.0, 0.8, 0.2, 255}}
+};
+
+Colour::Colour(unsigned short r, unsigned short g, unsigned short b) :
+    m_RGB(r,g,b)
+{
+}
+
+/*
+Colour::Colour(std::string name) 
+{
+    if (!setRgbFromName(name))
+    {
+        setRgb(255,0,0);
+    }
+}
+
+bool Colour::setRgbFromName(std::string name)
+{
+    auto it = m_sColourName2RgbMap.find(name);
+    if (it == m_sColourName2RgbMap.end())
+    {
+        return false;
+    }
+    else
+    {
+        m_RGB = it->second;
+        return true;
+    }
+}
+*/
+
+void Colour::setRgb(unsigned short r, unsigned short g, unsigned short b)
+{
+    m_RGB.r = r;
+    m_RGB.g = g;
+    m_RGB.b = b;
+}
+
+const Colour::RGB& Colour::getRgbFromMarkerPoint(MarkerPoint mp)
+{
+    auto it = m_sMarkerPoint2RgbMap.find(mp);
+    if (it == m_sMarkerPoint2RgbMap.end())
+    {
+        /// @todo
+        //assert(false);
+        return m_sMarkerPoint2RgbMap.begin()->second;
+    }
+    else
+    {
+        return it->second;
+    }
+}
+
+
+/*
+template <int lo, int peak, int hi>
+int Colour::getIntensity(int lambda)
+{
+    if (lambda <= lo)
+    {
+        return 0;
+    }
+    else if (lambda <= peak)
+    {
+        return (255 * (lambda - lo)) / (peak - lo);
+    }
+    else if (lambda < hi)
+    {
+        return (255 * (hi - lambda)) / (peak - lambda);
+    }
+    else
+    {
+        return 0;
+    }
+}
+*/
+
+/*
+void Colour::updateRGB()
+{
+    assert(m_bRgbFromMarkerPoint);
+
+    // The following values for R, G and B intensity are based upon Fig 1 in
+    // Dyer, Paulk and Reser "Colour processing in complex environments..."
+    m_RGB.r = getIntensity<400, 550, 650>(m_iMarkerPoint);
+    m_RGB.g = getIntensity<300, 430, 510>(m_iMarkerPoint);
+    m_RGB.b = getIntensity<300, 350, 410>(m_iMarkerPoint);
+
+    /*
+    m_RGB.r = rand() % 256;
+    m_RGB.g = rand() % 256;
+    m_RGB.b = rand() % 256;
+    * /
+}
+*/
 
 // these colour mappings were obtained from http://cloford.com/resources/colours/namedcol.htm
-const std::map<std::string, Colour::RGB> Colour::m_sColourMap{
+const std::map<std::string, Colour::RGB> Colour::m_sColourName2RgbMap{
     {"lightpink", {255, 182, 193}},
     {"pink", {255, 192, 203}},
     {"crimson", {220, 20, 60}},
@@ -154,114 +269,3 @@ const std::map<std::string, Colour::RGB> Colour::m_sColourMap{
     {"dimgray", {105, 105, 105}},
     {"black", {0, 0, 0}}
 };
-
-Colour::Colour() :
-    m_iMarkerPoint(Colour::DEFAULT_MARKER_POINT),
-    m_bRgbFromMarkerPoint(true)
-{
-    updateRGB();
-}
-
-Colour::Colour(int mp) :
-    m_iMarkerPoint(mp),
-    m_bRgbFromMarkerPoint(true)
-{
-    updateRGB();
-}
-
-Colour::Colour(unsigned short r, unsigned short g, unsigned short b) :
-    m_iMarkerPoint(-1),
-    m_bRgbFromMarkerPoint(false)
-{
-    setDisplayRgb(r,g,b);
-}
-
-Colour::Colour(std::string name) :
-    m_iMarkerPoint(-1),
-    m_bRgbFromMarkerPoint(false)
-{
-    if (!setRgbFromName(name))
-    {
-        setDisplayRgb(255,0,0);
-    }
-}
-
-bool Colour::setRgbFromName(std::string name)
-{
-    auto it = m_sColourMap.find(name);
-    if (it == m_sColourMap.end())
-    {
-        return false;
-    }
-    else
-    {
-        m_RGB = it->second;
-        return true;
-    }
-}
-
-void Colour::setDisplayRgb(unsigned short r, unsigned short g, unsigned short b)
-{
-    m_RGB.r = r;
-    m_RGB.g = g;
-    m_RGB.b = b;
-}
-
-void Colour::setDisplayRgbLinked(bool linked)
-{
-    m_bRgbFromMarkerPoint = linked;
-}
-
-template <int lo, int peak, int hi>
-int Colour::getIntensity(int lambda)
-{
-    if (lambda <= lo)
-    {
-        return 0;
-    }
-    else if (lambda <= peak)
-    {
-        return (255 * (lambda - lo)) / (peak - lo);
-    }
-    else if (lambda < hi)
-    {
-        return (255 * (hi - lambda)) / (peak - lambda);
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-void Colour::updateRGB()
-{
-    assert(m_bRgbFromMarkerPoint);
-
-    // The following values for R, G and B intensity are based upon Fig 1 in
-    // Dyer, Paulk and Reser "Colour processing in complex environments..."
-    m_RGB.r = getIntensity<400, 550, 650>(m_iMarkerPoint);
-    m_RGB.g = getIntensity<300, 430, 510>(m_iMarkerPoint);
-    m_RGB.b = getIntensity<300, 350, 410>(m_iMarkerPoint);
-
-    /*
-    m_RGB.r = rand() % 256;
-    m_RGB.g = rand() % 256;
-    m_RGB.b = rand() % 256;
-    */
-}
-
-///
-void Colour::setMarkerPoint(int mp) {
-    m_iMarkerPoint = mp;
-    updateRGB();
-}
-
-/// Returns the colour in hexadecimal RRGGBBAA form.
-/// Assumes an alpha value of 255
-/*
-unsigned long Colour::getHex() const {
-    unsigned long mask = 0x00000000FFFFFFFFull;
-    return mask & (((m_RGB.r & 0xff) << 24) + ((m_RGB.g & 0xff) << 16) + ((m_RGB.b & 0xff) << 8)
-           + (255 & 0xff));
-}
-*/

@@ -12,7 +12,8 @@ int    ModelParams::m_iVisUpdatePeriod = 1;
 int    ModelParams::m_iEnvSizeX = 50;
 int    ModelParams::m_iEnvSizeY = 50;
 float  ModelParams::m_fEnvDefaultAmbientTemp = 20.0;
-Colour ModelParams::m_EnvDefaultBackgroundColour("green");
+//Colour ModelParams::m_EnvDefaultBackgroundColour("green");
+MarkerPoint ModelParams::m_EnvBackgroundReflectanceMP = 400;
 float  ModelParams::m_fMaxScreenFracH = 0.8;
 float  ModelParams::m_fMaxScreenFracW = 0.8;
 bool   ModelParams::m_bInitialised = false;
@@ -21,7 +22,7 @@ int    ModelParams::m_iTerminationNumSteps = 100;
 
 std::vector<HiveConfig> ModelParams::m_Hives;
 std::vector<PlantTypeDistributionConfig> ModelParams::m_PlantDists;
-
+std::vector<PlantTypeConfig> ModelParams::m_PlantTypes;
 
 void ModelParams::setEnvSize(int x, int y)
 {
@@ -91,9 +92,16 @@ void ModelParams::setEnvDefaultAmbientTemp(float temp)
     m_fEnvDefaultAmbientTemp = temp;
 }
 
+/*
 void ModelParams::setEnvDefaultBackgroundColour(const Colour& col)
 {
     m_EnvDefaultBackgroundColour = col;
+}
+*/
+
+void ModelParams::setEnvBackgroundReflectanceMP(MarkerPoint mp)
+{
+    m_EnvBackgroundReflectanceMP = mp;
 }
 
 void ModelParams::setVisUpdatePeriod(int p)
@@ -125,4 +133,18 @@ void ModelParams::addHiveConfig(HiveConfig& hc)
 void ModelParams::addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc)
 {
     m_PlantDists.push_back(pc);
+}
+
+void ModelParams::addPlantTypeConfig(PlantTypeConfig& pt)
+{
+    m_PlantTypes.push_back(pt);
+}
+
+const PlantTypeConfig* ModelParams::getPlantTypeConfig(std::string species)
+{
+    for (auto& pt : m_PlantTypes)
+    {
+        if (pt.species == species) return &pt;
+    }
+    return nullptr;
 }

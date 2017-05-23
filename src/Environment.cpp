@@ -33,7 +33,8 @@ Environment::Environment()
     {
         m_Patches.push_back(
             Patch(this, i, 
-                ModelParams::getEnvDefaultBackgroundColour(),
+                //ModelParams::getEnvDefaultBackgroundColour(),
+                ModelParams::getEnvBackgroundReflectanceMP(),
                 ModelParams::getEnvDefaultAmbientTemp()
             )
         );
@@ -83,6 +84,17 @@ void Environment::initialisePlants()
     const std::vector<PlantTypeDistributionConfig> &pdconfigs = ModelParams::getPlantTypeDistributionConfigs();
     for (const PlantTypeDistributionConfig &pdcfg : pdconfigs)
     {
+        // first find the corresponding PlantTypeConfig
+        //PlantTypeConfig ptc;
+        const PlantTypeConfig* pPTC = ModelParams::getPlantTypeConfig(pdcfg.species);
+        if (pPTC == nullptr)
+        {
+            ///@todo
+            assert(false);
+            exit(1);
+        }
+
+        // 
         int w = std::max(1, 1 + pdcfg.areaBottomRightX - pdcfg.areaTopLeftX);
         int h = std::max(1, 1 + pdcfg.areaBottomRightY - pdcfg.areaTopLeftY);
         int area = w * h;
@@ -113,7 +125,7 @@ void Environment::initialisePlants()
                 auto &v = patchInfo[x][y];
                 for (auto &pinfo : v)
                 {
-                    p.addPlant(pinfo.first, pinfo.second);
+                    p.addPlant(*pPTC, pinfo.first, pinfo.second);
                 }
             }
         }

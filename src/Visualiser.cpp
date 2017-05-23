@@ -13,6 +13,7 @@
 #include "EvoBeeModel.h"
 #include "Environment.h"
 #include "Patch.h"
+#include "Colour.h"
 #include "Visualiser.h"
 
 using std::cout;
@@ -198,8 +199,8 @@ void Visualiser::update() {
         auto patches = m_pModel->getEnv().getPatches();
         for (Patch& p : patches)
         {
-            //p.getColour().setMarkerPoint(380); //@todo this is just for testing
-            auto c = p.getColour().getDisplayRgb();
+
+            auto c = Colour::getRgbFromMarkerPoint(p.getBackgroundMarkerPoint());
             auto x = p.getPosX();
             auto y = p.getPosY();
             boxRGBA(m_pRenderer,
@@ -208,6 +209,14 @@ void Visualiser::update() {
                      (x + 1) * m_iPatchSize - 1, (y + 1) * m_iPatchSize - 1,
                      c.r, c.g, c.b, 255);
 
+            if (p.hasPlants())
+            {
+                filledCircleRGBA(m_pRenderer,
+                    x * m_iPatchSize,
+                    y * m_iPatchSize,
+                    m_iPatchSize/2,
+                    0,0,0,255); ///@todo get colour from plant, and show all plants
+            }
             /*
             if (m_iPatchSize > 1)
             {

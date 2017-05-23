@@ -2,7 +2,7 @@
     "Environment" : {
         "env-size-x" : 100,
         "env-size-y" : 100,
-        "default-background-colour" : "green",
+        "background-reflectance-mp" : 500,
         "default-ambient-temp": 20.0,
         "Hives" : {
             "Hive" : {
@@ -15,21 +15,31 @@
         },
         "PlantTypeDistributions" : {
             "PlantTypeDistribution" : {
-                "plant-type" : "Plant1",
-                "area-top-left-x" : 10,
-                "area-top-left-y" : 10,
-                "area-bottom-right-x" : 19,
-                "area-bottom-right-y" : 19,
+                "species" : "Plant1",
+                "area-top-left-x" : 0,
+                "area-top-left-y" : 0,
+                "area-bottom-right-x" : 49,
+                "area-bottom-right-y" : 49,
                 "density" : 0.2
             }
         }
     },
-    "SimulationParams": {
-        "termination-num-steps" : 30,
+    "SimulationParams" : {
+        "termination-num-steps" : 50,
         "rng-seed" : -1,
         "visualisation" : true,
         "vis-update-period" : 1,
         "vis-max-screen-frac-w" : 0.85,
         "vis-max-screen-frac-h" : 0.85
+    },
+    "PlantTypes" : {
+        "PlantType" : {
+            "species" : "Plant1",
+            "flower-reflectance-mp-init-min" : 400,
+            "flower-reflectance-mp-init-max" : 400,
+            "anther-init-pollen" : 10,
+            "stigma-max-pollen-capacity" : 5,
+            "nectar-reward" : 10
+        }
     }
 }

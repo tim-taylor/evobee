@@ -13,7 +13,7 @@
  * The PlantTypeDistributionConfig class ...
  */
 struct PlantTypeDistributionConfig {
-    std::string plantType;
+    std::string species;
     int areaTopLeftX;
     int areaTopLeftY;
     int areaBottomRightX;
