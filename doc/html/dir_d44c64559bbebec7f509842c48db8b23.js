@@ -50,12 +50,16 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "Patch.h", "Patch_8h.html", [
       [ "Patch", "classPatch.html", "classPatch" ]
     ] ],
+    [ "PlantTypeConfig.h", "PlantTypeConfig_8h.html", [
+      [ "PlantTypeConfig", "structPlantTypeConfig.html", "structPlantTypeConfig" ]
+    ] ],
     [ "PlantTypeDistributionConfig.h", "PlantTypeDistributionConfig_8h.html", [
       [ "PlantTypeDistributionConfig", "structPlantTypeDistributionConfig.html", "structPlantTypeDistributionConfig" ]
     ] ],
     [ "Pollinator.h", "Pollinator_8h.html", [
       [ "Pollinator", "classPollinator.html", "classPollinator" ]
     ] ],
+    [ "ReflectanceInfo.h", "ReflectanceInfo_8h.html", "ReflectanceInfo_8h" ],
     [ "SDL2_gfxPrimitives.h", "SDL2__gfxPrimitives_8h_source.html", null ],
     [ "sdl_tools.h", "sdl__tools_8h.html", "sdl__tools_8h" ],
     [ "Visualiser.h", "Visualiser_8h.html", [

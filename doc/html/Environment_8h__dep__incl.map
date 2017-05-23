@@ -1,10 +1,11 @@
 <map id="include/Environment.h" name="include/Environment.h">
-<area shape="rect" id="node2" href="$Environment_8cpp.html" title="src/Environment.cpp" alt="" coords="5,80,148,107"/>
-<area shape="rect" id="node3" href="$EvoBeeModel_8cpp.html" title="src/EvoBeeModel.cpp" alt="" coords="63,155,213,181"/>
-<area shape="rect" id="node4" href="$Patch_8cpp.html" title="src/Patch.cpp" alt="" coords="457,80,560,107"/>
-<area shape="rect" id="node5" href="$Visualiser_8cpp.html" title="src/Visualiser.cpp" alt="" coords="237,155,364,181"/>
-<area shape="rect" id="node6" href="$EvoBeeModel_8h.html" title="include/EvoBeeModel.h" alt="" coords="275,80,433,107"/>
-<area shape="rect" id="node7" href="$EvoBeeExperiment_8cpp.html" title="src/EvoBeeExperiment.cpp" alt="" coords="311,229,493,256"/>
-<area shape="rect" id="node8" href="$EvoBeeExperiment_8h.html" title="include/EvoBeeExperiment.h" alt="" coords="440,155,631,181"/>
-<area shape="rect" id="node9" href="$evobee_8cpp.html" title="src/evobee.cpp" alt="" coords="517,229,628,256"/>
+<area shape="rect" id="node2" href="$Environment_8cpp.html" title="src/Environment.cpp" alt="" coords="5,155,148,181"/>
+<area shape="rect" id="node3" href="$EvoBeeModel_8cpp.html" title="src/EvoBeeModel.cpp" alt="" coords="172,155,323,181"/>
+<area shape="rect" id="node4" href="$Patch_8cpp.html" title="src/Patch.cpp" alt="" coords="519,80,621,107"/>
+<area shape="rect" id="node5" href="$Visualiser_8cpp.html" title="src/Visualiser.cpp" alt="" coords="347,155,473,181"/>
+<area shape="rect" id="node6" href="$EvoBeeModel_8h.html" title="include/EvoBeeModel.h" alt="" coords="336,80,495,107"/>
+<area shape="rect" id="node7" href="$EvoBeeExperiment_8cpp.html" title="src/EvoBeeExperiment.cpp" alt="" coords="421,229,602,256"/>
+<area shape="rect" id="node8" href="$FloweringPlant_8cpp.html" title="src/FloweringPlant.cpp" alt="" coords="765,155,919,181"/>
+<area shape="rect" id="node9" href="$EvoBeeExperiment_8h.html" title="include/EvoBeeExperiment.h" alt="" coords="549,155,740,181"/>
+<area shape="rect" id="node10" href="$evobee_8cpp.html" title="src/evobee.cpp" alt="" coords="627,229,737,256"/>
 </map>

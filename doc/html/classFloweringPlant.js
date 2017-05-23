@@ -1,5 +1,4 @@
 var classFloweringPlant =
 [
-    [ "FloweringPlant", "classFloweringPlant.html#a7e37d49ffbfb3564c183c220c9ec998d", null ],
-    [ "~FloweringPlant", "classFloweringPlant.html#a10f0878de944be483770ceef37156784", null ]
+    [ "FloweringPlant", "classFloweringPlant.html#ab1609da1654744853d9782773945f23f", null ]
 ];

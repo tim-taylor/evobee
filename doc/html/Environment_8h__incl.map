@@ -1,6 +1,8 @@
 <map id="include/Environment.h" name="include/Environment.h">
-<area shape="rect" id="node4" href="$Patch_8h.html" title="Patch.h" alt="" coords="88,80,155,107"/>
-<area shape="rect" id="node8" href="$AbstractHive_8h.html" title="AbstractHive.h" alt="" coords="229,80,339,107"/>
-<area shape="rect" id="node5" href="$Colour_8h.html" title="Colour.h" alt="" coords="74,155,145,181"/>
-<area shape="rect" id="node9" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="263,155,361,181"/>
+<area shape="rect" id="node4" href="$Patch_8h.html" title="Patch.h" alt="" coords="167,80,233,107"/>
+<area shape="rect" id="node9" href="$AbstractHive_8h.html" title="AbstractHive.h" alt="" coords="273,80,383,107"/>
+<area shape="rect" id="node5" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="89,304,215,331"/>
+<area shape="rect" id="node6" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="240,229,371,256"/>
+<area shape="rect" id="node8" href="$FloweringPlant_8h.html" title="FloweringPlant.h" alt="" coords="141,155,259,181"/>
+<area shape="rect" id="node10" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="395,229,493,256"/>
 </map>
