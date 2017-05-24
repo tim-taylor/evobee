@@ -40,34 +40,29 @@ void EvoBeeModel::seedRng()
     assert(ModelParams::initialised());
     assert(!m_sbRngInitialised);
 
-    static std::string strPrefix {"seqseed-"};
-    static std::string alphanum {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"};
-
     const std::string& seedStr = ModelParams::getRngSeedStr();
+
     if (seedStr.empty()) {
         // if no seed string has been supplied, we generate a seed here
+        // We keep it consistent with the format of user-supplied seeds by creating
+        // a random string of alphanumeric characters (of length 20).
         std::random_device rdev;
         uint32_t random_seed = rdev();
         std::srand(random_seed);
-
+        std::string alphanum {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"};
         std::string newSeedStr(20,0);
-        std::generate_n(newSeedStr.begin(), 
+        std::generate_n(newSeedStr.begin(),
                         newSeedStr.length(),
-                        []() { return alphanum[ rand() % alphanum.length() ]; } );
-        std::seed_seq seed1(newSeedStr.begin(), newSeedStr.end());
+                        [alphanum]() { return alphanum[rand() % alphanum.length()]; });
 
         std::cout << "Using generated RNG seed " << newSeedStr << std::endl;
         
+        // having generated a seed string, now use it to seed the RNG!
+        std::seed_seq seed1(newSeedStr.begin(), newSeedStr.end());   
         m_sRngEngine.seed(seed1);
         
-        // and store the generated seed back in ModelParams
+        // and store the generated seed string back in ModelParams
         ModelParams::setRngSeedStr(newSeedStr);
-
-        //std::seed_seq seed1{random_seed};
-        //m_sRngEngine.seed(seed1);
-        //std::stringstream ssSeed1;
-        //ssSeed1 << strPrefix << random_seed;
-        //ModelParams::setRngSeedStr(ssSeed1.str());
     }
     else
     {
