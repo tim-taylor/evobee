@@ -8,6 +8,9 @@
 #include "EvoBeeModel.h"
 #include "FloweringPlant.h"
 
+/**
+ *
+ */
 FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, float x, float y) :
     m_species(ptc.species),
     m_iAntherPollen(ptc.antherInitPollen),
@@ -27,4 +30,14 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, float x, float y) :
         std::uniform_int_distribution<MarkerPoint> dist(ptc.flowerMPInitMin, ptc.flowerMPInitMax);
         m_Reflectance.setMarkerPoint(dist(EvoBeeModel::m_sRngEngine));    
     }
+}
+
+/**
+ * Return the MarkerPoint of the specified flower
+ * @todo for the time being we just assume one flower - need to change this
+ * when FloweringPlant actually has a list of Flowers
+ */
+MarkerPoint FloweringPlant::getFlowerMarkerPoint(int flower)
+{
+    return m_Reflectance.getMarkerPoint();
 }

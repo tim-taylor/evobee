@@ -73,7 +73,9 @@ const Colour::RGB& Colour::getRgbFromMarkerPoint(MarkerPoint mp)
     auto it = m_sMarkerPoint2RgbMap.find(mp);
     if (it == m_sMarkerPoint2RgbMap.end())
     {
-        /// @todo
+        /// @todo need to figure out what to do here
+        /// for a start - should probably completely fill the map for every marker point
+        /// in valid range - prob by extrapolating from the data points that we have
         //assert(false);
         return m_sMarkerPoint2RgbMap.begin()->second;
     }
@@ -84,47 +86,6 @@ const Colour::RGB& Colour::getRgbFromMarkerPoint(MarkerPoint mp)
 }
 
 
-/*
-template <int lo, int peak, int hi>
-int Colour::getIntensity(int lambda)
-{
-    if (lambda <= lo)
-    {
-        return 0;
-    }
-    else if (lambda <= peak)
-    {
-        return (255 * (lambda - lo)) / (peak - lo);
-    }
-    else if (lambda < hi)
-    {
-        return (255 * (hi - lambda)) / (peak - lambda);
-    }
-    else
-    {
-        return 0;
-    }
-}
-*/
-
-/*
-void Colour::updateRGB()
-{
-    assert(m_bRgbFromMarkerPoint);
-
-    // The following values for R, G and B intensity are based upon Fig 1 in
-    // Dyer, Paulk and Reser "Colour processing in complex environments..."
-    m_RGB.r = getIntensity<400, 550, 650>(m_iMarkerPoint);
-    m_RGB.g = getIntensity<300, 430, 510>(m_iMarkerPoint);
-    m_RGB.b = getIntensity<300, 350, 410>(m_iMarkerPoint);
-
-    /*
-    m_RGB.r = rand() % 256;
-    m_RGB.g = rand() % 256;
-    m_RGB.b = rand() % 256;
-    * /
-}
-*/
 
 // these colour mappings were obtained from http://cloford.com/resources/colours/namedcol.htm
 const std::map<std::string, Colour::RGB> Colour::m_sColourName2RgbMap{

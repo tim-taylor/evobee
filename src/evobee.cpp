@@ -11,6 +11,7 @@
 #include "json.hpp"
 #include "evobeeConfig.h"
 #include "ModelParams.h"
+#include "EvoBeeModel.h"
 #include "EvoBeeExperiment.h"
 #include "HiveConfig.h"
 #include "PlantTypeConfig.h"
@@ -79,6 +80,7 @@ int main(int argc, char **argv)
     try
     {
         processConfigOptions(argc, argv);
+        EvoBeeModel::seedRng();
         EvoBeeExperiment expt;
         expt.run();
     }
@@ -271,9 +273,14 @@ void processJsonFile(ifstream& ifs)
             cout << "~~~~~ Simulation Params ~~~~~" << endl;
             for (json::iterator it = itSP->begin(); it != itSP->end(); ++it)
             {
+                /*
                 if (it.key() == "rng-seed" && it.value().is_number()) {
                     cout << "Seed -> " << it.value() << endl;
                     ModelParams::setRngSeed(it.value());
+                }*/
+                if (it.key() == "rng-seed" && it.value().is_string()) {
+                    cout << "Seed -> '" << it.value() << "'" << endl;
+                    ModelParams::setRngSeedStr(it.value());
                 }
                 else if (it.key() == "termination-num-steps" && it.value().is_number()) {
                     cout << "Num steps -> " << it.value() << endl;

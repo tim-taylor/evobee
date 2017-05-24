@@ -18,15 +18,15 @@
                 "species" : "Plant1",
                 "area-top-left-x" : 0,
                 "area-top-left-y" : 0,
-                "area-bottom-right-x" : 49,
-                "area-bottom-right-y" : 49,
-                "density" : 0.2
+                "area-bottom-right-x" : 99,
+                "area-bottom-right-y" : 99,
+                "density" : 0.1
             }
         }
     },
     "SimulationParams" : {
-        "termination-num-steps" : 50,
-        "rng-seed" : -1,
+        "termination-num-steps" : 10,
+        "rng-seed" : "",
         "visualisation" : true,
         "vis-update-period" : 1,
         "vis-max-screen-frac-w" : 0.85,
@@ -35,8 +35,8 @@
     "PlantTypes" : {
         "PlantType" : {
             "species" : "Plant1",
-            "flower-reflectance-mp-init-min" : 400,
-            "flower-reflectance-mp-init-max" : 400,
+            "flower-reflectance-mp-init-min" : 360,
+            "flower-reflectance-mp-init-max" : 500,
             "anther-init-pollen" : 10,
             "stigma-max-pollen-capacity" : 5,
             "nectar-reward" : 10

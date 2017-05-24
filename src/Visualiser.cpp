@@ -209,13 +209,22 @@ void Visualiser::update() {
                      (x + 1) * m_iPatchSize - 1, (y + 1) * m_iPatchSize - 1,
                      c.r, c.g, c.b, 255);
 
-            if (p.hasPlants())
+            if (p.hasFloweringPlants())
             {
-                filledCircleRGBA(m_pRenderer,
-                    x * m_iPatchSize,
-                    y * m_iPatchSize,
-                    m_iPatchSize/2,
-                    0,0,0,255); ///@todo get colour from plant, and show all plants
+                int offset = 0;
+                auto fplants = p.getFloweringPlants();
+                for (FloweringPlant fplant : fplants)
+                {
+                    ///@todo at present just using offsets rather than exact position in parch
+                    auto c = Colour::getRgbFromMarkerPoint(fplant.getFlowerMarkerPoint());
+                    filledCircleRGBA(m_pRenderer,
+                        x * m_iPatchSize + offset, 
+                        y * m_iPatchSize + offset,
+                        m_iPatchSize/2,
+                        c.r, c.g, c.b, 255);
+                    ++offset;
+                }
+
             }
             /*
             if (m_iPatchSize > 1)

@@ -25,12 +25,17 @@ public:
     /// Return a reference to the model's Environment object
     Environment& getEnv() {return m_Env;}
 
+    /// Seed the model's RNG from the seed specified in ModelParams
+    static void seedRng();
+
     /// EvoBeeModel owns an RNG engine for use by all components in the model
     static std::mt19937 m_sRngEngine;
 
 private:
     int m_iStep;
     Environment m_Env; ///< The model owns the one and only 
+
+    static bool m_sbRngInitialised;
 };
 
 #endif /* _EVOBEEMODEL_H */
