@@ -5,6 +5,7 @@
  */
 
 #include <random>
+#include <cassert>
 #include "EvoBeeModel.h"
 #include "FloweringPlant.h"
 
@@ -18,17 +19,32 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, float x, float y) :
     m_iStigmaMaxPollenCapacity(ptc.stigmaMaxPollenCapacity),
     m_iNectarRewardPerVisit(ptc.nectarReward),
     m_posX(x),
-    m_posY(y)
+    m_posY(y),
+    m_bHasLeaf(ptc.hasLeaf)
 {
-    if (ptc.flowerMPInitMin == ptc.flowerMPInitMax)
+    assert(ptc.numFlowers > 0);
+
+    if (m_bHasLeaf)
     {
-        m_Reflectance.setMarkerPoint(ptc.flowerMPInitMin);
+        m_LeafReflectance.setMarkerPoint(ptc.leafMP);
     }
-    else
+
+    for (int i=0; i<ptc.numFlowers; ++i)
     {
-        // pick a marker point at uniform random between the min and max values supplied
-        std::uniform_int_distribution<MarkerPoint> dist(ptc.flowerMPInitMin, ptc.flowerMPInitMax);
-        m_Reflectance.setMarkerPoint(dist(EvoBeeModel::m_sRngEngine));    
+        MarkerPoint mp;
+
+        if (ptc.flowerMPInitMin == ptc.flowerMPInitMax)
+        {
+            mp = ptc.flowerMPInitMin;
+        }
+        else
+        {
+            // pick a marker point at uniform random between the min and max values supplied
+            std::uniform_int_distribution<MarkerPoint> dist(ptc.flowerMPInitMin, ptc.flowerMPInitMax);
+            mp = dist(EvoBeeModel::m_sRngEngine);
+        }
+
+        m_Flowers.push_back( Flower(m_posX, m_posY, mp, ptc.initTemp) );
     }
 }
 
@@ -39,5 +55,7 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, float x, float y) :
  */
 MarkerPoint FloweringPlant::getFlowerMarkerPoint(int flower)
 {
-    return m_Reflectance.getMarkerPoint();
+    assert(flower >= 0);
+    assert(flower < m_Flowers.size());
+    return m_Flowers[flower].getMarkerPoint();
 }

@@ -8,8 +8,10 @@
 #define _FLOWERINGPLANT_H
 
 #include <string>
+#include <vector>
 #include "PlantTypeConfig.h"
 #include "ReflectanceInfo.h"
+#include "Flower.h"
 
 /**
  * The FloweringPlant class ...
@@ -24,7 +26,7 @@ public:
 
 private:
     std::string m_species;
-    ReflectanceInfo m_Reflectance; ///@todo this is reflectance of a (assumed single) flower... 
+    //ReflectanceInfo m_Reflectance; ///@todo this is reflectance of a (assumed single) flower... 
                                    /// need to change to plant has a default leaf reflectance (maybe)
                                    /// and also has one or more flowers...
     int m_iAntherPollen;
@@ -33,6 +35,9 @@ private:
     int m_iNectarRewardPerVisit;
     float m_posX;
     float m_posY;
+    std::vector<Flower> m_Flowers;
+    bool m_bHasLeaf;
+    ReflectanceInfo m_LeafReflectance;
 };
 
 #endif /* _FLOWERINGPLANT_H */

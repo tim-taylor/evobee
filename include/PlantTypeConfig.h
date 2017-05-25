@@ -14,12 +14,21 @@
  * The PlantTypeConfig class ...
  */
 struct PlantTypeConfig {
+    PlantTypeConfig() :
+        numFlowers(1),
+        hasLeaf(false)
+    {};
+
     std::string species;
     MarkerPoint flowerMPInitMin;
     MarkerPoint flowerMPInitMax;
     int antherInitPollen;
     int stigmaMaxPollenCapacity;
     int nectarReward;
+    float initTemp; ///<@todo should be initialised // init temp of flowers and leaves
+    int numFlowers;
+    bool hasLeaf;
+    MarkerPoint leafMP;
 };
 
 #endif /* _PLANTTYPECONFIG_H */
