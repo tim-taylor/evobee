@@ -8,6 +8,7 @@
 #define _FLOWER_H
 
 #include "ReflectanceInfo.h"
+#include "Position.h"
 
 /**
  * The Flower class ...
@@ -15,14 +16,11 @@
 class Flower {
 
 public:
-    Flower(float x, float y, MarkerPoint mp, float temp) :
-        m_posX(x),
-        m_posY(y),
+    Flower(fPos pos, MarkerPoint mp, float temp) :
+        m_Position(pos),
         m_Reflectance(mp),
         m_fTemp(temp)
     {}
-
-    //~Flower() {}
 
     ///
     float getTemp() const {return m_fTemp;}
@@ -31,8 +29,7 @@ public:
     MarkerPoint getMarkerPoint() const {return m_Reflectance.getMarkerPoint();}
 
 private:
-    float m_posX;
-    float m_posY;
+    fPos m_Position;
     ReflectanceInfo m_Reflectance;
     float m_fTemp;
 };

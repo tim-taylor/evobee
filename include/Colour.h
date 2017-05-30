@@ -27,19 +27,6 @@
 class Colour {
 
 public:
-
-    /**
-     * Default constructor
-     * Sets the Marker Point to the value defined by the constant
-     * Colour::DEFAULT_MARKER_POINT
-     */
-    //Colour();
-
-    /**
-     * Constructor taking an explicit marker point
-     */
-    //Colour(int mp);
-
     /**
      * Constructor taking an explicit RGB value
      */
@@ -63,11 +50,6 @@ public:
         unsigned short b;
     };
 
-    /*
-     *
-     */
-    //void setDisplayRgbLinked(bool linked);
-
     /**
      * Explicitly set the display colour (making it unlinked from Marker Point)
      */    
@@ -77,16 +59,6 @@ public:
      * Explicitly set the display colour (making it unlinked from Marker Point)
      */
     //bool setRgbFromName(std::string name);
-
-    /*
-     *
-     */    
-    //void setMarkerPoint(int mp); 
-
-    /*
-     *
-     */
-    //int getMarkerPoint() const {return m_iMarkerPoint;}
 
     /**
      *
@@ -99,18 +71,13 @@ public:
     const RGB& getRgb() const {return m_RGB;}
 
 private:
-    //void updateRGB();
-
     //template<int lo, int peak, int hi>
     //int getIntensity(int lambda);
 
-    //int m_iMarkerPoint;
     Colour::RGB m_RGB;
-    //bool m_bRgbFromMarkerPoint;
 
     static const std::map<MarkerPoint, RGB> m_sMarkerPoint2RgbMap;
     static const std::map<std::string, RGB> m_sColourName2RgbMap;
-    //static const int DEFAULT_MARKER_POINT;
 };
 
 #endif /* _COLOUR_H */

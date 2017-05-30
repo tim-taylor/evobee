@@ -15,8 +15,14 @@
 class Hymenoptera : public Pollinator {
 
 public:
-    Hymenoptera();
+    Hymenoptera(AbstractHive* pHive);
     virtual ~Hymenoptera() {}
+
+private:
+    /*
+    innate colour pref
+    learned colour pref
+    */
 };
 
 #endif /* _HYMENOPTERA_H */

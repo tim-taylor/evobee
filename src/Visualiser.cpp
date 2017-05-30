@@ -107,60 +107,6 @@ int Visualiser::init()
         SDL_Quit();
         return 1;
     }
-    //
-    /*
-    std::string imagePath = getResourcePath("test") + "hello.bmp";
-    SDL_Surface *bmp = SDL_LoadBMP(imagePath.c_str());
-    if (bmp == nullptr)
-    {
-        SDL_DestroyRenderer(ren);
-        SDL_DestroyWindow(win);
-        std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
-        SDL_Quit();
-        return 1;
-    }
-
-    SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, bmp);
-    SDL_FreeSurface(bmp);
-    if (tex == nullptr)
-    {
-        SDL_DestroyRenderer(ren);
-        SDL_DestroyWindow(win);
-        std::cout << "SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
-        SDL_Quit();
-        return 1;
-    }
-
-    //A sleepy rendering loop, wait for 3 seconds and render and present the screen each time
-    for (int i = 0; i < 2; ++i)
-    {
-        //First clear the renderer
-        SDL_RenderClear(ren);
-        //Draw the texture
-        SDL_RenderCopy(ren, tex, NULL, NULL);
-        //Update the screen
-        SDL_RenderPresent(ren);
-
-        // TT - added this otherwise image doesn't show until after the first delay..
-        //First clear the renderer
-        SDL_RenderClear(ren);
-
-        //Take a quick break after all that hard work
-        SDL_Delay(1000);
-    }
-    */
-
-    /*
-    //Fill the surface white
-    //Get window surface
-    SDL_Surface* screenSurface = SDL_GetWindowSurface( win );
-    SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0x80, 0x00 ) );
-    //Update the surface
-    SDL_UpdateWindowSurface( win );
-    SDL_Delay(3000);
-    */
-
-    //SDL_DestroyTexture(tex);
 
     return 0;
 }
@@ -170,8 +116,90 @@ void Visualiser::update() {
     SDL_Event e;
     bool quit = false;
 
-    //while (!quit)
+    SDL_SetRenderDrawColor(m_pRenderer, 0x0, 0x0, 0x0, 0xFF);
+    SDL_RenderClear(m_pRenderer);
+
+    auto patches = m_pModel->getEnv().getPatches();
+    for (Patch& p : patches)
     {
+        // render patches
+        auto c = Colour::getRgbFromMarkerPoint(p.getBackgroundMarkerPoint());
+        auto pos = p.getPosition();
+        boxRGBA(
+            m_pRenderer,
+            pos.x * m_iPatchSize,
+            pos.y * m_iPatchSize,
+            (pos.x + 1) * m_iPatchSize - 1, (pos.y + 1) * m_iPatchSize - 1,
+            c.r, c.g, c.b, 255
+        );
+
+        // render flowers
+        if (p.hasFloweringPlants())
+        {
+            int offset = 0;
+            auto fplants = p.getFloweringPlants();
+            for (FloweringPlant& fplant : fplants)
+            {
+                ///@todo at present just using offsets rather than exact position in patch
+                auto c = Colour::getRgbFromMarkerPoint(fplant.getFlowerMarkerPoint());
+                filledCircleRGBA(
+                    m_pRenderer,
+                    pos.x * m_iPatchSize + offset, 
+                    pos.y * m_iPatchSize + offset,
+                    m_iPatchSize/2,
+                    c.r, c.g, c.b, 255
+                );
+                ++offset;
+            }
+        }
+
+        /*
+        if (m_iPatchSize > 1)
+        {
+            rectangleRGBA(m_pRenderer,
+                        x * m_iPatchSize,
+                        y * m_iPatchSize,
+                        (x + 1) * m_iPatchSize - 1, (y + 1) * m_iPatchSize - 1,
+                        200, 200, 200, 255);
+        }
+
+        //thickLineColor(ren, 0, 0, SCREEN_W, SCREEN_H, 20, 0xFF00FFFF);
+        //thickLineColor(ren, 0, SCREEN_H, SCREEN_W, 0, 20, 0xFF00FFFF);
+        //circleColor(ren, SCREEN_W / 2, SCREEN_H / 2, 33, 0xff00ff00);
+        //filledCircleColor(ren, SCREEN_W / 2, SCREEN_H / 2, 30, 0xff00ffcc);
+                
+        */
+    }
+
+    // render hives
+    auto hives = m_pModel->getEnv().getHives();
+    for (auto& pHive : hives)
+    {
+        auto hivepos = pHive->getPosition();
+        boxRGBA(
+            m_pRenderer,
+            hivepos.x * m_iPatchSize,
+            hivepos.y * m_iPatchSize,
+            (hivepos.x + 1) * m_iPatchSize - 1, (hivepos.y + 1) * m_iPatchSize - 1,
+            0, 0, 0, 255
+        );
+        ///@todo for now Hive visualisation colour is hard-coded as black
+    }
+
+
+
+    // Now everythin is prepared, render the entire scence
+    SDL_RenderPresent(m_pRenderer);
+
+    //while(!quit)
+    //{
+        while( SDL_PollEvent( &e ) != 0 )
+        {
+            if( e.type == SDL_QUIT )
+            {
+                quit = true;
+            }
+        }
         /*
         while (SDL_PollEvent(&e))
         {
@@ -189,75 +217,7 @@ void Visualiser::update() {
             }
         }
         */
+    //}
+    //SDL_Delay(3000);
 
-        SDL_SetRenderDrawColor(m_pRenderer, 0x0, 0x0, 0x0, 0xFF);
-        SDL_RenderClear(m_pRenderer);
-
-        //static int step = 300; //@todo this is just for testing
-        //step += 2; //@todo this is just for testing
-
-        auto patches = m_pModel->getEnv().getPatches();
-        for (Patch& p : patches)
-        {
-
-            auto c = Colour::getRgbFromMarkerPoint(p.getBackgroundMarkerPoint());
-            auto x = p.getPosX();
-            auto y = p.getPosY();
-            boxRGBA(m_pRenderer,
-                     x * m_iPatchSize,
-                     y * m_iPatchSize,
-                     (x + 1) * m_iPatchSize - 1, (y + 1) * m_iPatchSize - 1,
-                     c.r, c.g, c.b, 255);
-
-            if (p.hasFloweringPlants())
-            {
-                int offset = 0;
-                auto fplants = p.getFloweringPlants();
-                for (FloweringPlant fplant : fplants)
-                {
-                    ///@todo at present just using offsets rather than exact position in parch
-                    auto c = Colour::getRgbFromMarkerPoint(fplant.getFlowerMarkerPoint());
-                    filledCircleRGBA(m_pRenderer,
-                        x * m_iPatchSize + offset, 
-                        y * m_iPatchSize + offset,
-                        m_iPatchSize/2,
-                        c.r, c.g, c.b, 255);
-                    ++offset;
-                }
-
-            }
-            /*
-            if (m_iPatchSize > 1)
-            {
-                rectangleRGBA(m_pRenderer,
-                            x * m_iPatchSize,
-                            y * m_iPatchSize,
-                            (x + 1) * m_iPatchSize - 1, (y + 1) * m_iPatchSize - 1,
-                            200, 200, 200, 255);
-            }
-            */
-        }
-
-        /*
-        thickLineColor(ren, 0, 0, SCREEN_W, SCREEN_H, 20, 0xFF00FFFF);
-        thickLineColor(ren, 0, SCREEN_H, SCREEN_W, 0, 20, 0xFF00FFFF);
-        circleColor(ren, SCREEN_W / 2, SCREEN_H / 2, 33, 0xff00ff00);
-        filledCircleColor(ren, SCREEN_W / 2, SCREEN_H / 2, 30, 0xff00ffcc);
-        */
-
-        SDL_RenderPresent(m_pRenderer);
-
-        //while(!quit)
-        //{
-            while( SDL_PollEvent( &e ) != 0 )
-            {
-                if( e.type == SDL_QUIT )
-                {
-                    quit = true;
-                }
-            }
-        //}
-        
-        //SDL_Delay(3000);
-    }
 }

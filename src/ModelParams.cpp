@@ -12,12 +12,10 @@ int    ModelParams::m_iVisUpdatePeriod = 1;
 int    ModelParams::m_iEnvSizeX = 50;
 int    ModelParams::m_iEnvSizeY = 50;
 float  ModelParams::m_fEnvDefaultAmbientTemp = 20.0;
-//Colour ModelParams::m_EnvDefaultBackgroundColour("green");
 MarkerPoint ModelParams::m_EnvBackgroundReflectanceMP = 400;
 float  ModelParams::m_fMaxScreenFracH = 0.8;
 float  ModelParams::m_fMaxScreenFracW = 0.8;
 bool   ModelParams::m_bInitialised = false;
-//int    ModelParams::m_iRngSeed = -1;
 std::string ModelParams::m_strRngSeed = ""; //EvoBee Default RNG Seed String";
 int    ModelParams::m_iTerminationNumSteps = 100;
 
@@ -93,13 +91,6 @@ void ModelParams::setEnvDefaultAmbientTemp(float temp)
     m_fEnvDefaultAmbientTemp = temp;
 }
 
-/*
-void ModelParams::setEnvDefaultBackgroundColour(const Colour& col)
-{
-    m_EnvDefaultBackgroundColour = col;
-}
-*/
-
 void ModelParams::setEnvBackgroundReflectanceMP(MarkerPoint mp)
 {
     m_EnvBackgroundReflectanceMP = mp;
@@ -110,13 +101,6 @@ void ModelParams::setVisUpdatePeriod(int p)
     if (p > 0)
         m_iVisUpdatePeriod = p;
 }
-
-/*
-void ModelParams::setRngSeed(int seed)
-{
-    m_iRngSeed = seed;
-}
-*/
 
 void ModelParams::setRngSeedStr(std::string seed)
 {

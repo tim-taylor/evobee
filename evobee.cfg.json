@@ -9,8 +9,8 @@
                 "pollinator-type" : "HoneyBee",
                 "pollinator-number" : 100,
                 "start-from-hive" : true,
-                "pos-x" : 25,
-                "pos-y" : 25
+                "pos-x" : 50,
+                "pos-y" : 50
             }
         },
         "PlantTypeDistributions" : {
@@ -25,7 +25,7 @@
         }
     },
     "SimulationParams" : {
-        "termination-num-steps" : 10,
+        "termination-num-steps" : 150,
         "rng-seed" : "",
         "visualisation" : true,
         "vis-update-period" : 1,
@@ -39,7 +39,10 @@
             "flower-reflectance-mp-init-max" : 500,
             "anther-init-pollen" : 10,
             "stigma-max-pollen-capacity" : 5,
-            "nectar-reward" : 10
+            "nectar-reward" : 10,
+            "comment1" : "plus replenish rate for all of these things - ",
+            "comment2" : "if second bee visits, does it get the same reward or none;",
+            "comment3" : "replenish, instant or n per timestep"
         }
     }
 }

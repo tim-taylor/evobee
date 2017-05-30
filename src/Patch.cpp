@@ -17,14 +17,13 @@ Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
     m_fTemp(temp),
     m_posIdx(posIdx)
 {
-    m_pEnv->getPatchCoordsFromIdx(posIdx, &m_posX, &m_posY);
-    //cout << "Initialised patch at (" << m_posX << "," << m_posY << ")" << endl;
+    m_Position = m_pEnv->getPatchCoordsFromIdx(posIdx);
 }
 
-void Patch::addPlant(const PlantTypeConfig& ptc, float x, float y)
+void Patch::addPlant(const PlantTypeConfig& ptc, fPos pos)
 {
     ///@todo (and will need more params!)
-    cout << "Adding plant of species " << ptc.species << " to Patch [" << m_posX << "," << m_posY << "] at coordinates (" << x << "," << y << ")" << endl;
+    cout << "Adding plant of species " << ptc.species << " to Patch [" << m_Position << "] at coordinates (" << pos << ")" << endl;
 
-    m_FloweringPlants.push_back(FloweringPlant(ptc, x, y));
+    m_FloweringPlants.push_back(FloweringPlant(ptc, pos));
 }

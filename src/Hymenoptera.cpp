@@ -6,5 +6,7 @@
 
 #include "Hymenoptera.h"
 
-Hymenoptera::Hymenoptera() {
+Hymenoptera::Hymenoptera(AbstractHive* pHive) :
+    Pollinator(pHive)
+{
 }

@@ -11,6 +11,10 @@
 #include <memory>
 #include "Patch.h"
 #include "AbstractHive.h"
+#include "Position.h"
+
+using PatchVector = std::vector<Patch>;
+using HiveVector = std::vector<std::shared_ptr<AbstractHive>>;
 
 /**
  * The Environment class...
@@ -21,26 +25,38 @@ public:
     Environment();
     ~Environment() {}
 
-    /// Helper function to calculate a patch's X and Y coordinates from its Index value
-    /// @param idx The Index value
-    /// @param retX Pointer to an int into which the X value will be returned
-    /// @param retY Pointer to an int into which the Y value will be returned
-    void getPatchCoordsFromIdx(int idx, int* retX, int* retY);
+    /**
+     * Helper function to calculate a patch's X and Y coordinates from its Index value
+     * @param idx The Index value
+     */
+    iPos getPatchCoordsFromIdx(int idx);
 
     /**
      *
      */
     Patch& getPatch(int x, int y);
 
-    ///
-    std::vector<Patch>& getPatches() {return m_Patches;};
+    /**
+     *
+     */
+    PatchVector& getPatches() {return m_Patches;}
+
+    /**
+     *
+     */
+    HiveVector& getHives() {return m_Hives;}
+
+    /*
+     * Returns a random float position within the environment
+     */
+    fPos getRandomPositionF() const;
 
 private:
     void initialisePlants();      // private helper method used in constructor
     
-    std::vector<Patch> m_Patches; ///< All patches are stored in a 1D vector for speed of access
-    std::vector<std::shared_ptr<AbstractHive>>  m_Hives;   ///< Collection of all hives in the environment
-    int m_iNumPatches;            ///< Number of patches (stored for convenience)
+    PatchVector m_Patches; ///< All patches are stored in a 1D vector for speed of access
+    HiveVector  m_Hives;   ///< Collection of all hives in the environment
+    int m_iNumPatches;     ///< Number of patches (stored for convenience)
 };
 
 #endif /* _ENVIRONMENT_H */

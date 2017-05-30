@@ -9,27 +9,47 @@
 
 #include <memory>
 #include "HiveConfig.h"
+#include "Position.h"
+
+class Environment;
 
 
 /**
- * The AbstractHive class ...
+ * The AbstractHive class provides a generic interface and members
+ * for all Hives of a specific type of Pollinator. Specific hives
+ * are instances of the Hive class, which is templated for the
+ * specific Pollinator. The Hive classes are derived from AbstractHive.
  */
 class AbstractHive {
 
 public:
-    //AbstractHive();
-    AbstractHive(const HiveConfig& hc);
+    AbstractHive(Environment* pEnv, const HiveConfig& hc);
     virtual ~AbstractHive() {}
 
-    /*
+    /**
      * A static factory method to produce a Hive of the subtype specified
      * by hc.type, and return a shared pointer to the created object
      */
-    static std::shared_ptr<AbstractHive> makeHive(const HiveConfig& hc);
+    static std::shared_ptr<AbstractHive> makeHive(Environment* pEnv, const HiveConfig& hc);
+
+    /**
+     *
+     */
+    const fPos& getPosition() const {return m_Position;}
+
+    /**
+     *
+     */
+    fPos getRandomPollinatorStartPosition() const;
+
+    /**
+     *
+     */
+    bool startFromHive() const {return m_bStartFromHive;}
 
 private:
-    float m_fPosX;          ///< Hive position in environment on x axis
-    float m_fPosY;          ///< Hive position in environment on y axis
+    Environment* m_pEnv;    ///< A pointer to the Environment in which the Hive is placed
+    fPos  m_Position;       ///< Hive position in environment
     bool  m_bStartFromHive; ///< Do Pollinators start from hive, or at a random position?
 };
 

@@ -46,16 +46,14 @@ void EvoBeeModel::seedRng()
         // if no seed string has been supplied, we generate a seed here
         // We keep it consistent with the format of user-supplied seeds by creating
         // a random string of alphanumeric characters (of length 20).
-        std::random_device rdev;
-        uint32_t random_seed = rdev();
-        std::srand(random_seed);
+        std::srand( std::random_device()() );
         std::string alphanum {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"};
         std::string newSeedStr(20,0);
         std::generate_n(newSeedStr.begin(),
                         newSeedStr.length(),
                         [alphanum]() { return alphanum[rand() % alphanum.length()]; });
 
-        std::cout << "Using generated RNG seed " << newSeedStr << std::endl;
+        //std::cout << "Using generated RNG seed " << newSeedStr << std::endl;
         
         // having generated a seed string, now use it to seed the RNG!
         std::seed_seq seed1(newSeedStr.begin(), newSeedStr.end());   

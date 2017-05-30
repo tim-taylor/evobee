@@ -6,5 +6,7 @@
 
 #include "HoneyBee.h"
 
-HoneyBee::HoneyBee() {
+HoneyBee::HoneyBee(AbstractHive* pHive) :
+    Hymenoptera(pHive)
+{
 }

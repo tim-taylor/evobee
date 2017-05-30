@@ -34,7 +34,6 @@ public:
     static void setMaxScreenFracH(float fh);
     static void setVisUpdatePeriod(int p);
     static void setInitialised();
-    //static void setRngSeed(int seed);
     static void setRngSeedStr(std::string seed);
     static void setTerminationNumSteps(int steps);
 
@@ -51,7 +50,6 @@ public:
     static float getMaxScreenFracH() {return m_fMaxScreenFracH;}
     static int   getVisUpdatePeriod() {return m_iVisUpdatePeriod;}
     static int   getTerminationNumSteps() {return m_iTerminationNumSteps;}
-    //static int   getRngSeed() {return m_iRngSeed;}
     static const std::string & getRngSeedStr() {return m_strRngSeed;}
     static MarkerPoint getEnvBackgroundReflectanceMP() {return m_EnvBackgroundReflectanceMP;}
     static const std::vector<HiveConfig> & getHiveConfigs() {return m_Hives;}
@@ -71,7 +69,6 @@ private:
     static MarkerPoint m_EnvBackgroundReflectanceMP; ///< Default background reflectance Marker Point for each Patch
     static int   m_iVisUpdatePeriod;        ///< Number of model steps between each update of visualisation
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
-    //static int   m_iRngSeed;                ///< Seed for RNG
     static std::string m_strRngSeed;        ///< Seed string used to seeed RNG
     static int   m_iTerminationNumSteps;    ///< Terminate run after this number of steps
     static std::vector<HiveConfig> m_Hives; ///< Configuration info for each hive

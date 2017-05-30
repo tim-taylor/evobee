@@ -16,6 +16,7 @@
 #include "AbstractHive.h"
 #include "Hive.h"
 #include "HoneyBee.h"
+#include "Position.h"
 #include "Environment.h"
 
 using std::cout;
@@ -45,23 +46,23 @@ Environment::Environment()
     for (const HiveConfig& hconfig : hconfigs)
     {
         // Use the AbstractHive::makeHive factory method to make a Hive of the right type
-        m_Hives.push_back( AbstractHive::makeHive(hconfig) );
+        m_Hives.push_back( AbstractHive::makeHive(this, hconfig) );
     }
 
     // Initialise Plants
     initialisePlants();
 
-
     cout << "Initialised Environment with " << m_Patches.size() << " patches" << endl;    
 }
 
-void Environment::getPatchCoordsFromIdx(int idx, int* retX, int* retY)
+
+iPos Environment::getPatchCoordsFromIdx(int idx)
 {
     assert(idx >= 0);
     assert(idx < m_iNumPatches);
-    *retX = idx % ModelParams::getEnvSizeX();
-    *retY = idx / ModelParams::getEnvSizeX();
+    return iPos(idx % ModelParams::getEnvSizeX(), idx / ModelParams::getEnvSizeX());
 }
+
 
 Patch& Environment::getPatch(int x, int y)
 {
@@ -85,16 +86,13 @@ void Environment::initialisePlants()
     for (const PlantTypeDistributionConfig &pdcfg : pdconfigs)
     {
         // first find the corresponding PlantTypeConfig
-        //PlantTypeConfig ptc;
         const PlantTypeConfig* pPTC = ModelParams::getPlantTypeConfig(pdcfg.species);
         if (pPTC == nullptr)
         {
-            ///@todo
-            assert(false);
-            exit(1);
+            throw std::runtime_error("Unknown plant species '" + pdcfg.species + "' specified in config file");
         }
 
-        // 
+        // calculate some basic values associated with the requested distribution
         int w = std::max(1, 1 + pdcfg.areaBottomRightX - pdcfg.areaTopLeftX);
         int h = std::max(1, 1 + pdcfg.areaBottomRightY - pdcfg.areaTopLeftY);
         int area = w * h;
@@ -104,15 +102,15 @@ void Environment::initialisePlants()
 
         // create a 2D array that will record, for each patch in the distribution area,
         // the coordinates of each plant to be added to that patch
-        std::vector<std::pair<float, float>> patchInfo[w][h];
+        std::vector<fPos> patchInfo[w][h];
 
         for (int i = 0; i < numPlants; ++i)
         {
-            float fX = pdcfg.areaTopLeftX + distW(EvoBeeModel::m_sRngEngine);
-            float fY = pdcfg.areaTopLeftY + distH(EvoBeeModel::m_sRngEngine);
-            int iLocalX = (int)fX - pdcfg.areaTopLeftX;
-            int iLocalY = (int)fY - pdcfg.areaTopLeftY;
-            patchInfo[iLocalX][iLocalY].push_back({fX, fY});
+            fPos fpos{ pdcfg.areaTopLeftX + distW(EvoBeeModel::m_sRngEngine),
+                       pdcfg.areaTopLeftY + distH(EvoBeeModel::m_sRngEngine) };
+            int iLocalX = (int)fpos.x - pdcfg.areaTopLeftX;
+            int iLocalY = (int)fpos.y - pdcfg.areaTopLeftY;
+            patchInfo[iLocalX][iLocalY].push_back(fpos);
         }
 
         // now go through the patchInfo array, and for each patch, go through all plants
@@ -125,9 +123,18 @@ void Environment::initialisePlants()
                 auto &v = patchInfo[x][y];
                 for (auto &pinfo : v)
                 {
-                    p.addPlant(*pPTC, pinfo.first, pinfo.second);
+                    // pinfo.first is x coordinate, second is y coordinate
+                    p.addPlant(*pPTC, pinfo);
                 }
             }
         }
     }
+}
+
+
+fPos Environment::getRandomPositionF() const
+{
+    static std::uniform_real_distribution<float> distX(0.0, (float)ModelParams::getEnvSizeX());
+    static std::uniform_real_distribution<float> distY(0.0, (float)ModelParams::getEnvSizeY());
+    return fPos(distX(EvoBeeModel::m_sRngEngine), distY(EvoBeeModel::m_sRngEngine));
 }

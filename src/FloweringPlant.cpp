@@ -12,14 +12,13 @@
 /**
  *
  */
-FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, float x, float y) :
+FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, fPos pos) :
     m_species(ptc.species),
     m_iAntherPollen(ptc.antherInitPollen),
     m_iStigmaPollen(0),
     m_iStigmaMaxPollenCapacity(ptc.stigmaMaxPollenCapacity),
     m_iNectarRewardPerVisit(ptc.nectarReward),
-    m_posX(x),
-    m_posY(y),
+    m_Position(pos),
     m_bHasLeaf(ptc.hasLeaf)
 {
     assert(ptc.numFlowers > 0);
@@ -44,7 +43,7 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, float x, float y) :
             mp = dist(EvoBeeModel::m_sRngEngine);
         }
 
-        m_Flowers.push_back( Flower(m_posX, m_posY, mp, ptc.initTemp) );
+        m_Flowers.push_back( Flower(m_Position, mp, ptc.initTemp) );
     }
 }
 
