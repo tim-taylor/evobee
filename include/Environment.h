@@ -14,7 +14,8 @@
 #include "Position.h"
 
 using PatchVector = std::vector<Patch>;
-using HiveVector = std::vector<std::shared_ptr<AbstractHive>>;
+using HivePtrVector = std::vector<std::shared_ptr<AbstractHive>>;
+using PollinatorPtrVector = std::vector<Pollinator*>;
 
 /**
  * The Environment class...
@@ -44,19 +45,36 @@ public:
     /**
      *
      */
-    HiveVector& getHives() {return m_Hives;}
+    HivePtrVector& getHives() {return m_Hives;}
 
     /*
      * Returns a random float position within the environment
      */
     fPos getRandomPositionF() const;
 
+    /**
+     * Add a pointer to a pollinator to the Environment's aggregate list of all
+     * pollinators. This is called in the Hive constructor, and the individual
+     * Hives actually own the Pollinator objects.
+     */
+    void addPollinatorToAggregateList(Pollinator* pPol) {m_AllPollinators.push_back(pPol);}
+
+    /**
+     * Return a vector of pointers to all pollinators from all hives
+     */
+    PollinatorPtrVector& getAllPollinators() {return m_AllPollinators;}
+
 private:
-    void initialisePlants();      // private helper method used in constructor
+    void initialisePlants();     // private helper method used in constructor
     
-    PatchVector m_Patches; ///< All patches are stored in a 1D vector for speed of access
-    HiveVector  m_Hives;   ///< Collection of all hives in the environment
-    int m_iNumPatches;     ///< Number of patches (stored for convenience)
+    PatchVector   m_Patches;     ///< All patches are stored in a 1D vector for speed of access
+    HivePtrVector m_Hives;       ///< Collection of all hives in the environment
+    int           m_iNumPatches; ///< Number of patches (stored for convenience)
+
+    PollinatorPtrVector m_AllPollinators; /** Aggregation of pointers to all Pollinators
+                                           * NB The Pollinators are actually owened by
+                                           * individual Hives
+                                           */
 };
 
 #endif /* _ENVIRONMENT_H */

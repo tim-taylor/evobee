@@ -40,6 +40,7 @@ public:
         for (int i = 0; i < hc.num; ++i)
         {
             m_Pollinators.push_back( P((AbstractHive*)this) );
+            pEnv->addPollinatorToAggregateList( static_cast<Pollinator*>(&m_Pollinators[i]) );
         }
     }
 

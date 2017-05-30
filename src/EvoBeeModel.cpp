@@ -49,9 +49,9 @@ void EvoBeeModel::seedRng()
         std::srand( std::random_device()() );
         std::string alphanum {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"};
         std::string newSeedStr(20,0);
-        std::generate_n(newSeedStr.begin(),
-                        newSeedStr.length(),
-                        [alphanum]() { return alphanum[rand() % alphanum.length()]; });
+        std::generate(newSeedStr.begin(),
+                      newSeedStr.end(),
+                      [alphanum]() { return alphanum[rand() % alphanum.length()]; });
 
         //std::cout << "Using generated RNG seed " << newSeedStr << std::endl;
         
@@ -77,8 +77,32 @@ void EvoBeeModel::seedRng()
  */
 void EvoBeeModel::step()
 {
-    m_iStep++;
+    ++m_iStep;
     cout << "Model step " << m_iStep << endl;
 
-    ///@todo
+    ///@todo - Careful - we really need to shuffle order of all pollinators
+    // possiblility would be for the Env to store a single vector of pointers to Pollinators
+    // for ALL hives, and do a random shuffle on that
+
+    // first allow all pollinators to update
+    auto pollinators = m_Env.getAllPollinators();
+    std::shuffle(pollinators.begin(), pollinators.end(), m_sRngEngine);
+    for (Pollinator* pPol : pollinators)
+    {
+        // do stuff...
+    }
+    /*
+    auto hives = m_Env.getHives();
+    for (auto &pHive : hives)
+    {
+        int numP = pHive->getNumPollinators();
+        for (int i=0; i<numP; ++i)
+        {
+            Pollinator* p = pHive->getPollinator(i);
+            //@todo
+        }
+    }
+    */
+
+    ///@todo - what else required?    
 }
