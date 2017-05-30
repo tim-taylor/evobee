@@ -12,6 +12,7 @@
 #include "ModelParams.h"
 #include "EvoBeeModel.h"
 #include "Environment.h"
+#include "Pollinator.h"
 #include "Patch.h"
 #include "Colour.h"
 #include "Visualiser.h"
@@ -173,7 +174,7 @@ void Visualiser::update() {
 
     // render hives
     auto hives = m_pModel->getEnv().getHives();
-    for (auto& pHive : hives)
+    for (auto &pHive : hives)
     {
         auto hivepos = pHive->getPosition();
         boxRGBA(
@@ -181,11 +182,25 @@ void Visualiser::update() {
             hivepos.x * m_iPatchSize,
             hivepos.y * m_iPatchSize,
             (hivepos.x + 1) * m_iPatchSize - 1, (hivepos.y + 1) * m_iPatchSize - 1,
-            0, 0, 0, 255
+            0, 0, 0, 255 ///@todo for now Hive visualisation colour is hard-coded as black
         );
-        ///@todo for now Hive visualisation colour is hard-coded as black
-    }
 
+        // now render each pollinator in the hive
+        int numP = pHive->getNumPollinators();
+        for (int i=0; i<numP; ++i)
+        {
+            //@todo
+            Pollinator* p = pHive->getPollinator(i);
+            auto ppos = p->getPosition();
+            boxRGBA(
+                m_pRenderer,
+                ppos.x * m_iPatchSize,
+                ppos.y * m_iPatchSize,
+                (ppos.x + 1) * m_iPatchSize - 1, (ppos.y + 1) * m_iPatchSize - 1,
+                255, 255, 255, 255 ///@todo for now Hive visualisation colour is hard-coded as white
+            );            
+        }
+    }
 
 
     // Now everythin is prepared, render the entire scence

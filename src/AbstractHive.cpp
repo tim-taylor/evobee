@@ -15,7 +15,7 @@
 AbstractHive::AbstractHive(Environment* pEnv, const HiveConfig &hc) :
     m_pEnv(pEnv),
     m_Position(hc.x, hc.y),
-    m_bStartFromHive(true)
+    m_bStartFromHive(hc.startFromHive)
 {
 }
 

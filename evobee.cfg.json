@@ -7,8 +7,8 @@
         "Hives" : {
             "Hive" : {
                 "pollinator-type" : "HoneyBee",
-                "pollinator-number" : 100,
-                "start-from-hive" : true,
+                "pollinator-number" : 20,
+                "start-from-hive" : false,
                 "pos-x" : 50,
                 "pos-y" : 50
             }

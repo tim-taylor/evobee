@@ -29,8 +29,8 @@ EvoBeeExperiment::EvoBeeExperiment() :
 }
 
 /**
-@todo
-*/
+ *
+ */
 void EvoBeeExperiment::run() {
     // this should be delegated to ExecutionController? - or maybe don't have that?
 
@@ -42,13 +42,7 @@ void EvoBeeExperiment::run() {
         m_Logger.update(); // question: should this run in a different thread?
         if ((m_bVis) && (step % m_iVisUpdatePeriod == 0)) 
         {
-            m_Visualiser.update(); // question: should this run in a different thread?
-            // also, might want to be able to define a vis update interval in params, e.g.
-            // update vis once very 10 steps
-            // FROM SDL2 Documentation:
-            // "NOTE: You should not expect to be able to create a window, render, or 
-            // receive events on any thread other than the main one."
-            // https://wiki.libsdl.org/CategoryThread
+            m_Visualiser.update();
         }
     }
 }

@@ -12,6 +12,7 @@
 #include "Position.h"
 
 class Environment;
+class Pollinator;
 
 
 /**
@@ -46,6 +47,16 @@ public:
      *
      */
     bool startFromHive() const {return m_bStartFromHive;}
+
+    /**
+     *
+     */
+    virtual int getNumPollinators() const = 0;
+    
+    /**
+     *
+     */
+    virtual Pollinator* getPollinator(size_t idx) = 0;
 
 private:
     Environment* m_pEnv;    ///< A pointer to the Environment in which the Hive is placed

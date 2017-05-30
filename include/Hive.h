@@ -8,6 +8,7 @@
 #define _HIVE_H
 
 #include <vector>
+#include <sstream>
 #include <type_traits>
 #include "HiveConfig.h"
 #include "Pollinator.h"
@@ -43,6 +44,27 @@ public:
     }
 
     ~Hive() {}
+
+    //std::vector<P>& getPollinators() {return m_Pollinators;}
+
+    /**
+     *
+     */
+    virtual int getNumPollinators() const {return m_Pollinators.size();}
+    
+    /**
+     *
+     */
+    virtual Pollinator* getPollinator(size_t idx)
+    {
+        if (idx >= m_Pollinators.size())
+        {
+            std::stringstream msg;
+            msg << "Request for non-existent Pollinator number " << idx;
+            throw std::runtime_error(msg.str());
+        }
+        return static_cast<Pollinator*>( &m_Pollinators[idx] );
+    }
 
 private:
     std::vector<P> m_Pollinators;

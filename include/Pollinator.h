@@ -25,6 +25,11 @@ public:
      */
     void resetToStartPosition();
 
+    /**
+     *
+     */
+    const fPos& getPosition() const {return m_Position;}
+
 private:
     AbstractHive* m_pHive;
     fPos m_Position;

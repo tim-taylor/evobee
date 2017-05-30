@@ -79,4 +79,6 @@ void EvoBeeModel::step()
 {
     m_iStep++;
     cout << "Model step " << m_iStep << endl;
+
+    ///@todo
 }
