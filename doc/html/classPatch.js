@@ -2,9 +2,9 @@ var classPatch =
 [
     [ "Patch", "classPatch.html#a8c90b4493b61543a8a6c24db542c3559", null ],
     [ "~Patch", "classPatch.html#aa048c71e9e5a671e111d1ecee25df183", null ],
-    [ "addPlant", "classPatch.html#a4be3f45715415d1def1ffdb4e5c52747", null ],
+    [ "addPlant", "classPatch.html#afb8a4290631071d620ac10e8d8551fb3", null ],
     [ "getBackgroundMarkerPoint", "classPatch.html#af734652dc44af46df625a1f28f514cbe", null ],
-    [ "getPosX", "classPatch.html#a46b2a83d91d9e51bf0f06d81a5819441", null ],
-    [ "getPosY", "classPatch.html#a46527ac5735514e987611433605f7059", null ],
-    [ "hasPlants", "classPatch.html#a397c0a4f71bdd1c48d91d0afd9d64a04", null ]
+    [ "getFloweringPlants", "classPatch.html#a91b6e4e4db675444c9282e33e0084f43", null ],
+    [ "getPosition", "classPatch.html#aa6933a93f310fd9a3b304fd92b18ddfa", null ],
+    [ "hasFloweringPlants", "classPatch.html#ab820d804e7b698ef273ae0137f0e49b2", null ]
 ];

@@ -23,7 +23,7 @@ public:
     FloweringPlant(const PlantTypeConfig& ptc, fPos pos);
     //~FloweringPlant() {}
 
-    MarkerPoint getFlowerMarkerPoint(int flower = 0);
+    MarkerPoint getFlowerMarkerPoint(unsigned int flower = 0);
 
 private:
     std::string m_species;

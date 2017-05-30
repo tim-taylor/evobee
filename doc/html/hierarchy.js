@@ -1,7 +1,7 @@
 var hierarchy =
 [
     [ "AbstractHive", "classAbstractHive.html", [
-      [ "Hive< H >", "classHive.html", null ]
+      [ "Hive< P >", "classHive.html", null ]
     ] ],
     [ "Colour", "classColour.html", null ],
     [ "Environment", "classEnvironment.html", null ],
@@ -22,6 +22,9 @@ var hierarchy =
         [ "HoneyBee", "classHoneyBee.html", null ]
       ] ]
     ] ],
+    [ "Position< T >", "classPosition.html", null ],
+    [ "Position< float >", "classPosition.html", null ],
+    [ "Position< int >", "classPosition.html", null ],
     [ "ReflectanceInfo", "classReflectanceInfo.html", null ],
     [ "Colour::RGB", "classColour_1_1RGB.html", null ],
     [ "SDL2_gfxBresenhamIterator", "structSDL2__gfxBresenhamIterator.html", null ],

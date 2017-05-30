@@ -7,9 +7,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "Colour", "classColour.html", "classColour" ],
       [ "RGB", "classColour_1_1RGB.html", "classColour_1_1RGB" ]
     ] ],
-    [ "Environment.h", "Environment_8h.html", [
-      [ "Environment", "classEnvironment.html", "classEnvironment" ]
-    ] ],
+    [ "Environment.h", "Environment_8h.html", "Environment_8h" ],
     [ "EventManager.h", "EventManager_8h.html", [
       [ "EventManager", "classEventManager.html", "classEventManager" ]
     ] ],
@@ -47,9 +45,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "ModelParams.h", "ModelParams_8h.html", [
       [ "ModelParams", "classModelParams.html", null ]
     ] ],
-    [ "Patch.h", "Patch_8h.html", [
-      [ "Patch", "classPatch.html", "classPatch" ]
-    ] ],
+    [ "Patch.h", "Patch_8h.html", "Patch_8h" ],
     [ "PlantTypeConfig.h", "PlantTypeConfig_8h.html", [
       [ "PlantTypeConfig", "structPlantTypeConfig.html", "structPlantTypeConfig" ]
     ] ],
@@ -59,6 +55,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "Pollinator.h", "Pollinator_8h.html", [
       [ "Pollinator", "classPollinator.html", "classPollinator" ]
     ] ],
+    [ "Position.h", "Position_8h.html", "Position_8h" ],
     [ "ReflectanceInfo.h", "ReflectanceInfo_8h.html", "ReflectanceInfo_8h" ],
     [ "SDL2_gfxPrimitives.h", "SDL2__gfxPrimitives_8h_source.html", null ],
     [ "sdl_tools.h", "sdl__tools_8h.html", "sdl__tools_8h" ],

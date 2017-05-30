@@ -1,5 +1,6 @@
 <map id="include/Hive.h" name="include/Hive.h">
-<area shape="rect" id="node4" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="207,155,305,181"/>
-<area shape="rect" id="node6" href="$Pollinator_8h.html" title="Pollinator.h" alt="" coords="246,80,333,107"/>
-<area shape="rect" id="node7" href="$AbstractHive_8h.html" title="AbstractHive.h" alt="" coords="357,80,467,107"/>
+<area shape="rect" id="node5" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="244,229,343,256"/>
+<area shape="rect" id="node7" href="$Pollinator_8h.html" title="Pollinator.h" alt="" coords="390,80,477,107"/>
+<area shape="rect" id="node10" href="$AbstractHive_8h.html" title="AbstractHive.h" alt="" coords="347,155,456,181"/>
+<area shape="rect" id="node8" href="$Position_8h.html" title="Position.h" alt="" coords="460,229,540,256"/>
 </map>

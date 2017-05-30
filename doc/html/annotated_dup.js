@@ -19,6 +19,7 @@ var annotated_dup =
     [ "PlantTypeConfig", "structPlantTypeConfig.html", "structPlantTypeConfig" ],
     [ "PlantTypeDistributionConfig", "structPlantTypeDistributionConfig.html", "structPlantTypeDistributionConfig" ],
     [ "Pollinator", "classPollinator.html", "classPollinator" ],
+    [ "Position", "classPosition.html", "classPosition" ],
     [ "ReflectanceInfo", "classReflectanceInfo.html", "classReflectanceInfo" ],
     [ "SDL2_gfxBresenhamIterator", "structSDL2__gfxBresenhamIterator.html", "structSDL2__gfxBresenhamIterator" ],
     [ "SDL2_gfxMurphyIterator", "structSDL2__gfxMurphyIterator.html", "structSDL2__gfxMurphyIterator" ],

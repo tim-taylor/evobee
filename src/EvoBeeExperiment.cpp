@@ -24,7 +24,7 @@ EvoBeeExperiment::EvoBeeExperiment() :
     }
     m_iVisUpdatePeriod = ModelParams::getVisUpdatePeriod();
 
-    ///@todo
+    ///@todo - implement logging procedures
     //m_Logger.logExptSetup(); // record param vals etc in log file
 }
 
@@ -32,8 +32,6 @@ EvoBeeExperiment::EvoBeeExperiment() :
  *
  */
 void EvoBeeExperiment::run() {
-    // this should be delegated to ExecutionController? - or maybe don't have that?
-
     // iterate increments in model and logger, and in visualiser if needed,
     // until halting criteria met
     for (int step = 0; step < ModelParams::getTerminationNumSteps(); ++step) 

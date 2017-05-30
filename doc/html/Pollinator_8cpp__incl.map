@@ -1,3 +1,6 @@
 <map id="src/Pollinator.cpp" name="src/Pollinator.cpp">
-<area shape="rect" id="node2" href="$Pollinator_8h.html" title="Pollinator.h" alt="" coords="23,80,110,107"/>
+<area shape="rect" id="node2" href="$Pollinator_8h.html" title="Pollinator.h" alt="" coords="51,80,138,107"/>
+<area shape="rect" id="node3" href="$Position_8h.html" title="Position.h" alt="" coords="5,229,85,256"/>
+<area shape="rect" id="node5" href="$AbstractHive_8h.html" title="AbstractHive.h" alt="" coords="87,155,196,181"/>
+<area shape="rect" id="node7" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="203,229,301,256"/>
 </map>

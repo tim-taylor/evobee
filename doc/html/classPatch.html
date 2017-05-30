@@ -96,25 +96,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af734652dc44af46df625a1f28f514cbe"><td class="memItemLeft" align="right" valign="top"><a id="af734652dc44af46df625a1f28f514cbe"></a>
 MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><b>getBackgroundMarkerPoint</b> () const</td></tr>
 <tr class="separator:af734652dc44af46df625a1f28f514cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46b2a83d91d9e51bf0f06d81a5819441"><td class="memItemLeft" align="right" valign="top"><a id="a46b2a83d91d9e51bf0f06d81a5819441"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getPosX</b> () const</td></tr>
-<tr class="separator:a46b2a83d91d9e51bf0f06d81a5819441"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46527ac5735514e987611433605f7059"><td class="memItemLeft" align="right" valign="top"><a id="a46527ac5735514e987611433605f7059"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getPosY</b> () const</td></tr>
-<tr class="separator:a46527ac5735514e987611433605f7059"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4be3f45715415d1def1ffdb4e5c52747"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPatch.html#a4be3f45715415d1def1ffdb4e5c52747">addPlant</a> (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, float x, float y)</td></tr>
-<tr class="separator:a4be3f45715415d1def1ffdb4e5c52747"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a397c0a4f71bdd1c48d91d0afd9d64a04"><td class="memItemLeft" align="right" valign="top"><a id="a397c0a4f71bdd1c48d91d0afd9d64a04"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasPlants</b> () const</td></tr>
-<tr class="separator:a397c0a4f71bdd1c48d91d0afd9d64a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6933a93f310fd9a3b304fd92b18ddfa"><td class="memItemLeft" align="right" valign="top"><a id="aa6933a93f310fd9a3b304fd92b18ddfa"></a>
+const <a class="el" href="classPosition.html">iPos</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
+<tr class="separator:aa6933a93f310fd9a3b304fd92b18ddfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb8a4290631071d620ac10e8d8551fb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPatch.html#afb8a4290631071d620ac10e8d8551fb3">addPlant</a> (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, <a class="el" href="classPosition.html">fPos</a> pos)</td></tr>
+<tr class="separator:afb8a4290631071d620ac10e8d8551fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab820d804e7b698ef273ae0137f0e49b2"><td class="memItemLeft" align="right" valign="top"><a id="ab820d804e7b698ef273ae0137f0e49b2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasFloweringPlants</b> () const</td></tr>
+<tr class="separator:ab820d804e7b698ef273ae0137f0e49b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91b6e4e4db675444c9282e33e0084f43"><td class="memItemLeft" align="right" valign="top"><a id="a91b6e4e4db675444c9282e33e0084f43"></a>
+PlantVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFloweringPlants</b> ()</td></tr>
+<tr class="separator:a91b6e4e4db675444c9282e33e0084f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classPatch.html">Patch</a> class ... </p>
 
-<p class="definition">Definition at line <a class="el" href="Patch_8h_source.html#l00021">21</a> of file <a class="el" href="Patch_8h_source.html">Patch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Patch_8h_source.html#l00023">23</a> of file <a class="el" href="Patch_8h_source.html">Patch.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4be3f45715415d1def1ffdb4e5c52747"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4be3f45715415d1def1ffdb4e5c52747">&#9670;&nbsp;</a></span>addPlant()</h2>
+<a id="afb8a4290631071d620ac10e8d8551fb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb8a4290631071d620ac10e8d8551fb3">&#9670;&nbsp;</a></span>addPlant()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -128,14 +128,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasPlants</b> () cons
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>y</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classPosition.html">fPos</a>&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -144,9 +138,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasPlants</b> () cons
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>(and will need more params!) </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>(and will need more params!) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00037">37</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00023">23</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
 
 </div>
 </div>

@@ -81,6 +81,7 @@ $(document).ready(function(){initNavTree('classEvoBeeModel.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">EvoBeeModel Class Reference</div>  </div>
@@ -99,6 +100,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a92fa9871c441c64e5993672824fd4055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a reference to the model's <a class="el" href="classEnvironment.html">Environment</a> object. <br /></td></tr>
 <tr class="separator:a92fa9871c441c64e5993672824fd4055"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a0cb1dc6ce976af8291a0498141a62d25"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvoBeeModel.html#a0cb1dc6ce976af8291a0498141a62d25">seedRng</a> ()</td></tr>
+<tr class="memdesc:a0cb1dc6ce976af8291a0498141a62d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seed the model's RNG from the seed specified in <a class="el" href="classModelParams.html">ModelParams</a>.  <a href="#a0cb1dc6ce976af8291a0498141a62d25">More...</a><br /></td></tr>
+<tr class="separator:a0cb1dc6ce976af8291a0498141a62d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:abfae76f3153b2f458bb4147c5f00ede6"><td class="memItemLeft" align="right" valign="top"><a id="abfae76f3153b2f458bb4147c5f00ede6"></a>
@@ -111,6 +118,36 @@ static std::mt19937&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 <p class="definition">Definition at line <a class="el" href="EvoBeeModel_8h_source.html#l00016">16</a> of file <a class="el" href="EvoBeeModel_8h_source.html">EvoBeeModel.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0cb1dc6ce976af8291a0498141a62d25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cb1dc6ce976af8291a0498141a62d25">&#9670;&nbsp;</a></span>seedRng()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EvoBeeModel::seedRng </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Seed the model's RNG from the seed specified in <a class="el" href="classModelParams.html">ModelParams</a>. </p>
+<p>Static method to seed the model's RNG generator from the seed in <a class="el" href="classModelParams.html">ModelParams</a> <a class="el" href="classModelParams.html">ModelParams</a> should be initialised before this method is called This method should be called before an <a class="el" href="classEvoBeeModel.html">EvoBeeModel</a> instance is instantiated </p>
+
+<p class="definition">Definition at line <a class="el" href="EvoBeeModel_8cpp_source.html#l00038">38</a> of file <a class="el" href="EvoBeeModel_8cpp_source.html">EvoBeeModel.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a046b1d72d09ae408686af178e07b8fa6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a046b1d72d09ae408686af178e07b8fa6">&#9670;&nbsp;</a></span>step()</h2>
 
@@ -127,9 +164,10 @@ static std::mt19937&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div><div class="memdoc">
 
 <p>Iterate the simulation by one step. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd></dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd></dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="EvoBeeModel_8cpp_source.html#l00033">33</a> of file <a class="el" href="EvoBeeModel_8cpp_source.html">EvoBeeModel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EvoBeeModel_8cpp_source.html#l00078">78</a> of file <a class="el" href="EvoBeeModel_8cpp_source.html">EvoBeeModel.cpp</a>.</p>
 
 </div>
 </div>

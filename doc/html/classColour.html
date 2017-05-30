@@ -111,10 +111,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a3b0e143d0da053e644f3793331b9e9e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines a colour as conceptualised in the EvoBee model. The <a class="el" href="classColour.html">Colour</a> class contains both a Marker Point and an <a class="el" href="classColour_1_1RGB.html">RGB</a> value. If the Marker Point is explicitly set (in the constructor or by using the setMarkerPoint() method), then if the <a class="el" href="classColour_1_1RGB.html">RGB</a> value is requested with the getDisplayRgb() method, the returned value is derived from the Marker Point. On the other hand, if the <a class="el" href="classColour_1_1RGB.html">RGB</a> value is explicitly set (in the constructor or in the setDisplayRgb() method), then the getDisplayRgb method will return the set value (and the Marker Point will be ignored).</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>this class can now be simplified... collapse <a class="el" href="classColour_1_1RGB.html">RGB</a> into the main class itself </dd></dl>
+<div class="textblock"><p>Note that the <a class="el" href="classColour.html">Colour</a> class is used mainly for visualisation purposes. It provides methods for converting MarkerPoints to <a class="el" href="classColour_1_1RGB.html">RGB</a> values, and also for converting many named colours to <a class="el" href="classColour_1_1RGB.html">RGB</a> values. The core objects of the EvoBee model itself (pollinators, flowers, etc) use the <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> class to hold data about reflectance/visual properties. It is <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a>, not <a class="el" href="classColour.html">Colour</a>, that actually determines interactions between objects in the model. </p>
 
-<p class="definition">Definition at line <a class="el" href="Colour_8h_source.html#l00027">27</a> of file <a class="el" href="Colour_8h_source.html">Colour.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Colour_8h_source.html#l00024">24</a> of file <a class="el" href="Colour_8h_source.html">Colour.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab9f2aec49ee59e2672281841ab5e73c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab9f2aec49ee59e2672281841ab5e73c4">&#9670;&nbsp;</a></span>Colour()</h2>
@@ -147,9 +146,9 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Default constructor Sets the Marker Point to the value defined by the constant Colour::DEFAULT_MARKER_POINT Constructor taking an explicit marker point Constructor taking an explicit <a class="el" href="classColour_1_1RGB.html">RGB</a> value </p>
+<p>Constructor taking an explicit <a class="el" href="classColour_1_1RGB.html">RGB</a> value </p>
 
-<p class="definition">Definition at line <a class="el" href="Colour_8cpp_source.html#l00035">35</a> of file <a class="el" href="Colour_8cpp_source.html">Colour.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Colour_8cpp_source.html#l00198">198</a> of file <a class="el" href="Colour_8cpp_source.html">Colour.cpp</a>.</p>
 
 </div>
 </div>
@@ -178,9 +177,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Explicitly set the display colour (making it unlinked from Marker Point) </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Colour_8cpp_source.html#l00071">71</a> of file <a class="el" href="Colour_8cpp_source.html">Colour.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Colour_8cpp_source.html#l00234">234</a> of file <a class="el" href="Colour_8cpp_source.html">Colour.cpp</a>.</p>
 
 </div>
 </div>
@@ -217,7 +215,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Explicitly set the display colour (making it unlinked from Marker Point) </p>
 
-<p class="definition">Definition at line <a class="el" href="Colour_8cpp_source.html#l00064">64</a> of file <a class="el" href="Colour_8cpp_source.html">Colour.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Colour_8cpp_source.html#l00227">227</a> of file <a class="el" href="Colour_8cpp_source.html">Colour.cpp</a>.</p>
 
 </div>
 </div>

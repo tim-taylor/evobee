@@ -49,12 +49,9 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, fPos pos) :
 
 /**
  * Return the MarkerPoint of the specified flower
- * @todo for the time being we just assume one flower - need to change this
- * when FloweringPlant actually has a list of Flowers
  */
-MarkerPoint FloweringPlant::getFlowerMarkerPoint(int flower)
+MarkerPoint FloweringPlant::getFlowerMarkerPoint(unsigned int flower)
 {
-    assert(flower >= 0);
     assert(flower < m_Flowers.size());
     return m_Flowers[flower].getMarkerPoint();
 }

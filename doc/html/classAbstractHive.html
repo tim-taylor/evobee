@@ -83,7 +83,7 @@ $(document).ready(function(){initNavTree('classAbstractHive.html','');});
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">AbstractHive Class Reference</div>  </div>
+<div class="title">AbstractHive Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -93,27 +93,81 @@ Inheritance diagram for AbstractHive:</div>
 <div class="dyncontent">
 <div class="center"><img src="classAbstractHive__inherit__graph.png" border="0" usemap="#AbstractHive_inherit__map" alt="Inheritance graph"/></div>
 <map name="AbstractHive_inherit__map" id="AbstractHive_inherit__map">
-<area shape="rect" id="node2" href="classHive.html" title="Hive\&lt; H \&gt;" alt="" coords="13,80,96,107"/>
+<area shape="rect" id="node2" href="classHive.html" title="Hive\&lt; P \&gt;" alt="" coords="13,80,96,107"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9bbbcfa964b86153c82517f8750703fb"><td class="memItemLeft" align="right" valign="top"><a id="a9bbbcfa964b86153c82517f8750703fb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>AbstractHive</b> (const <a class="el" href="structHiveConfig.html">HiveConfig</a> &amp;hc)</td></tr>
-<tr class="separator:a9bbbcfa964b86153c82517f8750703fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b09a16de2d6978c086cc83346cb6ba5"><td class="memItemLeft" align="right" valign="top"><a id="a9b09a16de2d6978c086cc83346cb6ba5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>AbstractHive</b> (<a class="el" href="classEnvironment.html">Environment</a> *pEnv, const <a class="el" href="structHiveConfig.html">HiveConfig</a> &amp;hc)</td></tr>
+<tr class="separator:a9b09a16de2d6978c086cc83346cb6ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77378d2527bb613510822d853af59c7c"><td class="memItemLeft" align="right" valign="top"><a id="a77378d2527bb613510822d853af59c7c"></a>
+const <a class="el" href="classPosition.html">fPos</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
+<tr class="separator:a77378d2527bb613510822d853af59c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a701e7691c8b714aaf6aa4bac797df275"><td class="memItemLeft" align="right" valign="top"><a id="a701e7691c8b714aaf6aa4bac797df275"></a>
+<a class="el" href="classPosition.html">fPos</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getRandomPollinatorStartPosition</b> () const</td></tr>
+<tr class="separator:a701e7691c8b714aaf6aa4bac797df275"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c04cf4b58d1ec4e1e6956bcb3d2c0ad"><td class="memItemLeft" align="right" valign="top"><a id="a8c04cf4b58d1ec4e1e6956bcb3d2c0ad"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>startFromHive</b> () const</td></tr>
+<tr class="separator:a8c04cf4b58d1ec4e1e6956bcb3d2c0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53218296cad5588b0c26b3f652145769"><td class="memItemLeft" align="right" valign="top"><a id="a53218296cad5588b0c26b3f652145769"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumPollinators</b> () const =0</td></tr>
+<tr class="separator:a53218296cad5588b0c26b3f652145769"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02ce7344872d45b534c50ff396cd9fad"><td class="memItemLeft" align="right" valign="top"><a id="a02ce7344872d45b534c50ff396cd9fad"></a>
+virtual <a class="el" href="classPollinator.html">Pollinator</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getPollinator</b> (size_t idx)=0</td></tr>
+<tr class="separator:a02ce7344872d45b534c50ff396cd9fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a90022519f33c12e25ebaec71e80bd635"><td class="memItemLeft" align="right" valign="top"><a id="a90022519f33c12e25ebaec71e80bd635"></a>
-static std::shared_ptr&lt; <a class="el" href="classAbstractHive.html">AbstractHive</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>makeHive</b> (const <a class="el" href="structHiveConfig.html">HiveConfig</a> &amp;hc)</td></tr>
-<tr class="separator:a90022519f33c12e25ebaec71e80bd635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9df78d5ccc85ec4dd81be35028e4c686"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classAbstractHive.html">AbstractHive</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractHive.html#a9df78d5ccc85ec4dd81be35028e4c686">makeHive</a> (<a class="el" href="classEnvironment.html">Environment</a> *pEnv, const <a class="el" href="structHiveConfig.html">HiveConfig</a> &amp;hc)</td></tr>
+<tr class="separator:a9df78d5ccc85ec4dd81be35028e4c686"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="classAbstractHive.html">AbstractHive</a> class ... </p>
+<div class="textblock"><p>The <a class="el" href="classAbstractHive.html">AbstractHive</a> class provides a generic interface and members for all Hives of a specific type of <a class="el" href="classPollinator.html">Pollinator</a>. Specific hives are instances of the <a class="el" href="classHive.html">Hive</a> class, which is templated for the specific <a class="el" href="classPollinator.html">Pollinator</a>. The <a class="el" href="classHive.html">Hive</a> classes are derived from <a class="el" href="classAbstractHive.html">AbstractHive</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="AbstractHive_8h_source.html#l00017">17</a> of file <a class="el" href="AbstractHive_8h_source.html">AbstractHive.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<p class="definition">Definition at line <a class="el" href="AbstractHive_8h_source.html#l00024">24</a> of file <a class="el" href="AbstractHive_8h_source.html">AbstractHive.h</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9df78d5ccc85ec4dd81be35028e4c686"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9df78d5ccc85ec4dd81be35028e4c686">&#9670;&nbsp;</a></span>makeHive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classAbstractHive.html">AbstractHive</a> &gt; AbstractHive::makeHive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEnvironment.html">Environment</a> *&#160;</td>
+          <td class="paramname"><em>pEnv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structHiveConfig.html">HiveConfig</a> &amp;&#160;</td>
+          <td class="paramname"><em>hc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A static factory method to produce a <a class="el" href="classHive.html">Hive</a> of the subtype specified by hc.type, and return a shared pointer to the created object </p>
+
+<p class="definition">Definition at line <a class="el" href="AbstractHive_8cpp_source.html#l00022">22</a> of file <a class="el" href="AbstractHive_8cpp_source.html">AbstractHive.cpp</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="AbstractHive_8h_source.html">AbstractHive.h</a></li>
 <li>src/<a class="el" href="AbstractHive_8cpp_source.html">AbstractHive.cpp</a></li>
 </ul>

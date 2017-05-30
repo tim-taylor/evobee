@@ -1,5 +1,7 @@
 var classHive =
 [
-    [ "Hive", "classHive.html#a998ad011cc727de11e95f178f6d0925c", null ],
-    [ "~Hive", "classHive.html#a1cd34fbda53329e5357ab403db2c2fb5", null ]
+    [ "Hive", "classHive.html#afbbbf99067ede407c8447ee1dcc04e45", null ],
+    [ "~Hive", "classHive.html#ab73752e34a2b19a0addcffda9be87693", null ],
+    [ "getNumPollinators", "classHive.html#a566be4d63c9348eecd470b6d18803836", null ],
+    [ "getPollinator", "classHive.html#a4399ddd4ed2186da85941b9990e2744f", null ]
 ];

@@ -90,61 +90,49 @@ $(document).ready(function(){initNavTree('classEnvironment.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2fc4efd2e54177f1617b26e23f62a12e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a2fc4efd2e54177f1617b26e23f62a12e">getPatchCoordsFromIdx</a> (int idx, int *retX, int *retY)</td></tr>
-<tr class="separator:a2fc4efd2e54177f1617b26e23f62a12e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29d71ffaf505fe29a3f371ccd5391dc6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPosition.html">iPos</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a29d71ffaf505fe29a3f371ccd5391dc6">getPatchCoordsFromIdx</a> (int idx)</td></tr>
+<tr class="separator:a29d71ffaf505fe29a3f371ccd5391dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60581aa6612e7d9cf1a7c9a3104520f0"><td class="memItemLeft" align="right" valign="top"><a id="a60581aa6612e7d9cf1a7c9a3104520f0"></a>
 <a class="el" href="classPatch.html">Patch</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPatch</b> (int x, int y)</td></tr>
 <tr class="separator:a60581aa6612e7d9cf1a7c9a3104520f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73f2e24bc82e2dca4bc0080e7e45bbae"><td class="memItemLeft" align="right" valign="top"><a id="a73f2e24bc82e2dca4bc0080e7e45bbae"></a>
-std::vector&lt; <a class="el" href="classPatch.html">Patch</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPatches</b> ()</td></tr>
-<tr class="separator:a73f2e24bc82e2dca4bc0080e7e45bbae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af151502f8e7ee25c71252f7d6cfc7f65"><td class="memItemLeft" align="right" valign="top"><a id="af151502f8e7ee25c71252f7d6cfc7f65"></a>
+PatchVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPatches</b> ()</td></tr>
+<tr class="separator:af151502f8e7ee25c71252f7d6cfc7f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a297498de7e1cc38959f378e9372159f9"><td class="memItemLeft" align="right" valign="top"><a id="a297498de7e1cc38959f378e9372159f9"></a>
+HiveVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHives</b> ()</td></tr>
+<tr class="separator:a297498de7e1cc38959f378e9372159f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e1925ff4bb3786a4d57f208d3369485"><td class="memItemLeft" align="right" valign="top"><a id="a0e1925ff4bb3786a4d57f208d3369485"></a>
+<a class="el" href="classPosition.html">fPos</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getRandomPositionF</b> () const</td></tr>
+<tr class="separator:a0e1925ff4bb3786a4d57f208d3369485"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classEnvironment.html">Environment</a> class... </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00018">18</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00022">22</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2fc4efd2e54177f1617b26e23f62a12e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2fc4efd2e54177f1617b26e23f62a12e">&#9670;&nbsp;</a></span>getPatchCoordsFromIdx()</h2>
+<a id="a29d71ffaf505fe29a3f371ccd5391dc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29d71ffaf505fe29a3f371ccd5391dc6">&#9670;&nbsp;</a></span>getPatchCoordsFromIdx()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Environment::getPatchCoordsFromIdx </td>
+          <td class="memname"><a class="el" href="classPosition.html">iPos</a> Environment::getPatchCoordsFromIdx </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>idx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>retX</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>retY</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Helper function to calculate a patch's X and Y coordinates from its Index value </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">idx</td><td>The Index value </td></tr>
-    <tr><td class="paramname">retX</td><td>Pointer to an int into which the X value will be returned </td></tr>
-    <tr><td class="paramname">retY</td><td>Pointer to an int into which the Y value will be returned </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00058">58</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00059">59</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>

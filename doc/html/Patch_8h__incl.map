@@ -1,5 +1,7 @@
 <map id="include/Patch.h" name="include/Patch.h">
-<area shape="rect" id="node3" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="89,229,215,256"/>
-<area shape="rect" id="node4" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="240,155,371,181"/>
-<area shape="rect" id="node6" href="$FloweringPlant_8h.html" title="FloweringPlant.h" alt="" coords="141,80,259,107"/>
+<area shape="rect" id="node3" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="123,229,248,256"/>
+<area shape="rect" id="node4" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="111,155,241,181"/>
+<area shape="rect" id="node6" href="$FloweringPlant_8h.html" title="FloweringPlant.h" alt="" coords="219,80,338,107"/>
+<area shape="rect" id="node8" href="$Position_8h.html" title="Position.h" alt="" coords="436,229,516,256"/>
+<area shape="rect" id="node7" href="$Flower_8h.html" title="Flower.h" alt="" coords="367,155,439,181"/>
 </map>

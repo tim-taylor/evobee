@@ -13,16 +13,13 @@
 #include "ReflectanceInfo.h"
 
 /**
- * Defines a colour as conceptualised in the EvoBee model.
- * The Colour class contains both a Marker Point and an RGB value.
- * If the Marker Point is explicitly set (in the constructor or by using
- * the setMarkerPoint() method), then if the RGB value is requested with the 
- * getDisplayRgb() method, the returned value is derived from the Marker Point. On
- * the other hand, if the RGB value is explicitly set (in the constructor
- * or in the setDisplayRgb() method), then the getDisplayRgb method will return the
- * set value (and the Marker Point will be ignored).
- *
- * @todo this class can now be simplified... collapse RGB into the main class itself
+ * Note that the Colour class is used mainly for visualisation purposes.
+ * It provides methods for converting MarkerPoints to RGB values, and
+ * also for converting many named colours to RGB values.
+ * The core objects of the EvoBee model itself (pollinators, flowers, etc)
+ * use the ReflectanceInfo class to hold data about reflectance/visual
+ * properties. It is ReflectanceInfo, not Colour, that actually determines
+ * interactions between objects in the model.
  */
 class Colour {
 
