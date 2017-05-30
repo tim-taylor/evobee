@@ -16,7 +16,12 @@ class HoneyBee : public Hymenoptera {
 
 public:
     HoneyBee(AbstractHive* pHive);
-    virtual ~HoneyBee() {}
+    ~HoneyBee() {}
+
+    /**
+     *
+     */
+    void step() override final;
 };
 
 #endif /* _HONEYBEE_H */

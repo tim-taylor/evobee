@@ -11,6 +11,7 @@
 #include <cassert>
 #include <cstdlib>
 #include "Environment.h"
+#include "Pollinator.h"
 #include "ModelParams.h"
 #include "EvoBeeModel.h"
 
@@ -80,16 +81,12 @@ void EvoBeeModel::step()
     ++m_iStep;
     cout << "Model step " << m_iStep << endl;
 
-    ///@todo - Careful - we really need to shuffle order of all pollinators
-    // possiblility would be for the Env to store a single vector of pointers to Pollinators
-    // for ALL hives, and do a random shuffle on that
-
     // first allow all pollinators to update
     auto pollinators = m_Env.getAllPollinators();
     std::shuffle(pollinators.begin(), pollinators.end(), m_sRngEngine);
-    for (Pollinator* pPol : pollinators)
+    for (Pollinator* pol : pollinators)
     {
-        // do stuff...
+        pol->step();
     }
     /*
     auto hives = m_Env.getHives();

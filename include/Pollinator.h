@@ -30,6 +30,11 @@ public:
      */
     const fPos& getPosition() const {return m_Position;}
 
+    /**
+     *
+     */
+    virtual void step() = 0;
+
 private:
     AbstractHive* m_pHive;
     fPos m_Position;

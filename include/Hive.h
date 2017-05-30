@@ -46,17 +46,18 @@ public:
 
     ~Hive() {}
 
-    //std::vector<P>& getPollinators() {return m_Pollinators;}
-
     /**
      *
      */
-    virtual int getNumPollinators() const {return m_Pollinators.size();}
+    int getNumPollinators() const override final 
+    {
+        return m_Pollinators.size();
+    }
     
     /**
      *
      */
-    virtual Pollinator* getPollinator(size_t idx)
+    Pollinator* getPollinator(size_t idx) override final
     {
         if (idx >= m_Pollinators.size())
         {

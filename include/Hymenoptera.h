@@ -16,7 +16,9 @@ class Hymenoptera : public Pollinator {
 
 public:
     Hymenoptera(AbstractHive* pHive);
-    virtual ~Hymenoptera() {}
+    //~Hymenoptera() {}
+
+    void step() override = 0;
 
 private:
     /*
