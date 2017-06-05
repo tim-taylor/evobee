@@ -17,6 +17,7 @@
 #include "Hive.h"
 #include "HoneyBee.h"
 #include "Position.h"
+#include "FloweringPlant.h"
 #include "Environment.h"
 
 using std::cout;
@@ -68,8 +69,7 @@ Patch& Environment::getPatch(int x, int y)
 {
     int idx = x + (ModelParams::getEnvSizeX() * y);
 
-    assert(idx >= 0);
-    assert(idx < m_iNumPatches);
+    assert(inEnvironment(x,y));
 
     return m_Patches[idx];
 }
@@ -137,4 +137,32 @@ fPos Environment::getRandomPositionF() const
     static std::uniform_real_distribution<float> distX(0.0, (float)ModelParams::getEnvSizeX());
     static std::uniform_real_distribution<float> distY(0.0, (float)ModelParams::getEnvSizeY());
     return fPos(distX(EvoBeeModel::m_sRngEngine), distY(EvoBeeModel::m_sRngEngine));
+}
+
+
+bool Environment::inEnvironment(int x, int y) const
+{
+    return (
+        x >=0 && 
+        x < ModelParams::getEnvSizeX() &&
+        y >= 0 &&
+        y < ModelParams::getEnvSizeY()
+    );
+}
+
+
+FloweringPlant* Environment::findClosestFloweringPlant(const fPos& pos)
+{
+    ///@todo - working on implementation
+
+    FloweringPlant* pPlant = nullptr;
+
+    if (inEnvironment(pos))
+    {
+        Patch& localPatch = getPatch(pos);
+        // look for flowers here
+        // also need to look for flowers ni neighbouring patches
+    }
+
+    return pPlant;
 }

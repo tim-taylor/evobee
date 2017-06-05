@@ -10,6 +10,9 @@
 #include "Position.h"
 #include "AbstractHive.h"
 
+class Environment;
+
+
 /**
  * The Pollinator class ...
  */
@@ -35,7 +38,21 @@ public:
      */
     virtual void step() = 0;
 
-private:
+    /**
+     *
+     */
+    Environment* getEnvironment() {return m_pHive->getEnvironment();}
+
+
+protected:
+    /**
+     *
+     */
+    void moveRandom();
+    void moveBiassed();
+    void moveLevy();
+
+    // protected data memebers
     AbstractHive* m_pHive;
     fPos m_Position;
     /*
@@ -47,6 +64,9 @@ private:
     visual acuity spec
     colour recog spec
     */
+
+private:
+
 };
 
 #endif /* _POLLINATOR_H */

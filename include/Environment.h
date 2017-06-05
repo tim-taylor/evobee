@@ -17,6 +17,9 @@ using PatchVector = std::vector<Patch>;
 using HivePtrVector = std::vector<std::shared_ptr<AbstractHive>>;
 using PollinatorPtrVector = std::vector<Pollinator*>;
 
+class FloweringPlant;
+
+
 /**
  * The Environment class...
  */
@@ -36,6 +39,8 @@ public:
      *
      */
     Patch& getPatch(int x, int y);
+    Patch& getPatch(fPos pos) {return getPatch((int)pos.x, (int)pos.y);}
+
 
     /**
      *
@@ -46,6 +51,20 @@ public:
      *
      */
     HivePtrVector& getHives() {return m_Hives;}
+
+    /**
+     *
+     */
+    bool inEnvironment(int x, int y) const;
+    bool inEnvironment(const iPos& pos) const {return inEnvironment(pos.x, pos.y);}
+    bool inEnvironment(const fPos& pos) const {return inEnvironment((int)pos.x, (int)pos.y);}
+
+    /**
+     * Search for flowering plants within range of given position.
+     * If any found, return a pointer to the closest one, otherwise
+     * return nullptr
+     */
+    FloweringPlant* findClosestFloweringPlant(const fPos& pos);
 
     /*
      * Returns a random float position within the environment

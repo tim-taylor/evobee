@@ -28,7 +28,7 @@
         "termination-num-steps" : 150,
         "rng-seed" : "",
         "visualisation" : true,
-        "vis-update-period" : 1,
+        "vis-update-period" : 10,
         "vis-max-screen-frac-w" : 0.85,
         "vis-max-screen-frac-h" : 0.85
     },

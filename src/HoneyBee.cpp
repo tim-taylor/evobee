@@ -5,6 +5,8 @@
  */
 
 #include <iostream>
+#include "FloweringPlant.h"
+#include "Environment.h"
 #include "HoneyBee.h"
 
 HoneyBee::HoneyBee(AbstractHive* pHive) :
@@ -14,6 +16,15 @@ HoneyBee::HoneyBee(AbstractHive* pHive) :
 
 void HoneyBee::step()
 {
-    ///@todo...
-    std::cout << "Stepping a bee!" << std::endl;
+    ///@todo... need to parameterise type of movement and details
+
+    // first move
+    moveRandom();
+
+    // now look for flowers nearby
+    FloweringPlant *pPlant = getEnvironment()->findClosestFloweringPlant(m_Position);
+    if (pPlant != nullptr)
+    {
+        // near a plant
+    }
 }

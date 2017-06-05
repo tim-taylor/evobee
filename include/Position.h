@@ -33,10 +33,20 @@ public:
         y(p.y)
     {}
 
+    // data members
     T x;
     T y;
+
+    // operators
+    Position& operator+=(const Position& p2)
+    {
+        x += p2.x;
+        y += p2.y;
+        return *this;
+    }    
 };
 
+// associated global operator definitions
 template<typename T>
 std::ostream& operator<<(std::ostream& os, const Position<T>& pos)
 {

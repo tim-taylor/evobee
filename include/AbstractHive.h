@@ -58,6 +58,11 @@ public:
      */
     virtual Pollinator* getPollinator(size_t idx) = 0;
 
+    /**
+     *
+     */
+    Environment* getEnvironment() {return m_pEnv;}
+
 private:
     Environment* m_pEnv;    ///< A pointer to the Environment in which the Hive is placed
     fPos  m_Position;       ///< Hive position in environment
