@@ -43,7 +43,7 @@ public:
         x += p2.x;
         y += p2.y;
         return *this;
-    }    
+    }
 };
 
 // associated global operator definitions
@@ -52,6 +52,16 @@ std::ostream& operator<<(std::ostream& os, const Position<T>& pos)
 {
     os << pos.x << "," << pos.y;
     return os;
+}
+
+template<typename T>
+const Position<T> operator+( const Position<T>& lhs, const Position<T>& rhs ) {
+   return Position<T>(lhs.x+rhs.x, lhs.y+rhs.y);
+}
+
+template<typename T>
+const Position<T> operator-( const Position<T>& lhs, const Position<T>& rhs ) {
+   return Position<T>(lhs.x-rhs.x, lhs.y-rhs.y);
 }
 
 #endif /* _POSITION_H */

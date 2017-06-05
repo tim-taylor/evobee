@@ -28,9 +28,11 @@
         "termination-num-steps" : 150,
         "rng-seed" : "",
         "visualisation" : true,
-        "vis-update-period" : 10,
+        "vis-update-period" : 5,
         "vis-max-screen-frac-w" : 0.85,
-        "vis-max-screen-frac-h" : 0.85
+        "vis-max-screen-frac-h" : 0.85,
+        "log-dir" : "output",
+        "log-run-name" : "test"
     },
     "PlantTypes" : {
         "PlantType" : {

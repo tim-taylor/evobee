@@ -14,8 +14,8 @@ if(NOT CMAKE_BUILD_TYPE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 # Specify flags for specific build types 
-#set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}  -std=c++11")
+## (TODO is there a more generic way to do this?)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -std=c++11")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
 
 # We can also make our own build targets, e.g.
@@ -83,12 +83,15 @@ include_directories(
 add_executable(${PROJECT_NAME} ${SOURCES} ${SDL2_GFX_SOURCES})
 
 # link libraries
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${Boost_LIBRARIES})
+## (TODO: is there a more generic way to link to C++ filesystem lib?)
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${Boost_LIBRARIES} -lstdc++fs)
 
 # specify compiler features
 # Approach 1: directly set compiler flags (assumes a specific compiler)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # Approach 2: specify general features required (preferred)
+#  See https://cmake.org/cmake/help/latest/prop_gbl/CMAKE_CXX_KNOWN_FEATURES.html
+#  for list of available features
 target_compile_features(evobee
     PUBLIC
         cxx_auto_type

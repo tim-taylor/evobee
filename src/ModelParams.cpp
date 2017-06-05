@@ -16,12 +16,17 @@ MarkerPoint ModelParams::m_EnvBackgroundReflectanceMP = 400;
 float  ModelParams::m_fMaxScreenFracH = 0.8;
 float  ModelParams::m_fMaxScreenFracW = 0.8;
 bool   ModelParams::m_bInitialised = false;
-std::string ModelParams::m_strRngSeed = ""; //EvoBee Default RNG Seed String";
 int    ModelParams::m_iTerminationNumSteps = 100;
+std::string ModelParams::m_strRngSeed {""};
+std::string ModelParams::m_strLogDir {"output"};
+std::string ModelParams::m_strLogRunName {"run"};
 
 std::vector<HiveConfig> ModelParams::m_Hives;
 std::vector<PlantTypeDistributionConfig> ModelParams::m_PlantDists;
 std::vector<PlantTypeConfig> ModelParams::m_PlantTypes;
+
+nlohmann::json ModelParams::m_Json;
+
 
 void ModelParams::setEnvSize(int x, int y)
 {
@@ -102,14 +107,24 @@ void ModelParams::setVisUpdatePeriod(int p)
         m_iVisUpdatePeriod = p;
 }
 
-void ModelParams::setRngSeedStr(std::string seed)
+void ModelParams::setTerminationNumSteps(int steps)
+{
+    m_iTerminationNumSteps = steps;
+}
+
+void ModelParams::setRngSeedStr(const std::string& seed)
 {
     m_strRngSeed = seed;
 }
 
-void ModelParams::setTerminationNumSteps(int steps)
+void ModelParams::setLogDir(const std::string& dir)
 {
-    m_iTerminationNumSteps = steps;
+    m_strLogDir = dir;
+}
+
+void ModelParams::setLogRunName(const std::string& name)
+{
+    m_strLogRunName = name;
 }
 
 void ModelParams::setInitialised()

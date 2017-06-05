@@ -43,6 +43,15 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "fstream": "cpp",
-        "strstream": "cpp"
+        "strstream": "cpp",
+        "algorithm": "cpp",
+        "filesystem": "cpp",
+        "iterator": "cpp",
+        "memory_resource": "cpp",
+        "random": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp"
     }
 }

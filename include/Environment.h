@@ -52,11 +52,42 @@ public:
      */
     HivePtrVector& getHives() {return m_Hives;}
 
+
     /**
-     *
+     * Get integer size of Environment in x direction
+     * (coordinates should be less than this value)
+     */
+    int getSizeXi() const {return m_iSizeX;}
+
+    /**
+     * Get integer size of Environment in y direction
+     * (coordinates should be less than this value)
+     */    
+    int getSizeYi() const {return m_iSizeY;}
+
+    /**
+     * Get float size of Environment in x direction
+     * (coordinates should be less than this value, this is upper bound)
+     */    
+    float getSizeXf() const {return m_fSizeX;}
+    
+    /**
+     * Get float size of Environment in y direction
+     * (coordinates should be less than this value, this is upper bound)
+     */     
+    float getSizeYf() const {return m_fSizeY;}    
+
+    /**
+     * Checks whether the given position is within the bounds of the environment
      */
     bool inEnvironment(int x, int y) const;
+    /**
+     * Checks whether the given position is within the bounds of the environment
+     */    
     bool inEnvironment(const iPos& pos) const {return inEnvironment(pos.x, pos.y);}
+    /**
+     * Checks whether the given position is within the bounds of the environment
+     */    
     bool inEnvironment(const fPos& pos) const {return inEnvironment((int)pos.x, (int)pos.y);}
 
     /**
@@ -89,6 +120,10 @@ private:
     PatchVector   m_Patches;     ///< All patches are stored in a 1D vector for speed of access
     HivePtrVector m_Hives;       ///< Collection of all hives in the environment
     int           m_iNumPatches; ///< Number of patches (stored for convenience)
+    int           m_iSizeX;      ///< Number of patches in X direction (int coords should be less than this)
+    int           m_iSizeY;      ///< Number of patches in Y direction (int coords should be less than this)
+    float         m_fSizeX;      ///< Number of patches in X direction (float coords should be less than this)
+    float         m_fSizeY;      ///< Number of patches in Y direction (float coords should be less than this)
 
     PollinatorPtrVector m_AllPollinators; /** Aggregation of pointers to all Pollinators
                                            * NB The Pollinators are actually owened by

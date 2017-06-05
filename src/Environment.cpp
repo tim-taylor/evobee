@@ -28,6 +28,11 @@ Environment::Environment()
 {
     assert(ModelParams::initialised());
 
+    m_iSizeX = ModelParams::getEnvSizeX();
+    m_iSizeY = ModelParams::getEnvSizeY();
+    m_fSizeX = (float)m_iSizeX;
+    m_fSizeY = (float)m_iSizeY;
+
     // Initialise Patches
     m_iNumPatches = ModelParams::getNumPatches();
     m_Patches.reserve(m_iNumPatches);
@@ -61,13 +66,13 @@ iPos Environment::getPatchCoordsFromIdx(int idx)
 {
     assert(idx >= 0);
     assert(idx < m_iNumPatches);
-    return iPos(idx % ModelParams::getEnvSizeX(), idx / ModelParams::getEnvSizeX());
+    return iPos(idx % m_iSizeX, idx / m_iSizeX);
 }
 
 
 Patch& Environment::getPatch(int x, int y)
 {
-    int idx = x + (ModelParams::getEnvSizeX() * y);
+    int idx = x + (m_iSizeX * y);
 
     assert(inEnvironment(x,y));
 
@@ -134,8 +139,8 @@ void Environment::initialisePlants()
 
 fPos Environment::getRandomPositionF() const
 {
-    static std::uniform_real_distribution<float> distX(0.0, (float)ModelParams::getEnvSizeX());
-    static std::uniform_real_distribution<float> distY(0.0, (float)ModelParams::getEnvSizeY());
+    static std::uniform_real_distribution<float> distX(0.0, m_fSizeX);
+    static std::uniform_real_distribution<float> distY(0.0, m_fSizeY);
     return fPos(distX(EvoBeeModel::m_sRngEngine), distY(EvoBeeModel::m_sRngEngine));
 }
 
@@ -144,9 +149,9 @@ bool Environment::inEnvironment(int x, int y) const
 {
     return (
         x >=0 && 
-        x < ModelParams::getEnvSizeX() &&
+        x < m_iSizeX &&
         y >= 0 &&
-        y < ModelParams::getEnvSizeY()
+        y < m_iSizeY
     );
 }
 

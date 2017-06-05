@@ -13,9 +13,9 @@ using std::endl;
 
 Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
     m_pEnv(pEnv),
-    m_BackgroundReflectance(mp),
     m_fTemp(temp),
-    m_posIdx(posIdx)
+    m_posIdx(posIdx),
+    m_BackgroundReflectance(mp)
 {
     m_Position = m_pEnv->getPatchCoordsFromIdx(posIdx);
 }

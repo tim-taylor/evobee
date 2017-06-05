@@ -172,8 +172,6 @@ void processConfigOptions(int argc, char **argv)
         }
         else
         {
-            //store(parse_config_file(ifs, config_file_options), vm);
-            //notify(vm);
             processJsonFile(ifs);
         }
 
@@ -248,7 +246,7 @@ void processConfigOptions(int argc, char **argv)
 
 void processJsonFile(ifstream& ifs)
 {
-    json j; ///@todo this should belong to Logger, so that it can then outpur the json object to log file
+    json& j = ModelParams::getJson();
 
     try
     {
@@ -278,13 +276,21 @@ void processJsonFile(ifstream& ifs)
                     cout << "Seed -> " << it.value() << endl;
                     ModelParams::setRngSeed(it.value());
                 }*/
-                if (it.key() == "rng-seed" && it.value().is_string()) {
+                if (it.key() == "termination-num-steps" && it.value().is_number()) {
+                    cout << "Num steps -> " << it.value() << endl;
+                    ModelParams::setTerminationNumSteps(it.value());
+                }
+                else if (it.key() == "rng-seed" && it.value().is_string()) {
                     cout << "Seed -> '" << it.value() << "'" << endl;
                     ModelParams::setRngSeedStr(it.value());
                 }
-                else if (it.key() == "termination-num-steps" && it.value().is_number()) {
-                    cout << "Num steps -> " << it.value() << endl;
-                    ModelParams::setTerminationNumSteps(it.value());
+                else if (it.key() == "log-dir" && it.value().is_string()) {
+                    cout << "Log dir -> '" << it.value() << "'" << endl;
+                    ModelParams::setLogDir(it.value());
+                }
+                else if (it.key() == "log-run-name" && it.value().is_string()) {
+                    cout << "Log run name -> '" << it.value() << "'" << endl;
+                    ModelParams::setLogRunName(it.value());
                 }
                 else if (it.key() == "visualisation" && it.value().is_boolean()) {
                     cout << "Vis -> " << it.value() << endl;

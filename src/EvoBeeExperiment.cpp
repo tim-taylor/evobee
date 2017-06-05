@@ -18,14 +18,15 @@ EvoBeeExperiment::EvoBeeExperiment() :
     m_Logger(),
     m_Visualiser(&m_Model)
 {
+    // set up visualisation support as required
     m_bVis = ModelParams::getVisualisation();
     if (m_bVis) {
         m_Visualiser.init();
     }
     m_iVisUpdatePeriod = ModelParams::getVisUpdatePeriod();
 
-    ///@todo - implement logging procedures
-    //m_Logger.logExptSetup(); // record param vals etc in log file
+    // record run configuration details in log file
+    m_Logger.logExptSetup(); 
 }
 
 /**
