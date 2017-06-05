@@ -84,25 +84,33 @@ $(document).ready(function(){initNavTree('todo.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000002"></a>Global <a class="el" href="classEvoBeeExperiment.html#a450462c6de44ec46a42e82e61aa2d4d0">EvoBeeExperiment::EvoBeeExperiment</a>  ()</dt>
-<dd>- implement logging procedures  </dd>
-<dt><a class="anchor" id="_todo000003"></a>Global <a class="el" href="classEvoBeeModel.html#a046b1d72d09ae408686af178e07b8fa6">EvoBeeModel::step</a>  ()</dt>
+<dt><a class="anchor" id="_todo000001"></a>Global <a class="el" href="classEnvironment.html#afa640b3470c6a038854b3cee627537f7">Environment::findClosestFloweringPlant</a>  (const fPos &amp;pos)</dt>
+<dd>- working on implementation  </dd>
+<dt><a class="anchor" id="_todo000002"></a>Global <a class="el" href="classEvoBeeModel.html#a046b1d72d09ae408686af178e07b8fa6">EvoBeeModel::step</a>  ()</dt>
 <dd><p class="startdd"></p>
-<p class="enddd"></p>
+<p class="enddd">- what else required?  </p>
 </dd>
-<dt><a class="anchor" id="_todo000005"></a>Global <a class="el" href="classLogger.html#ad905325c0f6a7f835e7e54c66e7300b2">Logger::update</a>  ()</dt>
+<dt><a class="anchor" id="_todo000004"></a>Global <a class="el" href="classHoneyBee.html#ae44550c830b3b483981aa4dfc1555f68">HoneyBee::step</a>  () override final</dt>
+<dd>... need to parameterise type of movement and details  </dd>
+<dt><a class="anchor" id="_todo000006"></a>Global <a class="el" href="classLogger.html#a4e022e5d88331bb94e929aae7351c721">Logger::logExptSetup</a>  ()</dt>
+<dd>should check if output file already exists?  </dd>
+<dt><a class="anchor" id="_todo000007"></a>Global <a class="el" href="classLogger.html#ad905325c0f6a7f835e7e54c66e7300b2">Logger::update</a>  ()</dt>
 <dd></dd>
-<dt><a class="anchor" id="_todo000007"></a>Global <a class="el" href="classModelParams.html#a1102369141dc9e1330ecb6739954add8">ModelParams::setMaxScreenFracH</a>  (float fh)</dt>
+<dt><a class="anchor" id="_todo000005"></a>Global <a class="el" href="classLogger.html#acb668a9e186a25fbaad2e4af6d1ed00a">Logger::~Logger</a>  ()</dt>
+<dd>close all open log files  </dd>
+<dt><a class="anchor" id="_todo000009"></a>Global <a class="el" href="classModelParams.html#a1102369141dc9e1330ecb6739954add8">ModelParams::setMaxScreenFracH</a>  (float fh)</dt>
 <dd>... maybe output warning msg here and in next case?  </dd>
-<dt><a class="anchor" id="_todo000006"></a>Global <a class="el" href="classModelParams.html#a430dc7c313f910df97c18066e400cad4">ModelParams::setMaxScreenFracW</a>  (float fw)</dt>
+<dt><a class="anchor" id="_todo000008"></a>Global <a class="el" href="classModelParams.html#a430dc7c313f910df97c18066e400cad4">ModelParams::setMaxScreenFracW</a>  (float fw)</dt>
 <dd>... maybe output warning msg here and in next case?  </dd>
-<dt><a class="anchor" id="_todo000008"></a>Global <a class="el" href="classPatch.html#afb8a4290631071d620ac10e8d8551fb3">Patch::addPlant</a>  (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, fPos pos)</dt>
+<dt><a class="anchor" id="_todo000010"></a>Global <a class="el" href="classPatch.html#afb8a4290631071d620ac10e8d8551fb3">Patch::addPlant</a>  (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, fPos pos)</dt>
 <dd>(and will need more params!)  </dd>
-<dt><a class="anchor" id="_todo000012"></a>Global <a class="el" href="structPlantTypeConfig.html#a8163a11e10b14241d0d55087a5091439">PlantTypeConfig::initTemp</a>  </dt>
+<dt><a class="anchor" id="_todo000016"></a>Global <a class="el" href="structPlantTypeConfig.html#a8163a11e10b14241d0d55087a5091439">PlantTypeConfig::initTemp</a>  </dt>
 <dd>should be initialised // init temp of flowers and leaves  </dd>
-<dt><a class="anchor" id="_todo000001"></a>Global <a class="el" href="evobee_8cpp.html#a2125682e72c640b3790f1d85e55403f5">processJsonFile</a>  (ifstream &amp;ifs)</dt>
-<dd>this should belong to <a class="el" href="classLogger.html">Logger</a>, so that it can then outpur the json object to log file  </dd>
-<dt><a class="anchor" id="_todo000009"></a>Global <a class="el" href="classVisualiser.html#adf337500b62cc53c5d2ffa0e49556972">Visualiser::update</a>  ()</dt>
+<dt><a class="anchor" id="_todo000011"></a>Global <a class="el" href="classPollinator.html#ad09af1bd539e5635de728a7187bd15e7">Pollinator::moveBiassed</a>  (bool allowOffEnv=false, float stepLength=1.0)</dt>
+<dd>implement moveBiassed  </dd>
+<dt><a class="anchor" id="_todo000012"></a>Global <a class="el" href="classPollinator.html#ad03277df915384e641aa3c22d2ebeaac">Pollinator::moveLevy</a>  (bool allowOffEnv=false, float stepLength=1.0)</dt>
+<dd>implement moveLevy  </dd>
+<dt><a class="anchor" id="_todo000013"></a>Global <a class="el" href="classVisualiser.html#adf337500b62cc53c5d2ffa0e49556972">Visualiser::update</a>  ()</dt>
 <dd><p class="startdd">at present just using offsets rather than exact position in patch </p>
 <p>for now <a class="el" href="classHive.html">Hive</a> visualisation colour is hard-coded as black </p>
 <p class="enddd">for now <a class="el" href="classHive.html">Hive</a> visualisation colour is hard-coded as white </p>

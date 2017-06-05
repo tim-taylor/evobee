@@ -1,8 +1,14 @@
 <map id="src/HoneyBee.cpp" name="src/HoneyBee.cpp">
-<area shape="rect" id="node2" href="$HoneyBee_8h.html" title="HoneyBee.h" alt="" coords="47,80,142,107"/>
-<area shape="rect" id="node3" href="$Hymenoptera_8h.html" title="Hymenoptera.h" alt="" coords="39,155,150,181"/>
-<area shape="rect" id="node4" href="$Pollinator_8h.html" title="Pollinator.h" alt="" coords="51,229,138,256"/>
-<area shape="rect" id="node5" href="$Position_8h.html" title="Position.h" alt="" coords="5,379,85,405"/>
-<area shape="rect" id="node7" href="$AbstractHive_8h.html" title="AbstractHive.h" alt="" coords="87,304,196,331"/>
-<area shape="rect" id="node9" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="203,379,301,405"/>
+<area shape="rect" id="node3" href="$FloweringPlant_8h.html" title="FloweringPlant.h" alt="" coords="245,453,363,480"/>
+<area shape="rect" id="node11" href="$Environment_8h.html" title="Environment.h" alt="" coords="500,304,607,331"/>
+<area shape="rect" id="node16" href="$HoneyBee_8h.html" title="HoneyBee.h" alt="" coords="483,80,578,107"/>
+<area shape="rect" id="node6" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="55,528,185,555"/>
+<area shape="rect" id="node7" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="5,603,131,629"/>
+<area shape="rect" id="node8" href="$Flower_8h.html" title="Flower.h" alt="" coords="209,528,281,555"/>
+<area shape="rect" id="node9" href="$Position_8h.html" title="Position.h" alt="" coords="488,603,568,629"/>
+<area shape="rect" id="node13" href="$Patch_8h.html" title="Patch.h" alt="" coords="368,379,435,405"/>
+<area shape="rect" id="node14" href="$AbstractHive_8h.html" title="AbstractHive.h" alt="" coords="641,379,751,405"/>
+<area shape="rect" id="node15" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="684,453,783,480"/>
+<area shape="rect" id="node17" href="$Hymenoptera_8h.html" title="Hymenoptera.h" alt="" coords="558,155,669,181"/>
+<area shape="rect" id="node18" href="$Pollinator_8h.html" title="Pollinator.h" alt="" coords="581,229,667,256"/>
 </map>

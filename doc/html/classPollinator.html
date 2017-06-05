@@ -80,9 +80,11 @@ $(document).ready(function(){initNavTree('classPollinator.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">Pollinator Class Reference</div>  </div>
+<div class="title">Pollinator Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -96,6 +98,16 @@ Inheritance diagram for Pollinator:</div>
 <area shape="rect" id="node3" href="classHoneyBee.html" title="HoneyBee" alt="" coords="14,155,97,181"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for Pollinator:</div>
+<div class="dyncontent">
+<div class="center"><img src="classPollinator__coll__graph.png" border="0" usemap="#Pollinator_coll__map" alt="Collaboration graph"/></div>
+<map name="Pollinator_coll__map" id="Pollinator_coll__map">
+<area shape="rect" id="node2" href="classAbstractHive.html" title="AbstractHive" alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node3" href="classEnvironment.html" title="Environment" alt="" coords="129,5,223,32"/>
+<area shape="rect" id="node4" href="classPosition.html" title="Position\&lt; float \&gt;" alt="" coords="247,5,366,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -107,12 +119,194 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adda0f62b5ca57d622728b107ffe1d71a"><td class="memItemLeft" align="right" valign="top"><a id="adda0f62b5ca57d622728b107ffe1d71a"></a>
 const <a class="el" href="classPosition.html">fPos</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
 <tr class="separator:adda0f62b5ca57d622728b107ffe1d71a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20f4d4f1227e474c6009be4e83cf21f3"><td class="memItemLeft" align="right" valign="top"><a id="a20f4d4f1227e474c6009be4e83cf21f3"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>step</b> ()=0</td></tr>
+<tr class="separator:a20f4d4f1227e474c6009be4e83cf21f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2a9fb92e2b254589198d5816448c00c"><td class="memItemLeft" align="right" valign="top"><a id="ae2a9fb92e2b254589198d5816448c00c"></a>
+<a class="el" href="classEnvironment.html">Environment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getEnvironment</b> ()</td></tr>
+<tr class="separator:ae2a9fb92e2b254589198d5816448c00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a031c99bce09fd3318159debc7b2969b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a031c99bce09fd3318159debc7b2969b6">inEnvironment</a> () const</td></tr>
+<tr class="separator:a031c99bce09fd3318159debc7b2969b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a3a131c8026a7e400b299e697ed6459fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a3a131c8026a7e400b299e697ed6459fe">moveRandom</a> (bool allowOffEnv=false, float stepLength=1.0)</td></tr>
+<tr class="separator:a3a131c8026a7e400b299e697ed6459fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad09af1bd539e5635de728a7187bd15e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ad09af1bd539e5635de728a7187bd15e7">moveBiassed</a> (bool allowOffEnv=false, float stepLength=1.0)</td></tr>
+<tr class="separator:ad09af1bd539e5635de728a7187bd15e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad03277df915384e641aa3c22d2ebeaac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ad03277df915384e641aa3c22d2ebeaac">moveLevy</a> (bool allowOffEnv=false, float stepLength=1.0)</td></tr>
+<tr class="separator:ad03277df915384e641aa3c22d2ebeaac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ac90a402cb893f91a0428cca14e5d5976"><td class="memItemLeft" align="right" valign="top"><a id="ac90a402cb893f91a0428cca14e5d5976"></a>
+<a class="el" href="classPosition.html">fPos</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_Position</b></td></tr>
+<tr class="separator:ac90a402cb893f91a0428cca14e5d5976"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a771ffca4348f9d7e5e39d871640ff6eb"><td class="memItemLeft" align="right" valign="top"><a id="a771ffca4348f9d7e5e39d871640ff6eb"></a>
+<a class="el" href="classAbstractHive.html">AbstractHive</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_pHive</b></td></tr>
+<tr class="separator:a771ffca4348f9d7e5e39d871640ff6eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3e13436a9a7d9015a777b6e55788f9c"><td class="memItemLeft" align="right" valign="top"><a id="ad3e13436a9a7d9015a777b6e55788f9c"></a>
+<a class="el" href="classEnvironment.html">Environment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_pEnv</b></td></tr>
+<tr class="separator:ad3e13436a9a7d9015a777b6e55788f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classPollinator.html">Pollinator</a> class ... </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8h_source.html#l00016">16</a> of file <a class="el" href="Pollinator_8h_source.html">Pollinator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8h_source.html#l00020">20</a> of file <a class="el" href="Pollinator_8h_source.html">Pollinator.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a031c99bce09fd3318159debc7b2969b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a031c99bce09fd3318159debc7b2969b6">&#9670;&nbsp;</a></span>inEnvironment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pollinator::inEnvironment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Query whether this pollinator is currently within the bounds of the <a class="el" href="classEnvironment.html">Environment</a> </p>
+
+<p class="definition">Definition at line <a class="el" href="Pollinator_8h_source.html#l00050">50</a> of file <a class="el" href="Pollinator_8h_source.html">Pollinator.h</a>.</p>
+
+</div>
+</div>
+<a id="ad09af1bd539e5635de728a7187bd15e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad09af1bd539e5635de728a7187bd15e7">&#9670;&nbsp;</a></span>moveBiassed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pollinator::moveBiassed </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>allowOffEnv</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>stepLength</em> = <code>1.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Move by the given distance in a direction biassed by the experimental bee flight data recorded by Waddington </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>implement moveBiassed </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00079">79</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad03277df915384e641aa3c22d2ebeaac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad03277df915384e641aa3c22d2ebeaac">&#9670;&nbsp;</a></span>moveLevy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pollinator::moveLevy </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>allowOffEnv</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>stepLength</em> = <code>1.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Move according to a Levy flight pattern: direction of travel is uniform random, and distance travelled is selected according to a specific probability distribution (TBC) </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>implement moveLevy </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00084">84</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a3a131c8026a7e400b299e697ed6459fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a131c8026a7e400b299e697ed6459fe">&#9670;&nbsp;</a></span>moveRandom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pollinator::moveRandom </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>allowOffEnv</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>stepLength</em> = <code>1.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Move by the given distance in a uniform random direction </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">allowOffEnv</td><td>Do we allow move to take pollinator out of the bounds of the environment? </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if pollinator is within the bounds of the environment after the move, false otherwise </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00040">40</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a2f80a1d3b0985898f548b2b671f7c223"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2f80a1d3b0985898f548b2b671f7c223">&#9670;&nbsp;</a></span>resetToStartPosition()</h2>
 
@@ -129,7 +323,7 @@ const <a class="el" href="classPosition.html">fPos</a> &amp;&#160;</td><td class
 </div><div class="memdoc">
 <p>Move back to the start position, which is either the <a class="el" href="classHive.html">Hive</a> position or a random position, depending upon how the <a class="el" href="classHive.html">Hive</a> is configured. </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00016">16</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00027">27</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>

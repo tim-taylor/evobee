@@ -8,5 +8,8 @@ var searchData=
   ['modelcomponent_2eh',['ModelComponent.h',['../ModelComponent_8h.html',1,'']]],
   ['modelparams',['ModelParams',['../classModelParams.html',1,'']]],
   ['modelparams_2ecpp',['ModelParams.cpp',['../ModelParams_8cpp.html',1,'']]],
-  ['modelparams_2eh',['ModelParams.h',['../ModelParams_8h.html',1,'']]]
+  ['modelparams_2eh',['ModelParams.h',['../ModelParams_8h.html',1,'']]],
+  ['movebiassed',['moveBiassed',['../classPollinator.html#ad09af1bd539e5635de728a7187bd15e7',1,'Pollinator']]],
+  ['movelevy',['moveLevy',['../classPollinator.html#ad03277df915384e641aa3c22d2ebeaac',1,'Pollinator']]],
+  ['moverandom',['moveRandom',['../classPollinator.html#a3a131c8026a7e400b299e697ed6459fe',1,'Pollinator']]]
 ];

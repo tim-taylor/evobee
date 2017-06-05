@@ -1,3 +1,6 @@
 <map id="Hymenoptera" name="Hymenoptera">
-<area shape="rect" id="node2" href="$classPollinator.html" title="Pollinator" alt="" coords="17,5,93,32"/>
+<area shape="rect" id="node2" href="$classPollinator.html" title="Pollinator" alt="" coords="138,95,214,121"/>
+<area shape="rect" id="node3" href="$classAbstractHive.html" title="AbstractHive" alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node4" href="$classEnvironment.html" title="Environment" alt="" coords="129,5,223,32"/>
+<area shape="rect" id="node5" href="$classPosition.html" title="Position\&lt; float \&gt;" alt="" coords="247,5,366,32"/>
 </map>

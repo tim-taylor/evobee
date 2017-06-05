@@ -1,5 +1,5 @@
 var classHymenoptera =
 [
     [ "Hymenoptera", "classHymenoptera.html#aed47201f04ee132f3fc3fecf81bef12d", null ],
-    [ "~Hymenoptera", "classHymenoptera.html#a6cf5fd94d5243522bf10be08f7f13e31", null ]
+    [ "step", "classHymenoptera.html#aa6717d56dd0828cf8c588ce928588b11", null ]
 ];

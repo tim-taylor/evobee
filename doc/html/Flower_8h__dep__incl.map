@@ -1,16 +1,23 @@
 <map id="include/Flower.h" name="include/Flower.h">
-<area shape="rect" id="node2" href="$Flower_8cpp.html" title="src/Flower.cpp" alt="" coords="95,80,203,107"/>
-<area shape="rect" id="node3" href="$FloweringPlant_8h.html" title="include/FloweringPlant.h" alt="" coords="227,80,391,107"/>
-<area shape="rect" id="node4" href="$FloweringPlant_8cpp.html" title="src/FloweringPlant.cpp" alt="" coords="5,379,160,405"/>
-<area shape="rect" id="node5" href="$Patch_8h.html" title="include/Patch.h" alt="" coords="439,155,551,181"/>
-<area shape="rect" id="node6" href="$Environment_8cpp.html" title="src/Environment.cpp" alt="" coords="829,379,971,405"/>
-<area shape="rect" id="node7" href="$Patch_8cpp.html" title="src/Patch.cpp" alt="" coords="759,304,862,331"/>
-<area shape="rect" id="node8" href="$Visualiser_8cpp.html" title="src/Visualiser.cpp" alt="" coords="185,379,311,405"/>
-<area shape="rect" id="node9" href="$Environment_8h.html" title="include/Environment.h" alt="" coords="419,229,570,256"/>
-<area shape="rect" id="node10" href="$AbstractHive_8cpp.html" title="src/AbstractHive.cpp" alt="" coords="355,304,501,331"/>
-<area shape="rect" id="node11" href="$EvoBeeModel_8cpp.html" title="src/EvoBeeModel.cpp" alt="" coords="335,379,486,405"/>
-<area shape="rect" id="node12" href="$EvoBeeModel_8h.html" title="include/EvoBeeModel.h" alt="" coords="525,304,683,331"/>
-<area shape="rect" id="node13" href="$evobee_8cpp.html" title="src/evobee.cpp" alt="" coords="493,453,603,480"/>
-<area shape="rect" id="node14" href="$EvoBeeExperiment_8cpp.html" title="src/EvoBeeExperiment.cpp" alt="" coords="676,453,857,480"/>
-<area shape="rect" id="node15" href="$EvoBeeExperiment_8h.html" title="include/EvoBeeExperiment.h" alt="" coords="562,379,753,405"/>
+<area shape="rect" id="node2" href="$Flower_8cpp.html" title="src/Flower.cpp" alt="" coords="542,80,650,107"/>
+<area shape="rect" id="node3" href="$FloweringPlant_8h.html" title="include/FloweringPlant.h" alt="" coords="674,80,838,107"/>
+<area shape="rect" id="node4" href="$Environment_8cpp.html" title="src/Environment.cpp" alt="" coords="127,528,270,555"/>
+<area shape="rect" id="node5" href="$FloweringPlant_8cpp.html" title="src/FloweringPlant.cpp" alt="" coords="1269,379,1424,405"/>
+<area shape="rect" id="node6" href="$HoneyBee_8cpp.html" title="src/HoneyBee.cpp" alt="" coords="1167,528,1297,555"/>
+<area shape="rect" id="node7" href="$Patch_8h.html" title="include/Patch.h" alt="" coords="140,155,252,181"/>
+<area shape="rect" id="node8" href="$Patch_8cpp.html" title="src/Patch.cpp" alt="" coords="145,304,247,331"/>
+<area shape="rect" id="node9" href="$Visualiser_8cpp.html" title="src/Visualiser.cpp" alt="" coords="145,379,271,405"/>
+<area shape="rect" id="node10" href="$Environment_8h.html" title="include/Environment.h" alt="" coords="365,229,515,256"/>
+<area shape="rect" id="node11" href="$AbstractHive_8cpp.html" title="src/AbstractHive.cpp" alt="" coords="711,528,857,555"/>
+<area shape="rect" id="node12" href="$EvoBeeModel_8cpp.html" title="src/EvoBeeModel.cpp" alt="" coords="675,379,826,405"/>
+<area shape="rect" id="node13" href="$EvoBeeModel_8h.html" title="include/EvoBeeModel.h" alt="" coords="785,304,943,331"/>
+<area shape="rect" id="node18" href="$Pollinator_8h.html" title="include/Pollinator.h" alt="" coords="374,304,506,331"/>
+<area shape="rect" id="node14" href="$evobee_8cpp.html" title="src/evobee.cpp" alt="" coords="1083,453,1194,480"/>
+<area shape="rect" id="node15" href="$EvoBeeExperiment_8cpp.html" title="src/EvoBeeExperiment.cpp" alt="" coords="877,453,1059,480"/>
+<area shape="rect" id="node16" href="$Pollinator_8cpp.html" title="src/Pollinator.cpp" alt="" coords="528,379,651,405"/>
+<area shape="rect" id="node17" href="$EvoBeeExperiment_8h.html" title="include/EvoBeeExperiment.h" alt="" coords="953,379,1143,405"/>
+<area shape="rect" id="node19" href="$Hive_8h.html" title="include/Hive.h" alt="" coords="239,453,345,480"/>
+<area shape="rect" id="node20" href="$Hymenoptera_8h.html" title="include/Hymenoptera.h" alt="" coords="347,379,503,405"/>
+<area shape="rect" id="node21" href="$Hymenoptera_8cpp.html" title="src/Hymenoptera.cpp" alt="" coords="369,453,516,480"/>
+<area shape="rect" id="node22" href="$HoneyBee_8h.html" title="include/HoneyBee.h" alt="" coords="715,453,853,480"/>
 </map>

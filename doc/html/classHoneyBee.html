@@ -101,8 +101,11 @@ Collaboration diagram for HoneyBee:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHoneyBee__coll__graph.png" border="0" usemap="#HoneyBee_coll__map" alt="Collaboration graph"/></div>
 <map name="HoneyBee_coll__map" id="HoneyBee_coll__map">
-<area shape="rect" id="node2" href="classHymenoptera.html" title="Hymenoptera" alt="" coords="5,80,105,107"/>
-<area shape="rect" id="node3" href="classPollinator.html" title="Pollinator" alt="" coords="17,5,93,32"/>
+<area shape="rect" id="node2" href="classHymenoptera.html" title="Hymenoptera" alt="" coords="126,171,226,197"/>
+<area shape="rect" id="node3" href="classPollinator.html" title="Pollinator" alt="" coords="138,95,214,121"/>
+<area shape="rect" id="node4" href="classAbstractHive.html" title="AbstractHive" alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node5" href="classEnvironment.html" title="Environment" alt="" coords="129,5,223,32"/>
+<area shape="rect" id="node6" href="classPosition.html" title="Position\&lt; float \&gt;" alt="" coords="247,5,366,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -111,6 +114,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a87d60aa780c2de1bcc21b5d2410a7bc7"><td class="memItemLeft" align="right" valign="top"><a id="a87d60aa780c2de1bcc21b5d2410a7bc7"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>HoneyBee</b> (<a class="el" href="classAbstractHive.html">AbstractHive</a> *pHive)</td></tr>
 <tr class="separator:a87d60aa780c2de1bcc21b5d2410a7bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae44550c830b3b483981aa4dfc1555f68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHoneyBee.html#ae44550c830b3b483981aa4dfc1555f68">step</a> () override final</td></tr>
+<tr class="separator:ae44550c830b3b483981aa4dfc1555f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classHymenoptera"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classHymenoptera')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classHymenoptera.html">Hymenoptera</a></td></tr>
 <tr class="memitem:aed47201f04ee132f3fc3fecf81bef12d inherit pub_methods_classHymenoptera"><td class="memItemLeft" align="right" valign="top"><a id="aed47201f04ee132f3fc3fecf81bef12d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Hymenoptera</b> (<a class="el" href="classAbstractHive.html">AbstractHive</a> *pHive)</td></tr>
@@ -124,12 +129,68 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adda0f62b5ca57d622728b107ffe1d71a inherit pub_methods_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="adda0f62b5ca57d622728b107ffe1d71a"></a>
 const <a class="el" href="classPosition.html">fPos</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
 <tr class="separator:adda0f62b5ca57d622728b107ffe1d71a inherit pub_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2a9fb92e2b254589198d5816448c00c inherit pub_methods_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="ae2a9fb92e2b254589198d5816448c00c"></a>
+<a class="el" href="classEnvironment.html">Environment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getEnvironment</b> ()</td></tr>
+<tr class="separator:ae2a9fb92e2b254589198d5816448c00c inherit pub_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a031c99bce09fd3318159debc7b2969b6 inherit pub_methods_classPollinator"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a031c99bce09fd3318159debc7b2969b6">inEnvironment</a> () const</td></tr>
+<tr class="separator:a031c99bce09fd3318159debc7b2969b6 inherit pub_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classPollinator"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classPollinator')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classPollinator.html">Pollinator</a></td></tr>
+<tr class="memitem:a3a131c8026a7e400b299e697ed6459fe inherit pro_methods_classPollinator"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a3a131c8026a7e400b299e697ed6459fe">moveRandom</a> (bool allowOffEnv=false, float stepLength=1.0)</td></tr>
+<tr class="separator:a3a131c8026a7e400b299e697ed6459fe inherit pro_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad09af1bd539e5635de728a7187bd15e7 inherit pro_methods_classPollinator"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ad09af1bd539e5635de728a7187bd15e7">moveBiassed</a> (bool allowOffEnv=false, float stepLength=1.0)</td></tr>
+<tr class="separator:ad09af1bd539e5635de728a7187bd15e7 inherit pro_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad03277df915384e641aa3c22d2ebeaac inherit pro_methods_classPollinator"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ad03277df915384e641aa3c22d2ebeaac">moveLevy</a> (bool allowOffEnv=false, float stepLength=1.0)</td></tr>
+<tr class="separator:ad03277df915384e641aa3c22d2ebeaac inherit pro_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classPollinator"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classPollinator')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classPollinator.html">Pollinator</a></td></tr>
+<tr class="memitem:ac90a402cb893f91a0428cca14e5d5976 inherit pro_attribs_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="ac90a402cb893f91a0428cca14e5d5976"></a>
+<a class="el" href="classPosition.html">fPos</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_Position</b></td></tr>
+<tr class="separator:ac90a402cb893f91a0428cca14e5d5976 inherit pro_attribs_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a771ffca4348f9d7e5e39d871640ff6eb inherit pro_attribs_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="a771ffca4348f9d7e5e39d871640ff6eb"></a>
+<a class="el" href="classAbstractHive.html">AbstractHive</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_pHive</b></td></tr>
+<tr class="separator:a771ffca4348f9d7e5e39d871640ff6eb inherit pro_attribs_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3e13436a9a7d9015a777b6e55788f9c inherit pro_attribs_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="ad3e13436a9a7d9015a777b6e55788f9c"></a>
+<a class="el" href="classEnvironment.html">Environment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_pEnv</b></td></tr>
+<tr class="separator:ad3e13436a9a7d9015a777b6e55788f9c inherit pro_attribs_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classHoneyBee.html">HoneyBee</a> class ... </p>
 
 <p class="definition">Definition at line <a class="el" href="HoneyBee_8h_source.html#l00015">15</a> of file <a class="el" href="HoneyBee_8h_source.html">HoneyBee.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae44550c830b3b483981aa4dfc1555f68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae44550c830b3b483981aa4dfc1555f68">&#9670;&nbsp;</a></span>step()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HoneyBee::step </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>... need to parameterise type of movement and details </dd></dl>
+
+<p>Implements <a class="el" href="classHymenoptera.html">Hymenoptera</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00017">17</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="HoneyBee_8h_source.html">HoneyBee.h</a></li>
 <li>src/<a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a></li>
 </ul>

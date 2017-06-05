@@ -1,9 +1,10 @@
 <map id="include/EvoBeeModel.h" name="include/EvoBeeModel.h">
 <area shape="rect" id="node2" href="$Environment_8cpp.html" title="src/Environment.cpp" alt="" coords="5,80,148,107"/>
 <area shape="rect" id="node3" href="$evobee_8cpp.html" title="src/evobee.cpp" alt="" coords="197,155,308,181"/>
-<area shape="rect" id="node4" href="$EvoBeeExperiment_8cpp.html" title="src/EvoBeeExperiment.cpp" alt="" coords="633,155,814,181"/>
+<area shape="rect" id="node4" href="$EvoBeeExperiment_8cpp.html" title="src/EvoBeeExperiment.cpp" alt="" coords="706,155,887,181"/>
 <area shape="rect" id="node5" href="$EvoBeeModel_8cpp.html" title="src/EvoBeeModel.cpp" alt="" coords="439,80,589,107"/>
 <area shape="rect" id="node6" href="$FloweringPlant_8cpp.html" title="src/FloweringPlant.cpp" alt="" coords="614,80,769,107"/>
-<area shape="rect" id="node7" href="$Visualiser_8cpp.html" title="src/Visualiser.cpp" alt="" coords="793,80,920,107"/>
-<area shape="rect" id="node8" href="$EvoBeeExperiment_8h.html" title="include/EvoBeeExperiment.h" alt="" coords="224,80,415,107"/>
+<area shape="rect" id="node7" href="$Pollinator_8cpp.html" title="src/Pollinator.cpp" alt="" coords="793,80,915,107"/>
+<area shape="rect" id="node8" href="$Visualiser_8cpp.html" title="src/Visualiser.cpp" alt="" coords="940,80,1067,107"/>
+<area shape="rect" id="node9" href="$EvoBeeExperiment_8h.html" title="include/EvoBeeExperiment.h" alt="" coords="224,80,415,107"/>
 </map>

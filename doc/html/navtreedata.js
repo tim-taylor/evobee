@@ -25,7 +25,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AbstractHive_8cpp.html",
-"structSDL2__gfxBresenhamIterator.html#a4150912b93de3da001e15b3b2253d7dc"
+"sdl__tools_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

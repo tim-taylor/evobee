@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../evobee_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'evobee.cpp']]],
-  ['makehive',['makeHive',['../classAbstractHive.html#a9df78d5ccc85ec4dd81be35028e4c686',1,'AbstractHive']]]
+  ['logexptsetup',['logExptSetup',['../classLogger.html#a4e022e5d88331bb94e929aae7351c721',1,'Logger']]],
+  ['logsdlerror',['logSDLError',['../sdl__tools_8h.html#a343bdc6b0f085211d4043f2d9485476c',1,'sdl_tools.h']]]
 ];
