@@ -18,6 +18,7 @@ constexpr double TWOPI = 2.0*PI;
 
 unsigned int Pollinator::m_sNextFreeId = 0;
 std::string Pollinator::m_sTypeNameStr{"POL"};
+std::uniform_real_distribution<float> Pollinator::m_sDirectionDistrib(0.0, TWOPI);
 
 
 Pollinator::Pollinator(AbstractHive* pHive) :
@@ -34,6 +35,8 @@ Pollinator::Pollinator(AbstractHive* pHive) :
 
 void Pollinator::resetToStartPosition()
 {
+    m_fHeading = m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
+
     if (m_pHive->startFromHive())
     {
         m_Position = m_pHive->getPosition();
@@ -45,25 +48,10 @@ void Pollinator::resetToStartPosition()
 }
 
 
-bool Pollinator::moveRandom(bool allowOffEnv, float stepLength)
-{
-    std::uniform_real_distribution<float> dist(0.0, TWOPI);
-    float ang = dist(EvoBeeModel::m_sRngEngine);
-
-    fPos delta { stepLength * std::cos(ang), stepLength * std::sin(ang) };
-    m_Position += delta;
-
-    bool inEnv = inEnvironment();
-
-    if (!inEnv && !allowOffEnv)
-    {
-        repositionInEnv(delta);
-    }
-
-    return inEnv;
-}
-
-
+// A helper method for the move... methods for use when a pollinator has
+// wandered off the environment. Reflect the movement off the edge of
+// the environment and reposition the pollinator back within the allowed
+// area
 void Pollinator::repositionInEnv(fPos delta)
 {
     fPos oldPos = m_Position - delta;
@@ -84,21 +72,59 @@ void Pollinator::repositionInEnv(fPos delta)
 }
 
 
+bool Pollinator::moveRandom(bool allowOffEnv, float stepLength)
+{
+    m_fHeading = m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
+
+    fPos delta{stepLength*std::cos(m_fHeading), stepLength*std::sin(m_fHeading)};
+    m_Position += delta;
+
+    bool inEnv = inEnvironment();
+
+    if (!inEnv && !allowOffEnv)
+    {
+        repositionInEnv(delta);
+    }
+
+    return inEnv;
+}
+
+
 bool Pollinator::moveBiassed(bool allowOffEnv, float stepLength)
 {
     ///@todo implement moveBiassed
+    fPos delta;
+
+    bool inEnv = inEnvironment();
+
+    if (!inEnv && !allowOffEnv)
+    {
+        repositionInEnv(delta);
+    }
+
+    return inEnv;    
 }
 
 bool Pollinator::moveLevy(bool allowOffEnv, float stepLength)
 {
     ///@todo implement moveLevy
+    fPos delta;
+
+    bool inEnv = inEnvironment();
+
+    if (!inEnv && !allowOffEnv)
+    {
+        repositionInEnv(delta);
+    }
+
+    return inEnv;    
 }
 
 std::string Pollinator::getStateString() const
 {
     std::stringstream ssState;
     ssState << std::fixed << std::setprecision(3) << getTypeName() << ","
-        << m_id << "," << m_Position.x << "," << m_Position.y;
+        << m_id << "," << m_Position.x << "," << m_Position.y << "," << m_fHeading;
     return ssState.str();
 }
 

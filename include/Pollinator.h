@@ -8,6 +8,7 @@
 #define _POLLINATOR_H
 
 #include <string>
+#include <random>
 #include "Position.h"
 #include "AbstractHive.h"
 #include "Environment.h"
@@ -26,7 +27,8 @@ public:
 
     /**
      * Move back to the start position, which is either the Hive position or
-     * a random position, depending upon how the Hive is configured.
+     * a random position, depending upon how the Hive is configured. Also
+     * reset to a random heading.
      */
     void resetToStartPosition();
 
@@ -86,8 +88,11 @@ protected:
     // protected data memebers
     unsigned int    m_id;       ///< Unique ID number for this pollinator
     fPos            m_Position; ///< Pollinator's current position in environment
+    float           m_fHeading; ///< Pollinator's current heading (between 0.0 - TWOPI)
     AbstractHive*   m_pHive;    ///< (non-owned) pointer to owning Hive
     Environment*    m_pEnv;     ///< (non-owned) pointer to Environment
+
+    static std::uniform_real_distribution<float> m_sDirectionDistrib; ///< Uniform distribution between 0.0 to TWOPI
 
     /*
     position (float)
