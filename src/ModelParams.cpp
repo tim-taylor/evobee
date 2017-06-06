@@ -9,6 +9,7 @@
 // Instantiate all static members
 bool   ModelParams::m_bVisualisation = true;
 int    ModelParams::m_iVisUpdatePeriod = 1;
+int    ModelParams::m_iLogUpdatePeriod = 1;
 int    ModelParams::m_iEnvSizeX = 50;
 int    ModelParams::m_iEnvSizeY = 50;
 float  ModelParams::m_fEnvDefaultAmbientTemp = 20.0;
@@ -105,6 +106,12 @@ void ModelParams::setVisUpdatePeriod(int p)
 {
     if (p > 0)
         m_iVisUpdatePeriod = p;
+}
+
+void ModelParams::setLogUpdatePeriod(int p)
+{
+    if (p > 0)
+        m_iLogUpdatePeriod = p;
 }
 
 void ModelParams::setTerminationNumSteps(int steps)

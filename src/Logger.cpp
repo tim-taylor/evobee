@@ -11,19 +11,27 @@
 #include <iostream>
 #include <string>
 #include <experimental/filesystem>
+#include <chrono>
+#include "EvoBeeModel.h"
+#include "Environment.h"
+#include "Pollinator.h"
 #include "ModelParams.h"
 #include "Logger.h"
 
 namespace fs = std::experimental::filesystem;
 using json = nlohmann::json;
 
-Logger::Logger()
+
+Logger::Logger(EvoBeeModel* pModel) :
+    m_strConfigFileSuffix {"-config.json"},
+    m_strMainLogFileSuffix {"-log.txt"},
+    m_pModel(pModel)
 {
     assert(ModelParams::initialised());
 
-    // read ModelParams to get the directory and filename suffix for logging output
+    m_pEnv = &(m_pModel->getEnv());
+
     m_LogDir = ModelParams::getLogDir();
-    m_strLogFilePrefix = ModelParams::getLogRunName();
 
     try
     {
@@ -42,6 +50,17 @@ Logger::Logger()
         {
             fs::create_directories(m_LogDir);
         }
+
+        // get timestamp to add to filename prefix
+        std::stringstream ts;
+        std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+        std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+        ts << std::put_time(std::localtime(&now_c), "-%F-%H-%M-%S");
+        m_strFilePrefix = ModelParams::getLogRunName() + ts.str();
+
+        // set name of main log file
+        std::string filename {m_strFilePrefix + m_strMainLogFileSuffix};
+        m_MainLogFile = m_LogDir / filename;
     }
     catch (std::exception& e)
     {
@@ -54,14 +73,13 @@ Logger::Logger()
 
 Logger::~Logger()
 {
-    ///@todo close all open log files
+    ///@todo close all open log files?
 }
 
 
 void Logger::logExptSetup()
 {
-    ///@todo should check if output file already exists?
-    std::string filename {m_strLogFilePrefix + "-config.json"};
+    std::string filename {m_strFilePrefix + m_strConfigFileSuffix};
     fs::path fullname {m_LogDir / filename};
     std::ofstream ofs {fullname};
     if (!ofs)
@@ -71,14 +89,31 @@ void Logger::logExptSetup()
         throw std::runtime_error(msg.str());
     }
     ofs << std::setw(4) << ModelParams::getJson() << std::endl;
-    ofs.close();
 }
 
 
-/**
-@todo
-*/
 void Logger::update()
 {
+    // open log file for appending
+    std::ofstream ofs {m_MainLogFile, std::ofstream::app};
+    if (!ofs)
+    {
+        std::stringstream msg;
+        msg << "Unable to open log file " << m_MainLogFile << " for writing";
+        throw std::runtime_error(msg.str());
+    }
 
+    // log current step number of model
+    //ofs << "==> " << m_pModel->getStepNumber() << std::endl;
+    auto step = m_pModel->getStepNumber();
+
+    // log data on all pollinators
+    auto pollinators = m_pEnv->getAllPollinators();
+    for (auto p : pollinators)
+    {
+        ofs << step << "," << p->getStateString() << std::endl;
+    }
+
+    // log flowering plants - and other stuff?
+    ///@todo
 }

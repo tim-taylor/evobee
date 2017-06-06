@@ -1,4 +1,15 @@
 {
+    "SimulationParams" : {
+        "termination-num-steps" : 150,
+        "rng-seed" : "",
+        "visualisation" : true,
+        "vis-update-period" : 5,
+        "vis-max-screen-frac-w" : 0.85,
+        "vis-max-screen-frac-h" : 0.85,
+        "log-update-period" : 5,
+        "log-dir" : "output",
+        "log-run-name" : "test"
+    },    
     "Environment" : {
         "env-size-x" : 100,
         "env-size-y" : 100,
@@ -23,16 +34,6 @@
                 "density" : 0.1
             }
         }
-    },
-    "SimulationParams" : {
-        "termination-num-steps" : 150,
-        "rng-seed" : "",
-        "visualisation" : true,
-        "vis-update-period" : 5,
-        "vis-max-screen-frac-w" : 0.85,
-        "vis-max-screen-frac-h" : 0.85,
-        "log-dir" : "output",
-        "log-run-name" : "test"
     },
     "PlantTypes" : {
         "PlantType" : {

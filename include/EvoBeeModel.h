@@ -22,6 +22,9 @@ public:
     /// Iterate the simulation by one step
     void step();
 
+    /// Get current step number
+    unsigned int getStepNumber() const {return m_iStep;}
+
     /// Return a reference to the model's Environment object
     Environment& getEnv() {return m_Env;}
 
@@ -32,8 +35,8 @@ public:
     static std::mt19937 m_sRngEngine;
 
 private:
-    int m_iStep;
-    Environment m_Env; ///< The model owns the one and only 
+    unsigned int    m_iStep;    ///< Current step number
+    Environment     m_Env;      ///< The model owns the one and only 
 
     static bool m_sbRngInitialised;
 };

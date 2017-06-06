@@ -7,13 +7,21 @@
 #include <cmath>
 #include <random>
 #include <cassert>
+#include <string>
+#include <sstream>
+#include <iomanip>
 #include "EvoBeeModel.h"
 #include "Pollinator.h"
 
-constexpr double PI = std::atan(1) * 4;
+constexpr double PI = std::atan(1)*4.0;
+constexpr double TWOPI = 2.0*PI;
+
+unsigned int Pollinator::m_sNextFreeId = 0;
+std::string Pollinator::m_sTypeNameStr{"POL"};
 
 
 Pollinator::Pollinator(AbstractHive* pHive) :
+    m_id(m_sNextFreeId++),
     m_pHive(pHive)
 {
     resetToStartPosition();
@@ -39,7 +47,7 @@ void Pollinator::resetToStartPosition()
 
 bool Pollinator::moveRandom(bool allowOffEnv, float stepLength)
 {
-    std::uniform_real_distribution<float> dist(0.0, 2.0 * PI);
+    std::uniform_real_distribution<float> dist(0.0, TWOPI);
     float ang = dist(EvoBeeModel::m_sRngEngine);
 
     fPos delta { stepLength * std::cos(ang), stepLength * std::sin(ang) };
@@ -85,3 +93,16 @@ bool Pollinator::moveLevy(bool allowOffEnv, float stepLength)
 {
     ///@todo implement moveLevy
 }
+
+std::string Pollinator::getStateString() const
+{
+    std::stringstream ssState;
+    ssState << std::fixed << std::setprecision(3) << getTypeName() << ","
+        << m_id << "," << m_Position.x << "," << m_Position.y;
+    return ssState.str();
+}
+
+const std::string& Pollinator::getTypeName() const
+{
+    return m_sTypeNameStr;
+} 

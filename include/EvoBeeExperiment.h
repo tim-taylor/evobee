@@ -7,6 +7,7 @@
 #ifndef _EVOBEEEXPERIMENT_H
 #define _EVOBEEEXPERIMENT_H
 
+#include <thread>
 #include "EvoBeeModel.h"
 #include "EventManager.h"
 #include "Logger.h"
@@ -19,18 +20,20 @@ class EvoBeeExperiment {
 
 public:
     EvoBeeExperiment();
-    ~EvoBeeExperiment() {}
+    ~EvoBeeExperiment();
 
     void run();
 
-    EvoBeeModel         m_Model;
-    EventManager        m_EventManager;
-    Logger              m_Logger;
-    Visualiser          m_Visualiser;
+    EvoBeeModel     m_Model;
+    EventManager    m_EventManager;
+    Logger          m_Logger;
+    Visualiser      m_Visualiser;
 
 private:
-    bool                m_bVis;
-    int                 m_iVisUpdatePeriod;
+    bool            m_bVis;
+    int             m_iVisUpdatePeriod;
+    int             m_iLogUpdatePeriod;
+    std::thread     m_threadLog;
 };
 
 #endif /* _EVOBEEEXPERIMENT_H */

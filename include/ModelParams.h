@@ -35,6 +35,7 @@ public:
     static void setMaxScreenFracW(float fw);
     static void setMaxScreenFracH(float fh);
     static void setVisUpdatePeriod(int p);
+    static void setLogUpdatePeriod(int p);
     static void setInitialised();
     static void setTerminationNumSteps(int steps);
     static void setRngSeedStr(const std::string& seed);
@@ -53,6 +54,7 @@ public:
     static float getMaxScreenFracW() {return m_fMaxScreenFracW;}
     static float getMaxScreenFracH() {return m_fMaxScreenFracH;}
     static int   getVisUpdatePeriod() {return m_iVisUpdatePeriod;}
+    static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
     static int   getTerminationNumSteps() {return m_iTerminationNumSteps;}
     static MarkerPoint getEnvBackgroundReflectanceMP() {return m_EnvBackgroundReflectanceMP;}
     static const std::string & getRngSeedStr() {return m_strRngSeed;}
@@ -76,6 +78,7 @@ private:
     static float m_fEnvDefaultAmbientTemp;  ///< Default ambient temperature for all Patches (in Celsius)
     static MarkerPoint m_EnvBackgroundReflectanceMP; ///< Default background reflectance Marker Point for each Patch
     static int   m_iVisUpdatePeriod;        ///< Number of model steps between each update of visualisation
+    static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
     static int   m_iTerminationNumSteps;    ///< Terminate run after this number of steps
     static std::string m_strRngSeed;        ///< Seed string used to seeed RNG

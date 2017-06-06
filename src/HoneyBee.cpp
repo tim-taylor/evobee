@@ -9,6 +9,9 @@
 #include "Environment.h"
 #include "HoneyBee.h"
 
+std::string HoneyBee::m_sTypeNameStr{"HNB"};
+
+
 HoneyBee::HoneyBee(AbstractHive* pHive) :
     Hymenoptera(pHive)
 {
@@ -28,3 +31,15 @@ void HoneyBee::step()
         // near a plant
     }
 }
+
+
+std::string HoneyBee::getStateString() const
+{
+    return Hymenoptera::getStateString();
+}
+
+
+const std::string& HoneyBee::getTypeName() const
+{
+    return m_sTypeNameStr;
+} 

@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <memory>
+#include <cmath>
 #include "Patch.h"
 #include "AbstractHive.h"
 #include "Position.h"
@@ -88,7 +89,7 @@ public:
     /**
      * Checks whether the given position is within the bounds of the environment
      */    
-    bool inEnvironment(const fPos& pos) const {return inEnvironment((int)pos.x, (int)pos.y);}
+    bool inEnvironment(const fPos& pos) const {return inEnvironment(std::floor(pos.x),std::floor(pos.y));}
 
     /**
      * Search for flowering plants within range of given position.

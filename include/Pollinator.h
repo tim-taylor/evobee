@@ -7,6 +7,7 @@
 #ifndef _POLLINATOR_H
 #define _POLLINATOR_H
 
+#include <string>
 #include "Position.h"
 #include "AbstractHive.h"
 #include "Environment.h"
@@ -49,6 +50,17 @@ public:
      */
     bool inEnvironment() const {return m_pEnv->inEnvironment(m_Position);}
 
+    /**
+     * Returns a string representation of the pollinator's current state, suitable
+     * for writing to a log file
+     */
+    virtual std::string getStateString() const;
+
+    /**
+     *
+     */
+    virtual const std::string& getTypeName() const;
+
 
 protected:
     /**
@@ -72,9 +84,10 @@ protected:
     bool moveLevy(bool allowOffEnv = false, float stepLength = 1.0);
 
     // protected data memebers
-    fPos m_Position;
-    AbstractHive* m_pHive;  // (non-owned) pointer to owning Hive
-    Environment*  m_pEnv;   // (non-owned) pointer to Environment
+    unsigned int    m_id;       ///< Unique ID number for this pollinator
+    fPos            m_Position; ///< Pollinator's current position in environment
+    AbstractHive*   m_pHive;    ///< (non-owned) pointer to owning Hive
+    Environment*    m_pEnv;     ///< (non-owned) pointer to Environment
 
     /*
     position (float)
@@ -92,6 +105,16 @@ private:
      * after it has attempted to move beyond its limits
      */
     void repositionInEnv(fPos delta);
+
+    /**
+     * Record of next available unique ID number to be assigned to a new Pollinator
+     */
+    static unsigned int m_sNextFreeId;
+
+    /**
+     * String description of the Pollinator type, for use in log files
+     */    
+    static std::string m_sTypeNameStr;
 };
 
 #endif /* _POLLINATOR_H */

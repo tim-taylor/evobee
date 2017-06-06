@@ -84,9 +84,9 @@ int main(int argc, char **argv)
         EvoBeeExperiment expt;
         expt.run();
     }
-    catch (exception &e)
+    catch (std::exception &e)
     {
-        cerr << "Unhandled exception: " << e.what() << endl;
+        std::cerr << "Aborting after problem encountered: " << e.what() << std::endl;
         return 1;
     }
 
@@ -307,6 +307,10 @@ void processJsonFile(ifstream& ifs)
                 else if (it.key() == "vis-max-screen-frac-h" && it.value().is_number()) {
                     cout << "Vis max screen fraction H -> " << it.value() << endl;
                     ModelParams::setMaxScreenFracH(it.value());
+                }
+                else if (it.key() == "log-update-period" && it.value().is_number()) {
+                    cout << "Log update period -> " << it.value() << endl;
+                    ModelParams::setLogUpdatePeriod(it.value());
                 }
                 else {
                     cerr << "Unexpected entry in SimulationParams section of json file: "
