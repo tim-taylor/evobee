@@ -90,17 +90,120 @@ $(document).ready(function(){initNavTree('classFloweringPlant.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8f5ee3f3536f4818d99efe4b05c04af7"><td class="memItemLeft" align="right" valign="top"><a id="a8f5ee3f3536f4818d99efe4b05c04af7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>FloweringPlant</b> (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, <a class="el" href="classPosition.html">fPos</a> pos)</td></tr>
+<tr class="memitem:a8f5ee3f3536f4818d99efe4b05c04af7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#a8f5ee3f3536f4818d99efe4b05c04af7">FloweringPlant</a> (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, <a class="el" href="classPosition.html">fPos</a> pos)</td></tr>
 <tr class="separator:a8f5ee3f3536f4818d99efe4b05c04af7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfe261c92614155d857b7b22c9c7d565"><td class="memItemLeft" align="right" valign="top">MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#adfe261c92614155d857b7b22c9c7d565">getFlowerMarkerPoint</a> (unsigned int flower=0)</td></tr>
 <tr class="separator:adfe261c92614155d857b7b22c9c7d565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bd907a2cbe03215d30ddd5f7b41cbfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFlower.html">Flower</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#a6bd907a2cbe03215d30ddd5f7b41cbfa">getFlower</a> (unsigned int flower=0)</td></tr>
+<tr class="separator:a6bd907a2cbe03215d30ddd5f7b41cbfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a88e845574355ab9625189be9d625c9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#a7a88e845574355ab9625189be9d625c9">getDistance</a> (const <a class="el" href="classPosition.html">fPos</a> &amp;point) const</td></tr>
+<tr class="separator:a7a88e845574355ab9625189be9d625c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a66873a7380de9903d22e2ff4f214f2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#a9a66873a7380de9903d22e2ff4f214f2">getDistanceSq</a> (const <a class="el" href="classPosition.html">fPos</a> &amp;point) const</td></tr>
+<tr class="separator:a9a66873a7380de9903d22e2ff4f214f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classFloweringPlant.html">FloweringPlant</a> class ... </p>
 
 <p class="definition">Definition at line <a class="el" href="FloweringPlant_8h_source.html#l00020">20</a> of file <a class="el" href="FloweringPlant_8h_source.html">FloweringPlant.h</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8f5ee3f3536f4818d99efe4b05c04af7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f5ee3f3536f4818d99efe4b05c04af7">&#9670;&nbsp;</a></span>FloweringPlant()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FloweringPlant::FloweringPlant </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;&#160;</td>
+          <td class="paramname"><em>ptc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classPosition.html">fPos</a>&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd><ul>
+<li>for now, we are placing all flowers at the same position (the same position as the plant itself). If/when we start looking at plants with multiple flowers, we might want to change this </li>
+</ul>
+</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00015">15</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7a88e845574355ab9625189be9d625c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a88e845574355ab9625189be9d625c9">&#9670;&nbsp;</a></span>getDistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FloweringPlant::getDistance </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPosition.html">fPos</a> &amp;&#160;</td>
+          <td class="paramname"><em>point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the distance between the plant and the specified point </p>
+
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00074">74</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a9a66873a7380de9903d22e2ff4f214f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a66873a7380de9903d22e2ff4f214f2">&#9670;&nbsp;</a></span>getDistanceSq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FloweringPlant::getDistanceSq </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPosition.html">fPos</a> &amp;&#160;</td>
+          <td class="paramname"><em>point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the square of the distance between the plant and the specified point </p>
+
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00080">80</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a6bd907a2cbe03215d30ddd5f7b41cbfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bd907a2cbe03215d30ddd5f7b41cbfa">&#9670;&nbsp;</a></span>getFlower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classFlower.html">Flower</a> * FloweringPlant::getFlower </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>flower</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a pointer to the specified flower </p>
+
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00067">67</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+
+</div>
+</div>
 <a id="adfe261c92614155d857b7b22c9c7d565"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adfe261c92614155d857b7b22c9c7d565">&#9670;&nbsp;</a></span>getFlowerMarkerPoint()</h2>
 
@@ -116,9 +219,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Return the MarkerPoint of the specified flower </p>
+<p>Returns the MarkerPoint of the specified flower </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00053">53</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00057">57</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
