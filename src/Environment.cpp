@@ -9,6 +9,7 @@
 #include <iostream>
 #include <memory>
 #include <random>
+#include <cmath>
 #include "ModelParams.h"
 #include "EvoBeeModel.h"
 #include "Patch.h"
@@ -83,7 +84,14 @@ Patch& Environment::getPatch(int x, int y)
 /**
  * This is a private helper method called by the constructor.
  *
- * It creates the required number and distribution of plants as specified in the config file
+ * It creates the required number and distribution of plants as specified in the config file.
+ *
+ * This method is somewhat convoluted for efficiency purposes. Having figured out how
+ * many plants in total should be created, it then randomly assigned positions for each
+ * plant. These positions are stored in the patchInfo[][] array, where each element in 
+ * the array is a vector containing the positions of all new plants that fall within
+ * that patch. We then loop through the patchInfo array, and for each vector contained therein,
+ * we create all of the plants for the associated patch.
  */
 void Environment::initialisePlants()
 {
@@ -155,18 +163,41 @@ bool Environment::inEnvironment(int x, int y) const
     );
 }
 
-
+// Search for plants in the local patch and its 8 closest neighbours,
+// and return a pointer to the closest plant found, or nullptr if none found
+//
 FloweringPlant* Environment::findClosestFloweringPlant(const fPos& pos)
 {
-    ///@todo - working on implementation
-
     FloweringPlant* pPlant = nullptr;
+    float minDistSq = 99999.9;
 
     if (inEnvironment(pos))
     {
-        Patch& localPatch = getPatch(pos);
-        // look for flowers here
-        // also need to look for flowers ni neighbouring patches
+        int px = std::floor(pos.x);
+        int py = std::floor(pos.y);
+        for (int x = px - 1; x <= px + 1; ++x)
+        {
+            if (x >= 0 && x < m_iSizeX)
+            {
+                for (int y = py - 1; y <= py + 1; ++y)
+                {
+                    if (y >= 0 && y < m_iSizeY)
+                    {
+                        Patch &patch = getPatch(x,y);
+                        auto plants = patch.getFloweringPlants();
+                        for (FloweringPlant& plant : plants)
+                        {
+                            float distSq = plant.getDistanceSq(pos);
+                            if (distSq < minDistSq)
+                            {
+                                minDistSq = distSq;
+                                pPlant = &plant;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     return pPlant;

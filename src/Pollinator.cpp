@@ -72,6 +72,10 @@ void Pollinator::repositionInEnv(fPos delta)
 }
 
 
+// Move by a given distance in a random direction. 
+//
+// @todo Maybe implement a "stay/hover" option in future?
+//
 bool Pollinator::moveRandom(bool allowOffEnv, float stepLength)
 {
     m_fHeading = m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);

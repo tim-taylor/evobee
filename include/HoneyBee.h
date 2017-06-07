@@ -24,6 +24,11 @@ public:
     void step() override final;
 
     /**
+     * Determine whether the pollinator should harvest the specified flower
+     */
+    bool isHarvestCandidate(Flower* pFlower) const;
+
+    /**
      *
      */
     std::string getStateString() const override final;

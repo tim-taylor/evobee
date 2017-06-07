@@ -43,15 +43,42 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, fPos pos) :
             mp = dist(EvoBeeModel::m_sRngEngine);
         }
 
+        ///@todo - for now, we are placing all flowers at the same position
+        /// (the same position as the plant itself). If/when we start looking
+        /// at plants with multiple flowers, we might want to change this
         m_Flowers.push_back( Flower(m_Position, mp, ptc.initTemp) );
     }
 }
 
-/**
- * Return the MarkerPoint of the specified flower
- */
+// Return the MarkerPoint of the specified flower
+//
+// @todo Asserts that the flower is valid, but should we throw an exception if not?
+//
 MarkerPoint FloweringPlant::getFlowerMarkerPoint(unsigned int flower)
 {
     assert(flower < m_Flowers.size());
     return m_Flowers[flower].getMarkerPoint();
+}
+
+// Return the specified Flower
+//
+// @todo Asserts that the flower number is valid, but should we throw an exception if not?
+//
+Flower* FloweringPlant::getFlower(unsigned int flower)
+{
+    assert(flower < m_Flowers.size());
+    return &(m_Flowers[flower]);   
+}
+
+
+float FloweringPlant::getDistance(const fPos& point) const
+{
+    return std::sqrt(getDistanceSq(point));
+}
+
+//
+float FloweringPlant::getDistanceSq(const fPos& point) const
+{
+    return (((m_Position.x - point.x)*(m_Position.x - point.x)) + 
+            ((m_Position.y - point.y)*(m_Position.y - point.y)));
 }

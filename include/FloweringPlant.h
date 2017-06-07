@@ -23,7 +23,25 @@ public:
     FloweringPlant(const PlantTypeConfig& ptc, fPos pos);
     //~FloweringPlant() {}
 
+    /**
+     * Returns the MarkerPoint of the specified flower
+     */
     MarkerPoint getFlowerMarkerPoint(unsigned int flower = 0);
+
+    /**
+     * Returns a pointer to the specified flower
+     */
+    Flower* getFlower(unsigned int flower = 0);
+
+    /**
+     * Returns the distance between the plant and the specified point
+     */
+    float getDistance(const fPos& point) const;
+
+    /**
+     * Returns the square of the distance between the plant and the specified point
+     */
+    float getDistanceSq(const fPos& point) const;
 
 private:
     std::string m_species;
