@@ -45,10 +45,6 @@ public:
 
 private:
     std::string m_species;
-    int m_iAntherPollen;
-    int m_iStigmaPollen;
-    int m_iStigmaMaxPollenCapacity;
-    int m_iNectarRewardPerVisit;
     fPos m_Position;
     std::vector<Flower> m_Flowers;
     bool m_bHasLeaf;

@@ -13,6 +13,7 @@
 #include "HiveConfig.h"
 #include "PlantTypeDistributionConfig.h"
 #include "PlantTypeConfig.h"
+#include "PollinatorConfig.h"
 #include "ReflectanceInfo.h"
 
 
@@ -34,6 +35,7 @@ public:
     static void setMaxScreenFrac(float f);
     static void setMaxScreenFracW(float fw);
     static void setMaxScreenFracH(float fh);
+    static void setVisPollinatorTrails(bool show);
     static void setVisUpdatePeriod(int p);
     static void setLogUpdatePeriod(int p);
     static void setInitialised();
@@ -45,6 +47,7 @@ public:
     static void addHiveConfig(HiveConfig& hc);
     static void addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc);
     static void addPlantTypeConfig(PlantTypeConfig& pt);
+    static void addPollinatorConfig(PollinatorConfig& pt);
 
     static int   getEnvSizeX() {return m_iEnvSizeX;}
     static int   getEnvSizeY() {return m_iEnvSizeY;}
@@ -53,6 +56,7 @@ public:
     static bool  getVisualisation() {return m_bVisualisation;}
     static float getMaxScreenFracW() {return m_fMaxScreenFracW;}
     static float getMaxScreenFracH() {return m_fMaxScreenFracH;}
+    static bool  getVisPollinatorTrails() {return m_bVisPollinatorTrails;}
     static int   getVisUpdatePeriod() {return m_iVisUpdatePeriod;}
     static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
     static int   getTerminationNumSteps() {return m_iTerminationNumSteps;}
@@ -64,6 +68,7 @@ public:
     static const std::vector<PlantTypeDistributionConfig> & getPlantTypeDistributionConfigs() {return m_PlantDists;}
     static const std::vector<PlantTypeConfig> & getPlantTypeConfigs() {return m_PlantTypes;}
     static const PlantTypeConfig* getPlantTypeConfig(std::string species);
+    static PollinatorConfig* getPollinatorConfigPtr(const std::string& pollinatorName);   
     
     static nlohmann::json& getJson() {return m_Json;}
 
@@ -77,6 +82,7 @@ private:
     static float m_fMaxScreenFracH;         ///< Max fraction of screen size for vis window height
     static float m_fEnvDefaultAmbientTemp;  ///< Default ambient temperature for all Patches (in Celsius)
     static MarkerPoint m_EnvBackgroundReflectanceMP; ///< Default background reflectance Marker Point for each Patch
+    static bool  m_bVisPollinatorTrails;    ///< Display trails of pollinators' past movements?
     static int   m_iVisUpdatePeriod;        ///< Number of model steps between each update of visualisation
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
@@ -87,6 +93,7 @@ private:
     static std::vector<HiveConfig> m_Hives; ///< Configuration info for each hive
     static std::vector<PlantTypeDistributionConfig> m_PlantDists; ///< Config of plant distributions
     static std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
+    static std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 
     static nlohmann::json m_Json;           ///< JSON representation of all Model Params
 };

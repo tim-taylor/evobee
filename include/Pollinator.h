@@ -12,6 +12,7 @@
 #include "Position.h"
 #include "AbstractHive.h"
 #include "Environment.h"
+#include "PollinatorConfig.h"
 
 class Environment;
 
@@ -22,7 +23,7 @@ class Environment;
 class Pollinator {
 
 public:
-    Pollinator(AbstractHive* pHive);
+    Pollinator(const PollinatorConfig& pc, AbstractHive* pHive);
     virtual ~Pollinator() {}
 
     /**
@@ -91,6 +92,21 @@ protected:
     float           m_fHeading; ///< Pollinator's current heading (between 0.0 - TWOPI)
     AbstractHive*   m_pHive;    ///< (non-owned) pointer to owning Hive
     Environment*    m_pEnv;     ///< (non-owned) pointer to Environment
+
+    const int       m_iBoutLength;          ///< Number of flower visits pollinator can make before returning to hive
+    const int       m_iPollenLossOnFlower;  ///< Amount of pollen deposited on a flower on each visit
+    const int       m_iPollenLossInAir;     ///< Amount of pollen lost on each timestep when flying
+    const int       m_iMaxPollenCapacity;   ///< Maximum amount of pollen the pollinator can carry
+    const int       m_iPollenCarryoverNumVisits; /** After collecting a grain of pollen from a flower,
+                                                  * the pollinator can visit this number of subsequent
+                                                  * flowers to potentially deposit it. If the pollen is
+                                                  * still not deposited after this numebr of visits, it
+                                                  * is is removed from the pollinator (i.e. it is lost)
+                                                  */
+
+    int             m_iPollenLoad;              ///< The amount of pollen currently being carried
+    int             m_iNumFlowersVisitedInBout; ///< Number of flowers visited so far in current bout
+
 
     static std::uniform_real_distribution<float> m_sDirectionDistrib; ///< Uniform distribution between 0.0 to TWOPI
 

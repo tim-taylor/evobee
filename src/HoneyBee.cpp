@@ -5,15 +5,17 @@
  */
 
 #include <iostream>
+#include <exception>
 #include "FloweringPlant.h"
 #include "Environment.h"
+#include "ModelParams.h"
 #include "HoneyBee.h"
 
 std::string HoneyBee::m_sTypeNameStr{"HNB"};
 
 
-HoneyBee::HoneyBee(AbstractHive* pHive) :
-    Hymenoptera(pHive)
+HoneyBee::HoneyBee(const PollinatorConfig& pc, AbstractHive* pHive) :
+    Hymenoptera(pc, pHive)
 {
 }
 

@@ -11,6 +11,7 @@
 #include <sstream>
 #include <iomanip>
 #include "EvoBeeModel.h"
+#include "PollinatorConfig.h"
 #include "Pollinator.h"
 
 constexpr double PI = std::atan(1)*4.0;
@@ -21,10 +22,18 @@ std::string Pollinator::m_sTypeNameStr{"POL"};
 std::uniform_real_distribution<float> Pollinator::m_sDirectionDistrib(0.0, TWOPI);
 
 
-Pollinator::Pollinator(AbstractHive* pHive) :
+Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_id(m_sNextFreeId++),
-    m_pHive(pHive)
+    m_pHive(pHive),
+    m_iBoutLength(pc.boutLength),
+    m_iPollenLossOnFlower(pc.pollenLossOnFlower),
+    m_iPollenLossInAir(pc.pollenLossInAir),
+    m_iMaxPollenCapacity(pc.maxPollenCapacity),
+    m_iPollenCarryoverNumVisits(pc.pollenCarryoverNumVisits),
+    m_iPollenLoad(0),
+    m_iNumFlowersVisitedInBout(0)    
 {
+    // Set the starting position and heading of the pollinator
     resetToStartPosition();
 
     // Each pollinator has a pointer to the environment for convenience, to 

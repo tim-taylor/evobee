@@ -10,8 +10,8 @@
 std::string Hymenoptera::m_sTypeNameStr{"HYM"};
 
 
-Hymenoptera::Hymenoptera(AbstractHive* pHive) :
-    Pollinator(pHive)
+Hymenoptera::Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive) :
+    Pollinator(pc, pHive)
 {
 }
 

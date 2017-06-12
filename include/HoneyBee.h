@@ -15,7 +15,7 @@
 class HoneyBee : public Hymenoptera {
 
 public:
-    HoneyBee(AbstractHive* pHive);
+    HoneyBee(const PollinatorConfig& pc, AbstractHive* pHive);
     ~HoneyBee() {}
 
     /**
@@ -42,7 +42,8 @@ private:
     /**
      * String description of the HoneyBee type, for use in log files
      */
-    static std::string m_sTypeNameStr;    
+    static std::string m_sTypeNameStr;
+    
 };
 
 #endif /* _HONEYBEE_H */

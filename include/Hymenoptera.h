@@ -8,6 +8,7 @@
 #define _HYMENOPTERA_H
 
 #include <string>
+#include "PollinatorConfig.h"
 #include "Pollinator.h"
 
 
@@ -17,7 +18,7 @@
 class Hymenoptera : public Pollinator {
 
 public:
-    Hymenoptera(AbstractHive* pHive);
+    Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive);
     //~Hymenoptera() {}
 
     void step() override = 0;

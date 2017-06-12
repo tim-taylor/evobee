@@ -23,6 +23,7 @@ struct PlantTypeConfig {
     MarkerPoint flowerMPInitMin;
     MarkerPoint flowerMPInitMax;
     int antherInitPollen;
+    int antherPollenLossPerVisit;
     int stigmaMaxPollenCapacity;
     int nectarReward;
     float initTemp; ///<@todo should be initialised // init temp of flowers and leaves

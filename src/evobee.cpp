@@ -16,12 +16,8 @@
 #include "HiveConfig.h"
 #include "PlantTypeConfig.h"
 #include "PlantTypeDistributionConfig.h"
+#include "PollinatorConfig.h"
 #include "ReflectanceInfo.h"
-
-/*
-#include <random>
-#include <iomanip>
-*/
 
 namespace po = boost::program_options;
 using std::cout;
@@ -40,6 +36,7 @@ void processJsonFile(ifstream& ifs);
 
 
 // helper functions for JSON conversion
+///@todo should add exception handling to all of these
 void from_json(const json& j, HiveConfig& hc)
 {
     hc.type = j.at("pollinator-type").get<string>();
@@ -65,8 +62,19 @@ void from_json(const json& j, PlantTypeConfig& pt)
     pt.flowerMPInitMin = j.at("flower-reflectance-mp-init-min").get<int>();
     pt.flowerMPInitMax = j.at("flower-reflectance-mp-init-max").get<int>();
     pt.antherInitPollen = j.at("anther-init-pollen").get<int>();
+    pt.antherPollenLossPerVisit = j.at("anther-pollen-loss-per-visit").get<int>();
     pt.stigmaMaxPollenCapacity = j.at("stigma-max-pollen-capacity").get<int>();
     pt.nectarReward = j.at("nectar-reward").get<int>();
+}
+
+void from_json(const json& j, PollinatorConfig& p)
+{
+    p.species = j.at("species").get<string>();    
+    p.boutLength = j.at("bout-length").get<int>();
+    p.maxPollenCapacity = j.at("max-pollen-capacity").get<int>();
+    p.pollenLossOnFlower = j.at("pollen-loss-on-flower").get<int>();
+    p.pollenLossInAir = j.at("pollen-loss-in-air").get<int>();
+    p.pollenCarryoverNumVisits = j.at("pollen-carryover-num-visits").get<int>();
 }
 
 
@@ -300,6 +308,10 @@ void processJsonFile(ifstream& ifs)
                     cout << "Vis update period -> " << it.value() << endl;
                     ModelParams::setVisUpdatePeriod(it.value());
                 }
+                else if (it.key() == "vis-pollinator-trails" && it.value().is_boolean()) {
+                    cout << "Vis pollinator trails -> " << it.value() << endl;
+                    ModelParams::setVisPollinatorTrails(it.value());
+                }
                 else if (it.key() == "vis-max-screen-frac-w" && it.value().is_number()) {
                     cout << "Vis max screen fraction W -> " << it.value() << endl;
                     ModelParams::setMaxScreenFracW(it.value());
@@ -388,7 +400,24 @@ void processJsonFile(ifstream& ifs)
                     << itPT.key() << " : " << itPT.value() << endl;
                 }                    
             }            
-        }        
+        }
+
+
+        auto itPs = j.find("Pollinators");
+        if ((itPs != j.end()) && (itPs->is_object()))
+        {
+            for (json::iterator itP = itPs->begin(); itP != itPs->end(); ++itP)
+            {
+                if (itP.key() == "Pollinator" && itP.value().is_object()) {
+                    PollinatorConfig pc = itP.value();
+                    ModelParams::addPollinatorConfig(pc);
+                }
+                else {
+                    cerr << "Unexpected entry in Pollinators section of json file: "
+                    << itP.key() << " : " << itP.value() << endl;
+                }                    
+            }            
+        }           
 
     }
     catch (json::exception &e)

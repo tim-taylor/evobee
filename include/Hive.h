@@ -10,6 +10,7 @@
 #include <vector>
 #include <sstream>
 #include <type_traits>
+#include "ModelParams.h"
 #include "HiveConfig.h"
 #include "Pollinator.h"
 #include "AbstractHive.h"
@@ -36,10 +37,17 @@ public:
     {
         static_assert( std::is_base_of<Pollinator, P>(), "Template class type of Hive must be derived from Pollinator class" );
 
+        assert(ModelParams::initialised());
+        PollinatorConfig* pPC = ModelParams::getPollinatorConfigPtr(hc.type);
+        if (pPC == nullptr)
+        {
+            throw std::runtime_error("Unable to find config info for pollintor type "+hc.type);
+        }
+
         m_Pollinators.reserve(hc.num);
         for (int i = 0; i < hc.num; ++i)
         {
-            m_Pollinators.push_back( P((AbstractHive*)this) );
+            m_Pollinators.push_back( P(*pPC, (AbstractHive*)this) );
             pEnv->addPollinatorToAggregateList( static_cast<Pollinator*>(&m_Pollinators[i]) );
         }
     }

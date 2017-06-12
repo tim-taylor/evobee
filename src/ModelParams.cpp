@@ -8,6 +8,7 @@
 
 // Instantiate all static members
 bool   ModelParams::m_bVisualisation = true;
+bool   ModelParams::m_bVisPollinatorTrails = false;
 int    ModelParams::m_iVisUpdatePeriod = 1;
 int    ModelParams::m_iLogUpdatePeriod = 1;
 int    ModelParams::m_iEnvSizeX = 50;
@@ -25,6 +26,7 @@ std::string ModelParams::m_strLogRunName {"run"};
 std::vector<HiveConfig> ModelParams::m_Hives;
 std::vector<PlantTypeDistributionConfig> ModelParams::m_PlantDists;
 std::vector<PlantTypeConfig> ModelParams::m_PlantTypes;
+std::vector<PollinatorConfig> ModelParams::m_PollinatorConfigs;
 
 nlohmann::json ModelParams::m_Json;
 
@@ -102,6 +104,11 @@ void ModelParams::setEnvBackgroundReflectanceMP(MarkerPoint mp)
     m_EnvBackgroundReflectanceMP = mp;
 }
 
+void ModelParams::setVisPollinatorTrails(bool show)
+{
+    m_bVisPollinatorTrails = show;
+}
+
 void ModelParams::setVisUpdatePeriod(int p)
 {
     if (p > 0)
@@ -147,6 +154,24 @@ void ModelParams::addHiveConfig(HiveConfig& hc)
 void ModelParams::addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc)
 {
     m_PlantDists.push_back(pc);
+}
+
+void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
+{
+    m_PollinatorConfigs.push_back(pc);
+}
+
+PollinatorConfig* ModelParams::getPollinatorConfigPtr(const std::string& pollinatorName)
+{
+    for (PollinatorConfig& pc : m_PollinatorConfigs)
+    {
+        if (pc.species == pollinatorName)
+        {
+            return &pc;
+        }
+    }
+
+    return nullptr;
 }
 
 void ModelParams::addPlantTypeConfig(PlantTypeConfig& pt)

@@ -14,10 +14,10 @@
  */
 FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, fPos pos) :
     m_species(ptc.species),
-    m_iAntherPollen(ptc.antherInitPollen),
-    m_iStigmaPollen(0),
-    m_iStigmaMaxPollenCapacity(ptc.stigmaMaxPollenCapacity),
-    m_iNectarRewardPerVisit(ptc.nectarReward),
+    //m_iAntherPollen(ptc.antherInitPollen),
+    //m_iStigmaPollen(0),
+    //m_iStigmaMaxPollenCapacity(ptc.stigmaMaxPollenCapacity),
+    //m_iNectarRewardPerVisit(ptc.nectarReward),
     m_Position(pos),
     m_bHasLeaf(ptc.hasLeaf)
 {
@@ -46,7 +46,7 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, fPos pos) :
         ///@todo - for now, we are placing all flowers at the same position
         /// (the same position as the plant itself). If/when we start looking
         /// at plants with multiple flowers, we might want to change this
-        m_Flowers.push_back( Flower(m_Position, mp, ptc.initTemp) );
+        m_Flowers.push_back( Flower(ptc, m_Position, mp) );
     }
 }
 
