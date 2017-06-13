@@ -7,6 +7,7 @@
 #include <SDL.h>
 #include <iostream>
 #include <algorithm> // for min and max
+#include <cassert>
 #include "SDL2_gfxPrimitives.h"
 #include "sdl_tools.h"
 #include "ModelParams.h"
@@ -28,6 +29,8 @@ Visualiser::Visualiser(EvoBeeModel* pModel) :
     m_pRenderer(nullptr),
     m_pModel(pModel)
 {
+    assert(ModelParams::initialised());
+    m_bShowTrails = ModelParams::getVisPollinatorTrails();
 }
 
 
@@ -130,7 +133,8 @@ void Visualiser::update() {
             m_pRenderer,
             pos.x * m_iPatchSize,
             pos.y * m_iPatchSize,
-            (pos.x + 1) * m_iPatchSize - 1, (pos.y + 1) * m_iPatchSize - 1,
+            (pos.x + 1) * m_iPatchSize - 1,
+            (pos.y + 1) * m_iPatchSize - 1,
             c.r, c.g, c.b, 255
         );
 
@@ -141,35 +145,41 @@ void Visualiser::update() {
             auto fplants = p.getFloweringPlants();
             for (FloweringPlant& fplant : fplants)
             {
-                ///@todo at present just using offsets rather than exact position in patch
-                auto c = Colour::getRgbFromMarkerPoint(fplant.getFlowerMarkerPoint());
-                filledCircleRGBA(
-                    m_pRenderer,
-                    pos.x * m_iPatchSize + offset, 
-                    pos.y * m_iPatchSize + offset,
-                    m_iPatchSize/2,
-                    c.r, c.g, c.b, 255
-                );
+                ///@todo at present just using offsets rather than exact position 
+                /// of each flower in the patch
+                
+                ///@todo deal with multiple flowers on a plant?
+
+                Flower* pFlower = fplant.getFlower(0);
+                auto c = Colour::getRgbFromMarkerPoint(pFlower->getMarkerPoint());
+
+                if (pFlower->pollinated())
+                {
+                    std::cout << "xxx Pollinated!" << std::endl;
+                    boxRGBA(
+                        m_pRenderer,
+                        pos.x * m_iPatchSize + offset,
+                        pos.y * m_iPatchSize + offset,
+                        (pos.x + 1) * m_iPatchSize - 1 + offset, 
+                        (pos.y + 1) * m_iPatchSize - 1 + offset,
+                        255, 50, 50, 255
+                    );
+                }
+                else
+                {
+                    std::cout << "xxx Not Pollinated!" << std::endl;
+                    filledCircleRGBA(
+                        m_pRenderer,
+                        pos.x * m_iPatchSize + offset, 
+                        pos.y * m_iPatchSize + offset,
+                        m_iPatchSize/2,
+                        c.r, c.g, c.b, 255
+                    );
+                }
+
                 ++offset;
             }
         }
-
-        /*
-        if (m_iPatchSize > 1)
-        {
-            rectangleRGBA(m_pRenderer,
-                        x * m_iPatchSize,
-                        y * m_iPatchSize,
-                        (x + 1) * m_iPatchSize - 1, (y + 1) * m_iPatchSize - 1,
-                        200, 200, 200, 255);
-        }
-
-        //thickLineColor(ren, 0, 0, SCREEN_W, SCREEN_H, 20, 0xFF00FFFF);
-        //thickLineColor(ren, 0, SCREEN_H, SCREEN_W, 0, 20, 0xFF00FFFF);
-        //circleColor(ren, SCREEN_W / 2, SCREEN_H / 2, 33, 0xff00ff00);
-        //filledCircleColor(ren, SCREEN_W / 2, SCREEN_H / 2, 30, 0xff00ffcc);
-                
-        */
     }
 
     // render hives
@@ -181,7 +191,8 @@ void Visualiser::update() {
             m_pRenderer,
             hivepos.x * m_iPatchSize,
             hivepos.y * m_iPatchSize,
-            (hivepos.x + 1) * m_iPatchSize - 1, (hivepos.y + 1) * m_iPatchSize - 1,
+            (hivepos.x + 1) * m_iPatchSize - 1,
+            (hivepos.y + 1) * m_iPatchSize - 1,
             0, 0, 0, 255 ///@todo for now Hive visualisation colour is hard-coded as black
         );
 
@@ -189,16 +200,55 @@ void Visualiser::update() {
         int numP = pHive->getNumPollinators();
         for (int i=0; i<numP; ++i)
         {
-            //@todo
             Pollinator* p = pHive->getPollinator(i);
-            auto ppos = p->getPosition();
+            const fPos& ppos = p->getPosition();
             boxRGBA(
                 m_pRenderer,
                 ppos.x * m_iPatchSize,
                 ppos.y * m_iPatchSize,
-                (ppos.x + 1) * m_iPatchSize - 1, (ppos.y + 1) * m_iPatchSize - 1,
+                (ppos.x + 1) * m_iPatchSize - 1,
+                (ppos.y + 1) * m_iPatchSize - 1,
                 255, 255, 255, 255 ///@todo for now Hive visualisation colour is hard-coded as white
-            );            
+            );          
+
+            if (m_bShowTrails)
+            {
+                auto id = p->getId();
+
+                // check if we already have a history record for this pollinator
+                auto itr = m_PollMoveHists.find(id);
+                if (itr == m_PollMoveHists.end())
+                {
+                    // no record found, so create a new one
+                    m_PollMoveHists[id] = std::vector<fPos>{ ppos };
+                    itr = m_PollMoveHists.find(id);
+                }
+                else
+                {
+                    // existing record found, so add current position to existing record
+                    itr->second.push_back(ppos);
+                }
+
+                // if we have more than one previous position, plot the trail as a series
+                // of lines between successive points in the history of previous positions
+                const std::vector<fPos>& posHist = itr->second;
+                if (posHist.size() > 1)
+                {
+                    auto prevPosItr = posHist.begin();
+                    for (auto curPosItr = prevPosItr + 1; curPosItr != posHist.end(); ++curPosItr)
+                    {
+                        lineRGBA(
+                            m_pRenderer,
+                            prevPosItr->x * m_iPatchSize + (0.5 * m_iPatchSize),
+                            prevPosItr->y * m_iPatchSize + (0.5 * m_iPatchSize),
+                            curPosItr->x * m_iPatchSize + (0.5 * m_iPatchSize),
+                            curPosItr->y * m_iPatchSize + (0.5 * m_iPatchSize),
+                            255, 255, 255, 255 ///@todo diff cols for diff polls?
+                        );
+                        prevPosItr = curPosItr;                         
+                    }
+                }
+            }     
         }
     }
 

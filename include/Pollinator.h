@@ -9,12 +9,21 @@
 
 #include <string>
 #include <random>
+#include <vector>
 #include "Position.h"
 #include "AbstractHive.h"
 #include "Environment.h"
+#include "Flower.h"
+#include "Pollen.h"
 #include "PollinatorConfig.h"
 
 class Environment;
+
+
+/**
+ * The PollinatorState enum
+ */
+enum class PollinatorState {UNINITIATED, FORAGING, BOUT_COMPLETE};
 
 
 /**
@@ -64,6 +73,16 @@ public:
      */
     virtual const std::string& getTypeName() const;
 
+    /**
+     *
+     */
+    unsigned int getId() const {return m_id;}
+
+    /**
+     *
+     */
+    PollinatorState getState() const {return m_State;}
+
 
 protected:
     /**
@@ -86,13 +105,41 @@ protected:
      */    
     bool moveLevy(bool allowOffEnv = false, float stepLength = 1.0);
 
+    /**
+     * Transfer some of our pollen to the flower (potentially pollinating it)
+     * @return The number of pollen grains deposited
+     */
+    int depositPollenOnStigma(Flower* pFlower);
+
+    /**
+     * Collect pollen from flower if available, and add to our store.
+     * If our store exceeds its maximum capacity after collecting new pollen,
+     * a random selection of pollen grains are deleted from the store to 
+     * bring it back down to its capacity.
+     */
+    void collectPollenFromAnther(Flower* pFlower);
+
+    /**
+     * Lose the specified amount of pollen to the air.
+     * @return The number of pollen grains lost (which might be less than the
+     *  number requested if the store originally contained less than that amount)
+     */
+    int losePollenToAir(int num);
+
+
     // protected data memebers
     unsigned int    m_id;       ///< Unique ID number for this pollinator
     fPos            m_Position; ///< Pollinator's current position in environment
     float           m_fHeading; ///< Pollinator's current heading (between 0.0 - TWOPI)
     AbstractHive*   m_pHive;    ///< (non-owned) pointer to owning Hive
     Environment*    m_pEnv;     ///< (non-owned) pointer to Environment
+    const EvoBeeModel* m_pModel;///< (non-owned) pointer to EvoBeeModel
 
+    PollinatorState m_State;    ///< The current state of the pollinator
+    int             m_iNumFlowersVisitedInBout; ///< Number of flowers visited so far in current bout
+    PollenVector    m_PollenLoad;               ///< The amount of pollen currently being carried
+
+    // some constant parameters for this pollinator
     const int       m_iBoutLength;          ///< Number of flower visits pollinator can make before returning to hive
     const int       m_iPollenLossOnFlower;  ///< Amount of pollen deposited on a flower on each visit
     const int       m_iPollenLossInAir;     ///< Amount of pollen lost on each timestep when flying
@@ -103,10 +150,6 @@ protected:
                                                   * still not deposited after this numebr of visits, it
                                                   * is is removed from the pollinator (i.e. it is lost)
                                                   */
-
-    int             m_iPollenLoad;              ///< The amount of pollen currently being carried
-    int             m_iNumFlowersVisitedInBout; ///< Number of flowers visited so far in current bout
-
 
     static std::uniform_real_distribution<float> m_sDirectionDistrib; ///< Uniform distribution between 0.0 to TWOPI
 

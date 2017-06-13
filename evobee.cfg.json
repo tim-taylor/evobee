@@ -3,7 +3,7 @@
         "termination-num-steps" : 150,
         "rng-seed" : "",
         "visualisation" : true,
-        "vis-update-period" : 5,
+        "vis-update-period" : 1,
         "vis-pollinator-trails" : true,
         "vis-max-screen-frac-w" : 0.85,
         "vis-max-screen-frac-h" : 0.85,
@@ -12,8 +12,8 @@
         "log-run-name" : "test"
     },    
     "Environment" : {
-        "env-size-x" : 100,
-        "env-size-y" : 100,
+        "env-size-x" : 50,
+        "env-size-y" : 50,
         "background-reflectance-mp" : 500,
         "default-ambient-temp": 20.0,
         "Hives" : {
@@ -30,8 +30,8 @@
                 "species" : "Plant1",
                 "area-top-left-x" : 0,
                 "area-top-left-y" : 0,
-                "area-bottom-right-x" : 99,
-                "area-bottom-right-y" : 99,
+                "area-bottom-right-x" : 49,
+                "area-bottom-right-y" : 49,
                 "density" : 0.1
             }
         }

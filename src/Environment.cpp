@@ -25,7 +25,8 @@ using std::cout;
 using std::endl;
 
 
-Environment::Environment() 
+Environment::Environment(EvoBeeModel* pModel) :
+    m_pModel(pModel)
 {
     assert(ModelParams::initialised());
 
@@ -162,6 +163,7 @@ bool Environment::inEnvironment(int x, int y) const
         y < m_iSizeY
     );
 }
+
 
 // Search for plants in the local patch and its 8 closest neighbours,
 // and return a pointer to the closest plant found, or nullptr if none found

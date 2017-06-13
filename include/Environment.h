@@ -19,6 +19,7 @@ using HivePtrVector = std::vector<std::shared_ptr<AbstractHive>>;
 using PollinatorPtrVector = std::vector<Pollinator*>;
 
 class FloweringPlant;
+class EvoBeeModel;
 
 
 /**
@@ -27,7 +28,7 @@ class FloweringPlant;
 class Environment {
 
 public:
-    Environment();
+    Environment(EvoBeeModel* pModel);
     ~Environment() {}
 
     /**
@@ -115,6 +116,11 @@ public:
      */
     PollinatorPtrVector& getAllPollinators() {return m_AllPollinators;}
 
+    /**
+     * Return a pointer to the EvoBeeModel
+     */
+    const EvoBeeModel* getModel() const {return m_pModel;}
+
 private:
     void initialisePlants();     // private helper method used in constructor
     
@@ -130,6 +136,8 @@ private:
                                            * NB The Pollinators are actually owened by
                                            * individual Hives
                                            */
+
+    const EvoBeeModel* m_pModel;                                           
 };
 
 #endif /* _ENVIRONMENT_H */

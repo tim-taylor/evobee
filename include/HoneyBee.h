@@ -9,6 +9,9 @@
 
 #include "Hymenoptera.h"
 
+class Flower;
+
+
 /**
  * The HoneyBee class ...
  */
@@ -39,6 +42,12 @@ public:
     const std::string& getTypeName() const override final;
 
 private:
+    /**
+     *
+     */
+    void visitFlower(Flower* pFlower);
+
+
     /**
      * String description of the HoneyBee type, for use in log files
      */

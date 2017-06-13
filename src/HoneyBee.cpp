@@ -9,6 +9,7 @@
 #include "FloweringPlant.h"
 #include "Environment.h"
 #include "ModelParams.h"
+#include "Flower.h"
 #include "HoneyBee.h"
 
 std::string HoneyBee::m_sTypeNameStr{"HNB"};
@@ -19,32 +20,83 @@ HoneyBee::HoneyBee(const PollinatorConfig& pc, AbstractHive* pHive) :
 {
 }
 
+
 void HoneyBee::step()
 {
-    ///@todo... need to parameterise type of movement and details
-
-    // first move
-    moveRandom();
-
-    // now look for flowers nearby
-    ///@todo - for now we are looking for nearest plant, not nearest flower
-    /// (so assuming plants just have one flower)
-    FloweringPlant *pPlant = getEnvironment()->findClosestFloweringPlant(m_Position);
-    if (pPlant != nullptr)
+    switch (m_State)
     {
-        Flower* pFlower = pPlant->getFlower(0);
-        if (isHarvestCandidate(pFlower))
+        case (PollinatorState::UNINITIATED):
         {
-            ///@todo
-            //std::cout << "num num..." << std::endl;
+            m_State = PollinatorState::FORAGING;
+            // and now fall through to next case
         }
+        case (PollinatorState::FORAGING):
+        {
+            // first move
+            ///@todo... need to parameterise type of movement and details
+            moveRandom();
+
+            // now look for flowers nearby
+            ///@todo - for now we are looking for nearest plant, not nearest flower
+            /// (so assuming plants just have one flower)
+            bool flowerVisited = false;
+
+            FloweringPlant *pPlant = getEnvironment()->findClosestFloweringPlant(m_Position);
+            if (pPlant != nullptr)
+            {
+                Flower* pFlower = pPlant->getFlower(0);
+                if (isHarvestCandidate(pFlower))
+                {
+                    visitFlower(pFlower);
+                    flowerVisited = true;
+                }
+            }
+
+            if (!flowerVisited)
+            {
+                losePollenToAir(m_iPollenLossInAir);
+            }
+
+            ///@todo What about m_iPollenCarryoverNumVisits, and how does this interact
+            /// with m_iPollenLossInAir?
+
+            break;
+        }
+        case (PollinatorState::BOUT_COMPLETE):
+        {
+            // (do nothing)
+            break;
+        }
+        default:
+        {
+            throw std::runtime_error("Unknown pollinator state encountered");
+        }
+
     }
 }
+
+
+void HoneyBee::visitFlower(Flower* pFlower)
+{
+    // first transfer some of bee's pollen to the flower (potentially pollinating it)
+    depositPollenOnStigma(pFlower);
+
+    // now pick up more pollen from the flower
+    collectPollenFromAnther(pFlower);
+
+    // update count of number of flowers visited, and end bout if done
+    if (++m_iNumFlowersVisitedInBout >= m_iBoutLength)
+    {
+        m_State = PollinatorState::BOUT_COMPLETE;
+    }
+
+}
+
 
 bool HoneyBee::isHarvestCandidate(Flower* pFlower) const
 {
     bool bHarvestable = true;
-    ///@todo
+    ///@todo - implement isHarvestCandidate based upon innate and learned preferences for flower colour
 
     /*
     // from Zoe's code...

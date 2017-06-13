@@ -25,7 +25,7 @@ bool EvoBeeModel::m_sbRngInitialised = false;
 
 EvoBeeModel::EvoBeeModel() : 
     m_iStep(0),
-    m_Env()
+    m_Env(this)
 {
     assert(ModelParams::initialised());
     assert(m_sbRngInitialised);
