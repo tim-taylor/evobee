@@ -1,21 +1,8 @@
 var searchData=
 [
-  ['m_5ffheading',['m_fHeading',['../classPollinator.html#a3a86bd317cba673fc81a78961f0263ac',1,'Pollinator']]],
-  ['m_5fid',['m_id',['../classPollinator.html#ae1eb6c51a0096f233728719ab42f39ef',1,'Pollinator']]],
-  ['m_5fpenv',['m_pEnv',['../classPollinator.html#ad3e13436a9a7d9015a777b6e55788f9c',1,'Pollinator']]],
-  ['m_5fphive',['m_pHive',['../classPollinator.html#a771ffca4348f9d7e5e39d871640ff6eb',1,'Pollinator']]],
-  ['m_5fposition',['m_Position',['../classPollinator.html#ac90a402cb893f91a0428cca14e5d5976',1,'Pollinator']]],
-  ['m_5fsdirectiondistrib',['m_sDirectionDistrib',['../classPollinator.html#a2ad920cb9ba7fcf79c3bc65d97e32a0d',1,'Pollinator']]],
-  ['m_5fsrngengine',['m_sRngEngine',['../classEvoBeeModel.html#abfae76f3153b2f458bb4147c5f00ede6',1,'EvoBeeModel']]],
-  ['main',['main',['../evobee_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'evobee.cpp']]],
-  ['makehive',['makeHive',['../classAbstractHive.html#a9df78d5ccc85ec4dd81be35028e4c686',1,'AbstractHive']]],
-  ['modelcomponent',['ModelComponent',['../classModelComponent.html',1,'']]],
-  ['modelcomponent_2ecpp',['ModelComponent.cpp',['../ModelComponent_8cpp.html',1,'']]],
-  ['modelcomponent_2eh',['ModelComponent.h',['../ModelComponent_8h.html',1,'']]],
-  ['modelparams',['ModelParams',['../classModelParams.html',1,'']]],
-  ['modelparams_2ecpp',['ModelParams.cpp',['../ModelParams_8cpp.html',1,'']]],
-  ['modelparams_2eh',['ModelParams.h',['../ModelParams_8h.html',1,'']]],
-  ['movebiassed',['moveBiassed',['../classPollinator.html#ad09af1bd539e5635de728a7187bd15e7',1,'Pollinator']]],
-  ['movelevy',['moveLevy',['../classPollinator.html#ad03277df915384e641aa3c22d2ebeaac',1,'Pollinator']]],
-  ['moverandom',['moveRandom',['../classPollinator.html#a3a131c8026a7e400b299e697ed6459fe',1,'Pollinator']]]
+  ['logger',['Logger',['../classLogger.html',1,'']]],
+  ['logger_2ecpp',['Logger.cpp',['../Logger_8cpp.html',1,'']]],
+  ['logger_2eh',['Logger.h',['../Logger_8h.html',1,'']]],
+  ['logsdlerror',['logSDLError',['../sdl__tools_8h.html#a343bdc6b0f085211d4043f2d9485476c',1,'sdl_tools.h']]],
+  ['losepollentoair',['losePollenToAir',['../classPollinator.html#aedfce6be503ca4094ae7590a523cdb53',1,'Pollinator']]]
 ];

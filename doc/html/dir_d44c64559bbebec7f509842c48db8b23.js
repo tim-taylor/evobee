@@ -18,9 +18,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "EvoBeeModel.h", "EvoBeeModel_8h.html", [
       [ "EvoBeeModel", "classEvoBeeModel.html", "classEvoBeeModel" ]
     ] ],
-    [ "Flower.h", "Flower_8h.html", [
-      [ "Flower", "classFlower.html", "classFlower" ]
-    ] ],
+    [ "Flower.h", "Flower_8h.html", "Flower_8h" ],
     [ "FloweringPlant.h", "FloweringPlant_8h.html", [
       [ "FloweringPlant", "classFloweringPlant.html", "classFloweringPlant" ]
     ] ],
@@ -52,8 +50,12 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "PlantTypeDistributionConfig.h", "PlantTypeDistributionConfig_8h.html", [
       [ "PlantTypeDistributionConfig", "structPlantTypeDistributionConfig.html", "structPlantTypeDistributionConfig" ]
     ] ],
-    [ "Pollinator.h", "Pollinator_8h.html", [
-      [ "Pollinator", "classPollinator.html", "classPollinator" ]
+    [ "Pollen.h", "Pollen_8h.html", [
+      [ "Pollen", "structPollen.html", "structPollen" ]
+    ] ],
+    [ "Pollinator.h", "Pollinator_8h.html", "Pollinator_8h" ],
+    [ "PollinatorConfig.h", "PollinatorConfig_8h.html", [
+      [ "PollinatorConfig", "structPollinatorConfig.html", "structPollinatorConfig" ]
     ] ],
     [ "Position.h", "Position_8h.html", "Position_8h" ],
     [ "ReflectanceInfo.h", "ReflectanceInfo_8h.html", "ReflectanceInfo_8h" ],

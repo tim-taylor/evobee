@@ -90,22 +90,128 @@ $(document).ready(function(){initNavTree('classFlower.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0344c6fff2e573ccd6d1ca42f148ea55"><td class="memItemLeft" align="right" valign="top"><a id="a0344c6fff2e573ccd6d1ca42f148ea55"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Flower</b> (<a class="el" href="classPosition.html">fPos</a> pos, MarkerPoint mp, float temp)</td></tr>
-<tr class="separator:a0344c6fff2e573ccd6d1ca42f148ea55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a191cc6c6d9a811b68ab94ae635f3da27"><td class="memItemLeft" align="right" valign="top"><a id="a191cc6c6d9a811b68ab94ae635f3da27"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Flower</b> (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, <a class="el" href="classPosition.html">fPos</a> pos, MarkerPoint mp)</td></tr>
+<tr class="separator:a191cc6c6d9a811b68ab94ae635f3da27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af205f163764ccb85a78f167011952acf"><td class="memItemLeft" align="right" valign="top"><a id="af205f163764ccb85a78f167011952acf"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>getTemp</b> () const</td></tr>
 <tr class="separator:af205f163764ccb85a78f167011952acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50ac3a515021e85caeed9e466cb88a1e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a50ac3a515021e85caeed9e466cb88a1e">pollinated</a> () const</td></tr>
+<tr class="separator:a50ac3a515021e85caeed9e466cb88a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bdce28b24a30ed6134a49e1b2fb2b8c"><td class="memItemLeft" align="right" valign="top"><a id="a6bdce28b24a30ed6134a49e1b2fb2b8c"></a>
 MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><b>getMarkerPoint</b> () const</td></tr>
 <tr class="separator:a6bdce28b24a30ed6134a49e1b2fb2b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3523abeac646d7a2e39aa37e3f867472"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a3523abeac646d7a2e39aa37e3f867472">transferAntherPollenToPollinator</a> (PollenVector &amp;pollinatorStore)</td></tr>
+<tr class="separator:a3523abeac646d7a2e39aa37e3f867472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af42371eb8634e26f423381bfc97372e2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#af42371eb8634e26f423381bfc97372e2">transferPollenFromPollinator</a> (PollenVector &amp;pollinatorStore, int num)</td></tr>
+<tr class="separator:af42371eb8634e26f423381bfc97372e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classFlower.html">Flower</a> class ... </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00016">16</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00022">22</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a50ac3a515021e85caeed9e466cb88a1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50ac3a515021e85caeed9e466cb88a1e">&#9670;&nbsp;</a></span>pollinated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Flower::pollinated </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Is the flower pollinated? </p>
+
+<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00033">33</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
+
+</div>
+</div>
+<a id="a3523abeac646d7a2e39aa37e3f867472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3523abeac646d7a2e39aa37e3f867472">&#9670;&nbsp;</a></span>transferAntherPollenToPollinator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Flower::transferAntherPollenToPollinator </td>
+          <td>(</td>
+          <td class="paramtype">PollenVector &amp;&#160;</td>
+          <td class="paramname"><em>pollinatorStore</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Transfer some pollen grains from the anthers, if available, to the specified pollinator's store.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pollinatorStore</td><td>A reference to the pollinator's store into which the pollen is to be transferred</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of grains transferred</dd></dl>
+<p>Note, no check is made as to whether the capacity of the pollinator's store has been exceeded. It is the responsibility of the pollinator to perform such a check after it has called this method. </p>
+
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00023">23</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af42371eb8634e26f423381bfc97372e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af42371eb8634e26f423381bfc97372e2">&#9670;&nbsp;</a></span>transferPollenFromPollinator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Flower::transferPollenFromPollinator </td>
+          <td>(</td>
+          <td class="paramtype">PollenVector &amp;&#160;</td>
+          <td class="paramname"><em>pollinatorStore</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Transfer some pollen grains from the specified pollinator's store to the flower's stigma, if possible. If any of the deposited pollen is from the same species, the flower will be pollinated.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pollinatorStore</td><td>A reference to the pollinator's store from which the pollen is to be transferred </td></tr>
+    <tr><td class="paramname">num</td><td>The number of grains that tha pollinator would normally transfer. The actual number transferred may be less than this if the stigma has reached its maximum capacity</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of grains transferred </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd></dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00047">47</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="Flower_8h_source.html">Flower.h</a></li>
+<li>src/<a class="el" href="Flower_8cpp_source.html">Flower.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

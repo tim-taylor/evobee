@@ -16,7 +16,8 @@ var NAVTREE =
       [ "File List", "files.html", "files" ],
       [ "Globals", "globals.html", [
         [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ]
+        [ "Functions", "globals_func.html", null ],
+        [ "Enumerations", "globals_enum.html", null ]
       ] ]
     ] ]
   ] ]
@@ -25,7 +26,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AbstractHive_8cpp.html",
-"functions_vars.html"
+"classReflectanceInfo.html#ab47ebc701f51a6c85b3da7c65227d5ea"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,11 +1,12 @@
 var classEnvironment =
 [
-    [ "Environment", "classEnvironment.html#a8b427c4448d8b7536666837521b9e83d", null ],
+    [ "Environment", "classEnvironment.html#a18e93e4fa3f115a5353de0370f5c96b2", null ],
     [ "~Environment", "classEnvironment.html#a8e294735187880dd3d59be10c425b29d", null ],
     [ "addPollinatorToAggregateList", "classEnvironment.html#aaddd11ce558e8851faea3189eb8c4f02", null ],
     [ "findClosestFloweringPlant", "classEnvironment.html#afa640b3470c6a038854b3cee627537f7", null ],
     [ "getAllPollinators", "classEnvironment.html#aafc0065e686b9cc51f1be60e154f075b", null ],
     [ "getHives", "classEnvironment.html#a074fa191d7ba7d82d73082da2d00c9aa", null ],
+    [ "getModel", "classEnvironment.html#a2b2d44f2389122a1ef6ff8098b3d940f", null ],
     [ "getPatch", "classEnvironment.html#a60581aa6612e7d9cf1a7c9a3104520f0", null ],
     [ "getPatch", "classEnvironment.html#a9beea65df000b8df08003f9b3ae07c69", null ],
     [ "getPatchCoordsFromIdx", "classEnvironment.html#a29d71ffaf505fe29a3f371ccd5391dc6", null ],

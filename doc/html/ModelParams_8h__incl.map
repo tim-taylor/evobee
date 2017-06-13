@@ -1,6 +1,7 @@
 <map id="include/ModelParams.h" name="include/ModelParams.h">
 <area shape="rect" id="node5" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="235,80,333,107"/>
 <area shape="rect" id="node6" href="$PlantTypeDistributionConfig_8h.html" title="PlantTypeDistributionConfig.h" alt="" coords="358,80,554,107"/>
-<area shape="rect" id="node7" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="579,80,709,107"/>
-<area shape="rect" id="node8" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="632,155,757,181"/>
+<area shape="rect" id="node7" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="728,80,859,107"/>
+<area shape="rect" id="node8" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="781,155,907,181"/>
+<area shape="rect" id="node9" href="$PollinatorConfig_8h.html" title="PollinatorConfig.h" alt="" coords="579,80,704,107"/>
 </map>

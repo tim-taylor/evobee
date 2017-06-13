@@ -17,11 +17,13 @@ var hierarchy =
     [ "Patch", "classPatch.html", null ],
     [ "PlantTypeConfig", "structPlantTypeConfig.html", null ],
     [ "PlantTypeDistributionConfig", "structPlantTypeDistributionConfig.html", null ],
+    [ "Pollen", "structPollen.html", null ],
     [ "Pollinator", "classPollinator.html", [
       [ "Hymenoptera", "classHymenoptera.html", [
         [ "HoneyBee", "classHoneyBee.html", null ]
       ] ]
     ] ],
+    [ "PollinatorConfig", "structPollinatorConfig.html", null ],
     [ "Position< T >", "classPosition.html", null ],
     [ "Position< float >", "classPosition.html", null ],
     [ "Position< int >", "classPosition.html", null ],

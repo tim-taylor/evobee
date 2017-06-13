@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['findclosestfloweringplant',['findClosestFloweringPlant',['../classEnvironment.html#afa640b3470c6a038854b3cee627537f7',1,'Environment']]],
-  ['floweringplant',['FloweringPlant',['../classFloweringPlant.html#a8f5ee3f3536f4818d99efe4b05c04af7',1,'FloweringPlant']]]
+  ['depositpollenonstigma',['depositPollenOnStigma',['../classPollinator.html#a38a0c45cf2ebd561ee2854c72c348c72',1,'Pollinator']]]
 ];
