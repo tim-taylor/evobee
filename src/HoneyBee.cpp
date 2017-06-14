@@ -45,7 +45,7 @@ void HoneyBee::step()
             if (pPlant != nullptr)
             {
                 Flower* pFlower = pPlant->getFlower(0);
-                if (isHarvestCandidate(pFlower))
+                if (isVisitCandidate(pFlower))
                 {
                     visitFlower(pFlower);
                     flowerVisited = true;
@@ -78,6 +78,12 @@ void HoneyBee::step()
 
 void HoneyBee::visitFlower(Flower* pFlower)
 {
+    // for each Pollen grain in the store, update its landing count
+    updatePollenLandingCount();
+
+    // remove pollen from store that is now past the carryover limit
+    removeOldCarryoverPollen();
+
     // first transfer some of bee's pollen to the flower (potentially pollinating it)
     depositPollenOnStigma(pFlower);
 
@@ -89,13 +95,12 @@ void HoneyBee::visitFlower(Flower* pFlower)
     {
         m_State = PollinatorState::BOUT_COMPLETE;
     }
-
 }
 
 
-bool HoneyBee::isHarvestCandidate(Flower* pFlower) const
+bool HoneyBee::isVisitCandidate(Flower* pFlower) const
 {
-    bool bHarvestable = true;
+    bool bOfInterest = true;
     ///@todo - implement isHarvestCandidate based upon innate and learned preferences for flower colour
 
     /*
@@ -121,7 +126,7 @@ bool HoneyBee::isHarvestCandidate(Flower* pFlower) const
     }
     */
 
-    return bHarvestable;
+    return bOfInterest;
 }
 
 

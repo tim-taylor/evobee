@@ -137,33 +137,62 @@ bool Pollinator::moveLevy(bool allowOffEnv, float stepLength)
 }
 
 
+// for each Pollen grain in the store, update its landing count
+void Pollinator::updatePollenLandingCount()
+{
+    std::for_each(m_PollenStore.begin(), 
+                  m_PollenStore.end(),
+                  [](Pollen& p){p.numLandings++;}
+    );
+}
+
+
+// Remove any pollen from the store that has exceeded m_iPollenCarryoverNumVisits
+void Pollinator::removeOldCarryoverPollen()
+{
+    m_PollenStore.erase(
+        std::remove_if(m_PollenStore.begin(),
+                       m_PollenStore.end(),
+                       [this](Pollen& p) {return (p.numLandings > m_iPollenCarryoverNumVisits);}),
+        m_PollenStore.end()
+    );
+}
+
+
 // Transfer some of our pollen to the flower (potentially pollinating it)
 int Pollinator::depositPollenOnStigma(Flower* pFlower)
 {
-    return pFlower->transferPollenFromPollinator(m_PollenLoad, m_iPollenLossOnFlower);
+    ///@todo add a pollen-clogging param and use it here
+    return pFlower->transferPollenFromPollinator(m_PollenStore, m_iPollenLossOnFlower, false);
 }
 
 
 // Collect pollen from flower if available, and add to our store
+// If any pollen is added, the contents of the store is shuffled so that
+// subsequent operations that act of randomly chosen grains from the store
+// can simply and efficiently pick off grains from the end of the store.
+// If the store's maxium capacity is exceeded, some random grains are
+// removed to bring it down to the maximum allowed size.
+//
 void Pollinator::collectPollenFromAnther(Flower* pFlower)
 {
     // transfer anther pollen from flower to our store
-    int num = pFlower->transferAntherPollenToPollinator(m_PollenLoad);
+    int num = pFlower->transferAntherPollenToPollinator(m_PollenStore);
 
     // if some new grains have been added, shuffle the whole store now
     // so that subsequent removals of pollen happen in a random order
     if (num > 0)
     {
-        std::shuffle(m_PollenLoad.begin(), m_PollenLoad.end(), EvoBeeModel::m_sRngEngine);
+        std::shuffle(m_PollenStore.begin(), m_PollenStore.end(), EvoBeeModel::m_sRngEngine);
     }
 
     // finally, if the number of grains in our store now exceeds the
     // maximum capacity, delete some. As we've just shuffled the store,
     // we can just remove the required number from the end of the store
-    int xs = m_PollenLoad.size() - m_iMaxPollenCapacity;
+    int xs = m_PollenStore.size() - m_iMaxPollenCapacity;
     if (xs > 0)
     {
-        m_PollenLoad.erase(m_PollenLoad.end()-xs, m_PollenLoad.end());
+        m_PollenStore.erase(m_PollenStore.end()-xs, m_PollenStore.end());
     }
 }
 
@@ -171,8 +200,8 @@ void Pollinator::collectPollenFromAnther(Flower* pFlower)
 // Lose the specified amount of pollen to the air
 int Pollinator::losePollenToAir(int num)
 {
-    num = std::min(num, (int)m_PollenLoad.size());
-    m_PollenLoad.erase(m_PollenLoad.end()-num, m_PollenLoad.end());
+    num = std::min(num, (int)m_PollenStore.size());
+    m_PollenStore.erase(m_PollenStore.end()-num, m_PollenStore.end());
     return num;
 }
 

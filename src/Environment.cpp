@@ -173,6 +173,8 @@ FloweringPlant* Environment::findClosestFloweringPlant(const fPos& pos)
     FloweringPlant* pPlant = nullptr;
     float minDistSq = 99999.9;
 
+    //std::cout << "Searching for plant closest to pos " << pos << std::endl;
+
     if (inEnvironment(pos))
     {
         int px = std::floor(pos.x);
@@ -185,13 +187,14 @@ FloweringPlant* Environment::findClosestFloweringPlant(const fPos& pos)
                 {
                     if (y >= 0 && y < m_iSizeY)
                     {
-                        Patch &patch = getPatch(x,y);
-                        auto plants = patch.getFloweringPlants();
+                        Patch& patch = getPatch(x,y);
+                        PlantVector& plants = patch.getFloweringPlants();
                         for (FloweringPlant& plant : plants)
                         {
                             float distSq = plant.getDistanceSq(pos);
                             if (distSq < minDistSq)
                             {
+                                //std::cout << "Plant " << &plant << " is at distance " << distSq << std::endl;
                                 minDistSq = distSq;
                                 pPlant = &plant;
                             }

@@ -14,7 +14,7 @@ class Flower;
  * The Pollen class ...
  */
 struct Pollen {
-    Pollen() : pSource(nullptr), numLandings(0) {}
+    //Pollen() : pSource(nullptr), numLandings(0) {}
     Pollen(const Flower* pFlower) : pSource(pFlower), numLandings(0) {}
 
     const Flower* pSource;

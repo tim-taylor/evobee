@@ -106,7 +106,24 @@ protected:
     bool moveLevy(bool allowOffEnv = false, float stepLength = 1.0);
 
     /**
+     * Increment the landing count of each Pollen grain in the store. 
+     * This method should be called each time a Pollinator lands on a flower.
+     * Note that this method does not remove any Pollen from the store; to 
+     * remove grains that now exceed their carryover limit, call 
+     * removeOldCarryoverPollen() afterwards.
+     */
+    void updatePollenLandingCount();
+
+    /**
+     * Remove any stored pollen that has now exceeded the maximum number of
+     * flower visits subsequent to being collected, as defined by the
+     * carryover limit.
+     */
+    void removeOldCarryoverPollen();
+
+    /**
      * Transfer some of our pollen to the flower (potentially pollinating it)
+     *
      * @return The number of pollen grains deposited
      */
     int depositPollenOnStigma(Flower* pFlower);
@@ -121,6 +138,7 @@ protected:
 
     /**
      * Lose the specified amount of pollen to the air.
+     *
      * @return The number of pollen grains lost (which might be less than the
      *  number requested if the store originally contained less than that amount)
      */
@@ -137,7 +155,7 @@ protected:
 
     PollinatorState m_State;    ///< The current state of the pollinator
     int             m_iNumFlowersVisitedInBout; ///< Number of flowers visited so far in current bout
-    PollenVector    m_PollenLoad;               ///< The amount of pollen currently being carried
+    PollenVector    m_PollenStore;              ///< Container for Pollen currently being carried
 
     // some constant parameters for this pollinator
     const int       m_iBoutLength;          ///< Number of flower visits pollinator can make before returning to hive

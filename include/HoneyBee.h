@@ -29,7 +29,7 @@ public:
     /**
      * Determine whether the pollinator should harvest the specified flower
      */
-    bool isHarvestCandidate(Flower* pFlower) const;
+    bool isVisitCandidate(Flower* pFlower) const;
 
     /**
      *

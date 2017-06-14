@@ -43,8 +43,13 @@ public:
      */
     float getDistanceSq(const fPos& point) const;
 
+    /**
+     * Return a string representing the species of this flower
+     */
+    const std::string& getSpecies() const {return m_Species;}
+
 private:
-    std::string m_species;
+    std::string m_Species;
     fPos m_Position;
     std::vector<Flower> m_Flowers;
     bool m_bHasLeaf;

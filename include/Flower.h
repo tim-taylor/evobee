@@ -15,6 +15,8 @@
 
 using PollenVector = std::vector<Pollen>;
 
+class FloweringPlant;
+
 
 /**
  * The Flower class ...
@@ -22,7 +24,7 @@ using PollenVector = std::vector<Pollen>;
 class Flower {
 
 public:
-    Flower(const PlantTypeConfig& ptc, fPos pos, MarkerPoint mp);
+    Flower(FloweringPlant* pPlant, const PlantTypeConfig& ptc, fPos pos, MarkerPoint mp);
 
     ///
     float getTemp() const {return m_fTemp;}
@@ -31,6 +33,11 @@ public:
      * Is the flower pollinated?
      */
     bool pollinated() const {return m_bPollinated;}
+
+    /**
+     * Return a string identifying the owning plant species
+     */
+    const std::string& getSpecies() const;
 
     ///
     MarkerPoint getMarkerPoint() const {return m_Reflectance.getMarkerPoint();}
@@ -57,13 +64,16 @@ public:
      *
      * @param pollinatorStore A reference to the pollinator's store from
      *  which the pollen is to be transferred
-     * @param num The number of grains that tha pollinator would normally
+     * @param suggestedNum The number of grains that tha pollinator would normally
      *  transfer. The actual number transferred may be less than this if
      *  the stigma has reached its maximum capacity
+     * @param sameSpeciesOnly If true, only pollen from the same species as
+     *  this flower will be transferred. If false, all pollen will be 
+     *  considered for transfer (so pollen clogging may occur)
      *
      * @return The number of grains transferred
      */
-    int transferPollenFromPollinator(PollenVector& pollinatorStore, int num);
+    int transferPollenFromPollinator(PollenVector& pollinatorStore, int suggestedNum, bool sameSpeciesOnly);
 
 private:
     fPos            m_Position;         ///< Spatial position of the flower
@@ -72,6 +82,8 @@ private:
     int             m_iAntherPollen;    ///< Amount of collectable pollen remaining
     PollenVector    m_StigmaPollen;     ///< Collection of deposited Pollen grains on stigma
     float           m_fTemp;            ///< Current temperature of flower
+
+    FloweringPlant* m_pPlant;           ///< (non-owning) pointer to the plant this flower belongs to
 
     // the following are constant parameters for this flower
     const int   m_iAntherPollenLossPerVisit;///< Number of pollen grains deposited on a pollinator per visit

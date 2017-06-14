@@ -28,7 +28,7 @@ var classPollinator =
     [ "m_pEnv", "classPollinator.html#ad3e13436a9a7d9015a777b6e55788f9c", null ],
     [ "m_pHive", "classPollinator.html#a771ffca4348f9d7e5e39d871640ff6eb", null ],
     [ "m_pModel", "classPollinator.html#a1fae7c4f5a03de8b253383594505204b", null ],
-    [ "m_PollenLoad", "classPollinator.html#a0144b53c4439ca4d0ab3c78148013099", null ],
+    [ "m_PollenStore", "classPollinator.html#a0144b53c4439ca4d0ab3c78148013099", null ],
     [ "m_Position", "classPollinator.html#ac90a402cb893f91a0428cca14e5d5976", null ],
     [ "m_State", "classPollinator.html#ac25c92d93b4267479b997b80a2889195", null ]
 ];

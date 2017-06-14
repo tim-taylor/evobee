@@ -167,7 +167,7 @@ void Visualiser::update() {
                 }
                 else
                 {
-                    std::cout << "xxx Not Pollinated!" << std::endl;
+                    //std::cout << "xxx Not Pollinated!" << std::endl;
                     filledCircleRGBA(
                         m_pRenderer,
                         pos.x * m_iPatchSize + offset, 
