@@ -57,9 +57,6 @@ void HoneyBee::step()
                 losePollenToAir(m_iPollenLossInAir);
             }
 
-            ///@todo What about m_iPollenCarryoverNumVisits, and how does this interact
-            /// with m_iPollenLossInAir?
-
             break;
         }
         case (PollinatorState::BOUT_COMPLETE):
