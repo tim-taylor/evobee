@@ -15,8 +15,10 @@ var classPollinator =
     [ "moveBiassed", "classPollinator.html#ad09af1bd539e5635de728a7187bd15e7", null ],
     [ "moveLevy", "classPollinator.html#ad03277df915384e641aa3c22d2ebeaac", null ],
     [ "moveRandom", "classPollinator.html#a3a131c8026a7e400b299e697ed6459fe", null ],
+    [ "removeOldCarryoverPollen", "classPollinator.html#ab4055e86ccdfc6a359caf9915a708767", null ],
     [ "resetToStartPosition", "classPollinator.html#a2f80a1d3b0985898f548b2b671f7c223", null ],
     [ "step", "classPollinator.html#a20f4d4f1227e474c6009be4e83cf21f3", null ],
+    [ "updatePollenLandingCount", "classPollinator.html#ad87e24d80ae5e1f4cc811b5d68936a5f", null ],
     [ "m_fHeading", "classPollinator.html#a3a86bd317cba673fc81a78961f0263ac", null ],
     [ "m_iBoutLength", "classPollinator.html#a11c5f4a9c088689b61b72af355dcd383", null ],
     [ "m_id", "classPollinator.html#ae1eb6c51a0096f233728719ab42f39ef", null ],
@@ -28,7 +30,7 @@ var classPollinator =
     [ "m_pEnv", "classPollinator.html#ad3e13436a9a7d9015a777b6e55788f9c", null ],
     [ "m_pHive", "classPollinator.html#a771ffca4348f9d7e5e39d871640ff6eb", null ],
     [ "m_pModel", "classPollinator.html#a1fae7c4f5a03de8b253383594505204b", null ],
-    [ "m_PollenStore", "classPollinator.html#a0144b53c4439ca4d0ab3c78148013099", null ],
+    [ "m_PollenStore", "classPollinator.html#aa43ed5277f07e81412b020d62e716128", null ],
     [ "m_Position", "classPollinator.html#ac90a402cb893f91a0428cca14e5d5976", null ],
     [ "m_State", "classPollinator.html#ac25c92d93b4267479b997b80a2889195", null ]
 ];

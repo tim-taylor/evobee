@@ -88,38 +88,36 @@ $(document).ready(function(){initNavTree('todo.html','');});
 <dd><p class="startdd"></p>
 <p class="enddd">- what else required?  </p>
 </dd>
-<dt><a class="anchor" id="_todo000004"></a>Global <a class="el" href="classFlower.html#af42371eb8634e26f423381bfc97372e2">Flower::transferPollenFromPollinator</a>  (PollenVector &amp;pollinatorStore, int num)</dt>
-<dd><p class="startdd"></p>
-<p class="enddd"></p>
-</dd>
-<dt><a class="anchor" id="_todo000006"></a>Global <a class="el" href="classFloweringPlant.html#a8f5ee3f3536f4818d99efe4b05c04af7">FloweringPlant::FloweringPlant</a>  (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, fPos pos)</dt>
+<dt><a class="anchor" id="_todo000004"></a>Global <a class="el" href="classFloweringPlant.html#a8f5ee3f3536f4818d99efe4b05c04af7">FloweringPlant::FloweringPlant</a>  (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, fPos pos)</dt>
 <dd>- for now, we are placing all flowers at the same position (the same position as the plant itself). If/when we start looking at plants with multiple flowers, we might want to change this  </dd>
 <dt><a class="anchor" id="_todo000001"></a>Global <a class="el" href="evobee_8cpp.html#a690c03db5f23191e3c4933631eee9e3b">from_json</a>  (const json &amp;j, <a class="el" href="structHiveConfig.html">HiveConfig</a> &amp;hc)</dt>
 <dd>should add exception handling to all of these  </dd>
-<dt><a class="anchor" id="_todo000010"></a>Global <a class="el" href="classHoneyBee.html#a7940a64ea627024b9f77a0f9dea65062">HoneyBee::isHarvestCandidate</a>  (<a class="el" href="classFlower.html">Flower</a> *pFlower) const</dt>
+<dt><a class="anchor" id="_todo000008"></a>Global <a class="el" href="classHoneyBee.html#ace8c0ee998fe766ba5bb4460cc9422f4">HoneyBee::isVisitCandidate</a>  (<a class="el" href="classFlower.html">Flower</a> *pFlower) const</dt>
 <dd>- implement isHarvestCandidate based upon innate and learned preferences for flower colour  </dd>
-<dt><a class="anchor" id="_todo000007"></a>Global <a class="el" href="classHoneyBee.html#ae44550c830b3b483981aa4dfc1555f68">HoneyBee::step</a>  () override final</dt>
+<dt><a class="anchor" id="_todo000005"></a>Global <a class="el" href="classHoneyBee.html#ae44550c830b3b483981aa4dfc1555f68">HoneyBee::step</a>  () override final</dt>
 <dd><p class="startdd">... need to parameterise type of movement and details </p>
 <p>- for now we are looking for nearest plant, not nearest flower (so assuming plants just have one flower) </p>
 <p class="enddd">What about m_iPollenCarryoverNumVisits, and how does this interact with m_iPollenLossInAir?  </p>
 </dd>
-<dt><a class="anchor" id="_todo000012"></a>Global <a class="el" href="classLogger.html#ad905325c0f6a7f835e7e54c66e7300b2">Logger::update</a>  ()</dt>
+<dt><a class="anchor" id="_todo000010"></a>Global <a class="el" href="classLogger.html#ad905325c0f6a7f835e7e54c66e7300b2">Logger::update</a>  ()</dt>
 <dd></dd>
-<dt><a class="anchor" id="_todo000011"></a>Global <a class="el" href="classLogger.html#acb668a9e186a25fbaad2e4af6d1ed00a">Logger::~Logger</a>  ()</dt>
+<dt><a class="anchor" id="_todo000009"></a>Global <a class="el" href="classLogger.html#acb668a9e186a25fbaad2e4af6d1ed00a">Logger::~Logger</a>  ()</dt>
 <dd>close all open log files?  </dd>
-<dt><a class="anchor" id="_todo000014"></a>Global <a class="el" href="classModelParams.html#a1102369141dc9e1330ecb6739954add8">ModelParams::setMaxScreenFracH</a>  (float fh)</dt>
+<dt><a class="anchor" id="_todo000012"></a>Global <a class="el" href="classModelParams.html#a1102369141dc9e1330ecb6739954add8">ModelParams::setMaxScreenFracH</a>  (float fh)</dt>
 <dd>... maybe output warning msg here and in next case?  </dd>
-<dt><a class="anchor" id="_todo000013"></a>Global <a class="el" href="classModelParams.html#a430dc7c313f910df97c18066e400cad4">ModelParams::setMaxScreenFracW</a>  (float fw)</dt>
+<dt><a class="anchor" id="_todo000011"></a>Global <a class="el" href="classModelParams.html#a430dc7c313f910df97c18066e400cad4">ModelParams::setMaxScreenFracW</a>  (float fw)</dt>
 <dd>... maybe output warning msg here and in next case?  </dd>
-<dt><a class="anchor" id="_todo000015"></a>Global <a class="el" href="classPatch.html#afb8a4290631071d620ac10e8d8551fb3">Patch::addPlant</a>  (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, fPos pos)</dt>
+<dt><a class="anchor" id="_todo000013"></a>Global <a class="el" href="classPatch.html#afb8a4290631071d620ac10e8d8551fb3">Patch::addPlant</a>  (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, fPos pos)</dt>
 <dd>(and will need more params!)  </dd>
-<dt><a class="anchor" id="_todo000023"></a>Global <a class="el" href="structPlantTypeConfig.html#a8163a11e10b14241d0d55087a5091439">PlantTypeConfig::initTemp</a>  </dt>
+<dt><a class="anchor" id="_todo000022"></a>Global <a class="el" href="structPlantTypeConfig.html#a8163a11e10b14241d0d55087a5091439">PlantTypeConfig::initTemp</a>  </dt>
 <dd>should be initialised // init temp of flowers and leaves  </dd>
-<dt><a class="anchor" id="_todo000016"></a>Global <a class="el" href="classPollinator.html#ad09af1bd539e5635de728a7187bd15e7">Pollinator::moveBiassed</a>  (bool allowOffEnv=false, float stepLength=1.0)</dt>
+<dt><a class="anchor" id="_todo000016"></a>Global <a class="el" href="classPollinator.html#a38a0c45cf2ebd561ee2854c72c348c72">Pollinator::depositPollenOnStigma</a>  (<a class="el" href="classFlower.html">Flower</a> *pFlower)</dt>
+<dd>add a pollen-clogging param and use it here  </dd>
+<dt><a class="anchor" id="_todo000014"></a>Global <a class="el" href="classPollinator.html#ad09af1bd539e5635de728a7187bd15e7">Pollinator::moveBiassed</a>  (bool allowOffEnv=false, float stepLength=1.0)</dt>
 <dd>implement moveBiassed  </dd>
-<dt><a class="anchor" id="_todo000017"></a>Global <a class="el" href="classPollinator.html#ad03277df915384e641aa3c22d2ebeaac">Pollinator::moveLevy</a>  (bool allowOffEnv=false, float stepLength=1.0)</dt>
+<dt><a class="anchor" id="_todo000015"></a>Global <a class="el" href="classPollinator.html#ad03277df915384e641aa3c22d2ebeaac">Pollinator::moveLevy</a>  (bool allowOffEnv=false, float stepLength=1.0)</dt>
 <dd>implement moveLevy  </dd>
-<dt><a class="anchor" id="_todo000018"></a>Global <a class="el" href="classVisualiser.html#adf337500b62cc53c5d2ffa0e49556972">Visualiser::update</a>  ()</dt>
+<dt><a class="anchor" id="_todo000017"></a>Global <a class="el" href="classVisualiser.html#adf337500b62cc53c5d2ffa0e49556972">Visualiser::update</a>  ()</dt>
 <dd><p class="startdd">at present just using offsets rather than exact position of each flower in the patch </p>
 <p>deal with multiple flowers on a plant? </p>
 <p>for now <a class="el" href="classHive.html">Hive</a> visualisation colour is hard-coded as black </p>

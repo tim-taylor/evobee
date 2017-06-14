@@ -119,8 +119,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a16be7522d1ebb1a15bfc8e11ee525056"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae44550c830b3b483981aa4dfc1555f68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHoneyBee.html#ae44550c830b3b483981aa4dfc1555f68">step</a> () override final</td></tr>
 <tr class="separator:ae44550c830b3b483981aa4dfc1555f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7940a64ea627024b9f77a0f9dea65062"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHoneyBee.html#a7940a64ea627024b9f77a0f9dea65062">isHarvestCandidate</a> (<a class="el" href="classFlower.html">Flower</a> *pFlower) const</td></tr>
-<tr class="separator:a7940a64ea627024b9f77a0f9dea65062"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace8c0ee998fe766ba5bb4460cc9422f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHoneyBee.html#ace8c0ee998fe766ba5bb4460cc9422f4">isVisitCandidate</a> (<a class="el" href="classFlower.html">Flower</a> *pFlower) const</td></tr>
+<tr class="separator:ace8c0ee998fe766ba5bb4460cc9422f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b27bb970dc0eea4e5b31b99fa231fd6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHoneyBee.html#a3b27bb970dc0eea4e5b31b99fa231fd6">getStateString</a> () const override final</td></tr>
 <tr class="separator:a3b27bb970dc0eea4e5b31b99fa231fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33b44caaf4ce14f6d119fa563647c0cc"><td class="memItemLeft" align="right" valign="top"><a id="a33b44caaf4ce14f6d119fa563647c0cc"></a>
@@ -165,6 +165,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ad09af1bd539e5635de728a7187bd15e7 inherit pro_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad03277df915384e641aa3c22d2ebeaac inherit pro_methods_classPollinator"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ad03277df915384e641aa3c22d2ebeaac">moveLevy</a> (bool allowOffEnv=false, float stepLength=1.0)</td></tr>
 <tr class="separator:ad03277df915384e641aa3c22d2ebeaac inherit pro_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad87e24d80ae5e1f4cc811b5d68936a5f inherit pro_methods_classPollinator"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ad87e24d80ae5e1f4cc811b5d68936a5f">updatePollenLandingCount</a> ()</td></tr>
+<tr class="separator:ad87e24d80ae5e1f4cc811b5d68936a5f inherit pro_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4055e86ccdfc6a359caf9915a708767 inherit pro_methods_classPollinator"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ab4055e86ccdfc6a359caf9915a708767">removeOldCarryoverPollen</a> ()</td></tr>
+<tr class="separator:ab4055e86ccdfc6a359caf9915a708767 inherit pro_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38a0c45cf2ebd561ee2854c72c348c72 inherit pro_methods_classPollinator"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a38a0c45cf2ebd561ee2854c72c348c72">depositPollenOnStigma</a> (<a class="el" href="classFlower.html">Flower</a> *pFlower)</td></tr>
 <tr class="separator:a38a0c45cf2ebd561ee2854c72c348c72 inherit pro_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd0f7c7f0c5b358eb6d3b3978d5f54e2 inherit pro_methods_classPollinator"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#abd0f7c7f0c5b358eb6d3b3978d5f54e2">collectPollenFromAnther</a> (<a class="el" href="classFlower.html">Flower</a> *pFlower)</td></tr>
@@ -204,10 +208,10 @@ const <a class="el" href="classEvoBeeModel.html">EvoBeeModel</a> *&#160;</td><td
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a1d660588b85f6f6870ffb5c7923c7c37">m_iNumFlowersVisitedInBout</a></td></tr>
 <tr class="memdesc:a1d660588b85f6f6870ffb5c7923c7c37 inherit pro_attribs_classPollinator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of flowers visited so far in current bout. <br /></td></tr>
 <tr class="separator:a1d660588b85f6f6870ffb5c7923c7c37 inherit pro_attribs_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0144b53c4439ca4d0ab3c78148013099 inherit pro_attribs_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="a0144b53c4439ca4d0ab3c78148013099"></a>
-PollenVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a0144b53c4439ca4d0ab3c78148013099">m_PollenStore</a></td></tr>
-<tr class="memdesc:a0144b53c4439ca4d0ab3c78148013099 inherit pro_attribs_classPollinator"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of pollen currently being carried. <br /></td></tr>
-<tr class="separator:a0144b53c4439ca4d0ab3c78148013099 inherit pro_attribs_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa43ed5277f07e81412b020d62e716128 inherit pro_attribs_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="aa43ed5277f07e81412b020d62e716128"></a>
+PollenVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#aa43ed5277f07e81412b020d62e716128">m_PollenStore</a></td></tr>
+<tr class="memdesc:aa43ed5277f07e81412b020d62e716128 inherit pro_attribs_classPollinator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for <a class="el" href="structPollen.html">Pollen</a> currently being carried. <br /></td></tr>
+<tr class="separator:aa43ed5277f07e81412b020d62e716128 inherit pro_attribs_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11c5f4a9c088689b61b72af355dcd383 inherit pro_attribs_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="a11c5f4a9c088689b61b72af355dcd383"></a>
 const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a11c5f4a9c088689b61b72af355dcd383">m_iBoutLength</a></td></tr>
 <tr class="memdesc:a11c5f4a9c088689b61b72af355dcd383 inherit pro_attribs_classPollinator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of flower visits pollinator can make before returning to hive. <br /></td></tr>
@@ -263,18 +267,18 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 
 <p>Reimplemented from <a class="el" href="classPollinator.html#a2e0b2fda2a76a6af741e9d09882546a1">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00128">128</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00133">133</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a7940a64ea627024b9f77a0f9dea65062"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7940a64ea627024b9f77a0f9dea65062">&#9670;&nbsp;</a></span>isHarvestCandidate()</h2>
+<a id="ace8c0ee998fe766ba5bb4460cc9422f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace8c0ee998fe766ba5bb4460cc9422f4">&#9670;&nbsp;</a></span>isVisitCandidate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool HoneyBee::isHarvestCandidate </td>
+          <td class="memname">bool HoneyBee::isVisitCandidate </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classFlower.html">Flower</a> *&#160;</td>
           <td class="paramname"><em>pFlower</em></td><td>)</td>
@@ -283,12 +287,12 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
       </table>
 </div><div class="memdoc">
 <p>Determine whether the pollinator should harvest the specified flower </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd><ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd><ul>
 <li>implement isHarvestCandidate based upon innate and learned preferences for flower colour </li>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00096">96</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00101">101</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
 
 </div>
 </div>
@@ -314,12 +318,12 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>... need to parameterise type of movement and details </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd><ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>... need to parameterise type of movement and details </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd><ul>
 <li>for now we are looking for nearest plant, not nearest flower (so assuming plants just have one flower) </li>
 </ul>
 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>What about m_iPollenCarryoverNumVisits, and how does this interact with m_iPollenLossInAir? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>What about m_iPollenCarryoverNumVisits, and how does this interact with m_iPollenLossInAir? </dd></dl>
 
 <p>Implements <a class="el" href="classHymenoptera.html">Hymenoptera</a>.</p>
 

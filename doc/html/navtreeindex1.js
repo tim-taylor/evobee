@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"classReflectanceInfo.html#a04103e62b95de93e2b2f584beb71d099":[1,0,22,1],
+"classReflectanceInfo.html#a54b3c6f1916f7823c6af23c18092327e":[1,0,22,0],
+"classReflectanceInfo.html#a6e7c092defa762deca7cb2f7cfbd5d02":[1,0,22,3],
+"classReflectanceInfo.html#a8bebcd2ff7d72b874fb0968693042231":[1,0,22,4],
 "classReflectanceInfo.html#ab47ebc701f51a6c85b3da7c65227d5ea":[1,0,22,2],
 "classVisualiser.html":[1,0,25],
 "classVisualiser.html#a0d93d8b77964ae63e5683cb867d368df":[1,0,25,1],
@@ -71,10 +75,9 @@ var NAVTREEINDEX1 =
 "structPlantTypeDistributionConfig.html#a7274af58ed9d134a3ec93277dccedc25":[1,0,17,3],
 "structPlantTypeDistributionConfig.html#a834afb19096969cfc4aa7e5da4c18c95":[1,0,17,2],
 "structPollen.html":[1,0,18],
-"structPollen.html#a107fd582b341f786ec21b8324e9b9a28":[1,0,18,0],
-"structPollen.html#a45902b436bb138eedcc522df3a2c299b":[1,0,18,2],
-"structPollen.html#a884b73ec5f7db9d9146b2246ee550b95":[1,0,18,3],
-"structPollen.html#a92864fabe4e5f19f42513c4aadee61fa":[1,0,18,1],
+"structPollen.html#a45902b436bb138eedcc522df3a2c299b":[1,0,18,1],
+"structPollen.html#a884b73ec5f7db9d9146b2246ee550b95":[1,0,18,2],
+"structPollen.html#a92864fabe4e5f19f42513c4aadee61fa":[1,0,18,0],
 "structPollinatorConfig.html":[1,0,20],
 "structPollinatorConfig.html#a00abb0331419d12d7fcc96b14e5b50e8":[1,0,20,1],
 "structPollinatorConfig.html#a235050ae8f29670abd26216cec5dc745":[1,0,20,2],
