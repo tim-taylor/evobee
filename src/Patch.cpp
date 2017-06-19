@@ -8,8 +8,6 @@
 #include "Environment.h"
 #include "Patch.h"
 
-using std::cout;
-using std::endl;
 
 Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
     m_pEnv(pEnv),
@@ -23,7 +21,8 @@ Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
 void Patch::addPlant(const PlantTypeConfig& ptc, fPos pos)
 {
     ///@todo (and will need more params!)
-    cout << "Adding plant of species " << ptc.species << " to Patch [" << m_Position << "] at coordinates (" << pos << ")" << endl;
+    std::cout << "Adding plant of species " << ptc.species << " to Patch [" << 
+        m_Position << "] at coordinates (" << pos << ")" << std::endl;
 
-    m_FloweringPlants.push_back(FloweringPlant(ptc, pos));
+    m_FloweringPlants.emplace_back(ptc, pos);
 }

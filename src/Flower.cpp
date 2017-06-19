@@ -10,15 +10,22 @@
 #include "Flower.h"
 
 
+unsigned int Flower::m_sNextFreeId = 0;
+
+
+
 Flower::Flower(FloweringPlant* pPlant, const PlantTypeConfig& ptc, fPos pos, MarkerPoint mp) :
+    m_id(m_sNextFreeId++),
+    m_SpeciesId(pPlant->getSpeciesId()),
     m_Position(pos),
     m_Reflectance(mp),
     m_bPollinated(false),
     m_iAntherPollen(ptc.antherInitPollen),
-    m_fTemp(ptc.initTemp),
+    m_fTemperature(ptc.initTemp),
     m_pPlant(pPlant),
-    m_iAntherPollenLossPerVisit(ptc.antherPollenLossPerVisit),
-    m_iStigmaMaxPollenCapacity(ptc.stigmaMaxPollenCapacity)
+    m_iAntherPollenTransferPerVisit(ptc.antherPollenTransferPerVisit),
+    m_iStigmaMaxPollenCapacity(ptc.stigmaMaxPollenCapacity),
+    m_bPollenClogging(ptc.pollenClogging)
     //m_iNectarRewardPerVisit(ptc.nectarReward)
 {}
 
@@ -32,7 +39,7 @@ const std::string& Flower::getSpecies() const
 int Flower::transferAntherPollenToPollinator(PollenVector& pollinatorStore)
 {
     // calculate how many grains to transfer
-    int num = std::min(m_iAntherPollenLossPerVisit, m_iAntherPollen);
+    int num = std::min(m_iAntherPollenTransferPerVisit, m_iAntherPollen);
 
     // remove that number from the anther...
     m_iAntherPollen -= num;
@@ -44,7 +51,7 @@ int Flower::transferAntherPollenToPollinator(PollenVector& pollinatorStore)
     // method.
     for (int i = 0; i < num; ++i)
     {
-        pollinatorStore.push_back( Pollen(this) );
+        pollinatorStore.emplace_back(this, m_SpeciesId);
     }
 
     // return the number of grains transferred
@@ -56,9 +63,7 @@ int Flower::transferAntherPollenToPollinator(PollenVector& pollinatorStore)
 // pollinator's store to the flower's stigma. If any of the deposited pollen
 // is from the same species, the flower will be pollinated.
 //
-int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore,
-                                         int suggestedNum,
-                                         bool sameSpeciesOnly)
+int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int suggestedNum)
 {
     // first figure out how many grains we should attempt to transfer,
     // taking into account the suggested number from the pollinator, the
@@ -74,7 +79,15 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore,
     // taking account of the pollen species if necessary, and ensure that all grains
     // to be moved are placed at the end of the pollinatorStore ready for being
     // moved in bulk
-    if (sameSpeciesOnly)
+    if (m_bPollenClogging)
+    {
+        // No restriction on pollen species, so we can grab any pollen from
+        // the pollinator. Note that the pollinator's store should already be shuffled, 
+        // so we can just pick the required number of grains from the end of the
+        // store, and this will be a random selection
+        actualNum = attemptedNum;
+    }
+    else    
     {
         // We can only transfer pollen of the same species as this flower, so we need
         // to look through the pollinator's store and select which grains we will take.
@@ -88,7 +101,7 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore,
 
             while ((nextItr != swapItr) && (actualNum < attemptedNum))
             {
-                if (nextItr->pSource->getSpecies() == getSpecies())
+                if (nextItr->pSource->getSpeciesId() == m_SpeciesId)
                 {
                     --swapItr;
                     if (nextItr != swapItr)
@@ -104,16 +117,8 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore,
             }
         }
     }
-    else
-    {
-        // No restriction on pollen species, so we can grab any pollen from
-        // the pollinator. Note that the pollinator's store should already be shuffled, 
-        // so we can just pick the required number of grains from the end of the
-        // store, and this will be a random selection
-        actualNum = attemptedNum;
-    }
 
-    // Whether sameSpeciesOnly is true or false, we have now figured out how many grains
+    // Whether m_bPollenClogging is true or false, we have now figured out how many grains
     // are to moved, and the grains we want to move are now at the end of the pollinatorStore.
     // Now we actually move those grains to the stigma store in one operation, and delete
     // them from the pollinatorStore.
@@ -128,24 +133,49 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore,
         // if not already pollinated, check whether that has now changed!
         if (!m_bPollinated)
         {
-            if (sameSpeciesOnly)
+            Pollen* pP = nullptr; // test code to allow output of pollen info
+
+            if (m_bPollenClogging)
             {
-                m_bPollinated = true;
+                // pollen could be of any species, so we need to see whether any of
+                // the new pollen is actually from the same species as this flower
+                auto it = std::find_if( m_StigmaPollen.end()-actualNum,
+                                        m_StigmaPollen.end(),
+                                        [this](Pollen& p){return (p.speciesId == this->m_SpeciesId);} );
+                m_bPollinated = (it != m_StigmaPollen.end());
+
+                // test code to allow output of pollen info
+                if (m_bPollinated) pP = &(*it);
             }
             else
             {
-                auto it = std::find_if( m_StigmaPollen.end()-actualNum,
-                                        m_StigmaPollen.end(),
-                                        [this](Pollen& p){return (p.pSource->getSpecies() == getSpecies());} );
-                m_bPollinated = (it != m_StigmaPollen.end());
+                // in the case of no pollen clogging, only pollen from this species is allowed
+                // on the stigma, so we know for sure that the flower is now pollinated
+                m_bPollinated = true;
+
+                // test code to allow output of pollen info
+                pP = &(*(m_StigmaPollen.end()-actualNum));
             }
 
-            // temp debgugging message...
+            // test code
             if (m_bPollinated)
             {
-                std::cout << "Pollinated!" << std::endl;
-            }        
+                std::cout << "Flower id " << m_id << " of speices " << m_SpeciesId <<
+                    " pollinated by pollen of species " << pP->speciesId <<
+                    " from plant id " << pP->pSource->getId() << std::endl;
+            }
+            else std::cout << "(no pollination)" << std::endl;
         }        
+    }
+
+    // Finally, compare the number of grains actually deposited on the stigma with the amount
+    // of the requested transfer. If the actual amount is less, then the pollinator just 
+    // loses the difference anyway
+    if (actualNum < suggestedNum)
+    {
+        // first ensure we don't try to lose more than is actually in the pollinator's store
+        int numToLose = std::min({ suggestedNum-actualNum, (int)pollinatorStore.size() });
+        pollinatorStore.erase(pollinatorStore.end()-numToLose, pollinatorStore.end());
     }
 
     return actualNum;

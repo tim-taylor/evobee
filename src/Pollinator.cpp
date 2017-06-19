@@ -11,6 +11,7 @@
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
+#include <iostream>
 #include "EvoBeeModel.h"
 #include "PollinatorConfig.h"
 #include "Pollinator.h"
@@ -150,12 +151,19 @@ void Pollinator::updatePollenLandingCount()
 // Remove any pollen from the store that has exceeded m_iPollenCarryoverNumVisits
 void Pollinator::removeOldCarryoverPollen()
 {
+    // test code
+    //size_t oldsz = m_PollenStore.size();
+
     m_PollenStore.erase(
         std::remove_if(m_PollenStore.begin(),
                        m_PollenStore.end(),
                        [this](Pollen& p) {return (p.numLandings > m_iPollenCarryoverNumVisits);}),
         m_PollenStore.end()
     );
+
+    /// test code
+    //size_t newsz = m_PollenStore.size();
+    //if (newsz != oldsz) std::cout << "carryover removed! " << oldsz << "->" << newsz << std::endl;
 }
 
 
@@ -163,7 +171,7 @@ void Pollinator::removeOldCarryoverPollen()
 int Pollinator::depositPollenOnStigma(Flower* pFlower)
 {
     ///@todo add a pollen-clogging param and use it here
-    return pFlower->transferPollenFromPollinator(m_PollenStore, m_iPollenLossOnFlower, false);
+    return pFlower->transferPollenFromPollinator(m_PollenStore, m_iPollenLossOnFlower);
 }
 
 

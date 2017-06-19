@@ -62,19 +62,33 @@ void from_json(const json& j, PlantTypeConfig& pt)
     pt.flowerMPInitMin = j.at("flower-reflectance-mp-init-min").get<int>();
     pt.flowerMPInitMax = j.at("flower-reflectance-mp-init-max").get<int>();
     pt.antherInitPollen = j.at("anther-init-pollen").get<int>();
-    pt.antherPollenLossPerVisit = j.at("anther-pollen-loss-per-visit").get<int>();
-    pt.stigmaMaxPollenCapacity = j.at("stigma-max-pollen-capacity").get<int>();
+    pt.antherPollenTransferPerVisit = j.at("anther-pollen-transfer-per-visit").get<int>();
     pt.nectarReward = j.at("nectar-reward").get<int>();
+    pt.stigmaMaxPollenCapacity = j.at("stigma-max-pollen-capacity").get<int>();
+    if (pt.stigmaMaxPollenCapacity < 1)
+    {
+        // a user supplied value of 0 or negative means that the maximum capacity
+        // is set to an effectively unlimited value
+        pt.stigmaMaxPollenCapacity = 99999;
+    }
+    pt.pollenClogging = j.at("pollen-clogging").get<bool>();
+
 }
 
 void from_json(const json& j, PollinatorConfig& p)
 {
     p.species = j.at("species").get<string>();    
     p.boutLength = j.at("bout-length").get<int>();
-    p.maxPollenCapacity = j.at("max-pollen-capacity").get<int>();
     p.pollenLossOnFlower = j.at("pollen-loss-on-flower").get<int>();
     p.pollenLossInAir = j.at("pollen-loss-in-air").get<int>();
     p.pollenCarryoverNumVisits = j.at("pollen-carryover-num-visits").get<int>();
+    p.maxPollenCapacity = j.at("max-pollen-capacity").get<int>();
+    if (p.maxPollenCapacity < 1)
+    {
+        // a user supplied value of 0 or negative means that the maximum capacity
+        // is set to an effectively unlimited value
+        p.maxPollenCapacity = 99999;
+    }
 }
 
 

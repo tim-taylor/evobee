@@ -15,8 +15,6 @@
 #include "ModelParams.h"
 #include "EvoBeeModel.h"
 
-using std::cout;
-using std::endl;
 
 // Create our static random number generator engine
 std::mt19937 EvoBeeModel::m_sRngEngine;
@@ -79,7 +77,8 @@ void EvoBeeModel::seedRng()
 void EvoBeeModel::step()
 {
     ++m_iStep;
-    cout << "Model step " << m_iStep << endl;
+
+    std::cout << "Model step " << m_iStep << std::endl;
 
     // first allow all pollinators to update
     auto pollinators = m_Env.getAllPollinators();
@@ -88,18 +87,6 @@ void EvoBeeModel::step()
     {
         pol->step();
     }
-    /*
-    auto hives = m_Env.getHives();
-    for (auto &pHive : hives)
-    {
-        int numP = pHive->getNumPollinators();
-        for (int i=0; i<numP; ++i)
-        {
-            Pollinator* p = pHive->getPollinator(i);
-            //@todo
-        }
-    }
-    */
 
     ///@todo - what else required?    
 }

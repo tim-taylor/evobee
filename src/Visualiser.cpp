@@ -18,8 +18,6 @@
 #include "Colour.h"
 #include "Visualiser.h"
 
-using std::cout;
-using std::cerr;
 
 Visualiser::Visualiser(EvoBeeModel* pModel) :
     m_iScreenW(640),
@@ -43,13 +41,13 @@ Visualiser::~Visualiser()
 
 int Visualiser::init()
 {
-    std::cout << "In vis::init" << std::endl;
+    //std::cout << "In vis::init" << std::endl;
 
     // Initialise SDL (test)
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
     {
-        std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
+        std::cerr << "SDL_Init Error: " << SDL_GetError() << std::endl;
         return 1;
     }
 
@@ -90,7 +88,7 @@ int Visualiser::init()
         SDL_WINDOW_OPENGL);
     if (m_pWindow == nullptr)
     {
-        std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
+        std::cerr << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
         SDL_Quit();
         return 1;
     }
@@ -107,7 +105,7 @@ int Visualiser::init()
     if (m_pRenderer == nullptr)
     {
         sdl_cleanup(m_pWindow);
-        std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
+        std::cerr << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
         SDL_Quit();
         return 1;
     }
@@ -155,19 +153,19 @@ void Visualiser::update() {
 
                 if (pFlower->pollinated())
                 {
-                    std::cout << "xxx Pollinated!" << std::endl;
+                    // draw a pollinated flower
                     boxRGBA(
                         m_pRenderer,
                         pos.x * m_iPatchSize + offset,
                         pos.y * m_iPatchSize + offset,
                         (pos.x + 1) * m_iPatchSize - 1 + offset, 
                         (pos.y + 1) * m_iPatchSize - 1 + offset,
-                        255, 50, 50, 255
+                        150, 150, 150, 255
                     );
                 }
                 else
                 {
-                    //std::cout << "xxx Not Pollinated!" << std::endl;
+                    // draw an unpollinated flower
                     filledCircleRGBA(
                         m_pRenderer,
                         pos.x * m_iPatchSize + offset, 

@@ -15,6 +15,7 @@
  */
 struct PlantTypeConfig {
     PlantTypeConfig() :
+        pollenClogging(false),
         numFlowers(1),
         hasLeaf(false)
     {};
@@ -22,13 +23,14 @@ struct PlantTypeConfig {
     std::string species;
     MarkerPoint flowerMPInitMin;
     MarkerPoint flowerMPInitMax;
-    int antherInitPollen;
-    int antherPollenLossPerVisit;
-    int stigmaMaxPollenCapacity;
-    int nectarReward;
-    float initTemp; ///<@todo should be initialised // init temp of flowers and leaves
-    int numFlowers;
-    bool hasLeaf;
+    int         antherInitPollen;
+    int         antherPollenTransferPerVisit;
+    int         stigmaMaxPollenCapacity;
+    bool        pollenClogging;
+    int         nectarReward;
+    float       initTemp; ///<@todo should be initialised // init temp of flowers and leaves
+    int         numFlowers;
+    bool        hasLeaf;
     MarkerPoint leafMP;
 };
 

@@ -9,6 +9,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include "PlantTypeConfig.h"
 #include "ReflectanceInfo.h"
 #include "Flower.h"
@@ -22,6 +23,21 @@ class FloweringPlant {
 public:
     FloweringPlant(const PlantTypeConfig& ptc, fPos pos);
     //~FloweringPlant() {}
+
+    /**
+     *
+     */
+    unsigned int getId() const {return m_id;}
+
+    /**
+     *
+     */
+    unsigned int getSpeciesId() const {return m_SpeciesId;}
+
+    /**
+     * Return a string representing the species of this flower
+     */
+    const std::string& getSpecies() const;    
 
     /**
      * Returns the MarkerPoint of the specified flower
@@ -43,17 +59,29 @@ public:
      */
     float getDistanceSq(const fPos& point) const;
 
-    /**
-     * Return a string representing the species of this flower
-     */
-    const std::string& getSpecies() const {return m_Species;}
 
 private:
-    std::string m_Species;
-    fPos m_Position;
+    unsigned int        m_id;           ///< Unique ID number for this plant
+    unsigned int        m_SpeciesId;    ///< ID number of the species of this plant
+    fPos                m_Position;
     std::vector<Flower> m_Flowers;
-    bool m_bHasLeaf;
-    ReflectanceInfo m_LeafReflectance;
+    bool                m_bHasLeaf;
+    ReflectanceInfo     m_LeafReflectance;
+
+    /**
+     * Record of next available unique ID number to be assigned to a new individual FloweringPlant
+     */
+    static unsigned int m_sNextFreeId;
+
+    /**
+     * Record of next available unique ID number to be assigned to a new species of FloweringPlant
+     */
+    static unsigned int m_sNextFreeSpeciesId;     
+
+    /**
+     * A record of all currently known species IDs and their corresponding name
+     */
+    static std::map<unsigned int, std::string> m_sSpeciesMap;
 };
 
 #endif /* _FLOWERINGPLANT_H */

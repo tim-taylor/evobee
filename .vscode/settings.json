@@ -53,5 +53,14 @@
         "string_view": "cpp",
         "unordered_map": "cpp",
         "vector": "cpp"
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.html": true,
+        "**/.js": true
     }
 }

@@ -21,9 +21,6 @@
 #include "FloweringPlant.h"
 #include "Environment.h"
 
-using std::cout;
-using std::endl;
-
 
 Environment::Environment(EvoBeeModel* pModel) :
     m_pModel(pModel)
@@ -40,13 +37,12 @@ Environment::Environment(EvoBeeModel* pModel) :
     m_Patches.reserve(m_iNumPatches);
     for (int i = 0; i < m_iNumPatches; ++i) 
     {
-        m_Patches.push_back(
-            Patch(this, i, 
-                //ModelParams::getEnvDefaultBackgroundColour(),
-                ModelParams::getEnvBackgroundReflectanceMP(),
-                ModelParams::getEnvDefaultAmbientTemp()
-            )
-        );
+        m_Patches.emplace_back(
+            this, i,
+            //ModelParams::getEnvDefaultBackgroundColour(),
+            ModelParams::getEnvBackgroundReflectanceMP(),
+            ModelParams::getEnvDefaultAmbientTemp()
+        );        
     }
 
     // Initialise Hives
@@ -60,7 +56,7 @@ Environment::Environment(EvoBeeModel* pModel) :
     // Initialise Plants
     initialisePlants();
 
-    cout << "Initialised Environment with " << m_Patches.size() << " patches" << endl;    
+    std::cout << "Initialised Environment with " << m_Patches.size() << " patches" << std::endl;
 }
 
 
