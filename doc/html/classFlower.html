@@ -93,11 +93,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2bc41826a61726a9197132a4899030e8"><td class="memItemLeft" align="right" valign="top"><a id="a2bc41826a61726a9197132a4899030e8"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Flower</b> (<a class="el" href="classFloweringPlant.html">FloweringPlant</a> *pPlant, const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, <a class="el" href="classPosition.html">fPos</a> pos, MarkerPoint mp)</td></tr>
 <tr class="separator:a2bc41826a61726a9197132a4899030e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af205f163764ccb85a78f167011952acf"><td class="memItemLeft" align="right" valign="top"><a id="af205f163764ccb85a78f167011952acf"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getTemp</b> () const</td></tr>
-<tr class="separator:af205f163764ccb85a78f167011952acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad26c4ee61a8db33cab00968360e093ef"><td class="memItemLeft" align="right" valign="top"><a id="ad26c4ee61a8db33cab00968360e093ef"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getId</b> () const</td></tr>
+<tr class="separator:ad26c4ee61a8db33cab00968360e093ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb18f858a350f19793a4eb634acf5ded"><td class="memItemLeft" align="right" valign="top"><a id="abb18f858a350f19793a4eb634acf5ded"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getTemperature</b> () const</td></tr>
+<tr class="separator:abb18f858a350f19793a4eb634acf5ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50ac3a515021e85caeed9e466cb88a1e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a50ac3a515021e85caeed9e466cb88a1e">pollinated</a> () const</td></tr>
 <tr class="separator:a50ac3a515021e85caeed9e466cb88a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d06ebcebf88251a7077a3c4522a060"><td class="memItemLeft" align="right" valign="top"><a id="a41d06ebcebf88251a7077a3c4522a060"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getSpeciesId</b> () const</td></tr>
+<tr class="separator:a41d06ebcebf88251a7077a3c4522a060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a658e6726f9a63f34e133ce0ad576e52f"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a658e6726f9a63f34e133ce0ad576e52f">getSpecies</a> () const</td></tr>
 <tr class="separator:a658e6726f9a63f34e133ce0ad576e52f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bdce28b24a30ed6134a49e1b2fb2b8c"><td class="memItemLeft" align="right" valign="top"><a id="a6bdce28b24a30ed6134a49e1b2fb2b8c"></a>
@@ -105,8 +111,8 @@ MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><b>getMarkerPoint
 <tr class="separator:a6bdce28b24a30ed6134a49e1b2fb2b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3523abeac646d7a2e39aa37e3f867472"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a3523abeac646d7a2e39aa37e3f867472">transferAntherPollenToPollinator</a> (PollenVector &amp;pollinatorStore)</td></tr>
 <tr class="separator:a3523abeac646d7a2e39aa37e3f867472"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3abad949f0e97a9bbeea9c310fd0f716"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a3abad949f0e97a9bbeea9c310fd0f716">transferPollenFromPollinator</a> (PollenVector &amp;pollinatorStore, int suggestedNum, bool sameSpeciesOnly)</td></tr>
-<tr class="separator:a3abad949f0e97a9bbeea9c310fd0f716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a383880f10a52b8dcc8537d9050fc7c80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a383880f10a52b8dcc8537d9050fc7c80">transferPollenFromPollinator</a> (PollenVector &amp;pollinatorStore, int suggestedNum)</td></tr>
+<tr class="separator:a383880f10a52b8dcc8537d9050fc7c80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classFlower.html">Flower</a> class ... </p>
@@ -129,7 +135,7 @@ MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><b>getMarkerPoint
 </div><div class="memdoc">
 <p>Return a string identifying the owning plant species </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00026">26</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00033">33</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -157,7 +163,7 @@ MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><b>getMarkerPoint
 </div><div class="memdoc">
 <p>Is the flower pollinated? </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00035">35</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00042">42</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
 
 </div>
 </div>
@@ -186,12 +192,12 @@ MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><b>getMarkerPoint
 <dl class="section return"><dt>Returns</dt><dd>The number of grains transferred</dd></dl>
 <p>Note, no check is made as to whether the capacity of the pollinator's store has been exceeded. It is the responsibility of the pollinator to perform such a check after it has called this method. </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00032">32</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00039">39</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a3abad949f0e97a9bbeea9c310fd0f716"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3abad949f0e97a9bbeea9c310fd0f716">&#9670;&nbsp;</a></span>transferPollenFromPollinator()</h2>
+<a id="a383880f10a52b8dcc8537d9050fc7c80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a383880f10a52b8dcc8537d9050fc7c80">&#9670;&nbsp;</a></span>transferPollenFromPollinator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,13 +212,7 @@ MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><b>getMarkerPoint
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>suggestedNum</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>sameSpeciesOnly</em>&#160;</td>
+          <td class="paramname"><em>suggestedNum</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -225,14 +225,13 @@ MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><b>getMarkerPoint
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pollinatorStore</td><td>A reference to the pollinator's store from which the pollen is to be transferred </td></tr>
-    <tr><td class="paramname">suggestedNum</td><td>The number of grains that tha pollinator would normally transfer. The actual number transferred may be less than this if the stigma has reached its maximum capacity </td></tr>
-    <tr><td class="paramname">sameSpeciesOnly</td><td>If true, only pollen from the same species as this flower will be transferred. If false, all pollen will be considered for transfer (so pollen clogging may occur)</td></tr>
+    <tr><td class="paramname">suggestedNum</td><td>The number of grains that tha pollinator would normally transfer. The actual number transferred may be less than this if the stigma has reached its maximum capacity</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of grains transferred </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00059">59</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00066">66</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
