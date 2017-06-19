@@ -73,8 +73,13 @@ public:
 
     /**
      * Transfer some pollen grains from the specified pollinator's store
-     * to the flower's stigma, if possible. If any of the deposited pollen
-     * is from the same species, the flower will be pollinated.
+     * to the flower's stigma, if possible. Whether of not we allow pollen
+     * from a different species to be deposited is determined by the flower's
+     * m_bPollenClogging flag. If any of the deposited pollen is from the same
+     * species, the flower will be pollinated. If we are unable to transfer
+     * as much pollen from the pollinator as requested (because of limited
+     * capacity of the stigma), then the excess is simply removed from the
+     * pollinator as if lost in the air.
      *
      * @param pollinatorStore A reference to the pollinator's store from
      *  which the pollen is to be transferred

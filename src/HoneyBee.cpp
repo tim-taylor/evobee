@@ -98,7 +98,7 @@ void HoneyBee::visitFlower(Flower* pFlower)
 bool HoneyBee::isVisitCandidate(Flower* pFlower) const
 {
     bool bOfInterest = true;
-    ///@todo - implement isHarvestCandidate based upon innate and learned preferences for flower colour
+    ///@todo - implement isVisitCandidate based upon innate and learned preferences for flower colour
 
     /*
     // from Zoe's code...

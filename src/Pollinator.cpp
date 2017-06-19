@@ -170,7 +170,6 @@ void Pollinator::removeOldCarryoverPollen()
 // Transfer some of our pollen to the flower (potentially pollinating it)
 int Pollinator::depositPollenOnStigma(Flower* pFlower)
 {
-    ///@todo add a pollen-clogging param and use it here
     return pFlower->transferPollenFromPollinator(m_PollenStore, m_iPollenLossOnFlower);
 }
 
