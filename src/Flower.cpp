@@ -160,7 +160,7 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
             // test code
             if (m_bPollinated)
             {
-                std::cout << "Flower id " << m_id << " of speices " << m_SpeciesId <<
+                std::cout << "Flower id " << m_id << " of species " << m_SpeciesId <<
                     " pollinated by pollen of species " << pP->speciesId <<
                     " from plant id " << pP->pSource->getId() << std::endl;
             }

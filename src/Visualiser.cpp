@@ -23,6 +23,10 @@ Visualiser::Visualiser(EvoBeeModel* pModel) :
     m_iScreenW(640),
     m_iScreenH(480),
     m_iPatchSize(10),
+    m_fZoomLevel(1.0),
+    m_iScreenOffsetX(0),
+    m_iScreenOffsetY(0),
+    m_iDelayMsPerFrame(0),
     m_pWindow(nullptr),
     m_pRenderer(nullptr),
     m_pModel(pModel)
@@ -110,7 +114,79 @@ int Visualiser::init()
         return 1;
     }
 
+    // Make scaled rendering look smoother
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+
     return 0;
+}
+
+// Utility functions to convert Environment coordinates to screen coordinates
+
+// -- first, the int versions
+std::int16_t Visualiser::getScreenCoordFromIntX(int x)
+{
+    return m_iScreenOffsetX + (x * m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromIntY(int y)
+{
+    return m_iScreenOffsetY + (y * m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromIntWithAbsOffsetX(int x, int absOffset)
+{
+    return m_iScreenOffsetX + (x * m_iPatchSize) + absOffset;    
+}
+
+std::int16_t Visualiser::getScreenCoordFromIntWithAbsOffsetY(int y, int absOffset)
+{
+    return m_iScreenOffsetY + (y * m_iPatchSize) + absOffset;    
+}
+
+std::int16_t Visualiser::getScreenCoordFromIntWithRelOffsetX(int x, float relOffset)
+{
+    return m_iScreenOffsetX + (((float)x + relOffset) * (float)m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromIntWithRelOffsetY(int y, float relOffset)
+{
+    return m_iScreenOffsetY + (((float)y + relOffset) * (float)m_iPatchSize);
+}
+
+// - now, the float versions
+std::int16_t Visualiser::getScreenCoordFromFloatX(float x)
+{
+    return m_iScreenOffsetX + (x * m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromFloatY(float y)
+{
+    return m_iScreenOffsetY + (y * m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromFloatWithAbsOffsetX(float x, int absOffset)
+{
+    return m_iScreenOffsetX + (x * m_iPatchSize) + absOffset;    
+}
+
+std::int16_t Visualiser::getScreenCoordFromFloatWithAbsOffsetY(float y, int absOffset)
+{
+    return m_iScreenOffsetY + (y * m_iPatchSize) + absOffset;    
+}
+
+std::int16_t Visualiser::getScreenCoordFromFloatWithRelOffsetX(float x, float relOffset)
+{
+    return m_iScreenOffsetX + ((x + relOffset) * (float)m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromFloatWithRelOffsetY(float y, float relOffset)
+{
+    return m_iScreenOffsetY + ((y + relOffset) * (float)m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenLength(float len)
+{
+    return (std::int16_t)(len * (float)m_iPatchSize);
 }
 
 
@@ -118,48 +194,58 @@ void Visualiser::update() {
     SDL_Event e;
     bool quit = false;
 
+    /****/
+    m_fZoomLevel += 0.01;
+    m_iScreenOffsetX -= 1;
+    m_iScreenOffsetY -= 1;
+    m_iDelayMsPerFrame = 0;    
+    SDL_RenderSetScale(m_pRenderer, m_fZoomLevel, m_fZoomLevel);
+    //SDL_RenderSetLogicalSize(m_pRenderer, iZoomW, iZoomH);
+    /****/  
+
     SDL_SetRenderDrawColor(m_pRenderer, 0x0, 0x0, 0x0, 0xFF);
     SDL_RenderClear(m_pRenderer);
 
+    // render patches first
     auto patches = m_pModel->getEnv().getPatches();
     for (Patch& p : patches)
     {
         // render patches
-        auto c = Colour::getRgbFromMarkerPoint(p.getBackgroundMarkerPoint());
-        auto pos = p.getPosition();
+        const Colour::RGB & c = Colour::getRgbFromMarkerPoint(p.getBackgroundMarkerPoint());
+        const iPos & pos = p.getPosition();
         boxRGBA(
             m_pRenderer,
-            pos.x * m_iPatchSize,
-            pos.y * m_iPatchSize,
-            (pos.x + 1) * m_iPatchSize - 1,
-            (pos.y + 1) * m_iPatchSize - 1,
+            getScreenCoordFromIntX(pos.x),
+            getScreenCoordFromIntY(pos.y),
+            getScreenCoordFromIntWithAbsOffsetX(pos.x+1, -1),
+            getScreenCoordFromIntWithAbsOffsetY(pos.y+1, -1),
             c.r, c.g, c.b, 255
         );
+    }
 
-        // render flowers
+    // render flowers
+    for (Patch& p : patches)
+    {
         if (p.hasFloweringPlants())
         {
-            int offset = 0;
-            auto fplants = p.getFloweringPlants();
-            for (FloweringPlant& fplant : fplants)
-            {
-                ///@todo at present just using offsets rather than exact position 
-                /// of each flower in the patch
-                
+            PlantVector & fplants = p.getFloweringPlants();
+            for (FloweringPlant & fplant : fplants)
+            {                
                 ///@todo deal with multiple flowers on a plant?
 
                 Flower* pFlower = fplant.getFlower(0);
-                auto c = Colour::getRgbFromMarkerPoint(pFlower->getMarkerPoint());
+                const fPos & flwrpos = pFlower->getPosition();
+                const Colour::RGB & c = Colour::getRgbFromMarkerPoint(pFlower->getMarkerPoint());
 
                 if (pFlower->pollinated())
                 {
                     // draw a pollinated flower
                     boxRGBA(
                         m_pRenderer,
-                        pos.x * m_iPatchSize + offset,
-                        pos.y * m_iPatchSize + offset,
-                        (pos.x + 1) * m_iPatchSize - 1 + offset, 
-                        (pos.y + 1) * m_iPatchSize - 1 + offset,
+                        getScreenCoordFromFloatX(flwrpos.x),
+                        getScreenCoordFromFloatY(flwrpos.y),
+                        getScreenCoordFromFloatWithAbsOffsetX(flwrpos.x+1.0, -1),
+                        getScreenCoordFromFloatWithAbsOffsetY(flwrpos.y+1.0, -1),
                         150, 150, 150, 255
                     );
                 }
@@ -168,29 +254,27 @@ void Visualiser::update() {
                     // draw an unpollinated flower
                     filledCircleRGBA(
                         m_pRenderer,
-                        pos.x * m_iPatchSize + offset, 
-                        pos.y * m_iPatchSize + offset,
-                        m_iPatchSize/2,
+                        getScreenCoordFromFloatX(flwrpos.x+0.5),
+                        getScreenCoordFromFloatY(flwrpos.y+0.5),
+                        getScreenLength(0.5),
                         c.r, c.g, c.b, 255
                     );
                 }
-
-                ++offset;
             }
         }
     }
 
     // render hives
-    auto hives = m_pModel->getEnv().getHives();
-    for (auto &pHive : hives)
+    HivePtrVector & hives = m_pModel->getEnv().getHives();
+    for (auto& pHive : hives)
     {
-        auto hivepos = pHive->getPosition();
+        const fPos & hivepos = pHive->getPosition();
         boxRGBA(
             m_pRenderer,
-            hivepos.x * m_iPatchSize,
-            hivepos.y * m_iPatchSize,
-            (hivepos.x + 1) * m_iPatchSize - 1,
-            (hivepos.y + 1) * m_iPatchSize - 1,
+            getScreenCoordFromFloatX(hivepos.x),
+            getScreenCoordFromFloatY(hivepos.y),
+            getScreenCoordFromFloatWithAbsOffsetX(hivepos.x+1.0, -1),
+            getScreenCoordFromFloatWithAbsOffsetY(hivepos.y+1.0, -1),
             0, 0, 0, 255 ///@todo for now Hive visualisation colour is hard-coded as black
         );
 
@@ -200,21 +284,20 @@ void Visualiser::update() {
         {
             Pollinator* p = pHive->getPollinator(i);
             const fPos& ppos = p->getPosition();
+
             boxRGBA(
                 m_pRenderer,
-                ppos.x * m_iPatchSize,
-                ppos.y * m_iPatchSize,
-                (ppos.x + 1) * m_iPatchSize - 1,
-                (ppos.y + 1) * m_iPatchSize - 1,
+                getScreenCoordFromFloatX(ppos.x),
+                getScreenCoordFromFloatY(ppos.y),
+                getScreenCoordFromFloatWithAbsOffsetX(ppos.x+1.0, -1),
+                getScreenCoordFromFloatWithAbsOffsetY(ppos.y+1.0, -1),
                 255, 255, 255, 255 ///@todo for now Hive visualisation colour is hard-coded as white
             );          
 
             if (m_bShowTrails)
             {
                 unsigned int id = p->getId();
-
                 unsigned int maxid = Pollinator::getMaxIdIssued();
-
                 Uint8 r = 100 + ((150 * id) / maxid);
                 Uint8 g = 250 - ((150 * id) / maxid);
                 Uint8 b = r;
@@ -243,10 +326,10 @@ void Visualiser::update() {
                     {
                         lineRGBA(
                             m_pRenderer,
-                            prevPosItr->x * m_iPatchSize + (0.5 * m_iPatchSize),
-                            prevPosItr->y * m_iPatchSize + (0.5 * m_iPatchSize),
-                            curPosItr->x * m_iPatchSize + (0.5 * m_iPatchSize),
-                            curPosItr->y * m_iPatchSize + (0.5 * m_iPatchSize),
+                            getScreenCoordFromFloatWithRelOffsetX(prevPosItr->x, 0.5),
+                            getScreenCoordFromFloatWithRelOffsetY(prevPosItr->y, 0.5),
+                            getScreenCoordFromFloatWithRelOffsetX(curPosItr->x, 0.5),
+                            getScreenCoordFromFloatWithRelOffsetY(curPosItr->y, 0.5),
                             r, g, b, 200
                         );
                         prevPosItr = curPosItr;                         
@@ -287,6 +370,9 @@ void Visualiser::update() {
         }
         */
     //}
-    //SDL_Delay(3000);
+    if (m_iDelayMsPerFrame > 0)
+    {
+        SDL_Delay(m_iDelayMsPerFrame);
+    }
 
 }

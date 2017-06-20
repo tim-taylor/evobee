@@ -1,6 +1,6 @@
 {
     "SimulationParams" : {
-        "termination-num-steps" : 150,
+        "termination-num-steps" : 70,
         "rng-seed" : "",
         "visualisation" : true,
         "vis-update-period" : 1,

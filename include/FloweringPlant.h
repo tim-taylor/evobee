@@ -45,6 +45,11 @@ public:
     MarkerPoint getFlowerMarkerPoint(unsigned int flower = 0);
 
     /**
+     *
+     */
+    const fPos& getPosition() const {return m_Position;}
+
+    /**
      * Returns a pointer to the specified flower
      */
     Flower* getFlower(unsigned int flower = 0);

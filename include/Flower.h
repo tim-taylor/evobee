@@ -34,6 +34,11 @@ public:
     /**
      *
      */
+    const fPos& getPosition() const {return m_Position;}
+
+    /**
+     *
+     */
     float getTemperature() const {return m_fTemperature;}
 
     /**
