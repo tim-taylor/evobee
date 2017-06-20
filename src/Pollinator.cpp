@@ -19,7 +19,7 @@
 constexpr double PI = 4.0*std::atan(1);
 constexpr double TWOPI = 2.0*PI;
 
-unsigned int Pollinator::m_sNextFreeId = 0;
+unsigned int Pollinator::m_sNextFreeId = 1;
 std::string Pollinator::m_sTypeNameStr{"POL"};
 std::uniform_real_distribution<float> Pollinator::m_sDirectionDistrib(0.0, TWOPI);
 

@@ -81,6 +81,11 @@ public:
     /**
      *
      */
+    static unsigned int getMaxIdIssued() {return m_sNextFreeId-1;}
+
+    /**
+     *
+     */
     PollinatorState getState() const {return m_State;}
 
 

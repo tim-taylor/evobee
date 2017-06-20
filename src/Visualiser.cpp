@@ -211,7 +211,13 @@ void Visualiser::update() {
 
             if (m_bShowTrails)
             {
-                auto id = p->getId();
+                unsigned int id = p->getId();
+
+                unsigned int maxid = Pollinator::getMaxIdIssued();
+
+                Uint8 r = 100 + ((150 * id) / maxid);
+                Uint8 g = 250 - ((150 * id) / maxid);
+                Uint8 b = r;
 
                 // check if we already have a history record for this pollinator
                 auto itr = m_PollMoveHists.find(id);
@@ -241,7 +247,7 @@ void Visualiser::update() {
                             prevPosItr->y * m_iPatchSize + (0.5 * m_iPatchSize),
                             curPosItr->x * m_iPatchSize + (0.5 * m_iPatchSize),
                             curPosItr->y * m_iPatchSize + (0.5 * m_iPatchSize),
-                            255, 255, 255, 255 ///@todo diff cols for diff polls?
+                            r, g, b, 200
                         );
                         prevPosItr = curPosItr;                         
                     }
