@@ -10,6 +10,7 @@
 bool   ModelParams::m_bVisualisation = true;
 bool   ModelParams::m_bVisPollinatorTrails = false;
 int    ModelParams::m_iVisUpdatePeriod = 1;
+int    ModelParams::m_iVisDelayPerFrame = 0;
 int    ModelParams::m_iLogUpdatePeriod = 1;
 int    ModelParams::m_iEnvSizeX = 50;
 int    ModelParams::m_iEnvSizeY = 50;
@@ -113,6 +114,14 @@ void ModelParams::setVisUpdatePeriod(int p)
 {
     if (p > 0)
         m_iVisUpdatePeriod = p;
+}
+
+void ModelParams::setVisDelayPerFrame(int delayMs)
+{
+    if (delayMs >= 0)
+    {
+        m_iVisDelayPerFrame = delayMs;
+    }
 }
 
 void ModelParams::setLogUpdatePeriod(int p)

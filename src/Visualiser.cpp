@@ -22,17 +22,17 @@
 Visualiser::Visualiser(EvoBeeModel* pModel) :
     m_iScreenW(640),
     m_iScreenH(480),
-    m_iPatchSize(10),
+    m_iPatchSize(20),
     m_fZoomLevel(1.0),
     m_iScreenOffsetX(0),
     m_iScreenOffsetY(0),
-    m_iDelayMsPerFrame(0),
     m_pWindow(nullptr),
     m_pRenderer(nullptr),
     m_pModel(pModel)
 {
     assert(ModelParams::initialised());
     m_bShowTrails = ModelParams::getVisPollinatorTrails();
+    m_iDelayMsPerFrame = ModelParams::getVisDelayPerFrame();
 }
 
 
@@ -68,17 +68,17 @@ int Visualiser::init()
     m_iScreenW = (int)(ModelParams::getMaxScreenFracW() * (float)dm.w);
     m_iScreenH = (int)(ModelParams::getMaxScreenFracH() * (float)dm.h);
 
-    m_iPatchSize = std::max(1, std::min(
-        m_iScreenW / ModelParams::getEnvSizeX(),
-        m_iScreenH / ModelParams::getEnvSizeY()
-    )
+    float fScreenToEnvRatio = std::min<float>(        
+        (float)m_iScreenW / (float)ModelParams::getEnvSizeX(),
+        (float)m_iScreenH / (float)ModelParams::getEnvSizeY()
     );
 
-    m_iScreenW = m_iPatchSize * ModelParams::getEnvSizeX();
-    m_iScreenH = m_iPatchSize * ModelParams::getEnvSizeY();
-    // NB The SDL_RenderSetScale() function might come in handy, e.g. to allow
-    // user to zoom in and out of display easily
+    m_fZoomLevel = fScreenToEnvRatio / (float)m_iPatchSize;
 
+    // having calculated the zoom level, now readjust screen width and height so that
+    // it is exactly the right size for the specified environment size at this zoom level
+    m_iScreenW = m_fZoomLevel * (float)m_iPatchSize * (float)ModelParams::getEnvSizeX();
+    m_iScreenH = m_fZoomLevel * (float)m_iPatchSize * (float)ModelParams::getEnvSizeY();
 
     //-------------------------------------------------------------------------
     // Create Window
@@ -120,89 +120,12 @@ int Visualiser::init()
     return 0;
 }
 
-// Utility functions to convert Environment coordinates to screen coordinates
 
-// -- first, the int versions
-std::int16_t Visualiser::getScreenCoordFromIntX(int x)
+bool Visualiser::update()
 {
-    return m_iScreenOffsetX + (x * m_iPatchSize);
-}
+    bool bContinue = true;
 
-std::int16_t Visualiser::getScreenCoordFromIntY(int y)
-{
-    return m_iScreenOffsetY + (y * m_iPatchSize);
-}
-
-std::int16_t Visualiser::getScreenCoordFromIntWithAbsOffsetX(int x, int absOffset)
-{
-    return m_iScreenOffsetX + (x * m_iPatchSize) + absOffset;    
-}
-
-std::int16_t Visualiser::getScreenCoordFromIntWithAbsOffsetY(int y, int absOffset)
-{
-    return m_iScreenOffsetY + (y * m_iPatchSize) + absOffset;    
-}
-
-std::int16_t Visualiser::getScreenCoordFromIntWithRelOffsetX(int x, float relOffset)
-{
-    return m_iScreenOffsetX + (((float)x + relOffset) * (float)m_iPatchSize);
-}
-
-std::int16_t Visualiser::getScreenCoordFromIntWithRelOffsetY(int y, float relOffset)
-{
-    return m_iScreenOffsetY + (((float)y + relOffset) * (float)m_iPatchSize);
-}
-
-// - now, the float versions
-std::int16_t Visualiser::getScreenCoordFromFloatX(float x)
-{
-    return m_iScreenOffsetX + (x * m_iPatchSize);
-}
-
-std::int16_t Visualiser::getScreenCoordFromFloatY(float y)
-{
-    return m_iScreenOffsetY + (y * m_iPatchSize);
-}
-
-std::int16_t Visualiser::getScreenCoordFromFloatWithAbsOffsetX(float x, int absOffset)
-{
-    return m_iScreenOffsetX + (x * m_iPatchSize) + absOffset;    
-}
-
-std::int16_t Visualiser::getScreenCoordFromFloatWithAbsOffsetY(float y, int absOffset)
-{
-    return m_iScreenOffsetY + (y * m_iPatchSize) + absOffset;    
-}
-
-std::int16_t Visualiser::getScreenCoordFromFloatWithRelOffsetX(float x, float relOffset)
-{
-    return m_iScreenOffsetX + ((x + relOffset) * (float)m_iPatchSize);
-}
-
-std::int16_t Visualiser::getScreenCoordFromFloatWithRelOffsetY(float y, float relOffset)
-{
-    return m_iScreenOffsetY + ((y + relOffset) * (float)m_iPatchSize);
-}
-
-std::int16_t Visualiser::getScreenLength(float len)
-{
-    return (std::int16_t)(len * (float)m_iPatchSize);
-}
-
-
-void Visualiser::update() {
-    SDL_Event e;
-    bool quit = false;
-
-    /****/
-    m_fZoomLevel += 0.01;
-    m_iScreenOffsetX -= 1;
-    m_iScreenOffsetY -= 1;
-    m_iDelayMsPerFrame = 0;    
     SDL_RenderSetScale(m_pRenderer, m_fZoomLevel, m_fZoomLevel);
-    //SDL_RenderSetLogicalSize(m_pRenderer, iZoomW, iZoomH);
-    /****/  
-
     SDL_SetRenderDrawColor(m_pRenderer, 0x0, 0x0, 0x0, 0xFF);
     SDL_RenderClear(m_pRenderer);
 
@@ -340,39 +263,130 @@ void Visualiser::update() {
     }
 
 
-    // Now everythin is prepared, render the entire scence
+    // Now everything is prepared, render the entire scence
     SDL_RenderPresent(m_pRenderer);
 
-    //while(!quit)
-    //{
-        while( SDL_PollEvent( &e ) != 0 )
+    // Deal with user interactivity
+    SDL_Event e;
+    while (SDL_PollEvent(&e) != 0)
+    {
+        if (e.type == SDL_QUIT)
         {
-            if( e.type == SDL_QUIT )
+            bContinue = false;
+        }
+        else if (e.type == SDL_KEYDOWN)
+        {
+            switch (e.key.keysym.sym)
             {
-                quit = true;
+                case SDLK_x: 
+                {
+                    m_fZoomLevel = std::min(m_fZoomLevel + 0.1, 10.0);
+                    break;
+                }
+                case SDLK_z:
+                {
+                    m_fZoomLevel = std::max(m_fZoomLevel - 0.1, 0.1);
+                    break;
+                }
+                case SDLK_LEFT:
+                {
+                    m_iScreenOffsetX -= 5;
+                    break;
+                }
+                case SDLK_RIGHT:
+                {
+                    m_iScreenOffsetX += 5;
+                    break;
+                }
+                case SDLK_UP:
+                {
+                    m_iScreenOffsetY -= 5;
+                    break;
+                }
+                case SDLK_DOWN:
+                {
+                    m_iScreenOffsetY += 5;
+                    break;
+                }
             }
         }
-        /*
-        while (SDL_PollEvent(&e))
-        {
-            if (e.type == SDL_QUIT)
-            {
-                quit = true;
-            }
-            if (e.type == SDL_KEYDOWN)
-            {
-                quit = true;
-            }
-            if (e.type == SDL_MOUSEBUTTONDOWN)
-            {
-                quit = true;
-            }
-        }
-        */
-    //}
+    }
+
     if (m_iDelayMsPerFrame > 0)
     {
         SDL_Delay(m_iDelayMsPerFrame);
     }
 
+    return bContinue;
+}
+
+
+/////////////////////////
+// Utility functions to convert Environment coordinates to screen coordinates
+
+// -- first, the int versions
+std::int16_t Visualiser::getScreenCoordFromIntX(int x)
+{
+    return m_iScreenOffsetX + (x * m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromIntY(int y)
+{
+    return m_iScreenOffsetY + (y * m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromIntWithAbsOffsetX(int x, int absOffset)
+{
+    return m_iScreenOffsetX + (x * m_iPatchSize) + absOffset;    
+}
+
+std::int16_t Visualiser::getScreenCoordFromIntWithAbsOffsetY(int y, int absOffset)
+{
+    return m_iScreenOffsetY + (y * m_iPatchSize) + absOffset;    
+}
+
+std::int16_t Visualiser::getScreenCoordFromIntWithRelOffsetX(int x, float relOffset)
+{
+    return m_iScreenOffsetX + (((float)x + relOffset) * (float)m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromIntWithRelOffsetY(int y, float relOffset)
+{
+    return m_iScreenOffsetY + (((float)y + relOffset) * (float)m_iPatchSize);
+}
+
+// - now, the float versions
+std::int16_t Visualiser::getScreenCoordFromFloatX(float x)
+{
+    return m_iScreenOffsetX + (x * m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromFloatY(float y)
+{
+    return m_iScreenOffsetY + (y * m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromFloatWithAbsOffsetX(float x, int absOffset)
+{
+    return m_iScreenOffsetX + (x * m_iPatchSize) + absOffset;    
+}
+
+std::int16_t Visualiser::getScreenCoordFromFloatWithAbsOffsetY(float y, int absOffset)
+{
+    return m_iScreenOffsetY + (y * m_iPatchSize) + absOffset;    
+}
+
+std::int16_t Visualiser::getScreenCoordFromFloatWithRelOffsetX(float x, float relOffset)
+{
+    return m_iScreenOffsetX + ((x + relOffset) * (float)m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenCoordFromFloatWithRelOffsetY(float y, float relOffset)
+{
+    return m_iScreenOffsetY + ((y + relOffset) * (float)m_iPatchSize);
+}
+
+std::int16_t Visualiser::getScreenLength(float len)
+{
+    return (std::int16_t)(len * (float)m_iPatchSize);
 }

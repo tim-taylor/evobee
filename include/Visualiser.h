@@ -25,8 +25,17 @@ public:
     Visualiser(EvoBeeModel* pModel);
     ~Visualiser();
 
+    /**
+     * Initialise visualisation code
+     */
     int init();
-    void update();
+
+    /**
+     * Run a single frame update of the visualiser, and deal with any user interactions
+     *
+     * @return true if all good, false if user has pressed the Quit key
+     */
+    bool update();
 
 private:
     // Utility functions to map from Environment coordinates to screen coordinates
@@ -66,8 +75,10 @@ private:
     // private data memebers
     int     m_iScreenW;
     int     m_iScreenH;
-    int     m_iPatchSize;
-
+    int     m_iPatchSize; /** determines the fundemental resolution for each patch
+                           *  i.e. the number of pixels width and height used to draw
+                           *  each patch, before any zoom scaling is applied.
+                           */
     float   m_fZoomLevel;
     int     m_iScreenOffsetX;
     int     m_iScreenOffsetY;

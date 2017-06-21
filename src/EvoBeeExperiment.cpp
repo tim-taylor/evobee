@@ -69,7 +69,11 @@ void EvoBeeExperiment::run() {
 
         if ((m_bVis) && (step % m_iVisUpdatePeriod == 0)) 
         {
-            m_Visualiser.update();
+            bool bContinue = m_Visualiser.update();
+            if (!bContinue)
+            {
+                break; // may want to ask the user for confirmation first?
+            }
         }
     }
 }

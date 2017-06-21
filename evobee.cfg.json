@@ -1,9 +1,10 @@
 {
     "SimulationParams" : {
-        "termination-num-steps" : 70,
+        "termination-num-steps" : 200,
         "rng-seed" : "",
         "visualisation" : true,
         "vis-update-period" : 1,
+        "vis-delay-per-frame" : 0,
         "vis-pollinator-trails" : true,
         "vis-max-screen-frac-w" : 0.85,
         "vis-max-screen-frac-h" : 0.85,
@@ -12,8 +13,8 @@
         "log-run-name" : "test"
     },    
     "Environment" : {
-        "env-size-x" : 70,
-        "env-size-y" : 70,
+        "env-size-x" : 100,
+        "env-size-y" : 100,
         "background-reflectance-mp" : 500,
         "default-ambient-temp": 20.0,
         "Hives" : {

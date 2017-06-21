@@ -322,6 +322,10 @@ void processJsonFile(ifstream& ifs)
                     cout << "Vis update period -> " << it.value() << endl;
                     ModelParams::setVisUpdatePeriod(it.value());
                 }
+                else if (it.key() == "vis-delay-per-frame" && it.value().is_number()) {
+                    cout << "Vis delay per frame (ms) -> " << it.value() << endl;
+                    ModelParams::setVisDelayPerFrame(it.value());
+                }                
                 else if (it.key() == "vis-pollinator-trails" && it.value().is_boolean()) {
                     cout << "Vis pollinator trails -> " << it.value() << endl;
                     ModelParams::setVisPollinatorTrails(it.value());

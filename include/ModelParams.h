@@ -37,6 +37,7 @@ public:
     static void setMaxScreenFracH(float fh);
     static void setVisPollinatorTrails(bool show);
     static void setVisUpdatePeriod(int p);
+    static void setVisDelayPerFrame(int delayMs);
     static void setLogUpdatePeriod(int p);
     static void setInitialised();
     static void setTerminationNumSteps(int steps);
@@ -58,6 +59,7 @@ public:
     static float getMaxScreenFracH() {return m_fMaxScreenFracH;}
     static bool  getVisPollinatorTrails() {return m_bVisPollinatorTrails;}
     static int   getVisUpdatePeriod() {return m_iVisUpdatePeriod;}
+    static int   getVisDelayPerFrame() {return m_iVisDelayPerFrame;}
     static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
     static int   getTerminationNumSteps() {return m_iTerminationNumSteps;}
     static MarkerPoint getEnvBackgroundReflectanceMP() {return m_EnvBackgroundReflectanceMP;}
@@ -84,6 +86,7 @@ private:
     static MarkerPoint m_EnvBackgroundReflectanceMP; ///< Default background reflectance Marker Point for each Patch
     static bool  m_bVisPollinatorTrails;    ///< Display trails of pollinators' past movements?
     static int   m_iVisUpdatePeriod;        ///< Number of model steps between each update of visualisation
+    static int   m_iVisDelayPerFrame;       ///< Specifies a delay (in ms) per frame of the visualisation code
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
     static int   m_iTerminationNumSteps;    ///< Terminate run after this number of steps
