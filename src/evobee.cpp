@@ -372,9 +372,13 @@ void processJsonFile(ifstream& ifs)
                     ModelParams::setEnvBackgroundReflectanceMP(it.value());
                 }
                 else if (it.key() == "Hives" && it.value().is_object()) {
+                    std::string HKey {"Hive"};
                     for (json::iterator itHives = it->begin(); itHives != it->end(); ++itHives)
                     {
-                        if (itHives.key() == "Hive" && itHives.value().is_object()) {
+                        const std::string& key = itHives.key();
+                        if ((key.compare(0, HKey.size(), HKey) == 0) &&
+                            itHives.value().is_object())
+                        {
                             HiveConfig hc = itHives.value();
                             ModelParams::addHiveConfig(hc);
                         }
@@ -385,9 +389,13 @@ void processJsonFile(ifstream& ifs)
                     }
                 }
                 else if (it.key() == "PlantTypeDistributions" && it.value().is_object()) {
+                    std::string PTDKey {"PlantTypeDistribution"};
                     for (json::iterator itPTDs = it->begin(); itPTDs != it->end(); ++itPTDs)
                     {
-                        if (itPTDs.key() == "PlantTypeDistribution" && itPTDs.value().is_object()) {
+                        const std::string& key = itPTDs.key();
+                        if ((key.compare(0, PTDKey.size(), PTDKey) == 0) &&
+                             itPTDs.value().is_object())
+                        {
                             PlantTypeDistributionConfig pc = itPTDs.value();
                             ModelParams::addPlantTypeDistributionConfig(pc);
                         }
@@ -407,9 +415,13 @@ void processJsonFile(ifstream& ifs)
         auto itPTs = j.find("PlantTypes");
         if ((itPTs != j.end()) && (itPTs->is_object()))
         {
+            std::string PTKey {"PlantType"};
             for (json::iterator itPT = itPTs->begin(); itPT != itPTs->end(); ++itPT)
             {
-                if (itPT.key() == "PlantType" && itPT.value().is_object()) {
+                const std::string& key = itPT.key();
+                if ((key.compare(0, PTKey.size(), PTKey) == 0) &&
+                    itPT.value().is_object())
+                {
                     PlantTypeConfig pc = itPT.value();
                     ModelParams::addPlantTypeConfig(pc);
                 }
@@ -424,9 +436,13 @@ void processJsonFile(ifstream& ifs)
         auto itPs = j.find("Pollinators");
         if ((itPs != j.end()) && (itPs->is_object()))
         {
+            std::string PKey {"Pollinator"};
             for (json::iterator itP = itPs->begin(); itP != itPs->end(); ++itP)
             {
-                if (itP.key() == "Pollinator" && itP.value().is_object()) {
+                const std::string& key = itP.key();
+                if ((key.compare(0, PKey.size(), PKey) == 0) && 
+                    itP.value().is_object())
+                {
                     PollinatorConfig pc = itP.value();
                     ModelParams::addPollinatorConfig(pc);
                 }
