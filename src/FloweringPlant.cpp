@@ -13,26 +13,29 @@
 
 
 // Initialise static members of class
-unsigned int FloweringPlant::m_sNextFreeId = 0;
-unsigned int FloweringPlant::m_sNextFreeSpeciesId = 0;
+unsigned int FloweringPlant::m_sNextFreeId = 1;
+unsigned int FloweringPlant::m_sNextFreeSpeciesId = 1;
 std::map<unsigned int, std::string> FloweringPlant::m_sSpeciesMap;
 
 
 /**
  *
  */
-FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, fPos pos) :
+FloweringPlant::FloweringPlant(const PlantTypeDistributionConfig& distConfig,
+                               const PlantTypeConfig& typeConfig, fPos pos) :
     m_id(m_sNextFreeId++),
     m_Position(pos),
-    m_bHasLeaf(ptc.hasLeaf)
+    m_bHasLeaf(typeConfig.hasLeaf)
 {
-    assert(ptc.numFlowers > 0);
+    ///@todo do something with distConfig...
+
+    assert(typeConfig.numFlowers > 0);
 
     // Do we already have a record of this plant species?
     auto it = std::find_if( m_sSpeciesMap.begin(),
                             m_sSpeciesMap.end(),
-                            [ptc](const std::pair<unsigned int, std::string> & pair)
-                                { return pair.second == ptc.species; } );
+                            [typeConfig](const std::pair<unsigned int, std::string> & pair)
+                                {return pair.second == typeConfig.species;} );
     if (it != m_sSpeciesMap.end())
     {
         // species already know, so assign the associated species id to the plant
@@ -43,35 +46,37 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& ptc, fPos pos) :
         // this is a new species, so select a new species id to use, and also
         // insert of record of the new id and species name into m_sSpeciesMap
         m_SpeciesId = m_sNextFreeSpeciesId++;
-        m_sSpeciesMap[m_SpeciesId] = ptc.species;
+        m_sSpeciesMap[m_SpeciesId] = typeConfig.species;
 
-        std::cout << "Adding new plant species to map: id=" << m_SpeciesId << ", name=" << ptc.species << std::endl;
+        std::cout << "Adding new plant species to map: id=" << m_SpeciesId << ", name=" <<
+            typeConfig.species << std::endl;
     }
 
     if (m_bHasLeaf)
     {
-        m_LeafReflectance.setMarkerPoint(ptc.leafMP);
+        m_LeafReflectance.setMarkerPoint(typeConfig.leafMP);
     }
 
-    for (int i=0; i<ptc.numFlowers; ++i)
+    for (int i=0; i < typeConfig.numFlowers; ++i)
     {
         MarkerPoint mp;
 
-        if (ptc.flowerMPInitMin == ptc.flowerMPInitMax)
+        if (typeConfig.flowerMPInitMin == typeConfig.flowerMPInitMax)
         {
-            mp = ptc.flowerMPInitMin;
+            mp = typeConfig.flowerMPInitMin;
         }
         else
         {
             // pick a marker point at uniform random between the min and max values supplied
-            std::uniform_int_distribution<MarkerPoint> dist(ptc.flowerMPInitMin, ptc.flowerMPInitMax);
+            std::uniform_int_distribution<MarkerPoint> dist(
+                typeConfig.flowerMPInitMin, typeConfig.flowerMPInitMax);
             mp = dist(EvoBeeModel::m_sRngEngine);
         }
 
         ///@todo - for now, we are placing all flowers at the same position
         /// (the same position as the plant itself). If/when we start looking
         /// at plants with multiple flowers, we might want to change this
-        m_Flowers.emplace_back(this, ptc, m_Position, mp);
+        m_Flowers.emplace_back(this, typeConfig, m_Position, mp);
     }
 }
 

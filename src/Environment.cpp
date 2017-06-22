@@ -39,7 +39,6 @@ Environment::Environment(EvoBeeModel* pModel) :
     {
         m_Patches.emplace_back(
             this, i,
-            //ModelParams::getEnvDefaultBackgroundColour(),
             ModelParams::getEnvBackgroundReflectanceMP(),
             ModelParams::getEnvDefaultAmbientTemp()
         );        
@@ -92,14 +91,17 @@ Patch& Environment::getPatch(int x, int y)
  */
 void Environment::initialisePlants()
 {
-    const std::vector<PlantTypeDistributionConfig> &pdconfigs = ModelParams::getPlantTypeDistributionConfigs();
-    for (const PlantTypeDistributionConfig &pdcfg : pdconfigs)
+    const std::vector<PlantTypeDistributionConfig>& pdconfigs = 
+        ModelParams::getPlantTypeDistributionConfigs();
+    
+    for (const PlantTypeDistributionConfig& pdcfg : pdconfigs)
     {
         // first find the corresponding PlantTypeConfig
         const PlantTypeConfig* pPTC = ModelParams::getPlantTypeConfig(pdcfg.species);
         if (pPTC == nullptr)
         {
-            throw std::runtime_error("Unknown plant species '" + pdcfg.species + "' specified in config file");
+            throw std::runtime_error("Unknown plant species '" + pdcfg.species +
+                "' specified in config file");
         }
 
         // calculate some basic values associated with the requested distribution
@@ -129,12 +131,11 @@ void Environment::initialisePlants()
         {
             for (int y = 0; y < h; ++y)
             {
-                Patch &p = getPatch(x + pdcfg.areaTopLeftX, y + pdcfg.areaTopLeftY);
-                auto &v = patchInfo[x][y];
-                for (auto &pinfo : v)
+                Patch& patch = getPatch(x + pdcfg.areaTopLeftX, y + pdcfg.areaTopLeftY);
+                std::vector<fPos>& posvec = patchInfo[x][y];
+                for (fPos& pos : posvec)
                 {
-                    // pinfo.first is x coordinate, second is y coordinate
-                    p.addPlant(*pPTC, pinfo);
+                    patch.addPlant(pdcfg, *pPTC, pos);
                 }
             }
         }

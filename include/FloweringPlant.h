@@ -11,6 +11,7 @@
 #include <vector>
 #include <map>
 #include "PlantTypeConfig.h"
+#include "PlantTypeDistributionConfig.h"
 #include "ReflectanceInfo.h"
 #include "Flower.h"
 #include "Position.h"
@@ -21,8 +22,8 @@
 class FloweringPlant {
 
 public:
-    FloweringPlant(const PlantTypeConfig& ptc, fPos pos);
-    //~FloweringPlant() {}
+    FloweringPlant(const PlantTypeDistributionConfig& distConfig,
+                   const PlantTypeConfig& typeConfig, fPos pos);
 
     /**
      *
@@ -72,6 +73,8 @@ private:
     std::vector<Flower> m_Flowers;
     bool                m_bHasLeaf;
     ReflectanceInfo     m_LeafReflectance;
+
+    //const PlantTypeDistributionConfig& ...;
 
     /**
      * Record of next available unique ID number to be assigned to a new individual FloweringPlant

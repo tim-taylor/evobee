@@ -9,9 +9,7 @@
 #include "FloweringPlant.h"
 #include "Flower.h"
 
-
-unsigned int Flower::m_sNextFreeId = 0;
-
+unsigned int Flower::m_sNextFreeId = 1;
 
 
 Flower::Flower(FloweringPlant* pPlant, const PlantTypeConfig& ptc, fPos pos, MarkerPoint mp) :

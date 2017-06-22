@@ -10,6 +10,7 @@
 #include <vector>
 #include "ReflectanceInfo.h"
 #include "PlantTypeConfig.h"
+#include "PlantTypeDistributionConfig.h"
 #include "FloweringPlant.h"
 #include "Position.h"
 
@@ -26,18 +27,31 @@ public:
     Patch(Environment* pEnv, int posIdx, MarkerPoint backgroundMP, float temp);
     ~Patch() {}
 
+    /**
+     *
+     */
     MarkerPoint getBackgroundMarkerPoint() const {return m_BackgroundReflectance.getMarkerPoint();}
 
-    ///
+    /**
+     *
+     */
     const iPos& getPosition() const {return m_Position;}
 
-    ///
-    void addPlant(const PlantTypeConfig& ptc, fPos pos);
+    /**
+     * Create a new plant object based upon the specified config objects and add
+     * it to this patch at the specified position
+     */
+    void addPlant(const PlantTypeDistributionConfig& distConfig,
+                  const PlantTypeConfig& typeConfig, fPos pos);
 
-    ///
+    /**
+     *
+     */    
     bool hasFloweringPlants() const {return !m_FloweringPlants.empty();}
 
-    ///
+    /**
+     *
+     */    
     PlantVector& getFloweringPlants() {return m_FloweringPlants;}
 
 private:

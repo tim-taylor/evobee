@@ -1,6 +1,6 @@
 {
     "SimulationParams" : {
-        "termination-num-steps" : 200,
+        "termination-num-steps" : 150,
         "rng-seed" : "",
         "visualisation" : true,
         "vis-update-period" : 1,
@@ -31,14 +31,14 @@
                 "species" : "PlantSpecies1",
                 "area-top-left-x" : 0,
                 "area-top-left-y" : 0,
-                "area-bottom-right-x" : 49,
-                "area-bottom-right-y" : 49,
+                "area-bottom-right-x" : 59,
+                "area-bottom-right-y" : 59,
                 "density" : 0.1
             },
             "PlantTypeDistribution2" : {
                 "species" : "PlantSpecies2",
-                "area-top-left-x" : 50,
-                "area-top-left-y" : 50,
+                "area-top-left-x" : 40,
+                "area-top-left-y" : 40,
                 "area-bottom-right-x" : 99,
                 "area-bottom-right-y" : 99,
                 "density" : 0.2
