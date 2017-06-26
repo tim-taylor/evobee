@@ -1,7 +1,8 @@
 <map id="include/FloweringPlant.h" name="include/FloweringPlant.h">
-<area shape="rect" id="node5" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="25,155,155,181"/>
-<area shape="rect" id="node6" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="130,229,255,256"/>
-<area shape="rect" id="node7" href="$Flower_8h.html" title="Flower.h" alt="" coords="237,80,309,107"/>
-<area shape="rect" id="node8" href="$Position_8h.html" title="Position.h" alt="" coords="457,155,537,181"/>
-<area shape="rect" id="node10" href="$Pollen_8h.html" title="Pollen.h" alt="" coords="230,155,299,181"/>
+<area shape="rect" id="node5" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="104,155,235,181"/>
+<area shape="rect" id="node6" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="303,229,428,256"/>
+<area shape="rect" id="node7" href="$PlantTypeDistributionConfig_8h.html" title="PlantTypeDistributionConfig.h" alt="" coords="305,80,501,107"/>
+<area shape="rect" id="node8" href="$Position_8h.html" title="Position.h" alt="" coords="454,155,534,181"/>
+<area shape="rect" id="node10" href="$Flower_8h.html" title="Flower.h" alt="" coords="208,80,280,107"/>
+<area shape="rect" id="node11" href="$Pollen_8h.html" title="Pollen.h" alt="" coords="259,155,328,181"/>
 </map>

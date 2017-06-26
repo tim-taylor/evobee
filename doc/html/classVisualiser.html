@@ -93,38 +93,57 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5f71c74ba4aeea112f2a754c11fe7e84"><td class="memItemLeft" align="right" valign="top"><a id="a5f71c74ba4aeea112f2a754c11fe7e84"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Visualiser</b> (<a class="el" href="classEvoBeeModel.html">EvoBeeModel</a> *pModel)</td></tr>
 <tr class="separator:a5f71c74ba4aeea112f2a754c11fe7e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dd3bd60cdd4d20b551dec127f5be7c7"><td class="memItemLeft" align="right" valign="top"><a id="a0dd3bd60cdd4d20b551dec127f5be7c7"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
+<tr class="memitem:a0dd3bd60cdd4d20b551dec127f5be7c7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVisualiser.html#a0dd3bd60cdd4d20b551dec127f5be7c7">init</a> ()</td></tr>
 <tr class="separator:a0dd3bd60cdd4d20b551dec127f5be7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf337500b62cc53c5d2ffa0e49556972"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVisualiser.html#adf337500b62cc53c5d2ffa0e49556972">update</a> ()</td></tr>
-<tr class="separator:adf337500b62cc53c5d2ffa0e49556972"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93b99e791bf7f7ef116aa5431b863d47"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVisualiser.html#a93b99e791bf7f7ef116aa5431b863d47">update</a> ()</td></tr>
+<tr class="separator:a93b99e791bf7f7ef116aa5431b863d47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classVisualiser.html">Visualiser</a> class ... </p>
 
-<p class="definition">Definition at line <a class="el" href="Visualiser_8h_source.html#l00021">21</a> of file <a class="el" href="Visualiser_8h_source.html">Visualiser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Visualiser_8h_source.html#l00022">22</a> of file <a class="el" href="Visualiser_8h_source.html">Visualiser.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="adf337500b62cc53c5d2ffa0e49556972"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf337500b62cc53c5d2ffa0e49556972">&#9670;&nbsp;</a></span>update()</h2>
+<a id="a0dd3bd60cdd4d20b551dec127f5be7c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dd3bd60cdd4d20b551dec127f5be7c7">&#9670;&nbsp;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Visualiser::update </td>
+          <td class="memname">int Visualiser::init </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>at present just using offsets rather than exact position of each flower in the patch </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>deal with multiple flowers on a plant? </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>for now <a class="el" href="classHive.html">Hive</a> visualisation colour is hard-coded as black </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>for now <a class="el" href="classHive.html">Hive</a> visualisation colour is hard-coded as white </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>diff cols for diff polls? </dd></dl>
+<p>Initialise visualisation code </p>
 
-<p class="definition">Definition at line <a class="el" href="Visualiser_8cpp_source.html#l00117">117</a> of file <a class="el" href="Visualiser_8cpp_source.html">Visualiser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Visualiser_8cpp_source.html#l00046">46</a> of file <a class="el" href="Visualiser_8cpp_source.html">Visualiser.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a93b99e791bf7f7ef116aa5431b863d47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93b99e791bf7f7ef116aa5431b863d47">&#9670;&nbsp;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Visualiser::update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Run a single frame update of the visualiser, and deal with any user interactions</p>
+<dl class="section return"><dt>Returns</dt><dd>true if all good, false if user has pressed the Quit key </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>deal with multiple flowers on a plant? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>for now <a class="el" href="classHive.html">Hive</a> visualisation colour is hard-coded as black </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>for now <a class="el" href="classHive.html">Hive</a> visualisation colour is hard-coded as white </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Visualiser_8cpp_source.html#l00121">121</a> of file <a class="el" href="Visualiser_8cpp_source.html">Visualiser.cpp</a>.</p>
 
 </div>
 </div>

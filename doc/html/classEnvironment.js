@@ -12,6 +12,7 @@ var classEnvironment =
     [ "getPatchCoordsFromIdx", "classEnvironment.html#a29d71ffaf505fe29a3f371ccd5391dc6", null ],
     [ "getPatches", "classEnvironment.html#af151502f8e7ee25c71252f7d6cfc7f65", null ],
     [ "getRandomPositionF", "classEnvironment.html#a0e1925ff4bb3786a4d57f208d3369485", null ],
+    [ "getRandomPositionF", "classEnvironment.html#a0efa4e75cf5442c0abc4c3390ed00064", null ],
     [ "getSizeXf", "classEnvironment.html#a9d26506cc316abd0404a912e492c8f31", null ],
     [ "getSizeXi", "classEnvironment.html#a8287a155ef07dff9c6342289f89a73b7", null ],
     [ "getSizeYf", "classEnvironment.html#aaa8280f34ef0f4180b07216222ebd32f", null ],

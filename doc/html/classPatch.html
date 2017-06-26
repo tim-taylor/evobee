@@ -99,8 +99,8 @@ MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><b>getBackgroundM
 <tr class="memitem:aa6933a93f310fd9a3b304fd92b18ddfa"><td class="memItemLeft" align="right" valign="top"><a id="aa6933a93f310fd9a3b304fd92b18ddfa"></a>
 const <a class="el" href="classPosition.html">iPos</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
 <tr class="separator:aa6933a93f310fd9a3b304fd92b18ddfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb8a4290631071d620ac10e8d8551fb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPatch.html#afb8a4290631071d620ac10e8d8551fb3">addPlant</a> (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;ptc, <a class="el" href="classPosition.html">fPos</a> pos)</td></tr>
-<tr class="separator:afb8a4290631071d620ac10e8d8551fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a255d4c86ddd8d94d79b7b362f22ad695"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPatch.html#a255d4c86ddd8d94d79b7b362f22ad695">addPlant</a> (const <a class="el" href="structPlantTypeDistributionConfig.html">PlantTypeDistributionConfig</a> &amp;distConfig, const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;typeConfig, <a class="el" href="classPosition.html">fPos</a> pos)</td></tr>
+<tr class="separator:a255d4c86ddd8d94d79b7b362f22ad695"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab820d804e7b698ef273ae0137f0e49b2"><td class="memItemLeft" align="right" valign="top"><a id="ab820d804e7b698ef273ae0137f0e49b2"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasFloweringPlants</b> () const</td></tr>
 <tr class="separator:ab820d804e7b698ef273ae0137f0e49b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,10 +111,10 @@ PlantVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFlowe
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classPatch.html">Patch</a> class ... </p>
 
-<p class="definition">Definition at line <a class="el" href="Patch_8h_source.html#l00023">23</a> of file <a class="el" href="Patch_8h_source.html">Patch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Patch_8h_source.html#l00024">24</a> of file <a class="el" href="Patch_8h_source.html">Patch.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="afb8a4290631071d620ac10e8d8551fb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb8a4290631071d620ac10e8d8551fb3">&#9670;&nbsp;</a></span>addPlant()</h2>
+<a id="a255d4c86ddd8d94d79b7b362f22ad695"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a255d4c86ddd8d94d79b7b362f22ad695">&#9670;&nbsp;</a></span>addPlant()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,8 +122,14 @@ PlantVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFlowe
         <tr>
           <td class="memname">void Patch::addPlant </td>
           <td>(</td>
+          <td class="paramtype">const <a class="el" href="structPlantTypeDistributionConfig.html">PlantTypeDistributionConfig</a> &amp;&#160;</td>
+          <td class="paramname"><em>distConfig</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;&#160;</td>
-          <td class="paramname"><em>ptc</em>, </td>
+          <td class="paramname"><em>typeConfig</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -138,7 +144,7 @@ PlantVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFlowe
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>(and will need more params!) </dd></dl>
+<p>Create a new plant object based upon the specified config objects and add it to this patch at the specified position </p>
 
 <p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00021">21</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
 

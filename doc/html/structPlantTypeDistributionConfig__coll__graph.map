@@ -1,4 +1,5 @@
 <map id="PlantTypeDistributionConfig" name="PlantTypeDistributionConfig">
-<area shape="rect" id="node2" title="STL class. " alt="" coords="58,96,138,123"/>
-<area shape="rect" id="node3" title="STL class. " alt="" coords="35,5,161,47"/>
+<area shape="rect" id="node2" href="$classPosition.html" title="Position\&lt; int \&gt;" alt="" coords="5,96,112,123"/>
+<area shape="rect" id="node3" title="STL class. " alt="" coords="152,96,232,123"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="129,5,255,47"/>
 </map>
