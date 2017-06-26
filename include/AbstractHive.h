@@ -63,6 +63,26 @@ public:
      */
     Environment* getEnvironment() {return m_pEnv;}
 
+    /**
+     *
+     */
+    bool migrationAllowed() const {return m_bMigrationAllowed;}
+
+    /**
+     *
+     */
+    float migrationProb() const {return m_fMigrationProb;}    
+
+    /**
+     *
+     */
+    const iPos& getInitForageAreaTopLeft() const {return m_InitForageAreaTopLeft;}
+
+    /**
+     *
+     */    
+    const iPos& getInitForageAreaBottomRight() const {return m_InitForageAreaBottomRight;}
+
 private:
     Environment* m_pEnv;                ///< A pointer to the Environment in which the Hive is placed
     fPos  m_Position;                   ///< Hive position in environment

@@ -60,27 +60,69 @@ void Pollinator::resetToStartPosition()
 }
 
 
+bool Pollinator::inAllowedArea() const
+{
+    bool ok = true;
+    if (m_pHive->migrationAllowed())
+    {
+        ok = inEnvironment();
+    }
+    else
+    {
+        const iPos& TL = m_pHive->getInitForageAreaTopLeft();
+        const iPos& BR = m_pHive->getInitForageAreaBottomRight();
+        ok = ((m_Position.x >= (float)TL.x) &&
+              (m_Position.x <  (float)(BR.x+1)) &&
+              (m_Position.y >= (float)TL.y) &&
+              (m_Position.y <  (float)(BR.y+1)));
+    }
+    return ok;
+}
+
+
 // A helper method for the move... methods for use when a pollinator has
 // wandered off the environment. Reflect the movement off the edge of
 // the environment and reposition the pollinator back within the allowed
 // area
 void Pollinator::repositionInEnv(fPos delta)
 {
+    repositionInArea(delta, 0.0, 0.0, m_pEnv->getSizeXf(), m_pEnv->getSizeYf());
+    assert(inEnvironment());
+}
+
+
+// A helper method for the move... methods for use when a pollinator has
+// wandered out of its allowed area. Reflect the movement off the edge of
+// the environment and reposition the pollinator back within the allowed
+// area
+void Pollinator::repositionInAllowedArea(fPos delta)
+{
+    const iPos& TL = m_pHive->getInitForageAreaTopLeft();
+    const iPos& BR = m_pHive->getInitForageAreaBottomRight();    
+    repositionInArea(delta, (float)TL.x, (float)TL.y, (float)(BR.x+1), (float)(BR.y+1));
+    assert(inEnvironment());
+}
+
+
+// A helper method for the move... methods for use when a pollinator has
+// wandered out of the specified area. Reflect the movement off the edge of
+// the environment and reposition the pollinator back within the allowed
+// area
+void Pollinator::repositionInArea(fPos delta, float minx, float miny, float maxx, float maxy)
+{
     fPos oldPos = m_Position - delta;
 
-    if (m_Position.x < 0.0 || m_Position.x >= m_pEnv->getSizeXf())
+    if (m_Position.x < minx || m_Position.x >= maxx)
     {
         delta.x = -delta.x;
     }
 
-    if (m_Position.y < 0.0 || m_Position.y >= m_pEnv->getSizeYf())
+    if (m_Position.y < miny || m_Position.y >= maxy)
     {
         delta.y = -delta.y;
     }
 
-    m_Position = oldPos + delta;
-
-    assert(inEnvironment());
+    m_Position = oldPos + delta;   
 }
 
 
@@ -88,13 +130,19 @@ void Pollinator::repositionInEnv(fPos delta)
 //
 // @todo Maybe implement a "stay/hover" option in future?
 //
-bool Pollinator::moveRandom(bool allowOffEnv, float stepLength)
+void Pollinator::moveRandom(/*bool allowOffEnv,*/ float stepLength)
 {
     m_fHeading = m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
 
     fPos delta{stepLength*std::cos(m_fHeading), stepLength*std::sin(m_fHeading)};
     m_Position += delta;
 
+    if (!inAllowedArea())
+    {
+        repositionInAllowedArea(delta);
+    }
+
+    /*
     bool inEnv = inEnvironment();
 
     if (!inEnv && !allowOffEnv)
@@ -103,6 +151,7 @@ bool Pollinator::moveRandom(bool allowOffEnv, float stepLength)
     }
 
     return inEnv;
+    */
 }
 
 

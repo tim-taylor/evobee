@@ -63,6 +63,13 @@ public:
     bool inEnvironment() const {return m_pEnv->inEnvironment(m_Position);}
 
     /**
+     * Query whether this pollinator is currently within its allowed area,
+     * taking into account whether migration is allowed to outside of the
+     * Hive's initial area
+     */
+    bool inAllowedArea() const;
+
+    /**
      * Returns a string representation of the pollinator's current state, suitable
      * for writing to a log file
      */
@@ -95,7 +102,7 @@ protected:
      * @param allowOffEnv Do we allow move to take pollinator out of the bounds of the environment?
      * @return true if pollinator is within the bounds of the environment after the move, false otherwise
      */
-    bool moveRandom(bool allowOffEnv = false, float stepLength = 1.0);
+    void moveRandom(/*bool allowOffEnv = false,*/ float stepLength = 1.0);
 
     /**
      * Move by the given distance in a direction biassed by the experimental 
@@ -192,6 +199,18 @@ private:
      * after it has attempted to move beyond its limits
      */
     void repositionInEnv(fPos delta);
+
+    /*
+     * Helper method to reposition the pollinator within the allowed area
+     * specifed by the Hive after it has attempted to move beyond its limits
+     */
+    void repositionInAllowedArea(fPos delta); 
+
+    /*
+     * Helper method to reposition the pollinator within the specified area
+     * after it has attempted to move beyond its limits
+     */
+    void repositionInArea(fPos delta, float minx, float miny, float maxx, float maxy);    
 
     /**
      * Record of next available unique ID number to be assigned to a new Pollinator

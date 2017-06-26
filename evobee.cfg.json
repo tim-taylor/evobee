@@ -25,11 +25,11 @@
                 "start-from-hive" : false,
                 "pos-x" : 49,
                 "pos-y" : 49,
-                "area-top-left-x" : 40,
+                "area-top-left-x" : 30,
                 "area-top-left-y" : 40,
-                "area-bottom-right-x" : 59,
+                "area-bottom-right-x" : 69,
                 "area-bottom-right-y" : 59,
-                "migration-allowed" : false,
+                "migration-allowed" : true,
                 "migration-prob" : 0.5
             }
         },
