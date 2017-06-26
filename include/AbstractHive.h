@@ -64,9 +64,14 @@ public:
     Environment* getEnvironment() {return m_pEnv;}
 
 private:
-    Environment* m_pEnv;    ///< A pointer to the Environment in which the Hive is placed
-    fPos  m_Position;       ///< Hive position in environment
-    bool  m_bStartFromHive; ///< Do Pollinators start from hive, or at a random position?
+    Environment* m_pEnv;                ///< A pointer to the Environment in which the Hive is placed
+    fPos  m_Position;                   ///< Hive position in environment
+    bool  m_bStartFromHive;             ///< Do Pollinators start from hive, or at a random position?
+    iPos  m_InitForageAreaTopLeft;      ///< Top-left corner of initial foraging area
+    iPos  m_InitForageAreaBottomRight;  ///< Bottom-right corner of initial foraging area
+    bool  m_bMigrationAllowed;          ///< Can pollinators migrate out of initial foraging area?
+    float m_fMigrationProb;             ///< If migration allowed and pollinator tries to leave init foraging area,
+                                        ///< it succeeds with this prob, else it is reflected back into init area
 };
 
 #endif /* _ABSTRACTHIVE_H */

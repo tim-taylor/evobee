@@ -14,10 +14,15 @@
 
 AbstractHive::AbstractHive(Environment* pEnv, const HiveConfig &hc) :
     m_pEnv(pEnv),
-    m_Position(hc.x, hc.y),
-    m_bStartFromHive(hc.startFromHive)
+    m_Position(hc.position),
+    m_bStartFromHive(hc.startFromHive),
+    m_InitForageAreaTopLeft(hc.areaTopLeft),
+    m_InitForageAreaBottomRight(hc.areaBottomRight),
+    m_bMigrationAllowed(hc.migrationAllowed),
+    m_fMigrationProb(hc.migrationProb)
 {
 }
+
 
 std::shared_ptr<AbstractHive> AbstractHive::makeHive(Environment* pEnv, const HiveConfig& hc)
 {
@@ -37,7 +42,8 @@ std::shared_ptr<AbstractHive> AbstractHive::makeHive(Environment* pEnv, const Hi
     }
 }
 
+
 fPos AbstractHive::getRandomPollinatorStartPosition() const
 {
-    return m_pEnv->getRandomPositionF();
+    return m_pEnv->getRandomPositionF(m_InitForageAreaTopLeft, m_InitForageAreaBottomRight);
 }

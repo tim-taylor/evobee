@@ -74,7 +74,7 @@ private:
     bool                m_bHasLeaf;
     ReflectanceInfo     m_LeafReflectance;
 
-    //const PlantTypeDistributionConfig& ...;
+    const PlantTypeDistributionConfig& m_DistributionInfo;
 
     /**
      * Record of next available unique ID number to be assigned to a new individual FloweringPlant

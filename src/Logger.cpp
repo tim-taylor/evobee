@@ -29,45 +29,47 @@ Logger::Logger(EvoBeeModel* pModel) :
 {
     assert(ModelParams::initialised());
 
-    m_pEnv = &(m_pModel->getEnv());
-
-    m_LogDir = ModelParams::getLogDir();
-
-    try
+    if (ModelParams::getLogging())
     {
-        // check that the directory exists (if not, make it)
-        if (fs::exists(m_LogDir)) 
+        m_pEnv = &(m_pModel->getEnv());
+
+        m_LogDir = ModelParams::getLogDir();
+
+        try
         {
-            if (!fs::is_directory(m_LogDir))
+            // check that the directory exists (if not, make it)
+            if (fs::exists(m_LogDir)) 
             {
-                // file exists but it is not a directory!
-                std::stringstream msg;
-                msg << "Cannot use specified log directory " << m_LogDir << ": exists but not a directory";
-                throw std::runtime_error(msg.str());
+                if (!fs::is_directory(m_LogDir))
+                {
+                    // file exists but it is not a directory!
+                    std::stringstream msg;
+                    msg << "Cannot use specified log directory " << m_LogDir << ": exists but not a directory";
+                    throw std::runtime_error(msg.str());
+                }
             }
+            else
+            {
+                fs::create_directories(m_LogDir);
+            }
+
+            // get timestamp to add to filename prefix
+            std::stringstream ts;
+            std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+            std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+            ts << std::put_time(std::localtime(&now_c), "-%F-%H-%M-%S");
+            m_strFilePrefix = ModelParams::getLogRunName() + ts.str();
+
+            // set name of main log file
+            std::string filename {m_strFilePrefix + m_strMainLogFileSuffix};
+            m_MainLogFile = m_LogDir / filename;
         }
-        else
+        catch (std::exception& e)
         {
-            fs::create_directories(m_LogDir);
+            std::cerr << "Unable to set up Logger:" << e.what() << std::endl;
+            exit(1);
         }
-
-        // get timestamp to add to filename prefix
-        std::stringstream ts;
-        std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-        std::time_t now_c = std::chrono::system_clock::to_time_t(now);
-        ts << std::put_time(std::localtime(&now_c), "-%F-%H-%M-%S");
-        m_strFilePrefix = ModelParams::getLogRunName() + ts.str();
-
-        // set name of main log file
-        std::string filename {m_strFilePrefix + m_strMainLogFileSuffix};
-        m_MainLogFile = m_LogDir / filename;
     }
-    catch (std::exception& e)
-    {
-        std::cerr << "Unable to set up Logger:" << e.what() << std::endl;
-        exit(1);
-    }
-
 }
 
 
@@ -79,6 +81,8 @@ Logger::~Logger()
 
 void Logger::logExptSetup()
 {
+    assert(ModelParams::getLogging());
+    
     std::string filename {m_strFilePrefix + m_strConfigFileSuffix};
     fs::path fullname {m_LogDir / filename};
     std::ofstream ofs {fullname};
@@ -94,6 +98,8 @@ void Logger::logExptSetup()
 
 void Logger::update()
 {
+    assert(ModelParams::getLogging());
+
     // open log file for appending
     std::ofstream ofs {m_MainLogFile, std::ofstream::app};
     if (!ofs)

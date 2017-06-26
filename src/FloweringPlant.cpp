@@ -25,7 +25,8 @@ FloweringPlant::FloweringPlant(const PlantTypeDistributionConfig& distConfig,
                                const PlantTypeConfig& typeConfig, fPos pos) :
     m_id(m_sNextFreeId++),
     m_Position(pos),
-    m_bHasLeaf(typeConfig.hasLeaf)
+    m_bHasLeaf(typeConfig.hasLeaf),
+    m_DistributionInfo(distConfig)
 {
     ///@todo do something with distConfig...
 

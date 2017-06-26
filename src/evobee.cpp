@@ -18,6 +18,7 @@
 #include "PlantTypeDistributionConfig.h"
 #include "PollinatorConfig.h"
 #include "ReflectanceInfo.h"
+#include "Position.h"
 
 namespace po = boost::program_options;
 using std::cout;
@@ -35,54 +36,85 @@ void processConfigOptions(int argc, char **argv);
 void processJsonFile(ifstream& ifs);
 
 
+// a helper function for reading in parameters from the JSON file and dealing
+// with missing elements
+template<typename T>
+void json_read_param(const json& j, const std::string& section, const std::string& name, T& var)
+{
+    try
+    {
+        var = j.at(name).get<T>();
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Error: " << section << " does not contain a "
+            << name << " element! Aborting" << std::endl;
+        exit(1);
+    }
+}
+
+
 // helper functions for JSON conversion
-///@todo should add exception handling to all of these
 void from_json(const json& j, HiveConfig& hc)
 {
-    hc.type = j.at("pollinator-type").get<string>();
-    hc.num = j.at("pollinator-number").get<int>();
-    hc.startFromHive = j.at("start-from-hive").get<bool>();
-    hc.x = j.at("pos-x").get<int>();
-    hc.y = j.at("pos-y").get<int>();
+    std::string sct = "HiveConfig";
+    json_read_param(j, sct, "pollinator-type", hc.type);
+    json_read_param(j, sct, "pollinator-number", hc.num);
+    json_read_param(j, sct, "start-from-hive", hc.startFromHive);
+    json_read_param(j, sct, "pos-x", hc.position.x);
+    json_read_param(j, sct, "pos-y", hc.position.y);
+    json_read_param(j, sct, "area-top-left-x", hc.areaTopLeft.x);
+    json_read_param(j, sct, "area-top-left-y", hc.areaTopLeft.y);
+    json_read_param(j, sct, "area-bottom-right-x", hc.areaBottomRight.x);
+    json_read_param(j, sct, "area-bottom-right-y", hc.areaBottomRight.y);
+    json_read_param(j, sct, "migration-allowed", hc.migrationAllowed);
+    json_read_param(j, sct, "migration-prob", hc.migrationProb);
+
 }
 
 void from_json(const json& j, PlantTypeDistributionConfig& pc)
 {
-    pc.species = j.at("species").get<string>();
-    pc.areaTopLeftX = j.at("area-top-left-x").get<int>();
-    pc.areaTopLeftY = j.at("area-top-left-y").get<int>();
-    pc.areaBottomRightX = j.at("area-bottom-right-x").get<int>();
-    pc.areaBottomRightY = j.at("area-bottom-right-y").get<int>();
-    pc.density = j.at("density").get<float>();
+    std::string sct = "PlantTypeDistributionConfig";
+    json_read_param(j, sct, "species", pc.species);
+    json_read_param(j, sct, "area-top-left-x", pc.areaTopLeft.x);
+    json_read_param(j, sct, "area-top-left-y", pc.areaTopLeft.y);
+    json_read_param(j, sct, "area-bottom-right-x", pc.areaBottomRight.x);
+    json_read_param(j, sct, "area-bottom-right-y", pc.areaBottomRight.y);
+    json_read_param(j, sct, "density", pc.density);
+    json_read_param(j, sct, "refuge", pc.refuge);
+    json_read_param(j, sct, "refuge-alien-inflow-prob", pc.refugeAlienInflowProb);
+    json_read_param(j, sct, "seed-outflow-allowed", pc.seedOutflowAllowed);
+    json_read_param(j, sct, "seed-outflow-prob", pc.seedOutflowProb);
 }
 
 void from_json(const json& j, PlantTypeConfig& pt)
 {
-    pt.species = j.at("species").get<string>();
-    pt.flowerMPInitMin = j.at("flower-reflectance-mp-init-min").get<int>();
-    pt.flowerMPInitMax = j.at("flower-reflectance-mp-init-max").get<int>();
-    pt.antherInitPollen = j.at("anther-init-pollen").get<int>();
-    pt.antherPollenTransferPerVisit = j.at("anther-pollen-transfer-per-visit").get<int>();
-    pt.nectarReward = j.at("nectar-reward").get<int>();
-    pt.stigmaMaxPollenCapacity = j.at("stigma-max-pollen-capacity").get<int>();
+    std::string sct = "PlantTypeConfig";
+    json_read_param(j, sct, "species", pt.species);
+    json_read_param(j, sct, "flower-reflectance-mp-init-min", pt.flowerMPInitMin);
+    json_read_param(j, sct, "flower-reflectance-mp-init-max", pt.flowerMPInitMax);
+    json_read_param(j, sct, "anther-init-pollen", pt.antherInitPollen);
+    json_read_param(j, sct, "anther-pollen-transfer-per-visit", pt.antherPollenTransferPerVisit);
+    json_read_param(j, sct, "nectar-reward", pt.nectarReward);
+    json_read_param(j, sct, "stigma-max-pollen-capacity", pt.stigmaMaxPollenCapacity);
     if (pt.stigmaMaxPollenCapacity < 1)
     {
         // a user supplied value of 0 or negative means that the maximum capacity
         // is set to an effectively unlimited value
         pt.stigmaMaxPollenCapacity = 99999;
-    }
-    pt.pollenClogging = j.at("pollen-clogging").get<bool>();
-
+    }    
+    json_read_param(j, "PlantTypeConfig", "pollen-clogging", pt.pollenClogging);
 }
 
 void from_json(const json& j, PollinatorConfig& p)
 {
-    p.species = j.at("species").get<string>();    
-    p.boutLength = j.at("bout-length").get<int>();
-    p.pollenLossOnFlower = j.at("pollen-loss-on-flower").get<int>();
-    p.pollenLossInAir = j.at("pollen-loss-in-air").get<int>();
-    p.pollenCarryoverNumVisits = j.at("pollen-carryover-num-visits").get<int>();
-    p.maxPollenCapacity = j.at("max-pollen-capacity").get<int>();
+    std::string sct = "PollinatorConfig";
+    json_read_param(j, sct, "species", p.species);
+    json_read_param(j, sct, "bout-length", p.boutLength);
+    json_read_param(j, sct, "pollen-loss-on-flower", p.pollenLossOnFlower);
+    json_read_param(j, sct, "pollen-loss-in-air", p.pollenLossInAir);
+    json_read_param(j, sct, "pollen-carryover-num-visits", p.pollenCarryoverNumVisits);
+    json_read_param(j, sct, "max-pollen-capacity", p.maxPollenCapacity);
     if (p.maxPollenCapacity < 1)
     {
         // a user supplied value of 0 or negative means that the maximum capacity
@@ -293,11 +325,6 @@ void processJsonFile(ifstream& ifs)
             cout << "~~~~~ Simulation Params ~~~~~" << endl;
             for (json::iterator it = itSP->begin(); it != itSP->end(); ++it)
             {
-                /*
-                if (it.key() == "rng-seed" && it.value().is_number()) {
-                    cout << "Seed -> " << it.value() << endl;
-                    ModelParams::setRngSeed(it.value());
-                }*/
                 if (it.key() == "termination-num-steps" && it.value().is_number()) {
                     cout << "Num steps -> " << it.value() << endl;
                     ModelParams::setTerminationNumSteps(it.value());
@@ -305,6 +332,10 @@ void processJsonFile(ifstream& ifs)
                 else if (it.key() == "rng-seed" && it.value().is_string()) {
                     cout << "Seed -> '" << it.value() << "'" << endl;
                     ModelParams::setRngSeedStr(it.value());
+                }
+                else if (it.key() == "logging" && it.value().is_boolean()) {
+                    cout << "Logging -> '" << it.value() << "'" << endl;
+                    ModelParams::setLogging(it.value());
                 }
                 else if (it.key() == "log-dir" && it.value().is_string()) {
                     cout << "Log dir -> '" << it.value() << "'" << endl;

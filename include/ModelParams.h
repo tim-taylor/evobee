@@ -38,6 +38,7 @@ public:
     static void setVisPollinatorTrails(bool show);
     static void setVisUpdatePeriod(int p);
     static void setVisDelayPerFrame(int delayMs);
+    static void setLogging(bool logging);
     static void setLogUpdatePeriod(int p);
     static void setInitialised();
     static void setTerminationNumSteps(int steps);
@@ -60,6 +61,7 @@ public:
     static bool  getVisPollinatorTrails() {return m_bVisPollinatorTrails;}
     static int   getVisUpdatePeriod() {return m_iVisUpdatePeriod;}
     static int   getVisDelayPerFrame() {return m_iVisDelayPerFrame;}
+    static bool  getLogging() {return m_bLogging;}
     static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
     static int   getTerminationNumSteps() {return m_iTerminationNumSteps;}
     static MarkerPoint getEnvBackgroundReflectanceMP() {return m_EnvBackgroundReflectanceMP;}
@@ -90,6 +92,7 @@ private:
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
     static int   m_iTerminationNumSteps;    ///< Terminate run after this number of steps
+    static bool  m_bLogging;                ///< Is logging required for this run?
     static std::string m_strRngSeed;        ///< Seed string used to seeed RNG
     static std::string m_strLogDir;         ///< Directory name for logging output
     static std::string m_strLogRunName;     ///< Run name to be used as prefix for log filenames

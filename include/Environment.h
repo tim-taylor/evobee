@@ -104,6 +104,13 @@ public:
      */
     fPos getRandomPositionF() const;
 
+    /*
+     * Returns a random float position within the specified area.
+     * Note that the (int) bottomright param specifies an inclusive range,
+     * so the returned position may be in up to and including that patch position
+     */
+    fPos getRandomPositionF(const iPos& topleft, const iPos& bottomright) const;
+
     /**
      * Add a pointer to a pollinator to the Environment's aggregate list of all
      * pollinators. This is called in the Hive constructor, and the individual

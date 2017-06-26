@@ -105,8 +105,8 @@ void Environment::initialisePlants()
         }
 
         // calculate some basic values associated with the requested distribution
-        int w = std::max(1, 1 + pdcfg.areaBottomRightX - pdcfg.areaTopLeftX);
-        int h = std::max(1, 1 + pdcfg.areaBottomRightY - pdcfg.areaTopLeftY);
+        int w = std::max(1, 1 + pdcfg.areaBottomRight.x - pdcfg.areaTopLeft.x);
+        int h = std::max(1, 1 + pdcfg.areaBottomRight.y - pdcfg.areaTopLeft.y);
         int area = w * h;
         int numPlants = (int)((float)area * pdcfg.density);
         std::uniform_real_distribution<float> distW(0.0, w);
@@ -118,10 +118,10 @@ void Environment::initialisePlants()
 
         for (int i = 0; i < numPlants; ++i)
         {
-            fPos fpos{ pdcfg.areaTopLeftX + distW(EvoBeeModel::m_sRngEngine),
-                       pdcfg.areaTopLeftY + distH(EvoBeeModel::m_sRngEngine) };
-            int iLocalX = (int)fpos.x - pdcfg.areaTopLeftX;
-            int iLocalY = (int)fpos.y - pdcfg.areaTopLeftY;
+            fPos fpos{ pdcfg.areaTopLeft.x + distW(EvoBeeModel::m_sRngEngine),
+                       pdcfg.areaTopLeft.y + distH(EvoBeeModel::m_sRngEngine) };
+            int iLocalX = (int)fpos.x - pdcfg.areaTopLeft.x;
+            int iLocalY = (int)fpos.y - pdcfg.areaTopLeft.y;
             patchInfo[iLocalX][iLocalY].push_back(fpos);
         }
 
@@ -131,7 +131,7 @@ void Environment::initialisePlants()
         {
             for (int y = 0; y < h; ++y)
             {
-                Patch& patch = getPatch(x + pdcfg.areaTopLeftX, y + pdcfg.areaTopLeftY);
+                Patch& patch = getPatch(x + pdcfg.areaTopLeft.x, y + pdcfg.areaTopLeft.y);
                 std::vector<fPos>& posvec = patchInfo[x][y];
                 for (fPos& pos : posvec)
                 {
@@ -147,6 +147,14 @@ fPos Environment::getRandomPositionF() const
 {
     static std::uniform_real_distribution<float> distX(0.0, m_fSizeX);
     static std::uniform_real_distribution<float> distY(0.0, m_fSizeY);
+    return fPos(distX(EvoBeeModel::m_sRngEngine), distY(EvoBeeModel::m_sRngEngine));
+}
+
+
+fPos Environment::getRandomPositionF(const iPos& topleft, const iPos& bottomright) const
+{
+    static std::uniform_real_distribution<float> distX((float)topleft.x, (float)(bottomright.x+1));
+    static std::uniform_real_distribution<float> distY((float)topleft.y, (float)(bottomright.y+1));
     return fPos(distX(EvoBeeModel::m_sRngEngine), distY(EvoBeeModel::m_sRngEngine));
 }
 

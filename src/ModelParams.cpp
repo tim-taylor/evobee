@@ -20,6 +20,7 @@ float  ModelParams::m_fMaxScreenFracH = 0.8;
 float  ModelParams::m_fMaxScreenFracW = 0.8;
 bool   ModelParams::m_bInitialised = false;
 int    ModelParams::m_iTerminationNumSteps = 100;
+bool   ModelParams::m_bLogging = true;
 std::string ModelParams::m_strRngSeed {""};
 std::string ModelParams::m_strLogDir {"output"};
 std::string ModelParams::m_strLogRunName {"run"};
@@ -122,6 +123,11 @@ void ModelParams::setVisDelayPerFrame(int delayMs)
     {
         m_iVisDelayPerFrame = delayMs;
     }
+}
+
+void ModelParams::setLogging(bool logging)
+{
+    m_bLogging = logging;
 }
 
 void ModelParams::setLogUpdatePeriod(int p)

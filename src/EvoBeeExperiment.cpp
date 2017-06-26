@@ -20,6 +20,8 @@ EvoBeeExperiment::EvoBeeExperiment() :
     m_Visualiser(&m_Model),
     m_threadLog()
 {
+    assert(ModelParams::initialised());
+
     // set up visualisation support as required
     m_bVis = ModelParams::getVisualisation();
     if (m_bVis) {
@@ -31,7 +33,10 @@ EvoBeeExperiment::EvoBeeExperiment() :
     m_iLogUpdatePeriod = ModelParams::getLogUpdatePeriod();
 
     // record run configuration details in log file
-    m_Logger.logExptSetup(); 
+    if (ModelParams::getLogging())
+    {
+        m_Logger.logExptSetup();
+    }
 }
 
 
@@ -54,19 +59,26 @@ void EvoBeeExperiment::run() {
 
     for (int step = 0; step < ModelParams::getTerminationNumSteps(); ++step) 
     {
+        // perform the next simulation step
         m_Model.step();
 
-        if (step % m_iLogUpdatePeriod == 0)
+        // perform logging if required
+        if (ModelParams::getLogging() && (step % m_iLogUpdatePeriod == 0))
         {
-            // if the thread is still busy from a previous logger call,
-            // wait until it is finished before calling the logger again
+            // We perform logging in a different thread, so that it can
+            // continue in parallel with everything else until the next
+            // time that the logging functionality is called.
+            //
+            // If the thread is still busy from a previous logger call,
+            // wait until it is finished before calling the logger again.
             if (m_threadLog.joinable())
             {
                 m_threadLog.join();
-            }            
+            }
             m_threadLog = std::thread(&Logger::update, m_Logger);
         }
 
+        // perform visualisation if required
         if ((m_bVis) && (step % m_iVisUpdatePeriod == 0)) 
         {
             bool bContinue = m_Visualiser.update();
