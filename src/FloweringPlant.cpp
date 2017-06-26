@@ -28,8 +28,6 @@ FloweringPlant::FloweringPlant(const PlantTypeDistributionConfig& distConfig,
     m_bHasLeaf(typeConfig.hasLeaf),
     m_DistributionInfo(distConfig)
 {
-    ///@todo do something with distConfig...
-
     assert(typeConfig.numFlowers > 0);
 
     // Do we already have a record of this plant species?
