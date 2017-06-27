@@ -117,6 +117,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a16be7522d1ebb1a15bfc8e11ee525056"><td class="memItemLeft" align="right" valign="top"><a id="a16be7522d1ebb1a15bfc8e11ee525056"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>HoneyBee</b> (const <a class="el" href="structPollinatorConfig.html">PollinatorConfig</a> &amp;pc, <a class="el" href="classAbstractHive.html">AbstractHive</a> *pHive)</td></tr>
 <tr class="separator:a16be7522d1ebb1a15bfc8e11ee525056"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbaafcd0ee136500bdacab237612d67d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHoneyBee.html#afbaafcd0ee136500bdacab237612d67d">reset</a> () override final</td></tr>
+<tr class="separator:afbaafcd0ee136500bdacab237612d67d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae44550c830b3b483981aa4dfc1555f68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHoneyBee.html#ae44550c830b3b483981aa4dfc1555f68">step</a> () override final</td></tr>
 <tr class="separator:ae44550c830b3b483981aa4dfc1555f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace8c0ee998fe766ba5bb4460cc9422f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHoneyBee.html#ace8c0ee998fe766ba5bb4460cc9422f4">isVisitCandidate</a> (<a class="el" href="classFlower.html">Flower</a> *pFlower) const</td></tr>
@@ -130,6 +132,8 @@ const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>ge
 <tr class="memitem:acaf3e9477d97949f242d5844ac2daaf5 inherit pub_methods_classHymenoptera"><td class="memItemLeft" align="right" valign="top"><a id="acaf3e9477d97949f242d5844ac2daaf5"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Hymenoptera</b> (const <a class="el" href="structPollinatorConfig.html">PollinatorConfig</a> &amp;pc, <a class="el" href="classAbstractHive.html">AbstractHive</a> *pHive)</td></tr>
 <tr class="separator:acaf3e9477d97949f242d5844ac2daaf5 inherit pub_methods_classHymenoptera"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88ddb0f006fbb0550267c2cb40b62873 inherit pub_methods_classHymenoptera"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHymenoptera.html#a88ddb0f006fbb0550267c2cb40b62873">reset</a> () override</td></tr>
+<tr class="separator:a88ddb0f006fbb0550267c2cb40b62873 inherit pub_methods_classHymenoptera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace1e947c4b1bbf9c4b0370d0ede7d161 inherit pub_methods_classHymenoptera"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHymenoptera.html#ace1e947c4b1bbf9c4b0370d0ede7d161">getStateString</a> () const override</td></tr>
 <tr class="separator:ace1e947c4b1bbf9c4b0370d0ede7d161 inherit pub_methods_classHymenoptera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad544878d497e0c8543c8ffae68f30f16 inherit pub_methods_classHymenoptera"><td class="memItemLeft" align="right" valign="top"><a id="ad544878d497e0c8543c8ffae68f30f16"></a>
@@ -273,7 +277,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 
 <p>Reimplemented from <a class="el" href="classPollinator.html#a2e0b2fda2a76a6af741e9d09882546a1">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00130">130</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00136">136</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
 
 </div>
 </div>
@@ -293,12 +297,42 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
       </table>
 </div><div class="memdoc">
 <p>Determine whether the pollinator should harvest the specified flower </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd><ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd><ul>
 <li>implement isVisitCandidate based upon innate and learned preferences for flower colour </li>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00098">98</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00104">104</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
+
+</div>
+</div>
+<a id="afbaafcd0ee136500bdacab237612d67d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbaafcd0ee136500bdacab237612d67d">&#9670;&nbsp;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HoneyBee::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Peform a complete reset of this pollinator to its initial state, resetting position and all other state variables as if this was a brand new pollinator </p>
+
+<p>Reimplemented from <a class="el" href="classPollinator.html#a65d13ef9bcf2a6e7ebe30ece3f1531e4">Pollinator</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00024">24</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
 
 </div>
 </div>
@@ -324,15 +358,15 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>... need to parameterise type of movement and details </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd><ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>... need to parameterise type of movement and details </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd><ul>
 <li>for now we are looking for nearest plant, not nearest flower (so assuming plants just have one flower) </li>
 </ul>
 </dd></dl>
 
 <p>Implements <a class="el" href="classHymenoptera.html">Hymenoptera</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00024">24</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="HoneyBee_8cpp_source.html#l00030">30</a> of file <a class="el" href="HoneyBee_8cpp_source.html">HoneyBee.cpp</a>.</p>
 
 </div>
 </div>

@@ -19,5 +19,6 @@ var classEnvironment =
     [ "getSizeYi", "classEnvironment.html#a63f0525aaa2f4a38b1ba2d017ddc31dd", null ],
     [ "inEnvironment", "classEnvironment.html#ad3483da8a76bcf2ebf9467adf5fd2df4", null ],
     [ "inEnvironment", "classEnvironment.html#abc9132f98a81da80b4eb081566cc1ed5", null ],
-    [ "inEnvironment", "classEnvironment.html#a0d7e4bb673f73d93c081aeb1ffb53e70", null ]
+    [ "inEnvironment", "classEnvironment.html#a0d7e4bb673f73d93c081aeb1ffb53e70", null ],
+    [ "initialiseNewGeneration", "classEnvironment.html#ad3912473b1cdbafaea1d8bb5ee3d1187", null ]
 ];

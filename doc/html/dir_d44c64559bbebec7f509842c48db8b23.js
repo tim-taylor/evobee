@@ -12,9 +12,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "EventManager", "classEventManager.html", "classEventManager" ]
     ] ],
     [ "evobeeConfig.h", "evobeeConfig_8h.html", "evobeeConfig_8h" ],
-    [ "EvoBeeExperiment.h", "EvoBeeExperiment_8h.html", [
-      [ "EvoBeeExperiment", "classEvoBeeExperiment.html", "classEvoBeeExperiment" ]
-    ] ],
+    [ "EvoBeeExperiment.h", "EvoBeeExperiment_8h.html", "EvoBeeExperiment_8h" ],
     [ "EvoBeeModel.h", "EvoBeeModel_8h.html", [
       [ "EvoBeeModel", "classEvoBeeModel.html", "classEvoBeeModel" ]
     ] ],

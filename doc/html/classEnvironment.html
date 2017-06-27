@@ -93,6 +93,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a18e93e4fa3f115a5353de0370f5c96b2"><td class="memItemLeft" align="right" valign="top"><a id="a18e93e4fa3f115a5353de0370f5c96b2"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Environment</b> (<a class="el" href="classEvoBeeModel.html">EvoBeeModel</a> *pModel)</td></tr>
 <tr class="separator:a18e93e4fa3f115a5353de0370f5c96b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3912473b1cdbafaea1d8bb5ee3d1187"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#ad3912473b1cdbafaea1d8bb5ee3d1187">initialiseNewGeneration</a> ()</td></tr>
+<tr class="separator:ad3912473b1cdbafaea1d8bb5ee3d1187"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29d71ffaf505fe29a3f371ccd5391dc6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPosition.html">iPos</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a29d71ffaf505fe29a3f371ccd5391dc6">getPatchCoordsFromIdx</a> (int idx)</td></tr>
 <tr class="separator:a29d71ffaf505fe29a3f371ccd5391dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60581aa6612e7d9cf1a7c9a3104520f0"><td class="memItemLeft" align="right" valign="top"><a id="a60581aa6612e7d9cf1a7c9a3104520f0"></a>
@@ -166,7 +168,7 @@ HivePtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHiv
 </div><div class="memdoc">
 <p>Add a pointer to a pollinator to the <a class="el" href="classEnvironment.html">Environment</a>'s aggregate list of all pollinators. This is called in the <a class="el" href="classHive.html">Hive</a> constructor, and the individual Hives actually own the <a class="el" href="classPollinator.html">Pollinator</a> objects. </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00119">119</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00124">124</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -215,7 +217,7 @@ HivePtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHiv
 </div><div class="memdoc">
 <p>Return a vector of pointers to all pollinators from all hives </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00124">124</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00129">129</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -243,7 +245,7 @@ HivePtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHiv
 </div><div class="memdoc">
 <p>Return a pointer to the <a class="el" href="classEvoBeeModel.html">EvoBeeModel</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00129">129</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00134">134</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -297,7 +299,7 @@ HivePtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHiv
 </div><div class="memdoc">
 <p>Get float size of <a class="el" href="classEnvironment.html">Environment</a> in x direction (coordinates should be less than this value, this is upper bound) </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00074">74</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00079">79</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -325,7 +327,7 @@ HivePtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHiv
 </div><div class="memdoc">
 <p>Get integer size of <a class="el" href="classEnvironment.html">Environment</a> in x direction (coordinates should be less than this value) </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00062">62</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00067">67</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -353,7 +355,7 @@ HivePtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHiv
 </div><div class="memdoc">
 <p>Get float size of <a class="el" href="classEnvironment.html">Environment</a> in y direction (coordinates should be less than this value, this is upper bound) </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00080">80</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00085">85</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -381,7 +383,7 @@ HivePtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHiv
 </div><div class="memdoc">
 <p>Get integer size of <a class="el" href="classEnvironment.html">Environment</a> in y direction (coordinates should be less than this value) </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00068">68</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00073">73</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -441,7 +443,7 @@ HivePtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHiv
 </div><div class="memdoc">
 <p>Checks whether the given position is within the bounds of the environment </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00089">89</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00094">94</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -470,7 +472,34 @@ HivePtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHiv
 </div><div class="memdoc">
 <p>Checks whether the given position is within the bounds of the environment </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00093">93</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00098">98</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+
+</div>
+</div>
+<a id="ad3912473b1cdbafaea1d8bb5ee3d1187"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3912473b1cdbafaea1d8bb5ee3d1187">&#9670;&nbsp;</a></span>initialiseNewGeneration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::initialiseNewGeneration </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initialise a new generation</p>
+<p>Initialise a new generation</p><ul>
+<li>Construct a new generation of plants based upon those successfully pollinated in the previous generation, taking into acconut any refuges and/or restrictions to seed flow.</li>
+<li>Reset all pollinators to initial state.</li>
+<li>Perform other housekeeping tasks. </li>
+</ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>implement <a class="el" href="classEnvironment.html#ad3912473b1cdbafaea1d8bb5ee3d1187">Environment::initialiseNewGeneration()</a> </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>... NB we also need to log this info if necessary </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00225">225</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>

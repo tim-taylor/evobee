@@ -116,6 +116,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acaf3e9477d97949f242d5844ac2daaf5"><td class="memItemLeft" align="right" valign="top"><a id="acaf3e9477d97949f242d5844ac2daaf5"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Hymenoptera</b> (const <a class="el" href="structPollinatorConfig.html">PollinatorConfig</a> &amp;pc, <a class="el" href="classAbstractHive.html">AbstractHive</a> *pHive)</td></tr>
 <tr class="separator:acaf3e9477d97949f242d5844ac2daaf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88ddb0f006fbb0550267c2cb40b62873"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHymenoptera.html#a88ddb0f006fbb0550267c2cb40b62873">reset</a> () override</td></tr>
+<tr class="separator:a88ddb0f006fbb0550267c2cb40b62873"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6717d56dd0828cf8c588ce928588b11"><td class="memItemLeft" align="right" valign="top"><a id="aa6717d56dd0828cf8c588ce928588b11"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>step</b> () override=0</td></tr>
 <tr class="separator:aa6717d56dd0828cf8c588ce928588b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -261,6 +263,36 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 <p>Returns a string representation of the pollinator's current state, suitable for writing to a log file </p>
 
 <p>Reimplemented from <a class="el" href="classPollinator.html#a2e0b2fda2a76a6af741e9d09882546a1">Pollinator</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00025">25</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a88ddb0f006fbb0550267c2cb40b62873"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88ddb0f006fbb0550267c2cb40b62873">&#9670;&nbsp;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Hymenoptera::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Peform a complete reset of this pollinator to its initial state, resetting position and all other state variables as if this was a brand new pollinator </p>
+
+<p>Reimplemented from <a class="el" href="classPollinator.html#a65d13ef9bcf2a6e7ebe30ece3f1531e4">Pollinator</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00019">19</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 

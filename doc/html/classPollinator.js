@@ -17,6 +17,7 @@ var classPollinator =
     [ "moveLevy", "classPollinator.html#ad03277df915384e641aa3c22d2ebeaac", null ],
     [ "moveRandom", "classPollinator.html#a33ca8e88b08534601c7c6618c4072eb9", null ],
     [ "removeOldCarryoverPollen", "classPollinator.html#ab4055e86ccdfc6a359caf9915a708767", null ],
+    [ "reset", "classPollinator.html#a65d13ef9bcf2a6e7ebe30ece3f1531e4", null ],
     [ "resetToStartPosition", "classPollinator.html#a2f80a1d3b0985898f548b2b671f7c223", null ],
     [ "step", "classPollinator.html#a20f4d4f1227e474c6009be4e83cf21f3", null ],
     [ "updatePollenLandingCount", "classPollinator.html#ad87e24d80ae5e1f4cc811b5d68936a5f", null ],
