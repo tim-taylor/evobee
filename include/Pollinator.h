@@ -36,6 +36,13 @@ public:
     virtual ~Pollinator() {}
 
     /**
+     * Peform a complete reset of this pollinator to its initial state,
+     * resetting position and all other state variables as if this
+     * was a brand new pollinator
+     */
+    virtual void reset();
+
+    /**
      * Move back to the start position, which is either the Hive position or
      * a random position, depending upon how the Hive is configured. Also
      * reset to a random heading.

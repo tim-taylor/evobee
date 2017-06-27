@@ -51,41 +51,92 @@ EvoBeeExperiment::~EvoBeeExperiment()
 
 
 /**
- *
+ * Run the model for the requested number of generations, using the requested
+ * stopping criterion for each generation, as specified in the model parameters.
+ * Also call logger and visualisation code as and when needed.
  */
-void EvoBeeExperiment::run() {
-    // iterate increments in model and logger, and in visualiser if needed,
-    // until halting criteria met
-
-    for (int step = 0; step < ModelParams::getTerminationNumSteps(); ++step) 
+void EvoBeeExperiment::run()
+{
+    for (int gen = 0; gen < ModelParams::getSimTerminationNumGens(); ++gen)
     {
-        // perform the next simulation step
-        m_Model.step();
-
-        // perform logging if required
-        if (ModelParams::getLogging() && (step % m_iLogUpdatePeriod == 0))
+        // if this is not the first generation, we need to reinitialise
+        // all plants and pollinators based upon which plants got pollinated
+        // in the previous generation. These details will be logged if
+        // necessary.
+        // Also reset the visualisation if needed.
+        if (gen > 0)
         {
-            // We perform logging in a different thread, so that it can
-            // continue in parallel with everything else until the next
-            // time that the logging functionality is called.
-            //
-            // If the thread is still busy from a previous logger call,
-            // wait until it is finished before calling the logger again.
-            if (m_threadLog.joinable())
+            m_Model.initialiseNewGeneration();
+            if (m_bVis)
             {
-                m_threadLog.join();
-            }
-            m_threadLog = std::thread(&Logger::update, m_Logger);
-        }
-
-        // perform visualisation if required
-        if ((m_bVis) && (step % m_iVisUpdatePeriod == 0)) 
-        {
-            bool bContinue = m_Visualiser.update();
-            if (!bContinue)
-            {
-                break; // may want to ask the user for confirmation first?
+                m_Visualiser.reset();
             }
         }
+
+        bool endOfGen = false;
+        int step = 0;
+        do
+        {
+            // perform the next simulation step
+            m_Model.step();
+
+            // perform logging if required
+            if (ModelParams::getLogging() && (step % m_iLogUpdatePeriod == 0))
+            {
+                // We perform logging in a different thread, so that it can
+                // continue in parallel with everything else until the next
+                // time that the logging functionality is called.
+                //
+                // If the thread is still busy from a previous logger call,
+                // wait until it is finished before calling the logger again.
+                if (m_threadLog.joinable())
+                {
+                    m_threadLog.join();
+                }
+                m_threadLog = std::thread(&Logger::update, m_Logger);
+            }
+
+            // perform visualisation if required
+            if ((m_bVis) && (step % m_iVisUpdatePeriod == 0)) 
+            {
+                bool bContinue = m_Visualiser.update();
+                if (!bContinue)
+                {
+                    break; // may want to ask the user for confirmation first?
+                }
+            }
+
+            // this step is now finished, so ...
+            // ... advance step count
+            ++step;
+            // ... and check whether the current generation is now complete
+            switch (ModelParams::getGenTerminationType())
+            {
+                case GenTerminationType::NUM_SIM_STEPS:
+                {
+                    if (step >= ModelParams::getGenTerminationIntParam())
+                    {
+                        endOfGen = true;
+                    }
+                    break;
+                }
+                case GenTerminationType::NUM_POLLINATOR_STEPS:
+                {
+                    ///@todo - implement code for num-pollinator-steps termination type
+                    break;
+                }
+                case GenTerminationType::POLLINATED_FRACTION:
+                {
+                    ///@todo - implement code for pollinated-fraction termination type
+                    break;
+
+                }
+                default:
+                {
+                    throw std::runtime_error("Unexpected generation-termination-type encountered!");
+                }
+            }
+        }
+        while (!endOfGen);
     }
 }

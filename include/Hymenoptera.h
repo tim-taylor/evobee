@@ -21,6 +21,8 @@ public:
     Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive);
     //~Hymenoptera() {}
 
+    void reset() override;
+
     void step() override = 0;
 
     std::string getStateString() const override;

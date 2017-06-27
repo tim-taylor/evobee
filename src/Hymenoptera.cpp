@@ -16,6 +16,12 @@ Hymenoptera::Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive) :
 }
 
 
+void Hymenoptera::reset()
+{
+    Pollinator::reset();
+}
+
+
 std::string Hymenoptera::getStateString() const
 {
     return Pollinator::getStateString();

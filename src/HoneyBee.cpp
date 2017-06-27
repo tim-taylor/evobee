@@ -21,6 +21,12 @@ HoneyBee::HoneyBee(const PollinatorConfig& pc, AbstractHive* pHive) :
 }
 
 
+void HoneyBee::reset()
+{
+    Hymenoptera::reset();
+}
+
+
 void HoneyBee::step()
 {
     switch (m_State)

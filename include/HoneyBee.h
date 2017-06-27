@@ -22,6 +22,13 @@ public:
     ~HoneyBee() {}
 
     /**
+     * Peform a complete reset of this pollinator to its initial state,
+     * resetting position and all other state variables as if this
+     * was a brand new pollinator
+     */
+    void reset() override final;
+
+    /**
      *
      */
     void step() override final;

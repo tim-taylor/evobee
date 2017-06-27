@@ -37,6 +37,12 @@ public:
      */
     bool update();
 
+    /**
+     * Reset the state of the visualiser for the start of a new generation.
+     * Very little needs to be done here, just clear the vector of pollinator trails.
+     */
+    void reset();
+
 private:
     // Utility functions to map from Environment coordinates to screen coordinates
     // taking into account current scaling and offset values. These are separated

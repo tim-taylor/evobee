@@ -212,3 +212,28 @@ FloweringPlant* Environment::findClosestFloweringPlant(const fPos& pos)
 
     return pPlant;
 }
+
+
+/**
+ * Initialise a new generation
+ * - Construct a new generation of plants based upon those successfully
+ *   pollinated in the previous generation, taking into acconut any refuges
+ *   and/or restrictions to seed flow. 
+ * - Reset all pollinators to initial state.
+ * - Perform other housekeeping tasks.
+ */
+void Environment::initialiseNewGeneration()
+{
+    ///@todo implement Environment::initialiseNewGeneration()
+
+    // generate a new populations of plants based upon pollinated plants from
+    // the previous generation, then delete all plants from previous generation
+    ///@todo...
+    /// NB we also need to log this info if necessary
+
+    // reset all pollinators to their initial state
+    for (Pollinator* pPollinator : m_AllPollinators)
+    {
+        pPollinator->reset();
+    }
+}

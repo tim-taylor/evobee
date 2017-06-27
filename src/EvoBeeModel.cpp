@@ -21,7 +21,8 @@ std::mt19937 EvoBeeModel::m_sRngEngine;
 bool EvoBeeModel::m_sbRngInitialised = false;
 
 
-EvoBeeModel::EvoBeeModel() : 
+EvoBeeModel::EvoBeeModel() :
+    m_iGen(0),
     m_iStep(0),
     m_Env(this)
 {
@@ -72,13 +73,12 @@ void EvoBeeModel::seedRng()
 
 
 /**
- * @todo
+ * Run one step of the simulation for the current generation.
+ * This entails running one step of all current pollinators in the environment.
  */
 void EvoBeeModel::step()
 {
-    ++m_iStep;
-
-    std::cout << "Model step " << m_iStep << std::endl;
+    std::cout << "Model gen " << m_iGen << ", step " << m_iStep << std::endl;
 
     // first allow all pollinators to update
     auto pollinators = m_Env.getAllPollinators();
@@ -88,5 +88,19 @@ void EvoBeeModel::step()
         pol->step();
     }
 
-    ///@todo - what else required?    
+    ++m_iStep;    
+}
+
+
+/**
+ * Initialise a new generation. 
+ * We need to construct a new generation of plants based upon those successfully
+ * pollinated in the previous generation, taking into acconut any refuges and/or
+ * restrictions to seed flow.
+ */
+void EvoBeeModel::initialiseNewGeneration()
+{
+    ++m_iGen;
+    m_Env.initialiseNewGeneration();
+    m_iStep = 0;
 }

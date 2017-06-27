@@ -19,23 +19,47 @@ public:
     EvoBeeModel();
     ~EvoBeeModel() {}
 
-    /// Iterate the simulation by one step
+    /**
+     * Iterate the simulation by one step
+     */
     void step();
 
-    /// Get current step number
+    /**
+    * Initialise a new generation. 
+    * We need to construct a new generation of plants based upon those successfully
+    * pollinated in the previous generation, taking into acconut any refuges and/or
+    * restrictions to seed flow.
+    */
+    void initialiseNewGeneration();
+
+    /**
+     * Get current generation number
+     */
+    unsigned int getGenNumber() const {return m_iGen;}
+
+    /**
+     * Get current simulation step number (within the current generation)
+     */
     unsigned int getStepNumber() const {return m_iStep;}
 
-    /// Return a reference to the model's Environment object
+    /**
+     * Return a reference to the model's Environment object
+     */
     Environment& getEnv() {return m_Env;}
 
-    /// Seed the model's RNG from the seed specified in ModelParams
+    /**
+     * Seed the model's RNG from the seed specified in ModelParams
+     */
     static void seedRng();
 
-    /// EvoBeeModel owns an RNG engine for use by all components in the model
+    /**
+     * EvoBeeModel owns an RNG engine for use by all components in the model
+     */
     static std::mt19937 m_sRngEngine;
 
 private:
-    unsigned int    m_iStep;    ///< Current step number
+    unsigned int    m_iGen;     ///< Current generation number
+    unsigned int    m_iStep;    ///< Current step number within current generation
     Environment     m_Env;      ///< The model owns the one and only 
 
     static bool m_sbRngInitialised;

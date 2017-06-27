@@ -32,6 +32,11 @@ public:
     ~Environment() {}
 
     /**
+     * Initialise a new generation
+     */
+    void initialiseNewGeneration();
+
+    /**
      * Helper function to calculate a patch's X and Y coordinates from its Index value
      * @param idx The Index value
      */

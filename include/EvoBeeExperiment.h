@@ -13,6 +13,17 @@
 #include "Logger.h"
 #include "Visualiser.h"
 
+
+/**
+ * Definition of allowable generation termination types
+ */
+enum class GenTerminationType {
+    NUM_SIM_STEPS,          ///< number of simulation steps (takes int param)
+    NUM_POLLINATOR_STEPS,   ///< total number of steps taken by all pollinators (takes int param)
+    POLLINATED_FRACTION     ///< a given fraction of all plants have been pollinated (takes float param)
+};
+
+
 /**
  * The EvoBeeExperiment class ...
  */

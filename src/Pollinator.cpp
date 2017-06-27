@@ -45,6 +45,15 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
 }
 
 
+void Pollinator::reset()
+{
+    m_State = PollinatorState::UNINITIATED;
+    m_iNumFlowersVisitedInBout = 0;
+    m_PollenStore.clear();
+    resetToStartPosition();
+}
+
+
 void Pollinator::resetToStartPosition()
 {
     m_fHeading = m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
@@ -141,17 +150,6 @@ void Pollinator::moveRandom(/*bool allowOffEnv,*/ float stepLength)
     {
         repositionInAllowedArea(delta);
     }
-
-    /*
-    bool inEnv = inEnvironment();
-
-    if (!inEnv && !allowOffEnv)
-    {
-        repositionInEnv(delta);
-    }
-
-    return inEnv;
-    */
 }
 
 

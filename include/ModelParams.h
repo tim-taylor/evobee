@@ -15,6 +15,7 @@
 #include "PlantTypeConfig.h"
 #include "PollinatorConfig.h"
 #include "ReflectanceInfo.h"
+#include "EvoBeeExperiment.h"
 
 
 /**
@@ -41,7 +42,12 @@ public:
     static void setLogging(bool logging);
     static void setLogUpdatePeriod(int p);
     static void setInitialised();
-    static void setTerminationNumSteps(int steps);
+    static void setSimTerminationNumGens(int gens);
+    static void setGenTerminationType(const std::string& typestr);
+    static void setGenTerminationParam(int p);
+    static void setGenTerminationParam(float p);
+    static void setGenTerminationIntParam(int p);
+    static void setGenTerminationFloatParam(float p);
     static void setRngSeedStr(const std::string& seed);
     static void setLogDir(const std::string& dir);
     static void setLogRunName(const std::string& name);
@@ -50,6 +56,9 @@ public:
     static void addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc);
     static void addPlantTypeConfig(PlantTypeConfig& pt);
     static void addPollinatorConfig(PollinatorConfig& pt);
+
+    /// check consistency of parameters once the whole config file has been processed
+    static void checkConsistency();
 
     static int   getEnvSizeX() {return m_iEnvSizeX;}
     static int   getEnvSizeY() {return m_iEnvSizeY;}
@@ -63,7 +72,10 @@ public:
     static int   getVisDelayPerFrame() {return m_iVisDelayPerFrame;}
     static bool  getLogging() {return m_bLogging;}
     static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
-    static int   getTerminationNumSteps() {return m_iTerminationNumSteps;}
+    static int   getSimTerminationNumGens() {return m_iSimTerminationNumGens;}
+    static GenTerminationType getGenTerminationType() {return m_GenTerminationType;}
+    static int   getGenTerminationIntParam() {return m_iGenTerminationParam;}
+    static float getGenTerminationFloatParam() {return m_fGenTerminationParam;}
     static MarkerPoint getEnvBackgroundReflectanceMP() {return m_EnvBackgroundReflectanceMP;}
     static const std::string & getRngSeedStr() {return m_strRngSeed;}
     static const std::string & getLogDir() {return m_strLogDir;}
@@ -91,7 +103,11 @@ private:
     static int   m_iVisDelayPerFrame;       ///< Specifies a delay (in ms) per frame of the visualisation code
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
-    static int   m_iTerminationNumSteps;    ///< Terminate run after this number of steps
+    static int   m_iSimTerminationNumGens;  ///< Terminate run after this number of generations
+    static GenTerminationType m_GenTerminationType; ///< Method used to define termination 
+                                                    ///< criterion for a generation
+    static int   m_iGenTerminationParam;    ///< Integer parameter associated with m_GenTerminationType
+    static float m_fGenTerminationParam;    ///< Float parameter associated with m_GenTerminationType
     static bool  m_bLogging;                ///< Is logging required for this run?
     static std::string m_strRngSeed;        ///< Seed string used to seeed RNG
     static std::string m_strLogDir;         ///< Directory name for logging output

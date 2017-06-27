@@ -134,6 +134,7 @@ int main(int argc, char **argv)
     try
     {
         processConfigOptions(argc, argv);
+        ModelParams::checkConsistency();
         EvoBeeModel::seedRng();
         EvoBeeExperiment expt;
         expt.run();
@@ -325,9 +326,21 @@ void processJsonFile(ifstream& ifs)
             cout << "~~~~~ Simulation Params ~~~~~" << endl;
             for (json::iterator it = itSP->begin(); it != itSP->end(); ++it)
             {
-                if (it.key() == "termination-num-steps" && it.value().is_number()) {
-                    cout << "Num steps -> " << it.value() << endl;
-                    ModelParams::setTerminationNumSteps(it.value());
+                if (it.key() == "sim-termination-num-gens" && it.value().is_number()) {
+                    cout << "Simulation termination num gens -> " << it.value() << endl;
+                    ModelParams::setSimTerminationNumGens(it.value());
+                }
+                else if (it.key() == "generation-termination-type" && it.value().is_string()) {
+                    cout << "Generation termination type -> '" << it.value() << "'" << endl;
+                    ModelParams::setGenTerminationType(it.value());
+                }
+                else if (it.key() == "generation-termination-param" && it.value().is_number_integer()) {
+                    cout << "Generation termination param (int) -> '" << it.value() << "'" << endl;
+                    ModelParams::setGenTerminationIntParam(it.value());
+                }
+                else if (it.key() == "generation-termination-param" && it.value().is_number_float()) {
+                    cout << "Generation termination param (float) -> '" << it.value() << "'" << endl;
+                    ModelParams::setGenTerminationFloatParam(it.value());
                 }
                 else if (it.key() == "rng-seed" && it.value().is_string()) {
                     cout << "Seed -> '" << it.value() << "'" << endl;

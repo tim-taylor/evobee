@@ -1,6 +1,9 @@
 {
     "SimulationParams" : {
-        "termination-num-steps" : 150,
+        "generation-termination-type" : "num-sim-steps",
+        "comment1" : "[num-sim-steps|num-pollinator-steps|pollinated-fraction]",
+        "generation-termination-param" : 70,
+        "sim-termination-num-gens" : 2,
         "rng-seed" : "",
         "visualisation" : true,
         "vis-update-period" : 1,

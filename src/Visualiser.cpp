@@ -318,6 +318,16 @@ bool Visualiser::update()
 }
 
 
+void Visualiser::reset()
+{
+    // clear the vector of records of previous positions for each pollinator
+    for (auto& item : m_PollMoveHists)
+    {
+        item.second.clear();
+    }
+}
+
+
 /////////////////////////
 // Utility functions to convert Environment coordinates to screen coordinates
 

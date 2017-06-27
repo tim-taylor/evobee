@@ -4,7 +4,9 @@
  * Implementation of the ModelParams class
  */
 
+#include <exception>
 #include "ModelParams.h"
+
 
 // Instantiate all static members
 bool   ModelParams::m_bVisualisation = true;
@@ -19,7 +21,10 @@ MarkerPoint ModelParams::m_EnvBackgroundReflectanceMP = 400;
 float  ModelParams::m_fMaxScreenFracH = 0.8;
 float  ModelParams::m_fMaxScreenFracW = 0.8;
 bool   ModelParams::m_bInitialised = false;
-int    ModelParams::m_iTerminationNumSteps = 100;
+int    ModelParams::m_iSimTerminationNumGens = 10;
+GenTerminationType ModelParams::m_GenTerminationType = GenTerminationType::NUM_SIM_STEPS;
+int    ModelParams::m_iGenTerminationParam = -1;
+float  ModelParams::m_fGenTerminationParam = -1.0;
 bool   ModelParams::m_bLogging = true;
 std::string ModelParams::m_strRngSeed {""};
 std::string ModelParams::m_strLogDir {"output"};
@@ -136,9 +141,54 @@ void ModelParams::setLogUpdatePeriod(int p)
         m_iLogUpdatePeriod = p;
 }
 
-void ModelParams::setTerminationNumSteps(int steps)
+void ModelParams::setSimTerminationNumGens(int gens)
 {
-    m_iTerminationNumSteps = steps;
+    m_iSimTerminationNumGens = gens;
+}
+
+void ModelParams::setGenTerminationType(const std::string& typestr)
+{
+    if (typestr == "num-sim-steps")
+    {
+        m_GenTerminationType = GenTerminationType::NUM_SIM_STEPS;
+    }
+    else if (typestr == "num-pollinator-steps")
+    {
+        m_GenTerminationType = GenTerminationType::NUM_POLLINATOR_STEPS;
+    }
+    else if (typestr == "pollinated-fraction")
+    {
+        m_GenTerminationType = GenTerminationType::POLLINATED_FRACTION;
+    }
+    else
+    {
+        m_GenTerminationType = GenTerminationType::NUM_SIM_STEPS;
+        /// @todo... maybe output warning msg here and in next case?
+    }
+}
+
+// implicit setting of int param
+void ModelParams::setGenTerminationParam(int p)
+{
+    m_iGenTerminationParam = p;
+}
+
+// implicit setting of float param
+void ModelParams::setGenTerminationParam(float p)
+{
+    m_fGenTerminationParam = p;
+}
+
+// explicit setting of int param
+void ModelParams::setGenTerminationIntParam(int p)
+{
+    m_iGenTerminationParam = p;
+}
+
+// explicit setting of float param
+void ModelParams::setGenTerminationFloatParam(float p)
+{
+    m_fGenTerminationParam = p;
 }
 
 void ModelParams::setRngSeedStr(const std::string& seed)
@@ -201,4 +251,40 @@ const PlantTypeConfig* ModelParams::getPlantTypeConfig(std::string species)
         if (pt.species == species) return &pt;
     }
     return nullptr;
+}
+
+
+// check consistency of parameters once the whole config file has been processed
+void ModelParams::checkConsistency()
+{
+    switch (m_GenTerminationType)
+    {
+        case GenTerminationType::NUM_SIM_STEPS:
+        {
+            if (m_iGenTerminationParam < 0)
+            {
+                throw std::runtime_error("Must provide an int parameter for termination type num-sim-steps");
+            }
+            break;
+        }
+        case GenTerminationType::NUM_POLLINATOR_STEPS:
+        {
+            if (m_iGenTerminationParam < 0)
+            {
+                throw std::runtime_error("Must provide an int parameter for termination type num-pollinator-steps");
+            }
+            break;
+        }
+        case GenTerminationType::POLLINATED_FRACTION:
+        {
+            if (m_fGenTerminationParam < 0.0)
+            {
+                throw std::runtime_error("Must provide an int parameter for termination type pollinated-fraction");
+            }            
+            break;
+        }
+    }
+
+    ///@todo - other things to check re parameter consistency...
+    // - are all pollinator and hive areas completely within the envionrment area?
 }
