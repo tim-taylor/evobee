@@ -89,6 +89,23 @@ const std::string& FloweringPlant::getSpecies() const
 }
 
 
+// return species id of the species whose name is given as a param (static method)
+unsigned int FloweringPlant::getSpeciesId(const std::string& name)
+{
+    auto it = std::find_if( m_sSpeciesMap.begin(),
+                            m_sSpeciesMap.end(),
+                            [name](const std::pair<unsigned int, std::string>& pair)
+                                {return (pair.second == name);} );
+
+    if (it == m_sSpeciesMap.end())
+    {
+        throw std::runtime_error("Unable to find id for plant species " + name);
+    }
+
+    return it->first;
+}
+
+
 // Return the MarkerPoint of the specified flower
 //
 // @todo Asserts that the flower is valid, but should we throw an exception if not?

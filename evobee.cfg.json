@@ -21,6 +21,8 @@
         "env-size-y" : 100,
         "background-reflectance-mp" : 500,
         "default-ambient-temp": 20.0,
+        "repro-global-density-constrained" : true,
+        "repro-global-density-max" : 0.2,
         "Hives" : {
             "Hive1" : {
                 "pollinator-type" : "HoneyBee",
@@ -33,6 +35,7 @@
                 "area-bottom-right-x" : 69,
                 "area-bottom-right-y" : 59,
                 "migration-allowed" : true,
+                "migration-restricted" : false,
                 "migration-prob" : 0.5
             }
         },
@@ -47,7 +50,10 @@
                 "refuge" : false,
                 "refuge-alien-inflow-prob" : 0.0,
                 "seed-outflow-allowed" : true,
-                "seed-outflow-prob" : 0.5
+                "seed-outflow-restricted" : false,
+                "seed-outflow-prob" : 0.5,
+                "repro-local-density-constrained" : false,
+                "repro-local-density-max" : 0.2
             },
             "PlantTypeDistribution2" : {
                 "species" : "PlantSpecies2",
@@ -59,7 +65,10 @@
                 "refuge" : false,
                 "refuge-alien-inflow-prob" : 0.0,
                 "seed-outflow-allowed" : true,
-                "seed-outflow-prob" : 0.5
+                "seed-outflow-restricted" : false,
+                "seed-outflow-prob" : 0.5,
+                "repro-local-density-constrained" : false,
+                "repro-local-density-max" : 0.2
             }     
         }
     },

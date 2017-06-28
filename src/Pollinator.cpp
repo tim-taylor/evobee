@@ -22,7 +22,7 @@ constexpr double TWOPI = 2.0*PI;
 unsigned int Pollinator::m_sNextFreeId = 1;
 std::string Pollinator::m_sTypeNameStr{"POL"};
 std::uniform_real_distribution<float> Pollinator::m_sDirectionDistrib(0.0, TWOPI);
-
+std::uniform_real_distribution<float> Pollinator::m_sUniformProbDistrib(0.0, 1.0);
 
 Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_id(m_sNextFreeId++),
@@ -72,7 +72,11 @@ void Pollinator::resetToStartPosition()
 bool Pollinator::inAllowedArea() const
 {
     bool ok = true;
-    if (m_pHive->migrationAllowed())
+    if ( (m_pHive->migrationAllowed()) &&
+         ( (!m_pHive->migrationRestricted()) ||
+           (m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < m_pHive->migrationProb())
+         )
+       )
     {
         ok = inEnvironment();
     }

@@ -138,11 +138,11 @@ private:
     
     PatchVector   m_Patches;     ///< All patches are stored in a 1D vector for speed of access
     HivePtrVector m_Hives;       ///< Collection of all hives in the environment
-    int           m_iNumPatches; ///< Number of patches (stored for convenience)
-    int           m_iSizeX;      ///< Number of patches in X direction (int coords should be less than this)
-    int           m_iSizeY;      ///< Number of patches in Y direction (int coords should be less than this)
-    float         m_fSizeX;      ///< Number of patches in X direction (float coords should be less than this)
-    float         m_fSizeY;      ///< Number of patches in Y direction (float coords should be less than this)
+    int           m_iNumPatches; ///< Num patches (stored for convenience)
+    int           m_iSizeX;      ///< Num patches in X dir (int coords should be less than this)
+    int           m_iSizeY;      ///< Num patches in Y dir (int coords should be less than this)
+    float         m_fSizeX;      ///< Num patches in X dir (float coords should be less than this)
+    float         m_fSizeY;      ///< Num patches in Y dir (float coords should be less than this)
 
     PollinatorPtrVector m_AllPollinators; /** Aggregation of pointers to all Pollinators
                                            * NB The Pollinators are actually owened by

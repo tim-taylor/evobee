@@ -67,6 +67,11 @@ public:
      *
      */
     bool migrationAllowed() const {return m_bMigrationAllowed;}
+    
+    /**
+     *
+     */
+    bool migrationRestricted() const {return m_bMigrationRestricted;}
 
     /**
      *
@@ -90,8 +95,10 @@ private:
     iPos  m_InitForageAreaTopLeft;      ///< Top-left corner of initial foraging area
     iPos  m_InitForageAreaBottomRight;  ///< Bottom-right corner of initial foraging area
     bool  m_bMigrationAllowed;          ///< Can pollinators migrate out of initial foraging area?
-    float m_fMigrationProb;             ///< If migration allowed and pollinator tries to leave init foraging area,
-                                        ///< it succeeds with this prob, else it is reflected back into init area
+    bool  m_bMigrationRestricted;       ///< If m_bMigrationAllowed, is prob of doing so restricted?
+    float m_fMigrationProb;             ///< If migration allowed restricted, and pollinator tries to
+                                        ///< leave init foraging area, it succeeds with this prob,
+                                        ///< else it is reflected back into init area
 };
 
 #endif /* _ABSTRACTHIVE_H */

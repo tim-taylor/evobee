@@ -68,6 +68,7 @@ void from_json(const json& j, HiveConfig& hc)
     json_read_param(j, sct, "area-bottom-right-x", hc.areaBottomRight.x);
     json_read_param(j, sct, "area-bottom-right-y", hc.areaBottomRight.y);
     json_read_param(j, sct, "migration-allowed", hc.migrationAllowed);
+    json_read_param(j, sct, "migration-restricted", hc.migrationRestricted);
     json_read_param(j, sct, "migration-prob", hc.migrationProb);
 
 }
@@ -84,7 +85,10 @@ void from_json(const json& j, PlantTypeDistributionConfig& pc)
     json_read_param(j, sct, "refuge", pc.refuge);
     json_read_param(j, sct, "refuge-alien-inflow-prob", pc.refugeAlienInflowProb);
     json_read_param(j, sct, "seed-outflow-allowed", pc.seedOutflowAllowed);
+    json_read_param(j, sct, "seed-outflow-restricted", pc.seedOutflowRestricted);
     json_read_param(j, sct, "seed-outflow-prob", pc.seedOutflowProb);
+    json_read_param(j, sct, "repro-local-density-constrained", pc.reproLocalDensityConstrained);
+    json_read_param(j, sct, "repro-local-density-max", pc.reproLocalDensityMax);
 }
 
 void from_json(const json& j, PlantTypeConfig& pt)
@@ -155,7 +159,6 @@ void processConfigOptions(int argc, char **argv)
 {
     try
     {
-        int envSizeX = -1, envSizeY = -1;
         string config_file;
 
         // Declare a group of options that will be
@@ -166,39 +169,13 @@ void processConfigOptions(int argc, char **argv)
             ("help,h", "display this help message")
             ("config,c", po::value<string>(&config_file)->default_value("evobee.cfg.json"), "configuration file");
 
-        // Declare a group of options that will be
-        // allowed both on command line and in
-        // config file
-        po::options_description config("Configuration");
-        config.add_options()
-            ("env-size", po::value<int>(), "environment size for both x and y")
-            ("env-size-x", po::value<int>(), "environment size in x direction")
-            ("env-size-y", po::value<int>(), "environment size in y direction")
-            ("vis", po::value<bool>(), "show realtime visualisation of run")
-            ("vis-update-period", po::value<int>(), "number of model steps between each visualisation update")
-            ("max-screen-frac", po::value<float>(), "max fraction of screen width or height for vis window")
-            ("max-screen-frac-w", po::value<float>(), "max fraction of screen width for vis window")
-            ("max-screen-frac-h", po::value<float>(), "max fraction of screen height for vis window")
-            ("hive", po::value<vector<string>>()->composing(), "hive specification");
-        //("optimization", po::value<int>(&opt)->default_value(10), "optimization level")
-        //("include-path,I", po::value<vector<string>>()->composing(), "include path");
-
-        // Hidden options, will be allowed both on command line and
-        // in config file, but will not be shown to the user.
-        po::options_description hidden("Hidden options");
-        //hidden.add_options()("input-file", po::value<vector<string>>(), "input file");
-
         po::options_description cmdline_options;
-        cmdline_options.add(generic).add(config).add(hidden);
-
-        po::options_description config_file_options;
-        config_file_options.add(config).add(hidden);
+        cmdline_options.add(generic);
 
         po::options_description visible("Allowed options");
-        visible.add(generic).add(config);
+        visible.add(generic);
 
         po::positional_options_description p;
-        //p.add("input-file", -1);
 
         po::variables_map vm;
         store(po::command_line_parser(argc, argv).options(cmdline_options).positional(p).run(), vm);
@@ -220,75 +197,11 @@ void processConfigOptions(int argc, char **argv)
         ifstream ifs(config_file.c_str());
         if (!ifs)
         {
-            /*
-            std::cout << "Unable to open config file: " << config_file << std::endl;
-            return 0;
-            */
-        }
-        else
-        {
-            processJsonFile(ifs);
+            std::cerr << "Unable to open config file: " << config_file << std::endl;
+            exit(1);
         }
 
-        if (vm.count("env-size"))
-        {
-            envSizeX = envSizeY = vm["env-size"].as<int>();
-        }
-        if (vm.count("env-size-x"))
-        {
-            envSizeX = vm["env-size-x"].as<int>();
-            if (vm.count("env-size"))
-            {
-                cerr << "Warning: specification of env-size-x overrides that of env-size" << endl;
-            }
-        }
-        if (vm.count("env-size-y"))
-        {
-            envSizeY = vm["env-size-y"].as<int>();
-            if (vm.count("env-size"))
-            {
-                cerr << "Warning: specification of env-size-y overrides that of env-size" << endl;
-            }
-        }
-
-        ModelParams::setEnvSize(envSizeX, envSizeY);
-
-        cout << "Environment size set to (" << ModelParams::getEnvSizeX() << "," << ModelParams::getEnvSizeY() << ")" << endl;
-
-        if (vm.count("vis"))
-        {
-            ModelParams::setVisualisation(vm["vis"].as<bool>());
-        }
-
-        cout << (ModelParams::getVisualisation() ? "Using" : "Not using")
-            << " visualisation" << endl;
-
-        if (vm.count("vis-update-period"))
-        {
-            ModelParams::setVisUpdatePeriod(vm["vis-update-period"].as<int>());
-        }        
-
-        if (vm.count("max-screen-frac"))
-        {
-            ModelParams::setMaxScreenFrac(vm["max-screen-frac"].as<float>());
-        }
-        if (vm.count("max-screen-frac-w"))
-        {
-            ModelParams::setMaxScreenFracW(vm["max-screen-frac-w"].as<float>());
-        }
-        if (vm.count("max-screen-frac-h"))
-        {
-            ModelParams::setMaxScreenFracH(vm["max-screen-frac-h"].as<float>());
-        }
-        if (vm.count("hive"))
-        {
-            vector<string> hives = vm["hive"].as<vector<string>>();
-            cout << "Hives specified:" << endl;
-            for (string hive : hives)
-            {
-                cout << hive << endl;
-            }
-        }
+        processJsonFile(ifs);
     }
     catch (exception &e)
     {
@@ -298,6 +211,7 @@ void processConfigOptions(int argc, char **argv)
 
     ModelParams::setInitialised();
 }
+
 
 void processJsonFile(ifstream& ifs)
 {
@@ -414,6 +328,14 @@ void processJsonFile(ifstream& ifs)
                 else if (it.key() == "background-reflectance-mp" && it.value().is_number()) {
                     cout << "Default background reflectance MP -> " << it.value() << endl;
                     ModelParams::setEnvBackgroundReflectanceMP(it.value());
+                }
+                else if (it.key() == "repro-global-density-constrained" && it.value().is_boolean()) {
+                    cout << "Reproduction global density constrained -> " << it.value() << endl;
+                    ModelParams::setReproGlobalDensityConstrained(it.value());
+                }
+                else if (it.key() == "repro-global-density-max" && it.value().is_number()) {
+                    cout << "Reproduction global density max -> " << it.value() << endl;
+                    ModelParams::setReproGlobalDensityMax(it.value());
                 }
                 else if (it.key() == "Hives" && it.value().is_object()) {
                     std::string HKey {"Hive"};

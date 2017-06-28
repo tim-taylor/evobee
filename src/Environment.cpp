@@ -137,6 +137,11 @@ void Environment::initialisePlants()
                 {
                     patch.addPlant(pdcfg, *pPTC, pos);
                 }
+
+                if (pdcfg.refuge || pdcfg.seedOutflowRestricted || (!pdcfg.seedOutflowAllowed))
+                {
+                    patch.setReproConstraints(pdcfg);
+                }
             }
         }
     }
@@ -230,6 +235,49 @@ void Environment::initialiseNewGeneration()
     // the previous generation, then delete all plants from previous generation
     ///@todo...
     /// NB we also need to log this info if necessary
+    /*
+    overall goal:
+        replace all plants (stored in individual Patches) with a
+        new generation of plants
+    assumptions:
+        If PTD area is refuge or seedOutflow is restricted (outflow prob < 1.0), that
+            area is not allowed to overlap with any other area
+        (see implementation details below)
+    constraints:
+        plant type distributions constraints:
+            refuges (restriction on incoming alien speices) (isRefuge/prob)
+            seed outflow (allowed/prob)
+    which plants reproduce?
+        flower is pollinated
+        possibilities:
+            max limits defined by:
+                fixed number of plants in each PTD area (defined by density param)
+                fixed number across whole environment
+    approach:
+        create a vector of all pollinated plants and shuffle it
+        create an empty vector to store new generation
+        for each plant in vector (up to global max repro num for env)
+            consider a nearby position in which to reproduce
+            determine prob that it will successfully reproduce in that position, taking into acccount 
+                seed outflow prob of current patch
+                seed inflow prob (refuge incoming) of destination
+                any local PTDConfig density constraints (stored in ModelParams)
+            if successful, create new plant and put in newgenvec
+        empty plant vectors for all patches
+        for each plant in newgenvec, move plant to appropriate Patch vec
+    implementation details:
+        each Patch needs 
+            outflow prob (and allowed/restricted flags? corresponding to p>0, p<1)
+            isRefuge flag
+                refugeNativeSpecies id
+                alienInflowProb
+        We can deal with constraints on overlapping PTD areas (see assumptions above) by 
+            thowing an exception if there is an attempt to set these Patch probs/flags
+            muliple times for any single Patch
+    New params required:
+        Environment -> repro-constraint-max-density-global
+        PTDConfig -> repro-constraint-max-density-area (if isRefuge or outflowProb=0)
+    */
 
     // reset all pollinators to their initial state
     for (Pollinator* pPollinator : m_AllPollinators)

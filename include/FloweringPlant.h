@@ -26,14 +26,19 @@ public:
                    const PlantTypeConfig& typeConfig, fPos pos);
 
     /**
-     *
+     * Get the unique id of this plant
      */
     unsigned int getId() const {return m_id;}
 
     /**
-     *
+     * Get the species id of this particular plant
      */
     unsigned int getSpeciesId() const {return m_SpeciesId;}
+    
+    /**
+     * Get the species id of the species whose name is provided as a parameter
+     */
+    static unsigned int getSpeciesId(const std::string& name);
 
     /**
      * Return a string representing the species of this flower

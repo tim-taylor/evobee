@@ -32,6 +32,8 @@ public:
     static void setEnvSizeY(int y);
     static void setEnvDefaultAmbientTemp(float temp);
     static void setEnvBackgroundReflectanceMP(MarkerPoint mp);
+    static void setReproGlobalDensityConstrained(bool constrained);
+    static void setReproGlobalDensityMax(float dmax);
     static void setVisualisation(bool vis);
     static void setMaxScreenFrac(float f);
     static void setMaxScreenFracW(float fw);
@@ -63,6 +65,8 @@ public:
     static int   getEnvSizeX() {return m_iEnvSizeX;}
     static int   getEnvSizeY() {return m_iEnvSizeY;}
     static float getEnvDefaultAmbientTemp() {return m_fEnvDefaultAmbientTemp;}
+    static bool  getReproGlobalDensityConstrained() {return m_bReproGlobalDensityContrained;}
+    static float getReproGlobalDensityMax() {return m_fReproGlobalDensityMax;}
     static int   getNumPatches() {return m_iEnvSizeX * m_iEnvSizeY;}
     static bool  getVisualisation() {return m_bVisualisation;}
     static float getMaxScreenFracW() {return m_fMaxScreenFracW;}
@@ -97,15 +101,22 @@ private:
     static float m_fMaxScreenFracW;         ///< Max fraction of screen size for vis window width
     static float m_fMaxScreenFracH;         ///< Max fraction of screen size for vis window height
     static float m_fEnvDefaultAmbientTemp;  ///< Default ambient temperature for all Patches (in Celsius)
-    static MarkerPoint m_EnvBackgroundReflectanceMP; ///< Default background reflectance Marker Point for each Patch
+    static MarkerPoint m_EnvBackgroundReflectanceMP; ///< Default background reflectance Marker Point
+                                                     ///<   for each Patch
+    static bool  m_bReproGlobalDensityContrained;    ///< During a reproduction cycle, is global
+                                                     ///<   plant density constrained?
+    static float m_fReproGlobalDensityMax;  ///< If m_bReproGlobalDensityContrained, what is
+                                            ///<   the maximum allowed density?
     static bool  m_bVisPollinatorTrails;    ///< Display trails of pollinators' past movements?
-    static int   m_iVisUpdatePeriod;        ///< Number of model steps between each update of visualisation
-    static int   m_iVisDelayPerFrame;       ///< Specifies a delay (in ms) per frame of the visualisation code
+    static int   m_iVisUpdatePeriod;        ///< Number of model steps between each update of 
+                                            ///<   visualisation
+    static int   m_iVisDelayPerFrame;       ///< Specifies a delay (in ms) per frame of the 
+                                            ///<   visualisation code
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
     static int   m_iSimTerminationNumGens;  ///< Terminate run after this number of generations
     static GenTerminationType m_GenTerminationType; ///< Method used to define termination 
-                                                    ///< criterion for a generation
+                                                    ///<   criterion for a generation
     static int   m_iGenTerminationParam;    ///< Integer parameter associated with m_GenTerminationType
     static float m_fGenTerminationParam;    ///< Float parameter associated with m_GenTerminationType
     static bool  m_bLogging;                ///< Is logging required for this run?

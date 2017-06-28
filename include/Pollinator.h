@@ -188,7 +188,8 @@ protected:
                                                   * is is removed from the pollinator (i.e. it is lost)
                                                   */
 
-    static std::uniform_real_distribution<float> m_sDirectionDistrib; ///< Uniform distribution between 0.0 to TWOPI
+    static std::uniform_real_distribution<float> m_sDirectionDistrib;   ///< Uniform distrib 0.0--TWOPI
+    static std::uniform_real_distribution<float> m_sUniformProbDistrib; ///< Uniform distrib 0.0--1.0
 
     /*
     position (float)

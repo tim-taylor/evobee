@@ -18,6 +18,8 @@ int    ModelParams::m_iEnvSizeX = 50;
 int    ModelParams::m_iEnvSizeY = 50;
 float  ModelParams::m_fEnvDefaultAmbientTemp = 20.0;
 MarkerPoint ModelParams::m_EnvBackgroundReflectanceMP = 400;
+bool   ModelParams::m_bReproGlobalDensityContrained = true;
+float  ModelParams::m_fReproGlobalDensityMax = 0.2;
 float  ModelParams::m_fMaxScreenFracH = 0.8;
 float  ModelParams::m_fMaxScreenFracW = 0.8;
 bool   ModelParams::m_bInitialised = false;
@@ -109,6 +111,16 @@ void ModelParams::setEnvDefaultAmbientTemp(float temp)
 void ModelParams::setEnvBackgroundReflectanceMP(MarkerPoint mp)
 {
     m_EnvBackgroundReflectanceMP = mp;
+}
+
+void ModelParams::setReproGlobalDensityConstrained(bool constrained)
+{
+    m_bReproGlobalDensityContrained = constrained;
+}
+
+void ModelParams::setReproGlobalDensityMax(float dmax)
+{
+    m_fReproGlobalDensityMax = dmax;
 }
 
 void ModelParams::setVisPollinatorTrails(bool show)
