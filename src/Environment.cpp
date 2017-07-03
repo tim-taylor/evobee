@@ -235,12 +235,11 @@ FloweringPlant* Environment::findClosestFloweringPlant(const fPos& fpos)
  */
 void Environment::initialiseNewGeneration()
 {
-    ///@todo implement Environment::initialiseNewGeneration()
-
     // generate a new populations of plants based upon pollinated plants from
     // the previous generation, then delete all plants from previous generation
-    ///@todo...
-    /// NB we also need to log this info if necessary
+    //
+    ///@todo we also need to log this info if necessary
+    //
     /*
     overall goal:
         replace all plants (stored in individual Patches) with a
@@ -285,7 +284,7 @@ void Environment::initialiseNewGeneration()
         PTDConfig -> repro-constraint-max-density-area (if isRefuge or outflowProb=0)
     */
 
-    //////////////////////////
+    //////////////////////////////////////////////////////////////
     // Step 1: Construct a new generation of plants
 
     // -- Step 1a: create a vector of all pollinated plants and shuffle it
@@ -325,44 +324,48 @@ void Environment::initialiseNewGeneration()
         iPos iCurPos = getPatchCoordFromFloatPos(fCurPos);
         iPos iNewPos = getPatchCoordFromFloatPos(fNewPos);
 
-        // -- Step 1c.2: determine prob that it will successfully reproduce in that position, taking into acccount 
-        //          seed outflow prob of current patch
-        //          seed inflow prob (refuge incoming) of destination
-        //          any local PTDConfig density constraints (stored in ModelParams)
+        // -- Step 1c.2: determine prob that it will successfully reproduce in that position,
+        //    taking into acccount:
+        //    - seed outflow prob of current patch
+        //    - seed inflow prob (refuge incoming) of destination
+        //    - any local PTDConfig density constraints (stored in ModelParams)
         bool  bAnyChance  = true;
         float successProb = 1.0;
 
-        if (!inEnvironment(iNewPos))
+        if (iNewPos != iCurPos)
         {
-            // new plant has fallen off the edge of the world!
-            bAnyChance = false;
-        }
-        else if (iNewPos != iCurPos)
-        {
-            // new plant is in a different patch to old one
-            const Patch& curPatch = pPlant->getPatch();
-
-            // first consider our chances of successfully leaving the current patch
-            if (!curPatch.seedOutflowAllowed())
+            if (!inEnvironment(iNewPos))
             {
-                // no seed outflow is allowed from this patch!
+                // new plant has fallen off the edge of the world!
                 bAnyChance = false;
             }
-            else if (curPatch.seedOutflowRestricted())
+            else
             {
-                // seed outflow is allowed at a restricted rate
-                successProb = curPatch.getSeedOutflowProb();
-            }
+                // new plant is still in environment but in a different patch to old one
+                const Patch& curPatch = pPlant->getPatch();
 
-            // now consider chances of succesfully moving into the new patch
-            if (bAnyChance)
-            {
-                const Patch& newPatch = getPatch(iNewPos);
-
-                if (newPatch.refuge() && (newPatch.getRefugeNativeSpeciesId() != pPlant->getSpeciesId()))
+                // first consider our chances of successfully leaving the current patch
+                if (!curPatch.seedOutflowAllowed())
                 {
-                    // trying to move into a refuge for a different plant species
-                    successProb = std::min(successProb, newPatch.getRefugeAlienInflowProb());
+                    // no seed outflow is allowed from this patch!
+                    bAnyChance = false;
+                }
+                else if (curPatch.seedOutflowRestricted())
+                {
+                    // seed outflow is allowed at a restricted rate
+                    successProb = curPatch.getSeedOutflowProb();
+                }
+
+                // now consider chances of succesfully moving into the new patch
+                if (bAnyChance)
+                {
+                    const Patch& newPatch = getPatch(iNewPos);
+
+                    if (newPatch.refuge() && (newPatch.getRefugeNativeSpeciesId() != pPlant->getSpeciesId()))
+                    {
+                        // trying to move into a refuge for a different plant species
+                        successProb = std::min(successProb, newPatch.getRefugeAlienInflowProb());
+                    }
                 }
             }
         }
@@ -374,7 +377,7 @@ void Environment::initialiseNewGeneration()
             ///@todo            
         }
 
-        // -- Step 1c.3: if successful, create new plant and put in newgenvec 
+        // -- Step 1c.3: if successful, create new plant and put in newPlants vector 
         if (bAnyChance && (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < successProb))
         {
             ///@todo
@@ -394,17 +397,17 @@ void Environment::initialiseNewGeneration()
         p.killAllPlants();
     }
 
-    // -- Step 1e: for each plant in newgenvec, move plant to appropriate Patch vec    
+    // -- Step 1e: for each plant in newPlants, move it to appropriate Patch vec    
     ///@todo
 
-    //////////////////////////
+    //////////////////////////////////////////////////////////////
     // Step 2: Reset all pollinators to their initial state
     for (Pollinator* pPollinator : m_AllPollinators)
     {
         pPollinator->reset();
     }
 
-    //////////////////////////
+    //////////////////////////////////////////////////////////////
     // Step 3: anything else to do? I don't think so...
     ///@todo (maybe)    
 }
