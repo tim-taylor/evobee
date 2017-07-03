@@ -19,7 +19,7 @@ Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
     m_bReproConstraintsSetExplicitly(false),
     m_bSeedOutflowAllowed(true),
     m_bSeedOutflowRestricted(false),
-    m_bSeedOutflowProb(1.0),
+    m_fSeedOutflowProb(1.0),
     m_bRefuge(false),
     m_iRefugeNativeSpecesId(0),
     m_fRefugeAlienInflowProb(1.0)
@@ -34,7 +34,13 @@ void Patch::addPlant(const PlantTypeDistributionConfig& distConfig,
     std::cout << "Adding plant of species " << typeConfig.species << " to Patch [" << 
         m_Position << "] at coordinates (" << pos << ")" << std::endl;
 
-    m_FloweringPlants.emplace_back(distConfig, typeConfig, pos);
+    m_FloweringPlants.emplace_back(distConfig, typeConfig, pos, this);
+}
+
+
+void Patch::killAllPlants()
+{
+    m_FloweringPlants.clear();
 }
 
 
@@ -51,7 +57,7 @@ void Patch::setReproConstraints(const PlantTypeDistributionConfig& pdcfg)
 
     m_bSeedOutflowAllowed = pdcfg.seedOutflowAllowed;
     m_bSeedOutflowRestricted = pdcfg.seedOutflowRestricted;
-    m_bSeedOutflowProb = pdcfg.seedOutflowProb;
+    m_fSeedOutflowProb = pdcfg.seedOutflowProb;
     m_bRefuge = pdcfg.refuge;
     m_iRefugeNativeSpecesId = FloweringPlant::getSpeciesId(pdcfg.species);
     m_fRefugeAlienInflowProb = pdcfg.refugeAlienInflowProb;

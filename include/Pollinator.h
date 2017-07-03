@@ -8,7 +8,6 @@
 #define _POLLINATOR_H
 
 #include <string>
-#include <random>
 #include <vector>
 #include "Position.h"
 #include "AbstractHive.h"
@@ -187,9 +186,6 @@ protected:
                                                   * still not deposited after this numebr of visits, it
                                                   * is is removed from the pollinator (i.e. it is lost)
                                                   */
-
-    static std::uniform_real_distribution<float> m_sDirectionDistrib;   ///< Uniform distrib 0.0--TWOPI
-    static std::uniform_real_distribution<float> m_sUniformProbDistrib; ///< Uniform distrib 0.0--1.0
 
     /*
     position (float)

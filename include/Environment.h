@@ -46,6 +46,7 @@ public:
      *
      */
     Patch& getPatch(int x, int y);
+    Patch& getPatch(iPos pos) {return getPatch(pos.x, pos.y);}
     Patch& getPatch(fPos pos) {return getPatch((int)pos.x, (int)pos.y);}
 
 
@@ -117,6 +118,12 @@ public:
     fPos getRandomPositionF(const iPos& topleft, const iPos& bottomright) const;
 
     /**
+     * Return (int) coordinates of the Patch in which the given (float) position
+     * belongs
+     */
+    static iPos getPatchCoordFromFloatPos(const fPos& fpos);    
+
+    /**
      * Add a pointer to a pollinator to the Environment's aggregate list of all
      * pollinators. This is called in the Hive constructor, and the individual
      * Hives actually own the Pollinator objects.
@@ -132,6 +139,7 @@ public:
      * Return a pointer to the EvoBeeModel
      */
     const EvoBeeModel* getModel() const {return m_pModel;}
+
 
 private:
     void initialisePlants();     // private helper method used in constructor

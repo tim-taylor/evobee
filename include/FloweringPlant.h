@@ -16,6 +16,10 @@
 #include "Flower.h"
 #include "Position.h"
 
+
+class Patch;
+
+
 /**
  * The FloweringPlant class ...
  */
@@ -23,7 +27,7 @@ class FloweringPlant {
 
 public:
     FloweringPlant(const PlantTypeDistributionConfig& distConfig,
-                   const PlantTypeConfig& typeConfig, fPos pos);
+                   const PlantTypeConfig& typeConfig, fPos pos, const Patch* pPatch);
 
     /**
      * Get the unique id of this plant
@@ -70,6 +74,17 @@ public:
      */
     float getDistanceSq(const fPos& point) const;
 
+    /**
+     * Have any of this plant's flowers been pollinated?
+     */
+    bool pollinated() const {return m_bPollinated;}
+
+    /**
+     * Get a pointer to the patch to which this plant belongs.
+     * Throws an exception if the patch info has not been initialised.
+     */
+    const Patch& getPatch() const;
+
 
 private:
     unsigned int        m_id;           ///< Unique ID number for this plant
@@ -78,8 +93,16 @@ private:
     std::vector<Flower> m_Flowers;
     bool                m_bHasLeaf;
     ReflectanceInfo     m_LeafReflectance;
+    bool                m_bPollinated;  ///< Have any of this plant's flowers been pollinated?
 
     const PlantTypeDistributionConfig& m_DistributionInfo;
+
+    const Patch*        m_pPatch;       ///< (non-owning) pointer to Patch in which this plant resides
+
+    /**
+     * Set the plant's pollinated flag
+     */
+    void setPollinated(bool pollinated = true);
 
     /**
      * Record of next available unique ID number to be assigned to a new individual FloweringPlant
@@ -95,6 +118,11 @@ private:
      * A record of all currently known species IDs and their corresponding name
      */
     static std::map<unsigned int, std::string> m_sSpeciesMap;
+
+    /**
+     * The Flower class is a friend of FloweringPlant
+     */
+    friend Flower;
 };
 
 #endif /* _FLOWERINGPLANT_H */

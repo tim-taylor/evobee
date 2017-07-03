@@ -55,6 +55,16 @@ std::ostream& operator<<(std::ostream& os, const Position<T>& pos)
 }
 
 template<typename T>
+const bool operator==( const Position<T>& lhs, const Position<T>& rhs ) {
+   return ((lhs.x == rhs.x) && (lhs.y == rhs.y));
+}
+
+template<typename T>
+const bool operator!=( const Position<T>& lhs, const Position<T>& rhs ) {
+   return !(lhs==rhs);
+}
+
+template<typename T>
 const Position<T> operator+( const Position<T>& lhs, const Position<T>& rhs ) {
    return Position<T>(lhs.x+rhs.x, lhs.y+rhs.y);
 }

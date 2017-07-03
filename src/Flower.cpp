@@ -155,14 +155,20 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
                 pP = &(*(m_StigmaPollen.end()-actualNum));
             }
 
-            // test code
             if (m_bPollinated)
             {
+                m_pPlant->setPollinated();
+
+                // test code
                 std::cout << "Flower id " << m_id << " of species " << m_SpeciesId <<
                     " pollinated by pollen of species " << pP->speciesId <<
                     " from plant id " << pP->pSource->getId() << std::endl;
             }
-            else std::cout << "(no pollination)" << std::endl;
+            else 
+            {
+                // test code
+                std::cout << "(no pollination)" << std::endl;
+            }
         }        
     }
 

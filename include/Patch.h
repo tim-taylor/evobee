@@ -45,6 +45,11 @@ public:
                   const PlantTypeConfig& typeConfig, fPos pos);
 
     /**
+     * Delete all plants from this patch
+     */
+    void killAllPlants();
+
+    /**
      *
      */    
     bool hasFloweringPlants() const {return !m_FloweringPlants.empty();}
@@ -63,6 +68,36 @@ public:
      */
     void setReproConstraints(const PlantTypeDistributionConfig& pdcfg);
 
+    /**
+     *
+     */ 
+    bool seedOutflowAllowed() const {return m_bSeedOutflowAllowed;}
+
+    /**
+     *
+     */     
+    bool seedOutflowRestricted() const {return m_bSeedOutflowRestricted;}
+
+    /**
+     *
+     */     
+    float getSeedOutflowProb() const {return m_fSeedOutflowProb;}
+
+    /**
+     *
+     */     
+    bool refuge() const {return m_bRefuge;}
+
+    /**
+     *
+     */     
+    unsigned int getRefugeNativeSpeciesId() const {return m_iRefugeNativeSpecesId;}
+
+    /**
+     *
+     */     
+    float getRefugeAlienInflowProb() const {return m_fRefugeAlienInflowProb;}
+
 
 private:
     Environment*    m_pEnv;         ///< A pointer back to the owning Environment
@@ -76,7 +111,7 @@ private:
     bool            m_bReproConstraintsSetExplicitly;
     bool            m_bSeedOutflowAllowed;     
     bool            m_bSeedOutflowRestricted;
-    float           m_bSeedOutflowProb;
+    float           m_fSeedOutflowProb;
     bool            m_bRefuge;
     unsigned int    m_iRefugeNativeSpecesId;
     float           m_fRefugeAlienInflowProb;

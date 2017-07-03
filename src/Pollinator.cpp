@@ -16,13 +16,9 @@
 #include "PollinatorConfig.h"
 #include "Pollinator.h"
 
-constexpr double PI = 4.0*std::atan(1);
-constexpr double TWOPI = 2.0*PI;
-
 unsigned int Pollinator::m_sNextFreeId = 1;
 std::string Pollinator::m_sTypeNameStr{"POL"};
-std::uniform_real_distribution<float> Pollinator::m_sDirectionDistrib(0.0, TWOPI);
-std::uniform_real_distribution<float> Pollinator::m_sUniformProbDistrib(0.0, 1.0);
+
 
 Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_id(m_sNextFreeId++),
@@ -56,7 +52,7 @@ void Pollinator::reset()
 
 void Pollinator::resetToStartPosition()
 {
-    m_fHeading = m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
+    m_fHeading = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
 
     if (m_pHive->startFromHive())
     {
@@ -74,7 +70,7 @@ bool Pollinator::inAllowedArea() const
     bool ok = true;
     if ( (m_pHive->migrationAllowed()) &&
          ( (!m_pHive->migrationRestricted()) ||
-           (m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < m_pHive->migrationProb())
+           (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < m_pHive->migrationProb())
          )
        )
     {
@@ -145,7 +141,7 @@ void Pollinator::repositionInArea(fPos delta, float minx, float miny, float maxx
 //
 void Pollinator::moveRandom(/*bool allowOffEnv,*/ float stepLength)
 {
-    m_fHeading = m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
+    m_fHeading = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
 
     fPos delta{stepLength*std::cos(m_fHeading), stepLength*std::sin(m_fHeading)};
     m_Position += delta;
@@ -192,10 +188,9 @@ bool Pollinator::moveLevy(bool allowOffEnv, float stepLength)
 // for each Pollen grain in the store, update its landing count
 void Pollinator::updatePollenLandingCount()
 {
-    std::for_each(m_PollenStore.begin(), 
-                  m_PollenStore.end(),
-                  [](Pollen& p){p.numLandings++;}
-    );
+    std::for_each( m_PollenStore.begin(), 
+                   m_PollenStore.end(),
+                   [](Pollen& p){p.numLandings++;} );
 }
 
 
@@ -206,9 +201,9 @@ void Pollinator::removeOldCarryoverPollen()
     //size_t oldsz = m_PollenStore.size();
 
     m_PollenStore.erase(
-        std::remove_if(m_PollenStore.begin(),
-                       m_PollenStore.end(),
-                       [this](Pollen& p) {return (p.numLandings > m_iPollenCarryoverNumVisits);}),
+        std::remove_if( m_PollenStore.begin(),
+                        m_PollenStore.end(),
+                        [this](Pollen& p) {return (p.numLandings > m_iPollenCarryoverNumVisits);} ),
         m_PollenStore.end()
     );
 

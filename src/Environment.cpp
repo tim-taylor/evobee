@@ -164,6 +164,12 @@ fPos Environment::getRandomPositionF(const iPos& topleft, const iPos& bottomrigh
 }
 
 
+iPos Environment::getPatchCoordFromFloatPos(const fPos& fpos)
+{
+    return iPos { (int)std::floor(fpos.x), (int)std::floor(fpos.y) };
+}
+
+
 bool Environment::inEnvironment(int x, int y) const
 {
     return (
@@ -178,22 +184,22 @@ bool Environment::inEnvironment(int x, int y) const
 // Search for plants in the local patch and its 8 closest neighbours,
 // and return a pointer to the closest plant found, or nullptr if none found
 //
-FloweringPlant* Environment::findClosestFloweringPlant(const fPos& pos)
+FloweringPlant* Environment::findClosestFloweringPlant(const fPos& fpos)
 {
     FloweringPlant* pPlant = nullptr;
-    float minDistSq = 99999.9;
+    float minDistSq = 9999999.9;
 
     //std::cout << "Searching for plant closest to pos " << pos << std::endl;
 
-    if (inEnvironment(pos))
+    if (inEnvironment(fpos))
     {
-        int px = std::floor(pos.x);
-        int py = std::floor(pos.y);
-        for (int x = px - 1; x <= px + 1; ++x)
+        iPos ipos = getPatchCoordFromFloatPos(fpos);
+
+        for (int x = ipos.x - 1; x <= ipos.x + 1; ++x)
         {
             if (x >= 0 && x < m_iSizeX)
             {
-                for (int y = py - 1; y <= py + 1; ++y)
+                for (int y = ipos.y - 1; y <= ipos.y + 1; ++y)
                 {
                     if (y >= 0 && y < m_iSizeY)
                     {
@@ -201,7 +207,7 @@ FloweringPlant* Environment::findClosestFloweringPlant(const fPos& pos)
                         PlantVector& plants = patch.getFloweringPlants();
                         for (FloweringPlant& plant : plants)
                         {
-                            float distSq = plant.getDistanceSq(pos);
+                            float distSq = plant.getDistanceSq(fpos);
                             if (distSq < minDistSq)
                             {
                                 //std::cout << "Plant " << &plant << " is at distance " << distSq << std::endl;
@@ -220,12 +226,12 @@ FloweringPlant* Environment::findClosestFloweringPlant(const fPos& pos)
 
 
 /**
- * Initialise a new generation
- * - Construct a new generation of plants based upon those successfully
- *   pollinated in the previous generation, taking into acconut any refuges
- *   and/or restrictions to seed flow. 
- * - Reset all pollinators to initial state.
- * - Perform other housekeeping tasks.
+ * Initialise a new generation:
+ * 1. Construct a new generation of plants based upon those successfully
+ *    pollinated in the previous generation, taking into acconut any refuges
+ *    and/or restrictions to seed flow. 
+ * 2. Reset all pollinators to initial state.
+ * 3, Perform other housekeeping tasks.
  */
 void Environment::initialiseNewGeneration()
 {
@@ -279,9 +285,126 @@ void Environment::initialiseNewGeneration()
         PTDConfig -> repro-constraint-max-density-area (if isRefuge or outflowProb=0)
     */
 
-    // reset all pollinators to their initial state
+    //////////////////////////
+    // Step 1: Construct a new generation of plants
+
+    // -- Step 1a: create a vector of all pollinated plants and shuffle it
+    std::vector<FloweringPlant*> pollinatedPlantPtrs;
+    for (Patch& p : m_Patches)
+    {
+        if (p.hasFloweringPlants())
+        {
+            PlantVector & fplants = p.getFloweringPlants();
+            for (FloweringPlant & fplant : fplants)
+            {
+                if (fplant.pollinated())
+                {
+                    pollinatedPlantPtrs.push_back(&fplant);
+                }
+            }
+        }
+    }
+    std::shuffle(pollinatedPlantPtrs.begin(), pollinatedPlantPtrs.end(), EvoBeeModel::m_sRngEngine);
+
+    // -- Step 1b: create an empty vector to store new generation
+    std::vector<FloweringPlant> newPlants;
+
+    // -- Step 1c: for each plant in vector (up to global max repro num for env)
+    unsigned int globalMax = ModelParams::getReproGlobalDensityConstrained() ?
+        ((unsigned int)((float)m_Patches.size() * ModelParams::getReproGlobalDensityMax())) : 0;
+
+    for (FloweringPlant* pPlant : pollinatedPlantPtrs)
+    {
+        // -- Step 1c.1: consider a nearby position in which to reproduce
+        float distance = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
+        float heading  = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
+        fPos delta   { distance*std::cos(heading), distance*std::sin(heading) };
+        fPos fCurPos { pPlant->getPosition() };
+        fPos fNewPos { fCurPos + delta };
+
+        iPos iCurPos = getPatchCoordFromFloatPos(fCurPos);
+        iPos iNewPos = getPatchCoordFromFloatPos(fNewPos);
+
+        // -- Step 1c.2: determine prob that it will successfully reproduce in that position, taking into acccount 
+        //          seed outflow prob of current patch
+        //          seed inflow prob (refuge incoming) of destination
+        //          any local PTDConfig density constraints (stored in ModelParams)
+        bool  bAnyChance  = true;
+        float successProb = 1.0;
+
+        if (!inEnvironment(iNewPos))
+        {
+            // new plant has fallen off the edge of the world!
+            bAnyChance = false;
+        }
+        else if (iNewPos != iCurPos)
+        {
+            // new plant is in a different patch to old one
+            const Patch& curPatch = pPlant->getPatch();
+
+            // first consider our chances of successfully leaving the current patch
+            if (!curPatch.seedOutflowAllowed())
+            {
+                // no seed outflow is allowed from this patch!
+                bAnyChance = false;
+            }
+            else if (curPatch.seedOutflowRestricted())
+            {
+                // seed outflow is allowed at a restricted rate
+                successProb = curPatch.getSeedOutflowProb();
+            }
+
+            // now consider chances of succesfully moving into the new patch
+            if (bAnyChance)
+            {
+                const Patch& newPatch = getPatch(iNewPos);
+
+                if (newPatch.refuge() && (newPatch.getRefugeNativeSpeciesId() != pPlant->getSpeciesId()))
+                {
+                    // trying to move into a refuge for a different plant species
+                    successProb = std::min(successProb, newPatch.getRefugeAlienInflowProb());
+                }
+            }
+        }
+
+        // having considered local constraints on the source and desitination patches, now consider
+        // meso-scale density constraints on PlantTypeDistribution areas
+        if (bAnyChance) 
+        {
+            ///@todo            
+        }
+
+        // -- Step 1c.3: if successful, create new plant and put in newgenvec 
+        if (bAnyChance && (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < successProb))
+        {
+            ///@todo
+        }
+
+        // -- Step 1c.4: if we've now reached the global limit on the number of new plants to 
+        //               produce, stop!
+        if ((globalMax > 0) && (newPlants.size() > globalMax))
+        {
+            break;
+        }
+    }
+
+    // -- Step 1d: empty plant vectors for all patches
+    for (Patch& p : m_Patches)
+    {
+        p.killAllPlants();
+    }
+
+    // -- Step 1e: for each plant in newgenvec, move plant to appropriate Patch vec    
+    ///@todo
+
+    //////////////////////////
+    // Step 2: Reset all pollinators to their initial state
     for (Pollinator* pPollinator : m_AllPollinators)
     {
         pPollinator->reset();
     }
+
+    //////////////////////////
+    // Step 3: anything else to do? I don't think so...
+    ///@todo (maybe)    
 }

@@ -8,8 +8,10 @@
 #include <cassert>
 #include <algorithm>
 #include <iostream>
+#include <exception>
 #include "EvoBeeModel.h"
 #include "FloweringPlant.h"
+#include "Patch.h"
 
 
 // Initialise static members of class
@@ -22,11 +24,14 @@ std::map<unsigned int, std::string> FloweringPlant::m_sSpeciesMap;
  *
  */
 FloweringPlant::FloweringPlant(const PlantTypeDistributionConfig& distConfig,
-                               const PlantTypeConfig& typeConfig, fPos pos) :
+                               const PlantTypeConfig& typeConfig,
+                               fPos pos,
+                               const Patch* pPatch) :
     m_id(m_sNextFreeId++),
     m_Position(pos),
     m_bHasLeaf(typeConfig.hasLeaf),
-    m_DistributionInfo(distConfig)
+    m_DistributionInfo(distConfig),
+    m_pPatch(pPatch)
 {
     assert(typeConfig.numFlowers > 0);
 
@@ -132,9 +137,28 @@ float FloweringPlant::getDistance(const fPos& point) const
     return std::sqrt(getDistanceSq(point));
 }
 
-//
+
 float FloweringPlant::getDistanceSq(const fPos& point) const
 {
     return (((m_Position.x - point.x)*(m_Position.x - point.x)) + 
             ((m_Position.y - point.y)*(m_Position.y - point.y)));
+}
+
+
+void FloweringPlant::setPollinated(bool pollinated)
+{
+    m_bPollinated = pollinated;
+}
+
+
+const Patch& FloweringPlant::getPatch() const
+{
+    if (m_pPatch == nullptr)
+    {
+        throw std::runtime_error("Attempt to query uninitialised Patch info from a FloweringPlant.");
+    }
+    else
+    {
+        return *m_pPatch;
+    }
 }

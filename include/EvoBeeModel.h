@@ -57,6 +57,10 @@ public:
      */
     static std::mt19937 m_sRngEngine;
 
+    static std::uniform_real_distribution<float> m_sDirectionDistrib;   ///< Uniform distrib 0.0--TWOPI
+    
+    static std::uniform_real_distribution<float> m_sUniformProbDistrib; ///< Uniform distrib 0.0--1.0    
+
 private:
     unsigned int    m_iGen;     ///< Current generation number
     unsigned int    m_iStep;    ///< Current step number within current generation

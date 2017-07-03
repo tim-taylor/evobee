@@ -15,10 +15,18 @@
 #include "ModelParams.h"
 #include "EvoBeeModel.h"
 
+// Define some commonly used constant expressions
+constexpr double PI = 4.0*std::atan(1);
+constexpr double TWOPI = 2.0*PI;
 
-// Create our static random number generator engine
+
+// Define EvoBeeModel's static members
+// -- create our static random number generator engine
 std::mt19937 EvoBeeModel::m_sRngEngine;
 bool EvoBeeModel::m_sbRngInitialised = false;
+// -- and define some commonly used distributions
+std::uniform_real_distribution<float> EvoBeeModel::m_sDirectionDistrib(0.0, TWOPI);
+std::uniform_real_distribution<float> EvoBeeModel::m_sUniformProbDistrib(0.0, 1.0);
 
 
 EvoBeeModel::EvoBeeModel() :

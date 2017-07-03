@@ -53,7 +53,9 @@
         "string_view": "cpp",
         "unordered_map": "cpp",
         "vector": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "complex": "cpp",
+        "valarray": "cpp"
     },
     "files.exclude": {
         "**/.git": true,
