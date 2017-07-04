@@ -353,7 +353,8 @@ void Environment::initialiseNewGeneration()
                 else if (curPatch.seedOutflowRestricted())
                 {
                     // seed outflow is allowed at a restricted rate
-                    successProb = curPatch.getSeedOutflowProb();
+                    // (multiply the prob of doing this with our currently calculated prob)
+                    successProb *= curPatch.getSeedOutflowProb();
                 }
 
                 // now consider chances of succesfully moving into the new patch
@@ -364,7 +365,8 @@ void Environment::initialiseNewGeneration()
                     if (newPatch.refuge() && (newPatch.getRefugeNativeSpeciesId() != pPlant->getSpeciesId()))
                     {
                         // trying to move into a refuge for a different plant species
-                        successProb = std::min(successProb, newPatch.getRefugeAlienInflowProb());
+                        // (multiply the prob of doing this with our currently calculated prob)
+                        successProb *= newPatch.getRefugeAlienInflowProb();
                     }
                 }
             }
