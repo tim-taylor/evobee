@@ -55,6 +55,9 @@ Environment::Environment(EvoBeeModel* pModel) :
     // Initialise Plants
     initialisePlants();
 
+    // Initialise internal book-keeping for local density limits during plant reproduction
+    initialiseLocalDensityCounts();
+
     std::cout << "Initialised Environment with " << m_Patches.size() << " patches" << std::endl;
 }
 
@@ -135,7 +138,7 @@ void Environment::initialisePlants()
                 std::vector<fPos>& posvec = patchInfo[x][y];
                 for (fPos& pos : posvec)
                 {
-                    patch.addPlant(pdcfg, *pPTC, pos);
+                    patch.addPlant(*pPTC, pos);
                 }
 
                 if (pdcfg.refuge || pdcfg.seedOutflowRestricted || (!pdcfg.seedOutflowAllowed))
@@ -285,6 +288,10 @@ void Environment::initialiseNewGeneration()
     */
 
     //////////////////////////////////////////////////////////////
+    // Step 0: Internal book-keeping
+    resetLocalDensityCounts(); ///@todo
+
+    //////////////////////////////////////////////////////////////
     // Step 1: Construct a new generation of plants
 
     // -- Step 1a: create a vector of all pollinated plants and shuffle it
@@ -315,6 +322,8 @@ void Environment::initialiseNewGeneration()
     for (FloweringPlant* pPlant : pollinatedPlantPtrs)
     {
         // -- Step 1c.1: consider a nearby position in which to reproduce
+        ///@todo at this stage we've got a distance between 0-1 - maybe need a wider
+        ///      distribution, or maybe even just have a fixed diatance of 1?
         float distance = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
         float heading  = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
         fPos delta   { distance*std::cos(heading), distance*std::sin(heading) };
@@ -323,6 +332,8 @@ void Environment::initialiseNewGeneration()
 
         iPos iCurPos = getPatchCoordFromFloatPos(fCurPos);
         iPos iNewPos = getPatchCoordFromFloatPos(fNewPos);
+
+        const Patch& newPatch = getPatch(iNewPos);        
 
         // -- Step 1c.2: determine prob that it will successfully reproduce in that position,
         //    taking into acccount:
@@ -360,8 +371,6 @@ void Environment::initialiseNewGeneration()
                 // now consider chances of succesfully moving into the new patch
                 if (bAnyChance)
                 {
-                    const Patch& newPatch = getPatch(iNewPos);
-
                     if (newPatch.refuge() && (newPatch.getRefugeNativeSpeciesId() != pPlant->getSpeciesId()))
                     {
                         // trying to move into a refuge for a different plant species
@@ -374,15 +383,19 @@ void Environment::initialiseNewGeneration()
 
         // having considered local constraints on the source and desitination patches, now consider
         // meso-scale density constraints on PlantTypeDistribution areas
-        if (bAnyChance) 
+        if (bAnyChance && localDensityLimitReached(iNewPos))
         {
-            ///@todo            
+            bAnyChance = false;
         }
 
         // -- Step 1c.3: if successful, create new plant and put in newPlants vector 
         if (bAnyChance && (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < successProb))
         {
-            ///@todo
+            // create a mutated version of the parent plant
+            newPlants.emplace_back(pPlant, fNewPos, &newPatch, true);
+
+            // and also update local density count
+            incrementLocalDensityCount(iNewPos);
         }
 
         // -- Step 1c.4: if we've now reached the global limit on the number of new plants to 
@@ -412,4 +425,52 @@ void Environment::initialiseNewGeneration()
     //////////////////////////////////////////////////////////////
     // Step 3: anything else to do? I don't think so...
     ///@todo (maybe)    
+}
+
+
+void Environment::initialiseLocalDensityCounts()
+{
+    const std::vector<PlantTypeDistributionConfig>& pdconfigs = 
+        ModelParams::getPlantTypeDistributionConfigs();
+    
+    for (const PlantTypeDistributionConfig& pdcfg : pdconfigs)
+    {
+        if (pdcfg.reproLocalDensityConstrained)
+        {
+            m_LocalDensityConstraints.emplace_back(pdcfg);
+        }
+    }   
+}
+
+void Environment::resetLocalDensityCounts()
+{
+    for (LocalDensityConstraint& ldc : m_LocalDensityConstraints)
+    {
+        ldc.curPlants = 0;
+    }
+}
+
+bool Environment::localDensityLimitReached(const iPos& newPatchPos) const
+{
+    for (const LocalDensityConstraint& ldc : m_LocalDensityConstraints)
+    {
+        if (ldc.posInArea(newPatchPos))
+        {
+            return (ldc.curPlants >= ldc.maxPlants);
+        }
+    }
+
+    return false;
+}
+
+void Environment::incrementLocalDensityCount(const iPos& newPatchPos)
+{
+    for (LocalDensityConstraint& ldc : m_LocalDensityConstraints)
+    {
+        if (ldc.posInArea(newPatchPos))
+        {
+            ++(ldc.curPlants);
+            return;
+        }
+    }
 }

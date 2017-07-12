@@ -26,8 +26,15 @@ class Patch;
 class FloweringPlant {
 
 public:
-    FloweringPlant(const PlantTypeDistributionConfig& distConfig,
-                   const PlantTypeConfig& typeConfig, fPos pos, const Patch* pPatch);
+    /**
+     * Constructor for creating a new plant at the beginning of a simulation
+     */
+    FloweringPlant(const PlantTypeConfig& typeConfig, const fPos& pos, const Patch* pPatch);
+
+    /**
+     * Constructor for creating an offspring plant from a pollinated parent plant
+     */
+    FloweringPlant(const FloweringPlant* pParent, const fPos& pos, const Patch* pPatch, bool mutate);
 
     /**
      * Get the unique id of this plant
@@ -87,17 +94,15 @@ public:
 
 
 private:
-    unsigned int        m_id;           ///< Unique ID number for this plant
-    unsigned int        m_SpeciesId;    ///< ID number of the species of this plant
-    fPos                m_Position;
-    std::vector<Flower> m_Flowers;
-    bool                m_bHasLeaf;
-    ReflectanceInfo     m_LeafReflectance;
-    bool                m_bPollinated;  ///< Have any of this plant's flowers been pollinated?
-
-    const PlantTypeDistributionConfig& m_DistributionInfo;
-
-    const Patch*        m_pPatch;       ///< (non-owning) pointer to Patch in which this plant resides
+    unsigned int            m_id;           ///< Unique ID number for this plant
+    unsigned int            m_SpeciesId;    ///< ID number of the species of this plant
+    fPos                    m_Position;
+    std::vector<Flower>     m_Flowers;
+    bool                    m_bHasLeaf;
+    ReflectanceInfo         m_LeafReflectance;
+    bool                    m_bPollinated;  ///< Have any of this plant's flowers been pollinated?
+    const Patch*            m_pPatch;       ///< (non-owning) pointer to Patch in which this plant resides
+    const PlantTypeConfig*  m_pPlantTypeConfig; ///< (non-owning) pointer to the Type Config object
 
     /**
      * Set the plant's pollinated flag

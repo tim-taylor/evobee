@@ -18,6 +18,7 @@ class ReflectanceInfo {
 
 public:
     ReflectanceInfo() : m_MarkerPoint(NO_MARKER_POINT) {};
+    ReflectanceInfo(const ReflectanceInfo& other) : m_MarkerPoint(other.m_MarkerPoint) {};
     ReflectanceInfo(MarkerPoint mp) : m_MarkerPoint(mp) {};
 
     bool hasMarkerPoint() const {return m_MarkerPoint != NO_MARKER_POINT;}

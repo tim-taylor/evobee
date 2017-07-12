@@ -41,8 +41,7 @@ public:
      * Create a new plant object based upon the specified config objects and add
      * it to this patch at the specified position
      */
-    void addPlant(const PlantTypeDistributionConfig& distConfig,
-                  const PlantTypeConfig& typeConfig, fPos pos);
+    void addPlant(const PlantTypeConfig& typeConfig, const fPos& pos);
 
     /**
      * Delete all plants from this patch

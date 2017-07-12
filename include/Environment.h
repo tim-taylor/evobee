@@ -12,6 +12,7 @@
 #include <cmath>
 #include "Patch.h"
 #include "AbstractHive.h"
+#include "PlantTypeDistributionConfig.h"
 #include "Position.h"
 
 using PatchVector = std::vector<Patch>;
@@ -20,6 +21,36 @@ using PollinatorPtrVector = std::vector<Pollinator*>;
 
 class FloweringPlant;
 class EvoBeeModel;
+
+
+/**
+ * The LocalDensityConstraint struct
+ * Used for keeping track of constraints on local plant densities during the
+ * reproduction process
+ */
+struct LocalDensityConstraint {
+
+    LocalDensityConstraint(const PlantTypeDistributionConfig& _ptdcfg) :
+        ptdcfg(_ptdcfg),
+        curPlants(0)
+    {
+        int w = ptdcfg.areaBottomRight.x - ptdcfg.areaTopLeft.x + 1;
+        int h = ptdcfg.areaBottomRight.y - ptdcfg.areaTopLeft.y + 1;
+        maxPlants = (int)(ptdcfg.reproLocalDensityMax * (float)(w * h));
+    }
+
+    bool posInArea(const iPos& pos) const
+    {
+        return (pos.x >= ptdcfg.areaTopLeft.x &&
+                pos.x <= ptdcfg.areaBottomRight.x &&
+                pos.y >= ptdcfg.areaTopLeft.y &&
+                pos.y <= ptdcfg.areaBottomRight.y);
+    }
+
+    const PlantTypeDistributionConfig& ptdcfg;
+    unsigned int maxPlants;
+    unsigned int curPlants;
+};
 
 
 /**
@@ -143,6 +174,12 @@ public:
 
 private:
     void initialisePlants();     // private helper method used in constructor
+
+    // private methods for keeping track of local density limits during reproduction
+    void initialiseLocalDensityCounts();
+    void resetLocalDensityCounts();
+    bool localDensityLimitReached(const iPos& newPatchPos) const;
+    void incrementLocalDensityCount(const iPos& newPatchPos);
     
     PatchVector   m_Patches;     ///< All patches are stored in a 1D vector for speed of access
     HivePtrVector m_Hives;       ///< Collection of all hives in the environment
@@ -157,6 +194,10 @@ private:
                                            * individual Hives
                                            */
 
+    std::vector<LocalDensityConstraint> m_LocalDensityConstraints; ///< List of local plant density
+                                                                   /// constraints, as defined by those
+                                                                   /// PlantTypeDistributions for which
+                                                                   /// reproLocalDensityConstrained=true
     const EvoBeeModel* m_pModel;                                           
 };
 

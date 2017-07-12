@@ -55,7 +55,8 @@
         "vector": "cpp",
         "cinttypes": "cpp",
         "complex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "cmakeccompilerid.c": "cpp"
     },
     "files.exclude": {
         "**/.git": true,

@@ -12,7 +12,11 @@
 unsigned int Flower::m_sNextFreeId = 1;
 
 
-Flower::Flower(FloweringPlant* pPlant, const PlantTypeConfig& ptc, fPos pos, MarkerPoint mp) :
+// create a new flower based upon initial config info
+Flower::Flower( FloweringPlant* pPlant, 
+                const PlantTypeConfig& ptc,
+                const fPos& pos,
+                MarkerPoint mp ) :
     m_id(m_sNextFreeId++),
     m_SpeciesId(pPlant->getSpeciesId()),
     m_Position(pos),
@@ -25,6 +29,26 @@ Flower::Flower(FloweringPlant* pPlant, const PlantTypeConfig& ptc, fPos pos, Mar
     m_iStigmaMaxPollenCapacity(ptc.stigmaMaxPollenCapacity),
     m_bPollenClogging(ptc.pollenClogging)
     //m_iNectarRewardPerVisit(ptc.nectarReward)
+{}
+
+
+// create a new flower based upon a flower from the parent plant
+Flower::Flower( FloweringPlant* pPlant, 
+                const Flower& parentFlower,
+                const fPos& pos,
+                const ReflectanceInfo& reflectance ) :
+    m_id(m_sNextFreeId++),
+    m_SpeciesId(pPlant->getSpeciesId()),
+    m_Position(pos),
+    m_Reflectance(reflectance),
+    m_bPollinated(false),
+    m_iAntherPollen(pPlant->m_pPlantTypeConfig->antherInitPollen),
+    m_fTemperature(pPlant->m_pPlantTypeConfig->initTemp),
+    m_pPlant(pPlant),
+    m_iAntherPollenTransferPerVisit(pPlant->m_pPlantTypeConfig->antherPollenTransferPerVisit),
+    m_iStigmaMaxPollenCapacity(pPlant->m_pPlantTypeConfig->stigmaMaxPollenCapacity),
+    m_bPollenClogging(pPlant->m_pPlantTypeConfig->pollenClogging)
+    ////m_iNectarRewardPerVisit(ptc.nectarReward)
 {}
 
 

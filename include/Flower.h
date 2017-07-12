@@ -24,7 +24,16 @@ class FloweringPlant;
 class Flower {
 
 public:
-    Flower(FloweringPlant* pPlant, const PlantTypeConfig& ptc, fPos pos, MarkerPoint mp);
+    /**
+     * Constructor to create a brand new flower from config info at start of simulation
+     */    
+    Flower(FloweringPlant* pPlant, const PlantTypeConfig& ptc, const fPos& pos, MarkerPoint mp);
+
+    /**
+     * Consructor to create an offspring flower based upon parent
+     */
+    Flower( FloweringPlant* pPlant, const Flower& parentFlower,
+            const fPos& pos, const ReflectanceInfo& reflectance);  
 
     /**
      *
@@ -60,6 +69,11 @@ public:
      *
      */
     MarkerPoint getMarkerPoint() const {return m_Reflectance.getMarkerPoint();}
+
+    /*
+     *
+     */
+    const ReflectanceInfo& getReflectanceInfo() const {return m_Reflectance;}
 
     /**
      * Transfer some pollen grains from the anthers, if available, to the
@@ -105,11 +119,10 @@ private:
     int             m_iAntherPollen;    ///< Amount of collectable pollen remaining
     PollenVector    m_StigmaPollen;     ///< Collection of deposited Pollen grains on stigma
     float           m_fTemperature;     ///< Current temperature of flower
-
     FloweringPlant* m_pPlant;           ///< (non-owning) pointer to the plant this flower belongs to
 
     // the following are constant parameters for this flower
-    const int   m_iAntherPollenTransferPerVisit;///< Number of pollen grains deposited on a pollinator per visit
+    const int   m_iAntherPollenTransferPerVisit;///< Num pollen grains deposited on a pollinator per visit
     const int   m_iStigmaMaxPollenCapacity; ///< Maximum amount of pollen the stigma can carry
     const bool  m_bPollenClogging;          ///< If true, pollen from other species can clog stigma
     /*const int m_iNectarRewardPerVisit;    ///< Amount of reward given to a pollinator (CURRENTLY UNUSED)*/

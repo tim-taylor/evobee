@@ -28,13 +28,12 @@ Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
 }
 
 
-void Patch::addPlant(const PlantTypeDistributionConfig& distConfig,
-                     const PlantTypeConfig& typeConfig, fPos pos)
+void Patch::addPlant(const PlantTypeConfig& typeConfig, const fPos& pos)
 {
     std::cout << "Adding plant of species " << typeConfig.species << " to Patch [" << 
         m_Position << "] at coordinates (" << pos << ")" << std::endl;
 
-    m_FloweringPlants.emplace_back(distConfig, typeConfig, pos, this);
+    m_FloweringPlants.emplace_back(typeConfig, pos, this);
 }
 
 

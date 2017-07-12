@@ -20,20 +20,18 @@ unsigned int FloweringPlant::m_sNextFreeSpeciesId = 1;
 std::map<unsigned int, std::string> FloweringPlant::m_sSpeciesMap;
 
 
-/**
- *
- */
-FloweringPlant::FloweringPlant(const PlantTypeDistributionConfig& distConfig,
-                               const PlantTypeConfig& typeConfig,
-                               fPos pos,
+// Create a brand new plant at the start of the simulation from the specified config
+FloweringPlant::FloweringPlant(const PlantTypeConfig& typeConfig,
+                               const fPos& pos,
                                const Patch* pPatch) :
     m_id(m_sNextFreeId++),
     m_Position(pos),
     m_bHasLeaf(typeConfig.hasLeaf),
-    m_DistributionInfo(distConfig),
     m_pPatch(pPatch)
 {
     assert(typeConfig.numFlowers > 0);
+
+    m_pPlantTypeConfig = &typeConfig;
 
     // Do we already have a record of this plant species?
     auto it = std::find_if( m_sSpeciesMap.begin(),
@@ -81,6 +79,32 @@ FloweringPlant::FloweringPlant(const PlantTypeDistributionConfig& distConfig,
         /// (the same position as the plant itself). If/when we start looking
         /// at plants with multiple flowers, we might want to change this
         m_Flowers.emplace_back(this, typeConfig, m_Position, mp);
+    }
+}
+
+
+// Create an offspring plant from the specified parent
+FloweringPlant::FloweringPlant( const FloweringPlant* pParent, 
+                                const fPos& pos,
+                                const Patch* pPatch,
+                                bool  mutate ) :
+    m_id(m_sNextFreeId++)
+{
+    assert(pParent != nullptr);
+    assert(pPatch != nullptr);
+
+    m_SpeciesId = pParent->m_SpeciesId;
+    m_pPlantTypeConfig = pParent->m_pPlantTypeConfig;
+    m_pPatch = pPatch;
+    m_Position = pos;
+    m_bHasLeaf = pParent->m_bHasLeaf;
+    m_LeafReflectance = pParent->m_LeafReflectance;
+    for (const Flower& parentFlower : pParent->m_Flowers)
+    {
+        ///@todo take note of the mutate param, and maybe change some values,
+        // particularly the Marker Point/Reflectance info!
+        const ReflectanceInfo& reflectance = parentFlower.getReflectanceInfo();
+        m_Flowers.emplace_back(this, parentFlower, m_Position, reflectance);
     }
 }
 
