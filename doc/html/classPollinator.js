@@ -1,7 +1,9 @@
 var classPollinator =
 [
     [ "Pollinator", "classPollinator.html#ac072833c8eb10afca0a6396a2eaaf3cf", null ],
-    [ "~Pollinator", "classPollinator.html#a83c6656dd7558d04ed18994eab4ea497", null ],
+    [ "Pollinator", "classPollinator.html#a4c08b7245c307509b02836f8eb6e1026", null ],
+    [ "Pollinator", "classPollinator.html#ad36f1d71e368a4b181f3cf55760fc995", null ],
+    [ "~Pollinator", "classPollinator.html#a74856ab0492c4bfdfb91b98790876206", null ],
     [ "collectPollenFromAnther", "classPollinator.html#abd0f7c7f0c5b358eb6d3b3978d5f54e2", null ],
     [ "depositPollenOnStigma", "classPollinator.html#a38a0c45cf2ebd561ee2854c72c348c72", null ],
     [ "getEnvironment", "classPollinator.html#ae2a9fb92e2b254589198d5816448c00c", null ],
@@ -16,6 +18,8 @@ var classPollinator =
     [ "moveBiassed", "classPollinator.html#ad09af1bd539e5635de728a7187bd15e7", null ],
     [ "moveLevy", "classPollinator.html#ad03277df915384e641aa3c22d2ebeaac", null ],
     [ "moveRandom", "classPollinator.html#a33ca8e88b08534601c7c6618c4072eb9", null ],
+    [ "operator=", "classPollinator.html#a0bb73eed72df831c8c1b3687b99744ee", null ],
+    [ "operator=", "classPollinator.html#aafbdf7620e9bf4231b47bc0870186316", null ],
     [ "removeOldCarryoverPollen", "classPollinator.html#ab4055e86ccdfc6a359caf9915a708767", null ],
     [ "reset", "classPollinator.html#a65d13ef9bcf2a6e7ebe30ece3f1531e4", null ],
     [ "resetToStartPosition", "classPollinator.html#a2f80a1d3b0985898f548b2b671f7c223", null ],

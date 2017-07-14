@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['_7elogger',['~Logger',['../classLogger.html#acb668a9e186a25fbaad2e4af6d1ed00a',1,'Logger']]]
+  ['visualiser',['Visualiser',['../classVisualiser.html',1,'']]],
+  ['visualiser_2ecpp',['Visualiser.cpp',['../Visualiser_8cpp.html',1,'']]],
+  ['visualiser_2eh',['Visualiser.h',['../Visualiser_8h.html',1,'']]]
 ];

@@ -1,17 +1,14 @@
 var searchData=
 [
-  ['sdl2_5fgfxbresenhamiterator',['SDL2_gfxBresenhamIterator',['../structSDL2__gfxBresenhamIterator.html',1,'']]],
-  ['sdl2_5fgfxmurphyiterator',['SDL2_gfxMurphyIterator',['../structSDL2__gfxMurphyIterator.html',1,'']]],
-  ['sdl_5fcleanup',['sdl_cleanup',['../sdl__tools_8h.html#ad2de4a80e7ef79f6d59cd91917c6b11a',1,'sdl_tools.h']]],
-  ['sdl_5ftools_2eh',['sdl_tools.h',['../sdl__tools_8h.html',1,'']]],
-  ['seedoutflowallowed',['seedOutflowAllowed',['../structPlantTypeDistributionConfig.html#a918028f65ed089ee2c4322b078dbb0ee',1,'PlantTypeDistributionConfig']]],
-  ['seedoutflowprob',['seedOutflowProb',['../structPlantTypeDistributionConfig.html#a810cde43d62d58fcc340eff8422cef0d',1,'PlantTypeDistributionConfig']]],
-  ['seedrng',['seedRng',['../classEvoBeeModel.html#a0cb1dc6ce976af8291a0498141a62d25',1,'EvoBeeModel']]],
-  ['setgenterminationtype',['setGenTerminationType',['../classModelParams.html#a6816060ce7091cb1a989ebf3bec5bf17',1,'ModelParams']]],
-  ['setmaxscreenfrach',['setMaxScreenFracH',['../classModelParams.html#a1102369141dc9e1330ecb6739954add8',1,'ModelParams']]],
-  ['setmaxscreenfracw',['setMaxScreenFracW',['../classModelParams.html#a430dc7c313f910df97c18066e400cad4',1,'ModelParams']]],
-  ['setrgb',['setRgb',['../classColour.html#afb296f7181ed33b7d6df0522f223c5c6',1,'Colour']]],
-  ['species',['species',['../structPlantTypeDistributionConfig.html#a4616ecbaa8be018516a693b055ffd190',1,'PlantTypeDistributionConfig']]],
-  ['startfromhive',['startFromHive',['../structHiveConfig.html#a414eec8b01c1549b34331eedfec74c32',1,'HiveConfig']]],
-  ['step',['step',['../classEvoBeeModel.html#a046b1d72d09ae408686af178e07b8fa6',1,'EvoBeeModel::step()'],['../classHoneyBee.html#ae44550c830b3b483981aa4dfc1555f68',1,'HoneyBee::step()']]]
+  ['reflectanceinfo',['ReflectanceInfo',['../classReflectanceInfo.html',1,'']]],
+  ['reflectanceinfo_2eh',['ReflectanceInfo.h',['../ReflectanceInfo_8h.html',1,'']]],
+  ['refuge',['refuge',['../structPlantTypeDistributionConfig.html#a1d0dc38525c55f7d1ddb4c9265a98b33',1,'PlantTypeDistributionConfig']]],
+  ['refugealieninflowprob',['refugeAlienInflowProb',['../structPlantTypeDistributionConfig.html#a69c3b4d6e153ae8226fd6776f237ef3d',1,'PlantTypeDistributionConfig']]],
+  ['removeoldcarryoverpollen',['removeOldCarryoverPollen',['../classPollinator.html#ab4055e86ccdfc6a359caf9915a708767',1,'Pollinator']]],
+  ['reprolocaldensityconstrained',['reproLocalDensityConstrained',['../structPlantTypeDistributionConfig.html#a91b2d8d2dc7d3654235e48d30591d7be',1,'PlantTypeDistributionConfig']]],
+  ['reprolocaldensitymax',['reproLocalDensityMax',['../structPlantTypeDistributionConfig.html#ab0326ce0f69321cb889195c271cc3fa5',1,'PlantTypeDistributionConfig']]],
+  ['reset',['reset',['../classHoneyBee.html#afbaafcd0ee136500bdacab237612d67d',1,'HoneyBee::reset()'],['../classHymenoptera.html#a88ddb0f006fbb0550267c2cb40b62873',1,'Hymenoptera::reset()'],['../classPollinator.html#a65d13ef9bcf2a6e7ebe30ece3f1531e4',1,'Pollinator::reset()'],['../classVisualiser.html#a0681cd51c3f085e029ccf49d22812fda',1,'Visualiser::reset()']]],
+  ['resettostartposition',['resetToStartPosition',['../classPollinator.html#a2f80a1d3b0985898f548b2b671f7c223',1,'Pollinator']]],
+  ['rgb',['RGB',['../classColour_1_1RGB.html',1,'Colour']]],
+  ['run',['run',['../classEvoBeeExperiment.html#a7219da5e7707008d2007e5c5a3a664c8',1,'EvoBeeExperiment']]]
 ];

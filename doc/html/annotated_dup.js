@@ -12,6 +12,7 @@ var annotated_dup =
     [ "HiveConfig", "structHiveConfig.html", "structHiveConfig" ],
     [ "HoneyBee", "classHoneyBee.html", "classHoneyBee" ],
     [ "Hymenoptera", "classHymenoptera.html", "classHymenoptera" ],
+    [ "LocalDensityConstraint", "structLocalDensityConstraint.html", "structLocalDensityConstraint" ],
     [ "Logger", "classLogger.html", "classLogger" ],
     [ "ModelComponent", "classModelComponent.html", "classModelComponent" ],
     [ "ModelParams", "classModelParams.html", null ],

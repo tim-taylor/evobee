@@ -114,7 +114,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr class="separator:ac28a395bd65d134599c7092aff336f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a713c4d742ca65ea9bcac6c8ba75a006a"><td class="memItemLeft" align="right" valign="top"><a id="a713c4d742ca65ea9bcac6c8ba75a006a"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPlantTypeDistributionConfig.html#a713c4d742ca65ea9bcac6c8ba75a006a">density</a></td></tr>
-<tr class="memdesc:a713c4d742ca65ea9bcac6c8ba75a006a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Density of initial distribution (wrt specified distribution area) <br /></td></tr>
+<tr class="memdesc:a713c4d742ca65ea9bcac6c8ba75a006a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Density of initial distribution (wrt specified distrib area) <br /></td></tr>
 <tr class="separator:a713c4d742ca65ea9bcac6c8ba75a006a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d0dc38525c55f7d1ddb4c9265a98b33"><td class="memItemLeft" align="right" valign="top"><a id="a1d0dc38525c55f7d1ddb4c9265a98b33"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPlantTypeDistributionConfig.html#a1d0dc38525c55f7d1ddb4c9265a98b33">refuge</a></td></tr>
@@ -124,12 +124,18 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stru
 <tr class="separator:a69c3b4d6e153ae8226fd6776f237ef3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a918028f65ed089ee2c4322b078dbb0ee"><td class="memItemLeft" align="right" valign="top"><a id="a918028f65ed089ee2c4322b078dbb0ee"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPlantTypeDistributionConfig.html#a918028f65ed089ee2c4322b078dbb0ee">seedOutflowAllowed</a></td></tr>
-<tr class="memdesc:a918028f65ed089ee2c4322b078dbb0ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can the plants germinate outside of the initial distribution area? <br /></td></tr>
+<tr class="memdesc:a918028f65ed089ee2c4322b078dbb0ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can the plants germinate outside of the initial distrib area? <br /></td></tr>
 <tr class="separator:a918028f65ed089ee2c4322b078dbb0ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a810cde43d62d58fcc340eff8422cef0d"><td class="memItemLeft" align="right" valign="top"><a id="a810cde43d62d58fcc340eff8422cef0d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPlantTypeDistributionConfig.html#a810cde43d62d58fcc340eff8422cef0d">seedOutflowProb</a></td></tr>
-<tr class="memdesc:a810cde43d62d58fcc340eff8422cef0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">If seedOutflowAllowed, what is the probability that they do so? <br /></td></tr>
+<tr class="memitem:a33a53b9076f72b7f64934ea262230fc0"><td class="memItemLeft" align="right" valign="top"><a id="a33a53b9076f72b7f64934ea262230fc0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPlantTypeDistributionConfig.html#a33a53b9076f72b7f64934ea262230fc0">seedOutflowRestricted</a></td></tr>
+<tr class="memdesc:a33a53b9076f72b7f64934ea262230fc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">If seedOutflowAllowed, is it restricted? <br /></td></tr>
+<tr class="separator:a33a53b9076f72b7f64934ea262230fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a810cde43d62d58fcc340eff8422cef0d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPlantTypeDistributionConfig.html#a810cde43d62d58fcc340eff8422cef0d">seedOutflowProb</a></td></tr>
 <tr class="separator:a810cde43d62d58fcc340eff8422cef0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91b2d8d2dc7d3654235e48d30591d7be"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPlantTypeDistributionConfig.html#a91b2d8d2dc7d3654235e48d30591d7be">reproLocalDensityConstrained</a></td></tr>
+<tr class="separator:a91b2d8d2dc7d3654235e48d30591d7be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0326ce0f69321cb889195c271cc3fa5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPlantTypeDistributionConfig.html#ab0326ce0f69321cb889195c271cc3fa5">reproLocalDensityMax</a></td></tr>
+<tr class="separator:ab0326ce0f69321cb889195c271cc3fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="structPlantTypeDistributionConfig.html">PlantTypeDistributionConfig</a> class ... </p>
@@ -147,9 +153,60 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="str
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If this is a refuge, what is the probability that an alien species attempting to germinate in this area will do so successfully? </p>
+<p>If this is a refuge, what is the probability that an alien species attempting to germinate in this area will do so successfully </p>
 
 <p class="definition">Definition at line <a class="el" href="PlantTypeDistributionConfig_8h_source.html#l00029">29</a> of file <a class="el" href="PlantTypeDistributionConfig_8h_source.html">PlantTypeDistributionConfig.h</a>.</p>
+
+</div>
+</div>
+<a id="a91b2d8d2dc7d3654235e48d30591d7be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91b2d8d2dc7d3654235e48d30591d7be">&#9670;&nbsp;</a></span>reproLocalDensityConstrained</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlantTypeDistributionConfig::reproLocalDensityConstrained</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>During reproduction, is the maximum density of plants in this local area constrained? </p>
+
+<p class="definition">Definition at line <a class="el" href="PlantTypeDistributionConfig_8h_source.html#l00037">37</a> of file <a class="el" href="PlantTypeDistributionConfig_8h_source.html">PlantTypeDistributionConfig.h</a>.</p>
+
+</div>
+</div>
+<a id="ab0326ce0f69321cb889195c271cc3fa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0326ce0f69321cb889195c271cc3fa5">&#9670;&nbsp;</a></span>reproLocalDensityMax</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PlantTypeDistributionConfig::reproLocalDensityMax</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>If reproLocalDensityConstrained, this is the maximum allowed density </p>
+
+<p class="definition">Definition at line <a class="el" href="PlantTypeDistributionConfig_8h_source.html#l00039">39</a> of file <a class="el" href="PlantTypeDistributionConfig_8h_source.html">PlantTypeDistributionConfig.h</a>.</p>
+
+</div>
+</div>
+<a id="a810cde43d62d58fcc340eff8422cef0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a810cde43d62d58fcc340eff8422cef0d">&#9670;&nbsp;</a></span>seedOutflowProb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PlantTypeDistributionConfig::seedOutflowProb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>If seedOutflowAllowed and seedOutflowRestricted, what is the probability that they are successful if attempting to do so? </p>
+
+<p class="definition">Definition at line <a class="el" href="PlantTypeDistributionConfig_8h_source.html#l00034">34</a> of file <a class="el" href="PlantTypeDistributionConfig_8h_source.html">PlantTypeDistributionConfig.h</a>.</p>
 
 </div>
 </div>

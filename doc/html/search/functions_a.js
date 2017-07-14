@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['sdl_5fcleanup',['sdl_cleanup',['../sdl__tools_8h.html#ad2de4a80e7ef79f6d59cd91917c6b11a',1,'sdl_tools.h']]],
-  ['seedrng',['seedRng',['../classEvoBeeModel.html#a0cb1dc6ce976af8291a0498141a62d25',1,'EvoBeeModel']]],
-  ['setgenterminationtype',['setGenTerminationType',['../classModelParams.html#a6816060ce7091cb1a989ebf3bec5bf17',1,'ModelParams']]],
-  ['setmaxscreenfrach',['setMaxScreenFracH',['../classModelParams.html#a1102369141dc9e1330ecb6739954add8',1,'ModelParams']]],
-  ['setmaxscreenfracw',['setMaxScreenFracW',['../classModelParams.html#a430dc7c313f910df97c18066e400cad4',1,'ModelParams']]],
-  ['setrgb',['setRgb',['../classColour.html#afb296f7181ed33b7d6df0522f223c5c6',1,'Colour']]],
-  ['step',['step',['../classEvoBeeModel.html#a046b1d72d09ae408686af178e07b8fa6',1,'EvoBeeModel::step()'],['../classHoneyBee.html#ae44550c830b3b483981aa4dfc1555f68',1,'HoneyBee::step()']]]
+  ['removeoldcarryoverpollen',['removeOldCarryoverPollen',['../classPollinator.html#ab4055e86ccdfc6a359caf9915a708767',1,'Pollinator']]],
+  ['reset',['reset',['../classHoneyBee.html#afbaafcd0ee136500bdacab237612d67d',1,'HoneyBee::reset()'],['../classHymenoptera.html#a88ddb0f006fbb0550267c2cb40b62873',1,'Hymenoptera::reset()'],['../classPollinator.html#a65d13ef9bcf2a6e7ebe30ece3f1531e4',1,'Pollinator::reset()'],['../classVisualiser.html#a0681cd51c3f085e029ccf49d22812fda',1,'Visualiser::reset()']]],
+  ['resettostartposition',['resetToStartPosition',['../classPollinator.html#a2f80a1d3b0985898f548b2b671f7c223',1,'Pollinator']]],
+  ['run',['run',['../classEvoBeeExperiment.html#a7219da5e7707008d2007e5c5a3a664c8',1,'EvoBeeExperiment']]]
 ];

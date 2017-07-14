@@ -105,6 +105,12 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>setEnvDefaultA
 <tr class="memitem:a3284dc730d29fd6c50b7a6ae923cc5fa"><td class="memItemLeft" align="right" valign="top"><a id="a3284dc730d29fd6c50b7a6ae923cc5fa"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>setEnvBackgroundReflectanceMP</b> (MarkerPoint mp)</td></tr>
 <tr class="separator:a3284dc730d29fd6c50b7a6ae923cc5fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf3121d92f158cac2b77aed29e32e37c"><td class="memItemLeft" align="right" valign="top"><a id="adf3121d92f158cac2b77aed29e32e37c"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setReproGlobalDensityConstrained</b> (bool constrained)</td></tr>
+<tr class="separator:adf3121d92f158cac2b77aed29e32e37c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fdae79fefb6e1d3138764bc939cbb38"><td class="memItemLeft" align="right" valign="top"><a id="a2fdae79fefb6e1d3138764bc939cbb38"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setReproGlobalDensityMax</b> (float dmax)</td></tr>
+<tr class="separator:a2fdae79fefb6e1d3138764bc939cbb38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a781d74573b6a0cfaebd4d9df689ad230"><td class="memItemLeft" align="right" valign="top"><a id="a781d74573b6a0cfaebd4d9df689ad230"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>setVisualisation</b> (bool vis)</td></tr>
 <tr class="separator:a781d74573b6a0cfaebd4d9df689ad230"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,6 +189,12 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>getEnvSizeY</b>
 <tr class="memitem:ace1d9d1783caa27a0a737657ee731538"><td class="memItemLeft" align="right" valign="top"><a id="ace1d9d1783caa27a0a737657ee731538"></a>
 static float&#160;</td><td class="memItemRight" valign="bottom"><b>getEnvDefaultAmbientTemp</b> ()</td></tr>
 <tr class="separator:ace1d9d1783caa27a0a737657ee731538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdf2e0141258d70b216e8d8ba76ee1b6"><td class="memItemLeft" align="right" valign="top"><a id="acdf2e0141258d70b216e8d8ba76ee1b6"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>getReproGlobalDensityConstrained</b> ()</td></tr>
+<tr class="separator:acdf2e0141258d70b216e8d8ba76ee1b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf545044136e757b16fc6c17918ca9a3"><td class="memItemLeft" align="right" valign="top"><a id="adf545044136e757b16fc6c17918ca9a3"></a>
+static float&#160;</td><td class="memItemRight" valign="bottom"><b>getReproGlobalDensityMax</b> ()</td></tr>
+<tr class="separator:adf545044136e757b16fc6c17918ca9a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d4fcc450e3212c80cf448688d6544ac"><td class="memItemLeft" align="right" valign="top"><a id="a5d4fcc450e3212c80cf448688d6544ac"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumPatches</b> ()</td></tr>
 <tr class="separator:a5d4fcc450e3212c80cf448688d6544ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -286,12 +298,12 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
 </div><div class="memdoc">
 
 <p>check consistency of parameters once the whole config file has been processed </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd><ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd><ul>
 <li>other things to check re parameter consistency... </li>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00258">258</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00270">270</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>
@@ -318,9 +330,9 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00149">149</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00161">161</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>
@@ -347,9 +359,9 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00087">87</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00089">89</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>
@@ -376,9 +388,9 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00070">70</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00072">72</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>

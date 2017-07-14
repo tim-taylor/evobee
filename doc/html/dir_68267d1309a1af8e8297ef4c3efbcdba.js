@@ -6,7 +6,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "EventManager.cpp", "EventManager_8cpp.html", null ],
     [ "evobee.cpp", "evobee_8cpp.html", "evobee_8cpp" ],
     [ "EvoBeeExperiment.cpp", "EvoBeeExperiment_8cpp.html", null ],
-    [ "EvoBeeModel.cpp", "EvoBeeModel_8cpp.html", null ],
+    [ "EvoBeeModel.cpp", "EvoBeeModel_8cpp.html", "EvoBeeModel_8cpp" ],
     [ "Flower.cpp", "Flower_8cpp.html", null ],
     [ "FloweringPlant.cpp", "FloweringPlant_8cpp.html", null ],
     [ "HoneyBee.cpp", "HoneyBee_8cpp.html", null ],
@@ -15,7 +15,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "ModelComponent.cpp", "ModelComponent_8cpp.html", null ],
     [ "ModelParams.cpp", "ModelParams_8cpp.html", null ],
     [ "Patch.cpp", "Patch_8cpp.html", null ],
-    [ "Pollinator.cpp", "Pollinator_8cpp.html", "Pollinator_8cpp" ],
+    [ "Pollinator.cpp", "Pollinator_8cpp.html", null ],
     [ "SDL2_gfxPrimitives.c", "SDL2__gfxPrimitives_8c_source.html", null ],
     [ "Visualiser.cpp", "Visualiser_8cpp.html", null ]
 ];

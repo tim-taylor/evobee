@@ -112,6 +112,14 @@ Static Public Member Functions</h2></td></tr>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:abfae76f3153b2f458bb4147c5f00ede6"><td class="memItemLeft" align="right" valign="top">static std::mt19937&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvoBeeModel.html#abfae76f3153b2f458bb4147c5f00ede6">m_sRngEngine</a></td></tr>
 <tr class="separator:abfae76f3153b2f458bb4147c5f00ede6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7a0584793e958ca36fed5fb4cfc33a0"><td class="memItemLeft" align="right" valign="top"><a id="aa7a0584793e958ca36fed5fb4cfc33a0"></a>
+static std::uniform_real_distribution&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvoBeeModel.html#aa7a0584793e958ca36fed5fb4cfc33a0">m_sDirectionDistrib</a></td></tr>
+<tr class="memdesc:aa7a0584793e958ca36fed5fb4cfc33a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniform distrib 0.0&ndash;TWOPI. <br /></td></tr>
+<tr class="separator:aa7a0584793e958ca36fed5fb4cfc33a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af72858a194b17289e87a9b68ae86a653"><td class="memItemLeft" align="right" valign="top"><a id="af72858a194b17289e87a9b68ae86a653"></a>
+static std::uniform_real_distribution&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvoBeeModel.html#af72858a194b17289e87a9b68ae86a653">m_sUniformProbDistrib</a></td></tr>
+<tr class="memdesc:af72858a194b17289e87a9b68ae86a653"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniform distrib 0.0&ndash;1.0. <br /></td></tr>
+<tr class="separator:af72858a194b17289e87a9b68ae86a653"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classEvoBeeModel.html">EvoBeeModel</a> class ... </p>
@@ -218,7 +226,7 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Initialise a new generation. We need to construct a new generation of plants based upon those successfully pollinated in the previous generation, taking into acconut any refuges and/or restrictions to seed flow. </p>
 
-<p class="definition">Definition at line <a class="el" href="EvoBeeModel_8cpp_source.html#l00101">101</a> of file <a class="el" href="EvoBeeModel_8cpp_source.html">EvoBeeModel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EvoBeeModel_8cpp_source.html#l00109">109</a> of file <a class="el" href="EvoBeeModel_8cpp_source.html">EvoBeeModel.cpp</a>.</p>
 
 </div>
 </div>
@@ -247,7 +255,7 @@ Static Public Attributes</h2></td></tr>
 <p>Seed the model's RNG from the seed specified in <a class="el" href="classModelParams.html">ModelParams</a></p>
 <p>Static method to seed the model's RNG generator from the seed in <a class="el" href="classModelParams.html">ModelParams</a> <a class="el" href="classModelParams.html">ModelParams</a> should be initialised before this method is called This method should be called before an <a class="el" href="classEvoBeeModel.html">EvoBeeModel</a> instance is instantiated </p>
 
-<p class="definition">Definition at line <a class="el" href="EvoBeeModel_8cpp_source.html#l00038">38</a> of file <a class="el" href="EvoBeeModel_8cpp_source.html">EvoBeeModel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EvoBeeModel_8cpp_source.html#l00046">46</a> of file <a class="el" href="EvoBeeModel_8cpp_source.html">EvoBeeModel.cpp</a>.</p>
 
 </div>
 </div>
@@ -268,7 +276,7 @@ Static Public Attributes</h2></td></tr>
 <p>Iterate the simulation by one step</p>
 <p>Run one step of the simulation for the current generation. This entails running one step of all current pollinators in the environment. </p>
 
-<p class="definition">Definition at line <a class="el" href="EvoBeeModel_8cpp_source.html#l00079">79</a> of file <a class="el" href="EvoBeeModel_8cpp_source.html">EvoBeeModel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EvoBeeModel_8cpp_source.html#l00087">87</a> of file <a class="el" href="EvoBeeModel_8cpp_source.html">EvoBeeModel.cpp</a>.</p>
 
 </div>
 </div>

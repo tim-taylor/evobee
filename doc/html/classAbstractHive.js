@@ -11,5 +11,6 @@ var classAbstractHive =
     [ "getRandomPollinatorStartPosition", "classAbstractHive.html#a701e7691c8b714aaf6aa4bac797df275", null ],
     [ "migrationAllowed", "classAbstractHive.html#a5abb0467f3a0bca3819f32a088f348af", null ],
     [ "migrationProb", "classAbstractHive.html#aef5951ed27c88252aaee6e881cacb13c", null ],
+    [ "migrationRestricted", "classAbstractHive.html#a290e3698dccfa7beb1e5045864ca7469", null ],
     [ "startFromHive", "classAbstractHive.html#a8c04cf4b58d1ec4e1e6956bcb3d2c0ad", null ]
 ];

@@ -11,6 +11,7 @@ var hierarchy =
     [ "Flower", "classFlower.html", null ],
     [ "FloweringPlant", "classFloweringPlant.html", null ],
     [ "HiveConfig", "structHiveConfig.html", null ],
+    [ "LocalDensityConstraint", "structLocalDensityConstraint.html", null ],
     [ "Logger", "classLogger.html", null ],
     [ "ModelComponent", "classModelComponent.html", null ],
     [ "ModelParams", "classModelParams.html", null ],
