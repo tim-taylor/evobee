@@ -15,6 +15,15 @@ Hymenoptera::Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive) :
 {
 }
 
+Hymenoptera::Hymenoptera(const Hymenoptera& other) :
+    Pollinator(other)
+{   
+}
+
+Hymenoptera::Hymenoptera(Hymenoptera&& other) noexcept :
+    Pollinator(std::move(other))
+{   
+}
 
 void Hymenoptera::reset()
 {

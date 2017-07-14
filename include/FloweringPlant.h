@@ -36,9 +36,7 @@ public:
      */
     FloweringPlant(const FloweringPlant* pParent, const fPos& pos, Patch* pPatch, bool mutate);
 
-    /**
-     * Rule of 5
-     */
+    // "Rule of 5" methods - https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)
     FloweringPlant(const FloweringPlant& other);
     FloweringPlant(FloweringPlant&& other) noexcept;
     ~FloweringPlant() noexcept;

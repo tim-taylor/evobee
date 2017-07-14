@@ -109,7 +109,6 @@ FloweringPlant::FloweringPlant( const FloweringPlant* pParent,
 }
 
 
-///////////////////////////////////////
 // copy constructor
 FloweringPlant::FloweringPlant(const FloweringPlant& other) :
     m_id(m_sNextFreeId++),          // for copy constructor we assign a new id
@@ -128,12 +127,13 @@ FloweringPlant::FloweringPlant(const FloweringPlant& other) :
     }
 }
 
+
 // move constructor
 FloweringPlant::FloweringPlant(FloweringPlant&& other) noexcept :
     m_id(other.m_id),                // for move constructor we keep the same id
     m_SpeciesId(other.m_SpeciesId),
     m_Position(other.m_Position),
-    m_Flowers(other.m_Flowers),
+    m_Flowers(std::move(other.m_Flowers)),
     m_bHasLeaf(other.m_bHasLeaf),
     m_LeafReflectance(other.m_LeafReflectance),
     m_bPollinated(other.m_bPollinated),
@@ -146,10 +146,12 @@ FloweringPlant::FloweringPlant(FloweringPlant&& other) noexcept :
     }
 }
 
+
 // destructor
 FloweringPlant::~FloweringPlant() noexcept
 {
 }
+
 
 // copy assignment operator
 FloweringPlant& FloweringPlant::operator= (const FloweringPlant& other)
@@ -158,6 +160,7 @@ FloweringPlant& FloweringPlant::operator= (const FloweringPlant& other)
     m_id = m_sNextFreeId++; // for copy assignment we assign a new id
     return *this;
 }
+
 
 // move assignment operator
 FloweringPlant& FloweringPlant::operator= (FloweringPlant&& other) noexcept
@@ -168,6 +171,8 @@ FloweringPlant& FloweringPlant::operator= (FloweringPlant&& other) noexcept
     return *this;
 }
 
+
+// helper method used by copy/move assignment operators
 void FloweringPlant::copyCommon(const FloweringPlant& other) noexcept
 {
     m_SpeciesId = other.m_SpeciesId;
@@ -183,7 +188,6 @@ void FloweringPlant::copyCommon(const FloweringPlant& other) noexcept
     m_pPatch = other.m_pPatch;
     m_pPlantTypeConfig = other.m_pPlantTypeConfig;
 }
-///////////////////////////////////////
 
 
 // return the string description of this species

@@ -35,9 +35,7 @@ public:
     Flower( FloweringPlant* pPlant, const Flower& parentFlower,
             const fPos& pos, const ReflectanceInfo& reflectance);
 
-    /**
-     * Rule of 5
-     */
+    // "Rule of 5" methods - https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)
     Flower(const Flower& other);
     Flower(Flower&& other) noexcept;
     ~Flower() noexcept;

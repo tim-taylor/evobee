@@ -20,6 +20,15 @@ HoneyBee::HoneyBee(const PollinatorConfig& pc, AbstractHive* pHive) :
 {
 }
 
+HoneyBee::HoneyBee(const HoneyBee& other) :
+    Hymenoptera(other)
+{   
+}
+
+HoneyBee::HoneyBee(HoneyBee&& other) noexcept :
+    Hymenoptera(std::move(other))
+{   
+}
 
 void HoneyBee::reset()
 {

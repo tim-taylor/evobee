@@ -19,7 +19,10 @@ class Hymenoptera : public Pollinator {
 
 public:
     Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive);
-    //~Hymenoptera() {}
+    ~Hymenoptera() {}
+
+    Hymenoptera(const Hymenoptera& other);
+    Hymenoptera(Hymenoptera&& other) noexcept;    
 
     void reset() override;
 

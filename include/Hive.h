@@ -47,7 +47,7 @@ public:
         m_Pollinators.reserve(hc.num);
         for (int i = 0; i < hc.num; ++i)
         {
-            m_Pollinators.push_back( P(*pPC, (AbstractHive*)this) );
+            m_Pollinators.push_back(std::move(P(*pPC, (AbstractHive*)this)));
             pEnv->addPollinatorToAggregateList( static_cast<Pollinator*>(&m_Pollinators[i]) );
         }
     }

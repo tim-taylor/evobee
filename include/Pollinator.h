@@ -33,9 +33,7 @@ class Pollinator {
 public:
     Pollinator(const PollinatorConfig& pc, AbstractHive* pHive);
 
-    /**
-     * Rule of 5
-     */
+    // "Rule of 5" methods - https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)
     Pollinator(const Pollinator& other);
     Pollinator(Pollinator&& other) noexcept;
     virtual ~Pollinator() noexcept;

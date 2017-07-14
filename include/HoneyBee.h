@@ -21,6 +21,9 @@ public:
     HoneyBee(const PollinatorConfig& pc, AbstractHive* pHive);
     ~HoneyBee() {}
 
+    HoneyBee(const HoneyBee& other);
+    HoneyBee(HoneyBee&& other) noexcept;
+
     /**
      * Peform a complete reset of this pollinator to its initial state,
      * resetting position and all other state variables as if this

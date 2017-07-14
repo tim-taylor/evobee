@@ -55,7 +55,6 @@ Flower::Flower( FloweringPlant* pPlant,
 {}
 
 
-///////////////////////////////////////
 // copy constructor
 Flower::Flower(const Flower& other) :
     m_id(m_sNextFreeId++),          // for copy constructor we assign a new id
@@ -81,6 +80,7 @@ Flower::Flower(const Flower& other) :
     }
 }
 
+
 // move constructor
 Flower::Flower(Flower&& other) noexcept :
     m_id(other.m_id),                // for move constructor we keep the same id
@@ -89,7 +89,7 @@ Flower::Flower(Flower&& other) noexcept :
     m_Reflectance(other.m_Reflectance),
     m_bPollinated(other.m_bPollinated),
     m_iAntherPollen(other.m_iAntherPollen),
-    m_StigmaPollen(other.m_StigmaPollen),
+    m_StigmaPollen(std::move(other.m_StigmaPollen)),
     m_fTemperature(other.m_fTemperature),
     m_pPlant(other.m_pPlant),
     m_iAntherPollenTransferPerVisit(other.m_iAntherPollenTransferPerVisit),
@@ -99,9 +99,12 @@ Flower::Flower(Flower&& other) noexcept :
     other.m_id = 0;
 }
 
+
+//destructor
 Flower::~Flower() noexcept
 {
 }
+
 
 // copy assignment operator
 Flower& Flower::operator= (const Flower& other)
@@ -125,6 +128,7 @@ Flower& Flower::operator= (const Flower& other)
     return *this;
 }
 
+
 // move assignment operator
 Flower& Flower::operator= (Flower&& other) noexcept
 {
@@ -138,6 +142,8 @@ Flower& Flower::operator= (Flower&& other) noexcept
     return *this;
 }
 
+
+// helper method used by copy/move assignment operators
 void Flower::copyCommon(const Flower& other) noexcept
 {  
     m_SpeciesId = other.m_SpeciesId;
@@ -156,7 +162,6 @@ void Flower::copyCommon(const Flower& other) noexcept
     //m_iStigmaMaxPollenCapacity = other.m_iStigmaMaxPollenCapacity;
     //m_bPollenClogging = other.m_bPollenClogging;
 }
-///////////////////////////////////////
 
 
 const std::string& Flower::getSpecies() const

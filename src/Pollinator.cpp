@@ -41,7 +41,6 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
 }
 
 
-///////////////////////////////////////
 // copy constructor
 Pollinator::Pollinator(const Pollinator& other) :
     m_id(m_sNextFreeId++),          // for copy constructor we assign a new id
@@ -69,6 +68,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     }
 }
 
+
 // move constructor
 Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_id(other.m_id),                // for move constructor we keep the same id
@@ -79,7 +79,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_pModel(other.m_pModel),
     m_State(other.m_State),
     m_iNumFlowersVisitedInBout(other.m_iNumFlowersVisitedInBout),
-    m_PollenStore(other.m_PollenStore),
+    m_PollenStore(std::move(other.m_PollenStore)),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenLossOnFlower(other.m_iPollenLossOnFlower),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -89,10 +89,12 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     other.m_id = 0;
 }
 
+
 // destructor
 Pollinator::~Pollinator() noexcept
 {
 }
+
 
 // copy assignment operator
 Pollinator& Pollinator::operator= (const Pollinator& other)
@@ -104,6 +106,7 @@ Pollinator& Pollinator::operator= (const Pollinator& other)
     return *this;
 }
 
+
 // move assignment operator
 Pollinator& Pollinator::operator= (Pollinator&& other) noexcept
 {
@@ -113,7 +116,6 @@ Pollinator& Pollinator::operator= (Pollinator&& other) noexcept
 
     return *this;
 }
-/////////////////////////////////////// 
 
 
 void Pollinator::reset()
