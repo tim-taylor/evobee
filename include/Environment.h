@@ -60,7 +60,7 @@ class Environment {
 
 public:
     Environment(EvoBeeModel* pModel);
-    ~Environment() {}
+    //~Environment() {}
 
     /**
      * Initialise a new generation

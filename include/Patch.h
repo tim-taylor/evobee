@@ -25,7 +25,7 @@ class Patch {
 
 public:
     Patch(Environment* pEnv, int posIdx, MarkerPoint backgroundMP, float temp);
-    ~Patch() {}
+    //~Patch() {}
 
     /**
      *
@@ -42,6 +42,14 @@ public:
      * it to this patch at the specified position
      */
     void addPlant(const PlantTypeConfig& typeConfig, const fPos& pos);
+
+
+    /**
+     * Add an existing plant to the patch. 
+     * A move constructor is used, so the instance of the plant passed in as a parameter
+     * is wiped when the method is finished. This is used during the reproduction procedure.
+     */
+    void addPlant(FloweringPlant& plant);
 
     /**
      * Delete all plants from this patch

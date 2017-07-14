@@ -28,12 +28,23 @@ Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
 }
 
 
+// Add a plant to the patch based upon the given config, generating a brand new plant
+// in the process
 void Patch::addPlant(const PlantTypeConfig& typeConfig, const fPos& pos)
 {
     std::cout << "Adding plant of species " << typeConfig.species << " to Patch [" << 
         m_Position << "] at coordinates (" << pos << ")" << std::endl;
 
     m_FloweringPlants.emplace_back(typeConfig, pos, this);
+}
+
+
+// Add an existing plant to the patch. 
+// A move constructor is used, so the instance of the plant passed in as a parameter
+// is wiped when the method is finished.
+void Patch::addPlant(FloweringPlant& plant)
+{
+    m_FloweringPlants.push_back(std::move(plant));
 }
 
 

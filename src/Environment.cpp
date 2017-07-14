@@ -74,7 +74,10 @@ Patch& Environment::getPatch(int x, int y)
 {
     int idx = x + (m_iSizeX * y);
 
-    assert(inEnvironment(x,y));
+    if (!inEnvironment(x,y))
+    {
+        assert(inEnvironment(x,y));
+    }
 
     return m_Patches[idx];
 }
@@ -289,7 +292,7 @@ void Environment::initialiseNewGeneration()
 
     //////////////////////////////////////////////////////////////
     // Step 0: Internal book-keeping
-    resetLocalDensityCounts(); ///@todo
+    resetLocalDensityCounts();
 
     //////////////////////////////////////////////////////////////
     // Step 1: Construct a new generation of plants
@@ -333,8 +336,6 @@ void Environment::initialiseNewGeneration()
         iPos iCurPos = getPatchCoordFromFloatPos(fCurPos);
         iPos iNewPos = getPatchCoordFromFloatPos(fNewPos);
 
-        const Patch& newPatch = getPatch(iNewPos);        
-
         // -- Step 1c.2: determine prob that it will successfully reproduce in that position,
         //    taking into acccount:
         //    - seed outflow prob of current patch
@@ -371,6 +372,7 @@ void Environment::initialiseNewGeneration()
                 // now consider chances of succesfully moving into the new patch
                 if (bAnyChance)
                 {
+                    Patch& newPatch = getPatch(iNewPos);
                     if (newPatch.refuge() && (newPatch.getRefugeNativeSpeciesId() != pPlant->getSpeciesId()))
                     {
                         // trying to move into a refuge for a different plant species
@@ -391,6 +393,8 @@ void Environment::initialiseNewGeneration()
         // -- Step 1c.3: if successful, create new plant and put in newPlants vector 
         if (bAnyChance && (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < successProb))
         {
+            Patch& newPatch = getPatch(iNewPos);        
+
             // create a mutated version of the parent plant
             newPlants.emplace_back(pPlant, fNewPos, &newPatch, true);
 
@@ -412,8 +416,11 @@ void Environment::initialiseNewGeneration()
         p.killAllPlants();
     }
 
-    // -- Step 1e: for each plant in newPlants, move it to appropriate Patch vec    
-    ///@todo
+    // -- Step 1e: for each plant in newPlants, move it to appropriate Patch vec
+    for (FloweringPlant& plant : newPlants)
+    {   
+        plant.getPatch().addPlant(plant);
+    }
 
     //////////////////////////////////////////////////////////////
     // Step 2: Reset all pollinators to their initial state
@@ -421,6 +428,7 @@ void Environment::initialiseNewGeneration()
     {
         pPollinator->reset();
     }
+    //
 
     //////////////////////////////////////////////////////////////
     // Step 3: anything else to do? I don't think so...

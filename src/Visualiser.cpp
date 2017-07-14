@@ -127,7 +127,7 @@ bool Visualiser::update()
     SDL_RenderClear(m_pRenderer);
 
     // render patches first
-    auto patches = m_pModel->getEnv().getPatches();
+    PatchVector& patches = m_pModel->getEnv().getPatches();
     for (Patch& p : patches)
     {
         // render patches

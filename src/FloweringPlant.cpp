@@ -23,7 +23,7 @@ std::map<unsigned int, std::string> FloweringPlant::m_sSpeciesMap;
 // Create a brand new plant at the start of the simulation from the specified config
 FloweringPlant::FloweringPlant(const PlantTypeConfig& typeConfig,
                                const fPos& pos,
-                               const Patch* pPatch) :
+                               Patch* pPatch) :
     m_id(m_sNextFreeId++),
     m_Position(pos),
     m_bHasLeaf(typeConfig.hasLeaf),
@@ -86,7 +86,7 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& typeConfig,
 // Create an offspring plant from the specified parent
 FloweringPlant::FloweringPlant( const FloweringPlant* pParent, 
                                 const fPos& pos,
-                                const Patch* pPatch,
+                                Patch* pPatch,
                                 bool  mutate ) :
     m_id(m_sNextFreeId++)
 {
@@ -107,6 +107,83 @@ FloweringPlant::FloweringPlant( const FloweringPlant* pParent,
         m_Flowers.emplace_back(this, parentFlower, m_Position, reflectance);
     }
 }
+
+
+///////////////////////////////////////
+// copy constructor
+FloweringPlant::FloweringPlant(const FloweringPlant& other) :
+    m_id(m_sNextFreeId++),          // for copy constructor we assign a new id
+    m_SpeciesId(other.m_SpeciesId),
+    m_Position(other.m_Position),
+    m_Flowers(other.m_Flowers),
+    m_bHasLeaf(other.m_bHasLeaf),
+    m_LeafReflectance(other.m_LeafReflectance),
+    m_bPollinated(other.m_bPollinated),
+    m_pPatch(other.m_pPatch),
+    m_pPlantTypeConfig(other.m_pPlantTypeConfig)
+{
+    for (Flower& flower : m_Flowers) 
+    {
+        flower.setPlant(this);
+    }
+}
+
+// move constructor
+FloweringPlant::FloweringPlant(FloweringPlant&& other) noexcept :
+    m_id(other.m_id),                // for move constructor we keep the same id
+    m_SpeciesId(other.m_SpeciesId),
+    m_Position(other.m_Position),
+    m_Flowers(other.m_Flowers),
+    m_bHasLeaf(other.m_bHasLeaf),
+    m_LeafReflectance(other.m_LeafReflectance),
+    m_bPollinated(other.m_bPollinated),
+    m_pPatch(other.m_pPatch),
+    m_pPlantTypeConfig(other.m_pPlantTypeConfig)
+{
+    for (Flower& flower : m_Flowers) 
+    {
+        flower.setPlant(this);
+    }
+}
+
+// destructor
+FloweringPlant::~FloweringPlant() noexcept
+{
+}
+
+// copy assignment operator
+FloweringPlant& FloweringPlant::operator= (const FloweringPlant& other)
+{
+    copyCommon(other);
+    m_id = m_sNextFreeId++; // for copy assignment we assign a new id
+    return *this;
+}
+
+// move assignment operator
+FloweringPlant& FloweringPlant::operator= (FloweringPlant&& other) noexcept
+{
+    copyCommon(other);
+    m_id = other.m_id;      // for move assignment we keep the same id
+    other.m_id = 0;
+    return *this;
+}
+
+void FloweringPlant::copyCommon(const FloweringPlant& other) noexcept
+{
+    m_SpeciesId = other.m_SpeciesId;
+    m_Position = other.m_Position;
+    m_Flowers = other.m_Flowers;
+    for (Flower& flower : m_Flowers) 
+    {
+        flower.setPlant(this);
+    }
+    m_bHasLeaf = other.m_bHasLeaf;
+    m_LeafReflectance = other.m_LeafReflectance;
+    m_bPollinated = other.m_bPollinated;
+    m_pPatch = other.m_pPatch;
+    m_pPlantTypeConfig = other.m_pPlantTypeConfig;
+}
+///////////////////////////////////////
 
 
 // return the string description of this species
@@ -175,7 +252,7 @@ void FloweringPlant::setPollinated(bool pollinated)
 }
 
 
-const Patch& FloweringPlant::getPatch() const
+Patch& FloweringPlant::getPatch() const
 {
     if (m_pPatch == nullptr)
     {

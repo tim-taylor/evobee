@@ -33,8 +33,23 @@ public:
      * Consructor to create an offspring flower based upon parent
      */
     Flower( FloweringPlant* pPlant, const Flower& parentFlower,
-            const fPos& pos, const ReflectanceInfo& reflectance);  
+            const fPos& pos, const ReflectanceInfo& reflectance);
 
+    /**
+     * Rule of 5
+     */
+    Flower(const Flower& other);
+    Flower(Flower&& other) noexcept;
+    ~Flower() noexcept;
+    Flower& operator= (const Flower& other);
+    Flower& operator= (Flower&& other) noexcept;            
+
+    /**
+     * Explicitly set the flower's owning plant
+     * (only required when copying plants and flowers during reproduction)
+     */
+    void setPlant(FloweringPlant* plant) {m_pPlant = plant;}
+    
     /**
      *
      */
@@ -111,6 +126,12 @@ public:
     int transferPollenFromPollinator(PollenVector& pollinatorStore, int suggestedNum);
 
 private:
+    /**
+     * Internal helper method for constructors and assignment operators
+     */
+    void copyCommon(const Flower& other) noexcept;
+
+
     unsigned int    m_id;               ///< Unique ID number for this flower
     unsigned int    m_SpeciesId;        ///< ID of the species (copied from the owning Plant's speciesID)
     fPos            m_Position;         ///< Spatial position of the flower

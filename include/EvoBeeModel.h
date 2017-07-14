@@ -17,7 +17,7 @@ class EvoBeeModel {
 
 public:
     EvoBeeModel();
-    ~EvoBeeModel() {}
+    //~EvoBeeModel() {}
 
     /**
      * Iterate the simulation by one step

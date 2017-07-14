@@ -32,7 +32,15 @@ class Pollinator {
 
 public:
     Pollinator(const PollinatorConfig& pc, AbstractHive* pHive);
-    virtual ~Pollinator() {}
+
+    /**
+     * Rule of 5
+     */
+    Pollinator(const Pollinator& other);
+    Pollinator(Pollinator&& other) noexcept;
+    virtual ~Pollinator() noexcept;
+    Pollinator& operator= (const Pollinator& other);
+    Pollinator& operator= (Pollinator&& other) noexcept;    
 
     /**
      * Peform a complete reset of this pollinator to its initial state,

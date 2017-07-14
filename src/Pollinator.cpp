@@ -41,6 +41,81 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
 }
 
 
+///////////////////////////////////////
+// copy constructor
+Pollinator::Pollinator(const Pollinator& other) :
+    m_id(m_sNextFreeId++),          // for copy constructor we assign a new id
+    m_Position(other.m_Position),
+    m_fHeading(other.m_fHeading),
+    m_pHive(other.m_pHive),
+    m_pEnv(other.m_pEnv),
+    m_pModel(other.m_pModel),
+    m_State(other.m_State),
+    m_iNumFlowersVisitedInBout(other.m_iNumFlowersVisitedInBout),
+    m_PollenStore(other.m_PollenStore),
+    m_iBoutLength(other.m_iBoutLength),
+    m_iPollenLossOnFlower(other.m_iPollenLossOnFlower),
+    m_iPollenLossInAir(other.m_iPollenLossInAir),
+    m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
+    m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits)
+{
+    // NB we should not be in a situation where we are making a copy of a Pollinator
+    // with non-empty m_PollenStore. The only time when the Pollinator copy constructor
+    // might get called is when we're initially creating it and putting it in the
+    // owning Hive's m_Pollinators vector.
+    if (!m_PollenStore.empty())
+    {
+        throw std::runtime_error("Attempt to copy an old Pollinator! Something is badly wrong...");
+    }
+}
+
+// move constructor
+Pollinator::Pollinator(Pollinator&& other) noexcept :
+    m_id(other.m_id),                // for move constructor we keep the same id
+    m_Position(other.m_Position),
+    m_fHeading(other.m_fHeading),
+    m_pHive(other.m_pHive),
+    m_pEnv(other.m_pEnv),
+    m_pModel(other.m_pModel),
+    m_State(other.m_State),
+    m_iNumFlowersVisitedInBout(other.m_iNumFlowersVisitedInBout),
+    m_PollenStore(other.m_PollenStore),
+    m_iBoutLength(other.m_iBoutLength),
+    m_iPollenLossOnFlower(other.m_iPollenLossOnFlower),
+    m_iPollenLossInAir(other.m_iPollenLossInAir),
+    m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
+    m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits)
+{
+    other.m_id = 0;
+}
+
+// destructor
+Pollinator::~Pollinator() noexcept
+{
+}
+
+// copy assignment operator
+Pollinator& Pollinator::operator= (const Pollinator& other)
+{
+    // We shouldn't be in a position where we are copying Pollinator objects using the assignment
+    // operator. So we throw an exception here, for debugging purposes
+    throw std::runtime_error("Attempt to copy an old Pollinator by assigment operator - not expecting this!");
+
+    return *this;
+}
+
+// move assignment operator
+Pollinator& Pollinator::operator= (Pollinator&& other) noexcept
+{
+    // We shouldn't be in a position where we are copying Flower objects using the assignment
+    // operator. So we assert false here, for debugging purposes
+    assert(false);
+
+    return *this;
+}
+/////////////////////////////////////// 
+
+
 void Pollinator::reset()
 {
     m_State = PollinatorState::UNINITIATED;

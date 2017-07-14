@@ -29,12 +29,21 @@ public:
     /**
      * Constructor for creating a new plant at the beginning of a simulation
      */
-    FloweringPlant(const PlantTypeConfig& typeConfig, const fPos& pos, const Patch* pPatch);
+    FloweringPlant(const PlantTypeConfig& typeConfig, const fPos& pos, Patch* pPatch);
 
     /**
      * Constructor for creating an offspring plant from a pollinated parent plant
      */
-    FloweringPlant(const FloweringPlant* pParent, const fPos& pos, const Patch* pPatch, bool mutate);
+    FloweringPlant(const FloweringPlant* pParent, const fPos& pos, Patch* pPatch, bool mutate);
+
+    /**
+     * Rule of 5
+     */
+    FloweringPlant(const FloweringPlant& other);
+    FloweringPlant(FloweringPlant&& other) noexcept;
+    ~FloweringPlant() noexcept;
+    FloweringPlant& operator= (const FloweringPlant& other);
+    FloweringPlant& operator= (FloweringPlant&& other) noexcept;
 
     /**
      * Get the unique id of this plant
@@ -90,7 +99,7 @@ public:
      * Get a pointer to the patch to which this plant belongs.
      * Throws an exception if the patch info has not been initialised.
      */
-    const Patch& getPatch() const;
+    Patch& getPatch() const;
 
 
 private:
@@ -101,8 +110,13 @@ private:
     bool                    m_bHasLeaf;
     ReflectanceInfo         m_LeafReflectance;
     bool                    m_bPollinated;  ///< Have any of this plant's flowers been pollinated?
-    const Patch*            m_pPatch;       ///< (non-owning) pointer to Patch in which this plant resides
+    Patch*                  m_pPatch;       ///< (non-owning) pointer to Patch in which this plant resides
     const PlantTypeConfig*  m_pPlantTypeConfig; ///< (non-owning) pointer to the Type Config object
+
+    /**
+     * Internal helper method for constructors and assignment operators
+     */
+    void copyCommon(const FloweringPlant& other) noexcept;
 
     /**
      * Set the plant's pollinated flag

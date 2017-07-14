@@ -6,6 +6,8 @@
 
 #include <iostream>
 #include <algorithm>
+#include <exception>
+#include <cassert>
 #include "FloweringPlant.h"
 #include "Flower.h"
 
@@ -19,6 +21,7 @@ Flower::Flower( FloweringPlant* pPlant,
                 MarkerPoint mp ) :
     m_id(m_sNextFreeId++),
     m_SpeciesId(pPlant->getSpeciesId()),
+
     m_Position(pos),
     m_Reflectance(mp),
     m_bPollinated(false),
@@ -50,6 +53,110 @@ Flower::Flower( FloweringPlant* pPlant,
     m_bPollenClogging(pPlant->m_pPlantTypeConfig->pollenClogging)
     ////m_iNectarRewardPerVisit(ptc.nectarReward)
 {}
+
+
+///////////////////////////////////////
+// copy constructor
+Flower::Flower(const Flower& other) :
+    m_id(m_sNextFreeId++),          // for copy constructor we assign a new id
+    m_SpeciesId(other.m_SpeciesId),
+    m_Position(other.m_Position),
+    m_Reflectance(other.m_Reflectance),
+    m_bPollinated(other.m_bPollinated),
+    m_iAntherPollen(other.m_iAntherPollen),
+    m_StigmaPollen(other.m_StigmaPollen),
+    m_fTemperature(other.m_fTemperature),
+    m_pPlant(other.m_pPlant),
+    m_iAntherPollenTransferPerVisit(other.m_iAntherPollenTransferPerVisit),
+    m_iStigmaMaxPollenCapacity(other.m_iStigmaMaxPollenCapacity),
+    m_bPollenClogging(other.m_bPollenClogging)
+{
+    // NB we should not be in a situation where we are making a copy of a Flower
+    // with non-empty m_StigmaPollen. The only time when the Flower copy constructor
+    // might get called is when we're initially creating it and putting it in the
+    // owning FloweringPlant's m_Flowers vector.
+    if (!m_StigmaPollen.empty())
+    {
+        throw std::runtime_error("Attempt to copy an old Flower! Something is badly wrong...");
+    }
+}
+
+// move constructor
+Flower::Flower(Flower&& other) noexcept :
+    m_id(other.m_id),                // for move constructor we keep the same id
+    m_SpeciesId(other.m_SpeciesId),
+    m_Position(other.m_Position),
+    m_Reflectance(other.m_Reflectance),
+    m_bPollinated(other.m_bPollinated),
+    m_iAntherPollen(other.m_iAntherPollen),
+    m_StigmaPollen(other.m_StigmaPollen),
+    m_fTemperature(other.m_fTemperature),
+    m_pPlant(other.m_pPlant),
+    m_iAntherPollenTransferPerVisit(other.m_iAntherPollenTransferPerVisit),
+    m_iStigmaMaxPollenCapacity(other.m_iStigmaMaxPollenCapacity),
+    m_bPollenClogging(other.m_bPollenClogging)
+{
+    other.m_id = 0;
+}
+
+Flower::~Flower() noexcept
+{
+}
+
+// copy assignment operator
+Flower& Flower::operator= (const Flower& other)
+{
+    // We shouldn't be in a position where we are copying Flower objects using the assignment
+    // operator. So we throw an exception here, for debugging purposes
+    throw std::runtime_error("Attempt to copy an old Flower by assigment operator - not expecting this!");
+    
+    m_id = m_sNextFreeId++; // for copy assignment we assign a new id   
+    copyCommon(other);
+    
+    // NB we should not be in a situation where we are making a copy of a Flower
+    // with non-empty m_StigmaPollen. The only time when the Flower copy assignment
+    // might get called is when we're initially creating it and putting it in the
+    // owning FloweringPlant's m_Flowers vector.
+    if (!m_StigmaPollen.empty())
+    {
+        throw std::runtime_error("Attempt to copy an old Flower! Something is badly wrong...");
+    }
+
+    return *this;
+}
+
+// move assignment operator
+Flower& Flower::operator= (Flower&& other) noexcept
+{
+    // We shouldn't be in a position where we are copying Flower objects using the assignment
+    // operator. So we assert false here, for debugging purposes
+    assert(false);
+
+    m_id = other.m_id;      // for move assignment we keep the same id
+    other.m_id = 0;
+    copyCommon(other);
+    return *this;
+}
+
+void Flower::copyCommon(const Flower& other) noexcept
+{  
+    m_SpeciesId = other.m_SpeciesId;
+    m_Position = other.m_Position;
+    m_Reflectance = other.m_Reflectance;
+    m_bPollinated = other.m_bPollinated;
+    m_iAntherPollen = other.m_iAntherPollen;
+    m_StigmaPollen = other.m_StigmaPollen; 
+    m_fTemperature = other.m_fTemperature;
+    m_pPlant = other.m_pPlant;
+
+    // We can't copy the following at present, because they are consts!
+    // If we wanted to do this, we'd have to find another way...
+    
+    //m_iAntherPollenTransferPerVisit = other.m_iAntherPollenTransferPerVisit;
+    //m_iStigmaMaxPollenCapacity = other.m_iStigmaMaxPollenCapacity;
+    //m_bPollenClogging = other.m_bPollenClogging;
+}
+///////////////////////////////////////
 
 
 const std::string& Flower::getSpecies() const
@@ -194,7 +301,7 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
                 std::cout << "(no pollination)" << std::endl;
             }
         }        
-    }
+    } 
 
     // Finally, compare the number of grains actually deposited on the stigma with the amount
     // of the requested transfer. If the actual amount is less, then the pollinator just 
