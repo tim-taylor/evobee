@@ -26,7 +26,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_State(PollinatorState::UNINITIATED),
     m_iNumFlowersVisitedInBout(0),
     m_iBoutLength(pc.boutLength),
-    m_iPollenLossOnFlower(pc.pollenLossOnFlower),
+    m_iPollenDepositPerFlowerVisit(pc.pollenDepositPerFlowerVisit),
     m_iPollenLossInAir(pc.pollenLossInAir),
     m_iMaxPollenCapacity(pc.maxPollenCapacity),
     m_iPollenCarryoverNumVisits(pc.pollenCarryoverNumVisits)
@@ -53,7 +53,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_iNumFlowersVisitedInBout(other.m_iNumFlowersVisitedInBout),
     m_PollenStore(other.m_PollenStore),
     m_iBoutLength(other.m_iBoutLength),
-    m_iPollenLossOnFlower(other.m_iPollenLossOnFlower),
+    m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
     m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
     m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits)
@@ -81,7 +81,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_iNumFlowersVisitedInBout(other.m_iNumFlowersVisitedInBout),
     m_PollenStore(std::move(other.m_PollenStore)),
     m_iBoutLength(other.m_iBoutLength),
-    m_iPollenLossOnFlower(other.m_iPollenLossOnFlower),
+    m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
     m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
     m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits)
@@ -293,7 +293,7 @@ void Pollinator::removeOldCarryoverPollen()
 // Transfer some of our pollen to the flower (potentially pollinating it)
 int Pollinator::depositPollenOnStigma(Flower* pFlower)
 {
-    return pFlower->transferPollenFromPollinator(m_PollenStore, m_iPollenLossOnFlower);
+    return pFlower->transferPollenFromPollinator(m_PollenStore, m_iPollenDepositPerFlowerVisit);
 }
 
 

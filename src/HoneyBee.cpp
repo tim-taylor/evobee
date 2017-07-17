@@ -56,7 +56,7 @@ void HoneyBee::step()
             /// (so assuming plants just have one flower)
             bool flowerVisited = false;
 
-            FloweringPlant *pPlant = getEnvironment()->findClosestFloweringPlant(m_Position);
+            FloweringPlant* pPlant = getEnvironment()->findClosestFloweringPlant(m_Position);
             if (pPlant != nullptr)
             {
                 Flower* pFlower = pPlant->getFlower(0);

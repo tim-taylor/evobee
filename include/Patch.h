@@ -67,6 +67,11 @@ public:
     PlantVector& getFloweringPlants() {return m_FloweringPlants;}
 
     /**
+     *
+     */    
+    const PlantVector& getFloweringPlants() const {return m_FloweringPlants;}
+
+    /**
      * Explicitly set the constraints on plant reproduction and seed flow for
      * this patch. This can only be done once for each patch! If the system is
      * trying to do it multiple times it is probably because there are overlapping

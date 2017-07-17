@@ -182,8 +182,8 @@ protected:
     PollenVector    m_PollenStore;              ///< Container for Pollen currently being carried
 
     // some constant parameters for this pollinator
-    const int       m_iBoutLength;          ///< Number of flower visits pollinator can make before returning to hive
-    const int       m_iPollenLossOnFlower;  ///< Amount of pollen deposited on a flower on each visit
+    const int       m_iBoutLength;          ///< Num flower visits allowed before returning to hive
+    const int       m_iPollenDepositPerFlowerVisit;  ///< Amount of pollen deposited on a flower on each visit
     const int       m_iPollenLossInAir;     ///< Amount of pollen lost on each timestep when flying
     const int       m_iMaxPollenCapacity;   ///< Maximum amount of pollen the pollinator can carry
     const int       m_iPollenCarryoverNumVisits; /** After collecting a grain of pollen from a flower,

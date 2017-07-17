@@ -195,8 +195,6 @@ FloweringPlant* Environment::findClosestFloweringPlant(const fPos& fpos)
     FloweringPlant* pPlant = nullptr;
     float minDistSq = 9999999.9;
 
-    //std::cout << "Searching for plant closest to pos " << pos << std::endl;
-
     if (inEnvironment(fpos))
     {
         iPos ipos = getPatchCoordFromFloatPos(fpos);
@@ -216,7 +214,6 @@ FloweringPlant* Environment::findClosestFloweringPlant(const fPos& fpos)
                             float distSq = plant.getDistanceSq(fpos);
                             if (distSq < minDistSq)
                             {
-                                //std::cout << "Plant " << &plant << " is at distance " << distSq << std::endl;
                                 minDistSq = distSq;
                                 pPlant = &plant;
                             }
@@ -232,63 +229,76 @@ FloweringPlant* Environment::findClosestFloweringPlant(const fPos& fpos)
 
 
 /**
- * Initialise a new generation:
+ *
+ */
+float Environment::getPollinatedFrac() const
+{
+    unsigned int numPlants = 0;
+    unsigned int numPollinated = 0;
+
+    for (const Patch& p : m_Patches)
+    {
+        if (p.hasFloweringPlants())
+        {
+            const PlantVector& fplants = p.getFloweringPlants();
+            numPlants += fplants.size();
+            for (const FloweringPlant& fplant : fplants)
+            {
+                if (fplant.pollinated())
+                {
+                    ++numPollinated;
+                }
+            }
+        }
+    }
+
+    return ((float)numPollinated) / ((float)numPlants);
+}
+
+
+/**
+ * Create a new generation of plants based upon pollinated plants from
+ * the previous generation, then delete all plants from previous generation.
+ *
  * 1. Construct a new generation of plants based upon those successfully
  *    pollinated in the previous generation, taking into acconut any refuges
  *    and/or restrictions to seed flow. 
  * 2. Reset all pollinators to initial state.
  * 3, Perform other housekeeping tasks.
+ *
+ * Some more details:
+ *  overall goal:
+ *      replace all plants (stored in individual Patches) with a
+ *      new generation of plants
+ *  assumptions:
+ *      If PTD area is refuge or seedOutflow is restricted (outflow prob < 1.0), that
+ *          area is not allowed to overlap with any other area
+ *      (see implementation details below)
+ *  approach:
+ *      create a vector of all pollinated plants (pollinatedPlantPtrs) and shuffle it
+ *      create an empty newPlants vector to store new generation
+ *      for each plant in pollinatedPlantPtrs (up to global max repro num for env)
+ *          consider a nearby position in which to reproduce
+ *          determine prob that it will successfully reproduce in that position, taking into acccount 
+ *              seed outflow prob of current patch
+ *              seed inflow prob (refuge incoming) of destination
+ *              any local PTDConfig density constraints (consult m_LocalDensityConstraints)
+ *          if successful, create new plant and put in newPlants vector
+ *      empty plant vectors for all patches - delete all plants from previous generation
+ *      for each plant in newPlants, move plant to appropriate Patch vector
+ *  implementation details:
+ *      each Patch needs 
+ *          outflow prob (and allowed/restricted flags, corresponding to p>0, p<1)
+ *          isRefuge flag
+ *              refugeNativeSpecies id
+ *              alienInflowProb
+ *      We deal with constraints on overlapping PTD areas (see assumptions above) by 
+ *          thowing an exception if there is an attempt to set these Patch probs/flags
+ *          multiple times for any single Patch (this is done in Patch::setReproConstraints)
  */
 void Environment::initialiseNewGeneration()
-{
-    // generate a new populations of plants based upon pollinated plants from
-    // the previous generation, then delete all plants from previous generation
-    //
+{   
     ///@todo we also need to log this info if necessary
-    //
-    /*
-    overall goal:
-        replace all plants (stored in individual Patches) with a
-        new generation of plants
-    assumptions:
-        If PTD area is refuge or seedOutflow is restricted (outflow prob < 1.0), that
-            area is not allowed to overlap with any other area
-        (see implementation details below)
-    constraints:
-        plant type distributions constraints:
-            refuges (restriction on incoming alien speices) (isRefuge/prob)
-            seed outflow (allowed/prob)
-    which plants reproduce?
-        flower is pollinated
-        possibilities:
-            max limits defined by:
-                fixed number of plants in each PTD area (defined by density param)
-                fixed number across whole environment
-    approach:
-        create a vector of all pollinated plants and shuffle it
-        create an empty vector to store new generation
-        for each plant in vector (up to global max repro num for env)
-            consider a nearby position in which to reproduce
-            determine prob that it will successfully reproduce in that position, taking into acccount 
-                seed outflow prob of current patch
-                seed inflow prob (refuge incoming) of destination
-                any local PTDConfig density constraints (stored in ModelParams)
-            if successful, create new plant and put in newgenvec
-        empty plant vectors for all patches
-        for each plant in newgenvec, move plant to appropriate Patch vec
-    implementation details:
-        each Patch needs 
-            outflow prob (and allowed/restricted flags? corresponding to p>0, p<1)
-            isRefuge flag
-                refugeNativeSpecies id
-                alienInflowProb
-        We can deal with constraints on overlapping PTD areas (see assumptions above) by 
-            thowing an exception if there is an attempt to set these Patch probs/flags
-            muliple times for any single Patch
-    New params required:
-        Environment -> repro-constraint-max-density-global
-        PTDConfig -> repro-constraint-max-density-area (if isRefuge or outflowProb=0)
-    */
 
     //////////////////////////////////////////////////////////////
     // Step 0: Internal book-keeping
@@ -303,12 +313,33 @@ void Environment::initialiseNewGeneration()
     {
         if (p.hasFloweringPlants())
         {
-            PlantVector & fplants = p.getFloweringPlants();
-            for (FloweringPlant & fplant : fplants)
+            PlantVector& plants = p.getFloweringPlants();
+            for (FloweringPlant& plant : plants)
             {
-                if (fplant.pollinated())
+                if (plant.pollinated())
                 {
-                    pollinatedPlantPtrs.push_back(&fplant);
+                    //pollinatedPlantPtrs.push_back(&plant);
+
+                    //////////////////////////////////////////////
+                    // could add multiple copies of the plant ptr according to how
+                    // many pollinated seeds the plant has
+                    // or maybe we should bite the bullet and look at each pollen grain 
+                    // in each flower's m_StigmaPollen store?
+                    const std::vector<Flower>& flowers = plant.getFlowers();
+                    for (const Flower& flower : flowers)
+                    {
+                        const PollenVector& stigmaPollen = flower.getStigmaPollen();
+                        for (const Pollen& pollen : stigmaPollen)
+                        {
+                            if (pollen.speciesId == flower.getSpeciesId())
+                            {
+                                pollinatedPlantPtrs.push_back(&plant);
+                                // TODO.. actuall want to save plant AND otr to pollinating
+                                // flower (pollen.pSource)
+                                ///@todo
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -328,6 +359,7 @@ void Environment::initialiseNewGeneration()
         ///@todo at this stage we've got a distance between 0-1 - maybe need a wider
         ///      distribution, or maybe even just have a fixed diatance of 1?
         float distance = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
+        //float distance = 1.0; //////////////////////////// TEMP TEST //////////////////////
         float heading  = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
         fPos delta   { distance*std::cos(heading), distance*std::sin(heading) };
         fPos fCurPos { pPlant->getPosition() };

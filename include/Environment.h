@@ -152,7 +152,12 @@ public:
      * Return (int) coordinates of the Patch in which the given (float) position
      * belongs
      */
-    static iPos getPatchCoordFromFloatPos(const fPos& fpos);    
+    static iPos getPatchCoordFromFloatPos(const fPos& fpos);
+
+    /**
+     * Returns the fraction of all plants that are currently pollinated
+     */
+    float getPollinatedFrac() const;
 
     /**
      * Add a pointer to a pollinator to the Environment's aggregate list of all
@@ -190,8 +195,8 @@ private:
     float         m_fSizeY;      ///< Num patches in Y dir (float coords should be less than this)
 
     PollinatorPtrVector m_AllPollinators; /** Aggregation of pointers to all Pollinators
-                                           * NB The Pollinators are actually owened by
-                                           * individual Hives
+                                           *  NB The Pollinators are actually owened by
+                                           *  individual Hives
                                            */
 
     std::vector<LocalDensityConstraint> m_LocalDensityConstraints; ///< List of local plant density

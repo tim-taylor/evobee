@@ -79,6 +79,11 @@ public:
     Flower* getFlower(unsigned int flower = 0);
 
     /**
+     * Return a reference to this plant's vector of flowers
+     */
+    const std::vector<Flower>& getFlowers() const {return m_Flowers;}
+
+    /**
      * Returns the distance between the plant and the specified point
      */
     float getDistance(const fPos& point) const;

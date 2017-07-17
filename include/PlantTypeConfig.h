@@ -27,7 +27,7 @@ struct PlantTypeConfig {
     int         antherPollenTransferPerVisit;
     int         stigmaMaxPollenCapacity;
     bool        pollenClogging;
-    int         nectarReward;
+    //int       nectarReward; // (currently unused)
     float       initTemp; ///<@todo should be initialised // init temp of flowers and leaves
     int         numFlowers;
     bool        hasLeaf;

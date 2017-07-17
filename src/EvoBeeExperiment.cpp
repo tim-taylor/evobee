@@ -74,7 +74,9 @@ void EvoBeeExperiment::run()
         }
 
         bool endOfGen = false;
+        bool bContinue = true;
         int step = 0;
+
         do
         {
             // perform the next simulation step
@@ -99,7 +101,7 @@ void EvoBeeExperiment::run()
             // perform visualisation if required
             if ((m_bVis) && (step % m_iVisUpdatePeriod == 0)) 
             {
-                bool bContinue = m_Visualiser.update();
+                bContinue = m_Visualiser.update();
                 if (!bContinue)
                 {
                     break; // may want to ask the user for confirmation first?
@@ -127,9 +129,11 @@ void EvoBeeExperiment::run()
                 }
                 case GenTerminationType::POLLINATED_FRACTION:
                 {
-                    ///@todo - implement code for pollinated-fraction termination type
+                    if (m_Model.getEnv().getPollinatedFrac() >= ModelParams::getGenTerminationFloatParam())
+                    {
+                        endOfGen = true;
+                    }
                     break;
-
                 }
                 default:
                 {
@@ -138,5 +142,10 @@ void EvoBeeExperiment::run()
             }
         }
         while (!endOfGen);
+
+        if (!bContinue)
+        {
+            break;
+        }
     }
 }

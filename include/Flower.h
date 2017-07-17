@@ -123,6 +123,11 @@ public:
      */
     int transferPollenFromPollinator(PollenVector& pollinatorStore, int suggestedNum);
 
+    /**
+     * Return a reference to the flower's vector of pollen on its stigma
+     */
+    const PollenVector& getStigmaPollen() const {return m_StigmaPollen;}
+
 private:
     /**
      * Internal helper method for constructors and assignment operators
@@ -137,14 +142,15 @@ private:
     bool            m_bPollinated;      ///< Is the flower pollinated?
     int             m_iAntherPollen;    ///< Amount of collectable pollen remaining
     PollenVector    m_StigmaPollen;     ///< Collection of deposited Pollen grains on stigma
+    //int             m_iNumViableSeeds;  ///< 
     float           m_fTemperature;     ///< Current temperature of flower
     FloweringPlant* m_pPlant;           ///< (non-owning) pointer to the plant this flower belongs to
 
     // the following are constant parameters for this flower
-    const int   m_iAntherPollenTransferPerVisit;///< Num pollen grains deposited on a pollinator per visit
-    const int   m_iStigmaMaxPollenCapacity; ///< Maximum amount of pollen the stigma can carry
-    const bool  m_bPollenClogging;          ///< If true, pollen from other species can clog stigma
-    /*const int m_iNectarRewardPerVisit;    ///< Amount of reward given to a pollinator (CURRENTLY UNUSED)*/
+    int   m_iAntherPollenTransferPerVisit;  ///< Num pollen grains deposited on a pollinator per visit
+    int   m_iStigmaMaxPollenCapacity;       ///< Maximum amount of pollen the stigma can carry
+    bool  m_bPollenClogging;                ///< If true, pollen from other species can clog stigma
+    //const int m_iNectarRewardPerVisit;    ///< Amount of reward given to a pollinator (CURRENTLY UNUSED)
 
     /**
      * Record of next available unique ID number to be assigned to a new Flower

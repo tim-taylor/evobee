@@ -31,7 +31,6 @@ Flower::Flower( FloweringPlant* pPlant,
     m_iAntherPollenTransferPerVisit(ptc.antherPollenTransferPerVisit),
     m_iStigmaMaxPollenCapacity(ptc.stigmaMaxPollenCapacity),
     m_bPollenClogging(ptc.pollenClogging)
-    //m_iNectarRewardPerVisit(ptc.nectarReward)
 {}
 
 
@@ -51,7 +50,6 @@ Flower::Flower( FloweringPlant* pPlant,
     m_iAntherPollenTransferPerVisit(pPlant->m_pPlantTypeConfig->antherPollenTransferPerVisit),
     m_iStigmaMaxPollenCapacity(pPlant->m_pPlantTypeConfig->stigmaMaxPollenCapacity),
     m_bPollenClogging(pPlant->m_pPlantTypeConfig->pollenClogging)
-    ////m_iNectarRewardPerVisit(ptc.nectarReward)
 {}
 
 
@@ -76,7 +74,7 @@ Flower::Flower(const Flower& other) :
     // owning FloweringPlant's m_Flowers vector.
     if (!m_StigmaPollen.empty())
     {
-        throw std::runtime_error("Attempt to copy an old Flower! Something is badly wrong...");
+        throw std::runtime_error("Attempt to copy an old Flower! Something is badly wrong... (copy ctr)");
     }
 }
 
@@ -122,7 +120,7 @@ Flower& Flower::operator= (const Flower& other)
     // owning FloweringPlant's m_Flowers vector.
     if (!m_StigmaPollen.empty())
     {
-        throw std::runtime_error("Attempt to copy an old Flower! Something is badly wrong...");
+        throw std::runtime_error("Attempt to copy an old Flower! Something is badly wrong... (copy asgnmt op)");
     }
 
     return *this;
@@ -153,14 +151,10 @@ void Flower::copyCommon(const Flower& other) noexcept
     m_iAntherPollen = other.m_iAntherPollen;
     m_StigmaPollen = other.m_StigmaPollen; 
     m_fTemperature = other.m_fTemperature;
-    m_pPlant = other.m_pPlant;
-
-    // We can't copy the following at present, because they are consts!
-    // If we wanted to do this, we'd have to find another way...
-    
-    //m_iAntherPollenTransferPerVisit = other.m_iAntherPollenTransferPerVisit;
-    //m_iStigmaMaxPollenCapacity = other.m_iStigmaMaxPollenCapacity;
-    //m_bPollenClogging = other.m_bPollenClogging;
+    m_pPlant = other.m_pPlant;   
+    m_iAntherPollenTransferPerVisit = other.m_iAntherPollenTransferPerVisit;
+    m_iStigmaMaxPollenCapacity = other.m_iStigmaMaxPollenCapacity;
+    m_bPollenClogging = other.m_bPollenClogging;
 }
 
 

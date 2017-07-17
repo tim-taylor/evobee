@@ -19,7 +19,7 @@ struct PollinatorConfig {
     std::string species;
     int boutLength;
     int maxPollenCapacity;
-    int pollenLossOnFlower;
+    int pollenDepositPerFlowerVisit;
     int pollenLossInAir;
     int pollenCarryoverNumVisits;
 };

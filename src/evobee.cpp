@@ -99,7 +99,7 @@ void from_json(const json& j, PlantTypeConfig& pt)
     json_read_param(j, sct, "flower-reflectance-mp-init-max", pt.flowerMPInitMax);
     json_read_param(j, sct, "anther-init-pollen", pt.antherInitPollen);
     json_read_param(j, sct, "anther-pollen-transfer-per-visit", pt.antherPollenTransferPerVisit);
-    json_read_param(j, sct, "nectar-reward", pt.nectarReward);
+    //json_read_param(j, sct, "nectar-reward", pt.nectarReward);
     json_read_param(j, sct, "stigma-max-pollen-capacity", pt.stigmaMaxPollenCapacity);
     if (pt.stigmaMaxPollenCapacity < 1)
     {
@@ -115,7 +115,7 @@ void from_json(const json& j, PollinatorConfig& p)
     std::string sct = "PollinatorConfig";
     json_read_param(j, sct, "species", p.species);
     json_read_param(j, sct, "bout-length", p.boutLength);
-    json_read_param(j, sct, "pollen-loss-on-flower", p.pollenLossOnFlower);
+    json_read_param(j, sct, "pollen-deposit-per-flower-visit", p.pollenDepositPerFlowerVisit);
     json_read_param(j, sct, "pollen-loss-in-air", p.pollenLossInAir);
     json_read_param(j, sct, "pollen-carryover-num-visits", p.pollenCarryoverNumVisits);
     json_read_param(j, sct, "max-pollen-capacity", p.maxPollenCapacity);
