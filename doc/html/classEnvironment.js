@@ -11,6 +11,7 @@ var classEnvironment =
     [ "getPatch", "classEnvironment.html#a9beea65df000b8df08003f9b3ae07c69", null ],
     [ "getPatchCoordsFromIdx", "classEnvironment.html#a29d71ffaf505fe29a3f371ccd5391dc6", null ],
     [ "getPatches", "classEnvironment.html#af151502f8e7ee25c71252f7d6cfc7f65", null ],
+    [ "getPollinatedFrac", "classEnvironment.html#a4a8a9e2143ca2d9f6d3ba5c4780c55c2", null ],
     [ "getRandomPositionF", "classEnvironment.html#a0e1925ff4bb3786a4d57f208d3369485", null ],
     [ "getRandomPositionF", "classEnvironment.html#a0efa4e75cf5442c0abc4c3390ed00064", null ],
     [ "getSizeXf", "classEnvironment.html#a9d26506cc316abd0404a912e492c8f31", null ],

@@ -8,7 +8,6 @@ var structPlantTypeConfig =
     [ "hasLeaf", "structPlantTypeConfig.html#a0584e7fdb3e522c60c5f697dac71b671", null ],
     [ "initTemp", "structPlantTypeConfig.html#a8163a11e10b14241d0d55087a5091439", null ],
     [ "leafMP", "structPlantTypeConfig.html#a44937037d1241150b0bf54a727e58ec5", null ],
-    [ "nectarReward", "structPlantTypeConfig.html#a9882b22081de02799f24eca3db82a003", null ],
     [ "numFlowers", "structPlantTypeConfig.html#abfdf37db16bab7526c1a95c48897478e", null ],
     [ "pollenClogging", "structPlantTypeConfig.html#a9e6438a54df58cf335da3f6c71a9e2f5", null ],
     [ "species", "structPlantTypeConfig.html#ab4a3288e4a64f8f214d76c6f8948dd41", null ],

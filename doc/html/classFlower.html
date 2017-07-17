@@ -94,7 +94,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af0e4ddda44ff370970abdad48a157889"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a325bf1234e243ed52c3664f6e767ab7b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a325bf1234e243ed52c3664f6e767ab7b">Flower</a> (<a class="el" href="classFloweringPlant.html">FloweringPlant</a> *pPlant, const <a class="el" href="classFlower.html">Flower</a> &amp;parentFlower, const <a class="el" href="classPosition.html">fPos</a> &amp;pos, const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;reflectance)</td></tr>
 <tr class="separator:a325bf1234e243ed52c3664f6e767ab7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a315e8befd2b0ffbc55b896c022977166"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a315e8befd2b0ffbc55b896c022977166">Flower</a> (const <a class="el" href="classFlower.html">Flower</a> &amp;other)</td></tr>
+<tr class="memitem:a315e8befd2b0ffbc55b896c022977166"><td class="memItemLeft" align="right" valign="top"><a id="a315e8befd2b0ffbc55b896c022977166"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Flower</b> (const <a class="el" href="classFlower.html">Flower</a> &amp;other)</td></tr>
 <tr class="separator:a315e8befd2b0ffbc55b896c022977166"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab852887f3063eaa001b8e6607270b34c"><td class="memItemLeft" align="right" valign="top"><a id="ab852887f3063eaa001b8e6607270b34c"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Flower</b> (<a class="el" href="classFlower.html">Flower</a> &amp;&amp;other) noexcept</td></tr>
@@ -133,6 +134,8 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 <tr class="separator:a3523abeac646d7a2e39aa37e3f867472"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a383880f10a52b8dcc8537d9050fc7c80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a383880f10a52b8dcc8537d9050fc7c80">transferPollenFromPollinator</a> (PollenVector &amp;pollinatorStore, int suggestedNum)</td></tr>
 <tr class="separator:a383880f10a52b8dcc8537d9050fc7c80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55f38d41a88131b8d2f5bd150262f381"><td class="memItemLeft" align="right" valign="top">const PollenVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a55f38d41a88131b8d2f5bd150262f381">getStigmaPollen</a> () const</td></tr>
+<tr class="separator:a55f38d41a88131b8d2f5bd150262f381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classFlower.html">Flower</a> class ... </p>
@@ -140,7 +143,7 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 <p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00024">24</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af0e4ddda44ff370970abdad48a157889"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0e4ddda44ff370970abdad48a157889">&#9670;&nbsp;</a></span>Flower() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af0e4ddda44ff370970abdad48a157889">&#9670;&nbsp;</a></span>Flower() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +186,7 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 </div>
 </div>
 <a id="a325bf1234e243ed52c3664f6e767ab7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a325bf1234e243ed52c3664f6e767ab7b">&#9670;&nbsp;</a></span>Flower() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a325bf1234e243ed52c3664f6e767ab7b">&#9670;&nbsp;</a></span>Flower() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,28 +224,7 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 </div><div class="memdoc">
 <p>Consructor to create an offspring flower based upon parent </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00039">39</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a315e8befd2b0ffbc55b896c022977166"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a315e8befd2b0ffbc55b896c022977166">&#9670;&nbsp;</a></span>Flower() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Flower::Flower </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classFlower.html">Flower</a> &amp;&#160;</td>
-          <td class="paramname"><em>other</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Rule of 5 </p>
-
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00060">60</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00038">38</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -263,7 +245,35 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 </div><div class="memdoc">
 <p>Return a string identifying the owning plant species </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00162">162</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00161">161</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a55f38d41a88131b8d2f5bd150262f381"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55f38d41a88131b8d2f5bd150262f381">&#9670;&nbsp;</a></span>getStigmaPollen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const PollenVector&amp; Flower::getStigmaPollen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return a reference to the flower's vector of pollen on its stigma </p>
+
+<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00129">129</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
 
 </div>
 </div>
@@ -291,7 +301,7 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 </div><div class="memdoc">
 <p>Is the flower pollinated? </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00071">71</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00069">69</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
 
 </div>
 </div>
@@ -320,7 +330,7 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 </div><div class="memdoc">
 <p>Explicitly set the flower's owning plant (only required when copying plants and flowers during reproduction) </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00051">51</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00049">49</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
 
 </div>
 </div>
@@ -349,7 +359,7 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 <dl class="section return"><dt>Returns</dt><dd>The number of grains transferred</dd></dl>
 <p>Note, no check is made as to whether the capacity of the pollinator's store has been exceeded. It is the responsibility of the pollinator to perform such a check after it has called this method. </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00168">168</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00167">167</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -388,7 +398,7 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of grains transferred </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00195">195</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00194">194</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>

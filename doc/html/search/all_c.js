@@ -11,7 +11,7 @@ var searchData=
   ['pollen_2eh',['Pollen.h',['../Pollen_8h.html',1,'']]],
   ['pollinated',['pollinated',['../classFlower.html#a50ac3a515021e85caeed9e466cb88a1e',1,'Flower::pollinated()'],['../classFloweringPlant.html#af7517e7478479601d2dbffb53b0cccfa',1,'FloweringPlant::pollinated()']]],
   ['pollinated_5ffraction',['POLLINATED_FRACTION',['../EvoBeeExperiment_8h.html#a89eb2b1ac459694aa8e06c8077ff7f84ad4e3c3b5dc9df0f6488ca5ea271dbf15',1,'EvoBeeExperiment.h']]],
-  ['pollinator',['Pollinator',['../classPollinator.html',1,'Pollinator'],['../classPollinator.html#a4c08b7245c307509b02836f8eb6e1026',1,'Pollinator::Pollinator()']]],
+  ['pollinator',['Pollinator',['../classPollinator.html',1,'']]],
   ['pollinator_2ecpp',['Pollinator.cpp',['../Pollinator_8cpp.html',1,'']]],
   ['pollinator_2eh',['Pollinator.h',['../Pollinator_8h.html',1,'']]],
   ['pollinatorconfig',['PollinatorConfig',['../structPollinatorConfig.html',1,'']]],

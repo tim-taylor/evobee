@@ -9,6 +9,7 @@ var classFloweringPlant =
     [ "getDistanceSq", "classFloweringPlant.html#a9a66873a7380de9903d22e2ff4f214f2", null ],
     [ "getFlower", "classFloweringPlant.html#a6bd907a2cbe03215d30ddd5f7b41cbfa", null ],
     [ "getFlowerMarkerPoint", "classFloweringPlant.html#adfe261c92614155d857b7b22c9c7d565", null ],
+    [ "getFlowers", "classFloweringPlant.html#a5814a23afee34f7ce9ee22e29f126543", null ],
     [ "getId", "classFloweringPlant.html#a751b89d5d52d14d630663a713de9f247", null ],
     [ "getPatch", "classFloweringPlant.html#aa91da58f3ac6480eca0c0e79c3909e37", null ],
     [ "getPosition", "classFloweringPlant.html#a0422ca316a95c6c6d55f6697fb08aab4", null ],

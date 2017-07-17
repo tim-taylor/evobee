@@ -135,6 +135,8 @@ HivePtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHiv
 <tr class="memitem:a0efa4e75cf5442c0abc4c3390ed00064"><td class="memItemLeft" align="right" valign="top"><a id="a0efa4e75cf5442c0abc4c3390ed00064"></a>
 <a class="el" href="classPosition.html">fPos</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getRandomPositionF</b> (const <a class="el" href="classPosition.html">iPos</a> &amp;topleft, const <a class="el" href="classPosition.html">iPos</a> &amp;bottomright) const</td></tr>
 <tr class="separator:a0efa4e75cf5442c0abc4c3390ed00064"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a8a9e2143ca2d9f6d3ba5c4780c55c2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a4a8a9e2143ca2d9f6d3ba5c4780c55c2">getPollinatedFrac</a> () const</td></tr>
+<tr class="separator:a4a8a9e2143ca2d9f6d3ba5c4780c55c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaddd11ce558e8851faea3189eb8c4f02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#aaddd11ce558e8851faea3189eb8c4f02">addPollinatorToAggregateList</a> (<a class="el" href="classPollinator.html">Pollinator</a> *pPol)</td></tr>
 <tr class="separator:aaddd11ce558e8851faea3189eb8c4f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafc0065e686b9cc51f1be60e154f075b"><td class="memItemLeft" align="right" valign="top">PollinatorPtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#aafc0065e686b9cc51f1be60e154f075b">getAllPollinators</a> ()</td></tr>
@@ -177,7 +179,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Add a pointer to a pollinator to the <a class="el" href="classEnvironment.html">Environment</a>'s aggregate list of all pollinators. This is called in the <a class="el" href="classHive.html">Hive</a> constructor, and the individual Hives actually own the <a class="el" href="classPollinator.html">Pollinator</a> objects. </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00162">162</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00167">167</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -226,7 +228,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Return a vector of pointers to all pollinators from all hives </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00167">167</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00172">172</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -254,7 +256,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Return a pointer to the <a class="el" href="classEvoBeeModel.html">EvoBeeModel</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00172">172</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8h_source.html#l00177">177</a> of file <a class="el" href="Environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -310,6 +312,26 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00065">65</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a4a8a9e2143ca2d9f6d3ba5c4780c55c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a8a9e2143ca2d9f6d3ba5c4780c55c2">&#9670;&nbsp;</a></span>getPollinatedFrac()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Environment::getPollinatedFrac </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the fraction of all plants that are currently pollinated </p>
+
+<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00234">234</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -529,15 +551,18 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Initialise a new generation</p>
-<p>Initialise a new generation:</p><ol type="1">
+<p>Create a new generation of plants based upon pollinated plants from the previous generation, then delete all plants from previous generation.</p>
+<ol type="1">
 <li>Construct a new generation of plants based upon those successfully pollinated in the previous generation, taking into acconut any refuges and/or restrictions to seed flow.</li>
-<li>Reset all pollinators to initial state. 3, Perform other housekeeping tasks. </li>
+<li>Reset all pollinators to initial state. 3, Perform other housekeeping tasks.</li>
 </ol>
+<p>Some more details: overall goal: replace all plants (stored in individual Patches) with a new generation of plants assumptions: If PTD area is refuge or seedOutflow is restricted (outflow prob &lt; 1.0), that area is not allowed to overlap with any other area (see implementation details below) approach: create a vector of all pollinated plants (pollinatedPlantPtrs) and shuffle it create an empty newPlants vector to store new generation for each plant in pollinatedPlantPtrs (up to global max repro num for env) consider a nearby position in which to reproduce determine prob that it will successfully reproduce in that position, taking into acccount seed outflow prob of current patch seed inflow prob (refuge incoming) of destination any local PTDConfig density constraints (consult m_LocalDensityConstraints) if successful, create new plant and put in newPlants vector empty plant vectors for all patches - delete all plants from previous generation for each plant in newPlants, move plant to appropriate <a class="el" href="classPatch.html">Patch</a> vector implementation details: each <a class="el" href="classPatch.html">Patch</a> needs outflow prob (and allowed/restricted flags, corresponding to p&gt;0, p&lt;1) isRefuge flag refugeNativeSpecies id alienInflowProb We deal with constraints on overlapping PTD areas (see assumptions above) by thowing an exception if there is an attempt to set these <a class="el" href="classPatch.html">Patch</a> probs/flags multiple times for any single <a class="el" href="classPatch.html">Patch</a> (this is done in <a class="el" href="classPatch.html#a54f2cf62fd6ec676e79e17b3da4035b3">Patch::setReproConstraints</a>) </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>we also need to log this info if necessary </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>at this stage we've got a distance between 0-1 - maybe need a wider distribution, or maybe even just have a fixed diatance of 1? </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>(maybe) </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd></dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>at this stage we've got a distance between 0-1 - maybe need a wider distribution, or maybe even just have a fixed diatance of 1? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>(maybe) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00242">242</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00299">299</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
