@@ -29,7 +29,7 @@ Logger::Logger(EvoBeeModel* pModel) :
 {
     assert(ModelParams::initialised());
 
-    if (ModelParams::getLogging())
+    if (ModelParams::logging())
     {
         m_pEnv = &(m_pModel->getEnv());
 
@@ -81,7 +81,7 @@ Logger::~Logger()
 
 void Logger::logExptSetup()
 {
-    assert(ModelParams::getLogging());
+    assert(ModelParams::logging());
     
     std::string filename {m_strFilePrefix + m_strConfigFileSuffix};
     fs::path fullname {m_LogDir / filename};
@@ -96,9 +96,95 @@ void Logger::logExptSetup()
 }
 
 
-void Logger::update()
+void Logger::logPollinatorsFull()
 {
-    assert(ModelParams::getLogging());
+    std::ofstream ofs = openLogFile();
+
+    auto gen = m_pModel->getGenNumber();
+    auto step = m_pModel->getStepNumber();
+    auto& pollinators = m_pEnv->getAllPollinators();
+
+    for (auto p : pollinators)
+    {
+        ofs << "P," << gen << "," << step << "," << p->getStateString() << std::endl;
+    }
+}
+
+
+void Logger::logFlowersFull()
+{
+    std::ofstream ofs = openLogFile();
+    auto gen = m_pModel->getGenNumber();
+    std::vector<Patch>& patches = m_pEnv->getPatches();
+
+    for (Patch& patch : patches)
+    {
+        if (patch.hasFloweringPlants())
+        {
+            PlantVector& plants = patch.getFloweringPlants();
+            for (FloweringPlant& plant : plants)
+            {
+                ofs << "F," << gen << "," << plant.getId() << "," << plant.getSpeciesId()
+                    << "," << "<Logger::logFlowersFull incomplete>" << std::endl;
+
+                /*
+                if (plant.pollinated())
+                {
+                    const std::vector<Flower>& flowers = plant.getFlowers();
+                    for (const Flower& flower : flowers)
+                    {
+                        const PollenVector& stigmaPollen = flower.getStigmaPollen();
+                        for (const Pollen& pollen : stigmaPollen)
+                        {
+                            ///@todo - at some point we actually need to log something!!
+                        }
+                    }
+                }
+                */
+            }
+        }
+    }
+}
+
+
+void Logger::logFlowersSummary()
+{
+    std::ofstream ofs = openLogFile();
+    auto gen = m_pModel->getGenNumber(); 
+    std::vector<Patch>& patches = m_pEnv->getPatches();
+    std::map<unsigned int, unsigned int> speciesCounts;
+
+    const std::map<unsigned int, std::string>& speciesInfoMap = FloweringPlant::getSpeciesMap();
+    for (auto& speciesInfo : speciesInfoMap)
+    {
+        speciesCounts[speciesInfo.first] = 0;
+    }
+
+    for (Patch& patch : patches)
+    {
+        if (patch.hasFloweringPlants())
+        {
+            PlantVector& plants = patch.getFloweringPlants();
+            for (FloweringPlant& plant : plants)
+            {
+                speciesCounts[plant.getSpeciesId()]++;
+            }
+        }
+    }
+
+    for (auto& countInfo : speciesCounts)
+    {
+        ofs << "f," << gen << countInfo.first << "," << speciesInfoMap.at(countInfo.first)
+            << "," << countInfo.second << std::endl;
+    }
+}
+
+
+// private helper method to open the log file for appending
+// (the compiler should use the move assignment operator to efficiently return the ofstream object)
+std::ofstream Logger::openLogFile()
+{
+    assert(ModelParams::logging());
 
     // open log file for appending
     std::ofstream ofs {m_MainLogFile, std::ofstream::app};
@@ -109,17 +195,5 @@ void Logger::update()
         throw std::runtime_error(msg.str());
     }
 
-    // log current step number of model
-    //ofs << "==> " << m_pModel->getStepNumber() << std::endl;
-    auto step = m_pModel->getStepNumber();
-
-    // log data on all pollinators
-    auto pollinators = m_pEnv->getAllPollinators();
-    for (auto p : pollinators)
-    {
-        ofs << step << "," << p->getStateString() << std::endl;
-    }
-
-    // log flowering plants - and other stuff?
-    ///@todo
+    return ofs; // the compiler should use the move assignment operator here
 }

@@ -36,8 +36,9 @@ void processConfigOptions(int argc, char **argv);
 void processJsonFile(ifstream& ifs);
 
 
-// a helper function for reading in parameters from the JSON file and dealing
-// with missing elements
+// Helper function for reading in parameters from the JSON file.
+// This version is for required params, and throws an exception if the parameter is
+// not found in the JSON file.
 template<typename T>
 void json_read_param(const json& j, const std::string& section, const std::string& name, T& var)
 {
@@ -50,6 +51,23 @@ void json_read_param(const json& j, const std::string& section, const std::strin
         std::cerr << "Error: " << section << " does not contain a "
             << name << " element! Aborting" << std::endl;
         exit(1);
+    }
+}
+
+// Helper function for reading in parameters from the JSON file.
+// This version is for optional params, and takes a default value which is used
+// if no matching entry is found in the JSON file.
+template<typename T>
+void json_read_opt_param(const json& j, const std::string& section, 
+                         const std::string& name, T& var, T defaultValue)
+{
+    try
+    {
+        var = j.at(name).get<T>();
+    }
+    catch (const std::exception& e)
+    {
+        var = defaultValue;
     }
 }
 
@@ -107,7 +125,10 @@ void from_json(const json& j, PlantTypeConfig& pt)
         // is set to an effectively unlimited value
         pt.stigmaMaxPollenCapacity = 99999;
     }    
-    json_read_param(j, "PlantTypeConfig", "pollen-clogging", pt.pollenClogging);
+    json_read_param(j, sct, "pollen-clogging", pt.pollenClogging);
+    json_read_param(j, sct, "repro-seed-dispersal-global", pt.reproSeedDispersalGlobal);
+    json_read_opt_param(j, sct, "repro-seed-dispersal-radius", pt.reproSeedDispersalRadius, 1.0f);
+
 }
 
 void from_json(const json& j, PollinatorConfig& p)
@@ -264,6 +285,14 @@ void processJsonFile(ifstream& ifs)
                     cout << "Logging -> '" << it.value() << "'" << endl;
                     ModelParams::setLogging(it.value());
                 }
+                else if (it.key() == "log-flags" && it.value().is_string()) {
+                    cout << "Log flags -> '" << it.value() << "'" << endl;
+                    ModelParams::setLogFlags(it.value());
+                }
+                else if (it.key() == "log-update-period" && it.value().is_number()) {
+                    cout << "Log update period -> " << it.value() << endl;
+                    ModelParams::setLogUpdatePeriod(it.value());
+                }
                 else if (it.key() == "log-dir" && it.value().is_string()) {
                     cout << "Log dir -> '" << it.value() << "'" << endl;
                     ModelParams::setLogDir(it.value());
@@ -295,10 +324,6 @@ void processJsonFile(ifstream& ifs)
                 else if (it.key() == "vis-max-screen-frac-h" && it.value().is_number()) {
                     cout << "Vis max screen fraction H -> " << it.value() << endl;
                     ModelParams::setMaxScreenFracH(it.value());
-                }
-                else if (it.key() == "log-update-period" && it.value().is_number()) {
-                    cout << "Log update period -> " << it.value() << endl;
-                    ModelParams::setLogUpdatePeriod(it.value());
                 }
                 else {
                     cerr << "Unexpected entry in SimulationParams section of json file: "

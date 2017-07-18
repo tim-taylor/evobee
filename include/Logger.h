@@ -8,6 +8,7 @@
 #define _LOGGER_H
 
 #include <string>
+#include <iostream>
 #include <experimental/filesystem>
 
 class EvoBeeModel;
@@ -31,9 +32,22 @@ public:
     /**
      *
      */
-    void update();
+    void logPollinatorsFull();
+
+     /**
+     *
+     */
+    void logFlowersFull();
+
+    /**
+     *
+     */
+    void logFlowersSummary();
 
 private:
+
+    std::ofstream openLogFile(); // a private helper method
+    
     std::experimental::filesystem::path m_LogDir;
     std::experimental::filesystem::path m_MainLogFile;
     std::string m_strFilePrefix;

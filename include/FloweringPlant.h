@@ -104,6 +104,22 @@ public:
      */
     Patch& getPatch() const;
 
+    /**
+     * During reproduction, can seeds land anywhere in environment?
+     */
+    bool reproSeedDispersalGlobal();
+
+    /**
+     * During reproduction, if seed dispersal is not global, what is the dispersal
+     * radius (expressed in environment units, so 1.0 equals one patch)
+     */
+    float reproSeedDispersalRadius();
+
+    /**
+     * Returns the map of all known species, mapping speciesId to species name
+     */
+    static const std::map<unsigned int, std::string>& getSpeciesMap() {return m_sSpeciesMap;}
+
 
 private:
     unsigned int            m_id;           ///< Unique ID number for this plant

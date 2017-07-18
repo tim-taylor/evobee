@@ -17,7 +17,9 @@ struct PlantTypeConfig {
     PlantTypeConfig() :
         pollenClogging(false),
         numFlowers(1),
-        hasLeaf(false)
+        hasLeaf(false),
+        reproSeedDispersalGlobal(false),
+        reproSeedDispersalRadius(1.0)
     {};
 
     std::string species;
@@ -27,11 +29,14 @@ struct PlantTypeConfig {
     int         antherPollenTransferPerVisit;
     int         stigmaMaxPollenCapacity;
     bool        pollenClogging;
-    //int       nectarReward; // (currently unused)
-    float       initTemp; ///<@todo should be initialised // init temp of flowers and leaves
+    //int       nectarReward;               // (currently unused)
+    float       initTemp;                   ///<@todo (unused just now) // init temp of flowers and leaves
     int         numFlowers;
     bool        hasLeaf;
     MarkerPoint leafMP;
+    bool        reproSeedDispersalGlobal;   ///< can seeds be dispersed at random across whole environment?
+    float       reproSeedDispersalRadius;   ///< expreseed in env units (1.0=one patch), overridden
+                                            ///<   if reproSeedDispersalGlobal=true
 };
 
 #endif /* _PLANTTYPECONFIG_H */

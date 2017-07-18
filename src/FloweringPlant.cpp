@@ -267,3 +267,31 @@ Patch& FloweringPlant::getPatch() const
         return *m_pPatch;
     }
 }
+
+
+bool FloweringPlant::reproSeedDispersalGlobal()
+{
+    if (m_pPlantTypeConfig != nullptr)
+    {
+        return m_pPlantTypeConfig->reproSeedDispersalGlobal;
+    }
+    else
+    {
+        throw std::runtime_error("FloweringPlant::reproSeedDispersalGlobal no config defined");
+        return false;
+    }
+}
+
+
+float FloweringPlant::reproSeedDispersalRadius()
+{
+    if (m_pPlantTypeConfig != nullptr)
+    {
+        return m_pPlantTypeConfig->reproSeedDispersalRadius;
+    }
+    else
+    {
+        throw std::runtime_error("FloweringPlant::reproSeedDispersalRadius no config defined");
+        return 1.0;
+    }
+}

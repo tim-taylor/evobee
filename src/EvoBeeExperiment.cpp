@@ -33,7 +33,7 @@ EvoBeeExperiment::EvoBeeExperiment() :
     m_iLogUpdatePeriod = ModelParams::getLogUpdatePeriod();
 
     // record run configuration details in log file
-    if (ModelParams::getLogging())
+    if (ModelParams::logging())
     {
         m_Logger.logExptSetup();
     }
@@ -82,8 +82,10 @@ void EvoBeeExperiment::run()
             // perform the next simulation step
             m_Model.step();
 
-            // perform logging if required
-            if (ModelParams::getLogging() && (step % m_iLogUpdatePeriod == 0))
+            // perform logging of pollinators if required
+            if (ModelParams::logging() &&
+                ModelParams::logPollinatorsFull() &&
+                (step % m_iLogUpdatePeriod == 0))
             {
                 // We perform logging in a different thread, so that it can
                 // continue in parallel with everything else until the next
@@ -95,7 +97,7 @@ void EvoBeeExperiment::run()
                 {
                     m_threadLog.join();
                 }
-                m_threadLog = std::thread(&Logger::update, m_Logger);
+                m_threadLog = std::thread(&Logger::logPollinatorsFull, m_Logger);
             }
 
             // perform visualisation if required
@@ -142,6 +144,27 @@ void EvoBeeExperiment::run()
             }
         }
         while (!endOfGen);
+
+        // perform logging of flowers at the end of the generation if required
+        if (ModelParams::logging())
+        {
+            if (ModelParams::logFlowersFull())
+            {
+                if (m_threadLog.joinable())
+                {
+                    m_threadLog.join();
+                }
+                m_threadLog = std::thread(&Logger::logFlowersFull, m_Logger);
+            }
+            if (ModelParams::logFlowersSummary())
+            {
+                if (m_threadLog.joinable())
+                {
+                    m_threadLog.join();
+                }
+                m_threadLog = std::thread(&Logger::logFlowersSummary, m_Logger);
+            }
+        }          
 
         if (!bContinue)
         {

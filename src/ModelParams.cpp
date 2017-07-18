@@ -28,9 +28,12 @@ GenTerminationType ModelParams::m_GenTerminationType = GenTerminationType::NUM_S
 int    ModelParams::m_iGenTerminationParam = -1;
 float  ModelParams::m_fGenTerminationParam = -1.0;
 bool   ModelParams::m_bLogging = true;
-std::string ModelParams::m_strRngSeed {""};
+bool   ModelParams::m_bLogPollinatorsFull = false;
+bool   ModelParams::m_bLogFlowersFull = false;
+bool   ModelParams::m_bLogFlowersSummary = false;
 std::string ModelParams::m_strLogDir {"output"};
 std::string ModelParams::m_strLogRunName {"run"};
+std::string ModelParams::m_strRngSeed {""};
 
 std::vector<HiveConfig> ModelParams::m_Hives;
 std::vector<PlantTypeDistributionConfig> ModelParams::m_PlantDists;
@@ -145,6 +148,35 @@ void ModelParams::setVisDelayPerFrame(int delayMs)
 void ModelParams::setLogging(bool logging)
 {
     m_bLogging = logging;
+}
+
+void ModelParams::setLogFlags(const std::string& flags)
+{
+    for (auto& flag : flags)
+    {
+        switch (flag)
+        {
+        case 'P':
+        {
+            m_bLogPollinatorsFull = true;
+            break;
+        }
+        case 'F':
+        {
+            m_bLogFlowersFull = true;
+            break;
+        }
+        case 'f':
+        {
+            m_bLogFlowersSummary = true;
+            break;
+        }
+        default:
+        {
+            std::cerr << "Warning: Ignoring unknown log flag" << flag << std::endl;
+        }                
+        }
+    }
 }
 
 void ModelParams::setLogUpdatePeriod(int p)

@@ -42,6 +42,7 @@ public:
     static void setVisUpdatePeriod(int p);
     static void setVisDelayPerFrame(int delayMs);
     static void setLogging(bool logging);
+    static void setLogFlags(const std::string& flags);
     static void setLogUpdatePeriod(int p);
     static void setInitialised();
     static void setSimTerminationNumGens(int gens);
@@ -74,7 +75,10 @@ public:
     static bool  getVisPollinatorTrails() {return m_bVisPollinatorTrails;}
     static int   getVisUpdatePeriod() {return m_iVisUpdatePeriod;}
     static int   getVisDelayPerFrame() {return m_iVisDelayPerFrame;}
-    static bool  getLogging() {return m_bLogging;}
+    static bool  logging() {return m_bLogging;}
+    static bool  logPollinatorsFull() {return m_bLogPollinatorsFull;}
+    static bool  logFlowersFull() {return m_bLogFlowersFull;}
+    static bool  logFlowersSummary() {return m_bLogFlowersSummary;}
     static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
     static int   getSimTerminationNumGens() {return m_iSimTerminationNumGens;}
     static GenTerminationType getGenTerminationType() {return m_GenTerminationType;}
@@ -112,17 +116,20 @@ private:
                                             ///<   visualisation
     static int   m_iVisDelayPerFrame;       ///< Specifies a delay (in ms) per frame of the 
                                             ///<   visualisation code
+    static bool  m_bLogging;                ///< Is logging required for this run?
+    static bool  m_bLogPollinatorsFull;     ///< Log full pollinator info every m_iLogUpdatePeriod steps
+    static bool  m_bLogFlowersFull;         ///< Log full flower info at end of each generation
+    static bool  m_bLogFlowersSummary;      ///< Log summary flower info at end of each generation
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
+    static std::string m_strLogDir;         ///< Directory name for logging output
+    static std::string m_strLogRunName;     ///< Run name to be used as prefix for log filenames    
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
     static int   m_iSimTerminationNumGens;  ///< Terminate run after this number of generations
     static GenTerminationType m_GenTerminationType; ///< Method used to define termination 
                                                     ///<   criterion for a generation
     static int   m_iGenTerminationParam;    ///< Integer parameter associated with m_GenTerminationType
     static float m_fGenTerminationParam;    ///< Float parameter associated with m_GenTerminationType
-    static bool  m_bLogging;                ///< Is logging required for this run?
     static std::string m_strRngSeed;        ///< Seed string used to seeed RNG
-    static std::string m_strLogDir;         ///< Directory name for logging output
-    static std::string m_strLogRunName;     ///< Run name to be used as prefix for log filenames
     static std::vector<HiveConfig> m_Hives; ///< Configuration info for each hive
     static std::vector<PlantTypeDistributionConfig> m_PlantDists; ///< Config of plant distributions
     static std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types

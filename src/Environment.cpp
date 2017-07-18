@@ -356,14 +356,21 @@ void Environment::initialiseNewGeneration()
     for (FloweringPlant* pPlant : pollinatedPlantPtrs)
     {
         // -- Step 1c.1: consider a nearby position in which to reproduce
-        ///@todo at this stage we've got a distance between 0-1 - maybe need a wider
-        ///      distribution, or maybe even just have a fixed diatance of 1?
-        float distance = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
-        //float distance = 1.0; //////////////////////////// TEMP TEST //////////////////////
-        float heading  = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
-        fPos delta   { distance*std::cos(heading), distance*std::sin(heading) };
         fPos fCurPos { pPlant->getPosition() };
-        fPos fNewPos { fCurPos + delta };
+        fPos fNewPos;
+        
+        if (pPlant->reproSeedDispersalGlobal())
+        {
+            fNewPos = getRandomPositionF();
+        }
+        else
+        {
+            std::uniform_real_distribution<float> distanceDistrib(0.0, pPlant->reproSeedDispersalRadius());
+            float distance = distanceDistrib(EvoBeeModel::m_sRngEngine);
+            float heading  = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
+            fPos delta { distance*std::cos(heading), distance*std::sin(heading) };
+            fNewPos = fCurPos + delta;
+        }
 
         iPos iCurPos = getPatchCoordFromFloatPos(fCurPos);
         iPos iNewPos = getPatchCoordFromFloatPos(fNewPos);
