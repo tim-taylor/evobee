@@ -3,7 +3,7 @@
         "generation-termination-type" : "num-sim-steps",
         "comment1" : "[num-sim-steps|pollinated-fraction|<num-pollinator-steps>]",
         "generation-termination-param" : 100,
-        "sim-termination-num-gens" : 200,
+        "sim-termination-num-gens" : 250,
         "rng-seed" : "",
         "visualisation" : false,
         "vis-update-period" : 100,
@@ -17,7 +17,7 @@
         "comment-log-flags-2" : "F: all flowers at end of each generation",
         "comment-log-flags-3" : "f: summary flower stats at end of each generation",
         "log-update-period" : 5,
-        "log-dir" : "output",
+        "log-dir" : "output/waser/expt1",
         "log-run-name" : "waser-expt-1"
     },    
     "Environment" : {

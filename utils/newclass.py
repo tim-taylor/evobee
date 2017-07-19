@@ -9,6 +9,8 @@
 # Checks if .cpp or .h file already exist. If so, complains
 # and exits without attempting to create the files.
 #
+# Author: Tim Taylor (http://www.tim-taylor.com)
+# Last update: 3 May 2017
 
 import sys
 import os
