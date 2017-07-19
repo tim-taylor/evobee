@@ -18,7 +18,7 @@
         "comment-log-flags-3" : "f: summary flower stats at end of each generation",
         "log-update-period" : 5,
         "log-dir" : "output",
-        "log-run-name" : "test"
+        "log-run-name" : "waser-expt-1"
     },    
     "Environment" : {
         "env-size-x" : 100,

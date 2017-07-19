@@ -235,9 +235,14 @@ void ModelParams::setGenTerminationFloatParam(float p)
     m_fGenTerminationParam = p;
 }
 
-void ModelParams::setRngSeedStr(const std::string& seed)
+void ModelParams::setRngSeedStr(const std::string& seed, bool bRewriteJsonEntry /*= false*/)
 {
     m_strRngSeed = seed;
+
+    if (bRewriteJsonEntry)
+    {
+        m_Json["SimulationParams"]["rng-seed"] = seed;
+    }
 }
 
 void ModelParams::setLogDir(const std::string& dir)

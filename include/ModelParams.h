@@ -51,7 +51,7 @@ public:
     static void setGenTerminationParam(float p);
     static void setGenTerminationIntParam(int p);
     static void setGenTerminationFloatParam(float p);
-    static void setRngSeedStr(const std::string& seed);
+    static void setRngSeedStr(const std::string& seed, bool bRewriteJsonEntry = false);
     static void setLogDir(const std::string& dir);
     static void setLogRunName(const std::string& name);
 

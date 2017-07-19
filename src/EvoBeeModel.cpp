@@ -68,7 +68,7 @@ void EvoBeeModel::seedRng()
         m_sRngEngine.seed(seed1);
         
         // and store the generated seed string back in ModelParams
-        ModelParams::setRngSeedStr(newSeedStr);
+        ModelParams::setRngSeedStr(newSeedStr, true);
     }
     else
     {
