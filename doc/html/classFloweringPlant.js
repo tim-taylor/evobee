@@ -17,5 +17,7 @@ var classFloweringPlant =
     [ "getSpeciesId", "classFloweringPlant.html#a10c95f26e2e2cbbdfabfd7a1d776cee9", null ],
     [ "operator=", "classFloweringPlant.html#a24aea8ab0d0f51e88404987f2c7c4e7b", null ],
     [ "operator=", "classFloweringPlant.html#aadf40fcce77b33fd7769bbb2458b028c", null ],
-    [ "pollinated", "classFloweringPlant.html#af7517e7478479601d2dbffb53b0cccfa", null ]
+    [ "pollinated", "classFloweringPlant.html#af7517e7478479601d2dbffb53b0cccfa", null ],
+    [ "reproSeedDispersalGlobal", "classFloweringPlant.html#a2c06540d02131708e427c85a918f9ad0", null ],
+    [ "reproSeedDispersalRadius", "classFloweringPlant.html#a01ef82d2a347fc704d9eaea28bb3d573", null ]
 ];

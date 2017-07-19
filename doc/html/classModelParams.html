@@ -133,6 +133,9 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>setVisDelayPer
 <tr class="memitem:ae133b8e9f0859684258d08d9ea11a3a4"><td class="memItemLeft" align="right" valign="top"><a id="ae133b8e9f0859684258d08d9ea11a3a4"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogging</b> (bool logging)</td></tr>
 <tr class="separator:ae133b8e9f0859684258d08d9ea11a3a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34b7c8df1316e4d3ec8035cbc15f075c"><td class="memItemLeft" align="right" valign="top"><a id="a34b7c8df1316e4d3ec8035cbc15f075c"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogFlags</b> (const std::string &amp;flags)</td></tr>
+<tr class="separator:a34b7c8df1316e4d3ec8035cbc15f075c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2895ca2a6da679fbba6073b64a19622"><td class="memItemLeft" align="right" valign="top"><a id="ad2895ca2a6da679fbba6073b64a19622"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogUpdatePeriod</b> (int p)</td></tr>
 <tr class="separator:ad2895ca2a6da679fbba6073b64a19622"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -216,9 +219,18 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>getVisUpdatePer
 <tr class="memitem:ab19ca13a9a78539419c600ce50aa10b3"><td class="memItemLeft" align="right" valign="top"><a id="ab19ca13a9a78539419c600ce50aa10b3"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><b>getVisDelayPerFrame</b> ()</td></tr>
 <tr class="separator:ab19ca13a9a78539419c600ce50aa10b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9150c2b7d0d7f6c8b8cd0c52298a5940"><td class="memItemLeft" align="right" valign="top"><a id="a9150c2b7d0d7f6c8b8cd0c52298a5940"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>getLogging</b> ()</td></tr>
-<tr class="separator:a9150c2b7d0d7f6c8b8cd0c52298a5940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a316d0cc95d925f1e9ea5b8bc53dd19af"><td class="memItemLeft" align="right" valign="top"><a id="a316d0cc95d925f1e9ea5b8bc53dd19af"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b> ()</td></tr>
+<tr class="separator:a316d0cc95d925f1e9ea5b8bc53dd19af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a8f44cfcf2eb50a64479c2f304072d7"><td class="memItemLeft" align="right" valign="top"><a id="a8a8f44cfcf2eb50a64479c2f304072d7"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>logPollinatorsFull</b> ()</td></tr>
+<tr class="separator:a8a8f44cfcf2eb50a64479c2f304072d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2386bdebf25cea590077cb4650195253"><td class="memItemLeft" align="right" valign="top"><a id="a2386bdebf25cea590077cb4650195253"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>logFlowersFull</b> ()</td></tr>
+<tr class="separator:a2386bdebf25cea590077cb4650195253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0abfa93c51ac546e0cbc759f34f95eb"><td class="memItemLeft" align="right" valign="top"><a id="ab0abfa93c51ac546e0cbc759f34f95eb"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>logFlowersSummary</b> ()</td></tr>
+<tr class="separator:ab0abfa93c51ac546e0cbc759f34f95eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bee5b31fcbffb56cb4aa51526d5c542"><td class="memItemLeft" align="right" valign="top"><a id="a6bee5b31fcbffb56cb4aa51526d5c542"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><b>getLogUpdatePeriod</b> ()</td></tr>
 <tr class="separator:a6bee5b31fcbffb56cb4aa51526d5c542"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -298,12 +310,12 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
 </div><div class="memdoc">
 
 <p>check consistency of parameters once the whole config file has been processed </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd><ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd><ul>
 <li>other things to check re parameter consistency... </li>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00270">270</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00302">302</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>
@@ -330,9 +342,9 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00161">161</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00193">193</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>
@@ -359,9 +371,9 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00089">89</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00092">92</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>
@@ -388,9 +400,9 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00072">72</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00075">75</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>

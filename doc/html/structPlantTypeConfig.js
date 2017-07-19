@@ -10,6 +10,8 @@ var structPlantTypeConfig =
     [ "leafMP", "structPlantTypeConfig.html#a44937037d1241150b0bf54a727e58ec5", null ],
     [ "numFlowers", "structPlantTypeConfig.html#abfdf37db16bab7526c1a95c48897478e", null ],
     [ "pollenClogging", "structPlantTypeConfig.html#a9e6438a54df58cf335da3f6c71a9e2f5", null ],
+    [ "reproSeedDispersalGlobal", "structPlantTypeConfig.html#aa926f4a80d63c5021bda1896d0fbc589", null ],
+    [ "reproSeedDispersalRadius", "structPlantTypeConfig.html#a3d96c1fc0c970ab0ba68db62b187bb27", null ],
     [ "species", "structPlantTypeConfig.html#ab4a3288e4a64f8f214d76c6f8948dd41", null ],
     [ "stigmaMaxPollenCapacity", "structPlantTypeConfig.html#a8ce6736aec0bf1a977ef17119c91ccf7", null ]
 ];

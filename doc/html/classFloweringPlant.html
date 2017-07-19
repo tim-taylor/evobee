@@ -130,11 +130,17 @@ const <a class="el" href="classPosition.html">fPos</a> &amp;&#160;</td><td class
 <tr class="separator:af7517e7478479601d2dbffb53b0cccfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa91da58f3ac6480eca0c0e79c3909e37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPatch.html">Patch</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#aa91da58f3ac6480eca0c0e79c3909e37">getPatch</a> () const</td></tr>
 <tr class="separator:aa91da58f3ac6480eca0c0e79c3909e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c06540d02131708e427c85a918f9ad0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#a2c06540d02131708e427c85a918f9ad0">reproSeedDispersalGlobal</a> ()</td></tr>
+<tr class="separator:a2c06540d02131708e427c85a918f9ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01ef82d2a347fc704d9eaea28bb3d573"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#a01ef82d2a347fc704d9eaea28bb3d573">reproSeedDispersalRadius</a> ()</td></tr>
+<tr class="separator:a01ef82d2a347fc704d9eaea28bb3d573"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a62875a4a25d4e0b8a5ef43626edd4bea"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#a62875a4a25d4e0b8a5ef43626edd4bea">getSpeciesId</a> (const std::string &amp;name)</td></tr>
 <tr class="separator:a62875a4a25d4e0b8a5ef43626edd4bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfe1ee5d1cc6e3f976cef12e1875425b"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; unsigned int, std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#abfe1ee5d1cc6e3f976cef12e1875425b">getSpeciesMap</a> ()</td></tr>
+<tr class="separator:abfe1ee5d1cc6e3f976cef12e1875425b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classFloweringPlant.html">FloweringPlant</a> class ... </p>
@@ -173,7 +179,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Constructor for creating a new plant at the beginning of a simulation </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd><ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd><ul>
 <li>for now, we are placing all flowers at the same position (the same position as the plant itself). If/when we start looking at plants with multiple flowers, we might want to change this </li>
 </ul>
 </dd></dl>
@@ -220,7 +226,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Constructor for creating an offspring plant from a pollinated parent plant </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>take note of the mutate param, and maybe change some values, </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>take note of the mutate param, and maybe change some values, </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00087">87</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
@@ -464,6 +470,34 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="abfe1ee5d1cc6e3f976cef12e1875425b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfe1ee5d1cc6e3f976cef12e1875425b">&#9670;&nbsp;</a></span>getSpeciesMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const std::map&lt;unsigned int, std::string&gt;&amp; FloweringPlant::getSpeciesMap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the map of all known species, mapping speciesId to species name </p>
+
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8h_source.html#l00121">121</a> of file <a class="el" href="FloweringPlant_8h_source.html">FloweringPlant.h</a>.</p>
+
+</div>
+</div>
 <a id="af7517e7478479601d2dbffb53b0cccfa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af7517e7478479601d2dbffb53b0cccfa">&#9670;&nbsp;</a></span>pollinated()</h2>
 
@@ -489,6 +523,46 @@ Static Public Member Functions</h2></td></tr>
 <p>Have any of this plant's flowers been pollinated? </p>
 
 <p class="definition">Definition at line <a class="el" href="FloweringPlant_8h_source.html#l00099">99</a> of file <a class="el" href="FloweringPlant_8h_source.html">FloweringPlant.h</a>.</p>
+
+</div>
+</div>
+<a id="a2c06540d02131708e427c85a918f9ad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c06540d02131708e427c85a918f9ad0">&#9670;&nbsp;</a></span>reproSeedDispersalGlobal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FloweringPlant::reproSeedDispersalGlobal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>During reproduction, can seeds land anywhere in environment? </p>
+
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00272">272</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a01ef82d2a347fc704d9eaea28bb3d573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01ef82d2a347fc704d9eaea28bb3d573">&#9670;&nbsp;</a></span>reproSeedDispersalRadius()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FloweringPlant::reproSeedDispersalRadius </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>During reproduction, if seed dispersal is not global, what is the dispersal radius (expressed in environment units, so 1.0 equals one patch) </p>
+
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00286">286</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
