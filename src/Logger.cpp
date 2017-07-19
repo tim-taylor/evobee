@@ -93,6 +93,8 @@ void Logger::logExptSetup()
         throw std::runtime_error(msg.str());
     }
     ofs << std::setw(4) << ModelParams::getJson() << std::endl;
+
+    ///@todo also log header info at top of log file (e.g. program version number)
 }
 
 

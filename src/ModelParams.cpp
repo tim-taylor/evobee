@@ -6,6 +6,7 @@
 
 #include <exception>
 #include "ModelParams.h"
+#include "FloweringPlant.h"
 
 
 // Instantiate all static members
@@ -134,7 +135,9 @@ void ModelParams::setVisPollinatorTrails(bool show)
 void ModelParams::setVisUpdatePeriod(int p)
 {
     if (p > 0)
+    {
         m_iVisUpdatePeriod = p;
+    }
 }
 
 void ModelParams::setVisDelayPerFrame(int delayMs)
@@ -182,7 +185,9 @@ void ModelParams::setLogFlags(const std::string& flags)
 void ModelParams::setLogUpdatePeriod(int p)
 {
     if (p > 0)
+    {
         m_iLogUpdatePeriod = p;
+    }
 }
 
 void ModelParams::setSimTerminationNumGens(int gens)
@@ -291,6 +296,7 @@ PollinatorConfig* ModelParams::getPollinatorConfigPtr(const std::string& pollina
 void ModelParams::addPlantTypeConfig(PlantTypeConfig& pt)
 {
     m_PlantTypes.push_back(pt);
+    FloweringPlant::registerSpecies(pt.species);
 }
 
 const PlantTypeConfig* ModelParams::getPlantTypeConfig(std::string species)

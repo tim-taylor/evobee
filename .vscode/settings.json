@@ -56,7 +56,8 @@
         "cinttypes": "cpp",
         "complex": "cpp",
         "valarray": "cpp",
-        "cmakeccompilerid.c": "cpp"
+        "cmakeccompilerid.c": "cpp",
+        "sdl2_rotozoom.c": "cpp"
     },
     "files.exclude": {
         "**/.git": true,

@@ -44,6 +44,15 @@ public:
     FloweringPlant& operator= (FloweringPlant&& other) noexcept;
 
     /**
+     * Static method to register a species in the species map, given a species name.
+     * If the name is not already in the map, then a new speciesId is assigned to it
+     * and the id-name pair are added to the map.
+     * 
+     * Returns the speciesId associated with the species (whether new or existing)
+     */
+    static unsigned int registerSpecies(const std::string& species);
+
+    /**
      * Get the unique id of this plant
      */
     unsigned int getId() const {return m_id;}

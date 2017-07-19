@@ -34,6 +34,8 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& typeConfig,
     m_pPlantTypeConfig = &typeConfig;
 
     // Do we already have a record of this plant species?
+    m_SpeciesId = registerSpecies(typeConfig.species);
+    /*
     auto it = std::find_if( m_sSpeciesMap.begin(),
                             m_sSpeciesMap.end(),
                             [typeConfig](const std::pair<unsigned int, std::string> & pair)
@@ -53,6 +55,7 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& typeConfig,
         std::cout << "Adding new plant species to map: id=" << m_SpeciesId << ", name=" <<
             typeConfig.species << std::endl;
     }
+    */
 
     if (m_bHasLeaf)
     {
@@ -189,6 +192,40 @@ void FloweringPlant::copyCommon(const FloweringPlant& other) noexcept
     m_bPollinated = other.m_bPollinated;
     m_pPatch = other.m_pPatch;
     m_pPlantTypeConfig = other.m_pPlantTypeConfig;
+}
+
+
+// Static method to register a species in the species map, given a species name
+// If the name is not already in the map, then a new speciesId is assigned to it
+// and it is added to the map.
+//
+// Returns the speciesId associated with the species (whether new or existing)
+//
+unsigned int FloweringPlant::registerSpecies(const std::string& species)
+{
+    unsigned int speciesId = 0;
+
+    // Do we already have a record of this plant species?
+    auto it = std::find_if( m_sSpeciesMap.begin(),
+                            m_sSpeciesMap.end(),
+                            [species](const std::pair<unsigned int, std::string> & pair)
+                                {return pair.second == species;} );
+    if (it != m_sSpeciesMap.end())
+    {
+        speciesId = it->first;
+    }
+    else
+    {
+        // this is a new species, so select a new species id to use, and also
+        // insert of record of the new id and species name into m_sSpeciesMap
+        speciesId = m_sNextFreeSpeciesId++;
+        m_sSpeciesMap[speciesId] = species;
+
+        std::cout << "Adding new plant species to map: id=" << speciesId << ", name=" <<
+            species << std::endl;
+    }
+
+    return speciesId;
 }
 
 

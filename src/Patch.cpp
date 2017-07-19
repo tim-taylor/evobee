@@ -9,6 +9,7 @@
 #include "Environment.h"
 #include "Patch.h"
 #include "FloweringPlant.h"
+#include "tools.h"
 
 
 Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
@@ -58,11 +59,31 @@ void Patch::setReproConstraints(const PlantTypeDistributionConfig& pdcfg)
 {
     if (m_bReproConstraintsSetExplicitly)
     {
-        std::stringstream msg;
-        msg << "Attempt to set multiple sets of reproduction constraints on patch "
-            << m_Position << ". Overlapping PlantTypeDistribution areas with"
-            << "constraints on seed flow?";
-        throw std::runtime_error(msg.str());
+        // If constraints have already been set on this patch and they
+        // include refugia constraints, throw an exception as this is
+        // an unresolvable situation (a patch can only be a refuge for
+        // one species of plant).
+        //
+        // If, however, we are only dealing with constraints on seed outflow 
+        // (no refugia constraints) and these have already been set on this patch
+        // patch, allow it if the new constraints are exactly the same as
+        // the existing ones (otherwise throw an exception).
+        //
+        if ((pdcfg.seedOutflowAllowed == m_bSeedOutflowAllowed) &&
+            (pdcfg.seedOutflowRestricted == m_bSeedOutflowRestricted) &&
+            EvoBee::equal(pdcfg.seedOutflowProb, m_fSeedOutflowProb) &&
+            !(pdcfg.refuge || m_bRefuge))
+        {
+            return;
+        }
+        else
+        {
+            std::stringstream msg;
+            msg << "Attempt to set multiple sets of reproduction constraints on patch "
+                << m_Position << ". Overlapping PlantTypeDistribution areas with "
+                << "constraints on seed flow?";
+            throw std::runtime_error(msg.str());
+        }
     }
 
     m_bSeedOutflowAllowed = pdcfg.seedOutflowAllowed;

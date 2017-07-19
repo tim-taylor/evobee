@@ -317,13 +317,9 @@ void Environment::initialiseNewGeneration()
             {
                 if (plant.pollinated())
                 {
-                    //pollinatedPlantPtrs.push_back(&plant);
-
-                    //////////////////////////////////////////////
-                    // could add multiple copies of the plant ptr according to how
-                    // many pollinated seeds the plant has
-                    // or maybe we should bite the bullet and look at each pollen grain 
-                    // in each flower's m_StigmaPollen store?
+                    // for each pollinated plant, we look at each pollen grain on 
+                    // the stigma of each of its flowers, and add a candidate
+                    // pointer for reproduction for each conspecific grain
                     const std::vector<Flower>& flowers = plant.getFlowers();
                     for (const Flower& flower : flowers)
                     {
@@ -333,9 +329,9 @@ void Environment::initialiseNewGeneration()
                             if (pollen.speciesId == flower.getSpeciesId())
                             {
                                 pollinatedPlantPtrs.push_back(&plant);
-                                // TODO.. actuall want to save plant AND otr to pollinating
-                                // flower (pollen.pSource)
-                                ///@todo
+                                ///@todo when we implement mutation, we will actually want
+                                /// to record the plant AND a ptr to the pollinating flower
+                                /// (pollen.pSource)
                             }
                         }
                     }
