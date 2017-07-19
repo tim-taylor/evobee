@@ -174,7 +174,7 @@ void Logger::logFlowersSummary()
 
     for (auto& countInfo : speciesCounts)
     {
-        ofs << "f," << gen << countInfo.first << "," << speciesInfoMap.at(countInfo.first)
+        ofs << "f," << gen << "," << countInfo.first << "," << speciesInfoMap.at(countInfo.first)
             << "," << countInfo.second << std::endl;
     }
 }

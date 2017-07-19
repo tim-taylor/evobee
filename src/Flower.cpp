@@ -261,7 +261,7 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
         // if not already pollinated, check whether that has now changed!
         if (!m_bPollinated)
         {
-            Pollen* pP = nullptr; // test code to allow output of pollen info
+            //Pollen* pP = nullptr; // test code to allow output of pollen info
 
             if (m_bPollenClogging)
             {
@@ -273,7 +273,7 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
                 m_bPollinated = (it != m_StigmaPollen.end());
 
                 // test code to allow output of pollen info
-                if (m_bPollinated) pP = &(*it);
+                //if (m_bPollinated) pP = &(*it);
             }
             else
             {
@@ -282,7 +282,7 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
                 m_bPollinated = true;
 
                 // test code to allow output of pollen info
-                pP = &(*(m_StigmaPollen.end()-actualNum));
+                //pP = &(*(m_StigmaPollen.end()-actualNum));
             }
 
             if (m_bPollinated)
@@ -290,14 +290,14 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
                 m_pPlant->setPollinated();
 
                 // test code
-                std::cout << "Flower id " << m_id << " of species " << m_SpeciesId <<
-                    " pollinated by pollen of species " << pP->speciesId <<
-                    " from plant id " << pP->pSource->getId() << std::endl;
+                //std::cout << "Flower id " << m_id << " of species " << m_SpeciesId <<
+                //    " pollinated by pollen of species " << pP->speciesId <<
+                //    " from plant id " << pP->pSource->getId() << std::endl;
             }
             else 
             {
                 // test code
-                std::cout << "(no pollination)" << std::endl;
+                //std::cout << "(no pollination)" << std::endl;
             }
         }        
     } 
