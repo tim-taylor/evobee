@@ -121,6 +121,8 @@ FloweringPlant::FloweringPlant(const FloweringPlant& other) :
     m_pPatch(other.m_pPatch),
     m_pPlantTypeConfig(other.m_pPlantTypeConfig)
 {
+    assert(false); // it's probable that we don't want to be here!
+
     for (Flower& flower : m_Flowers) 
     {
         flower.setPlant(this);
