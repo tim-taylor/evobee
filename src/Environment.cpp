@@ -264,7 +264,6 @@ float Environment::getPollinatedFrac() const
  *    pollinated in the previous generation, taking into acconut any refuges
  *    and/or restrictions to seed flow. 
  * 2. Reset all pollinators to initial state.
- * 3, Perform other housekeeping tasks.
  *
  * Some more details:
  *  overall goal:
@@ -467,11 +466,6 @@ void Environment::initialiseNewGeneration()
     {
         pPollinator->reset();
     }
-    //
-
-    //////////////////////////////////////////////////////////////
-    // Step 3: anything else to do? I don't think so...
-    ///@todo (maybe)    
 }
 
 
