@@ -57,7 +57,8 @@
         "complex": "cpp",
         "valarray": "cpp",
         "cmakeccompilerid.c": "cpp",
-        "sdl2_rotozoom.c": "cpp"
+        "sdl2_rotozoom.c": "cpp",
+        "sdl2_gfxprimitives.c": "cpp"
     },
     "files.exclude": {
         "**/.git": true,

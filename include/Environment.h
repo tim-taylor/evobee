@@ -30,6 +30,7 @@ class EvoBeeModel;
  */
 struct LocalDensityConstraint {
 
+    // constructor
     LocalDensityConstraint(const PlantTypeDistributionConfig& _ptdcfg) :
         ptdcfg(_ptdcfg),
         curPlants(0)
@@ -39,14 +40,10 @@ struct LocalDensityConstraint {
         maxPlants = (int)(ptdcfg.reproLocalDensityMax * (float)(w * h));
     }
 
-    bool posInArea(const iPos& pos) const
-    {
-        return (pos.x >= ptdcfg.areaTopLeft.x &&
-                pos.x <= ptdcfg.areaBottomRight.x &&
-                pos.y >= ptdcfg.areaTopLeft.y &&
-                pos.y <= ptdcfg.areaBottomRight.y);
-    }
+    // helper methods
+    bool posInArea(const iPos& pos) const;
 
+    // data members
     const PlantTypeDistributionConfig& ptdcfg;
     unsigned int maxPlants;
     unsigned int curPlants;
@@ -120,14 +117,21 @@ public:
      * Checks whether the given position is within the bounds of the environment
      */
     bool inEnvironment(int x, int y) const;
+
     /**
      * Checks whether the given position is within the bounds of the environment
-     */    
+     */
     bool inEnvironment(const iPos& pos) const {return inEnvironment(pos.x, pos.y);}
+    
     /**
      * Checks whether the given position is within the bounds of the environment
      */    
     bool inEnvironment(const fPos& pos) const {return inEnvironment(std::floor(pos.x),std::floor(pos.y));}
+
+    /**
+     * Checks whether the given positionis within the specified area
+     */
+    static bool inArea(const iPos& pos, const iPos& areaTopLeft, const iPos& areaBottomRight);
 
     /**
      * Search for flowering plants within range of given position.

@@ -81,17 +81,39 @@ public:
     void setReproConstraints(const PlantTypeDistributionConfig& pdcfg);
 
     /**
-     *
+     * Is the specified destination patch within the same restricted reproduction
+     * area as this patch?
+     * If this patch has no reproduction restrictions (i.e., if 
+     * m_bReproConstraintsSetExplicitly == false), then this method will always
+     * return true.
+     */
+    bool inReproRestrictionArea(const iPos& dest) const;
+
+    /**
+     * During reproduction, is seed flow allowed from this patch to to a destination
+     * patch outside of this patch's restricted reproduction area?
+     * NB: you should first call inReproRestrictionArea(dest) to check whether
+     * this restruction applies at all to the destination patch under consideration
+     * (only applies if inReproRestrictionArea(dest) == false)
      */ 
     bool seedOutflowAllowed() const {return m_bSeedOutflowAllowed;}
 
     /**
-     *
+     * If seedOutflowAllowed() is true, is the probability of successful seed
+     * flow restricted at all (i.e. probability less than 1)?
+     * NB: you should first call inReproRestrictionArea(dest) to check whether
+     * this restruction applies at all to the destination patch under consideration
+     * (only applies if inReproRestrictionArea(dest) == false)
      */     
     bool seedOutflowRestricted() const {return m_bSeedOutflowRestricted;}
 
     /**
-     *
+     * If seedOutflowAllowed() and seedOutflowRestricted() are both true,
+     * what is the probability of successful seed flow to the destination
+     * patch?
+     * NB: you should first call inReproRestrictionArea(dest) to check whether
+     * this restruction applies at all to the destination patch under consideration
+     * (only applies if inReproRestrictionArea(dest) == false)
      */     
     float getSeedOutflowProb() const {return m_fSeedOutflowProb;}
 
@@ -121,6 +143,8 @@ private:
 
     // The following parameters place restrictions on plant reproduction
     bool            m_bReproConstraintsSetExplicitly;
+    iPos            m_ReproRestrictionAreaTopLeft;
+    iPos            m_ReproRestrictionAreaBottomRight;
     bool            m_bSeedOutflowAllowed;     
     bool            m_bSeedOutflowRestricted;
     float           m_fSeedOutflowProb;

@@ -55,6 +55,17 @@ void Patch::killAllPlants()
 }
 
 
+bool Patch::inReproRestrictionArea(const iPos& dest) const
+{
+    bool inArea = true;
+    if (m_bReproConstraintsSetExplicitly)
+    {
+        inArea = Environment::inArea(dest, m_ReproRestrictionAreaTopLeft, m_ReproRestrictionAreaBottomRight);
+    }
+    return inArea;
+}
+
+
 void Patch::setReproConstraints(const PlantTypeDistributionConfig& pdcfg)
 {
     if (m_bReproConstraintsSetExplicitly)
@@ -69,7 +80,9 @@ void Patch::setReproConstraints(const PlantTypeDistributionConfig& pdcfg)
         // patch, allow it if the new constraints are exactly the same as
         // the existing ones (otherwise throw an exception).
         //
-        if ((pdcfg.seedOutflowAllowed == m_bSeedOutflowAllowed) &&
+        if ((pdcfg.areaTopLeft == m_ReproRestrictionAreaTopLeft) &&
+            (pdcfg.areaBottomRight == m_ReproRestrictionAreaBottomRight) &&
+            (pdcfg.seedOutflowAllowed == m_bSeedOutflowAllowed) &&
             (pdcfg.seedOutflowRestricted == m_bSeedOutflowRestricted) &&
             EvoBee::equal(pdcfg.seedOutflowProb, m_fSeedOutflowProb) &&
             !(pdcfg.refuge || m_bRefuge))
@@ -86,6 +99,8 @@ void Patch::setReproConstraints(const PlantTypeDistributionConfig& pdcfg)
         }
     }
 
+    m_ReproRestrictionAreaTopLeft = pdcfg.areaTopLeft;
+    m_ReproRestrictionAreaBottomRight = pdcfg.areaBottomRight;
     m_bSeedOutflowAllowed = pdcfg.seedOutflowAllowed;
     m_bSeedOutflowRestricted = pdcfg.seedOutflowRestricted;
     m_fSeedOutflowProb = pdcfg.seedOutflowProb;

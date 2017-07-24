@@ -1,7 +1,7 @@
 /**
  * @file
  *
- * Implementation of the Environment class
+ * Implementation of the Environment class and LocalDensityConstraint class
  */
 
 #include <cassert>
@@ -20,6 +20,12 @@
 #include "Position.h"
 #include "FloweringPlant.h"
 #include "Environment.h"
+
+
+bool LocalDensityConstraint::posInArea(const iPos& pos) const
+{
+    return Environment::inArea(pos, ptdcfg.areaTopLeft, ptdcfg.areaBottomRight);
+}
 
 
 Environment::Environment(EvoBeeModel* pModel) :
@@ -184,6 +190,17 @@ bool Environment::inEnvironment(int x, int y) const
         y >= 0 &&
         y < m_iSizeY
     );
+}
+
+
+bool Environment::inArea(const iPos& pos, const iPos& areaTopLeft, const iPos& areaBottomRight)
+{
+    return (
+        (pos.x >= areaTopLeft.x) && 
+        (pos.x <= areaBottomRight.x) &&
+        (pos.y >= areaTopLeft.y) &&
+        (pos.y <= areaBottomRight.y)
+    );  
 }
 
 
@@ -391,16 +408,25 @@ void Environment::initialiseNewGeneration()
                 const Patch& curPatch = pPlant->getPatch();
 
                 // first consider our chances of successfully leaving the current patch
-                if (!curPatch.seedOutflowAllowed())
+                if (!(curPatch.inReproRestrictionArea(iNewPos)))
                 {
-                    // no seed outflow is allowed from this patch!
-                    bAnyChance = false;
-                }
-                else if (curPatch.seedOutflowRestricted())
-                {
-                    // seed outflow is allowed at a restricted rate
-                    // (multiply the prob of doing this with our currently calculated prob)
-                    successProb *= curPatch.getSeedOutflowProb();
+                    // the proposed destination patch is outside of the reproduction area
+                    // defined by the PlantTypeDistrubtion constraints, so we need to 
+                    // consider the chance of a seed successfully reproducing outside of
+                    // the area
+                    if (curPatch.seedOutflowAllowed())
+                    {
+                        if (curPatch.seedOutflowRestricted())
+                        {
+                            // seed outflow is allowed at a restricted rate
+                            // (multiply the prob of doing this with our currently calculated prob)
+                            successProb *= curPatch.getSeedOutflowProb();
+                        }
+                    }
+                    else 
+                    {
+                        bAnyChance = false;
+                    }
                 }
 
                 // now consider chances of succesfully moving into the new patch

@@ -33,29 +33,9 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& typeConfig,
 
     m_pPlantTypeConfig = &typeConfig;
 
-    // Do we already have a record of this plant species?
+    // Get the corresponding speciesID for the given species name (and if we have not 
+    // come across this species before, assign a new speciesID and add it to the species map)
     m_SpeciesId = registerSpecies(typeConfig.species);
-    /*
-    auto it = std::find_if( m_sSpeciesMap.begin(),
-                            m_sSpeciesMap.end(),
-                            [typeConfig](const std::pair<unsigned int, std::string> & pair)
-                                {return pair.second == typeConfig.species;} );
-    if (it != m_sSpeciesMap.end())
-    {
-        // species already know, so assign the associated species id to the plant
-        m_SpeciesId = it->first;
-    }
-    else
-    {
-        // this is a new species, so select a new species id to use, and also
-        // insert of record of the new id and species name into m_sSpeciesMap
-        m_SpeciesId = m_sNextFreeSpeciesId++;
-        m_sSpeciesMap[m_SpeciesId] = typeConfig.species;
-
-        std::cout << "Adding new plant species to map: id=" << m_SpeciesId << ", name=" <<
-            typeConfig.species << std::endl;
-    }
-    */
 
     if (m_bHasLeaf)
     {
