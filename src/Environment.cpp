@@ -170,8 +170,8 @@ fPos Environment::getRandomPositionF() const
 
 fPos Environment::getRandomPositionF(const iPos& topleft, const iPos& bottomright) const
 {
-    static std::uniform_real_distribution<float> distX((float)topleft.x, (float)(bottomright.x+1));
-    static std::uniform_real_distribution<float> distY((float)topleft.y, (float)(bottomright.y+1));
+    std::uniform_real_distribution<float> distX((float)topleft.x, (float)(bottomright.x+1));
+    std::uniform_real_distribution<float> distY((float)topleft.y, (float)(bottomright.y+1));
     return fPos(distX(EvoBeeModel::m_sRngEngine), distY(EvoBeeModel::m_sRngEngine));
 }
 
@@ -368,15 +368,41 @@ void Environment::initialiseNewGeneration()
     for (FloweringPlant* pPlant : pollinatedPlantPtrs)
     {
         // -- Step 1c.1: consider a nearby position in which to reproduce
+        const Patch& curPatch = pPlant->getPatch();
+
         fPos fCurPos { pPlant->getPosition() };
         fPos fNewPos;
         
         if (pPlant->reproSeedDispersalGlobal())
         {
-            fNewPos = getRandomPositionF();
+            if (curPatch.seedOutflowAllowed())
+            {
+                // seed outflow from this patch's locaility is allowed, so we now need
+                // to decide whether we can pick a destination position from the entire
+                // environment or just from the locaility defined by m_ReproRestrictionAreaTL/BR
+                if ((!curPatch.seedOutflowRestricted()) || 
+                    (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < curPatch.getSeedOutflowProb()))
+                {
+                    fNewPos = getRandomPositionF();
+                }
+                else
+                {
+                    fNewPos = getRandomPositionF(curPatch.getReproRestrictionAreaTopLeft(),
+                                                 curPatch.getReproRestrictionAreaBottomRight());
+                }
+            }
+            else
+            {
+                // seed outflow from this patch's locaility is not allowed, so in
+                // this case "SeedDispersalGlobal" means anywhere within the locaility
+                // defined by m_ReproRestrictionAreaTL/BR
+                fNewPos = getRandomPositionF(curPatch.getReproRestrictionAreaTopLeft(),
+                                             curPatch.getReproRestrictionAreaBottomRight());
+            }
         }
         else
         {
+            // pick position from within a specified radius of the current position
             std::uniform_real_distribution<float> distanceDistrib(0.0, pPlant->reproSeedDispersalRadius());
             float distance = distanceDistrib(EvoBeeModel::m_sRngEngine);
             float heading  = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
@@ -404,10 +430,9 @@ void Environment::initialiseNewGeneration()
             }
             else
             {
-                // new plant is still in environment but in a different patch to old one
-                const Patch& curPatch = pPlant->getPatch();
-
+                // new plant is still in environment but in a different patch to old one.
                 // first consider our chances of successfully leaving the current patch
+                /*
                 if (!(curPatch.inReproRestrictionArea(iNewPos)))
                 {
                     // the proposed destination patch is outside of the reproduction area
@@ -428,18 +453,19 @@ void Environment::initialiseNewGeneration()
                         bAnyChance = false;
                     }
                 }
+                */
 
                 // now consider chances of succesfully moving into the new patch
-                if (bAnyChance)
+                //if (bAnyChance)
+                //{
+                Patch& newPatch = getPatch(iNewPos);
+                if (newPatch.refuge() && (newPatch.getRefugeNativeSpeciesId() != pPlant->getSpeciesId()))
                 {
-                    Patch& newPatch = getPatch(iNewPos);
-                    if (newPatch.refuge() && (newPatch.getRefugeNativeSpeciesId() != pPlant->getSpeciesId()))
-                    {
-                        // trying to move into a refuge for a different plant species
-                        // (multiply the prob of doing this with our currently calculated prob)
-                        successProb *= newPatch.getRefugeAlienInflowProb();
-                    }
+                    // trying to move into a refuge for a different plant species
+                    // (multiply the prob of doing this with our currently calculated prob)
+                    successProb *= newPatch.getRefugeAlienInflowProb();
                 }
+                //}
             }
         }
 

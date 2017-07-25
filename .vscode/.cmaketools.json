@@ -7,5 +7,101 @@
     "description": "Emit debug information without performing optimizations"
   },
   "activeEnvironments": [],
-  "codeModel": null
+  "codeModel": {
+    "configurations": [
+      {
+        "name": "Debug",
+        "projects": [
+          {
+            "buildDirectory": "/home/tim/evobee/code/evobee/build",
+            "name": "evobee",
+            "sourceDirectory": "/home/tim/evobee/code/evobee",
+            "targets": [
+              {
+                "artifacts": [
+                  "/home/tim/evobee/code/evobee/build/evobee"
+                ],
+                "buildDirectory": "/home/tim/evobee/code/evobee/build",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g  ",
+                    "includePath": [
+                      {
+                        "path": "/home/tim/evobee/code/evobee/include"
+                      },
+                      {
+                        "path": "/home/tim/evobee/code/evobee/3rd-party/sdl2-gfx/src"
+                      },
+                      {
+                        "path": "/home/tim/evobee/code/evobee/3rd-party/nlohmann-json"
+                      },
+                      {
+                        "path": "/usr/include/SDL2"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "C",
+                    "sources": [
+                      "3rd-party/sdl2-gfx/src/SDL2_framerate.c",
+                      "3rd-party/sdl2-gfx/src/SDL2_gfxPrimitives.c",
+                      "3rd-party/sdl2-gfx/src/SDL2_imageFilter.c",
+                      "3rd-party/sdl2-gfx/src/SDL2_rotozoom.c"
+                    ]
+                  },
+                  {
+                    "compileFlags": "-g -Wall -std=c++11 -pthread   -std=gnu++11",
+                    "includePath": [
+                      {
+                        "path": "/home/tim/evobee/code/evobee/include"
+                      },
+                      {
+                        "path": "/home/tim/evobee/code/evobee/3rd-party/sdl2-gfx/src"
+                      },
+                      {
+                        "path": "/home/tim/evobee/code/evobee/3rd-party/nlohmann-json"
+                      },
+                      {
+                        "path": "/usr/include/SDL2"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "src/AbstractHive.cpp",
+                      "src/Colour.cpp",
+                      "src/evobee.cpp",
+                      "src/Environment.cpp",
+                      "src/EventManager.cpp",
+                      "src/EvoBeeExperiment.cpp",
+                      "src/EvoBeeModel.cpp",
+                      "src/Flower.cpp",
+                      "src/FloweringPlant.cpp",
+                      "src/HoneyBee.cpp",
+                      "src/Hymenoptera.cpp",
+                      "src/Logger.cpp",
+                      "src/ModelComponent.cpp",
+                      "src/ModelParams.cpp",
+                      "src/Patch.cpp",
+                      "src/Pollinator.cpp",
+                      "src/Visualiser.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "evobee",
+                "linkLanguageFlags": "-g -Wall -std=c++11 -pthread",
+                "linkLibraries": "-rdynamic -lSDL2 -lSDL2_image -lSDL2 -lboost_program_options -lstdc++fs -lSDL2_image -lboost_program_options -lstdc++fs",
+                "linkerLanguage": "CXX",
+                "name": "evobee",
+                "sourceDirectory": "/home/tim/evobee/code/evobee",
+                "type": "EXECUTABLE"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "cookie": "0.034798964158333945",
+    "inReplyTo": "codemodel",
+    "type": "reply"
+  }
 }

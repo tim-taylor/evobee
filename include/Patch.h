@@ -132,6 +132,16 @@ public:
      */     
     float getRefugeAlienInflowProb() const {return m_fRefugeAlienInflowProb;}
 
+    /**
+     *
+     */
+    const iPos& getReproRestrictionAreaTopLeft() const {return m_ReproRestrictionAreaTopLeft;}
+
+    /**
+     *
+     */    
+    const iPos& getReproRestrictionAreaBottomRight() const {return m_ReproRestrictionAreaBottomRight;}
+    
 
 private:
     Environment*    m_pEnv;         ///< A pointer back to the owning Environment

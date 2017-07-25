@@ -23,6 +23,8 @@ std::string Pollinator::m_sTypeNameStr{"POL"};
 Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_id(m_sNextFreeId++),
     m_pHive(pHive),
+    m_pEnv(nullptr),
+    m_pModel(nullptr),
     m_State(PollinatorState::UNINITIATED),
     m_iNumFlowersVisitedInBout(0),
     m_iBoutLength(pc.boutLength),
@@ -31,13 +33,13 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_iMaxPollenCapacity(pc.maxPollenCapacity),
     m_iPollenCarryoverNumVisits(pc.pollenCarryoverNumVisits)
 {
-    // Set the starting position and heading of the pollinator
-    resetToStartPosition();
-
     // Each pollinator has a pointer to the environment and to the model for 
     // convenience, to save having to ask the Hive for these each time we need them
     m_pEnv = m_pHive->getEnvironment();
     m_pModel = m_pEnv->getModel();
+
+    // Set the starting position and heading of the pollinator
+    resetToStartPosition();
 }
 
 
@@ -52,6 +54,8 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_State(other.m_State),
     m_iNumFlowersVisitedInBout(other.m_iNumFlowersVisitedInBout),
     m_PollenStore(other.m_PollenStore),
+    m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
+    m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),  
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -80,6 +84,8 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_State(other.m_State),
     m_iNumFlowersVisitedInBout(other.m_iNumFlowersVisitedInBout),
     m_PollenStore(std::move(other.m_PollenStore)),
+    m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
+    m_MovementAreaBottomRight(other.m_MovementAreaBottomRight), 
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -139,29 +145,41 @@ void Pollinator::resetToStartPosition()
     {
         m_Position = m_pHive->getRandomPollinatorStartPosition();
     }
+
+    resetMovementArea();    
 }
 
 
-bool Pollinator::inAllowedArea() const
+void Pollinator::resetMovementArea()
 {
-    bool ok = true;
-    if ( (m_pHive->migrationAllowed()) &&
-         ( (!m_pHive->migrationRestricted()) ||
-           (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < m_pHive->migrationProb())
-         )
-       )
+    assert(m_pEnv != nullptr);
+
+    const Patch& patch = m_pEnv->getPatch(m_Position);
+    m_MovementAreaTopLeft = patch.getReproRestrictionAreaTopLeft();
+    m_MovementAreaBottomRight = patch.getReproRestrictionAreaBottomRight();    
+}
+
+
+bool Pollinator::inAllowedArea()
+{
+    bool ok = ((m_Position.x >= (float)m_MovementAreaTopLeft.x) &&
+               (m_Position.x <  (float)(m_MovementAreaBottomRight.x+1)) &&
+               (m_Position.y >= (float)m_MovementAreaTopLeft.y) &&
+               (m_Position.y <  (float)(m_MovementAreaBottomRight.y+1)));
+
+    if ((!ok) && m_pHive->migrationAllowed())
     {
-        ok = inEnvironment();
+        if ((!m_pHive->migrationRestricted()) ||
+            (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < m_pHive->migrationProb()))
+        {
+            if (inEnvironment())
+            {
+                ok = true;
+                resetMovementArea();
+            }
+        }
     }
-    else
-    {
-        const iPos& TL = m_pHive->getInitForageAreaTopLeft();
-        const iPos& BR = m_pHive->getInitForageAreaBottomRight();
-        ok = ((m_Position.x >= (float)TL.x) &&
-              (m_Position.x <  (float)(BR.x+1)) &&
-              (m_Position.y >= (float)TL.y) &&
-              (m_Position.y <  (float)(BR.y+1)));
-    }
+
     return ok;
 }
 
