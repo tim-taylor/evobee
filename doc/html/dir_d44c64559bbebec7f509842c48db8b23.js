@@ -59,6 +59,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "ReflectanceInfo.h", "ReflectanceInfo_8h.html", "ReflectanceInfo_8h" ],
     [ "SDL2_gfxPrimitives.h", "SDL2__gfxPrimitives_8h_source.html", null ],
     [ "sdl_tools.h", "sdl__tools_8h.html", "sdl__tools_8h" ],
+    [ "tools.h", "tools_8h.html", "tools_8h" ],
     [ "Visualiser.h", "Visualiser_8h.html", [
       [ "Visualiser", "classVisualiser.html", "classVisualiser" ]
     ] ]

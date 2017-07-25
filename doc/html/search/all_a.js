@@ -7,6 +7,8 @@ var searchData=
   ['m_5finumflowersvisitedinbout',['m_iNumFlowersVisitedInBout',['../classPollinator.html#a1d660588b85f6f6870ffb5c7923c7c37',1,'Pollinator']]],
   ['m_5fipollendepositperflowervisit',['m_iPollenDepositPerFlowerVisit',['../classPollinator.html#a5228a983ff7771579d4b8acfa8d39ec4',1,'Pollinator']]],
   ['m_5fipollenlossinair',['m_iPollenLossInAir',['../classPollinator.html#ac82e6b956fd9500a0758fa25f75994da',1,'Pollinator']]],
+  ['m_5fmovementareabottomright',['m_MovementAreaBottomRight',['../classPollinator.html#a86b296064fc4f8eba29ba4e116d1da0b',1,'Pollinator']]],
+  ['m_5fmovementareatopleft',['m_MovementAreaTopLeft',['../classPollinator.html#afcfaeb76de3a320d401ea24904fcd24d',1,'Pollinator']]],
   ['m_5fpenv',['m_pEnv',['../classPollinator.html#ad3e13436a9a7d9015a777b6e55788f9c',1,'Pollinator']]],
   ['m_5fphive',['m_pHive',['../classPollinator.html#a771ffca4348f9d7e5e39d871640ff6eb',1,'Pollinator']]],
   ['m_5fpmodel',['m_pModel',['../classPollinator.html#a1fae7c4f5a03de8b253383594505204b',1,'Pollinator']]],

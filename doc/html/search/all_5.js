@@ -16,6 +16,7 @@ var searchData=
   ['getpatchcoordsfromidx',['getPatchCoordsFromIdx',['../classEnvironment.html#a29d71ffaf505fe29a3f371ccd5391dc6',1,'Environment']]],
   ['getpollinatedfrac',['getPollinatedFrac',['../classEnvironment.html#a4a8a9e2143ca2d9f6d3ba5c4780c55c2',1,'Environment']]],
   ['getrgbfrommarkerpoint',['getRgbFromMarkerPoint',['../classColour.html#a3b0e143d0da053e644f3793331b9e9e3',1,'Colour']]],
+  ['getseedoutflowprob',['getSeedOutflowProb',['../classPatch.html#a7e12f6b9a6d3a5eaf47e246f22f1798d',1,'Patch']]],
   ['getsizexf',['getSizeXf',['../classEnvironment.html#a9d26506cc316abd0404a912e492c8f31',1,'Environment']]],
   ['getsizexi',['getSizeXi',['../classEnvironment.html#a8287a155ef07dff9c6342289f89a73b7',1,'Environment']]],
   ['getsizeyf',['getSizeYf',['../classEnvironment.html#aaa8280f34ef0f4180b07216222ebd32f',1,'Environment']]],
