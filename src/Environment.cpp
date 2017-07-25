@@ -431,33 +431,7 @@ void Environment::initialiseNewGeneration()
             else
             {
                 // new plant is still in environment but in a different patch to old one.
-                // first consider our chances of successfully leaving the current patch
-                /*
-                if (!(curPatch.inReproRestrictionArea(iNewPos)))
-                {
-                    // the proposed destination patch is outside of the reproduction area
-                    // defined by the PlantTypeDistrubtion constraints, so we need to 
-                    // consider the chance of a seed successfully reproducing outside of
-                    // the area
-                    if (curPatch.seedOutflowAllowed())
-                    {
-                        if (curPatch.seedOutflowRestricted())
-                        {
-                            // seed outflow is allowed at a restricted rate
-                            // (multiply the prob of doing this with our currently calculated prob)
-                            successProb *= curPatch.getSeedOutflowProb();
-                        }
-                    }
-                    else 
-                    {
-                        bAnyChance = false;
-                    }
-                }
-                */
-
-                // now consider chances of succesfully moving into the new patch
-                //if (bAnyChance)
-                //{
+                // consider chances of succesfully moving into the new patch
                 Patch& newPatch = getPatch(iNewPos);
                 if (newPatch.refuge() && (newPatch.getRefugeNativeSpeciesId() != pPlant->getSpeciesId()))
                 {
@@ -465,7 +439,6 @@ void Environment::initialiseNewGeneration()
                     // (multiply the prob of doing this with our currently calculated prob)
                     successProb *= newPatch.getRefugeAlienInflowProb();
                 }
-                //}
             }
         }
 
