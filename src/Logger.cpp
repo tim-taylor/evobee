@@ -75,7 +75,6 @@ Logger::Logger(EvoBeeModel* pModel) :
 
 Logger::~Logger()
 {
-    ///@todo close all open log files?
 }
 
 
@@ -123,12 +122,15 @@ void Logger::logFlowersFull()
     {
         if (patch.hasFloweringPlants())
         {
+            const iPos& pos = patch.getPosition();
+
             PlantVector& plants = patch.getFloweringPlants();
             for (FloweringPlant& plant : plants)
             {
                 ofs << "F," << gen << "," << plant.getId() << "," << plant.getSpeciesId()
-                    << "," << "<Logger::logFlowersFull incomplete>" << std::endl;
+                    << "," << pos << "," << patch.getLocalityId() << std::endl;
 
+                ///@todo Logger::logFlowersFull incomplete
                 /*
                 if (plant.pollinated())
                 {
@@ -154,7 +156,7 @@ void Logger::logFlowersSummary()
     std::ofstream ofs = openLogFile();
     auto gen = m_pModel->getGenNumber(); 
     std::vector<Patch>& patches = m_pEnv->getPatches();
-    std::map<unsigned int, unsigned int> speciesCounts;
+    std::map<unsigned int, unsigned int> speciesCounts; // map species ID to count
 
     const std::map<unsigned int, std::string>& speciesInfoMap = FloweringPlant::getSpeciesMap();
     for (auto& speciesInfo : speciesInfoMap)

@@ -32,6 +32,7 @@ bool   ModelParams::m_bLogging = true;
 bool   ModelParams::m_bLogPollinatorsFull = false;
 bool   ModelParams::m_bLogFlowersFull = false;
 bool   ModelParams::m_bLogFlowersSummary = false;
+unsigned int ModelParams::m_sNextFreePtdcId = 1;
 std::string ModelParams::m_strLogDir {"output"};
 std::string ModelParams::m_strLogRunName {"run"};
 std::string ModelParams::m_strRngSeed {""};
@@ -270,9 +271,10 @@ void ModelParams::addHiveConfig(HiveConfig& hc)
     m_Hives.push_back(hc);
 }
 
-void ModelParams::addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc)
+void ModelParams::addPlantTypeDistributionConfig(PlantTypeDistributionConfig& ptdc)
 {
-    m_PlantDists.push_back(pc);
+    ptdc.id = m_sNextFreePtdcId++;
+    m_PlantDists.push_back(ptdc);
 }
 
 void ModelParams::addPollinatorConfig(PollinatorConfig& pc)

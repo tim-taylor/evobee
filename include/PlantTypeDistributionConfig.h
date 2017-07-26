@@ -16,10 +16,14 @@
 struct PlantTypeDistributionConfig {
 
     PlantTypeDistributionConfig() :
+        id(0),
         density(0.1),
         refuge(false),
         seedOutflowAllowed(true)
     {}
+
+    unsigned int id;                ///< Each PTDC has a unique id assigned to it
+                                    ///<   (assignment is done in ModelParams::addPTDC)
 
     std::string species;            ///< Name of the plant species
     iPos    areaTopLeft;            ///< Top-left corner of initial distribution area

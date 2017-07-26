@@ -60,12 +60,12 @@ int Visualiser::init()
     if (SDL_GetDesktopDisplayMode(0, &dm) != 0) {
         SDL_Log("SDL_GetDesktopDisplayMode failed: %s", SDL_GetError());
         return 1;
-    }   
+    }
 
     m_iScreenW = (int)(ModelParams::getMaxScreenFracW() * (float)dm.w);
     m_iScreenH = (int)(ModelParams::getMaxScreenFracH() * (float)dm.h);
 
-    float fScreenToEnvRatio = std::min<float>(        
+    float fScreenToEnvRatio = std::min<float>(
         (float)m_iScreenW / (float)ModelParams::getEnvSizeX(),
         (float)m_iScreenH / (float)ModelParams::getEnvSizeY()
     );
@@ -150,7 +150,7 @@ bool Visualiser::update()
         {
             PlantVector & fplants = p.getFloweringPlants();
             for (FloweringPlant & fplant : fplants)
-            {                
+            {
                 ///@todo deal with multiple flowers on a plant?
 
                 Flower* pFlower = fplant.getFlower(0);
@@ -172,11 +172,22 @@ bool Visualiser::update()
                 else
                 {
                     // draw an unpollinated flower
+                    /*
+                    // drawing circles is much more computationally expensive than boxes
                     filledCircleRGBA(
                         m_pRenderer,
                         getScreenCoordFromFloatX(flwrpos.x+0.5),
                         getScreenCoordFromFloatY(flwrpos.y+0.5),
                         getScreenLength(0.5),
+                        c.r, c.g, c.b, 255
+                    );
+                    */
+                    boxRGBA(
+                        m_pRenderer,
+                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.25),
+                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.25),
+                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.75),
+                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.75),
                         c.r, c.g, c.b, 255
                     );
                 }
@@ -212,7 +223,7 @@ bool Visualiser::update()
                 getScreenCoordFromFloatWithAbsOffsetX(ppos.x+1.0, -1),
                 getScreenCoordFromFloatWithAbsOffsetY(ppos.y+1.0, -1),
                 255, 255, 255, 255 ///@todo for now Hive visualisation colour is hard-coded as white
-            );          
+            );
 
             if (m_bShowTrails)
             {
@@ -252,10 +263,10 @@ bool Visualiser::update()
                             getScreenCoordFromFloatWithRelOffsetY(curPosItr->y, 0.5),
                             r, g, b, 200
                         );
-                        prevPosItr = curPosItr;                         
+                        prevPosItr = curPosItr;
                     }
                 }
-            }     
+            }
         }
     }
 
@@ -275,7 +286,7 @@ bool Visualiser::update()
         {
             switch (e.key.keysym.sym)
             {
-                case SDLK_x: 
+                case SDLK_x:
                 {
                     m_fZoomLevel = std::min(m_fZoomLevel + 0.1, 10.0);
                     break;
@@ -344,12 +355,12 @@ std::int16_t Visualiser::getScreenCoordFromIntY(int y)
 
 std::int16_t Visualiser::getScreenCoordFromIntWithAbsOffsetX(int x, int absOffset)
 {
-    return m_iScreenOffsetX + (x * m_iPatchSize) + absOffset;    
+    return m_iScreenOffsetX + (x * m_iPatchSize) + absOffset;
 }
 
 std::int16_t Visualiser::getScreenCoordFromIntWithAbsOffsetY(int y, int absOffset)
 {
-    return m_iScreenOffsetY + (y * m_iPatchSize) + absOffset;    
+    return m_iScreenOffsetY + (y * m_iPatchSize) + absOffset;
 }
 
 std::int16_t Visualiser::getScreenCoordFromIntWithRelOffsetX(int x, float relOffset)
@@ -375,12 +386,12 @@ std::int16_t Visualiser::getScreenCoordFromFloatY(float y)
 
 std::int16_t Visualiser::getScreenCoordFromFloatWithAbsOffsetX(float x, int absOffset)
 {
-    return m_iScreenOffsetX + (x * m_iPatchSize) + absOffset;    
+    return m_iScreenOffsetX + (x * m_iPatchSize) + absOffset;
 }
 
 std::int16_t Visualiser::getScreenCoordFromFloatWithAbsOffsetY(float y, int absOffset)
 {
-    return m_iScreenOffsetY + (y * m_iPatchSize) + absOffset;    
+    return m_iScreenOffsetY + (y * m_iPatchSize) + absOffset;
 }
 
 std::int16_t Visualiser::getScreenCoordFromFloatWithRelOffsetX(float x, float relOffset)

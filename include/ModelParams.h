@@ -129,6 +129,7 @@ private:
                                                     ///<   criterion for a generation
     static int   m_iGenTerminationParam;    ///< Integer parameter associated with m_GenTerminationType
     static float m_fGenTerminationParam;    ///< Float parameter associated with m_GenTerminationType
+    static unsigned int m_sNextFreePtdcId;  ///< Each PlantTypeDistributionConfig gets its own unique id
     static std::string m_strRngSeed;        ///< Seed string used to seeed RNG
     static std::vector<HiveConfig> m_Hives; ///< Configuration info for each hive
     static std::vector<PlantTypeDistributionConfig> m_PlantDists; ///< Config of plant distributions

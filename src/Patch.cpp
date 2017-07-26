@@ -18,6 +18,7 @@ Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
     m_posIdx(posIdx),
     m_BackgroundReflectance(mp),
     m_bReproConstraintsSetExplicitly(false),
+    m_LocalityId(0),
     m_bSeedOutflowAllowed(true),
     m_bSeedOutflowRestricted(false),
     m_fSeedOutflowProb(1.0),
@@ -66,7 +67,7 @@ bool Patch::inReproRestrictionArea(const iPos& dest) const
 }
 
 
-void Patch::setReproConstraints(const PlantTypeDistributionConfig& pdcfg)
+void Patch::setReproConstraints(const PlantTypeDistributionConfig& ptdc)
 {
     if (m_bReproConstraintsSetExplicitly)
     {
@@ -80,12 +81,12 @@ void Patch::setReproConstraints(const PlantTypeDistributionConfig& pdcfg)
         // patch, allow it if the new constraints are exactly the same as
         // the existing ones (otherwise throw an exception).
         //
-        if ((pdcfg.areaTopLeft == m_ReproRestrictionAreaTopLeft) &&
-            (pdcfg.areaBottomRight == m_ReproRestrictionAreaBottomRight) &&
-            (pdcfg.seedOutflowAllowed == m_bSeedOutflowAllowed) &&
-            (pdcfg.seedOutflowRestricted == m_bSeedOutflowRestricted) &&
-            EvoBee::equal(pdcfg.seedOutflowProb, m_fSeedOutflowProb) &&
-            !(pdcfg.refuge || m_bRefuge))
+        if ((ptdc.areaTopLeft == m_ReproRestrictionAreaTopLeft) &&
+            (ptdc.areaBottomRight == m_ReproRestrictionAreaBottomRight) &&
+            (ptdc.seedOutflowAllowed == m_bSeedOutflowAllowed) &&
+            (ptdc.seedOutflowRestricted == m_bSeedOutflowRestricted) &&
+            EvoBee::equal(ptdc.seedOutflowProb, m_fSeedOutflowProb) &&
+            !(ptdc.refuge || m_bRefuge))
         {
             return;
         }
@@ -99,14 +100,15 @@ void Patch::setReproConstraints(const PlantTypeDistributionConfig& pdcfg)
         }
     }
 
-    m_ReproRestrictionAreaTopLeft = pdcfg.areaTopLeft;
-    m_ReproRestrictionAreaBottomRight = pdcfg.areaBottomRight;
-    m_bSeedOutflowAllowed = pdcfg.seedOutflowAllowed;
-    m_bSeedOutflowRestricted = pdcfg.seedOutflowRestricted;
-    m_fSeedOutflowProb = pdcfg.seedOutflowProb;
-    m_bRefuge = pdcfg.refuge;
-    m_iRefugeNativeSpecesId = FloweringPlant::getSpeciesId(pdcfg.species);
-    m_fRefugeAlienInflowProb = pdcfg.refugeAlienInflowProb;
+    m_LocalityId = ptdc.id;
+    m_ReproRestrictionAreaTopLeft = ptdc.areaTopLeft;
+    m_ReproRestrictionAreaBottomRight = ptdc.areaBottomRight;
+    m_bSeedOutflowAllowed = ptdc.seedOutflowAllowed;
+    m_bSeedOutflowRestricted = ptdc.seedOutflowRestricted;
+    m_fSeedOutflowProb = ptdc.seedOutflowProb;
+    m_bRefuge = ptdc.refuge;
+    m_iRefugeNativeSpecesId = FloweringPlant::getSpeciesId(ptdc.species);
+    m_fRefugeAlienInflowProb = ptdc.refugeAlienInflowProb;
 
     m_bReproConstraintsSetExplicitly = true;
 }

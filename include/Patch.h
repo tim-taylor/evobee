@@ -81,6 +81,11 @@ public:
     void setReproConstraints(const PlantTypeDistributionConfig& pdcfg);
 
     /**
+     * Return the id of the locality to which this patch belongs
+     */
+    unsigned int getLocalityId() const {return m_LocalityId;}
+
+    /**
      * Is the specified destination patch within the same restricted reproduction
      * area as this patch?
      * If this patch has no reproduction restrictions (i.e., if 
@@ -153,6 +158,8 @@ private:
 
     // The following parameters place restrictions on plant reproduction
     bool            m_bReproConstraintsSetExplicitly;
+    unsigned int    m_LocalityId;   ///< if repro constraints set, this is set to the PlantTypeDistConfig
+                                    ///<   responsible for definining the constraints
     iPos            m_ReproRestrictionAreaTopLeft;
     iPos            m_ReproRestrictionAreaBottomRight;
     bool            m_bSeedOutflowAllowed;     
