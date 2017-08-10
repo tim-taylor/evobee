@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceRoot}",
                 "/usr/include",
-                "/usr/local/include"
+                "/usr/local/include",
+                "/usr/include/c++/6"
             ],
             "defines": [],
             "browse": {
