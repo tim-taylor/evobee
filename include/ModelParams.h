@@ -19,7 +19,7 @@
 
 
 /**
- * The ModelParams Class holds a record of all model parameters. 
+ * The ModelParams Class holds a record of all model parameters.
  *
  * All methods and variables of this class are static and can therefore be accessed
  * by any other object in the system.
@@ -60,6 +60,9 @@ public:
     static void addPlantTypeConfig(PlantTypeConfig& pt);
     static void addPollinatorConfig(PollinatorConfig& pt);
 
+    /// perform any necessary global post-processing after config file has been read in
+    static void postprocess();
+
     /// check consistency of parameters once the whole config file has been processed
     static void checkConsistency();
 
@@ -85,15 +88,16 @@ public:
     static int   getGenTerminationIntParam() {return m_iGenTerminationParam;}
     static float getGenTerminationFloatParam() {return m_fGenTerminationParam;}
     static MarkerPoint getEnvBackgroundReflectanceMP() {return m_EnvBackgroundReflectanceMP;}
-    static const std::string & getRngSeedStr() {return m_strRngSeed;}
-    static const std::string & getLogDir() {return m_strLogDir;}
-    static const std::string & getLogRunName() {return m_strLogRunName;}
-    static const std::vector<HiveConfig> & getHiveConfigs() {return m_Hives;}
-    static const std::vector<PlantTypeDistributionConfig> & getPlantTypeDistributionConfigs() {return m_PlantDists;}
-    static const std::vector<PlantTypeConfig> & getPlantTypeConfigs() {return m_PlantTypes;}
-    static const PlantTypeConfig* getPlantTypeConfig(std::string species);
-    static PollinatorConfig* getPollinatorConfigPtr(const std::string& pollinatorName);   
-    
+    static const std::string& getRngSeedStr() {return m_strRngSeed;}
+    static const std::string& getLogDir() {return m_strLogDir;}
+    static const std::string& getLogRunName() {return m_strLogRunName;}
+    static const std::vector<HiveConfig>& getHiveConfigs() {return m_Hives;}
+    static const std::vector<PlantTypeDistributionConfig>& getPlantTypeDistributionConfigs() {return m_PlantDists;}
+    static const std::vector<PlantTypeConfig>& getPlantTypeConfigs() {return m_PlantTypes;}
+    //static const PlantTypeConfig* getPlantTypeConfig(unsigned int speciesId);
+    static const PlantTypeConfig* getPlantTypeConfig(std::string speciesName);
+    static PollinatorConfig* getPollinatorConfigPtr(const std::string& pollinatorName);
+
     static nlohmann::json& getJson() {return m_Json;}
 
     static bool  initialised() {return m_bInitialised;}
@@ -112,9 +116,9 @@ private:
     static float m_fReproGlobalDensityMax;  ///< If m_bReproGlobalDensityContrained, what is
                                             ///<   the maximum allowed density?
     static bool  m_bVisPollinatorTrails;    ///< Display trails of pollinators' past movements?
-    static int   m_iVisUpdatePeriod;        ///< Number of model steps between each update of 
+    static int   m_iVisUpdatePeriod;        ///< Number of model steps between each update of
                                             ///<   visualisation
-    static int   m_iVisDelayPerFrame;       ///< Specifies a delay (in ms) per frame of the 
+    static int   m_iVisDelayPerFrame;       ///< Specifies a delay (in ms) per frame of the
                                             ///<   visualisation code
     static bool  m_bLogging;                ///< Is logging required for this run?
     static bool  m_bLogPollinatorsFull;     ///< Log full pollinator info every m_iLogUpdatePeriod steps
@@ -122,10 +126,10 @@ private:
     static bool  m_bLogFlowersSummary;      ///< Log summary flower info at end of each generation
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
     static std::string m_strLogDir;         ///< Directory name for logging output
-    static std::string m_strLogRunName;     ///< Run name to be used as prefix for log filenames    
+    static std::string m_strLogRunName;     ///< Run name to be used as prefix for log filenames
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
     static int   m_iSimTerminationNumGens;  ///< Terminate run after this number of generations
-    static GenTerminationType m_GenTerminationType; ///< Method used to define termination 
+    static GenTerminationType m_GenTerminationType; ///< Method used to define termination
                                                     ///<   criterion for a generation
     static int   m_iGenTerminationParam;    ///< Integer parameter associated with m_GenTerminationType
     static float m_fGenTerminationParam;    ///< Float parameter associated with m_GenTerminationType

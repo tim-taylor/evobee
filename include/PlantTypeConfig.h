@@ -15,7 +15,8 @@
  */
 struct PlantTypeConfig {
     PlantTypeConfig() :
-        pollenClogging(false),
+        pollenCloggingAll(false),
+        pollenCloggingPartial(false),
         numFlowers(1),
         hasLeaf(false),
         reproSeedDispersalGlobal(false),
@@ -28,7 +29,9 @@ struct PlantTypeConfig {
     int         antherInitPollen;
     int         antherPollenTransferPerVisit;
     int         stigmaMaxPollenCapacity;
-    bool        pollenClogging;
+    bool        pollenCloggingAll;
+    bool        pollenCloggingPartial;
+    std::string pollenCloggingSpecies;
     //int       nectarReward;               // (currently unused)
     float       initTemp;                   ///<@todo (unused just now) // init temp of flowers and leaves
     int         numFlowers;

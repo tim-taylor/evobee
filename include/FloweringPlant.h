@@ -47,7 +47,7 @@ public:
      * Static method to register a species in the species map, given a species name.
      * If the name is not already in the map, then a new speciesId is assigned to it
      * and the id-name pair are added to the map.
-     * 
+     *
      * Returns the speciesId associated with the species (whether new or existing)
      */
     static unsigned int registerSpecies(const std::string& species);
@@ -61,7 +61,7 @@ public:
      * Get the species id of this particular plant
      */
     unsigned int getSpeciesId() const {return m_SpeciesId;}
-    
+
     /**
      * Get the species id of the species whose name is provided as a parameter
      */
@@ -70,7 +70,7 @@ public:
     /**
      * Return a string representing the species of this flower
      */
-    const std::string& getSpecies() const;    
+    const std::string& getSpecies() const;
 
     /**
      * Returns the MarkerPoint of the specified flower
@@ -125,10 +125,28 @@ public:
     float reproSeedDispersalRadius();
 
     /**
+     * A static method to construct the clogging map, which should be called once only,
+     * at the start of a run when all params have been read from the config file
+     */
+    static void constructCloggingMap(std::vector<PlantTypeConfig>& ptcs);
+
+    /**
+     * Returns the list of all species ids of plants species whose flowers are clogged
+     * by this species' pollen
+     */
+    const std::vector<unsigned int>& getCloggingSpeciesVec();
+
+    /**
      * Returns the map of all known species, mapping speciesId to species name
      */
     static const std::map<unsigned int, std::string>& getSpeciesMap() {return m_sSpeciesMap;}
 
+    /**
+     * Determine whether the specified pollen is allowed to stick to the stigma of the specified destination
+     * flower. It is allowed to do so if the pollen and the flower are from the same plant species, or if
+     * the pollen is able to clog the destination plant species' stigma.
+     */
+    static bool pollenTransferToStigmaAllowed(const Flower* pPollenSource, const Flower* pDestination);
 
 private:
     unsigned int            m_id;           ///< Unique ID number for this plant
@@ -159,12 +177,17 @@ private:
     /**
      * Record of next available unique ID number to be assigned to a new species of FloweringPlant
      */
-    static unsigned int m_sNextFreeSpeciesId;     
+    static unsigned int m_sNextFreeSpeciesId;
 
     /**
      * A record of all currently known species IDs and their corresponding name
      */
     static std::map<unsigned int, std::string> m_sSpeciesMap;
+
+    /**
+     * A record of which species are clogged by each species
+     */
+    static std::map<unsigned int, std::vector<unsigned int>> m_sCloggingMap;
 
     /**
      * The Flower class is a friend of FloweringPlant

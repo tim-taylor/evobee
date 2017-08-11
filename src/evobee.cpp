@@ -124,8 +124,9 @@ void from_json(const json& j, PlantTypeConfig& pt)
         // a user supplied value of 0 or negative means that the maximum capacity
         // is set to an effectively unlimited value
         pt.stigmaMaxPollenCapacity = 99999;
-    }    
-    json_read_param(j, sct, "pollen-clogging", pt.pollenClogging);
+    }
+    //json_read_param(j, sct, "pollen-clogging", pt.pollenClogging);
+    json_read_param(j, sct, "pollen-clogging", pt.pollenCloggingSpecies);
     json_read_param(j, sct, "repro-seed-dispersal-global", pt.reproSeedDispersalGlobal);
     json_read_opt_param(j, sct, "repro-seed-dispersal-radius", pt.reproSeedDispersalRadius, 1.0f);
 
@@ -159,6 +160,7 @@ int main(int argc, char **argv)
     try
     {
         processConfigOptions(argc, argv);
+        ModelParams::postprocess();
         ModelParams::checkConsistency();
         EvoBeeModel::seedRng();
         EvoBeeExperiment expt;

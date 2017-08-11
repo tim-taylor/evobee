@@ -2,10 +2,10 @@
     "SimulationParams" : {
         "generation-termination-type" : "num-sim-steps",
         "comment1" : "[num-sim-steps|pollinated-fraction|<num-pollinator-steps>]",
-        "generation-termination-param" : 50,
-        "sim-termination-num-gens" : 50,
+        "generation-termination-param" : 100,
+        "sim-termination-num-gens" : 500,
         "rng-seed" : "",
-        "visualisation" : true,
+        "visualisation" : false,
         "vis-update-period" : 20,
         "vis-delay-per-frame" : 0,
         "vis-pollinator-trails" : true,
@@ -17,12 +17,12 @@
         "comment-log-flags-2" : "F: all flowers at end of each generation",
         "comment-log-flags-3" : "f: summary flower stats at end of each generation",
         "log-update-period" : 5,
-        "log-dir" : "output/waser/expt5",
-        "log-run-name" : "waser-expt-5-1x2"
-    },    
+        "log-dir" : "output/waser/expt4-1way-clogging",
+        "log-run-name" : "waser-expt-4-1way-clogging"
+    },
     "Environment" : {
         "env-size-x" : 100,
-        "env-size-y" : 50,
+        "env-size-y" : 100,
         "background-reflectance-mp" : 500,
         "default-ambient-temp": 20.0,
         "repro-global-density-constrained" : true,
@@ -33,75 +33,75 @@
                 "pollinator-number" : 100,
                 "start-from-hive" : false,
                 "pos-x" : 49,
-                "pos-y" : 24,
+                "pos-y" : 49,
                 "area-top-left-x" : 0,
                 "area-top-left-y" : 0,
                 "area-bottom-right-x" : 99,
-                "area-bottom-right-y" : 49,
-                "migration-allowed" : false,
-                "migration-restricted" : true,
-                "migration-prob" : 0.1
+                "area-bottom-right-y" : 99,
+                "migration-allowed" : true,
+                "migration-restricted" : false,
+                "migration-prob" : 0.5
             }
         },
         "PlantTypeDistributions" : {
-            "PlantTypeDistribution1s1" : {
+            "PlantTypeDistribution1-refuge" : {
                 "species" : "PlantSpecies1",
                 "area-top-left-x" : 0,
                 "area-top-left-y" : 0,
-                "area-bottom-right-x" : 49,
-                "area-bottom-right-y" : 49,
+                "area-bottom-right-x" : 19,
+                "area-bottom-right-y" : 99,
                 "density" : 0.5,
-                "refuge" : false,
-                "refuge-alien-inflow-prob" : 0.5,
-                "seed-outflow-allowed" : false,
+                "refuge" : true,
+                "refuge-alien-inflow-prob" : 0.0,
+                "seed-outflow-allowed" : true,
                 "seed-outflow-restricted" : false,
                 "seed-outflow-prob" : 0.5,
-                "repro-local-density-constrained" : true,
-                "repro-local-density-max" : 0.2
-            },            
-            "PlantTypeDistribution1s2" : {
-                "species" : "PlantSpecies2",
-                "area-top-left-x" : 0,
-                "area-top-left-y" : 0,
-                "area-bottom-right-x" : 49,
-                "area-bottom-right-y" : 49,
-                "density" : 0.5,
-                "refuge" : false,
-                "refuge-alien-inflow-prob" : 0.5,
-                "seed-outflow-allowed" : false,
-                "seed-outflow-restricted" : false,
-                "seed-outflow-prob" : 0.5,
-                "repro-local-density-constrained" : true,
+                "repro-local-density-constrained" : false,
                 "repro-local-density-max" : 0.2
             },
-            "PlantTypeDistribution2s1" : {
+            "PlantTypeDistribution1-mixed" : {
                 "species" : "PlantSpecies1",
-                "area-top-left-x" : 50,
+                "area-top-left-x" : 20,
                 "area-top-left-y" : 0,
-                "area-bottom-right-x" : 99,
-                "area-bottom-right-y" : 49,
+                "area-bottom-right-x" : 79,
+                "area-bottom-right-y" : 99,
                 "density" : 0.5,
                 "refuge" : false,
                 "refuge-alien-inflow-prob" : 0.5,
-                "seed-outflow-allowed" : false,
+                "seed-outflow-allowed" : true,
                 "seed-outflow-restricted" : false,
                 "seed-outflow-prob" : 0.5,
-                "repro-local-density-constrained" : true,
+                "repro-local-density-constrained" : false,
                 "repro-local-density-max" : 0.2
-            },            
-            "PlantTypeDistribution2s2" : {
+            },
+            "PlantTypeDistribution2-mixed" : {
                 "species" : "PlantSpecies2",
-                "area-top-left-x" : 50,
+                "area-top-left-x" : 20,
                 "area-top-left-y" : 0,
-                "area-bottom-right-x" : 99,
-                "area-bottom-right-y" : 49,
+                "area-bottom-right-x" : 79,
+                "area-bottom-right-y" : 99,
                 "density" : 0.5,
                 "refuge" : false,
                 "refuge-alien-inflow-prob" : 0.5,
-                "seed-outflow-allowed" : false,
+                "seed-outflow-allowed" : true,
                 "seed-outflow-restricted" : false,
                 "seed-outflow-prob" : 0.5,
-                "repro-local-density-constrained" : true,
+                "repro-local-density-constrained" : false,
+                "repro-local-density-max" : 0.2
+            },
+            "PlantTypeDistribution2-refuge" : {
+                "species" : "PlantSpecies2",
+                "area-top-left-x" : 80,
+                "area-top-left-y" : 0,
+                "area-bottom-right-x" : 99,
+                "area-bottom-right-y" : 99,
+                "density" : 0.5,
+                "refuge" : true,
+                "refuge-alien-inflow-prob" : 0.0,
+                "seed-outflow-allowed" : true,
+                "seed-outflow-restricted" : false,
+                "seed-outflow-prob" : 0.5,
+                "repro-local-density-constrained" : false,
                 "repro-local-density-max" : 0.2
             }
         }
@@ -114,7 +114,7 @@
             "anther-init-pollen" : 100,
             "anther-pollen-transfer-per-visit" : 10,
             "stigma-max-pollen-capacity" : 5,
-            "pollen-clogging" : true,
+            "pollen-clogging" : "all",
             "repro-seed-dispersal-global" : true,
             "repro-seed-dispersal-radius" : 1.0,
             "comment0" : "items below this line in PlantType not currently used",
@@ -131,10 +131,10 @@
             "anther-init-pollen" : 100,
             "anther-pollen-transfer-per-visit" : 10,
             "stigma-max-pollen-capacity" : 5,
-            "pollen-clogging" : true,
+            "pollen-clogging" : "",
             "repro-seed-dispersal-global" : true,
             "repro-seed-dispersal-radius" : 1.0
-        }        
+        }
     },
     "Pollinators" : {
         "Pollinator1" : {

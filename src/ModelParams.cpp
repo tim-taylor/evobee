@@ -85,7 +85,7 @@ void ModelParams::setMaxScreenFracW(float fw)
     {
         m_fMaxScreenFracW = 1.0;
     }
-    else 
+    else
     {
         m_fMaxScreenFracW = fw;
     }
@@ -102,10 +102,10 @@ void ModelParams::setMaxScreenFracH(float fh)
     {
         m_fMaxScreenFracH = 1.0;
     }
-    else 
+    else
     {
         m_fMaxScreenFracH = fh;
-    }    
+    }
 }
 
 void ModelParams::setEnvDefaultAmbientTemp(float temp)
@@ -178,7 +178,7 @@ void ModelParams::setLogFlags(const std::string& flags)
         default:
         {
             std::cerr << "Warning: Ignoring unknown log flag" << flag << std::endl;
-        }                
+        }
         }
     }
 }
@@ -301,13 +301,30 @@ void ModelParams::addPlantTypeConfig(PlantTypeConfig& pt)
     FloweringPlant::registerSpecies(pt.species);
 }
 
-const PlantTypeConfig* ModelParams::getPlantTypeConfig(std::string species)
+
+/*
+const PlantTypeConfig* ModelParams::getPlantTypeConfig(unsigned int speciesId)
+{
+    ///@TODO need a way to efficiently do this... PTCs should store speciesId? (but do we need this anywhere?)
+}
+*/
+
+
+const PlantTypeConfig* ModelParams::getPlantTypeConfig(std::string speciesName)
 {
     for (auto& pt : m_PlantTypes)
     {
-        if (pt.species == species) return &pt;
+        if (pt.species == speciesName) return &pt;
     }
     return nullptr;
+}
+
+
+// perform any required global post-processing of parameter configuration after all
+// details have been read from the configuration file at the start of a run
+void ModelParams::postprocess()
+{
+    FloweringPlant::constructCloggingMap(m_PlantTypes);
 }
 
 
@@ -337,7 +354,7 @@ void ModelParams::checkConsistency()
             if (m_fGenTerminationParam < 0.0)
             {
                 throw std::runtime_error("Must provide an int parameter for termination type pollinated-fraction");
-            }            
+            }
             break;
         }
     }

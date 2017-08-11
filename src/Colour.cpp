@@ -5,6 +5,7 @@
  */
 
 #include <iostream> // for testing - maybe not needed?
+#include <sstream>
 #include <cstdlib>  // for rand - maybe not needed in long term?
 #include <cassert>
 #include <stdexcept>
@@ -237,7 +238,9 @@ const Colour::RGB& Colour::getRgbFromMarkerPoint(MarkerPoint mp)
     
     if (it == m_sMarkerPoint2RgbMap.end())
     {
-        throw std::runtime_error("Unable to find RGB for requested marker point" + mp);
+        std::stringstream msg;
+        msg << "Unable to find RGB for requested marker point" << mp;
+        throw std::runtime_error(msg.str());        
     }
     else
     {

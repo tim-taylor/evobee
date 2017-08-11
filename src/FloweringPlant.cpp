@@ -8,16 +8,20 @@
 #include <cassert>
 #include <algorithm>
 #include <iostream>
+#include <sstream>
 #include <exception>
+#include <regex>
 #include "EvoBeeModel.h"
 #include "FloweringPlant.h"
 #include "Patch.h"
+#include "ModelParams.h"
 
 
 // Initialise static members of class
 unsigned int FloweringPlant::m_sNextFreeId = 1;
 unsigned int FloweringPlant::m_sNextFreeSpeciesId = 1;
 std::map<unsigned int, std::string> FloweringPlant::m_sSpeciesMap;
+std::map<unsigned int, std::vector<unsigned int>> FloweringPlant::m_sCloggingMap;
 
 
 // Create a brand new plant at the start of the simulation from the specified config
@@ -33,7 +37,7 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& typeConfig,
 
     m_pPlantTypeConfig = &typeConfig;
 
-    // Get the corresponding speciesID for the given species name (and if we have not 
+    // Get the corresponding speciesID for the given species name (and if we have not
     // come across this species before, assign a new speciesID and add it to the species map)
     m_SpeciesId = registerSpecies(typeConfig.species);
 
@@ -67,7 +71,7 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& typeConfig,
 
 
 // Create an offspring plant from the specified parent
-FloweringPlant::FloweringPlant( const FloweringPlant* pParent, 
+FloweringPlant::FloweringPlant( const FloweringPlant* pParent,
                                 const fPos& pos,
                                 Patch* pPatch,
                                 bool  mutate ) :
@@ -106,7 +110,7 @@ FloweringPlant::FloweringPlant(const FloweringPlant& other) :
 {
     assert(false); // it's probable that we don't want to be here!
 
-    for (Flower& flower : m_Flowers) 
+    for (Flower& flower : m_Flowers)
     {
         flower.setPlant(this);
     }
@@ -125,7 +129,7 @@ FloweringPlant::FloweringPlant(FloweringPlant&& other) noexcept :
     m_pPatch(other.m_pPatch),
     m_pPlantTypeConfig(other.m_pPlantTypeConfig)
 {
-    for (Flower& flower : m_Flowers) 
+    for (Flower& flower : m_Flowers)
     {
         flower.setPlant(this);
     }
@@ -163,7 +167,7 @@ void FloweringPlant::copyCommon(const FloweringPlant& other) noexcept
     m_SpeciesId = other.m_SpeciesId;
     m_Position = other.m_Position;
     m_Flowers = other.m_Flowers;
-    for (Flower& flower : m_Flowers) 
+    for (Flower& flower : m_Flowers)
     {
         flower.setPlant(this);
     }
@@ -252,7 +256,7 @@ MarkerPoint FloweringPlant::getFlowerMarkerPoint(unsigned int flower)
 Flower* FloweringPlant::getFlower(unsigned int flower)
 {
     assert(flower < m_Flowers.size());
-    return &(m_Flowers[flower]);   
+    return &(m_Flowers[flower]);
 }
 
 
@@ -264,7 +268,7 @@ float FloweringPlant::getDistance(const fPos& point) const
 
 float FloweringPlant::getDistanceSq(const fPos& point) const
 {
-    return (((m_Position.x - point.x)*(m_Position.x - point.x)) + 
+    return (((m_Position.x - point.x)*(m_Position.x - point.x)) +
             ((m_Position.y - point.y)*(m_Position.y - point.y)));
 }
 
@@ -312,5 +316,136 @@ float FloweringPlant::reproSeedDispersalRadius()
     {
         throw std::runtime_error("FloweringPlant::reproSeedDispersalRadius no config defined");
         return 1.0;
+    }
+}
+
+
+void FloweringPlant::constructCloggingMap(std::vector<PlantTypeConfig>& ptcs)
+{
+    assert(m_sCloggingMap.empty());
+
+    for (PlantTypeConfig& ptc : ptcs)
+    {
+        unsigned int thisSpeciesId = getSpeciesId(ptc.species);
+
+        if (ptc.pollenCloggingSpecies.empty())
+        {
+            ptc.pollenCloggingAll = false;
+            ptc.pollenCloggingPartial = false;
+
+            // this species does not clog anything, so add an empty entry
+            // for this species to the clogging map
+            std::vector<unsigned int> cloggingSpIdVec;
+            m_sCloggingMap[thisSpeciesId] = cloggingSpIdVec;
+        }
+        else if (ptc.pollenCloggingSpecies == "all")
+        {
+            ptc.pollenCloggingAll = true;
+            ptc.pollenCloggingPartial = false;
+
+            // this species clogs everything, so add the ids of all other species to
+            // the entry for this species in the map
+            std::vector<unsigned int> cloggingSpIdVec;
+            for (auto& entry : m_sSpeciesMap)
+            {
+                if (entry.first != thisSpeciesId)
+                {
+                    cloggingSpIdVec.push_back(entry.first);
+                }
+            }
+            m_sCloggingMap[thisSpeciesId] = cloggingSpIdVec;
+        }
+        else
+        {
+            ptc.pollenCloggingAll = false;
+            ptc.pollenCloggingPartial = true;
+
+            // this species clogs some other species, but not necessarily all
+            // so we need to add specific ids to this species' entry in the map
+
+            // first build a vector of the name of each species that is clogged by this one
+            // (ptc.pollenCloggingSpecies contains the names in a single comma-separated string)
+            std::regex delim(",\\s+"); // comma followed by optional whitespace
+            std::vector<std::string> cloggingSpNameVec {
+                std::sregex_token_iterator(ptc.pollenCloggingSpecies.begin(), ptc.pollenCloggingSpecies.end(), delim, -1),
+                std::sregex_token_iterator()
+            };
+
+            // now for each species name in the vector, get the corresponding speciesId and add it to
+            // the vector to be used in the clogging map
+            std::vector<unsigned int> cloggingSpIdVec;
+            for (std::string& cloggingSpName : cloggingSpNameVec)
+            {
+                std::cout << "Species " << ptc.species << " clogs species " << cloggingSpName << std::endl;
+                cloggingSpIdVec.push_back(getSpeciesId(cloggingSpName));
+            }
+
+            m_sCloggingMap[thisSpeciesId] = cloggingSpIdVec;
+
+        }
+    }
+}
+
+
+const std::vector<unsigned int>& FloweringPlant::getCloggingSpeciesVec()
+{
+    auto it = m_sCloggingMap.find(m_SpeciesId);
+
+    if (it == m_sCloggingMap.end())
+    {
+        std::stringstream msg;
+        msg << "Error: request for clogging species map of unknown species " << m_SpeciesId;
+        throw std::runtime_error(msg.str());
+    }
+    else
+    {
+        return it->second;
+    }
+}
+
+
+// Determine whether the specified pollen is allowed to stick to the stigma of the specified destination
+// flower. It is allowed to do so if the pollen and the flower are from the same plant species, or if
+// the pollen is able to clog the destination plant species' stigma.
+bool FloweringPlant::pollenTransferToStigmaAllowed(const Flower* pPollenSource, const Flower* pDestination)
+{
+    unsigned int pollenSpeciesId = pPollenSource->getSpeciesId();
+    unsigned int flowerSpeciesId = pDestination->getSpeciesId();
+
+    if (pollenSpeciesId == flowerSpeciesId)
+    {
+        return true;
+    }
+    else if (pPollenSource->pollenCloggingAll())
+    {
+        return true;
+    }
+    else if (!pPollenSource->pollenCloggingPartial())
+    {
+        return false;
+    }
+    else
+    {
+        auto it = m_sCloggingMap.find(pollenSpeciesId);
+
+        if (it == m_sCloggingMap.end())
+        {
+            std::stringstream msg;
+            msg << "Error: request for clogging species map of unknown species " << pollenSpeciesId;
+            throw std::runtime_error(msg.str());
+        }
+        else
+        {
+            const std::vector<unsigned int>& cloggedSp = it->second;
+            auto it = std::find(cloggedSp.begin(), cloggedSp.end(), flowerSpeciesId);
+            if (it != cloggedSp.end())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

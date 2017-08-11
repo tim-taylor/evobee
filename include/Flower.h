@@ -26,7 +26,7 @@ class Flower {
 public:
     /**
      * Constructor to create a brand new flower from config info at start of simulation
-     */    
+     */
     Flower(FloweringPlant* pPlant, const PlantTypeConfig& ptc, const fPos& pos, MarkerPoint mp);
 
     /**
@@ -40,14 +40,14 @@ public:
     Flower(Flower&& other) noexcept;
     ~Flower() noexcept;
     Flower& operator= (const Flower& other);
-    Flower& operator= (Flower&& other) noexcept;            
+    Flower& operator= (Flower&& other) noexcept;
 
     /**
      * Explicitly set the flower's owning plant
      * (only required when copying plants and flowers during reproduction)
      */
     void setPlant(FloweringPlant* plant) {m_pPlant = plant;}
-    
+
     /**
      *
      */
@@ -128,6 +128,17 @@ public:
      */
     const PollenVector& getStigmaPollen() const {return m_StigmaPollen;}
 
+    /**
+     *
+     */
+    bool pollenCloggingAll() const {return m_bPollenCloggingAll;}
+
+    /**
+     *
+     */
+     bool pollenCloggingPartial() const {return m_bPollenCloggingPartial;}
+
+
 private:
     /**
      * Internal helper method for constructors and assignment operators
@@ -142,20 +153,23 @@ private:
     bool            m_bPollinated;      ///< Is the flower pollinated?
     int             m_iAntherPollen;    ///< Amount of collectable pollen remaining
     PollenVector    m_StigmaPollen;     ///< Collection of deposited Pollen grains on stigma
-    //int             m_iNumViableSeeds;  ///< 
+    //int             m_iNumViableSeeds;  ///<
     float           m_fTemperature;     ///< Current temperature of flower
     FloweringPlant* m_pPlant;           ///< (non-owning) pointer to the plant this flower belongs to
 
     // the following are constant parameters for this flower
-    int   m_iAntherPollenTransferPerVisit;  ///< Num pollen grains deposited on a pollinator per visit
-    int   m_iStigmaMaxPollenCapacity;       ///< Maximum amount of pollen the stigma can carry
-    bool  m_bPollenClogging;                ///< If true, pollen from other species can clog stigma
+    int     m_iAntherPollenTransferPerVisit;  ///< Num pollen grains deposited on a pollinator per visit
+    int     m_iStigmaMaxPollenCapacity;       ///< Maximum amount of pollen the stigma can carry
+    //bool  m_bPollenClogging;                ///< If true, pollen from other species can clog stigma
+    bool    m_bPollenCloggingAll;
+    bool    m_bPollenCloggingPartial;
+    const std::vector<unsigned int>& m_CloggingSpeciesVec;
     //const int m_iNectarRewardPerVisit;    ///< Amount of reward given to a pollinator (CURRENTLY UNUSED)
 
     /**
      * Record of next available unique ID number to be assigned to a new Flower
      */
-    static unsigned int m_sNextFreeId;       
+    static unsigned int m_sNextFreeId;
 };
 
 #endif /* _FLOWER_H */

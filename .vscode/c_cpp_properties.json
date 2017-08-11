@@ -13,6 +13,7 @@
                 "path": [
                     "/usr/include",
                     "/usr/local/include",
+                    "/usr/include/c++/6",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
@@ -27,6 +28,7 @@
                 "${workspaceRoot}/include",
                 "${workspaceRoot}/src",
                 "/usr/include/c++/6.3.0",
+                "/usr/include/c++/6",
                 "/usr/local/include",
                 "/usr/lib/clang/4.0.0/include",
                 "/usr/include"
@@ -35,6 +37,7 @@
             "browse": {
                 "path": [
                     "/usr/include/c++/6.3.0",
+                    "/usr/include/c++/6",
                     "/usr/local/include",
                     "/usr/lib/clang/4.0.0/include",
                     "/usr/include",
