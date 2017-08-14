@@ -1,19 +1,24 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 project(evobee VERSION 0.1.1.1 LANGUAGES CXX C)
 
+# Specification of custom installation prefixes for required libraries
+# At present, we have just added the location of the manual build of the SDL2
+# library on MonARCH
+set(CMAKE_PREFIX_PATH "/home/ttay0006/evobee/code/sdl2")
+
 # The following include is just for integration with the Visual Studio Code editor
 # It is specified as optional, so the rest of the build process will continue as
 # normal if this isn't available on your system
 include(CMakeToolsHelpers OPTIONAL)
 
 # Set a default build type. You can override this on the command line as follows:
-#  cmake -D CMAKE_BUILD_TYPE=Release ..  
+#  cmake -D CMAKE_BUILD_TYPE=Release ..
 # Avaiable build types are [Debug|Release|MinSizeRel|RelWithDebInfo]
-if(NOT CMAKE_BUILD_TYPE) 
+if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
 endif(NOT CMAKE_BUILD_TYPE)
 
-# Specify flags for specific build types 
+# Specify flags for specific build types
 ## (TODO is there a more generic way to do this?)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -std=c++11 -pthread")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -std=c++11 -pthread")
