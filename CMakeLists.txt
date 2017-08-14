@@ -4,7 +4,7 @@ project(evobee VERSION 0.1.1.1 LANGUAGES CXX C)
 # Specification of custom installation prefixes for required libraries
 # At present, we have just added the location of the manual build of the SDL2
 # library on MonARCH
-set(CMAKE_PREFIX_PATH "/home/ttay0006/evobee/code/sdl2")
+set(CMAKE_PREFIX_PATH "/home/ttay0006/evobee/code/sdl2;/home/ttay0006/evobee/code/sdl2_image")
 
 # The following include is just for integration with the Visual Studio Code editor
 # It is specified as optional, so the rest of the build process will continue as
