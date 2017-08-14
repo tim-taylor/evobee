@@ -4,7 +4,8 @@ project(evobee VERSION 0.1.1.1 LANGUAGES CXX C)
 # Specification of custom installation prefixes for required libraries
 # At present, we have just added the location of the manual build of the SDL2
 # library on MonARCH
-set(CMAKE_PREFIX_PATH "/home/ttay0006/evobee/code/sdl2:/home/ttay0006/evobee/code/sdl2_image")
+#set(CMAKE_PREFIX_PATH "/home/ttay0006/evobee/code/sdl2;/home/ttay0006/evobee/code/sdl2_image")
+set(CMAKE_PREFIX_PATH "/home/ttay0006/evobee/code/sdl2")
 set(CMAKE_LIBRARY_PATH "/home/ttay0006/evobee/code/sdl2/lib")
 
 # The following include is just for integration with the Visual Studio Code editor
@@ -91,6 +92,7 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${SDL2_GFX_SOURCES})
 
 # link libraries
 ## (TODO: is there a more generic way to link to C++ filesystem lib?)
+link_directories( /home/ttay0006/evobee/code/sdl2/lib )
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${Boost_LIBRARIES} -lstdc++fs)
 
 # specify compiler features
