@@ -9,6 +9,7 @@
 #include <sstream>
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <experimental/filesystem>
 #include <chrono>
@@ -38,7 +39,7 @@ Logger::Logger(EvoBeeModel* pModel) :
         try
         {
             // check that the directory exists (if not, make it)
-            if (fs::exists(m_LogDir)) 
+            if (fs::exists(m_LogDir))
             {
                 if (!fs::is_directory(m_LogDir))
                 {
@@ -58,6 +59,11 @@ Logger::Logger(EvoBeeModel* pModel) :
             std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
             std::time_t now_c = std::chrono::system_clock::to_time_t(now);
             ts << std::put_time(std::localtime(&now_c), "-%F-%H-%M-%S");
+            // and add a random number to ensure it is really unique
+            std::uniform_int_distribution<MarkerPoint> dist(0,9999);
+            int uid = dist(EvoBeeModel::m_sRngEngine);
+            ts << "-" << std::right << std::setfill('0') << std::setw(4) << uid;
+            // and add all of this to the filename prefix
             m_strFilePrefix = ModelParams::getLogRunName() + ts.str();
 
             // set name of main log file
@@ -81,7 +87,7 @@ Logger::~Logger()
 void Logger::logExptSetup()
 {
     assert(ModelParams::logging());
-    
+
     std::string filename {m_strFilePrefix + m_strConfigFileSuffix};
     fs::path fullname {m_LogDir / filename};
     std::ofstream ofs {fullname};
@@ -154,7 +160,7 @@ void Logger::logFlowersFull()
 void Logger::logFlowersSummary()
 {
     std::ofstream ofs = openLogFile();
-    auto gen = m_pModel->getGenNumber(); 
+    auto gen = m_pModel->getGenNumber();
     std::vector<Patch>& patches = m_pEnv->getPatches();
     std::map<unsigned int, unsigned int> speciesCounts; // map species ID to count
 
