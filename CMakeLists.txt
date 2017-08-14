@@ -44,6 +44,7 @@ find_package(Boost 1.32.0 REQUIRED COMPONENTS program_options)
 # An alternative would be to use CMake's FindSDL module
 # See http://stackoverflow.com/questions/28395833/using-sdl2-with-cmake for more info
 include(FindPkgConfig)
+set(PKG_CONFIG_USE_CMAKE_PREFIX_PATH)
 pkg_search_module(SDL2 REQUIRED sdl2)
 pkg_search_module(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
 
