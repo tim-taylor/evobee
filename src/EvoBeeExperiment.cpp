@@ -43,9 +43,12 @@ EvoBeeExperiment::EvoBeeExperiment() :
 EvoBeeExperiment::~EvoBeeExperiment()
 {
     // Wait for any threads to finish their work
-    if (m_threadLog.joinable())
+    if (ModelParams::useLogThreads())
     {
-        m_threadLog.join();
+        if (m_threadLog.joinable())
+        {
+            m_threadLog.join();
+        }
     }
 }
 
@@ -93,15 +96,22 @@ void EvoBeeExperiment::run()
                 //
                 // If the thread is still busy from a previous logger call,
                 // wait until it is finished before calling the logger again.
-                if (m_threadLog.joinable())
+                if (ModelParams::useLogThreads())
                 {
-                    m_threadLog.join();
+                    if (m_threadLog.joinable())
+                    {
+                        m_threadLog.join();
+                    }
+                    m_threadLog = std::thread(&Logger::logPollinatorsFull, m_Logger);
                 }
-                m_threadLog = std::thread(&Logger::logPollinatorsFull, m_Logger);
+                else
+                {
+                    m_Logger.logPollinatorsFull();
+                }
             }
 
             // perform visualisation if required
-            if ((m_bVis) && (step % m_iVisUpdatePeriod == 0)) 
+            if ((m_bVis) && (step % m_iVisUpdatePeriod == 0))
             {
                 bContinue = m_Visualiser.update();
                 if (!bContinue)
@@ -150,21 +160,35 @@ void EvoBeeExperiment::run()
         {
             if (ModelParams::logFlowersFull())
             {
-                if (m_threadLog.joinable())
+                if (ModelParams::useLogThreads())
                 {
-                    m_threadLog.join();
+                    if (m_threadLog.joinable())
+                    {
+                        m_threadLog.join();
+                    }
+                    m_threadLog = std::thread(&Logger::logFlowersFull, m_Logger);
                 }
-                m_threadLog = std::thread(&Logger::logFlowersFull, m_Logger);
+                else
+                {
+                    m_Logger.logFlowersFull();
+                }
             }
             if (ModelParams::logFlowersSummary())
             {
-                if (m_threadLog.joinable())
+                if (ModelParams::useLogThreads())
                 {
-                    m_threadLog.join();
+                    if (m_threadLog.joinable())
+                    {
+                        m_threadLog.join();
+                    }
+                    m_threadLog = std::thread(&Logger::logFlowersSummary, m_Logger);
                 }
-                m_threadLog = std::thread(&Logger::logFlowersSummary, m_Logger);
+                else
+                {
+                    m_Logger.logFlowersSummary();
+                }
             }
-        }          
+        }
 
         if (!bContinue)
         {

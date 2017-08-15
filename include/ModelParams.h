@@ -44,6 +44,7 @@ public:
     static void setLogging(bool logging);
     static void setLogFlags(const std::string& flags);
     static void setLogUpdatePeriod(int p);
+    static void setLogThreads(bool useThreads) {m_bUseLogThreads = useThreads;}
     static void setVerbose(bool verbose) {m_bVerbose = verbose;}
     static void setInitialised();
     static void setSimTerminationNumGens(int gens);
@@ -84,6 +85,7 @@ public:
     static bool  logFlowersFull() {return m_bLogFlowersFull;}
     static bool  logFlowersSummary() {return m_bLogFlowersSummary;}
     static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
+    static bool  useLogThreads() {return m_bUseLogThreads;}
     static bool  verbose() {return m_bVerbose;}
     static int   getSimTerminationNumGens() {return m_iSimTerminationNumGens;}
     static GenTerminationType getGenTerminationType() {return m_GenTerminationType;}
@@ -128,6 +130,7 @@ private:
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
     static std::string m_strLogDir;         ///< Directory name for logging output
     static std::string m_strLogRunName;     ///< Run name to be used as prefix for log filenames
+    static bool  m_bUseLogThreads;          ///< Use a separate thread for writing log files?
     static bool  m_bVerbose;                ///< Should progress messages be printed on stdout?
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
     static int   m_iSimTerminationNumGens;  ///< Terminate run after this number of generations

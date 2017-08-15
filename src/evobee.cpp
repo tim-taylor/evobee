@@ -343,6 +343,12 @@ void processJsonFile(std::ifstream& ifs)
                     }
                     ModelParams::setLogRunName(it.value());
                 }
+                else if (it.key() == "use-log-threads" && it.value().is_boolean()) {
+                    if (verbose) {
+                        std::cout << "Use log threads -> '" << it.value() << "'" << std::endl;
+                    }
+                    ModelParams::setLogThreads(it.value());
+                }
                 else if (it.key() == "verbose" && it.value().is_boolean()) {
                     if (verbose) {
                         std::cout << "Verbose -> " << it.value() << std::endl;

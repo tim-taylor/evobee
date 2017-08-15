@@ -32,6 +32,7 @@ bool   ModelParams::m_bLogging = true;
 bool   ModelParams::m_bLogPollinatorsFull = false;
 bool   ModelParams::m_bLogFlowersFull = false;
 bool   ModelParams::m_bLogFlowersSummary = false;
+bool   ModelParams::m_bUseLogThreads = false;
 bool   ModelParams::m_bVerbose = true;
 unsigned int ModelParams::m_sNextFreePtdcId = 1;
 std::string ModelParams::m_strLogDir {"output"};
