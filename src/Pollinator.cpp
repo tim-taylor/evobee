@@ -33,7 +33,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_iMaxPollenCapacity(pc.maxPollenCapacity),
     m_iPollenCarryoverNumVisits(pc.pollenCarryoverNumVisits)
 {
-    // Each pollinator has a pointer to the environment and to the model for 
+    // Each pollinator has a pointer to the environment and to the model for
     // convenience, to save having to ask the Hive for these each time we need them
     m_pEnv = m_pHive->getEnvironment();
     m_pModel = m_pEnv->getModel();
@@ -55,7 +55,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_iNumFlowersVisitedInBout(other.m_iNumFlowersVisitedInBout),
     m_PollenStore(other.m_PollenStore),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
-    m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),  
+    m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -85,7 +85,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_iNumFlowersVisitedInBout(other.m_iNumFlowersVisitedInBout),
     m_PollenStore(std::move(other.m_PollenStore)),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
-    m_MovementAreaBottomRight(other.m_MovementAreaBottomRight), 
+    m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -146,7 +146,7 @@ void Pollinator::resetToStartPosition()
         m_Position = m_pHive->getRandomPollinatorStartPosition();
     }
 
-    resetMovementArea();    
+    resetMovementArea();
 }
 
 
@@ -156,7 +156,7 @@ void Pollinator::resetMovementArea()
 
     const Patch& patch = m_pEnv->getPatch(m_Position);
     m_MovementAreaTopLeft = patch.getReproRestrictionAreaTopLeft();
-    m_MovementAreaBottomRight = patch.getReproRestrictionAreaBottomRight();    
+    m_MovementAreaBottomRight = patch.getReproRestrictionAreaBottomRight();
 }
 
 
@@ -202,7 +202,7 @@ void Pollinator::repositionInEnv(fPos delta)
 void Pollinator::repositionInAllowedArea(fPos delta)
 {
     const iPos& TL = m_pHive->getInitForageAreaTopLeft();
-    const iPos& BR = m_pHive->getInitForageAreaBottomRight();    
+    const iPos& BR = m_pHive->getInitForageAreaBottomRight();
     repositionInArea(delta, (float)TL.x, (float)TL.y, (float)(BR.x+1), (float)(BR.y+1));
     assert(inEnvironment());
 }
@@ -226,11 +226,11 @@ void Pollinator::repositionInArea(fPos delta, float minx, float miny, float maxx
         delta.y = -delta.y;
     }
 
-    m_Position = oldPos + delta;   
+    m_Position = oldPos + delta;
 }
 
 
-// Move by a given distance in a random direction. 
+// Move by a given distance in a random direction.
 //
 // @todo Maybe implement a "stay/hover" option in future?
 //
@@ -260,7 +260,7 @@ bool Pollinator::moveBiassed(bool allowOffEnv, float stepLength)
         repositionInEnv(delta);
     }
 
-    return inEnv;    
+    return inEnv;
 }
 
 
@@ -276,14 +276,14 @@ bool Pollinator::moveLevy(bool allowOffEnv, float stepLength)
         repositionInEnv(delta);
     }
 
-    return inEnv;    
+    return inEnv;
 }
 
 
 // for each Pollen grain in the store, update its landing count
 void Pollinator::updatePollenLandingCount()
 {
-    std::for_each( m_PollenStore.begin(), 
+    std::for_each( m_PollenStore.begin(),
                    m_PollenStore.end(),
                    [](Pollen& p){p.numLandings++;} );
 }
@@ -303,8 +303,16 @@ void Pollinator::removeOldCarryoverPollen()
     );
 
     /// test code
-    //size_t newsz = m_PollenStore.size();
-    //if (newsz != oldsz) std::cout << "carryover removed! " << oldsz << "->" << newsz << std::endl;
+    /*
+    size_t newsz = m_PollenStore.size();
+    if (newsz != oldsz)
+    {
+        if (ModelParams::verbose())
+        {
+            std::cout << "carryover removed! " << oldsz << "->" << newsz << std::endl;
+        }
+    }
+    */
 }
 
 
@@ -366,4 +374,4 @@ std::string Pollinator::getStateString() const
 const std::string& Pollinator::getTypeName() const
 {
     return m_sTypeNameStr;
-} 
+}

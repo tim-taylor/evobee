@@ -35,15 +35,18 @@ Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
 void Patch::addPlant(const PlantTypeConfig& typeConfig, const fPos& pos)
 {
     /*
-    std::cout << "Adding plant of species " << typeConfig.species << " to Patch [" << 
-        m_Position << "] at coordinates (" << pos << ")" << std::endl;
+    if (ModelParams::verbose())
+    {
+        std::cout << "Adding plant of species " << typeConfig.species << " to Patch [" <<
+            m_Position << "] at coordinates (" << pos << ")" << std::endl;
+    }
     */
 
     m_FloweringPlants.emplace_back(typeConfig, pos, this);
 }
 
 
-// Add an existing plant to the patch. 
+// Add an existing plant to the patch.
 // A move constructor is used, so the instance of the plant passed in as a parameter
 // is wiped when the method is finished.
 void Patch::addPlant(FloweringPlant& plant)
@@ -78,7 +81,7 @@ void Patch::setReproConstraints(const PlantTypeDistributionConfig& ptdc)
         // an unresolvable situation (a patch can only be a refuge for
         // one species of plant).
         //
-        // If, however, we are only dealing with constraints on seed outflow 
+        // If, however, we are only dealing with constraints on seed outflow
         // (no refugia constraints) and these have already been set on this patch
         // patch, allow it if the new constraints are exactly the same as
         // the existing ones (otherwise throw an exception).

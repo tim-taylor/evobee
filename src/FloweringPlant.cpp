@@ -205,8 +205,11 @@ unsigned int FloweringPlant::registerSpecies(const std::string& species)
         speciesId = m_sNextFreeSpeciesId++;
         m_sSpeciesMap[speciesId] = species;
 
-        std::cout << "Adding new plant species to map: id=" << speciesId << ", name=" <<
-            species << std::endl;
+        if (ModelParams::verbose())
+        {
+            std::cout << "Adding new plant species to map: id=" << speciesId << ", name=" <<
+                species << std::endl;
+        }
     }
 
     return speciesId;
@@ -376,7 +379,11 @@ void FloweringPlant::constructCloggingMap(std::vector<PlantTypeConfig>& ptcs)
             std::vector<unsigned int> cloggingSpIdVec;
             for (std::string& cloggingSpName : cloggingSpNameVec)
             {
-                std::cout << "Species " << ptc.species << " clogs species " << cloggingSpName << std::endl;
+                if (ModelParams::verbose())
+                {
+                    std::cout << "Species " << ptc.species << " clogs species " << cloggingSpName << std::endl;
+                }
+
                 cloggingSpIdVec.push_back(getSpeciesId(cloggingSpName));
             }
 

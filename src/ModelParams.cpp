@@ -32,6 +32,7 @@ bool   ModelParams::m_bLogging = true;
 bool   ModelParams::m_bLogPollinatorsFull = false;
 bool   ModelParams::m_bLogFlowersFull = false;
 bool   ModelParams::m_bLogFlowersSummary = false;
+bool   ModelParams::m_bVerbose = true;
 unsigned int ModelParams::m_sNextFreePtdcId = 1;
 std::string ModelParams::m_strLogDir {"output"};
 std::string ModelParams::m_strLogRunName {"run"};
@@ -300,14 +301,6 @@ void ModelParams::addPlantTypeConfig(PlantTypeConfig& pt)
     m_PlantTypes.push_back(pt);
     FloweringPlant::registerSpecies(pt.species);
 }
-
-
-/*
-const PlantTypeConfig* ModelParams::getPlantTypeConfig(unsigned int speciesId)
-{
-    ///@TODO need a way to efficiently do this... PTCs should store speciesId? (but do we need this anywhere?)
-}
-*/
 
 
 const PlantTypeConfig* ModelParams::getPlantTypeConfig(std::string speciesName)

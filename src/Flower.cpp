@@ -310,14 +310,20 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
                 m_pPlant->setPollinated();
 
                 // test code
-                //std::cout << "Flower id " << m_id << " of species " << m_SpeciesId <<
+                //if (ModelParams::verbose())
+                //{
+                //  std::cout << "Flower id " << m_id << " of species " << m_SpeciesId <<
                 //    " pollinated by pollen of species " << pP->speciesId <<
                 //    " from plant id " << pP->pSource->getId() << std::endl;
+                //}
             }
             else
             {
                 // test code
-                //std::cout << "(no pollination)" << std::endl;
+                //if (ModelParams::verbose())
+                //{
+                //  std::cout << "(no pollination)" << std::endl;
+                //}
             }
         }
     }

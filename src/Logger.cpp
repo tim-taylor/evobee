@@ -60,9 +60,9 @@ Logger::Logger(EvoBeeModel* pModel) :
             std::time_t now_c = std::chrono::system_clock::to_time_t(now);
             ts << std::put_time(std::localtime(&now_c), "-%F-%H-%M-%S");
             // and add a random number to ensure it is really unique
-            std::uniform_int_distribution<MarkerPoint> dist(0,9999);
+            std::uniform_int_distribution<int> dist(0, 999999);
             int uid = dist(EvoBeeModel::m_sRngEngine);
-            ts << "-" << std::right << std::setfill('0') << std::setw(4) << uid;
+            ts << "-" << std::right << std::setfill('0') << std::setw(6) << uid;
             // and add all of this to the filename prefix
             m_strFilePrefix = ModelParams::getLogRunName() + ts.str();
 

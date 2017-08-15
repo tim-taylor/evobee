@@ -41,13 +41,13 @@ Environment::Environment(EvoBeeModel* pModel) :
     // Initialise Patches
     m_iNumPatches = ModelParams::getNumPatches();
     m_Patches.reserve(m_iNumPatches);
-    for (int i = 0; i < m_iNumPatches; ++i) 
+    for (int i = 0; i < m_iNumPatches; ++i)
     {
         m_Patches.emplace_back(
             this, i,
             ModelParams::getEnvBackgroundReflectanceMP(),
             ModelParams::getEnvDefaultAmbientTemp()
-        );        
+        );
     }
 
     // Initialise Hives
@@ -64,7 +64,10 @@ Environment::Environment(EvoBeeModel* pModel) :
     // Initialise internal book-keeping for local density limits during plant reproduction
     initialiseLocalDensityCounts();
 
-    std::cout << "Initialised Environment with " << m_Patches.size() << " patches" << std::endl;
+    if (ModelParams::verbose())
+    {
+        std::cout << "Initialised Environment with " << m_Patches.size() << " patches" << std::endl;
+    }
 }
 
 
@@ -96,16 +99,16 @@ Patch& Environment::getPatch(int x, int y)
  *
  * This method is somewhat convoluted for efficiency purposes. Having figured out how
  * many plants in total should be created, it then randomly assigned positions for each
- * plant. These positions are stored in the patchInfo[][] array, where each element in 
+ * plant. These positions are stored in the patchInfo[][] array, where each element in
  * the array is a vector containing the positions of all new plants that fall within
  * that patch. We then loop through the patchInfo array, and for each vector contained therein,
  * we create all of the plants for the associated patch.
  */
 void Environment::initialisePlants()
 {
-    const std::vector<PlantTypeDistributionConfig>& pdconfigs = 
+    const std::vector<PlantTypeDistributionConfig>& pdconfigs =
         ModelParams::getPlantTypeDistributionConfigs();
-    
+
     for (const PlantTypeDistributionConfig& pdcfg : pdconfigs)
     {
         // first find the corresponding PlantTypeConfig
@@ -185,7 +188,7 @@ iPos Environment::getPatchCoordFromFloatPos(const fPos& fpos)
 bool Environment::inEnvironment(int x, int y) const
 {
     return (
-        x >=0 && 
+        x >=0 &&
         x < m_iSizeX &&
         y >= 0 &&
         y < m_iSizeY
@@ -196,11 +199,11 @@ bool Environment::inEnvironment(int x, int y) const
 bool Environment::inArea(const iPos& pos, const iPos& areaTopLeft, const iPos& areaBottomRight)
 {
     return (
-        (pos.x >= areaTopLeft.x) && 
+        (pos.x >= areaTopLeft.x) &&
         (pos.x <= areaBottomRight.x) &&
         (pos.y >= areaTopLeft.y) &&
         (pos.y <= areaBottomRight.y)
-    );  
+    );
 }
 
 
@@ -279,7 +282,7 @@ float Environment::getPollinatedFrac() const
  *
  * 1. Construct a new generation of plants based upon those successfully
  *    pollinated in the previous generation, taking into acconut any refuges
- *    and/or restrictions to seed flow. 
+ *    and/or restrictions to seed flow.
  * 2. Reset all pollinators to initial state.
  *
  * Some more details:
@@ -295,7 +298,7 @@ float Environment::getPollinatedFrac() const
  *      create an empty newPlants vector to store new generation
  *      for each plant in pollinatedPlantPtrs (up to global max repro num for env)
  *          consider a nearby position in which to reproduce
- *          determine prob that it will successfully reproduce in that position, taking into acccount 
+ *          determine prob that it will successfully reproduce in that position, taking into acccount
  *              seed outflow prob of current patch
  *              seed inflow prob (refuge incoming) of destination
  *              any local PTDConfig density constraints (consult m_LocalDensityConstraints)
@@ -303,17 +306,17 @@ float Environment::getPollinatedFrac() const
  *      empty plant vectors for all patches - delete all plants from previous generation
  *      for each plant in newPlants, move plant to appropriate Patch vector
  *  implementation details:
- *      each Patch needs 
+ *      each Patch needs
  *          outflow prob (and allowed/restricted flags, corresponding to p>0, p<1)
  *          isRefuge flag
  *              refugeNativeSpecies id
  *              alienInflowProb
- *      We deal with constraints on overlapping PTD areas (see assumptions above) by 
+ *      We deal with constraints on overlapping PTD areas (see assumptions above) by
  *          thowing an exception if there is an attempt to set these Patch probs/flags
  *          multiple times for any single Patch (this is done in Patch::setReproConstraints)
  */
 void Environment::initialiseNewGeneration()
-{   
+{
     ///@todo we also need to log this info if necessary
 
     //////////////////////////////////////////////////////////////
@@ -334,7 +337,7 @@ void Environment::initialiseNewGeneration()
             {
                 if (plant.pollinated())
                 {
-                    // for each pollinated plant, we look at each pollen grain on 
+                    // for each pollinated plant, we look at each pollen grain on
                     // the stigma of each of its flowers, and add a candidate
                     // pointer for reproduction for each conspecific grain
                     const std::vector<Flower>& flowers = plant.getFlowers();
@@ -372,7 +375,7 @@ void Environment::initialiseNewGeneration()
 
         fPos fCurPos { pPlant->getPosition() };
         fPos fNewPos;
-        
+
         if (pPlant->reproSeedDispersalGlobal())
         {
             if (curPatch.seedOutflowAllowed())
@@ -380,7 +383,7 @@ void Environment::initialiseNewGeneration()
                 // seed outflow from this patch's locaility is allowed, so we now need
                 // to decide whether we can pick a destination position from the entire
                 // environment or just from the locaility defined by m_ReproRestrictionAreaTL/BR
-                if ((!curPatch.seedOutflowRestricted()) || 
+                if ((!curPatch.seedOutflowRestricted()) ||
                     (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < curPatch.getSeedOutflowProb()))
                 {
                     fNewPos = getRandomPositionF();
@@ -449,10 +452,10 @@ void Environment::initialiseNewGeneration()
             bAnyChance = false;
         }
 
-        // -- Step 1c.3: if successful, create new plant and put in newPlants vector 
+        // -- Step 1c.3: if successful, create new plant and put in newPlants vector
         if (bAnyChance && (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < successProb))
         {
-            Patch& newPatch = getPatch(iNewPos);        
+            Patch& newPatch = getPatch(iNewPos);
 
             // create a mutated version of the parent plant
             newPlants.emplace_back(pPlant, fNewPos, &newPatch, true);
@@ -461,7 +464,7 @@ void Environment::initialiseNewGeneration()
             incrementLocalDensityCount(iNewPos);
         }
 
-        // -- Step 1c.4: if we've now reached the global limit on the number of new plants to 
+        // -- Step 1c.4: if we've now reached the global limit on the number of new plants to
         //               produce, stop!
         if ((globalMax > 0) && (newPlants.size() > globalMax))
         {
@@ -477,7 +480,7 @@ void Environment::initialiseNewGeneration()
 
     // -- Step 1e: for each plant in newPlants, move it to appropriate Patch vec
     for (FloweringPlant& plant : newPlants)
-    {   
+    {
         plant.getPatch().addPlant(plant);
     }
 
@@ -492,16 +495,16 @@ void Environment::initialiseNewGeneration()
 
 void Environment::initialiseLocalDensityCounts()
 {
-    const std::vector<PlantTypeDistributionConfig>& pdconfigs = 
+    const std::vector<PlantTypeDistributionConfig>& pdconfigs =
         ModelParams::getPlantTypeDistributionConfigs();
-    
+
     for (const PlantTypeDistributionConfig& pdcfg : pdconfigs)
     {
         if (pdcfg.reproLocalDensityConstrained)
         {
             m_LocalDensityConstraints.emplace_back(pdcfg);
         }
-    }   
+    }
 }
 
 void Environment::resetLocalDensityCounts()

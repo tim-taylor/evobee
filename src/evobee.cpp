@@ -21,19 +21,12 @@
 #include "Position.h"
 
 namespace po = boost::program_options;
-using std::cout;
-using std::cerr;
-using std::endl;
-using std::exception;
-using std::string;
-using std::ifstream;
-using std::vector;
 using json = nlohmann::json;
 
 
 // forward declaration of functions in this file
 void processConfigOptions(int argc, char **argv);
-void processJsonFile(ifstream& ifs);
+void processJsonFile(std::ifstream& ifs);
 
 
 // Helper function for reading in parameters from the JSON file.
@@ -58,7 +51,7 @@ void json_read_param(const json& j, const std::string& section, const std::strin
 // This version is for optional params, and takes a default value which is used
 // if no matching entry is found in the JSON file.
 template<typename T>
-void json_read_opt_param(const json& j, const std::string& section, 
+void json_read_opt_param(const json& j, const std::string& section,
                          const std::string& name, T& var, T defaultValue)
 {
     try
@@ -151,7 +144,7 @@ void from_json(const json& j, PollinatorConfig& p)
 
 
 /**
- * Process arguments from command line and/or a config file and initialise 
+ * Process arguments from command line and/or a config file and initialise
  * ModelParams accordingly, then create an EvoBeeExperiment object and
  * call its run method.
  */
@@ -182,7 +175,7 @@ void processConfigOptions(int argc, char **argv)
 {
     try
     {
-        string config_file;
+        std::string config_file;
 
         // Declare a group of options that will be
         // allowed only on command line
@@ -190,7 +183,8 @@ void processConfigOptions(int argc, char **argv)
         generic.add_options()
             ("version,v", "display program version number")
             ("help,h", "display this help message")
-            ("config,c", po::value<string>(&config_file)->default_value("evobee.cfg.json"), "configuration file");
+            ("config,c", po::value<std::string>(&config_file)->default_value("evobee.cfg.json"), "configuration file")
+            ("quiet,q", "disable verbose progress messages on stdout");
 
         po::options_description cmdline_options;
         cmdline_options.add(generic);
@@ -204,31 +198,52 @@ void processConfigOptions(int argc, char **argv)
         store(po::command_line_parser(argc, argv).options(cmdline_options).positional(p).run(), vm);
         notify(vm);
 
+        bool bCommandLineQuiet = false;
+
+        // first deal with command line options that do not involve running the model
         if (vm.count("help"))
         {
-            cout << visible << endl;
+            std::cout << visible << std::endl;
             exit(0);
         }
 
         if (vm.count("version"))
         {
-            cout << "EvoBee version " << evobee_VERSION_MAJOR << "." << evobee_VERSION_MINOR << "."
-                 << evobee_VERSION_PATCH << "." << evobee_VERSION_TWEAK << endl;
+            std::cout << "EvoBee version " << evobee_VERSION_MAJOR << "." << evobee_VERSION_MINOR << "."
+                 << evobee_VERSION_PATCH << "." << evobee_VERSION_TWEAK << std::endl;
             exit(0);
         }
 
-        ifstream ifs(config_file.c_str());
+        // get the configuration file name
+        std::ifstream ifs(config_file.c_str());
         if (!ifs)
         {
             std::cerr << "Unable to open config file: " << config_file << std::endl;
             exit(1);
         }
 
+        // is the command line explicity asking us to suppress stdout notifications?
+        if (vm.count("quiet"))
+        {
+            ModelParams::setVerbose(false);
+            bCommandLineQuiet = true;
+        }
+
+        // process the contents of the configuration file
         processJsonFile(ifs);
+
+        // if command line explicitly asked for no notifications, then set that option
+        // again now, in case the configuration file conflicted with this (the command line
+        // flag should override what is in the config file for this)
+        if (bCommandLineQuiet)
+        {
+            ModelParams::setVerbose(false);
+        }
+
     }
-    catch (exception &e)
+    catch (std::exception &e)
     {
-        cerr << e.what() << endl;
+        std::cerr << e.what() << std::endl;
         exit(0);
     }
 
@@ -236,8 +251,10 @@ void processConfigOptions(int argc, char **argv)
 }
 
 
-void processJsonFile(ifstream& ifs)
+void processJsonFile(std::ifstream& ifs)
 {
+    bool verbose = ModelParams::verbose();
+
     json& j = ModelParams::getJson();
 
     try
@@ -246,90 +263,135 @@ void processJsonFile(ifstream& ifs)
     }
     catch (json::parse_error &e)
     {
-        cerr << "Parse error: " << e.what() << endl;
+        std::cerr << "Parse error: " << e.what() << std::endl;
         exit(1);
     }
     catch (json::exception &e)
     {
-        cerr << "JSON error: " << e.what() << endl;
+        std::cerr << "JSON error: " << e.what() << std::endl;
         exit(1);
     }
 
     try
     {
         auto itSP = j.find("SimulationParams");
-        if ((itSP != j.end()) && (itSP->is_object())) 
+        if ((itSP != j.end()) && (itSP->is_object()))
         {
-            cout << "~~~~~ Simulation Params ~~~~~" << endl;
+            if (verbose) {
+                std::cout << "~~~~~ Simulation Params ~~~~~" << std::endl;
+            }
+
             for (json::iterator it = itSP->begin(); it != itSP->end(); ++it)
             {
                 if (it.key() == "sim-termination-num-gens" && it.value().is_number()) {
-                    cout << "Simulation termination num gens -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Simulation termination num gens -> " << it.value() << std::endl;
+                    }
                     ModelParams::setSimTerminationNumGens(it.value());
                 }
                 else if (it.key() == "generation-termination-type" && it.value().is_string()) {
-                    cout << "Generation termination type -> '" << it.value() << "'" << endl;
+                    if (verbose) {
+                        std::cout << "Generation termination type -> '" << it.value() << "'" << std::endl;
+                    }
                     ModelParams::setGenTerminationType(it.value());
                 }
                 else if (it.key() == "generation-termination-param" && it.value().is_number_integer()) {
-                    cout << "Generation termination param (int) -> '" << it.value() << "'" << endl;
+                    if (verbose) {
+                        std::cout << "Generation termination param (int) -> '" << it.value() << "'" << std::endl;
+                    }
                     ModelParams::setGenTerminationIntParam(it.value());
                 }
                 else if (it.key() == "generation-termination-param" && it.value().is_number_float()) {
-                    cout << "Generation termination param (float) -> '" << it.value() << "'" << endl;
+                    if (verbose) {
+                        std::cout << "Generation termination param (float) -> '" << it.value() << "'" << std::endl;
+                    }
                     ModelParams::setGenTerminationFloatParam(it.value());
                 }
                 else if (it.key() == "rng-seed" && it.value().is_string()) {
-                    cout << "Seed -> '" << it.value() << "'" << endl;
+                    if (verbose) {
+                        std::cout << "Seed -> '" << it.value() << "'" << std::endl;
+                    }
                     ModelParams::setRngSeedStr(it.value());
                 }
                 else if (it.key() == "logging" && it.value().is_boolean()) {
-                    cout << "Logging -> '" << it.value() << "'" << endl;
+                    if (verbose) {
+                        std::cout << "Logging -> '" << it.value() << "'" << std::endl;
+                    }
                     ModelParams::setLogging(it.value());
                 }
                 else if (it.key() == "log-flags" && it.value().is_string()) {
-                    cout << "Log flags -> '" << it.value() << "'" << endl;
+                    if (verbose) {
+                        std::cout << "Log flags -> '" << it.value() << "'" << std::endl;
+                    }
                     ModelParams::setLogFlags(it.value());
                 }
                 else if (it.key() == "log-update-period" && it.value().is_number()) {
-                    cout << "Log update period -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Log update period -> " << it.value() << std::endl;
+                    }
                     ModelParams::setLogUpdatePeriod(it.value());
                 }
                 else if (it.key() == "log-dir" && it.value().is_string()) {
-                    cout << "Log dir -> '" << it.value() << "'" << endl;
+                    if (verbose) {
+                        std::cout << "Log dir -> '" << it.value() << "'" << std::endl;
+                    }
                     ModelParams::setLogDir(it.value());
                 }
                 else if (it.key() == "log-run-name" && it.value().is_string()) {
-                    cout << "Log run name -> '" << it.value() << "'" << endl;
+                    if (verbose) {
+                        std::cout << "Log run name -> '" << it.value() << "'" << std::endl;
+                    }
                     ModelParams::setLogRunName(it.value());
                 }
+                else if (it.key() == "verbose" && it.value().is_boolean()) {
+                    if (verbose) {
+                        std::cout << "Verbose -> " << it.value() << std::endl;
+                        // NB we only set the verbose flag from the config file spec
+                        // if we are not already in silent mode. If already in silent
+                        // mode, that is because it has been set as such on the command
+                        // line, and that should override the config file setting
+                        ModelParams::setVerbose(it.value());
+                    }
+                }
                 else if (it.key() == "visualisation" && it.value().is_boolean()) {
-                    cout << "Vis -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Vis -> " << it.value() << std::endl;
+                    }
                     ModelParams::setVisualisation(it.value());
                 }
                 else if (it.key() == "vis-update-period" && it.value().is_number()) {
-                    cout << "Vis update period -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Vis update period -> " << it.value() << std::endl;
+                    }
                     ModelParams::setVisUpdatePeriod(it.value());
                 }
                 else if (it.key() == "vis-delay-per-frame" && it.value().is_number()) {
-                    cout << "Vis delay per frame (ms) -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Vis delay per frame (ms) -> " << it.value() << std::endl;
+                    }
                     ModelParams::setVisDelayPerFrame(it.value());
-                }                
+                }
                 else if (it.key() == "vis-pollinator-trails" && it.value().is_boolean()) {
-                    cout << "Vis pollinator trails -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Vis pollinator trails -> " << it.value() << std::endl;
+                    }
                     ModelParams::setVisPollinatorTrails(it.value());
                 }
                 else if (it.key() == "vis-max-screen-frac-w" && it.value().is_number()) {
-                    cout << "Vis max screen fraction W -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Vis max screen fraction W -> " << it.value() << std::endl;
+                    }
                     ModelParams::setMaxScreenFracW(it.value());
                 }
                 else if (it.key() == "vis-max-screen-frac-h" && it.value().is_number()) {
-                    cout << "Vis max screen fraction H -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Vis max screen fraction H -> " << it.value() << std::endl;
+                    }
                     ModelParams::setMaxScreenFracH(it.value());
                 }
                 else {
-                    cerr << "Unexpected entry in SimulationParams section of json file: "
-                    << it.key() << " : " << it.value() << endl;
+                    std::cerr << "Unexpected entry in SimulationParams section of json file: "
+                        << it.key() << " : " << it.value() << std::endl;
                 }
             }
         }
@@ -337,31 +399,45 @@ void processJsonFile(ifstream& ifs)
         auto itEnv = j.find("Environment");
         if ((itSP != j.end()) && (itSP->is_object()))
         {
-            cout << "~~~~~ Environment Params ~~~~~" << endl;
+            if (verbose) {
+                std::cout << "~~~~~ Environment Params ~~~~~" << std::endl;
+            }
             for (json::iterator it = itEnv->begin(); it != itEnv->end(); ++it)
             {
                 if (it.key() == "env-size-x" && it.value().is_number()) {
-                    cout << "Env size x -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Env size x -> " << it.value() << std::endl;
+                    }
                     ModelParams::setEnvSizeX(it.value());
                 }
                 else if (it.key() == "env-size-y" && it.value().is_number()) {
-                    cout << "Env size y -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Env size y -> " << it.value() << std::endl;
+                    }
                     ModelParams::setEnvSizeY(it.value());
                 }
                 else if (it.key() == "default-ambient-temp" && it.value().is_number()) {
-                    cout << "Default ambient temp -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Default ambient temp -> " << it.value() << std::endl;
+                    }
                     ModelParams::setEnvDefaultAmbientTemp(it.value());
                 }
                 else if (it.key() == "background-reflectance-mp" && it.value().is_number()) {
-                    cout << "Default background reflectance MP -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Default background reflectance MP -> " << it.value() << std::endl;
+                    }
                     ModelParams::setEnvBackgroundReflectanceMP(it.value());
                 }
                 else if (it.key() == "repro-global-density-constrained" && it.value().is_boolean()) {
-                    cout << "Reproduction global density constrained -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Reproduction global density constrained -> " << it.value() << std::endl;
+                    }
                     ModelParams::setReproGlobalDensityConstrained(it.value());
                 }
                 else if (it.key() == "repro-global-density-max" && it.value().is_number()) {
-                    cout << "Reproduction global density max -> " << it.value() << endl;
+                    if (verbose) {
+                        std::cout << "Reproduction global density max -> " << it.value() << std::endl;
+                    }
                     ModelParams::setReproGlobalDensityMax(it.value());
                 }
                 else if (it.key() == "Hives" && it.value().is_object()) {
@@ -376,9 +452,9 @@ void processJsonFile(ifstream& ifs)
                             ModelParams::addHiveConfig(hc);
                         }
                         else {
-                            cerr << "Unexpected entry in Hives section of json file: "
-                            << itHives.key() << " : " << itHives.value() << endl;
-                        }                    
+                            std::cerr << "Unexpected entry in Hives section of json file: "
+                                << itHives.key() << " : " << itHives.value() << std::endl;
+                        }
                     }
                 }
                 else if (it.key() == "PlantTypeDistributions" && it.value().is_object()) {
@@ -393,14 +469,14 @@ void processJsonFile(ifstream& ifs)
                             ModelParams::addPlantTypeDistributionConfig(pc);
                         }
                         else {
-                            cerr << "Unexpected entry in PlantTypeDistributions section of json file: "
-                            << itPTDs.key() << " : " << itPTDs.value() << endl;
-                        }                    
+                            std::cerr << "Unexpected entry in PlantTypeDistributions section of json file: "
+                                << itPTDs.key() << " : " << itPTDs.value() << std::endl;
+                        }
                     }
                 }
                 else {
-                    cerr << "Unexpected entry in Environment section of json file: "
-                    << it.key() << " : " << it.value() << endl;
+                    std::cerr << "Unexpected entry in Environment section of json file: "
+                        << it.key() << " : " << it.value() << std::endl;
                 }
             }
         }
@@ -419,10 +495,10 @@ void processJsonFile(ifstream& ifs)
                     ModelParams::addPlantTypeConfig(pc);
                 }
                 else {
-                    cerr << "Unexpected entry in PlantTypes section of json file: "
-                    << itPT.key() << " : " << itPT.value() << endl;
-                }                    
-            }            
+                    std::cerr << "Unexpected entry in PlantTypes section of json file: "
+                        << itPT.key() << " : " << itPT.value() << std::endl;
+                }
+            }
         }
 
 
@@ -433,23 +509,23 @@ void processJsonFile(ifstream& ifs)
             for (json::iterator itP = itPs->begin(); itP != itPs->end(); ++itP)
             {
                 const std::string& key = itP.key();
-                if ((key.compare(0, PKey.size(), PKey) == 0) && 
+                if ((key.compare(0, PKey.size(), PKey) == 0) &&
                     itP.value().is_object())
                 {
                     PollinatorConfig pc = itP.value();
                     ModelParams::addPollinatorConfig(pc);
                 }
                 else {
-                    cerr << "Unexpected entry in Pollinators section of json file: "
-                    << itP.key() << " : " << itP.value() << endl;
-                }                    
-            }            
-        }           
+                    std::cerr << "Unexpected entry in Pollinators section of json file: "
+                        << itP.key() << " : " << itP.value() << std::endl;
+                }
+            }
+        }
 
     }
     catch (json::exception &e)
     {
-        cerr << "Unexpected error when reading JSON file : " << e.what() << endl;
+        std::cerr << "Unexpected error when reading JSON file : " << e.what() << std::endl;
         exit(1);
     }
 }

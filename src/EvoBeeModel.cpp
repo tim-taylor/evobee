@@ -61,12 +61,10 @@ void EvoBeeModel::seedRng()
                       newSeedStr.end(),
                       [alphanum]() { return alphanum[rand() % alphanum.length()]; });
 
-        //std::cout << "Using generated RNG seed " << newSeedStr << std::endl;
-        
         // having generated a seed string, now use it to seed the RNG!
-        std::seed_seq seed1(newSeedStr.begin(), newSeedStr.end());   
+        std::seed_seq seed1(newSeedStr.begin(), newSeedStr.end());
         m_sRngEngine.seed(seed1);
-        
+
         // and store the generated seed string back in ModelParams
         ModelParams::setRngSeedStr(newSeedStr, true);
     }
@@ -86,7 +84,10 @@ void EvoBeeModel::seedRng()
  */
 void EvoBeeModel::step()
 {
-    std::cout << "Model gen " << m_iGen << ", step " << m_iStep << std::endl;
+    if (ModelParams::verbose())
+    {
+        std::cout << "Model gen " << m_iGen << ", step " << m_iStep << std::endl;
+    }
 
     // first allow all pollinators to update
     auto pollinators = m_Env.getAllPollinators();
@@ -96,12 +97,12 @@ void EvoBeeModel::step()
         pol->step();
     }
 
-    ++m_iStep;    
+    ++m_iStep;
 }
 
 
 /**
- * Initialise a new generation. 
+ * Initialise a new generation.
  * We need to construct a new generation of plants based upon those successfully
  * pollinated in the previous generation, taking into acconut any refuges and/or
  * restrictions to seed flow.
