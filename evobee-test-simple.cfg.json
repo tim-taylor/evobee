@@ -1,0 +1,120 @@
+{
+    "SimulationParams" : {
+        "generation-termination-type" : "num-sim-steps",
+        "comment1" : "[num-sim-steps|pollinated-fraction|<num-pollinator-steps>]",
+        "generation-termination-param" : 50,
+        "sim-termination-num-gens" : 50,
+        "rng-seed" : "",
+        "visualisation" : false,
+        "vis-update-period" : 100,
+        "vis-delay-per-frame" : 0,
+        "vis-pollinator-trails" : true,
+        "vis-max-screen-frac-w" : 0.85,
+        "vis-max-screen-frac-h" : 0.85,
+        "logging" : true,
+        "log-flags" : "f",
+        "comment-log-flags-1" : "P: all pollinator positions every log-update-period steps",
+        "comment-log-flags-2" : "F: all flowers at end of each generation",
+        "comment-log-flags-3" : "f: summary flower stats at end of each generation",
+        "log-update-period" : 5,
+        "log-dir" : "output/test",
+        "log-run-name" : "simple",
+        "verbose" : true
+    },
+    "Environment" : {
+        "env-size-x" : 100,
+        "env-size-y" : 100,
+        "background-reflectance-mp" : 500,
+        "default-ambient-temp": 20.0,
+        "repro-global-density-constrained" : true,
+        "repro-global-density-max" : 0.2,
+        "Hives" : {
+            "Hive1" : {
+                "pollinator-type" : "HoneyBee",
+                "pollinator-number" : 100,
+                "start-from-hive" : false,
+                "pos-x" : 49,
+                "pos-y" : 49,
+                "area-top-left-x" : 0,
+                "area-top-left-y" : 0,
+                "area-bottom-right-x" : 99,
+                "area-bottom-right-y" : 99,
+                "migration-allowed" : true,
+                "migration-restricted" : false,
+                "migration-prob" : 0.5
+            }
+        },
+        "PlantTypeDistributions" : {
+            "PlantTypeDistribution1" : {
+                "species" : "PlantSpecies1",
+                "area-top-left-x" : 0,
+                "area-top-left-y" : 0,
+                "area-bottom-right-x" : 99,
+                "area-bottom-right-y" : 99,
+                "density" : 0.5,
+                "refuge" : false,
+                "refuge-alien-inflow-prob" : 0.5,
+                "seed-outflow-allowed" : true,
+                "seed-outflow-restricted" : false,
+                "seed-outflow-prob" : 0.5,
+                "repro-local-density-constrained" : false,
+                "repro-local-density-max" : 0.2
+            },
+            "PlantTypeDistribution2" : {
+                "species" : "PlantSpecies2",
+                "area-top-left-x" : 0,
+                "area-top-left-y" : 0,
+                "area-bottom-right-x" : 99,
+                "area-bottom-right-y" : 99,
+                "density" : 0.5,
+                "refuge" : false,
+                "refuge-alien-inflow-prob" : 0.5,
+                "seed-outflow-allowed" : true,
+                "seed-outflow-restricted" : false,
+                "seed-outflow-prob" : 0.5,
+                "repro-local-density-constrained" : false,
+                "repro-local-density-max" : 0.2
+            }
+        }
+    },
+    "PlantTypes" : {
+        "PlantType1" : {
+            "species" : "PlantSpecies1",
+            "flower-reflectance-mp-init-min" : 360,
+            "flower-reflectance-mp-init-max" : 430,
+            "anther-init-pollen" : 100,
+            "anther-pollen-transfer-per-visit" : 10,
+            "stigma-max-pollen-capacity" : 5,
+            "pollen-clogging" : "",
+            "repro-seed-dispersal-global" : true,
+            "repro-seed-dispersal-radius" : 1.0,
+            "comment0" : "items below this line in PlantType not currently used",
+            "nectar-reward" : 10,
+            "comment1" : "plus replenish rate for all of these things - ",
+            "comment2" : "if second bee visits, does it get the same reward or none;",
+            "comment3" : "replenish, instant or n per timestep",
+            "comment4" : "flower handling time; self-pollination allowed"
+        },
+        "PlantType2" : {
+            "species" : "PlantSpecies2",
+            "flower-reflectance-mp-init-min" : 431,
+            "flower-reflectance-mp-init-max" : 500,
+            "anther-init-pollen" : 100,
+            "anther-pollen-transfer-per-visit" : 10,
+            "stigma-max-pollen-capacity" : 5,
+            "pollen-clogging" : "",
+            "repro-seed-dispersal-global" : true,
+            "repro-seed-dispersal-radius" : 1.0
+        }
+    },
+    "Pollinators" : {
+        "Pollinator1" : {
+            "species" : "HoneyBee",
+            "bout-length" : 100,
+            "max-pollen-capacity" : 0,
+            "pollen-deposit-per-flower-visit" : 3,
+            "pollen-loss-in-air" : 0,
+            "pollen-carryover-num-visits" : 100
+        }
+    }
+}
