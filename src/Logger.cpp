@@ -243,8 +243,18 @@ void Logger::transferFilesToFinalDir()
             fs::path mainLogFileFinalPath = finalDirPath / m_strMainLogFilename;
             fs::path configFileFinalPath = finalDirPath / m_strConfigFilename;
 
-            fs::rename(m_MainLogFilePath, mainLogFileFinalPath);
-            fs::rename(m_ConfigFilePath, configFileFinalPath);
+            // NB to move the files from their current location to their final destination,
+            // we first copy them to the new location, then delete the old files. We do this
+            // in two steps rather than using the single fs::rename method, because the latter
+            // is susceptible to problems if the two directories are mounted on different
+            // volumes (for more info, see, e.g.
+            // https://stackoverflow.com/questions/24209886/invalid-cross-device-link-error-with-boost-filesystem
+
+            fs::copy(m_MainLogFilePath, mainLogFileFinalPath);
+            fs::copy(m_ConfigFilePath, configFileFinalPath);
+
+            fs::remove(m_MainLogFilePath);
+            fs::remove(m_ConfigFilePath);
         }
         catch (std::exception& e)
         {
