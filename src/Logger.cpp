@@ -212,8 +212,8 @@ std::ofstream Logger::openLogFile()
 }
 
 
-// if m_strLogFinalDir has been set, then we need to transfer all log files from this run
-// from m_strLogDir to m_strLogFinalDir at the end of the run
+// if ModelParams::m_strLogFinalDir has been set, then we need to transfer all log files
+// from this run from m_strLogDir to m_strLogFinalDir at the end of the run
 void Logger::transferFilesToFinalDir()
 {
     const std::string& strLogFinalDir = ModelParams::getLogFinalDir();
@@ -247,7 +247,7 @@ void Logger::transferFilesToFinalDir()
             // we first copy them to the new location, then delete the old files. We do this
             // in two steps rather than using the single fs::rename method, because the latter
             // is susceptible to problems if the two directories are mounted on different
-            // volumes (for more info, see, e.g.
+            // volumes; for more info see, e.g.,
             // https://stackoverflow.com/questions/24209886/invalid-cross-device-link-error-with-boost-filesystem
 
             fs::copy(m_MainLogFilePath, mainLogFileFinalPath);
