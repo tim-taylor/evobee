@@ -195,4 +195,8 @@ void EvoBeeExperiment::run()
             break;
         }
     }
+
+    // at end of run, transfer all log files to the final destitination directory
+    // if one has been specified
+    m_Logger.transferFilesToFinalDir();
 }

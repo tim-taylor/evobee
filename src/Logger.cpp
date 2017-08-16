@@ -67,8 +67,12 @@ Logger::Logger(EvoBeeModel* pModel) :
             m_strFilePrefix = ModelParams::getLogRunName() + ts.str();
 
             // set name of main log file
-            std::string filename {m_strFilePrefix + m_strMainLogFileSuffix};
-            m_MainLogFile = m_LogDir / filename;
+            m_strMainLogFilename = m_strFilePrefix + m_strMainLogFileSuffix;
+            m_MainLogFilePath = m_LogDir / m_strMainLogFilename;
+
+            // set name of expt config file log
+            m_strConfigFilename = m_strFilePrefix + m_strConfigFileSuffix;
+            m_ConfigFilePath = m_LogDir / m_strConfigFilename;
         }
         catch (std::exception& e)
         {
@@ -88,13 +92,12 @@ void Logger::logExptSetup()
 {
     assert(ModelParams::logging());
 
-    std::string filename {m_strFilePrefix + m_strConfigFileSuffix};
-    fs::path fullname {m_LogDir / filename};
-    std::ofstream ofs {fullname};
+    // output a copy of the experiment's JSON config file
+    std::ofstream ofs {m_ConfigFilePath};
     if (!ofs)
     {
         std::stringstream msg;
-        msg << "Unable to open log file " << fullname << " for writing";
+        msg << "Unable to open log file " << m_ConfigFilePath << " for writing";
         throw std::runtime_error(msg.str());
     }
     ofs << std::setw(4) << ModelParams::getJson() << std::endl;
@@ -197,13 +200,55 @@ std::ofstream Logger::openLogFile()
     assert(ModelParams::logging());
 
     // open log file for appending
-    std::ofstream ofs {m_MainLogFile, std::ofstream::app};
+    std::ofstream ofs {m_MainLogFilePath, std::ofstream::app};
     if (!ofs)
     {
         std::stringstream msg;
-        msg << "Unable to open log file " << m_MainLogFile << " for writing";
+        msg << "Unable to open log file " << m_MainLogFilePath << " for writing";
         throw std::runtime_error(msg.str());
     }
 
     return ofs; // the compiler should use the move assignment operator here
+}
+
+
+// if m_strLogFinalDir has been set, then we need to transfer all log files from this run
+// from m_strLogDir to m_strLogFinalDir at the end of the run
+void Logger::transferFilesToFinalDir()
+{
+    const std::string& strLogFinalDir = ModelParams::getLogFinalDir();
+
+    if (!strLogFinalDir.empty())
+    {
+        fs::path finalDirPath {strLogFinalDir};
+
+        try
+        {
+            if (fs::exists(finalDirPath))
+            {
+                if (!fs::is_directory(finalDirPath))
+                {
+                    // file exists but it is not a directory!
+                    std::stringstream msg;
+                    msg << "Cannot use specified final log directory " << finalDirPath
+                        << ": exists but not a directory";
+                    throw std::runtime_error(msg.str());
+                }
+            }
+            else
+            {
+                fs::create_directories(finalDirPath);
+            }
+
+            fs::path mainLogFileFinalPath = finalDirPath / m_strMainLogFilename;
+            fs::path configFileFinalPath = finalDirPath / m_strConfigFilename;
+
+            fs::rename(m_MainLogFilePath, mainLogFileFinalPath);
+            fs::rename(m_ConfigFilePath, configFileFinalPath);
+        }
+        catch (std::exception& e)
+        {
+            std::cerr << "Unable to move log files to final destination directory:" << e.what() << std::endl;
+        }
+    }
 }

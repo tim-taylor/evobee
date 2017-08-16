@@ -337,6 +337,12 @@ void processJsonFile(std::ifstream& ifs)
                     }
                     ModelParams::setLogDir(it.value());
                 }
+                else if (it.key() == "log-final-dir" && it.value().is_string()) {
+                    if (verbose) {
+                        std::cout << "Log final dir -> '" << it.value() << "'" << std::endl;
+                    }
+                    ModelParams::setLogFinalDir(it.value());
+                }
                 else if (it.key() == "log-run-name" && it.value().is_string()) {
                     if (verbose) {
                         std::cout << "Log run name -> '" << it.value() << "'" << std::endl;

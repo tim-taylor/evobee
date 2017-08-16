@@ -23,7 +23,7 @@ class Logger {
 public:
     Logger(EvoBeeModel* pModel);
     ~Logger();
-    
+
     /**
      *
      */
@@ -44,15 +44,23 @@ public:
      */
     void logFlowersSummary();
 
+    /**
+     *
+     */
+    void transferFilesToFinalDir();
+
 private:
 
     std::ofstream openLogFile(); // a private helper method
-    
+
     std::experimental::filesystem::path m_LogDir;
-    std::experimental::filesystem::path m_MainLogFile;
+    std::experimental::filesystem::path m_MainLogFilePath;
+    std::experimental::filesystem::path m_ConfigFilePath;
     std::string m_strFilePrefix;
     std::string m_strConfigFileSuffix;
     std::string m_strMainLogFileSuffix;
+    std::string m_strConfigFilename;
+    std::string m_strMainLogFilename;
 
     EvoBeeModel* m_pModel;
     Environment* m_pEnv;

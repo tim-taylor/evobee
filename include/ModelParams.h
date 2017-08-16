@@ -45,6 +45,9 @@ public:
     static void setLogFlags(const std::string& flags);
     static void setLogUpdatePeriod(int p);
     static void setLogThreads(bool useThreads) {m_bUseLogThreads = useThreads;}
+    static void setLogDir(const std::string& dir);
+    static void setLogFinalDir(const std::string& dir);
+    static void setLogRunName(const std::string& name);
     static void setVerbose(bool verbose) {m_bVerbose = verbose;}
     static void setInitialised();
     static void setSimTerminationNumGens(int gens);
@@ -54,8 +57,7 @@ public:
     static void setGenTerminationIntParam(int p);
     static void setGenTerminationFloatParam(float p);
     static void setRngSeedStr(const std::string& seed, bool bRewriteJsonEntry = false);
-    static void setLogDir(const std::string& dir);
-    static void setLogRunName(const std::string& name);
+
 
     static void addHiveConfig(HiveConfig& hc);
     static void addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc);
@@ -84,6 +86,7 @@ public:
     static bool  logPollinatorsFull() {return m_bLogPollinatorsFull;}
     static bool  logFlowersFull() {return m_bLogFlowersFull;}
     static bool  logFlowersSummary() {return m_bLogFlowersSummary;}
+    static bool  logFinalDirSet() {return !m_strLogFinalDir.empty();}
     static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
     static bool  useLogThreads() {return m_bUseLogThreads;}
     static bool  verbose() {return m_bVerbose;}
@@ -94,6 +97,7 @@ public:
     static MarkerPoint getEnvBackgroundReflectanceMP() {return m_EnvBackgroundReflectanceMP;}
     static const std::string& getRngSeedStr() {return m_strRngSeed;}
     static const std::string& getLogDir() {return m_strLogDir;}
+    static const std::string& getLogFinalDir() {return m_strLogFinalDir;}
     static const std::string& getLogRunName() {return m_strLogRunName;}
     static const std::vector<HiveConfig>& getHiveConfigs() {return m_Hives;}
     static const std::vector<PlantTypeDistributionConfig>& getPlantTypeDistributionConfigs() {return m_PlantDists;}
@@ -128,7 +132,9 @@ private:
     static bool  m_bLogFlowersFull;         ///< Log full flower info at end of each generation
     static bool  m_bLogFlowersSummary;      ///< Log summary flower info at end of each generation
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
-    static std::string m_strLogDir;         ///< Directory name for logging output
+    static std::string m_strLogDir;         ///< Directory name for logging output during a run
+    static std::string m_strLogFinalDir;    ///< Directory to which to move all log files at end of run
+                                            ///<   (if blank, files are kept in m_strLogDir)
     static std::string m_strLogRunName;     ///< Run name to be used as prefix for log filenames
     static bool  m_bUseLogThreads;          ///< Use a separate thread for writing log files?
     static bool  m_bVerbose;                ///< Should progress messages be printed on stdout?
