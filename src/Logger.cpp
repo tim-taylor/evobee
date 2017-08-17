@@ -13,6 +13,7 @@
 #include <string>
 #include <experimental/filesystem>
 #include <chrono>
+#include "evobeeConfig.h"
 #include "EvoBeeModel.h"
 #include "Environment.h"
 #include "Pollinator.h"
@@ -26,6 +27,7 @@ using json = nlohmann::json;
 Logger::Logger(EvoBeeModel* pModel) :
     m_strConfigFileSuffix {"-config.json"},
     m_strMainLogFileSuffix {"-log.txt"},
+    m_strRunInfoFileSuffix {"-info.txt"},
     m_pModel(pModel)
 {
     assert(ModelParams::initialised());
@@ -73,6 +75,10 @@ Logger::Logger(EvoBeeModel* pModel) :
             // set name of expt config file log
             m_strConfigFilename = m_strFilePrefix + m_strConfigFileSuffix;
             m_ConfigFilePath = m_LogDir / m_strConfigFilename;
+
+            // set name of run info file
+            m_strRunInfoFilename = m_strFilePrefix + m_strRunInfoFileSuffix;
+            m_RunInfoFilePath = m_LogDir / m_strRunInfoFilename;
         }
         catch (std::exception& e)
         {
@@ -93,16 +99,27 @@ void Logger::logExptSetup()
     assert(ModelParams::logging());
 
     // output a copy of the experiment's JSON config file
-    std::ofstream ofs {m_ConfigFilePath};
-    if (!ofs)
+    std::ofstream ofs1 {m_ConfigFilePath};
+    if (!ofs1)
     {
         std::stringstream msg;
         msg << "Unable to open log file " << m_ConfigFilePath << " for writing";
         throw std::runtime_error(msg.str());
     }
-    ofs << std::setw(4) << ModelParams::getJson() << std::endl;
+    ofs1 << std::setw(4) << ModelParams::getJson() << std::endl;
 
-    ///@todo also log header info at top of log file (e.g. program version number)
+    // output general run info (e.g. program version number, etc)
+    std::ofstream ofs2 {m_RunInfoFilePath};
+    if (!ofs2)
+    {
+        std::stringstream msg;
+        msg << "Unable to open run info file " << m_RunInfoFilePath << " for writing";
+        throw std::runtime_error(msg.str());
+    }
+    ofs2 << "Git branch = " << evobee_GIT_BRANCH << std::endl
+         << "Git commit hash = " << evobee_GIT_COMMIT_HASH << std::endl
+         << "Program version = " << evobee_VERSION_MAJOR << "." << evobee_VERSION_MINOR
+         << "." << evobee_VERSION_PATCH << "." << evobee_VERSION_TWEAK << std::endl;
 }
 
 
@@ -241,7 +258,8 @@ void Logger::transferFilesToFinalDir()
             }
 
             fs::path mainLogFileFinalPath = finalDirPath / m_strMainLogFilename;
-            fs::path configFileFinalPath = finalDirPath / m_strConfigFilename;
+            fs::path configFileFinalPath  = finalDirPath / m_strConfigFilename;
+            fs::path runInfoFileFinalPath = finalDirPath / m_strRunInfoFilename;
 
             // NB to move the files from their current location to their final destination,
             // we first copy them to the new location, then delete the old files. We do this
@@ -251,10 +269,12 @@ void Logger::transferFilesToFinalDir()
             // https://stackoverflow.com/questions/24209886/invalid-cross-device-link-error-with-boost-filesystem
 
             fs::copy(m_MainLogFilePath, mainLogFileFinalPath);
-            fs::copy(m_ConfigFilePath, configFileFinalPath);
+            fs::copy(m_ConfigFilePath,  configFileFinalPath);
+            fs::copy(m_RunInfoFilePath, runInfoFileFinalPath);
 
             fs::remove(m_MainLogFilePath);
             fs::remove(m_ConfigFilePath);
+            fs::remove(m_RunInfoFilePath);
         }
         catch (std::exception& e)
         {

@@ -6,7 +6,9 @@
  * to values in the CMake file (e.g. program version number).
  */
 
-#define evobee_VERSION_MAJOR @evobee_VERSION_MAJOR@
-#define evobee_VERSION_MINOR @evobee_VERSION_MINOR@
-#define evobee_VERSION_PATCH @evobee_VERSION_PATCH@
-#define evobee_VERSION_TWEAK @evobee_VERSION_TWEAK@
+#define evobee_VERSION_MAJOR "@evobee_VERSION_MAJOR@"
+#define evobee_VERSION_MINOR "@evobee_VERSION_MINOR@"
+#define evobee_VERSION_PATCH "@evobee_VERSION_PATCH@"
+#define evobee_VERSION_TWEAK "@evobee_VERSION_TWEAK@"
+#define evobee_GIT_BRANCH "@GIT_BRANCH@"
+#define evobee_GIT_COMMIT_HASH "@GIT_COMMIT_HASH@"

@@ -9,6 +9,27 @@ set(CMAKE_PREFIX_PATH "/home/ttay0006/evobee/code/sdl2")
 set(CMAKE_LIBRARY_PATH "/home/ttay0006/evobee/code/sdl2/lib")
 link_directories("/home/ttay0006/evobee/code/sdl2/lib")
 
+
+# The following lines query the current git branch and commit hash.
+# Later in this file we make these available to the C++ code by using configure_file()
+#
+# Get the current working branch
+execute_process(
+    COMMAND git rev-parse --abbrev-ref HEAD
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_BRANCH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+# Get the latest abbreviated commit hash of the working branch
+execute_process(
+#COMMAND git log -1 --format=%h
+    COMMAND git rev-parse --short HEAD
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_COMMIT_HASH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+
 # The following include is just for integration with the Visual Studio Code editor
 # It is specified as optional, so the rest of the build process will continue as
 # normal if this isn't available on your system
