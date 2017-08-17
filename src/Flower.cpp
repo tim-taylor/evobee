@@ -29,7 +29,6 @@ Flower::Flower( FloweringPlant* pPlant,
     m_pPlant(pPlant),
     m_iAntherPollenTransferPerVisit(ptc.antherPollenTransferPerVisit),
     m_iStigmaMaxPollenCapacity(ptc.stigmaMaxPollenCapacity),
-    //m_bPollenClogging(ptc.pollenClogging),
     m_bPollenCloggingAll(ptc.pollenCloggingAll),
     m_bPollenCloggingPartial(ptc.pollenCloggingPartial),
     m_CloggingSpeciesVec(pPlant->getCloggingSpeciesVec())
@@ -51,7 +50,6 @@ Flower::Flower( FloweringPlant* pPlant,
     m_pPlant(pPlant),
     m_iAntherPollenTransferPerVisit(pPlant->m_pPlantTypeConfig->antherPollenTransferPerVisit),
     m_iStigmaMaxPollenCapacity(pPlant->m_pPlantTypeConfig->stigmaMaxPollenCapacity),
-    //m_bPollenClogging(pPlant->m_pPlantTypeConfig->pollenClogging),
     m_bPollenCloggingAll(pPlant->m_pPlantTypeConfig->pollenCloggingAll),
     m_bPollenCloggingPartial(pPlant->m_pPlantTypeConfig->pollenCloggingPartial),
     m_CloggingSpeciesVec(parentFlower.m_CloggingSpeciesVec)
@@ -71,7 +69,6 @@ Flower::Flower(const Flower& other) :
     m_pPlant(other.m_pPlant),
     m_iAntherPollenTransferPerVisit(other.m_iAntherPollenTransferPerVisit),
     m_iStigmaMaxPollenCapacity(other.m_iStigmaMaxPollenCapacity),
-    //m_bPollenClogging(other.m_bPollenClogging),
     m_bPollenCloggingAll(other.m_bPollenCloggingAll),
     m_bPollenCloggingPartial(other.m_bPollenCloggingPartial),
     m_CloggingSpeciesVec(other.m_CloggingSpeciesVec)
@@ -100,7 +97,6 @@ Flower::Flower(Flower&& other) noexcept :
     m_pPlant(other.m_pPlant),
     m_iAntherPollenTransferPerVisit(other.m_iAntherPollenTransferPerVisit),
     m_iStigmaMaxPollenCapacity(other.m_iStigmaMaxPollenCapacity),
-    //m_bPollenClogging(other.m_bPollenClogging),
     m_bPollenCloggingAll(other.m_bPollenCloggingAll),
     m_bPollenCloggingPartial(other.m_bPollenCloggingPartial),
     m_CloggingSpeciesVec(other.m_CloggingSpeciesVec)
@@ -165,7 +161,6 @@ void Flower::copyCommon(const Flower& other) noexcept
     m_pPlant = other.m_pPlant;
     m_iAntherPollenTransferPerVisit = other.m_iAntherPollenTransferPerVisit;
     m_iStigmaMaxPollenCapacity = other.m_iStigmaMaxPollenCapacity;
-    //m_bPollenClogging = other.m_bPollenClogging;
     m_bPollenCloggingAll = other.m_bPollenCloggingAll;
     m_bPollenCloggingPartial = other.m_bPollenCloggingPartial;
     //m_CloggingSpeciesVec = other.m_CloggingSpeciesVec; // can't copy this as it is constant!

@@ -82,7 +82,7 @@ public:
 
     /**
      * Return the id of the locality to which this patch belongs.
-     * The locality id of a patch is equal to the id of the PlentTypeDistributionConfig
+     * The locality id of a patch is equal to the id of the PlantTypeDistributionConfig
      * that sets constraints on seed flow etc for this patch (see Patch::setReproConstraints,
      * which is called by Environment::initialisePlants at the start of the run).
      */

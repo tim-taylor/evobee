@@ -38,7 +38,7 @@ public:
     Pollinator(Pollinator&& other) noexcept;
     virtual ~Pollinator() noexcept;
     Pollinator& operator= (const Pollinator& other);
-    Pollinator& operator= (Pollinator&& other) noexcept;    
+    Pollinator& operator= (Pollinator&& other) noexcept;
 
     /**
      * Peform a complete reset of this pollinator to its initial state,
@@ -122,29 +122,29 @@ protected:
     void moveRandom(/*bool allowOffEnv = false,*/ float stepLength = 1.0);
 
     /**
-     * Move by the given distance in a direction biassed by the experimental 
+     * Move by the given distance in a direction biassed by the experimental
      * bee flight data recorded by Waddington
-     */    
+     */
     bool moveBiassed(bool allowOffEnv = false, float stepLength = 1.0);
 
     /**
-     * Move according to a Levy flight pattern: direction of travel is 
+     * Move according to a Levy flight pattern: direction of travel is
      * uniform random, and distance travelled is selected according to a
      * specific probability distribution (TBC)
-     */    
+     */
     bool moveLevy(bool allowOffEnv = false, float stepLength = 1.0);
 
     /**
-     * Reset this pollinator's allowed movement area according to the 
+     * Reset this pollinator's allowed movement area according to the
      * ReproRestrictionArea constraints of the current Patch
      */
     void resetMovementArea();
 
     /**
-     * Increment the landing count of each Pollen grain in the store. 
+     * Increment the landing count of each Pollen grain in the store.
      * This method should be called each time a Pollinator lands on a flower.
-     * Note that this method does not remove any Pollen from the store; to 
-     * remove grains that now exceed their carryover limit, call 
+     * Note that this method does not remove any Pollen from the store; to
+     * remove grains that now exceed their carryover limit, call
      * removeOldCarryoverPollen() afterwards.
      */
     void updatePollenLandingCount();
@@ -166,7 +166,7 @@ protected:
     /**
      * Collect pollen from flower if available, and add to our store.
      * If our store exceeds its maximum capacity after collecting new pollen,
-     * a random selection of pollen grains are deleted from the store to 
+     * a random selection of pollen grains are deleted from the store to
      * bring it back down to its capacity.
      */
     void collectPollenFromAnther(Flower* pFlower);
@@ -208,9 +208,7 @@ protected:
                                                   */
 
     /*
-    position (float)
     controller (commute speed, steering tendancy [random, biased, levy], )
-    load capacity
     flower handling time
     [mass, shape]
     visual acuity spec
@@ -228,13 +226,13 @@ private:
      * Helper method to reposition the pollinator within the allowed area
      * specifed by the Hive after it has attempted to move beyond its limits
      */
-    void repositionInAllowedArea(fPos delta); 
+    void repositionInAllowedArea(fPos delta);
 
     /*
      * Helper method to reposition the pollinator within the specified area
      * after it has attempted to move beyond its limits
      */
-    void repositionInArea(fPos delta, float minx, float miny, float maxx, float maxy);    
+    void repositionInArea(fPos delta, float minx, float miny, float maxx, float maxy);
 
     /**
      * Record of next available unique ID number to be assigned to a new Pollinator
@@ -243,7 +241,7 @@ private:
 
     /**
      * String description of the Pollinator type, for use in log files
-     */    
+     */
     static std::string m_sTypeNameStr;
 };
 
