@@ -1,14 +1,12 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
-project(evobee VERSION 0.1.1.1 LANGUAGES CXX C)
+project(evobee VERSION 1.0.0.0 LANGUAGES CXX C)
 
 # Specification of custom installation prefixes for required libraries
 # At present, we have just added the location of the manual build of the SDL2
 # library on MonARCH
-#set(CMAKE_PREFIX_PATH "/home/ttay0006/evobee/code/sdl2;/home/ttay0006/evobee/code/sdl2_image")
 set(CMAKE_PREFIX_PATH "/home/ttay0006/evobee/code/sdl2")
 set(CMAKE_LIBRARY_PATH "/home/ttay0006/evobee/code/sdl2/lib")
 link_directories("/home/ttay0006/evobee/code/sdl2/lib")
-
 
 # The following lines query the current git branch and commit hash.
 # Later in this file we make these available to the C++ code by using configure_file()
@@ -22,13 +20,11 @@ execute_process(
 )
 # Get the latest abbreviated commit hash of the working branch
 execute_process(
-#COMMAND git log -1 --format=%h
     COMMAND git rev-parse --short HEAD
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     OUTPUT_VARIABLE GIT_COMMIT_HASH
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
-
 
 # The following include is just for integration with the Visual Studio Code editor
 # It is specified as optional, so the rest of the build process will continue as
@@ -104,9 +100,9 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/include"
     "${SDL2_GFX_SRCDIR}"
     "${JSON_SRCDIR}"
-    ${SDL2_INCLUDE_DIRS}
-    ${SDL2IMAGE_INCLUDE_DIRS}
-    ${Boost_INCLUDE_DIRS}
+    "${SDL2_INCLUDE_DIRS}"
+    "${SDL2IMAGE_INCLUDE_DIRS}"
+    "${Boost_INCLUDE_DIRS}"
 )
 
 # build targets
@@ -129,8 +125,3 @@ target_compile_features(evobee
     #PRIVATE
     #    cxx_variadic_templates
 )
-
-
-#### not used below this line ##################################
-#install (TARGETS evobee DESTINATION bin)
-#install (FILES "${PROJECT_BINARY_DIR}/evobeeConfig.h" DESTINATION include)
