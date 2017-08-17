@@ -116,6 +116,8 @@ const PlantVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>ge
 <tr class="separator:a620ef3cb617df9e9d7375ac9beffb0a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54f2cf62fd6ec676e79e17b3da4035b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPatch.html#a54f2cf62fd6ec676e79e17b3da4035b3">setReproConstraints</a> (const <a class="el" href="structPlantTypeDistributionConfig.html">PlantTypeDistributionConfig</a> &amp;pdcfg)</td></tr>
 <tr class="separator:a54f2cf62fd6ec676e79e17b3da4035b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d4691b4dc96f5677190918ef1f4a3e"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPatch.html#ab8d4691b4dc96f5677190918ef1f4a3e">getLocalityId</a> () const</td></tr>
+<tr class="separator:ab8d4691b4dc96f5677190918ef1f4a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a605d0fdd9712279c50296cfd03433951"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPatch.html#a605d0fdd9712279c50296cfd03433951">inReproRestrictionArea</a> (const <a class="el" href="classPosition.html">iPos</a> &amp;dest) const</td></tr>
 <tr class="separator:a605d0fdd9712279c50296cfd03433951"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4cbcc1347903651cb69109cb33ebab8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPatch.html#ae4cbcc1347903651cb69109cb33ebab8">seedOutflowAllowed</a> () const</td></tr>
@@ -172,7 +174,7 @@ const <a class="el" href="classPosition.html">iPos</a> &amp;&#160;</td><td class
 </div><div class="memdoc">
 <p>Create a new plant object based upon the specified config objects and add it to this patch at the specified position </p>
 
-<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00034">34</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00035">35</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
 
 </div>
 </div>
@@ -193,7 +195,35 @@ const <a class="el" href="classPosition.html">iPos</a> &amp;&#160;</td><td class
 </div><div class="memdoc">
 <p>Add an existing plant to the patch. A move constructor is used, so the instance of the plant passed in as a parameter is wiped when the method is finished. This is used during the reproduction procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00046">46</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00052">52</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ab8d4691b4dc96f5677190918ef1f4a3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8d4691b4dc96f5677190918ef1f4a3e">&#9670;&nbsp;</a></span>getLocalityId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Patch::getLocalityId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return the id of the locality to which this patch belongs. The locality id of a patch is equal to the id of the PlentTypeDistributionConfig that sets constraints on seed flow etc for this patch (see <a class="el" href="classPatch.html#a54f2cf62fd6ec676e79e17b3da4035b3">Patch::setReproConstraints</a>, which is called by Environment::initialisePlants at the start of the run). </p>
+
+<p class="definition">Definition at line <a class="el" href="Patch_8h_source.html#l00089">89</a> of file <a class="el" href="Patch_8h_source.html">Patch.h</a>.</p>
 
 </div>
 </div>
@@ -221,7 +251,7 @@ const <a class="el" href="classPosition.html">iPos</a> &amp;&#160;</td><td class
 </div><div class="memdoc">
 <p>If <a class="el" href="classPatch.html#ae4cbcc1347903651cb69109cb33ebab8">seedOutflowAllowed()</a> and <a class="el" href="classPatch.html#a555d31dc190454a8af85ccac551fdef9">seedOutflowRestricted()</a> are both true, what is the probability of successful seed flow to the destination patch? NB: you should first call inReproRestrictionArea(dest) to check whether this restruction applies at all to the destination patch under consideration (only applies if inReproRestrictionArea(dest) == false) </p>
 
-<p class="definition">Definition at line <a class="el" href="Patch_8h_source.html#l00118">118</a> of file <a class="el" href="Patch_8h_source.html">Patch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Patch_8h_source.html#l00126">126</a> of file <a class="el" href="Patch_8h_source.html">Patch.h</a>.</p>
 
 </div>
 </div>
@@ -242,7 +272,7 @@ const <a class="el" href="classPosition.html">iPos</a> &amp;&#160;</td><td class
 </div><div class="memdoc">
 <p>Is the specified destination patch within the same restricted reproduction area as this patch? If this patch has no reproduction restrictions (i.e., if m_bReproConstraintsSetExplicitly == false), then this method will always return true. </p>
 
-<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00058">58</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00064">64</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
 
 </div>
 </div>
@@ -262,7 +292,7 @@ const <a class="el" href="classPosition.html">iPos</a> &amp;&#160;</td><td class
 </div><div class="memdoc">
 <p>Delete all plants from this patch </p>
 
-<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00052">52</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00058">58</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
 
 </div>
 </div>
@@ -290,7 +320,7 @@ const <a class="el" href="classPosition.html">iPos</a> &amp;&#160;</td><td class
 </div><div class="memdoc">
 <p>During reproduction, is seed flow allowed from this patch to to a destination patch outside of this patch's restricted reproduction area? NB: you should first call inReproRestrictionArea(dest) to check whether this restruction applies at all to the destination patch under consideration (only applies if inReproRestrictionArea(dest) == false) </p>
 
-<p class="definition">Definition at line <a class="el" href="Patch_8h_source.html#l00099">99</a> of file <a class="el" href="Patch_8h_source.html">Patch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Patch_8h_source.html#l00107">107</a> of file <a class="el" href="Patch_8h_source.html">Patch.h</a>.</p>
 
 </div>
 </div>
@@ -318,7 +348,7 @@ const <a class="el" href="classPosition.html">iPos</a> &amp;&#160;</td><td class
 </div><div class="memdoc">
 <p>If <a class="el" href="classPatch.html#ae4cbcc1347903651cb69109cb33ebab8">seedOutflowAllowed()</a> is true, is the probability of successful seed flow restricted at all (i.e. probability less than 1)? NB: you should first call inReproRestrictionArea(dest) to check whether this restruction applies at all to the destination patch under consideration (only applies if inReproRestrictionArea(dest) == false) </p>
 
-<p class="definition">Definition at line <a class="el" href="Patch_8h_source.html#l00108">108</a> of file <a class="el" href="Patch_8h_source.html">Patch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Patch_8h_source.html#l00116">116</a> of file <a class="el" href="Patch_8h_source.html">Patch.h</a>.</p>
 
 </div>
 </div>
@@ -339,7 +369,7 @@ const <a class="el" href="classPosition.html">iPos</a> &amp;&#160;</td><td class
 </div><div class="memdoc">
 <p>Explicitly set the constraints on plant reproduction and seed flow for this patch. This can only be done once for each patch! If the system is trying to do it multiple times it is probably because there are overlapping PlantTypeDistributions areas which are either refuges and/or have seedFlow restrictions. These types of areas are not allowed to overlap. </p>
 
-<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00069">69</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Patch_8cpp_source.html#l00075">75</a> of file <a class="el" href="Patch_8cpp_source.html">Patch.cpp</a>.</p>
 
 </div>
 </div>

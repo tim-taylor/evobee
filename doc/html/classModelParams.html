@@ -139,6 +139,21 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogFlags</b
 <tr class="memitem:ad2895ca2a6da679fbba6073b64a19622"><td class="memItemLeft" align="right" valign="top"><a id="ad2895ca2a6da679fbba6073b64a19622"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogUpdatePeriod</b> (int p)</td></tr>
 <tr class="separator:ad2895ca2a6da679fbba6073b64a19622"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bffe930d2e2e4f09e84a43f16a7ef71"><td class="memItemLeft" align="right" valign="top"><a id="a2bffe930d2e2e4f09e84a43f16a7ef71"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogThreads</b> (bool useThreads)</td></tr>
+<tr class="separator:a2bffe930d2e2e4f09e84a43f16a7ef71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c9fe4882d21466e5fa8189d5ee9015d"><td class="memItemLeft" align="right" valign="top"><a id="a3c9fe4882d21466e5fa8189d5ee9015d"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogDir</b> (const std::string &amp;dir)</td></tr>
+<tr class="separator:a3c9fe4882d21466e5fa8189d5ee9015d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe84a42121dd7a4e901a5c779ea25973"><td class="memItemLeft" align="right" valign="top"><a id="abe84a42121dd7a4e901a5c779ea25973"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogFinalDir</b> (const std::string &amp;dir)</td></tr>
+<tr class="separator:abe84a42121dd7a4e901a5c779ea25973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6da938c291d6b5761e99e8743d5951da"><td class="memItemLeft" align="right" valign="top"><a id="a6da938c291d6b5761e99e8743d5951da"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogRunName</b> (const std::string &amp;name)</td></tr>
+<tr class="separator:a6da938c291d6b5761e99e8743d5951da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a140dfa5b521d2ca54a4088da478821d1"><td class="memItemLeft" align="right" valign="top"><a id="a140dfa5b521d2ca54a4088da478821d1"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setVerbose</b> (bool verbose)</td></tr>
+<tr class="separator:a140dfa5b521d2ca54a4088da478821d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cf960f03b391a2240af308876c321f7"><td class="memItemLeft" align="right" valign="top"><a id="a6cf960f03b391a2240af308876c321f7"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>setInitialised</b> ()</td></tr>
 <tr class="separator:a6cf960f03b391a2240af308876c321f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,12 +177,6 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>setGenTerminat
 <tr class="memitem:a2c38cd0a8ea152c15e2171fcea3a4e65"><td class="memItemLeft" align="right" valign="top"><a id="a2c38cd0a8ea152c15e2171fcea3a4e65"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>setRngSeedStr</b> (const std::string &amp;seed, bool bRewriteJsonEntry=false)</td></tr>
 <tr class="separator:a2c38cd0a8ea152c15e2171fcea3a4e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c9fe4882d21466e5fa8189d5ee9015d"><td class="memItemLeft" align="right" valign="top"><a id="a3c9fe4882d21466e5fa8189d5ee9015d"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogDir</b> (const std::string &amp;dir)</td></tr>
-<tr class="separator:a3c9fe4882d21466e5fa8189d5ee9015d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6da938c291d6b5761e99e8743d5951da"><td class="memItemLeft" align="right" valign="top"><a id="a6da938c291d6b5761e99e8743d5951da"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogRunName</b> (const std::string &amp;name)</td></tr>
-<tr class="separator:a6da938c291d6b5761e99e8743d5951da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a527508bb1264cc3e535815a5d30eb87f"><td class="memItemLeft" align="right" valign="top"><a id="a527508bb1264cc3e535815a5d30eb87f"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>addHiveConfig</b> (<a class="el" href="structHiveConfig.html">HiveConfig</a> &amp;hc)</td></tr>
 <tr class="separator:a527508bb1264cc3e535815a5d30eb87f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,6 +189,10 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>addPlantTypeCo
 <tr class="memitem:ad748e64863135affa5a0302a459c0722"><td class="memItemLeft" align="right" valign="top"><a id="ad748e64863135affa5a0302a459c0722"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>addPollinatorConfig</b> (<a class="el" href="structPollinatorConfig.html">PollinatorConfig</a> &amp;pt)</td></tr>
 <tr class="separator:ad748e64863135affa5a0302a459c0722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6385a994b94f6b01952d9c3f82edb0c5"><td class="memItemLeft" align="right" valign="top"><a id="a6385a994b94f6b01952d9c3f82edb0c5"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelParams.html#a6385a994b94f6b01952d9c3f82edb0c5">postprocess</a> ()</td></tr>
+<tr class="memdesc:a6385a994b94f6b01952d9c3f82edb0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">perform any necessary global post-processing after config file has been read in <br /></td></tr>
+<tr class="separator:a6385a994b94f6b01952d9c3f82edb0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0321538fbb586af34d7181efa7c3812d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelParams.html#a0321538fbb586af34d7181efa7c3812d">checkConsistency</a> ()</td></tr>
 <tr class="memdesc:a0321538fbb586af34d7181efa7c3812d"><td class="mdescLeft">&#160;</td><td class="mdescRight">check consistency of parameters once the whole config file has been processed  <a href="#a0321538fbb586af34d7181efa7c3812d">More...</a><br /></td></tr>
 <tr class="separator:a0321538fbb586af34d7181efa7c3812d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -231,9 +244,18 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>logFlowersFull
 <tr class="memitem:ab0abfa93c51ac546e0cbc759f34f95eb"><td class="memItemLeft" align="right" valign="top"><a id="ab0abfa93c51ac546e0cbc759f34f95eb"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>logFlowersSummary</b> ()</td></tr>
 <tr class="separator:ab0abfa93c51ac546e0cbc759f34f95eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a180c7eef6ccc7c2ca979a3ef11a5b788"><td class="memItemLeft" align="right" valign="top"><a id="a180c7eef6ccc7c2ca979a3ef11a5b788"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>logFinalDirSet</b> ()</td></tr>
+<tr class="separator:a180c7eef6ccc7c2ca979a3ef11a5b788"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bee5b31fcbffb56cb4aa51526d5c542"><td class="memItemLeft" align="right" valign="top"><a id="a6bee5b31fcbffb56cb4aa51526d5c542"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><b>getLogUpdatePeriod</b> ()</td></tr>
 <tr class="separator:a6bee5b31fcbffb56cb4aa51526d5c542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08b7e4ec1237b229dcf2beb9575c829"><td class="memItemLeft" align="right" valign="top"><a id="af08b7e4ec1237b229dcf2beb9575c829"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>useLogThreads</b> ()</td></tr>
+<tr class="separator:af08b7e4ec1237b229dcf2beb9575c829"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75643bfb8e52f1bb20a0125e8c58667b"><td class="memItemLeft" align="right" valign="top"><a id="a75643bfb8e52f1bb20a0125e8c58667b"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>verbose</b> ()</td></tr>
+<tr class="separator:a75643bfb8e52f1bb20a0125e8c58667b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f27c426fcd5aae0d475c9e8eac2630e"><td class="memItemLeft" align="right" valign="top"><a id="a6f27c426fcd5aae0d475c9e8eac2630e"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><b>getSimTerminationNumGens</b> ()</td></tr>
 <tr class="separator:a6f27c426fcd5aae0d475c9e8eac2630e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -255,6 +277,9 @@ static const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom
 <tr class="memitem:a06186664499b2114d54e322bad2ddd6e"><td class="memItemLeft" align="right" valign="top"><a id="a06186664499b2114d54e322bad2ddd6e"></a>
 static const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLogDir</b> ()</td></tr>
 <tr class="separator:a06186664499b2114d54e322bad2ddd6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cc935e1f11649d0e46a57cf88d45a3e"><td class="memItemLeft" align="right" valign="top"><a id="a4cc935e1f11649d0e46a57cf88d45a3e"></a>
+static const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLogFinalDir</b> ()</td></tr>
+<tr class="separator:a4cc935e1f11649d0e46a57cf88d45a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06aa09af0e648aa94acbdd34ef6d2f82"><td class="memItemLeft" align="right" valign="top"><a id="a06aa09af0e648aa94acbdd34ef6d2f82"></a>
 static const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLogRunName</b> ()</td></tr>
 <tr class="separator:a06aa09af0e648aa94acbdd34ef6d2f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -267,9 +292,9 @@ static const std::vector&lt; <a class="el" href="structPlantTypeDistributionConf
 <tr class="memitem:adfe5ee1f2df49ed54ee8fd71f530e370"><td class="memItemLeft" align="right" valign="top"><a id="adfe5ee1f2df49ed54ee8fd71f530e370"></a>
 static const std::vector&lt; <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPlantTypeConfigs</b> ()</td></tr>
 <tr class="separator:adfe5ee1f2df49ed54ee8fd71f530e370"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b9294ca33afb251a8887c2b86bbd47c"><td class="memItemLeft" align="right" valign="top"><a id="a9b9294ca33afb251a8887c2b86bbd47c"></a>
-static const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getPlantTypeConfig</b> (std::string species)</td></tr>
-<tr class="separator:a9b9294ca33afb251a8887c2b86bbd47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a293584313433ee6c01e37b3aa8505dd5"><td class="memItemLeft" align="right" valign="top"><a id="a293584313433ee6c01e37b3aa8505dd5"></a>
+static const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getPlantTypeConfig</b> (std::string speciesName)</td></tr>
+<tr class="separator:a293584313433ee6c01e37b3aa8505dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad61beef9d13302e1d80775b0bed7dad4"><td class="memItemLeft" align="right" valign="top"><a id="ad61beef9d13302e1d80775b0bed7dad4"></a>
 static <a class="el" href="structPollinatorConfig.html">PollinatorConfig</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getPollinatorConfigPtr</b> (const std::string &amp;pollinatorName)</td></tr>
 <tr class="separator:ad61beef9d13302e1d80775b0bed7dad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -315,7 +340,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00313">313</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00335">335</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>
@@ -344,7 +369,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
 </div><div class="memdoc">
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00198">198</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00202">202</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>
@@ -373,7 +398,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
 </div><div class="memdoc">
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00093">93</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00097">97</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>
@@ -402,7 +427,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
 </div><div class="memdoc">
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>... maybe output warning msg here and in next case? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00076">76</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00080">80</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>

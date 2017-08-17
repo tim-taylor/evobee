@@ -15,6 +15,8 @@ var classFlower =
     [ "getTemperature", "classFlower.html#abb18f858a350f19793a4eb634acf5ded", null ],
     [ "operator=", "classFlower.html#abd369d748d0e66c7e466e60fbbd6d9c2", null ],
     [ "operator=", "classFlower.html#a013ef9e00ffa7ec7e061c19d41087fe7", null ],
+    [ "pollenCloggingAll", "classFlower.html#afd2aec0992fcc93973a4033e5a54ba22", null ],
+    [ "pollenCloggingPartial", "classFlower.html#aab9c192bb39c3511332dbc8d9f9fbccb", null ],
     [ "pollinated", "classFlower.html#a50ac3a515021e85caeed9e466cb88a1e", null ],
     [ "setPlant", "classFlower.html#ac1a8566de7993aa8d5611f2d32cdcb12", null ],
     [ "transferAntherPollenToPollinator", "classFlower.html#a3523abeac646d7a2e39aa37e3f867472", null ],

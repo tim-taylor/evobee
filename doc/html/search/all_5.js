@@ -2,6 +2,7 @@ var searchData=
 [
   ['genterminationtype',['GenTerminationType',['../EvoBeeExperiment_8h.html#a89eb2b1ac459694aa8e06c8077ff7f84',1,'EvoBeeExperiment.h']]],
   ['getallpollinators',['getAllPollinators',['../classEnvironment.html#aafc0065e686b9cc51f1be60e154f075b',1,'Environment']]],
+  ['getcloggingspeciesvec',['getCloggingSpeciesVec',['../classFloweringPlant.html#ae0733673cfeb8fd6027fa2f9d0b1f9a6',1,'FloweringPlant']]],
   ['getdistance',['getDistance',['../classFloweringPlant.html#a7a88e845574355ab9625189be9d625c9',1,'FloweringPlant']]],
   ['getdistancesq',['getDistanceSq',['../classFloweringPlant.html#a9a66873a7380de9903d22e2ff4f214f2',1,'FloweringPlant']]],
   ['getenv',['getEnv',['../classEvoBeeModel.html#a92fa9871c441c64e5993672824fd4055',1,'EvoBeeModel']]],
@@ -10,6 +11,7 @@ var searchData=
   ['getflowers',['getFlowers',['../classFloweringPlant.html#a5814a23afee34f7ce9ee22e29f126543',1,'FloweringPlant']]],
   ['getgennumber',['getGenNumber',['../classEvoBeeModel.html#a980cb48b47486d875fd1562d20887890',1,'EvoBeeModel']]],
   ['getid',['getId',['../classFloweringPlant.html#a751b89d5d52d14d630663a713de9f247',1,'FloweringPlant']]],
+  ['getlocalityid',['getLocalityId',['../classPatch.html#ab8d4691b4dc96f5677190918ef1f4a3e',1,'Patch']]],
   ['getmodel',['getModel',['../classEnvironment.html#a2b2d44f2389122a1ef6ff8098b3d940f',1,'Environment']]],
   ['getpatch',['getPatch',['../classFloweringPlant.html#aa91da58f3ac6480eca0c0e79c3909e37',1,'FloweringPlant']]],
   ['getpatchcoordfromfloatpos',['getPatchCoordFromFloatPos',['../classEnvironment.html#a5e4e6b6b178dd5957ca56d9bdadef350',1,'Environment']]],

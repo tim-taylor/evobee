@@ -6,6 +6,7 @@ var classPatch =
     [ "getBackgroundMarkerPoint", "classPatch.html#af734652dc44af46df625a1f28f514cbe", null ],
     [ "getFloweringPlants", "classPatch.html#a91b6e4e4db675444c9282e33e0084f43", null ],
     [ "getFloweringPlants", "classPatch.html#a620ef3cb617df9e9d7375ac9beffb0a1", null ],
+    [ "getLocalityId", "classPatch.html#ab8d4691b4dc96f5677190918ef1f4a3e", null ],
     [ "getPosition", "classPatch.html#aa6933a93f310fd9a3b304fd92b18ddfa", null ],
     [ "getRefugeAlienInflowProb", "classPatch.html#abc51ff5cfaee76d493643b64442fd264", null ],
     [ "getRefugeNativeSpeciesId", "classPatch.html#a09a77628d784a6b65636c3304c621f9e", null ],

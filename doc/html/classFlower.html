@@ -136,6 +136,12 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 <tr class="separator:a383880f10a52b8dcc8537d9050fc7c80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55f38d41a88131b8d2f5bd150262f381"><td class="memItemLeft" align="right" valign="top">const PollenVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a55f38d41a88131b8d2f5bd150262f381">getStigmaPollen</a> () const</td></tr>
 <tr class="separator:a55f38d41a88131b8d2f5bd150262f381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2aec0992fcc93973a4033e5a54ba22"><td class="memItemLeft" align="right" valign="top"><a id="afd2aec0992fcc93973a4033e5a54ba22"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingAll</b> () const</td></tr>
+<tr class="separator:afd2aec0992fcc93973a4033e5a54ba22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab9c192bb39c3511332dbc8d9f9fbccb"><td class="memItemLeft" align="right" valign="top"><a id="aab9c192bb39c3511332dbc8d9f9fbccb"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial</b> () const</td></tr>
+<tr class="separator:aab9c192bb39c3511332dbc8d9f9fbccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classFlower.html">Flower</a> class ... </p>
@@ -224,7 +230,7 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 </div><div class="memdoc">
 <p>Consructor to create an offspring flower based upon parent </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00038">38</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00040">40</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -245,7 +251,7 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 </div><div class="memdoc">
 <p>Return a string identifying the owning plant species </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00161">161</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00175">175</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -359,7 +365,7 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 <dl class="section return"><dt>Returns</dt><dd>The number of grains transferred</dd></dl>
 <p>Note, no check is made as to whether the capacity of the pollinator's store has been exceeded. It is the responsibility of the pollinator to perform such a check after it has called this method. </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00167">167</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00181">181</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -397,8 +403,10 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of grains transferred </dd></dl>
+<p>for efficiency, might want to add a static flag in <a class="el" href="classFloweringPlant.html">FloweringPlant</a> m_sbCloggingAll</p>
+<p>replace test above with FloweringPlant::m_sbPollenCloggingNone </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00194">194</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00208">208</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>

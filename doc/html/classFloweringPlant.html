@@ -134,6 +134,8 @@ const <a class="el" href="classPosition.html">fPos</a> &amp;&#160;</td><td class
 <tr class="separator:a2c06540d02131708e427c85a918f9ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01ef82d2a347fc704d9eaea28bb3d573"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#a01ef82d2a347fc704d9eaea28bb3d573">reproSeedDispersalRadius</a> ()</td></tr>
 <tr class="separator:a01ef82d2a347fc704d9eaea28bb3d573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0733673cfeb8fd6027fa2f9d0b1f9a6"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; unsigned int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#ae0733673cfeb8fd6027fa2f9d0b1f9a6">getCloggingSpeciesVec</a> ()</td></tr>
+<tr class="separator:ae0733673cfeb8fd6027fa2f9d0b1f9a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -141,8 +143,12 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:af0554d23a5af01e41a2183b30e4a88f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62875a4a25d4e0b8a5ef43626edd4bea"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#a62875a4a25d4e0b8a5ef43626edd4bea">getSpeciesId</a> (const std::string &amp;name)</td></tr>
 <tr class="separator:a62875a4a25d4e0b8a5ef43626edd4bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56bc3673f85d6af27bf72e4f493c159b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#a56bc3673f85d6af27bf72e4f493c159b">constructCloggingMap</a> (std::vector&lt; <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &gt; &amp;ptcs)</td></tr>
+<tr class="separator:a56bc3673f85d6af27bf72e4f493c159b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfe1ee5d1cc6e3f976cef12e1875425b"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; unsigned int, std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#abfe1ee5d1cc6e3f976cef12e1875425b">getSpeciesMap</a> ()</td></tr>
 <tr class="separator:abfe1ee5d1cc6e3f976cef12e1875425b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8b7fad7cb0d76f4c9e92d6c262a26c8"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFloweringPlant.html#ae8b7fad7cb0d76f4c9e92d6c262a26c8">pollenTransferToStigmaAllowed</a> (const <a class="el" href="classFlower.html">Flower</a> *pPollenSource, const <a class="el" href="classFlower.html">Flower</a> *pDestination)</td></tr>
+<tr class="separator:ae8b7fad7cb0d76f4c9e92d6c262a26c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classFloweringPlant.html">FloweringPlant</a> class ... </p>
@@ -186,7 +192,7 @@ Static Public Member Functions</h2></td></tr>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00024">24</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00028">28</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
@@ -230,11 +236,60 @@ Static Public Member Functions</h2></td></tr>
 <p>Constructor for creating an offspring plant from a pollinated parent plant </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>take note of the mutate param, and maybe change some values, </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00070">70</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00074">74</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a56bc3673f85d6af27bf72e4f493c159b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56bc3673f85d6af27bf72e4f493c159b">&#9670;&nbsp;</a></span>constructCloggingMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FloweringPlant::constructCloggingMap </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ptcs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A static method to construct the clogging map, which should be called once only, at the start of a run when all params have been read from the config file </p>
+
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00326">326</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ae0733673cfeb8fd6027fa2f9d0b1f9a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0733673cfeb8fd6027fa2f9d0b1f9a6">&#9670;&nbsp;</a></span>getCloggingSpeciesVec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; unsigned int &gt; &amp; FloweringPlant::getCloggingSpeciesVec </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the list of all species ids of plants species whose flowers are clogged by this species' pollen </p>
+
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00397">397</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a7a88e845574355ab9625189be9d625c9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7a88e845574355ab9625189be9d625c9">&#9670;&nbsp;</a></span>getDistance()</h2>
 
@@ -252,7 +307,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Returns the distance between the plant and the specified point </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00259">259</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00266">266</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
@@ -273,7 +328,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Returns the square of the distance between the plant and the specified point </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00265">265</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00272">272</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
@@ -294,7 +349,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Returns a pointer to the specified flower </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00252">252</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00259">259</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
@@ -315,7 +370,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Returns the MarkerPoint of the specified flower </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00242">242</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00249">249</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
@@ -391,7 +446,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Get a pointer to the patch to which this plant belongs. Throws an exception if the patch info has not been initialised. </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00278">278</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00285">285</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
@@ -411,7 +466,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Return a string representing the species of this flower </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00213">213</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00220">220</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
@@ -468,7 +523,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Get the species id of the species whose name is provided as a parameter </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00222">222</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00229">229</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
@@ -496,7 +551,46 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Returns the map of all known species, mapping speciesId to species name </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8h_source.html#l00130">130</a> of file <a class="el" href="FloweringPlant_8h_source.html">FloweringPlant.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8h_source.html#l00142">142</a> of file <a class="el" href="FloweringPlant_8h_source.html">FloweringPlant.h</a>.</p>
+
+</div>
+</div>
+<a id="ae8b7fad7cb0d76f4c9e92d6c262a26c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8b7fad7cb0d76f4c9e92d6c262a26c8">&#9670;&nbsp;</a></span>pollenTransferToStigmaAllowed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FloweringPlant::pollenTransferToStigmaAllowed </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classFlower.html">Flower</a> *&#160;</td>
+          <td class="paramname"><em>pPollenSource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classFlower.html">Flower</a> *&#160;</td>
+          <td class="paramname"><em>pDestination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Determine whether the specified pollen is allowed to stick to the stigma of the specified destination flower. It is allowed to do so if the pollen and the flower are from the same plant species, or if the pollen is able to clog the destination plant species' stigma. </p>
+
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00417">417</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
@@ -554,7 +648,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Static method to register a species in the species map, given a species name. If the name is not already in the map, then a new speciesId is assigned to it and the id-name pair are added to the map.</p>
 <p>Returns the speciesId associated with the species (whether new or existing) </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00184">184</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00188">188</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
@@ -574,7 +668,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>During reproduction, can seeds land anywhere in environment? </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00291">291</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00298">298</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>
@@ -594,7 +688,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>During reproduction, if seed dispersal is not global, what is the dispersal radius (expressed in environment units, so 1.0 equals one patch) </p>
 
-<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00305">305</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FloweringPlant_8cpp_source.html#l00312">312</a> of file <a class="el" href="FloweringPlant_8cpp_source.html">FloweringPlant.cpp</a>.</p>
 
 </div>
 </div>

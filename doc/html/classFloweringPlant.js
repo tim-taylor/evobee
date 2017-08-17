@@ -5,6 +5,7 @@ var classFloweringPlant =
     [ "FloweringPlant", "classFloweringPlant.html#a6e5c67d518ab1c7ba698f13c16923252", null ],
     [ "FloweringPlant", "classFloweringPlant.html#a3013fd658cf3a1339cf86d863ffabe63", null ],
     [ "~FloweringPlant", "classFloweringPlant.html#a1120dff0476f674fb9f63aaca9c5ae53", null ],
+    [ "getCloggingSpeciesVec", "classFloweringPlant.html#ae0733673cfeb8fd6027fa2f9d0b1f9a6", null ],
     [ "getDistance", "classFloweringPlant.html#a7a88e845574355ab9625189be9d625c9", null ],
     [ "getDistanceSq", "classFloweringPlant.html#a9a66873a7380de9903d22e2ff4f214f2", null ],
     [ "getFlower", "classFloweringPlant.html#a6bd907a2cbe03215d30ddd5f7b41cbfa", null ],
