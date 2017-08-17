@@ -281,7 +281,10 @@ void ModelParams::addHiveConfig(HiveConfig& hc)
 
 void ModelParams::addPlantTypeDistributionConfig(PlantTypeDistributionConfig& ptdc)
 {
+    // first assign a unique ID to this PlantTypeDistributionConfig
     ptdc.id = m_sNextFreePtdcId++;
+
+    // and add it to our list of all PlantTypeDistributionConfigs
     m_PlantDists.push_back(ptdc);
 }
 

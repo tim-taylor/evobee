@@ -105,7 +105,7 @@ void Patch::setReproConstraints(const PlantTypeDistributionConfig& ptdc)
         }
     }
 
-    m_LocalityId = ptdc.id;
+    m_LocalityId = ptdc.id;  // m_LocalityId is used to mark all patchs governed by the same ptdc
     m_ReproRestrictionAreaTopLeft = ptdc.areaTopLeft;
     m_ReproRestrictionAreaBottomRight = ptdc.areaBottomRight;
     m_bSeedOutflowAllowed = ptdc.seedOutflowAllowed;

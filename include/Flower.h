@@ -160,7 +160,6 @@ private:
     // the following are constant parameters for this flower
     int     m_iAntherPollenTransferPerVisit;  ///< Num pollen grains deposited on a pollinator per visit
     int     m_iStigmaMaxPollenCapacity;       ///< Maximum amount of pollen the stigma can carry
-    //bool  m_bPollenClogging;                ///< If true, pollen from other species can clog stigma
     bool    m_bPollenCloggingAll;
     bool    m_bPollenCloggingPartial;
     const std::vector<unsigned int>& m_CloggingSpeciesVec;

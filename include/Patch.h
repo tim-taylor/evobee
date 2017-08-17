@@ -45,7 +45,7 @@ public:
 
 
     /**
-     * Add an existing plant to the patch. 
+     * Add an existing plant to the patch.
      * A move constructor is used, so the instance of the plant passed in as a parameter
      * is wiped when the method is finished. This is used during the reproduction procedure.
      */
@@ -58,17 +58,17 @@ public:
 
     /**
      *
-     */    
+     */
     bool hasFloweringPlants() const {return !m_FloweringPlants.empty();}
 
     /**
      *
-     */    
+     */
     PlantVector& getFloweringPlants() {return m_FloweringPlants;}
 
     /**
      *
-     */    
+     */
     const PlantVector& getFloweringPlants() const {return m_FloweringPlants;}
 
     /**
@@ -81,14 +81,17 @@ public:
     void setReproConstraints(const PlantTypeDistributionConfig& pdcfg);
 
     /**
-     * Return the id of the locality to which this patch belongs
+     * Return the id of the locality to which this patch belongs.
+     * The locality id of a patch is equal to the id of the PlentTypeDistributionConfig
+     * that sets constraints on seed flow etc for this patch (see Patch::setReproConstraints,
+     * which is called by Environment::initialisePlants at the start of the run).
      */
     unsigned int getLocalityId() const {return m_LocalityId;}
 
     /**
      * Is the specified destination patch within the same restricted reproduction
      * area as this patch?
-     * If this patch has no reproduction restrictions (i.e., if 
+     * If this patch has no reproduction restrictions (i.e., if
      * m_bReproConstraintsSetExplicitly == false), then this method will always
      * return true.
      */
@@ -100,7 +103,7 @@ public:
      * NB: you should first call inReproRestrictionArea(dest) to check whether
      * this restruction applies at all to the destination patch under consideration
      * (only applies if inReproRestrictionArea(dest) == false)
-     */ 
+     */
     bool seedOutflowAllowed() const {return m_bSeedOutflowAllowed;}
 
     /**
@@ -109,7 +112,7 @@ public:
      * NB: you should first call inReproRestrictionArea(dest) to check whether
      * this restruction applies at all to the destination patch under consideration
      * (only applies if inReproRestrictionArea(dest) == false)
-     */     
+     */
     bool seedOutflowRestricted() const {return m_bSeedOutflowRestricted;}
 
     /**
@@ -119,22 +122,22 @@ public:
      * NB: you should first call inReproRestrictionArea(dest) to check whether
      * this restruction applies at all to the destination patch under consideration
      * (only applies if inReproRestrictionArea(dest) == false)
-     */     
+     */
     float getSeedOutflowProb() const {return m_fSeedOutflowProb;}
 
     /**
      *
-     */     
+     */
     bool refuge() const {return m_bRefuge;}
 
     /**
      *
-     */     
+     */
     unsigned int getRefugeNativeSpeciesId() const {return m_iRefugeNativeSpecesId;}
 
     /**
      *
-     */     
+     */
     float getRefugeAlienInflowProb() const {return m_fRefugeAlienInflowProb;}
 
     /**
@@ -144,9 +147,9 @@ public:
 
     /**
      *
-     */    
+     */
     const iPos& getReproRestrictionAreaBottomRight() const {return m_ReproRestrictionAreaBottomRight;}
-    
+
 
 private:
     Environment*    m_pEnv;         ///< A pointer back to the owning Environment
@@ -159,10 +162,13 @@ private:
     // The following parameters place restrictions on plant reproduction
     bool            m_bReproConstraintsSetExplicitly;
     unsigned int    m_LocalityId;   ///< if repro constraints set, this is set to the PlantTypeDistConfig
-                                    ///<   responsible for definining the constraints
+                                    ///<   responsible for definining the constraints. Therefore, all patches
+                                    ///<   governed by the same PlantTypeDistributionConfig have the same
+                                    ///<   value for locality id. This is used so that we can easily determine
+                                    ///<   for any patch what constraints exist, if any, on seed flow etc.
     iPos            m_ReproRestrictionAreaTopLeft;
     iPos            m_ReproRestrictionAreaBottomRight;
-    bool            m_bSeedOutflowAllowed;     
+    bool            m_bSeedOutflowAllowed;
     bool            m_bSeedOutflowRestricted;
     float           m_fSeedOutflowProb;
     bool            m_bRefuge;
