@@ -162,32 +162,22 @@ bool Visualiser::update()
                     // draw a pollinated flower
                     boxRGBA(
                         m_pRenderer,
-                        getScreenCoordFromFloatX(flwrpos.x),
-                        getScreenCoordFromFloatY(flwrpos.y),
-                        getScreenCoordFromFloatWithAbsOffsetX(flwrpos.x+1.0, -1),
-                        getScreenCoordFromFloatWithAbsOffsetY(flwrpos.y+1.0, -1),
+                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.15),
+                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.15),
+                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.85),
+                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.85),
                         150, 150, 150, 255
                     );
                 }
                 else
                 {
                     // draw an unpollinated flower
-                    /*
-                    // drawing circles is much more computationally expensive than boxes
-                    filledCircleRGBA(
-                        m_pRenderer,
-                        getScreenCoordFromFloatX(flwrpos.x+0.5),
-                        getScreenCoordFromFloatY(flwrpos.y+0.5),
-                        getScreenLength(0.5),
-                        c.r, c.g, c.b, 255
-                    );
-                    */
                     boxRGBA(
                         m_pRenderer,
-                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.25),
-                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.25),
-                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.75),
-                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.75),
+                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.30),
+                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.30),
+                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.70),
+                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.70),
                         c.r, c.g, c.b, 255
                     );
                 }
@@ -195,17 +185,18 @@ bool Visualiser::update()
         }
     }
 
-    // render hives
+    // render hives and pollinators
     HivePtrVector & hives = m_pModel->getEnv().getHives();
     for (auto& pHive : hives)
     {
+        // draw the hive
         const fPos & hivepos = pHive->getPosition();
         boxRGBA(
             m_pRenderer,
-            getScreenCoordFromFloatX(hivepos.x),
-            getScreenCoordFromFloatY(hivepos.y),
-            getScreenCoordFromFloatWithAbsOffsetX(hivepos.x+1.0, -1),
-            getScreenCoordFromFloatWithAbsOffsetY(hivepos.y+1.0, -1),
+            getScreenCoordFromFloatWithRelOffsetX(hivepos.x, 0.10),
+            getScreenCoordFromFloatWithRelOffsetY(hivepos.y, 0.10),
+            getScreenCoordFromFloatWithRelOffsetX(hivepos.x, 0.90),
+            getScreenCoordFromFloatWithRelOffsetY(hivepos.y, 0.90),
             0, 0, 0, 255 ///@todo for now Hive visualisation colour is hard-coded as black
         );
 
@@ -216,12 +207,13 @@ bool Visualiser::update()
             Pollinator* p = pHive->getPollinator(i);
             const fPos& ppos = p->getPosition();
 
+            // draw the pollinator
             boxRGBA(
                 m_pRenderer,
-                getScreenCoordFromFloatX(ppos.x),
-                getScreenCoordFromFloatY(ppos.y),
-                getScreenCoordFromFloatWithAbsOffsetX(ppos.x+1.0, -1),
-                getScreenCoordFromFloatWithAbsOffsetY(ppos.y+1.0, -1),
+                getScreenCoordFromFloatWithRelOffsetX(ppos.x, 0.35),
+                getScreenCoordFromFloatWithRelOffsetY(ppos.y, 0.35),
+                getScreenCoordFromFloatWithRelOffsetX(ppos.x, 0.65),
+                getScreenCoordFromFloatWithRelOffsetY(ppos.y, 0.65),
                 255, 255, 255, 255 ///@todo for now Hive visualisation colour is hard-coded as white
             );
 
