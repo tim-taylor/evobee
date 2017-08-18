@@ -216,12 +216,7 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
     // taking account of the pollen species if necessary, and ensure that all grains
     // to be moved are placed at the end of the pollinatorStore ready for being
     // moved in bulk
-    if (false /*m_bPollenClogging*/)
-    ///@TODO for efficiency, might want to add a static flag in FloweringPlant m_sbCloggingAll
-    // (and also m_sbCloggingNone - for use further down in this method)
-    // initialised at startup, for the case where all plant species clog all other ones.
-    // Then we can use that flag here to determine whether we can just accept all pollen
-    // from the pollinator's store
+    if (FloweringPlant::cloggingAll())
     {
         // No restriction on pollen species, so we can grab any pollen from
         // the pollinator. Note that the pollinator's store should already be shuffled,
@@ -275,17 +270,11 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
         // if not already pollinated, check whether that has now changed!
         if (!m_bPollinated)
         {
-            //Pollen* pP = nullptr; // test code to allow output of pollen info
-
-            if (false /*m_bPollenClogging*/)
-            ///@TODO replace test above with FloweringPlant::m_sbPollenCloggingNone
+            if (FloweringPlant::cloggingNone())
             {
                 // in the case of no pollen clogging, only pollen from this species is allowed
                 // on the stigma, so we know for sure that the flower is now pollinated
                 m_bPollinated = true;
-
-                // test code to allow output of pollen info
-                //pP = &(*(m_StigmaPollen.end()-actualNum));
             }
             else
             {
@@ -295,30 +284,11 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
                                         m_StigmaPollen.end(),
                                         [this](Pollen& p){return (p.speciesId == this->m_SpeciesId);} );
                 m_bPollinated = (it != m_StigmaPollen.end());
-
-                // test code to allow output of pollen info
-                //if (m_bPollinated) pP = &(*it);
             }
 
             if (m_bPollinated)
             {
                 m_pPlant->setPollinated();
-
-                // test code
-                //if (ModelParams::verbose())
-                //{
-                //  std::cout << "Flower id " << m_id << " of species " << m_SpeciesId <<
-                //    " pollinated by pollen of species " << pP->speciesId <<
-                //    " from plant id " << pP->pSource->getId() << std::endl;
-                //}
-            }
-            else
-            {
-                // test code
-                //if (ModelParams::verbose())
-                //{
-                //  std::cout << "(no pollination)" << std::endl;
-                //}
             }
         }
     }

@@ -148,6 +148,16 @@ public:
      */
     static bool pollenTransferToStigmaAllowed(const Flower* pPollenSource, const Flower* pDestination);
 
+    /**
+     * Query whether all species clog all other species (i.e. clogging is universally present)
+     */
+    static bool cloggingAll() {return m_sbCloggingAll;}
+
+    /**
+     * Query whether no species clog any other species (i.e. clogging is universally absent)
+     */
+    static bool cloggingNone() {return m_sbCloggingNone;}
+
 private:
     unsigned int            m_id;           ///< Unique ID number for this plant
     unsigned int            m_SpeciesId;    ///< ID number of the species of this plant
@@ -169,6 +179,8 @@ private:
      */
     void setPollinated(bool pollinated = true);
 
+    // static class members below here //////////////////////////
+
     /**
      * Record of next available unique ID number to be assigned to a new individual FloweringPlant
      */
@@ -188,6 +200,20 @@ private:
      * A record of which species are clogged by each species
      */
     static std::map<unsigned int, std::vector<unsigned int>> m_sCloggingMap;
+
+    /**
+     * A flag to indicate the situation where pollen from all plant species clogs the stigmas of all
+     * other species' flowers. This is calculated at the start of the run and is used for efficiency
+     * purposes during the run.
+     */
+    static bool m_sbCloggingAll;
+
+    /**
+     * A flag to indicate the situation where pollen from no plant species clogs the stigmas of any
+     * other species' flowers. This is calculated at the start of the run and is used for efficiency
+     * purposes during the run.
+     */
+    static bool m_sbCloggingNone;
 
     /**
      * The Flower class is a friend of FloweringPlant

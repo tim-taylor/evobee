@@ -22,6 +22,8 @@ unsigned int FloweringPlant::m_sNextFreeId = 1;
 unsigned int FloweringPlant::m_sNextFreeSpeciesId = 1;
 std::map<unsigned int, std::string> FloweringPlant::m_sSpeciesMap;
 std::map<unsigned int, std::vector<unsigned int>> FloweringPlant::m_sCloggingMap;
+bool FloweringPlant::m_sbCloggingAll = false;
+bool FloweringPlant::m_sbCloggingNone = false;
 
 
 // Create a brand new plant at the start of the simulation from the specified config
@@ -252,6 +254,7 @@ MarkerPoint FloweringPlant::getFlowerMarkerPoint(unsigned int flower)
     return m_Flowers[flower].getMarkerPoint();
 }
 
+
 // Return the specified Flower
 //
 // @todo Asserts that the flower number is valid, but should we throw an exception if not?
@@ -391,6 +394,26 @@ void FloweringPlant::constructCloggingMap(std::vector<PlantTypeConfig>& ptcs)
 
         }
     }
+
+    // Calculate the values of m_sbCloggingAll and m_sbCloggingNone
+    unsigned int numSpecies = m_sCloggingMap.size();
+    unsigned int numEmpty = 0;
+    unsigned int numFull = 0;
+    for (auto& entry : m_sCloggingMap)
+    {
+        if (entry.second.empty())
+        {
+            // this species does not clog any other species
+            ++numEmpty;
+        }
+        else if (entry.second.size() >= numSpecies - 1)
+        {
+            // this species clogs all other species
+            ++numFull;
+        }
+    }
+    m_sbCloggingAll = (numFull == numSpecies);
+    m_sbCloggingNone = (numEmpty == numSpecies);
 }
 
 
