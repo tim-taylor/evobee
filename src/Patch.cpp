@@ -6,10 +6,10 @@
 
 #include <iostream>
 #include <sstream>
-#include "Environment.h"
-#include "Patch.h"
-#include "FloweringPlant.h"
 #include "tools.h"
+#include "Environment.h"
+#include "FloweringPlant.h"
+#include "Patch.h"
 
 
 Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :

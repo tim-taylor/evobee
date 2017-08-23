@@ -87,6 +87,7 @@ set(SOURCES
     src/ModelParams.cpp
     src/Patch.cpp
     src/Pollinator.cpp
+    src/tools.cpp
     src/Visualiser.cpp
     )
 # Now specify SDL2_GFX source files

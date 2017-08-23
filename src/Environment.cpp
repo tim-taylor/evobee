@@ -10,6 +10,7 @@
 #include <memory>
 #include <random>
 #include <cmath>
+#include "tools.h"
 #include "ModelParams.h"
 #include "EvoBeeModel.h"
 #include "Patch.h"
@@ -20,6 +21,7 @@
 #include "Position.h"
 #include "FloweringPlant.h"
 #include "Environment.h"
+
 
 
 bool LocalDensityConstraint::posInArea(const iPos& pos) const
@@ -207,18 +209,29 @@ bool Environment::inArea(const iPos& pos, const iPos& areaTopLeft, const iPos& a
 }
 
 
-// Search for plants in the local patch and its 8 closest neighbours,
-// and return a pointer to the closest plant found, or nullptr if none found
+// Search for plants in the local patch and its 8 closest neighbours
+// (Moore neighbourhood), and return a pointer to the closest plant found,
+// or nullptr if none found.
 //
-///@todo - should we have a maximum search radius of 1 unit? In current
-/// config, search radius in skewed in particular directtions depending
-/// upon the pollinator's position within the current patch
+// The second parameter (default value = 1.0) specifies a maximum search radius.
+// If this is given a negative value, then it is ignored, and the closest flower
+// withiin the Moore neighbourhood will be returned regardless of distance (but
+// note that this means that the search radius is effectively asymmetric in
+// different directions because the patches are squares). If the radius is set
+// to a positive value, then only flowers within that distance of fpos will be
+// considered. Therefore, if fRadius is positive, it only really makes sense for
+// it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
+// upon the location of fpos within the central patch.
 //
-FloweringPlant* Environment::findClosestFloweringPlant(const fPos& fpos)
+FloweringPlant* Environment::findClosestFloweringPlant(const fPos& fpos, float fRadius)
 {
+    assert(fRadius < 1.0 + EvoBee::FLOAT_COMPARISON_EPSILON);
+
     FloweringPlant* pPlant = nullptr;
     float minDistSq = 9999999.9;
 
+    // search for flowers within the Moore neighbourhood of the specified
+    // position, and, if any found, record which is the closest
     if (inEnvironment(fpos))
     {
         iPos ipos = getPatchCoordFromFloatPos(fpos);
@@ -246,6 +259,13 @@ FloweringPlant* Environment::findClosestFloweringPlant(const fPos& fpos)
                 }
             }
         }
+    }
+
+    // if a maximum search radius has been specified and the closest flower is
+    // beyond that distance, ignore it and return nullptr instead
+    if ((fRadius > 0.0) && (minDistSq > (fRadius * fRadius)))
+    {
+        pPlant = nullptr;
     }
 
     return pPlant;

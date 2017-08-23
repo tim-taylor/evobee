@@ -98,20 +98,20 @@ public:
     /**
      * Get integer size of Environment in y direction
      * (coordinates should be less than this value)
-     */    
+     */
     int getSizeYi() const {return m_iSizeY;}
 
     /**
      * Get float size of Environment in x direction
      * (coordinates should be less than this value, this is upper bound)
-     */    
+     */
     float getSizeXf() const {return m_fSizeX;}
-    
+
     /**
      * Get float size of Environment in y direction
      * (coordinates should be less than this value, this is upper bound)
-     */     
-    float getSizeYf() const {return m_fSizeY;}    
+     */
+    float getSizeYf() const {return m_fSizeY;}
 
     /**
      * Checks whether the given position is within the bounds of the environment
@@ -122,10 +122,10 @@ public:
      * Checks whether the given position is within the bounds of the environment
      */
     bool inEnvironment(const iPos& pos) const {return inEnvironment(pos.x, pos.y);}
-    
+
     /**
      * Checks whether the given position is within the bounds of the environment
-     */    
+     */
     bool inEnvironment(const fPos& pos) const {return inEnvironment(std::floor(pos.x),std::floor(pos.y));}
 
     /**
@@ -134,11 +134,20 @@ public:
     static bool inArea(const iPos& pos, const iPos& areaTopLeft, const iPos& areaBottomRight);
 
     /**
-     * Search for flowering plants within range of given position.
+     * Search for flowering plants within range of given position
+     * withing the Moore neighbourhood of local patches.
      * If any found, return a pointer to the closest one, otherwise
-     * return nullptr
+     * return nullptr.
+     * fRadius specifies the meximum radius of the search, and should
+     * be set between 0.0 and 1.0 (values above this mean that the
+     * search might be clipped if the specified pos is not in the dead
+     * centre of the central patch). If fRadius is set to a negative
+     * value, it is ignored, and all flowers within the local Moore
+     * neihbourhood of patches are considered (but not that this leads
+     * to an asymmetric search radius in different directions, as the
+     * patches are squares). fRadius takes a default value of 1.0.
      */
-    FloweringPlant* findClosestFloweringPlant(const fPos& pos);
+    FloweringPlant* findClosestFloweringPlant(const fPos& pos, float fRadius = 1.0);
 
     /*
      * Returns a random float position within the environment
@@ -189,7 +198,7 @@ private:
     void resetLocalDensityCounts();
     bool localDensityLimitReached(const iPos& newPatchPos) const;
     void incrementLocalDensityCount(const iPos& newPatchPos);
-    
+
     PatchVector   m_Patches;     ///< All patches are stored in a 1D vector for speed of access
     HivePtrVector m_Hives;       ///< Collection of all hives in the environment
     int           m_iNumPatches; ///< Num patches (stored for convenience)
@@ -207,7 +216,7 @@ private:
                                                                    /// constraints, as defined by those
                                                                    /// PlantTypeDistributions for which
                                                                    /// reproLocalDensityConstrained=true
-    const EvoBeeModel* m_pModel;                                           
+    const EvoBeeModel* m_pModel;
 };
 
 #endif /* _ENVIRONMENT_H */
