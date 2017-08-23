@@ -84,39 +84,41 @@ $(document).ready(function(){initNavTree('todo.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000001"></a>Global <a class="el" href="classEnvironment.html#ad3912473b1cdbafaea1d8bb5ee3d1187">Environment::initialiseNewGeneration</a>  ()</dt>
+<dt><a class="anchor" id="_todo000001"></a>Global <a class="el" href="classEnvironment.html#afa640b3470c6a038854b3cee627537f7">Environment::findClosestFloweringPlant</a>  (const fPos &amp;pos)</dt>
+<dd>- should we have a maximum search radius of 1 unit? In current config, search radius in skewed in particular directtions depending upon the pollinator's position within the current patch  </dd>
+<dt><a class="anchor" id="_todo000002"></a>Global <a class="el" href="classEnvironment.html#ad3912473b1cdbafaea1d8bb5ee3d1187">Environment::initialiseNewGeneration</a>  ()</dt>
 <dd><p class="startdd">we also need to log this info if necessary </p>
 <p class="enddd">when we implement mutation, we will actually want to record the plant AND a ptr to the pollinating flower (pollen.pSource)  </p>
 </dd>
-<dt><a class="anchor" id="_todo000003"></a>Global <a class="el" href="classEvoBeeExperiment.html#a7219da5e7707008d2007e5c5a3a664c8">EvoBeeExperiment::run</a>  ()</dt>
+<dt><a class="anchor" id="_todo000004"></a>Global <a class="el" href="classEvoBeeExperiment.html#a7219da5e7707008d2007e5c5a3a664c8">EvoBeeExperiment::run</a>  ()</dt>
 <dd>- implement code for num-pollinator-steps termination type  </dd>
-<dt><a class="anchor" id="_todo000005"></a>Global <a class="el" href="classFloweringPlant.html#a5030ef51c45eaf0cbe38e453078a07ea">FloweringPlant::FloweringPlant</a>  (const <a class="el" href="classFloweringPlant.html">FloweringPlant</a> *pParent, const fPos &amp;pos, <a class="el" href="classPatch.html">Patch</a> *pPatch, bool mutate)</dt>
-<dd>take note of the mutate param, and maybe change some values,  </dd>
-<dt><a class="anchor" id="_todo000004"></a>Global <a class="el" href="classFloweringPlant.html#a528f0afc32a77bef2b66c94db1cb049a">FloweringPlant::FloweringPlant</a>  (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;typeConfig, const fPos &amp;pos, <a class="el" href="classPatch.html">Patch</a> *pPatch)</dt>
+<dt><a class="anchor" id="_todo000005"></a>Global <a class="el" href="classFloweringPlant.html#a528f0afc32a77bef2b66c94db1cb049a">FloweringPlant::FloweringPlant</a>  (const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a> &amp;typeConfig, const fPos &amp;pos, <a class="el" href="classPatch.html">Patch</a> *pPatch)</dt>
 <dd>- for now, we are placing all flowers at the same position (the same position as the plant itself). If/when we start looking at plants with multiple flowers, we might want to change this  </dd>
-<dt><a class="anchor" id="_todo000008"></a>Global <a class="el" href="classHoneyBee.html#ace8c0ee998fe766ba5bb4460cc9422f4">HoneyBee::isVisitCandidate</a>  (<a class="el" href="classFlower.html">Flower</a> *pFlower) const</dt>
+<dt><a class="anchor" id="_todo000006"></a>Global <a class="el" href="classFloweringPlant.html#a5030ef51c45eaf0cbe38e453078a07ea">FloweringPlant::FloweringPlant</a>  (const <a class="el" href="classFloweringPlant.html">FloweringPlant</a> *pParent, const fPos &amp;pos, <a class="el" href="classPatch.html">Patch</a> *pPatch, bool mutate)</dt>
+<dd>take note of the mutate param, and maybe change some values,  </dd>
+<dt><a class="anchor" id="_todo000009"></a>Global <a class="el" href="classHoneyBee.html#ace8c0ee998fe766ba5bb4460cc9422f4">HoneyBee::isVisitCandidate</a>  (<a class="el" href="classFlower.html">Flower</a> *pFlower) const</dt>
 <dd>- implement isVisitCandidate based upon innate and learned preferences for flower colour  </dd>
-<dt><a class="anchor" id="_todo000006"></a>Global <a class="el" href="classHoneyBee.html#ae44550c830b3b483981aa4dfc1555f68">HoneyBee::step</a>  () override final</dt>
+<dt><a class="anchor" id="_todo000007"></a>Global <a class="el" href="classHoneyBee.html#ae44550c830b3b483981aa4dfc1555f68">HoneyBee::step</a>  () override final</dt>
 <dd><p class="startdd">... need to parameterise type of movement and details </p>
 <p class="enddd">- for now we are looking for nearest plant, not nearest flower (so assuming plants just have one flower)  </p>
 </dd>
-<dt><a class="anchor" id="_todo000009"></a>Global <a class="el" href="classLogger.html#a41e9a9ecf359d20721fe14d92a125a30">Logger::logFlowersFull</a>  ()</dt>
+<dt><a class="anchor" id="_todo000010"></a>Global <a class="el" href="classLogger.html#a41e9a9ecf359d20721fe14d92a125a30">Logger::logFlowersFull</a>  ()</dt>
 <dd><a class="el" href="classLogger.html#a41e9a9ecf359d20721fe14d92a125a30">Logger::logFlowersFull</a> incomplete  </dd>
-<dt><a class="anchor" id="_todo000013"></a>Global <a class="el" href="classModelParams.html#a0321538fbb586af34d7181efa7c3812d">ModelParams::checkConsistency</a>  ()</dt>
+<dt><a class="anchor" id="_todo000014"></a>Global <a class="el" href="classModelParams.html#a0321538fbb586af34d7181efa7c3812d">ModelParams::checkConsistency</a>  ()</dt>
 <dd>- other things to check re parameter consistency...  </dd>
-<dt><a class="anchor" id="_todo000012"></a>Global <a class="el" href="classModelParams.html#a6816060ce7091cb1a989ebf3bec5bf17">ModelParams::setGenTerminationType</a>  (const std::string &amp;typestr)</dt>
+<dt><a class="anchor" id="_todo000013"></a>Global <a class="el" href="classModelParams.html#a6816060ce7091cb1a989ebf3bec5bf17">ModelParams::setGenTerminationType</a>  (const std::string &amp;typestr)</dt>
 <dd>... maybe output warning msg here and in next case?  </dd>
-<dt><a class="anchor" id="_todo000011"></a>Global <a class="el" href="classModelParams.html#a1102369141dc9e1330ecb6739954add8">ModelParams::setMaxScreenFracH</a>  (float fh)</dt>
+<dt><a class="anchor" id="_todo000012"></a>Global <a class="el" href="classModelParams.html#a1102369141dc9e1330ecb6739954add8">ModelParams::setMaxScreenFracH</a>  (float fh)</dt>
 <dd>... maybe output warning msg here and in next case?  </dd>
-<dt><a class="anchor" id="_todo000010"></a>Global <a class="el" href="classModelParams.html#a430dc7c313f910df97c18066e400cad4">ModelParams::setMaxScreenFracW</a>  (float fw)</dt>
+<dt><a class="anchor" id="_todo000011"></a>Global <a class="el" href="classModelParams.html#a430dc7c313f910df97c18066e400cad4">ModelParams::setMaxScreenFracW</a>  (float fw)</dt>
 <dd>... maybe output warning msg here and in next case?  </dd>
-<dt><a class="anchor" id="_todo000019"></a>Global <a class="el" href="structPlantTypeConfig.html#a8163a11e10b14241d0d55087a5091439">PlantTypeConfig::initTemp</a>  </dt>
+<dt><a class="anchor" id="_todo000020"></a>Global <a class="el" href="structPlantTypeConfig.html#a8163a11e10b14241d0d55087a5091439">PlantTypeConfig::initTemp</a>  </dt>
 <dd>(unused just now) // init temp of flowers and leaves  </dd>
-<dt><a class="anchor" id="_todo000014"></a>Global <a class="el" href="classPollinator.html#ad09af1bd539e5635de728a7187bd15e7">Pollinator::moveBiassed</a>  (bool allowOffEnv=false, float stepLength=1.0)</dt>
+<dt><a class="anchor" id="_todo000015"></a>Global <a class="el" href="classPollinator.html#ad09af1bd539e5635de728a7187bd15e7">Pollinator::moveBiassed</a>  (bool allowOffEnv=false, float stepLength=1.0)</dt>
 <dd>implement moveBiassed  </dd>
-<dt><a class="anchor" id="_todo000015"></a>Global <a class="el" href="classPollinator.html#ad03277df915384e641aa3c22d2ebeaac">Pollinator::moveLevy</a>  (bool allowOffEnv=false, float stepLength=1.0)</dt>
+<dt><a class="anchor" id="_todo000016"></a>Global <a class="el" href="classPollinator.html#ad03277df915384e641aa3c22d2ebeaac">Pollinator::moveLevy</a>  (bool allowOffEnv=false, float stepLength=1.0)</dt>
 <dd>implement moveLevy  </dd>
-<dt><a class="anchor" id="_todo000016"></a>Global <a class="el" href="classVisualiser.html#a93b99e791bf7f7ef116aa5431b863d47">Visualiser::update</a>  ()</dt>
+<dt><a class="anchor" id="_todo000017"></a>Global <a class="el" href="classVisualiser.html#a93b99e791bf7f7ef116aa5431b863d47">Visualiser::update</a>  ()</dt>
 <dd><p class="startdd">deal with multiple flowers on a plant? </p>
 <p>for now <a class="el" href="classHive.html">Hive</a> visualisation colour is hard-coded as black </p>
 <p class="enddd">for now <a class="el" href="classHive.html">Hive</a> visualisation colour is hard-coded as white </p>
