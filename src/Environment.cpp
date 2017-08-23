@@ -210,6 +210,10 @@ bool Environment::inArea(const iPos& pos, const iPos& areaTopLeft, const iPos& a
 // Search for plants in the local patch and its 8 closest neighbours,
 // and return a pointer to the closest plant found, or nullptr if none found
 //
+///@todo - should we have a maximum search radius of 1 unit? In current
+/// config, search radius in skewed in particular directtions depending
+/// upon the pollinator's position within the current patch
+//
 FloweringPlant* Environment::findClosestFloweringPlant(const fPos& fpos)
 {
     FloweringPlant* pPlant = nullptr;
