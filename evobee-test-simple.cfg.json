@@ -114,7 +114,9 @@
             "max-pollen-capacity" : 0,
             "pollen-deposit-per-flower-visit" : 3,
             "pollen-loss-in-air" : 0,
-            "pollen-carryover-num-visits" : 100
+            "pollen-carryover-num-visits" : 100,
+            "innate-mp-pref-min" : 400,
+            "innate-mp-pref-max" : 500
         }
     }
 }

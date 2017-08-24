@@ -195,6 +195,9 @@ protected:
     iPos            m_MovementAreaTopLeft;      ///< Boundary of area in which pollinator is allowed to move
     iPos            m_MovementAreaBottomRight;  ///< Boundary of area in which pollinator is allowed to move
 
+    MarkerPoint     m_InnateMPPref;         ///< This pollinator's innate preference for flower
+                                            ///<   colour marker point
+
     // some constant parameters for this pollinator
     const int       m_iBoutLength;          ///< Num flower visits allowed before returning to hive
     const int       m_iPollenDepositPerFlowerVisit;  ///< Amount of pollen deposited on a flower on each visit

@@ -134,6 +134,8 @@ void from_json(const json& j, PollinatorConfig& p)
     json_read_param(j, sct, "pollen-loss-in-air", p.pollenLossInAir);
     json_read_param(j, sct, "pollen-carryover-num-visits", p.pollenCarryoverNumVisits);
     json_read_param(j, sct, "max-pollen-capacity", p.maxPollenCapacity);
+    json_read_param(j, sct, "innate-mp-pref-min", p.innateMPPrefMin);
+    json_read_param(j, sct, "innate-mp-pref-max", p.innateMPPrefMax);
     if (p.maxPollenCapacity < 1)
     {
         // a user supplied value of 0 or negative means that the maximum capacity

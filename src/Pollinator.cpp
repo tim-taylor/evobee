@@ -38,6 +38,18 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_pEnv = m_pHive->getEnvironment();
     m_pModel = m_pEnv->getModel();
 
+    // Set this pollinators innate preference for a flower colour marker point
+    if (pc.innateMPPrefMin == pc.innateMPPrefMax)
+    {
+        m_InnateMPPref = pc.innateMPPrefMin;
+    }
+    else
+    {
+        // pick a marker point at uniform random between the min and max values supplied
+        std::uniform_int_distribution<MarkerPoint> dist(pc.innateMPPrefMin, pc.innateMPPrefMax);
+        m_InnateMPPref = dist(EvoBeeModel::m_sRngEngine);
+    }
+
     // Set the starting position and heading of the pollinator
     resetToStartPosition();
 }
@@ -56,6 +68,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_PollenStore(other.m_PollenStore),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
+    m_InnateMPPref(other.m_InnateMPPref),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -86,6 +99,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_PollenStore(std::move(other.m_PollenStore)),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
+    m_InnateMPPref(other.m_InnateMPPref),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -130,6 +144,10 @@ void Pollinator::reset()
     m_iNumFlowersVisitedInBout = 0;
     m_PollenStore.clear();
     resetToStartPosition();
+    ///@todo Should m_InnateMPPref be reset in Pollinator::reset? If so, we'll need to
+    // store the originally specified min and max values passed into the constructor
+    // from PollinatorConfig. It's possible that we might want either the value itself,
+    // or the min and max values of the range, to evolve over time as well.
 }
 
 

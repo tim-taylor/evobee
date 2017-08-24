@@ -8,7 +8,7 @@
 #define _POLLINATORCONFIG_H
 
 #include <string>
-
+#include "ReflectanceInfo.h"
 
 /**
  * The PollinatorConfig class ...
@@ -22,6 +22,8 @@ struct PollinatorConfig {
     int pollenDepositPerFlowerVisit;
     int pollenLossInAir;
     int pollenCarryoverNumVisits;
+    MarkerPoint innateMPPrefMin;
+    MarkerPoint innateMPPrefMax;
 };
 
 #endif /* _POLLINATORCONFIG_H */
