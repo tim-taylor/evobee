@@ -2,6 +2,8 @@ var structPollinatorConfig =
 [
     [ "PollinatorConfig", "structPollinatorConfig.html#aced843f773dad7d769a277b27177da1a", null ],
     [ "boutLength", "structPollinatorConfig.html#a00abb0331419d12d7fcc96b14e5b50e8", null ],
+    [ "innateMPPrefMax", "structPollinatorConfig.html#a1aa3cbdef0f6f9f979c9de067d97fd05", null ],
+    [ "innateMPPrefMin", "structPollinatorConfig.html#a012228491b7566cf7a8e201fc8f9b037", null ],
     [ "maxPollenCapacity", "structPollinatorConfig.html#a235050ae8f29670abd26216cec5dc745", null ],
     [ "pollenCarryoverNumVisits", "structPollinatorConfig.html#af26c8fb2786d4ffd8f154eb385ec6ca2", null ],
     [ "pollenDepositPerFlowerVisit", "structPollinatorConfig.html#a24f14bb9e437fb653589c4335ee4b60e", null ],

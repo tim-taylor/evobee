@@ -17,5 +17,6 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "Patch.cpp", "Patch_8cpp.html", null ],
     [ "Pollinator.cpp", "Pollinator_8cpp.html", null ],
     [ "SDL2_gfxPrimitives.c", "SDL2__gfxPrimitives_8c_source.html", null ],
+    [ "tools.cpp", "tools_8cpp.html", "tools_8cpp" ],
     [ "Visualiser.cpp", "Visualiser_8cpp.html", null ]
 ];

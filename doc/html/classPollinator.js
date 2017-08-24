@@ -30,6 +30,7 @@ var classPollinator =
     [ "m_iBoutLength", "classPollinator.html#a11c5f4a9c088689b61b72af355dcd383", null ],
     [ "m_id", "classPollinator.html#ae1eb6c51a0096f233728719ab42f39ef", null ],
     [ "m_iMaxPollenCapacity", "classPollinator.html#a2cf5f719fbf925b4914f5e68b4ccccd5", null ],
+    [ "m_InnateMPPref", "classPollinator.html#ac9179703f3a704d6cd83515eb57e9a5f", null ],
     [ "m_iNumFlowersVisitedInBout", "classPollinator.html#a1d660588b85f6f6870ffb5c7923c7c37", null ],
     [ "m_iPollenCarryoverNumVisits", "classPollinator.html#ae3fcd0e236151bfb18bcb8f5d1c87125", null ],
     [ "m_iPollenDepositPerFlowerVisit", "classPollinator.html#a5228a983ff7771579d4b8acfa8d39ec4", null ],
