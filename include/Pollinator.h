@@ -78,11 +78,16 @@ public:
      * Query whether this pollinator is currently within its allowed area,
      * taking into account whether migration is allowed to outside of the
      * Hive's initial area.
+     *
      * NB This method also considers the migration restrictions defined for the
      * Hive. If the pollinator has moved out of its previously allowed movement
      * area and the migration is deemed to be allowed, then the pollinator's
      * allowed movement area is updated according to the reproRestructionArea of
      * the new patch. Hence, this is NOT a const method.
+     *
+     * Also see the comments for the AbstractHive::getInitForageAreaTopLeft() method
+     * for more information about the relationship between
+     * Pollinator::m_MovementAreaTL/BR and AbstractHive::m_InitForageAreaTL/BR.
      */
     bool inAllowedArea();
 
@@ -193,7 +198,11 @@ protected:
     PollenVector    m_PollenStore;              ///< Container for Pollen currently being carried
 
     iPos            m_MovementAreaTopLeft;      ///< Boundary of area in which pollinator is allowed to move
+                                                ///<  (see AbstractHive::getInitForageAreaTopLeft() for
+                                                ///<   details of usage of this variable)
     iPos            m_MovementAreaBottomRight;  ///< Boundary of area in which pollinator is allowed to move
+                                                ///<  (see AbstractHive::getInitForageAreaTopLeft() for
+                                                ///<   details of usage of this variable)
 
     MarkerPoint     m_InnateMPPref;         ///< This pollinator's innate preference for flower
                                             ///<   colour marker point

@@ -100,18 +100,18 @@ public:
     /**
      * During reproduction, is seed flow allowed from this patch to to a destination
      * patch outside of this patch's restricted reproduction area?
-     * NB: you should first call inReproRestrictionArea(dest) to check whether
-     * this restruction applies at all to the destination patch under consideration
-     * (only applies if inReproRestrictionArea(dest) == false)
+     * NB: depending on usage, you should first consider calling inReproRestrictionArea(dest) 
+     * to check whether this restriction applies at all to the destination patch under
+     * consideration (only applies if inReproRestrictionArea(dest) == false)
      */
     bool seedOutflowAllowed() const {return m_bSeedOutflowAllowed;}
 
     /**
      * If seedOutflowAllowed() is true, is the probability of successful seed
      * flow restricted at all (i.e. probability less than 1)?
-     * NB: you should first call inReproRestrictionArea(dest) to check whether
-     * this restruction applies at all to the destination patch under consideration
-     * (only applies if inReproRestrictionArea(dest) == false)
+     * NB: depending on usage, you should first consider calling inReproRestrictionArea(dest) 
+     * to check whether this restriction applies at all to the destination patch under
+     * consideration (only applies if inReproRestrictionArea(dest) == false)
      */
     bool seedOutflowRestricted() const {return m_bSeedOutflowRestricted;}
 
@@ -119,9 +119,9 @@ public:
      * If seedOutflowAllowed() and seedOutflowRestricted() are both true,
      * what is the probability of successful seed flow to the destination
      * patch?
-     * NB: you should first call inReproRestrictionArea(dest) to check whether
-     * this restruction applies at all to the destination patch under consideration
-     * (only applies if inReproRestrictionArea(dest) == false)
+     * NB: depending on usage, you should first consider calling inReproRestrictionArea(dest) 
+     * to check whether this restriction applies at all to the destination patch under
+     * consideration (only applies if inReproRestrictionArea(dest) == false)
      */
     float getSeedOutflowProb() const {return m_fSeedOutflowProb;}
 

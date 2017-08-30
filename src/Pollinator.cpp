@@ -178,6 +178,16 @@ void Pollinator::resetMovementArea()
 }
 
 
+/*
+ * Query whether this pollinator is currently within its allowed area,
+ * taking into account whether migration is allowed to outside of the
+ * Hive's initial area.
+ * NB This method also considers the migration restrictions defined for the
+ * Hive. If the pollinator has moved out of its previously allowed movement
+ * area and the migration is deemed to be allowed, then the pollinator's
+ * allowed movement area is updated according to the reproRestructionArea of
+ * the new patch. Hence, this is NOT a const method.
+ */
 bool Pollinator::inAllowedArea()
 {
     bool ok = ((m_Position.x >= (float)m_MovementAreaTopLeft.x) &&
@@ -213,15 +223,24 @@ void Pollinator::repositionInEnv(fPos delta)
 }
 
 
-// A helper method for the move... methods for use when a pollinator has
+// A helper method for the moveXXX methods for use when a pollinator has
 // wandered out of its allowed area. Reflect the movement off the edge of
 // the environment and reposition the pollinator back within the allowed
 // area
 void Pollinator::repositionInAllowedArea(fPos delta)
 {
+    /*
     const iPos& TL = m_pHive->getInitForageAreaTopLeft();
     const iPos& BR = m_pHive->getInitForageAreaBottomRight();
     repositionInArea(delta, (float)TL.x, (float)TL.y, (float)(BR.x+1), (float)(BR.y+1));
+    */
+
+    repositionInArea(delta,
+        (float)(m_MovementAreaTopLeft.x),
+        (float)(m_MovementAreaTopLeft.y),
+        (float)(m_MovementAreaBottomRight.x+1),
+        (float)(m_MovementAreaBottomRight.y+1));
+
     assert(inEnvironment());
 }
 

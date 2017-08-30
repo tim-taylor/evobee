@@ -63,6 +63,7 @@ void Patch::killAllPlants()
 
 bool Patch::inReproRestrictionArea(const iPos& dest) const
 {
+    // NB this method is currently unused??
     bool inArea = true;
     if (m_bReproConstraintsSetExplicitly)
     {

@@ -404,9 +404,9 @@ void Environment::initialiseNewGeneration()
         {
             if (curPatch.seedOutflowAllowed())
             {
-                // seed outflow from this patch's locaility is allowed, so we now need
+                // seed outflow from this patch's locality is allowed, so we now need
                 // to decide whether we can pick a destination position from the entire
-                // environment or just from the locaility defined by m_ReproRestrictionAreaTL/BR
+                // environment or just from the locality defined by m_ReproRestrictionAreaTL/BR
                 if ((!curPatch.seedOutflowRestricted()) ||
                     (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < curPatch.getSeedOutflowProb()))
                 {
