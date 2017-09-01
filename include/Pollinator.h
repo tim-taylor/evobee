@@ -9,6 +9,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include "Position.h"
 #include "AbstractHive.h"
 #include "Environment.h"
@@ -23,6 +24,18 @@ class Environment;
  * The PollinatorState enum
  */
 enum class PollinatorState {UNINITIATED, FORAGING, BOUT_COMPLETE};
+
+
+/**
+ * The PollinatorPerformanceInfo struct
+ */
+struct PollinatorPerformanceInfo {
+    PollinatorPerformanceInfo() : numLandings(0), numPollinations(0) {}
+    inline void reset() {numLandings = 0; numPollinations = 0;}
+
+    int numLandings;
+    int numPollinations;
+};
 
 
 /**
@@ -117,6 +130,18 @@ public:
      */
     PollinatorState getState() const {return m_State;}
 
+    /**
+     * Returns the number of pollen grains of the specified plant species
+     * currently being carried by the pollinator
+     */
+    int getNumPollenGrainsInStore(unsigned int speciesId) const;
+     
+    /**
+    *
+    */
+    const std::map<unsigned int, PollinatorPerformanceInfo>& getPerformanceInfoMap() const {
+                                                                    return m_PerformanceInfoMap;}    
+
 
 protected:
     /**
@@ -163,6 +188,9 @@ protected:
 
     /**
      * Transfer some of our pollen to the flower (potentially pollinating it)
+     * Also, if we are in a logging mode that cares about it, update the
+     * pollinator's performance info about number of landings and pollinations
+     * of the specified flower species.
      *
      * @return The number of pollen grains deposited
      */
@@ -218,14 +246,20 @@ protected:
                                                   * still not deposited after this numebr of visits, it
                                                   * is is removed from the pollinator (i.e. it is lost)
                                                   */
-
     /*
-    controller (commute speed, steering tendancy [random, biased, levy], )
-    flower handling time
-    [mass, shape]
-    visual acuity spec
-    colour recog spec
-    */
+     * Some other properties that might be implemented in future versions include:
+     * - controller (commute speed, steering tendancy [random, biased, levy], )
+     * - flower handling time
+     * - [mass, shape]
+     * - visual acuity spec
+     * - colour recog spec
+     */
+
+     // housekeeping variables to keeping track of pollinator's performance during a forgaing phase
+     std::map<unsigned int, PollinatorPerformanceInfo> m_PerformanceInfoMap; //< records the pollinator's
+                                                                             //< current performance info
+                                                                             //< for each plant species
+                                                                             //< (key is species id)
 
 private:
     /*

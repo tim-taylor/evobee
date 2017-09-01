@@ -62,11 +62,14 @@ void EvoBeeExperiment::run()
 {
     for (int gen = 0; gen < ModelParams::getSimTerminationNumGens(); ++gen)
     {
+        ////////////////////////
+        // REPRODUCTION PHASE //
+        ////////////////////////
+
         // if this is not the first generation, we need to reinitialise
         // all plants and pollinators based upon which plants got pollinated
         // in the previous generation. These details will be logged if
-        // necessary.
-        // Also reset the visualisation if needed.
+        // necessary. Also reset the visualisation if needed.
         if (gen > 0)
         {
             m_Model.initialiseNewGeneration();
@@ -75,6 +78,10 @@ void EvoBeeExperiment::run()
                 m_Visualiser.reset();
             }
         }
+
+        ////////////////////
+        // FORAGING PHASE //
+        ////////////////////
 
         bool endOfGen = false;
         bool bContinue = true;
@@ -153,7 +160,11 @@ void EvoBeeExperiment::run()
                 }
             }
         }
-        while (!endOfGen);
+        while (!endOfGen); // end of foraging phase
+
+        //////////////////////////////////////
+        // LOGGING AT END OF FORAGING PHASE //
+        //////////////////////////////////////
 
         // perform logging of flowers at the end of the generation if required
         if (ModelParams::logging())
@@ -188,6 +199,21 @@ void EvoBeeExperiment::run()
                     m_Logger.logFlowersSummary();
                 }
             }
+            if (ModelParams::logPollinatorsSummary())
+            {
+                if (ModelParams::useLogThreads())
+                {
+                    if (m_threadLog.joinable())
+                    {
+                        m_threadLog.join();
+                    }
+                    m_threadLog = std::thread(&Logger::logPollinatorsSummary, m_Logger);
+                }
+                else
+                {
+                    m_Logger.logPollinatorsSummary();
+                }
+            }
         }
 
         if (!bContinue)
@@ -195,6 +221,10 @@ void EvoBeeExperiment::run()
             break;
         }
     }
+
+    /////////////////////////////////
+    // FINAL TIDY UP AT END OF RUN //
+    /////////////////////////////////
 
     // at end of run, transfer all log files to the final destitination directory
     // if one has been specified

@@ -12,6 +12,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <iostream>
+#include "ModelParams.h"
 #include "EvoBeeModel.h"
 #include "PollinatorConfig.h"
 #include "Pollinator.h"
@@ -143,6 +144,10 @@ void Pollinator::reset()
     m_State = PollinatorState::UNINITIATED;
     m_iNumFlowersVisitedInBout = 0;
     m_PollenStore.clear();
+    for (auto& perfInfo : m_PerformanceInfoMap)
+    {
+        perfInfo.second.reset();
+    }
     resetToStartPosition();
     ///@todo Should m_InnateMPPref be reset in Pollinator::reset? If so, we'll need to
     // store the originally specified min and max values passed into the constructor
@@ -339,9 +344,35 @@ void Pollinator::removeOldCarryoverPollen()
 
 
 // Transfer some of our pollen to the flower (potentially pollinating it)
+// Also, if we are in a logging mode that cares about it, update the
+// pollinator's performance info about number of landings and pollinations
+// of the specified flower species.
 int Pollinator::depositPollenOnStigma(Flower* pFlower)
 {
-    return pFlower->transferPollenFromPollinator(m_PollenStore, m_iPollenDepositPerFlowerVisit);
+    int numGrainsDeposited = 0;
+    PollinatorPerformanceInfo* pPerfInfo = nullptr;
+    bool pollinatedBefore;
+
+    if (ModelParams::logPollinatorsSummary())
+    {
+        auto& perfInfo = m_PerformanceInfoMap.at(pFlower->getSpeciesId());
+        pPerfInfo = &perfInfo;
+        pPerfInfo->numLandings++;
+        pollinatedBefore = pFlower->pollinated();
+    }
+
+    numGrainsDeposited = pFlower->transferPollenFromPollinator( m_PollenStore,
+                                                                m_iPollenDepositPerFlowerVisit );
+
+    if (ModelParams::logPollinatorsSummary())
+    {
+        if ((!pollinatedBefore) && (pFlower->pollinated()))
+        {
+            pPerfInfo->numPollinations++;
+        }
+    }
+
+    return numGrainsDeposited;
 }
 
 
@@ -396,4 +427,12 @@ std::string Pollinator::getStateString() const
 const std::string& Pollinator::getTypeName() const
 {
     return m_sTypeNameStr;
+}
+
+
+int Pollinator::getNumPollenGrainsInStore(unsigned int speciesId) const
+{
+    return std::count_if( m_PollenStore.begin(),
+                          m_PollenStore.end(),
+                          [speciesId](const Pollen& p) {return (p.speciesId == speciesId);} );
 }

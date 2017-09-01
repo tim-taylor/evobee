@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
-project(evobee VERSION 1.0.0.0 LANGUAGES CXX C)
+project(evobee VERSION 1.0.1.0 LANGUAGES CXX C)
 
 # Specification of custom installation prefixes for required libraries
 # At present, we have just added the location of the manual build of the SDL2

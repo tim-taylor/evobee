@@ -123,6 +123,7 @@ void Logger::logExptSetup()
 }
 
 
+// logPollinatorsIntraPhaseFull
 void Logger::logPollinatorsFull()
 {
     std::ofstream ofs = openLogFile();
@@ -138,6 +139,32 @@ void Logger::logPollinatorsFull()
 }
 
 
+// logPollinatorsInterPhaseSummary
+void Logger::logPollinatorsSummary()
+{       
+    std::ofstream ofs = openLogFile();
+    auto gen = m_pModel->getGenNumber();
+    auto& pollinators = m_pEnv->getAllPollinators();    
+
+    for (auto pPol : pollinators)
+    {
+        std::stringstream msg;
+        msg << "p," << gen << "," << pPol->getId();
+
+        const std::map<unsigned int, PollinatorPerformanceInfo>& perfMap = pPol->getPerformanceInfoMap();
+        for (auto& perfInfo : perfMap)
+        {
+            ofs << "," << perfInfo.first << "," << perfInfo.second.numLandings 
+                << "," << perfInfo.second.numPollinations << ","
+                << pPol->getNumPollenGrainsInStore(perfInfo.first);
+        }
+
+        ofs << msg.str() << std::endl;
+    }
+}
+
+
+// logFlowersInterPhaseFull
 void Logger::logFlowersFull()
 {
     std::ofstream ofs = openLogFile();
@@ -177,6 +204,7 @@ void Logger::logFlowersFull()
 }
 
 
+// logFlowersInterPhaseSummary
 void Logger::logFlowersSummary()
 {
     std::ofstream ofs = openLogFile();

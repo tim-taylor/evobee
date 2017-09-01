@@ -34,6 +34,11 @@ public:
      */
     void logPollinatorsFull();
 
+    /**
+     *
+     */
+    void logPollinatorsSummary();
+
      /**
      *
      */
