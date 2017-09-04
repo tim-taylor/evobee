@@ -12,6 +12,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <iostream>
+#include "tools.h"
 #include "ModelParams.h"
 #include "EvoBeeModel.h"
 #include "PollinatorConfig.h"
@@ -61,8 +62,8 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
         for (auto& speciesInfo : speciesInfoMap)
         {
             m_PerformanceInfoMap.emplace(speciesInfo.first, PollinatorPerformanceInfo());
-        }  
-    }    
+        }
+    }
 }
 
 
@@ -295,22 +296,22 @@ void Pollinator::repositionInArea(fPos delta, float minx, float miny, float maxx
 
     // as a belt and braces measure, do one final check that the
     // new position is within the allowed area
-    if (m_Position.x < minx) 
+    if (m_Position.x < minx)
     {
         m_Position.x = minx;
     }
     else if (m_Position.x >= maxx)
     {
-        m_Position.x = maxx - 0.001;
+        m_Position.x = maxx - (2.0 * EvoBee::FLOAT_COMPARISON_EPSILON);
     }
-    if (m_Position.y < miny) 
+    if (m_Position.y < miny)
     {
         m_Position.y = miny;
     }
     else if (m_Position.y >= maxy)
     {
-        m_Position.y = maxy - 0.001;
-    }    
+        m_Position.y = maxy - (2.0 * EvoBee::FLOAT_COMPARISON_EPSILON);
+    }
 }
 
 
