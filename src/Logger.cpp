@@ -148,8 +148,7 @@ void Logger::logPollinatorsSummary()
 
     for (auto pPol : pollinators)
     {
-        std::stringstream msg;
-        msg << "p," << gen << "," << pPol->getId();
+        ofs << "p," << gen << "," << pPol->getId();
 
         const std::map<unsigned int, PollinatorPerformanceInfo>& perfMap = pPol->getPerformanceInfoMap();
         for (auto& perfInfo : perfMap)
@@ -159,7 +158,7 @@ void Logger::logPollinatorsSummary()
                 << pPol->getNumPollenGrainsInStore(perfInfo.first);
         }
 
-        ofs << msg.str() << std::endl;
+        ofs << std::endl;
     }
 }
 

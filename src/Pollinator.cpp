@@ -53,6 +53,16 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
 
     // Set the starting position and heading of the pollinator
     resetToStartPosition();
+
+    if (ModelParams::logPollinatorsSummary())
+    {
+        // initialise PerformanceInfoMap by adding an entry for each species
+        const std::map<unsigned int, std::string>& speciesInfoMap = FloweringPlant::getSpeciesMap();
+        for (auto& speciesInfo : speciesInfoMap)
+        {
+            m_PerformanceInfoMap.emplace(speciesInfo.first, PollinatorPerformanceInfo());
+        }  
+    }    
 }
 
 
@@ -74,7 +84,8 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
     m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
-    m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits)
+    m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits),
+    m_PerformanceInfoMap(other.m_PerformanceInfoMap)
 {
     // NB we should not be in a situation where we are making a copy of a Pollinator
     // with non-empty m_PollenStore. The only time when the Pollinator copy constructor
@@ -105,7 +116,8 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
     m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
-    m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits)
+    m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits),
+    m_PerformanceInfoMap(other.m_PerformanceInfoMap)
 {
     other.m_id = 0;
 }
@@ -232,6 +244,10 @@ void Pollinator::repositionInEnv(fPos delta)
 // wandered out of its allowed area. Reflect the movement off the edge of
 // the environment and reposition the pollinator back within the allowed
 // area
+//
+// @param delta is the change in position that the pollinator was trying to
+// make from its current position, which would take it outside of its
+// allowed area
 void Pollinator::repositionInAllowedArea(fPos delta)
 {
     /*
@@ -254,10 +270,16 @@ void Pollinator::repositionInAllowedArea(fPos delta)
 // wandered out of the specified area. Reflect the movement off the edge of
 // the environment and reposition the pollinator back within the allowed
 // area
+//
+// @param delta is the change in position that the pollinator was trying to
+// make from its current position, which would take it outside of its
+// allowed area
 void Pollinator::repositionInArea(fPos delta, float minx, float miny, float maxx, float maxy)
 {
     fPos oldPos = m_Position - delta;
 
+    // to place the pollinator back in its allowed area, we'll need to reverse either
+    // the x or y component of its proposed move (or maybe both)
     if (m_Position.x < minx || m_Position.x >= maxx)
     {
         delta.x = -delta.x;
@@ -268,7 +290,27 @@ void Pollinator::repositionInArea(fPos delta, float minx, float miny, float maxx
         delta.y = -delta.y;
     }
 
+    // now perform the movement with the adjusted delta
     m_Position = oldPos + delta;
+
+    // as a belt and braces measure, do one final check that the
+    // new position is within the allowed area
+    if (m_Position.x < minx) 
+    {
+        m_Position.x = minx;
+    }
+    else if (m_Position.x >= maxx)
+    {
+        m_Position.x = maxx - 0.001;
+    }
+    if (m_Position.y < miny) 
+    {
+        m_Position.y = miny;
+    }
+    else if (m_Position.y >= maxy)
+    {
+        m_Position.y = maxy - 0.001;
+    }    
 }
 
 
@@ -356,6 +398,7 @@ int Pollinator::depositPollenOnStigma(Flower* pFlower)
     if (ModelParams::logPollinatorsSummary())
     {
         auto& perfInfo = m_PerformanceInfoMap.at(pFlower->getSpeciesId());
+        //auto& perfInfo = m_PerformanceInfoMap[pFlower->getSpeciesId())];
         pPerfInfo = &perfInfo;
         pPerfInfo->numLandings++;
         pollinatedBefore = pFlower->pollinated();
