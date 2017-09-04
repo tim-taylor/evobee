@@ -19,6 +19,8 @@ Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
     m_BackgroundReflectance(mp),
     m_bReproConstraintsSetExplicitly(false),
     m_LocalityId(0),
+    m_ReproRestrictionAreaTopLeft(0,0),
+    m_ReproRestrictionAreaBottomRight(pEnv->getSizeXi()-1, pEnv->getSizeYi()-1),
     m_bSeedOutflowAllowed(true),
     m_bSeedOutflowRestricted(false),
     m_fSeedOutflowProb(1.0),

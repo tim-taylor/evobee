@@ -100,7 +100,7 @@ public:
     /**
      * During reproduction, is seed flow allowed from this patch to to a destination
      * patch outside of this patch's restricted reproduction area?
-     * NB: depending on usage, you should first consider calling inReproRestrictionArea(dest) 
+     * NB: depending on usage, you should first consider calling inReproRestrictionArea(dest)
      * to check whether this restriction applies at all to the destination patch under
      * consideration (only applies if inReproRestrictionArea(dest) == false)
      */
@@ -109,7 +109,7 @@ public:
     /**
      * If seedOutflowAllowed() is true, is the probability of successful seed
      * flow restricted at all (i.e. probability less than 1)?
-     * NB: depending on usage, you should first consider calling inReproRestrictionArea(dest) 
+     * NB: depending on usage, you should first consider calling inReproRestrictionArea(dest)
      * to check whether this restriction applies at all to the destination patch under
      * consideration (only applies if inReproRestrictionArea(dest) == false)
      */
@@ -119,7 +119,7 @@ public:
      * If seedOutflowAllowed() and seedOutflowRestricted() are both true,
      * what is the probability of successful seed flow to the destination
      * patch?
-     * NB: depending on usage, you should first consider calling inReproRestrictionArea(dest) 
+     * NB: depending on usage, you should first consider calling inReproRestrictionArea(dest)
      * to check whether this restriction applies at all to the destination patch under
      * consideration (only applies if inReproRestrictionArea(dest) == false)
      */
@@ -166,8 +166,19 @@ private:
                                     ///<   governed by the same PlantTypeDistributionConfig have the same
                                     ///<   value for locality id. This is used so that we can easily determine
                                     ///<   for any patch what constraints exist, if any, on seed flow etc.
-    iPos            m_ReproRestrictionAreaTopLeft;
-    iPos            m_ReproRestrictionAreaBottomRight;
+    iPos            m_ReproRestrictionAreaTopLeft;     ///< Defines the area within which seeds in this
+                                                       ///<   this patch may be dispersed during the
+                                                       ///<   reproduction phase (for plant's whose
+                                                       ///<   seed dispersal method is set to global).
+                                                       ///<   In addition, this area ALSO defines the
+                                                       ///<   local area within which Pollinators may
+                                                       ///<   move during a foraging phase (unless they
+                                                       ///<   are allowed to - and successfully manage to -
+                                                       ///<   migrate to another area): see comments in
+                                                       ///<   AbstractHive::getInitForageAreaTopLeft() for
+                                                       ///<   further details of this latter usage)
+    iPos            m_ReproRestrictionAreaBottomRight; ///< (See comments for m_ReproRestrictionAreaTopLeft)
+
     bool            m_bSeedOutflowAllowed;
     bool            m_bSeedOutflowRestricted;
     float           m_fSeedOutflowProb;
