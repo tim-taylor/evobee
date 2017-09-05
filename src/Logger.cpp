@@ -141,19 +141,19 @@ void Logger::logPollinatorsFull()
 
 // logPollinatorsInterPhaseSummary
 void Logger::logPollinatorsSummary()
-{       
+{
     std::ofstream ofs = openLogFile();
     auto gen = m_pModel->getGenNumber();
-    auto& pollinators = m_pEnv->getAllPollinators();    
+    auto& pollinators = m_pEnv->getAllPollinators();
 
     for (auto pPol : pollinators)
     {
         ofs << "p," << gen << "," << pPol->getId();
 
-        const std::map<unsigned int, PollinatorPerformanceInfo>& perfMap = pPol->getPerformanceInfoMap();
+        auto& perfMap = pPol->getPerformanceInfoMap();
         for (auto& perfInfo : perfMap)
         {
-            ofs << "," << perfInfo.first << "," << perfInfo.second.numLandings 
+            ofs << "," << perfInfo.first << "," << perfInfo.second.numLandings
                 << "," << perfInfo.second.numPollinations << ","
                 << pPol->getNumPollenGrainsInStore(perfInfo.first);
         }

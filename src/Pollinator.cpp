@@ -29,6 +29,9 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_pModel(nullptr),
     m_State(PollinatorState::UNINITIATED),
     m_iNumFlowersVisitedInBout(0),
+    m_ConstancyType(pc.constancyType),
+    m_fConstancyParam(pc.constancyParam),
+    m_PreviousLandingSpeciesId(0),
     m_iBoutLength(pc.boutLength),
     m_iPollenDepositPerFlowerVisit(pc.pollenDepositPerFlowerVisit),
     m_iPollenLossInAir(pc.pollenLossInAir),
@@ -81,6 +84,9 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
     m_InnateMPPref(other.m_InnateMPPref),
+    m_ConstancyType(other.m_ConstancyType),
+    m_fConstancyParam(other.m_fConstancyParam),
+    m_PreviousLandingSpeciesId(other.m_PreviousLandingSpeciesId),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -113,6 +119,9 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
     m_InnateMPPref(other.m_InnateMPPref),
+    m_ConstancyType(other.m_ConstancyType),
+    m_fConstancyParam(other.m_fConstancyParam),
+    m_PreviousLandingSpeciesId(other.m_PreviousLandingSpeciesId),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -156,6 +165,7 @@ void Pollinator::reset()
 {
     m_State = PollinatorState::UNINITIATED;
     m_iNumFlowersVisitedInBout = 0;
+    m_PreviousLandingSpeciesId = 0;
     m_PollenStore.clear();
     for (auto& perfInfo : m_PerformanceInfoMap)
     {

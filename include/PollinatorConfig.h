@@ -8,6 +8,7 @@
 #define _POLLINATORCONFIG_H
 
 #include <string>
+#include "PollinatorConstancyType.h"
 #include "ReflectanceInfo.h"
 
 /**
@@ -24,6 +25,9 @@ struct PollinatorConfig {
     int pollenCarryoverNumVisits;
     MarkerPoint innateMPPrefMin;
     MarkerPoint innateMPPrefMax;
+    std::string strConstancyType;
+    PollinatorConstancyType constancyType;
+    float constancyParam;
 };
 
 #endif /* _POLLINATORCONFIG_H */

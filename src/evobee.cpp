@@ -78,9 +78,9 @@ void from_json(const json& j, HiveConfig& hc)
     json_read_param(j, sct, "area-top-left-y", hc.areaTopLeft.y);
     json_read_param(j, sct, "area-bottom-right-x", hc.areaBottomRight.x);
     json_read_param(j, sct, "area-bottom-right-y", hc.areaBottomRight.y);
-    json_read_param(j, sct, "migration-allowed", hc.migrationAllowed);
-    json_read_param(j, sct, "migration-restricted", hc.migrationRestricted);
-    json_read_param(j, sct, "migration-prob", hc.migrationProb);
+    json_read_opt_param(j, sct, "migration-allowed", hc.migrationAllowed, true);
+    json_read_opt_param(j, sct, "migration-restricted", hc.migrationRestricted, false);
+    json_read_opt_param(j, sct, "migration-prob", hc.migrationProb, 1.0f);
 
 }
 
@@ -93,13 +93,13 @@ void from_json(const json& j, PlantTypeDistributionConfig& pc)
     json_read_param(j, sct, "area-bottom-right-x", pc.areaBottomRight.x);
     json_read_param(j, sct, "area-bottom-right-y", pc.areaBottomRight.y);
     json_read_param(j, sct, "density", pc.density);
-    json_read_param(j, sct, "refuge", pc.refuge);
-    json_read_param(j, sct, "refuge-alien-inflow-prob", pc.refugeAlienInflowProb);
-    json_read_param(j, sct, "seed-outflow-allowed", pc.seedOutflowAllowed);
-    json_read_param(j, sct, "seed-outflow-restricted", pc.seedOutflowRestricted);
-    json_read_param(j, sct, "seed-outflow-prob", pc.seedOutflowProb);
-    json_read_param(j, sct, "repro-local-density-constrained", pc.reproLocalDensityConstrained);
-    json_read_param(j, sct, "repro-local-density-max", pc.reproLocalDensityMax);
+    json_read_opt_param(j, sct, "refuge", pc.refuge, false);
+    json_read_opt_param(j, sct, "refuge-alien-inflow-prob", pc.refugeAlienInflowProb, 0.0f);
+    json_read_opt_param(j, sct, "seed-outflow-allowed", pc.seedOutflowAllowed, true);
+    json_read_opt_param(j, sct, "seed-outflow-restricted", pc.seedOutflowRestricted, false);
+    json_read_opt_param(j, sct, "seed-outflow-prob", pc.seedOutflowProb, 1.0f);
+    json_read_opt_param(j, sct, "repro-local-density-constrained", pc.reproLocalDensityConstrained, false);
+    json_read_opt_param(j, sct, "repro-local-density-max", pc.reproLocalDensityMax, 0.5f);
 }
 
 void from_json(const json& j, PlantTypeConfig& pt)
@@ -118,7 +118,6 @@ void from_json(const json& j, PlantTypeConfig& pt)
         // is set to an effectively unlimited value
         pt.stigmaMaxPollenCapacity = 99999;
     }
-    //json_read_param(j, sct, "pollen-clogging", pt.pollenClogging);
     json_read_param(j, sct, "pollen-clogging", pt.pollenCloggingSpecies);
     json_read_param(j, sct, "repro-seed-dispersal-global", pt.reproSeedDispersalGlobal);
     json_read_opt_param(j, sct, "repro-seed-dispersal-radius", pt.reproSeedDispersalRadius, 1.0f);
@@ -134,8 +133,10 @@ void from_json(const json& j, PollinatorConfig& p)
     json_read_param(j, sct, "pollen-loss-in-air", p.pollenLossInAir);
     json_read_param(j, sct, "pollen-carryover-num-visits", p.pollenCarryoverNumVisits);
     json_read_param(j, sct, "max-pollen-capacity", p.maxPollenCapacity);
-    json_read_param(j, sct, "innate-mp-pref-min", p.innateMPPrefMin);
-    json_read_param(j, sct, "innate-mp-pref-max", p.innateMPPrefMax);
+    json_read_opt_param(j, sct, "innate-mp-pref-min", p.innateMPPrefMin, (MarkerPoint)400);
+    json_read_opt_param(j, sct, "innate-mp-pref-max", p.innateMPPrefMax, (MarkerPoint)400);
+    json_read_opt_param(j, sct, "constancy-type", p.strConstancyType, std::string("none"));
+    json_read_opt_param(j, sct, "constancy-param", p.constancyParam, 0.5f);
     if (p.maxPollenCapacity < 1)
     {
         // a user supplied value of 0 or negative means that the maximum capacity
@@ -505,8 +506,12 @@ void processJsonFile(std::ifstream& ifs)
                 if ((key.compare(0, PTKey.size(), PTKey) == 0) &&
                     itPT.value().is_object())
                 {
-                    PlantTypeConfig pc = itPT.value();
-                    ModelParams::addPlantTypeConfig(pc);
+                    // the following line configures the PlantTypeConfig object from
+                    // the JSON object in a one-er, making use of the
+                    // void from_json(const json& j, PlantTypeConfig& p) method
+                    // defined earlier in the file
+                    PlantTypeConfig ptc = itPT.value();
+                    ModelParams::addPlantTypeConfig(ptc);
                 }
                 else {
                     std::cerr << "Unexpected entry in PlantTypes section of json file: "
@@ -526,6 +531,10 @@ void processJsonFile(std::ifstream& ifs)
                 if ((key.compare(0, PKey.size(), PKey) == 0) &&
                     itP.value().is_object())
                 {
+                    // the following line configures the PollinatorConfig object from
+                    // the JSON object in a one-er, making use of the
+                    // void from_json(const json& j, PollinatorConfig& p) method
+                    // defined earlier in the file
                     PollinatorConfig pc = itP.value();
                     ModelParams::addPollinatorConfig(pc);
                 }

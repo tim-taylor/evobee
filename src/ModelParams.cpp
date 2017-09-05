@@ -296,6 +296,20 @@ void ModelParams::addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pt
 
 void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
 {
+    // Set the constancy type according to the given specification string
+    if (pc.strConstancyType == "none")
+    {
+        pc.constancyType = PollinatorConstancyType::NONE;
+    }
+    else if (pc.strConstancyType == "simple")
+    {
+        pc.constancyType = PollinatorConstancyType::SIMPLE;
+    }
+    else
+    {
+        pc.constancyType = PollinatorConstancyType::NONE;
+        /// @todo... maybe output warning msg here and in next case?
+    }
     m_PollinatorConfigs.push_back(pc);
 }
 

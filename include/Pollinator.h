@@ -1,7 +1,8 @@
 /**
  * @file
  *
- * Declaration of the Pollinator class
+ * Declaration of the Pollinator class and helper enums and structs
+ * PollinatorState and PollinatorPerformanceInfo
  */
 
 #ifndef _POLLINATOR_H
@@ -16,6 +17,7 @@
 #include "Flower.h"
 #include "Pollen.h"
 #include "PollinatorConfig.h"
+#include "PollinatorConstancyType.h"
 
 class Environment;
 
@@ -24,7 +26,6 @@ class Environment;
  * The PollinatorState enum
  */
 enum class PollinatorState {UNINITIATED, FORAGING, BOUT_COMPLETE};
-
 
 /**
  * The PollinatorPerformanceInfo struct
@@ -135,12 +136,12 @@ public:
      * currently being carried by the pollinator
      */
     int getNumPollenGrainsInStore(unsigned int speciesId) const;
-     
+
     /**
     *
     */
     const std::map<unsigned int, PollinatorPerformanceInfo>& getPerformanceInfoMap() const {
-                                                                    return m_PerformanceInfoMap;}    
+                                                                    return m_PerformanceInfoMap;}
 
 
 protected:
@@ -232,14 +233,21 @@ protected:
                                                 ///<  (see AbstractHive::getInitForageAreaTopLeft() for
                                                 ///<   details of usage of this variable)
 
-    MarkerPoint     m_InnateMPPref;         ///< This pollinator's innate preference for flower
-                                            ///<   colour marker point
+    MarkerPoint     m_InnateMPPref;             ///< This pollinator's innate preference for flower
+                                                ///<   colour marker point
+
+    PollinatorConstancyType m_ConstancyType;    ///< Specification of what type of constancy (if any)
+                                                ///<   this pollinator exhibits in flower visits
+    float           m_fConstancyParam;          ///< Parameter for constancy (interpretation depends
+                                                ///<   on value of m_ConstancyType)
+    unsigned int    m_PreviousLandingSpeciesId; ///< Species id of the most recently visited
+                                                ///<   flower by this pollinator (or 0 if none visited)
 
     // some constant parameters for this pollinator
-    const int       m_iBoutLength;          ///< Num flower visits allowed before returning to hive
+    const int       m_iBoutLength;              ///< Num flower visits allowed before returning to hive
     const int       m_iPollenDepositPerFlowerVisit;  ///< Amount of pollen deposited on a flower on each visit
-    const int       m_iPollenLossInAir;     ///< Amount of pollen lost on each timestep when flying
-    const int       m_iMaxPollenCapacity;   ///< Maximum amount of pollen the pollinator can carry
+    const int       m_iPollenLossInAir;         ///< Amount of pollen lost on each timestep when flying
+    const int       m_iMaxPollenCapacity;       ///< Maximum amount of pollen the pollinator can carry
     const int       m_iPollenCarryoverNumVisits; /** After collecting a grain of pollen from a flower,
                                                   * the pollinator can visit this number of subsequent
                                                   * flowers to potentially deposit it. If the pollen is
