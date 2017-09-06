@@ -138,7 +138,8 @@ public:
      * withing the Moore neighbourhood of local patches.
      * If any found, return a pointer to the closest one, otherwise
      * return nullptr.
-     * fRadius specifies the meximum radius of the search, and should
+     *
+     * @param fRadius specifies the meximum radius of the search, and should
      * be set between 0.0 and 1.0 (values above this mean that the
      * search might be clipped if the specified pos is not in the dead
      * centre of the central patch). If fRadius is set to a negative
@@ -146,8 +147,13 @@ public:
      * neihbourhood of patches are considered (but not that this leads
      * to an asymmetric search radius in different directions, as the
      * patches are squares). fRadius takes a default value of 1.0.
+     *
+     * @param excludeCurrentPos determines whether to return a plant that
+     * is in exactly the specified position. This is excluded by default,
+     * as we are usually not interested in a plant that a pollinator is
+     * currently sitting on.
      */
-    FloweringPlant* findClosestFloweringPlant(const fPos& pos, float fRadius = 1.0);
+    FloweringPlant* findClosestFloweringPlant(const fPos& pos, float fRadius = 1.0, bool excludeCurrentPos = true);
 
     /*
      * Returns a random float position within the environment
