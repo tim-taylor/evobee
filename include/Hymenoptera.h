@@ -22,11 +22,11 @@ public:
     ~Hymenoptera() {}
 
     Hymenoptera(const Hymenoptera& other);
-    Hymenoptera(Hymenoptera&& other) noexcept;    
+    Hymenoptera(Hymenoptera&& other) noexcept;
 
     void reset() override;
 
-    void step() override = 0;
+    //void step() override = 0;
 
     std::string getStateString() const override;
 
@@ -40,8 +40,8 @@ private:
 
     /**
      * String description of the Hymenoptera type, for use in log files
-     */    
-    static std::string m_sTypeNameStr;    
+     */
+    static std::string m_sTypeNameStr;
 };
 
 #endif /* _HYMENOPTERA_H */

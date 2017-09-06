@@ -36,6 +36,7 @@ void HoneyBee::reset()
 }
 
 
+/*
 void HoneyBee::step()
 {
     switch (m_State)
@@ -47,32 +48,23 @@ void HoneyBee::step()
         }
         case (PollinatorState::FORAGING):
         {
-            // first move
-            ///@todo... need to parameterise type of movement and details
-            moveRandom();
-
-            // now look for flowers nearby
-            ///@todo - for now we are looking for nearest plant, not nearest flower
-            /// (so assuming plants just have one flower)
-            bool flowerVisited = false;
-
-            FloweringPlant* pPlant = getEnvironment()->findClosestFloweringPlant(m_Position);
-            if (pPlant != nullptr)
+            switch (m_ForagingStrategy)
             {
-                Flower* pFlower = pPlant->getFlower(0);
-                if (isVisitCandidate(pFlower))
+                case (PollinatorForagingStrategy::RANDOM):
                 {
-                    visitFlower(pFlower);
-                    flowerVisited = true;
+                    forageRandom();
+                    break;
+                }
+                case (PollinatorForagingStrategy::NEAREST_FLOWER):
+                {
+                    forageNearestFlower();
+                    break;
+                }
+                default:
+                {
+                    throw std::runtime_error("Unknown pollinator foraging strategy encountered");
                 }
             }
-
-            if (!flowerVisited)
-            {
-                losePollenToAir(m_iPollenLossInAir);
-            }
-
-            break;
         }
         case (PollinatorState::BOUT_COMPLETE):
         {
@@ -86,8 +78,9 @@ void HoneyBee::step()
 
     }
 }
+*/
 
-
+/*
 void HoneyBee::visitFlower(Flower* pFlower)
 {
     // for each Pollen grain in the store, update its landing count
@@ -111,8 +104,9 @@ void HoneyBee::visitFlower(Flower* pFlower)
         m_State = PollinatorState::BOUT_COMPLETE;
     }
 }
+*/
 
-
+/*
 bool HoneyBee::isVisitCandidate(Flower* pFlower) const
 {
     bool bOfInterest = true;
@@ -142,7 +136,7 @@ bool HoneyBee::isVisitCandidate(Flower* pFlower) const
 
     ///@todo - implement isVisitCandidate based upon innate and learned preferences for flower colour
 
-    /*
+    / **
     // from Zoe's code...
 
     //Ensusre that is it more likely to harvest this flower if it is the right colour/is favoured, and vice versa.
@@ -163,11 +157,11 @@ bool HoneyBee::isVisitCandidate(Flower* pFlower) const
     {
         //System.out.printf("NOPE!"); 	//Don't touch the preferences if not harvesting
     }
-    */
+    ** /
 
     return bOfInterest;
 }
-
+*/
 
 std::string HoneyBee::getStateString() const
 {

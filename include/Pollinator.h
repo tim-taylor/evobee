@@ -17,7 +17,7 @@
 #include "Flower.h"
 #include "Pollen.h"
 #include "PollinatorConfig.h"
-#include "PollinatorConstancyType.h"
+#include "PollinatorEnums.h"
 
 class Environment;
 
@@ -74,9 +74,10 @@ public:
     const fPos& getPosition() const {return m_Position;}
 
     /**
-     *
+     * Default implemenation of the pollinator's update logic at each step of the
+     * foraging phase. May be overridden by subclasses.
      */
-    virtual void step() = 0;
+    virtual void step();
 
     /**
      *
@@ -145,6 +146,31 @@ public:
 
 
 protected:
+
+    /**
+     * Default implementation of Random foraging strategy.
+     * May be overridden by subclasses.
+     */
+    virtual void forageRandom();
+
+    /**
+     * Default implementation of Nearest Flower foraging strategy.
+     * May be overridden by subclasses.
+     */
+    virtual void forageNearestFlower();
+
+    /**
+     * Default implementation of method to determine whether the pollinator should
+     * harvest the specified flower. May be overridden by subclasses.
+     */
+    virtual bool isVisitCandidate(Flower* pFlower) const;
+
+    /**
+     * Default implementation of method coding the logic of what happens when the
+     * pollinator visits a flower. May be overridden by subclasses.
+     */
+    virtual void visitFlower(Flower* pFlower);
+
     /**
      * Move by the given distance in a uniform random direction
      * @param allowOffEnv Do we allow move to take pollinator out of the bounds of the environment?
@@ -242,6 +268,8 @@ protected:
                                                 ///<   on value of m_ConstancyType)
     unsigned int    m_PreviousLandingSpeciesId; ///< Species id of the most recently visited
                                                 ///<   flower by this pollinator (or 0 if none visited)
+
+    PollinatorForagingStrategy m_ForagingStrategy; ///< Determines exactly how the pollinator moves at each step
 
     // some constant parameters for this pollinator
     const int       m_iBoutLength;              ///< Num flower visits allowed before returning to hive

@@ -34,12 +34,7 @@ public:
     /**
      *
      */
-    void step() override final;
-
-    /**
-     * Determine whether the pollinator should harvest the specified flower
-     */
-    bool isVisitCandidate(Flower* pFlower) const;
+    //void step() override final;
 
     /**
      *
@@ -51,18 +46,25 @@ public:
      */
     const std::string& getTypeName() const override final;
 
-private:
+
+protected:
+    /**
+     * Determine whether the pollinator should harvest the specified flower
+     */
+     //bool isVisitCandidate(Flower* pFlower) const;
+
     /**
      *
      */
-    void visitFlower(Flower* pFlower);
+    //void visitFlower(Flower* pFlower);
 
 
+private:
     /**
      * String description of the HoneyBee type, for use in log files
      */
     static std::string m_sTypeNameStr;
-    
+
 };
 
 #endif /* _HONEYBEE_H */

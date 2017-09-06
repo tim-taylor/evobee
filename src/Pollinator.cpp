@@ -32,6 +32,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_ConstancyType(pc.constancyType),
     m_fConstancyParam(pc.constancyParam),
     m_PreviousLandingSpeciesId(0),
+    m_ForagingStrategy(pc.foragingStrategy),
     m_iBoutLength(pc.boutLength),
     m_iPollenDepositPerFlowerVisit(pc.pollenDepositPerFlowerVisit),
     m_iPollenLossInAir(pc.pollenLossInAir),
@@ -87,6 +88,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
     m_PreviousLandingSpeciesId(other.m_PreviousLandingSpeciesId),
+    m_ForagingStrategy(other.m_ForagingStrategy),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -122,6 +124,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
     m_PreviousLandingSpeciesId(other.m_PreviousLandingSpeciesId),
+    m_ForagingStrategy(other.m_ForagingStrategy),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -321,6 +324,180 @@ void Pollinator::repositionInArea(fPos delta, float minx, float miny, float maxx
     else if (m_Position.y >= maxy)
     {
         m_Position.y = maxy - (2.0 * EvoBee::FLOAT_COMPARISON_EPSILON);
+    }
+}
+
+
+//
+void Pollinator::step()
+{
+    switch (m_State)
+    {
+        case (PollinatorState::UNINITIATED):
+        {
+            m_State = PollinatorState::FORAGING;
+            // and now fall through to next case
+        }
+        case (PollinatorState::FORAGING):
+        {
+            switch (m_ForagingStrategy)
+            {
+                case (PollinatorForagingStrategy::RANDOM):
+                {
+                    forageRandom();
+                    break;
+                }
+                case (PollinatorForagingStrategy::NEAREST_FLOWER):
+                {
+                    forageNearestFlower();
+                    break;
+                }
+                default:
+                {
+                    throw std::runtime_error("Unknown pollinator foraging strategy encountered");
+                }
+            }
+        }
+        case (PollinatorState::BOUT_COMPLETE):
+        {
+            // (do nothing)
+            break;
+        }
+        default:
+        {
+            throw std::runtime_error("Unknown pollinator state encountered");
+        }
+
+    }
+}
+
+
+// The Random foraging strategy involves first making a move in a random direction, then looking for
+// a nearby flower. If a flower is found, the pollinator then moves to that if it is a visit candidate.
+void Pollinator::forageRandom()
+{
+    // first move in a random direction
+    moveRandom();
+
+    // now look for flowers nearby
+    ///@todo - for now we are looking for nearest plant, not nearest flower
+    /// (so assuming plants just have one flower)
+    bool flowerVisited = false;
+
+    FloweringPlant* pPlant = getEnvironment()->findClosestFloweringPlant(m_Position);
+    if (pPlant != nullptr)
+    {
+        Flower* pFlower = pPlant->getFlower(0);
+        if (isVisitCandidate(pFlower))
+        {
+            visitFlower(pFlower);
+            flowerVisited = true;
+        }
+    }
+
+    if (!flowerVisited)
+    {
+        losePollenToAir(m_iPollenLossInAir);
+    }
+}
+
+
+// The Nearest Flower foraging strategy involves first looking for a nearby flower from current
+// position. If one is found and it is a visit candidate, move to the closest flower seen.
+// If not flower is seen, move in a random direction.
+void Pollinator::forageNearestFlower()
+{
+    // look for flowers nearby
+    ///@todo - for now we are looking for nearest plant, not nearest flower
+    /// (so assuming plants just have one flower)
+    bool flowerVisited = false;
+
+    FloweringPlant* pPlant = getEnvironment()->findClosestFloweringPlant(m_Position);
+    if (pPlant != nullptr)
+    {
+        Flower* pFlower = pPlant->getFlower(0);
+        if (isVisitCandidate(pFlower))
+        {
+            visitFlower(pFlower);
+            flowerVisited = true;
+        }
+    }
+
+    if (!flowerVisited)
+    {
+        moveRandom();
+        losePollenToAir(m_iPollenLossInAir);
+    }
+}
+
+
+// determine whether the pollinator will decide to land on the given flower,
+// which depends on its flower constancy characteristics etc.
+bool Pollinator::isVisitCandidate(Flower* pFlower) const
+{
+    bool bOfInterest = true;
+
+    switch (m_ConstancyType)
+    {
+        case (PollinatorConstancyType::NONE):
+        {
+            bOfInterest = true;
+            break;
+        }
+        case (PollinatorConstancyType::SIMPLE):
+        {
+            // take into account the type of the previous flower visited, and the probability
+            // of landing on the same type this time around...
+
+            if (m_PreviousLandingSpeciesId == 0)
+            {
+                // have not landed on a flower previously, so we'll land on this one
+                // whatever!
+                bOfInterest = true;
+            }
+            else
+            {
+                // consider whether this flower is of the same species as the previous one
+                float prob = (m_PreviousLandingSpeciesId == pFlower->getSpeciesId()) ?
+                    m_fConstancyParam : (1.0 - m_fConstancyParam);
+
+                bOfInterest = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
+            }
+
+            break;
+        }
+        default:
+        {
+            throw std::runtime_error("Unknown pollinator constancy type encountered");
+        }
+    }
+
+    return bOfInterest;
+}
+
+
+// The logic of what a pollinator does when it lands on a flower
+void Pollinator::visitFlower(Flower* pFlower)
+{
+    // for each Pollen grain in the store, update its landing count
+    updatePollenLandingCount();
+
+    // remove pollen from store that is now past the carryover limit
+    removeOldCarryoverPollen();
+
+    // first transfer some of bee's pollen to the flower (potentially pollinating it)
+    depositPollenOnStigma(pFlower);
+
+    // now pick up more pollen from the flower
+    collectPollenFromAnther(pFlower);
+
+    // update record of most recent landing to this one
+    m_PreviousLandingSpeciesId = pFlower->getSpeciesId();
+
+    // update count of number of flowers visited, and end bout if done
+    if (++m_iNumFlowersVisitedInBout >= m_iBoutLength)
+    {
+        m_State = PollinatorState::BOUT_COMPLETE;
     }
 }
 

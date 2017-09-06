@@ -223,7 +223,9 @@ bool Environment::inArea(const iPos& pos, const iPos& areaTopLeft, const iPos& a
 // it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
 // upon the location of fpos within the central patch.
 //
-FloweringPlant* Environment::findClosestFloweringPlant(const fPos& fpos, float fRadius)
+FloweringPlant* Environment::findClosestFloweringPlant( const fPos& fpos,
+                                                        float fRadius /*= 1.0*/,
+                                                        bool excludeCurrentPos /*= true*/)
 {
     assert(fRadius < 1.0 + EvoBee::FLOAT_COMPARISON_EPSILON);
 
@@ -251,8 +253,12 @@ FloweringPlant* Environment::findClosestFloweringPlant(const fPos& fpos, float f
                             float distSq = plant.getDistanceSq(fpos);
                             if (distSq < minDistSq)
                             {
-                                minDistSq = distSq;
-                                pPlant = &plant;
+                                //if ((!excludeCurrentPos) || (distSq > EvoBee::FLOAT_COMPARISON_EPSILON))
+                                if ((!excludeCurrentPos) || (distSq > 0.01))
+                                {
+                                    minDistSq = distSq;
+                                    pPlant = &plant;
+                                }
                             }
                         }
                     }

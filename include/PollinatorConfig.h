@@ -8,7 +8,7 @@
 #define _POLLINATORCONFIG_H
 
 #include <string>
-#include "PollinatorConstancyType.h"
+#include "PollinatorEnums.h"
 #include "ReflectanceInfo.h"
 
 /**
@@ -28,6 +28,8 @@ struct PollinatorConfig {
     std::string strConstancyType;
     PollinatorConstancyType constancyType;
     float constancyParam;
+    std::string strForagingStrategy;
+    PollinatorForagingStrategy foragingStrategy;
 };
 
 #endif /* _POLLINATORCONFIG_H */

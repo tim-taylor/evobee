@@ -310,6 +310,23 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
         pc.constancyType = PollinatorConstancyType::NONE;
         /// @todo... maybe output warning msg here and in next case?
     }
+
+
+    // Set the foraging strategy according to the given specification string
+    if (pc.strForagingStrategy == "random")
+    {
+        pc.foragingStrategy = PollinatorForagingStrategy::RANDOM;
+    }
+    else if (pc.strForagingStrategy == "nearest-flower")
+    {
+        pc.foragingStrategy = PollinatorForagingStrategy::NEAREST_FLOWER;
+    }
+    else
+    {
+        pc.foragingStrategy = PollinatorForagingStrategy::RANDOM;
+        /// @todo... maybe output warning msg here and in next case?
+    }
+
     m_PollinatorConfigs.push_back(pc);
 }
 
