@@ -32,6 +32,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_ConstancyType(pc.constancyType),
     m_fConstancyParam(pc.constancyParam),
     m_PreviousLandingSpeciesId(0),
+    m_uiVisitedFlowerMemorySize(pc.visitedFlowerMemorySize),
     m_ForagingStrategy(pc.foragingStrategy),
     m_iBoutLength(pc.boutLength),
     m_iPollenDepositPerFlowerVisit(pc.pollenDepositPerFlowerVisit),
@@ -88,6 +89,8 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
     m_PreviousLandingSpeciesId(other.m_PreviousLandingSpeciesId),
+    m_uiVisitedFlowerMemorySize(other.m_uiVisitedFlowerMemorySize),
+    m_RecentlyVisitedFlowers(other.m_RecentlyVisitedFlowers),
     m_ForagingStrategy(other.m_ForagingStrategy),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
@@ -124,6 +127,8 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
     m_PreviousLandingSpeciesId(other.m_PreviousLandingSpeciesId),
+    m_uiVisitedFlowerMemorySize(other.m_uiVisitedFlowerMemorySize),
+    m_RecentlyVisitedFlowers(other.m_RecentlyVisitedFlowers),
     m_ForagingStrategy(other.m_ForagingStrategy),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
@@ -167,9 +172,10 @@ Pollinator& Pollinator::operator= (Pollinator&& other) noexcept
 void Pollinator::reset()
 {
     m_State = PollinatorState::UNINITIATED;
+    m_PollenStore.clear();
     m_iNumFlowersVisitedInBout = 0;
     m_PreviousLandingSpeciesId = 0;
-    m_PollenStore.clear();
+    m_RecentlyVisitedFlowers.clear();
     for (auto& perfInfo : m_PerformanceInfoMap)
     {
         perfInfo.second.reset();
@@ -390,6 +396,7 @@ void Pollinator::forageRandom()
         Flower* pFlower = pPlant->getFlower(0);
         if (isVisitCandidate(pFlower))
         {
+            m_Position = pFlower->getPosition();
             visitFlower(pFlower);
             flowerVisited = true;
         }
@@ -402,22 +409,20 @@ void Pollinator::forageRandom()
 }
 
 
-// The Nearest Flower foraging strategy involves first looking for a nearby flower from current
-// position. If one is found and it is a visit candidate, move to the closest flower seen.
-// If not flower is seen, move in a random direction.
+// The Nearest Flower foraging strategy involves first looking for a nearby unvisited flower
+// from current position. If one is found and it is a visit candidate, move to the closest
+// flower seen. If not flower is seen, move in a random direction.
 void Pollinator::forageNearestFlower()
 {
-    // look for flowers nearby
-    ///@todo - for now we are looking for nearest plant, not nearest flower
-    /// (so assuming plants just have one flower)
     bool flowerVisited = false;
 
-    FloweringPlant* pPlant = getEnvironment()->findClosestFloweringPlant(m_Position);
-    if (pPlant != nullptr)
+    Flower* pFlower = getEnvironment()->findClosestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers /*, -1.0*/);
+    ///@todo - currently using radius -1 above...
+    if (pFlower != nullptr)
     {
-        Flower* pFlower = pPlant->getFlower(0);
         if (isVisitCandidate(pFlower))
         {
+            m_Position = pFlower->getPosition();
             visitFlower(pFlower);
             flowerVisited = true;
         }
@@ -425,7 +430,7 @@ void Pollinator::forageNearestFlower()
 
     if (!flowerVisited)
     {
-        moveRandom();
+        moveRandom(); ///@todo should we allow variable step lengths?
         losePollenToAir(m_iPollenLossInAir);
     }
 }
@@ -493,6 +498,26 @@ void Pollinator::visitFlower(Flower* pFlower)
 
     // update record of most recent landing to this one
     m_PreviousLandingSpeciesId = pFlower->getSpeciesId();
+    if (m_uiVisitedFlowerMemorySize == 1)
+    {
+        if (m_RecentlyVisitedFlowers.empty())
+        {
+            m_RecentlyVisitedFlowers.push_back(pFlower->getId());
+        }
+        else
+        {
+            m_RecentlyVisitedFlowers[0] = pFlower->getId();
+        }
+    }
+    else if (m_uiVisitedFlowerMemorySize > 1)
+    {
+        m_RecentlyVisitedFlowers.push_back(pFlower->getId());
+        if (m_RecentlyVisitedFlowers.size() > m_uiVisitedFlowerMemorySize)
+        {
+            m_RecentlyVisitedFlowers.erase(m_RecentlyVisitedFlowers.begin());
+        }
+    }
+
 
     // update count of number of flowers visited, and end bout if done
     if (++m_iNumFlowersVisitedInBout >= m_iBoutLength)

@@ -138,6 +138,7 @@ void from_json(const json& j, PollinatorConfig& p)
     json_read_opt_param(j, sct, "constancy-type", p.strConstancyType, std::string("none"));
     json_read_opt_param(j, sct, "constancy-param", p.constancyParam, 0.5f);
     json_read_opt_param(j, sct, "foraging-strategy", p.strForagingStrategy, std::string("random"));
+    json_read_opt_param(j, sct, "visited-flower-memory-size", p.visitedFlowerMemorySize, (unsigned int)5);
     if (p.maxPollenCapacity < 1)
     {
         // a user supplied value of 0 or negative means that the maximum capacity

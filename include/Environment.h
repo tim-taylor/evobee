@@ -153,7 +153,29 @@ public:
      * as we are usually not interested in a plant that a pollinator is
      * currently sitting on.
      */
-    FloweringPlant* findClosestFloweringPlant(const fPos& pos, float fRadius = 1.0, bool excludeCurrentPos = true);
+    FloweringPlant* findClosestFloweringPlant(const fPos& pos,
+        float fRadius = 1.0,
+        bool excludeCurrentPos = true);
+
+    /**
+     * Search for flowers in the local patch and its 8 closest neighbours
+     * (Moore neighbourhood), and return a pointer to the closest flower found
+     * that is not in the supplied list of excluded flowers, or nullptr if none found.
+     *
+     * The third parameter (default value = 1.0) specifies a maximum search radius.
+     * If this is given a negative value, then it is ignored, and the closest flower
+     * withiin the Moore neighbourhood will be returned regardless of distance (but
+     * note that this means that the search radius is effectively asymmetric in
+     * different directions because the patches are squares). If the radius is set
+     * to a positive value, then only flowers within that distance of fpos will be
+     * considered. Therefore, if fRadius is positive, it only really makes sense for
+     * it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
+     * upon the location of fpos within the central patch.
+     */
+    Flower* findClosestUnvisitedFlower(const fPos &fpos,
+        const std::vector<unsigned int>& excludeIdVec,
+        float fRadius = 1.0,
+        bool excludeCurrentPos = true);
 
     /*
      * Returns a random float position within the environment

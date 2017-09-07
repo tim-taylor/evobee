@@ -31,9 +31,6 @@ public:
      */
     void reset() override final;
 
-    /**
-     *
-     */
     //void step() override final;
 
     /**
@@ -48,14 +45,7 @@ public:
 
 
 protected:
-    /**
-     * Determine whether the pollinator should harvest the specified flower
-     */
-     //bool isVisitCandidate(Flower* pFlower) const;
-
-    /**
-     *
-     */
+    //bool isVisitCandidate(Flower* pFlower) const;
     //void visitFlower(Flower* pFlower);
 
 

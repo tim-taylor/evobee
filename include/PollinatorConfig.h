@@ -30,6 +30,7 @@ struct PollinatorConfig {
     float constancyParam;
     std::string strForagingStrategy;
     PollinatorForagingStrategy foragingStrategy;
+    unsigned int visitedFlowerMemorySize;
 };
 
 #endif /* _POLLINATORCONFIG_H */

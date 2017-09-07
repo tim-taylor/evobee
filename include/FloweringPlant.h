@@ -90,7 +90,7 @@ public:
     /**
      * Return a reference to this plant's vector of flowers
      */
-    const std::vector<Flower>& getFlowers() const {return m_Flowers;}
+    std::vector<Flower>& getFlowers() {return m_Flowers;}
 
     /**
      * Returns the distance between the plant and the specified point

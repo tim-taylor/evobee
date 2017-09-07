@@ -246,16 +246,18 @@ FloweringPlant* Environment::findClosestFloweringPlant( const fPos& fpos,
                 {
                     if (y >= 0 && y < m_iSizeY)
                     {
+                        // for each patch in Moore neighbourhood...
                         Patch& patch = getPatch(x,y);
                         PlantVector& plants = patch.getFloweringPlants();
                         for (FloweringPlant& plant : plants)
                         {
+                            // for each plant in patch...
                             float distSq = plant.getDistanceSq(fpos);
                             if (distSq < minDistSq)
                             {
-                                //if ((!excludeCurrentPos) || (distSq > EvoBee::FLOAT_COMPARISON_EPSILON))
-                                if ((!excludeCurrentPos) || (distSq > 0.01))
+                                if ((!excludeCurrentPos) || (distSq > EvoBee::FLOAT_COMPARISON_EPSILON))
                                 {
+                                    // this is the closest eligible plant we've found so far, so record it!
                                     minDistSq = distSq;
                                     pPlant = &plant;
                                 }
@@ -275,6 +277,91 @@ FloweringPlant* Environment::findClosestFloweringPlant( const fPos& fpos,
     }
 
     return pPlant;
+}
+
+
+// Search for flowers in the local patch and its 8 closest neighbours
+// (Moore neighbourhood), and return a pointer to the closest flower found
+// that is not in the supplied list of excluded flowers, or nullptr if none found.
+//
+// The third parameter (default value = 1.0) specifies a maximum search radius.
+// If this is given a negative value, then it is ignored, and the closest flower
+// withiin the Moore neighbourhood will be returned regardless of distance (but
+// note that this means that the search radius is effectively asymmetric in
+// different directions because the patches are squares). If the radius is set
+// to a positive value, then only flowers within that distance of fpos will be
+// considered. Therefore, if fRadius is positive, it only really makes sense for
+// it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
+// upon the location of fpos within the central patch.
+//
+Flower *Environment::findClosestUnvisitedFlower(const fPos &fpos,
+                                                const std::vector<unsigned int>& excludeIdVec,
+                                                float fRadius /*= 1.0*/,
+                                                bool excludeCurrentPos /*= true*/)
+{
+    assert(fRadius < 1.0 + EvoBee::FLOAT_COMPARISON_EPSILON);
+
+    Flower* pFlower = nullptr;
+    float minDistSq = 9999999.9;
+
+    // search for flowers within the Moore neighbourhood of the specified
+    // position, and, if any found, record which is the closest
+    if (inEnvironment(fpos))
+    {
+        iPos ipos = getPatchCoordFromFloatPos(fpos);
+
+        for (int x = ipos.x - 1; x <= ipos.x + 1; ++x)
+        {
+            if (x >= 0 && x < m_iSizeX)
+            {
+                for (int y = ipos.y - 1; y <= ipos.y + 1; ++y)
+                {
+                    if (y >= 0 && y < m_iSizeY)
+                    {
+                        // for each patch in Moore neighbourhood...
+                        Patch &patch = getPatch(x, y);
+                        PlantVector &plants = patch.getFloweringPlants();
+                        for (FloweringPlant &plant : plants)
+                        {
+                            // for each plant in patch...
+                            std::vector<Flower>& flowers = plant.getFlowers();
+                            for (Flower& flower : flowers)
+                            {
+                                // for each flower on plant...
+                                if ((excludeIdVec.empty()) ||
+                                    (std::find( excludeIdVec.begin(),
+                                                excludeIdVec.end(),
+                                                flower.getId() ) == excludeIdVec.end())
+                                   )
+                                {
+                                    // if flower not on exclude list...
+                                    float distSq = EvoBee::distanceSq(fpos, flower.getPosition());
+                                    if (distSq < minDistSq)
+                                    {
+                                        if ((!excludeCurrentPos) || (distSq > EvoBee::FLOAT_COMPARISON_EPSILON))
+                                        {
+                                            // this is the closest eligible flower we've found so far, so record it!
+                                            minDistSq = distSq;
+                                            pFlower = &flower;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // if a maximum search radius has been specified and the closest flower is
+    // beyond that distance, ignore it and return nullptr instead
+    if ((fRadius > 0.0) && (minDistSq > (fRadius * fRadius)))
+    {
+        pFlower = nullptr;
+    }
+
+    return pFlower;
 }
 
 

@@ -6,8 +6,8 @@
         "rng-seed" : "",
         "visualisation" : true,
         "vis-update-period" : 1,
-        "vis-delay-per-frame" : 1000,
-        "vis-pollinator-trails" : false,
+        "vis-delay-per-frame" : 100,
+        "vis-pollinator-trails" : true,
         "vis-max-screen-frac-w" : 0.9,
         "vis-max-screen-frac-h" : 0.9,
         "logging" : true,
@@ -15,74 +15,74 @@
         "log-update-period" : 1,
         "log-dir" : "output",
         "log-final-dir" : "",
-        "log-run-name" : "weed-distrib-short-edge-const-0p50",
+        "log-run-name" : "weed-distrib-long-edge-const-0p75",
     	"verbose" : true
     },
     "Environment" : {
-        "env-size-x" : 30,
-        "env-size-y" : 154,
+        "env-size-x" : 36,
+        "env-size-y" : 160,
         "background-reflectance-mp" : 500,
         "Hives" : {
             "Hive1" : {
                 "pollinator-type" : "HoneyBee",
-                "pollinator-number" : 400,
+                "pollinator-number" : 20,
                 "start-from-hive" : false,
-                "pos-x" : 14,
-                "pos-y" : 76,
+                "pos-x" : 15.5,
+                "pos-y" : 79.5,
                 "area-top-left-x" : 0,
                 "area-top-left-y" : 0,
-                "area-bottom-right-x" : 29,
-                "area-bottom-right-y" : 153
+                "area-bottom-right-x" : 35,
+                "area-bottom-right-y" : 159
             }
         },
         "PlantTypeDistributions" : {
             "PlantTypeDistribution-CropStrip1" : {
                 "species" : "Crop",
-                "area-top-left-x" : 2,
-                "area-top-left-y" : 2,
-                "area-bottom-right-x" : 6,
-                "area-bottom-right-y" : 151,
-                "density" : 0.8
+                "area-top-left-x" : 5,
+                "area-top-left-y" : 5,
+                "area-bottom-right-x" : 9,
+                "area-bottom-right-y" : 154,
+                "density" : 2.0
             },
             "PlantTypeDistribution-CropStrip2" : {
                 "species" : "Crop",
-                "area-top-left-x" : 9,
-                "area-top-left-y" : 2,
-                "area-bottom-right-x" : 13,
-                "area-bottom-right-y" : 151,
-                "density" : 0.8
+                "area-top-left-x" : 12,
+                "area-top-left-y" : 5,
+                "area-bottom-right-x" : 16,
+                "area-bottom-right-y" : 154,
+                "density" : 2.0
             },
             "PlantTypeDistribution-CropStrip3" : {
                 "species" : "Crop",
-                "area-top-left-x" : 16,
-                "area-top-left-y" : 2,
-                "area-bottom-right-x" : 20,
-                "area-bottom-right-y" : 151,
-                "density" : 0.8
+                "area-top-left-x" : 19,
+                "area-top-left-y" : 5,
+                "area-bottom-right-x" : 23,
+                "area-bottom-right-y" : 154,
+                "density" : 2.0
             },
             "PlantTypeDistribution-CropStrip4" : {
                 "species" : "Crop",
-                "area-top-left-x" : 23,
-                "area-top-left-y" : 2,
-                "area-bottom-right-x" : 27,
-                "area-bottom-right-y" : 151,
-                "density" : 0.8
+                "area-top-left-x" : 26,
+                "area-top-left-y" : 5,
+                "area-bottom-right-x" : 30,
+                "area-bottom-right-y" : 154,
+                "density" : 2.0
             },
             "PlantTypeDistribution-WeedStrip1" : {
                 "species" : "Weed",
                 "area-top-left-x" : 0,
                 "area-top-left-y" : 0,
-                "area-bottom-right-x" : 29,
-                "area-bottom-right-y" : 1,
-                "density" : 0.99
+                "area-bottom-right-x" : 4,
+                "area-bottom-right-y" : 159,
+                "density" : 2.0
             },
             "PlantTypeDistribution-WeedStrip2" : {
                 "species" : "Weed",
-                "area-top-left-x" : 0,
-                "area-top-left-y" : 152,
-                "area-bottom-right-x" : 29,
-                "area-bottom-right-y" : 153,
-                "density" : 0.99
+                "area-top-left-x" : 31,
+                "area-top-left-y" : 0,
+                "area-bottom-right-x" : 35,
+                "area-bottom-right-y" : 159,
+                "density" : 2.0
             }
         }
     },
@@ -111,13 +111,15 @@
     "Pollinators" : {
         "Pollinator1" : {
             "species" : "HoneyBee",
-            "bout-length" : 100,
+            "bout-length" : 200,
             "max-pollen-capacity" : 0,
             "pollen-deposit-per-flower-visit" : 3,
             "pollen-loss-in-air" : 0,
-            "pollen-carryover-num-visits" : 100,
+            "pollen-carryover-num-visits" : 200,
             "constancy-type" : "simple",
-            "constancy-param" : 0.75
+            "constancy-param" : 1.0,
+            "foraging-strategy" : "nearest-flower",
+	    "visited-flower-memory-size" : 20
         }
     }
 }

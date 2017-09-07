@@ -59,7 +59,8 @@
         "cmakeccompilerid.c": "cpp",
         "sdl2_rotozoom.c": "cpp",
         "sdl2_gfxprimitives.c": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "slist": "cpp"
     },
     "files.exclude": {
         "**/.git": true,
