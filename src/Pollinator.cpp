@@ -416,8 +416,7 @@ void Pollinator::forageNearestFlower()
 {
     bool flowerVisited = false;
 
-    Flower* pFlower = getEnvironment()->findClosestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers /*, -1.0*/);
-    ///@todo - currently using radius -1 above...
+    Flower* pFlower = getEnvironment()->findClosestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers);
     if (pFlower != nullptr)
     {
         if (isVisitCandidate(pFlower))
