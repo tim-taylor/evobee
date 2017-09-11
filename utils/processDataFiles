@@ -15,7 +15,7 @@ if [ "$#" -ne "1" ]; then
     exit
 fi
 
-gawk -F',' '/Species1/ {if ($2>1) {print $2", "$5}}' $1 > $1-s1.dat
-gawk -F',' '/Species2/ {if ($2>1) {print $2", "$5}}' $1 > $1-s2.dat
+gawk -F',' '/Species1/ {if ($2>=0) {print $2", "$5}}' $1 > $1-s1.dat
+gawk -F',' '/Species2/ {if ($2>=0) {print $2", "$5}}' $1 > $1-s2.dat
 
-gnuplot -e "set term png; set output '"$1"-s1s2.png'; set yrange [-100:2100]; set ylabel 'Number of plants'; set xlabel 'Generation'; plot '"$1"-s1.dat' with lines title 'Species 1', '"$1"-s2.dat' with lines title 'Species 2'"
+gnuplot -e "set term png; set output '"$1"-s1s2.png'; set yrange [-200:16200]; set ylabel 'Number of plants'; set xlabel 'Generation'; plot '"$1"-s1.dat' with lines title 'Species X', '"$1"-s2.dat' with lines title 'Species Y'"
