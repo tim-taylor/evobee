@@ -214,14 +214,18 @@ bool Environment::inArea(const iPos& pos, const iPos& areaTopLeft, const iPos& a
 // or nullptr if none found.
 //
 // The second parameter (default value = 1.0) specifies a maximum search radius.
-// If this is given a negative value, then it is ignored, and the closest flower
-// withiin the Moore neighbourhood will be returned regardless of distance (but
+// If this is given a zero or negative value, then it is ignored, and all flowers
+// withiin the Moore neighbourhood are considered regardless of distance (but
 // note that this means that the search radius is effectively asymmetric in
 // different directions because the patches are squares). If the radius is set
 // to a positive value, then only flowers within that distance of fpos will be
 // considered. Therefore, if fRadius is positive, it only really makes sense for
 // it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
 // upon the location of fpos within the central patch.
+//
+// The third parameter determines whether a flower at the given position (fpos)
+// should be considered (it is set to true by default, meaning a flower at the
+// current position will not be considered).
 //
 FloweringPlant* Environment::findNearestFloweringPlant( const fPos& fpos,
                                                         float fRadius /*= 1.0*/,
@@ -285,14 +289,18 @@ FloweringPlant* Environment::findNearestFloweringPlant( const fPos& fpos,
 // that is not in the supplied list of excluded flowers, or nullptr if none found.
 //
 // The third parameter (default value = 1.0) specifies a maximum search radius.
-// If this is given a negative value, then it is ignored, and the closest flower
-// withiin the Moore neighbourhood will be returned regardless of distance (but
+// If this is given a zero or negative value, then it is ignored, and all flowers
+// withiin the Moore neighbourhood are considered regardless of distance (but
 // note that this means that the search radius is effectively asymmetric in
 // different directions because the patches are squares). If the radius is set
 // to a positive value, then only flowers within that distance of fpos will be
 // considered. Therefore, if fRadius is positive, it only really makes sense for
 // it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
 // upon the location of fpos within the central patch.
+//
+// The fourth parameter determines whether a flower at the given position (fpos)
+// should be considered (it is set to true by default, meaning a flower at the
+// current position will not be considered).
 //
 Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
                                                 const std::vector<unsigned int>& excludeIdVec,
@@ -302,6 +310,7 @@ Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
     assert(fRadius < 1.0 + EvoBee::FLOAT_COMPARISON_EPSILON);
 
     Flower* pFlower = nullptr;
+    bool checkMaxRadius = (fRadius > EvoBee::FLOAT_COMPARISON_EPSILON);
     float minDistSq = 9999999.9;
 
     // search for flowers within the Moore neighbourhood of the specified
@@ -354,7 +363,7 @@ Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
 
     // if a maximum search radius has been specified and the closest flower is
     // beyond that distance, ignore it and return nullptr instead
-    if ((fRadius > EvoBee::FLOAT_COMPARISON_EPSILON) && (minDistSq > (fRadius * fRadius)))
+    if ((checkMaxRadius) && (minDistSq > (fRadius * fRadius)))
     {
         pFlower = nullptr;
     }
@@ -362,6 +371,89 @@ Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
     return pFlower;
 }
 
+// Search for flowers in the local patch and its 8 closest neighbours
+// (Moore neighbourhood), and return a pointer to a randomly selected found flower
+// that is not in the supplied list of excluded flowers, or nullptr if none found.
+//
+// The third parameter (default value = 1.0) specifies a maximum search radius.
+// If this is given a zero or negative value, then it is ignored, and all flowers
+// withiin the Moore neighbourhood are considered regardless of distance (but
+// note that this means that the search radius is effectively asymmetric in
+// different directions because the patches are squares). If the radius is set
+// to a positive value, then only flowers within that distance of fpos will be
+// considered. Therefore, if fRadius is positive, it only really makes sense for
+// it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
+// upon the location of fpos within the central patch.
+//
+// The fourth parameter determines whether a flower at the given position (fpos)
+// should be considered (it is set to true by default, meaning a flower at the
+// current position will not be considered).
+//
+Flower *Environment::findRandomUnvisitedFlower(const fPos &fpos,
+                                               const std::vector<unsigned int> &excludeIdVec,
+                                               float fRadius /*= 1.0*/,
+                                               bool excludeCurrentPos /*= true*/)
+{
+    assert(fRadius < 1.0 + EvoBee::FLOAT_COMPARISON_EPSILON);
+
+    Flower *pFlower = nullptr;
+    bool checkMaxRadius = (fRadius > EvoBee::FLOAT_COMPARISON_EPSILON);
+    std::vector<Flower*> candidates;
+
+    // search for flowers within the Moore neighbourhood of the specified
+    // position, and, if any found, record which is the closest
+    if (inEnvironment(fpos))
+    {
+        iPos ipos = getPatchCoordFromFloatPos(fpos);
+
+        for (int x = ipos.x - 1; x <= ipos.x + 1; ++x)
+        {
+            if (x >= 0 && x < m_iSizeX)
+            {
+                for (int y = ipos.y - 1; y <= ipos.y + 1; ++y)
+                {
+                    if (y >= 0 && y < m_iSizeY)
+                    {
+                        // for each patch in Moore neighbourhood...
+                        Patch &patch = getPatch(x, y);
+                        PlantVector &plants = patch.getFloweringPlants();
+                        for (FloweringPlant &plant : plants)
+                        {
+                            // for each plant in patch...
+                            std::vector<Flower> &flowers = plant.getFlowers();
+                            for (Flower &flower : flowers)
+                            {
+                                // for each flower on plant...
+                                if (std::find(excludeIdVec.begin(),
+                                              excludeIdVec.end(),
+                                              flower.getId()) == excludeIdVec.end())
+                                {
+                                    // if flower not on exclude list...
+                                    float distSq = EvoBee::distanceSq(fpos, flower.getPosition());
+                                    if (((!excludeCurrentPos) || (distSq > EvoBee::FLOAT_COMPARISON_EPSILON)) &&
+                                        ((!checkMaxRadius) || (distSq <= (fRadius * fRadius))))
+                                    {
+                                        // this is an eligible flower, so record it!
+                                        candidates.push_back(&flower);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // if we have found some eligible flowers, then pick one at random to return
+    if (!candidates.empty())
+    {
+        std::uniform_int_distribution<unsigned int> dist(0, candidates.size()-1);
+        pFlower = candidates.at(dist(EvoBeeModel::m_sRngEngine));
+    }
+
+    return pFlower;
+}
 
 /**
  *

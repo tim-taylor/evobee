@@ -160,6 +160,12 @@ protected:
     virtual void forageNearestFlower();
 
     /**
+     * Default implementation of Random Flower foraging strategy.
+     * May be overridden by subclasses.
+     */
+     virtual void forageRandomFlower();
+
+    /**
      * Default implementation of method to determine whether the pollinator should
      * harvest the specified flower. May be overridden by subclasses.
      */

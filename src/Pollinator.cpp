@@ -358,6 +358,11 @@ void Pollinator::step()
                     forageNearestFlower();
                     break;
                 }
+                case (PollinatorForagingStrategy::RANDOM_FLOWER):
+                {
+                    forageRandomFlower();
+                    break;
+                }
                 default:
                 {
                     throw std::runtime_error("Unknown pollinator foraging strategy encountered");
@@ -411,12 +416,38 @@ void Pollinator::forageRandom()
 
 // The Nearest Flower foraging strategy involves first looking for a nearby unvisited flower
 // from current position. If one is found and it is a visit candidate, move to the closest
-// flower seen. If not flower is seen, move in a random direction.
+// flower seen. If no flower is seen, move in a random direction.
 void Pollinator::forageNearestFlower()
 {
     bool flowerVisited = false;
 
     Flower* pFlower = getEnvironment()->findNearestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers);
+    if (pFlower != nullptr)
+    {
+        if (isVisitCandidate(pFlower))
+        {
+            m_Position = pFlower->getPosition();
+            visitFlower(pFlower);
+            flowerVisited = true;
+        }
+    }
+
+    if (!flowerVisited)
+    {
+        moveRandom(); ///@todo should we allow variable step lengths?
+        losePollenToAir(m_iPollenLossInAir);
+    }
+}
+
+
+// The Random Flower foraging strategy involves first looking for a nearby unvisited flower
+// from current position. If one is found and it is a visit candidate, move to a randomly
+// selected flower from the eligible flowers found. If no flower is seen, move in a random direction.
+void Pollinator::forageRandomFlower()
+{
+    bool flowerVisited = false;
+
+    Flower* pFlower = getEnvironment()->findRandomUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers);
     if (pFlower != nullptr)
     {
         if (isVisitCandidate(pFlower))

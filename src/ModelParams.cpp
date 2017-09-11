@@ -321,6 +321,10 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
     {
         pc.foragingStrategy = PollinatorForagingStrategy::NEAREST_FLOWER;
     }
+    else if (pc.strForagingStrategy == "random-flower")
+    {
+        pc.foragingStrategy = PollinatorForagingStrategy::RANDOM_FLOWER;
+    }
     else
     {
         pc.foragingStrategy = PollinatorForagingStrategy::RANDOM;

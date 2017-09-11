@@ -139,19 +139,19 @@ public:
      * If any found, return a pointer to the nearest one, otherwise
      * return nullptr.
      *
-     * @param fRadius specifies the meximum radius of the search, and should
-     * be set between 0.0 and 1.0 (values above this mean that the
-     * search might be clipped if the specified pos is not in the dead
-     * centre of the central patch). If fRadius is set to a negative
-     * value, it is ignored, and all flowers within the local Moore
-     * neihbourhood of patches are considered (but not that this leads
-     * to an asymmetric search radius in different directions, as the
-     * patches are squares). fRadius takes a default value of 1.0.
+     * @param fRadius (default value = 1.0) specifies a maximum search radius.
+     * If this is given a zero or negative value, then it is ignored, and all flowers
+     * withiin the Moore neighbourhood are considered regardless of distance (but
+     * note that this means that the search radius is effectively asymmetric in
+     * different directions because the patches are squares). If the radius is set
+     * to a positive value, then only flowers within that distance of fpos will be
+     * considered. Therefore, if fRadius is positive, it only really makes sense for
+     * it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
+     * upon the location of fpos within the central patch.
      *
-     * @param excludeCurrentPos determines whether to return a plant that
-     * is in exactly the specified position. This is excluded by default,
-     * as we are usually not interested in a plant that a pollinator is
-     * currently sitting on.
+     * @param exludeCurrentPos determines whether a flower at the given position (fpos)
+     * should be considered (it is set to true by default, meaning a flower at the
+     * current position will not be considered).
      */
     FloweringPlant* findNearestFloweringPlant(const fPos& pos,
         float fRadius = 1.0,
@@ -162,17 +162,45 @@ public:
      * (Moore neighbourhood), and return a pointer to the closest flower found
      * that is not in the supplied list of excluded flowers, or nullptr if none found.
      *
-     * The third parameter (default value = 1.0) specifies a maximum search radius.
-     * If this is given a negative value, then it is ignored, and the closest flower
-     * withiin the Moore neighbourhood will be returned regardless of distance (but
+     * @param fRadius (default value = 1.0) specifies a maximum search radius.
+     * If this is given a zero or negative value, then it is ignored, and all flowers
+     * withiin the Moore neighbourhood are considered regardless of distance (but
      * note that this means that the search radius is effectively asymmetric in
      * different directions because the patches are squares). If the radius is set
      * to a positive value, then only flowers within that distance of fpos will be
      * considered. Therefore, if fRadius is positive, it only really makes sense for
      * it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
      * upon the location of fpos within the central patch.
+     *
+     * @param exludeCurrentPos determines whether a flower at the given position (fpos)
+     * should be considered (it is set to true by default, meaning a flower at the
+     * current position will not be considered).
      */
     Flower* findNearestUnvisitedFlower(const fPos &fpos,
+        const std::vector<unsigned int>& excludeIdVec,
+        float fRadius = 1.0,
+        bool excludeCurrentPos = true);
+
+    /**
+     * Search for flowers in the local patch and its 8 closest neighbours
+     * (Moore neighbourhood), and return a pointer to a randomly selected found flower
+     * that is not in the supplied list of excluded flowers, or nullptr if none found.
+     *
+     * @param fRadius (default value = 1.0) specifies a maximum search radius.
+     * If this is given a zero or negative value, then it is ignored, and all flowers
+     * withiin the Moore neighbourhood are considered regardless of distance (but
+     * note that this means that the search radius is effectively asymmetric in
+     * different directions because the patches are squares). If the radius is set
+     * to a positive value, then only flowers within that distance of fpos will be
+     * considered. Therefore, if fRadius is positive, it only really makes sense for
+     * it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
+     * upon the location of fpos within the central patch.
+     *
+     * @param exludeCurrentPos determines whether a flower at the given position (fpos)
+     * should be considered (it is set to true by default, meaning a flower at the
+     * current position will not be considered).
+     */
+     Flower* findRandomUnvisitedFlower(const fPos &fpos,
         const std::vector<unsigned int>& excludeIdVec,
         float fRadius = 1.0,
         bool excludeCurrentPos = true);
