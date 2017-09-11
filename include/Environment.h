@@ -136,7 +136,7 @@ public:
     /**
      * Search for flowering plants within range of given position
      * withing the Moore neighbourhood of local patches.
-     * If any found, return a pointer to the closest one, otherwise
+     * If any found, return a pointer to the nearest one, otherwise
      * return nullptr.
      *
      * @param fRadius specifies the meximum radius of the search, and should
@@ -153,7 +153,7 @@ public:
      * as we are usually not interested in a plant that a pollinator is
      * currently sitting on.
      */
-    FloweringPlant* findClosestFloweringPlant(const fPos& pos,
+    FloweringPlant* findNearestFloweringPlant(const fPos& pos,
         float fRadius = 1.0,
         bool excludeCurrentPos = true);
 
@@ -172,7 +172,7 @@ public:
      * it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
      * upon the location of fpos within the central patch.
      */
-    Flower* findClosestUnvisitedFlower(const fPos &fpos,
+    Flower* findNearestUnvisitedFlower(const fPos &fpos,
         const std::vector<unsigned int>& excludeIdVec,
         float fRadius = 1.0,
         bool excludeCurrentPos = true);

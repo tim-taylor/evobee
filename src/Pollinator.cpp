@@ -390,7 +390,7 @@ void Pollinator::forageRandom()
     /// (so assuming plants just have one flower)
     bool flowerVisited = false;
 
-    FloweringPlant* pPlant = getEnvironment()->findClosestFloweringPlant(m_Position);
+    FloweringPlant* pPlant = getEnvironment()->findNearestFloweringPlant(m_Position);
     if (pPlant != nullptr)
     {
         Flower* pFlower = pPlant->getFlower(0);
@@ -416,7 +416,7 @@ void Pollinator::forageNearestFlower()
 {
     bool flowerVisited = false;
 
-    Flower* pFlower = getEnvironment()->findClosestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers);
+    Flower* pFlower = getEnvironment()->findNearestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers);
     if (pFlower != nullptr)
     {
         if (isVisitCandidate(pFlower))

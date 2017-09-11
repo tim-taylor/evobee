@@ -28,6 +28,9 @@ using json = nlohmann::json;
 void processConfigOptions(int argc, char **argv);
 void processJsonFile(std::ifstream& ifs);
 
+json jsonDefaultValuesUsed;
+std::string strCurrentJsonSubSctName;
+
 
 // Helper function for reading in parameters from the JSON file.
 // This version is for required params, and throws an exception if the parameter is
@@ -61,6 +64,7 @@ void json_read_opt_param(const json& j, const std::string& section,
     catch (const std::exception& e)
     {
         var = defaultValue;
+        jsonDefaultValuesUsed[section][strCurrentJsonSubSctName][name] = var;
     }
 }
 
@@ -462,9 +466,10 @@ void processJsonFile(std::ifstream& ifs)
                     for (json::iterator itHives = it->begin(); itHives != it->end(); ++itHives)
                     {
                         const std::string& key = itHives.key();
-                        if ((key.compare(0, HKey.size(), HKey) == 0) &&
+                        if ((key.compare(0, HKey.size(), HKey) == 0) && // key name begins with "Hive"
                             itHives.value().is_object())
                         {
+                            strCurrentJsonSubSctName = key;
                             HiveConfig hc = itHives.value();
                             ModelParams::addHiveConfig(hc);
                         }
@@ -479,9 +484,10 @@ void processJsonFile(std::ifstream& ifs)
                     for (json::iterator itPTDs = it->begin(); itPTDs != it->end(); ++itPTDs)
                     {
                         const std::string& key = itPTDs.key();
-                        if ((key.compare(0, PTDKey.size(), PTDKey) == 0) &&
+                        if ((key.compare(0, PTDKey.size(), PTDKey) == 0) && // key name begins with "PlantTypeDistribution"
                              itPTDs.value().is_object())
                         {
+                            strCurrentJsonSubSctName = key;
                             PlantTypeDistributionConfig pc = itPTDs.value();
                             ModelParams::addPlantTypeDistributionConfig(pc);
                         }
@@ -505,9 +511,10 @@ void processJsonFile(std::ifstream& ifs)
             for (json::iterator itPT = itPTs->begin(); itPT != itPTs->end(); ++itPT)
             {
                 const std::string& key = itPT.key();
-                if ((key.compare(0, PTKey.size(), PTKey) == 0) &&
+                if ((key.compare(0, PTKey.size(), PTKey) == 0) && // key name begins with "PlantType"
                     itPT.value().is_object())
                 {
+                    strCurrentJsonSubSctName = key;
                     // the following line configures the PlantTypeConfig object from
                     // the JSON object in a one-er, making use of the
                     // void from_json(const json& j, PlantTypeConfig& p) method
@@ -530,9 +537,10 @@ void processJsonFile(std::ifstream& ifs)
             for (json::iterator itP = itPs->begin(); itP != itPs->end(); ++itP)
             {
                 const std::string& key = itP.key();
-                if ((key.compare(0, PKey.size(), PKey) == 0) &&
+                if ((key.compare(0, PKey.size(), PKey) == 0) && // key name begins with "Pollinator"
                     itP.value().is_object())
                 {
+                    strCurrentJsonSubSctName = key;
                     // the following line configures the PollinatorConfig object from
                     // the JSON object in a one-er, making use of the
                     // void from_json(const json& j, PollinatorConfig& p) method
@@ -553,4 +561,11 @@ void processJsonFile(std::ifstream& ifs)
         std::cerr << "Unexpected error when reading JSON file : " << e.what() << std::endl;
         exit(1);
     }
+
+    /*
+    for (auto& el : jsonDefaultValuesUsed)
+    {
+        j.push_back(el);
+    }
+    */
 }

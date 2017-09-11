@@ -117,7 +117,11 @@
             "pollen-loss-in-air" : 0,
             "pollen-carryover-num-visits" : 100,
             "innate-mp-pref-min" : 400,
-            "innate-mp-pref-max" : 500
+            "innate-mp-pref-max" : 500,
+            "constancy-type" : "simple",
+            "constancy-param" : 1.0,
+            "foraging-strategy" : "nearest-flower",
+            "visited-flower-memory-size" : 20
         }
     }
 }

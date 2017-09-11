@@ -119,7 +119,7 @@
             "constancy-type" : "simple",
             "constancy-param" : 1.0,
             "foraging-strategy" : "nearest-flower",
-	    "visited-flower-memory-size" : 20
+            "visited-flower-memory-size" : 20
         }
     }
 }

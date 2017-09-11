@@ -223,7 +223,7 @@ bool Environment::inArea(const iPos& pos, const iPos& areaTopLeft, const iPos& a
 // it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
 // upon the location of fpos within the central patch.
 //
-FloweringPlant* Environment::findClosestFloweringPlant( const fPos& fpos,
+FloweringPlant* Environment::findNearestFloweringPlant( const fPos& fpos,
                                                         float fRadius /*= 1.0*/,
                                                         bool excludeCurrentPos /*= true*/)
 {
@@ -271,7 +271,7 @@ FloweringPlant* Environment::findClosestFloweringPlant( const fPos& fpos,
 
     // if a maximum search radius has been specified and the closest flower is
     // beyond that distance, ignore it and return nullptr instead
-    if ((fRadius > 0.0) && (minDistSq > (fRadius * fRadius)))
+    if ((fRadius > EvoBee::FLOAT_COMPARISON_EPSILON) && (minDistSq > (fRadius * fRadius)))
     {
         pPlant = nullptr;
     }
@@ -294,7 +294,7 @@ FloweringPlant* Environment::findClosestFloweringPlant( const fPos& fpos,
 // it to have a value of <= 1.0, as above 1.0 the search might be clipped depending
 // upon the location of fpos within the central patch.
 //
-Flower *Environment::findClosestUnvisitedFlower(const fPos &fpos,
+Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
                                                 const std::vector<unsigned int>& excludeIdVec,
                                                 float fRadius /*= 1.0*/,
                                                 bool excludeCurrentPos /*= true*/)
@@ -328,11 +328,9 @@ Flower *Environment::findClosestUnvisitedFlower(const fPos &fpos,
                             for (Flower& flower : flowers)
                             {
                                 // for each flower on plant...
-                                if ((excludeIdVec.empty()) ||
-                                    (std::find( excludeIdVec.begin(),
-                                                excludeIdVec.end(),
-                                                flower.getId() ) == excludeIdVec.end())
-                                   )
+                                if (std::find(excludeIdVec.begin(),
+                                              excludeIdVec.end(),
+                                              flower.getId() ) == excludeIdVec.end())
                                 {
                                     // if flower not on exclude list...
                                     float distSq = EvoBee::distanceSq(fpos, flower.getPosition());
@@ -356,7 +354,7 @@ Flower *Environment::findClosestUnvisitedFlower(const fPos &fpos,
 
     // if a maximum search radius has been specified and the closest flower is
     // beyond that distance, ignore it and return nullptr instead
-    if ((fRadius > 0.0) && (minDistSq > (fRadius * fRadius)))
+    if ((fRadius > EvoBee::FLOAT_COMPARISON_EPSILON) && (minDistSq > (fRadius * fRadius)))
     {
         pFlower = nullptr;
     }
