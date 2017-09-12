@@ -279,7 +279,9 @@ private:
 
     FlowerPtrVector m_AllFlowers;///< Aggregation of pointers to all Flowers.
                                  ///  This only gets populated if and when
-                                 ///  getAllFlowerPtrVector() is callled.
+                                 ///  getAllFlowerPtrVector() is called.
+
+    bool          m_bFlowerPtrVectorInitialised; ///< Indicates whether m_AllFlowers is current
 
     std::vector<LocalDensityConstraint> m_LocalDensityConstraints; ///< List of local plant density
                                                                    /// constraints, as defined by those

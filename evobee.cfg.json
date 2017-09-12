@@ -1,8 +1,8 @@
 {
     "SimulationParams" : {
         "generation-termination-type" : "num-sim-steps",
-        "generation-termination-param" : 200,
-        "sim-termination-num-gens" : 1,
+        "generation-termination-param" : 100,
+        "sim-termination-num-gens" : 2,
         "rng-seed" : "",
         "visualisation" : true,
         "vis-update-period" : 1,
@@ -118,8 +118,8 @@
             "pollen-carryover-num-visits" : 200,
             "constancy-type" : "simple",
             "constancy-param" : 1.0,
-            "foraging-strategy" : "nearest-flower",
-            "visited-flower-memory-size" : 20
+            "foraging-strategy" : "random-global",
+            "visited-flower-memory-size" : 0
         }
     }
 }

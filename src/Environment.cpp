@@ -23,7 +23,6 @@
 #include "Environment.h"
 
 
-
 bool LocalDensityConstraint::posInArea(const iPos& pos) const
 {
     return Environment::inArea(pos, ptdcfg.areaTopLeft, ptdcfg.areaBottomRight);
@@ -31,6 +30,7 @@ bool LocalDensityConstraint::posInArea(const iPos& pos) const
 
 
 Environment::Environment(EvoBeeModel* pModel) :
+    m_bFlowerPtrVectorInitialised(false),
     m_pModel(pModel)
 {
     assert(ModelParams::initialised());
@@ -524,7 +524,7 @@ float Environment::getPollinatedFrac() const
  */
 void Environment::initialiseNewGeneration()
 {
-    ///@todo we also need to log this info if necessary
+
 
     //////////////////////////////////////////////////////////////
     // Step 0: Internal book-keeping
@@ -697,6 +697,11 @@ void Environment::initialiseNewGeneration()
     {
         pPollinator->reset();
     }
+
+    //////////////////////////////////////////////////////////////
+    // Step 3: Perform any other miscellaneous housekeeping at the start of a new generation
+
+    m_bFlowerPtrVectorInitialised = false; // ensure m_AllFlowers will get refreshed
 }
 
 
@@ -750,10 +755,10 @@ void Environment::incrementLocalDensityCount(const iPos& newPatchPos)
 
 FlowerPtrVector& Environment::getAllFlowerPtrVector()
 {
-    static bool bFlowerPtrVectorInitialised = false;
-
-    if (!bFlowerPtrVectorInitialised)
+    if (!m_bFlowerPtrVectorInitialised)
     {
+        m_AllFlowers.clear();
+
         for (Patch& patch : m_Patches)
         {
             // for each patch...
@@ -769,7 +774,7 @@ FlowerPtrVector& Environment::getAllFlowerPtrVector()
             }
         }
 
-        bFlowerPtrVectorInitialised = true;
+        m_bFlowerPtrVectorInitialised = true;
     }
 
     return m_AllFlowers;
