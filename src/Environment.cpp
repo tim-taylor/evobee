@@ -329,8 +329,8 @@ Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
                     {
                         // for each patch in Moore neighbourhood...
                         Patch &patch = getPatch(x, y);
-                        PlantVector &plants = patch.getFloweringPlants();
-                        for (FloweringPlant &plant : plants)
+                        PlantVector& plants = patch.getFloweringPlants();
+                        for (FloweringPlant& plant : plants)
                         {
                             // for each plant in patch...
                             std::vector<Flower>& flowers = plant.getFlowers();
@@ -415,13 +415,13 @@ Flower *Environment::findRandomUnvisitedFlower(const fPos &fpos,
                     if (y >= 0 && y < m_iSizeY)
                     {
                         // for each patch in Moore neighbourhood...
-                        Patch &patch = getPatch(x, y);
-                        PlantVector &plants = patch.getFloweringPlants();
-                        for (FloweringPlant &plant : plants)
+                        Patch& patch = getPatch(x, y);
+                        PlantVector& plants = patch.getFloweringPlants();
+                        for (FloweringPlant& plant : plants)
                         {
                             // for each plant in patch...
-                            std::vector<Flower> &flowers = plant.getFlowers();
-                            for (Flower &flower : flowers)
+                            std::vector<Flower>& flowers = plant.getFlowers();
+                            for (Flower& flower : flowers)
                             {
                                 // for each flower on plant...
                                 if (std::find(excludeIdVec.begin(),
@@ -745,4 +745,32 @@ void Environment::incrementLocalDensityCount(const iPos& newPatchPos)
             return;
         }
     }
+}
+
+
+FlowerPtrVector& Environment::getAllFlowerPtrVector()
+{
+    static bool bFlowerPtrVectorInitialised = false;
+
+    if (!bFlowerPtrVectorInitialised)
+    {
+        for (Patch& patch : m_Patches)
+        {
+            // for each patch...
+            PlantVector& plants = patch.getFloweringPlants();
+            for (FloweringPlant &plant : plants)
+            {
+                // for each plant in patch...
+                std::vector<Flower>& flowers = plant.getFlowers();
+                for (Flower& flower : flowers)
+                {
+                    m_AllFlowers.push_back(&flower);
+                }
+            }
+        }
+
+        bFlowerPtrVectorInitialised = true;
+    }
+
+    return m_AllFlowers;
 }

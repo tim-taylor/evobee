@@ -325,6 +325,10 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
     {
         pc.foragingStrategy = PollinatorForagingStrategy::RANDOM_FLOWER;
     }
+    else if (pc.strForagingStrategy == "random-global")
+    {
+        pc.foragingStrategy = PollinatorForagingStrategy::RANDOM_GLOBAL;
+    }
     else
     {
         pc.foragingStrategy = PollinatorForagingStrategy::RANDOM;

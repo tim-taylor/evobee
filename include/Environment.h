@@ -18,6 +18,7 @@
 using PatchVector = std::vector<Patch>;
 using HivePtrVector = std::vector<std::shared_ptr<AbstractHive>>;
 using PollinatorPtrVector = std::vector<Pollinator*>;
+using FlowerPtrVector = std::vector<Flower*>;
 
 class FloweringPlant;
 class EvoBeeModel;
@@ -245,6 +246,14 @@ public:
      */
     const EvoBeeModel* getModel() const {return m_pModel;}
 
+    /**
+     * Returns a vector of pointers to all flowers across the whole environment.
+     * This is only required in special cases (e.g. with the forage-random-global
+     * strategy. Hence, the vector is only populated as and when this method is
+     * called for the first time.
+     */
+    FlowerPtrVector& getAllFlowerPtrVector();
+
 
 private:
     void initialisePlants();     // private helper method used in constructor
@@ -267,6 +276,10 @@ private:
                                            *  NB The Pollinators are actually owened by
                                            *  individual Hives
                                            */
+
+    FlowerPtrVector m_AllFlowers;///< Aggregation of pointers to all Flowers.
+                                 ///  This only gets populated if and when
+                                 ///  getAllFlowerPtrVector() is callled.
 
     std::vector<LocalDensityConstraint> m_LocalDensityConstraints; ///< List of local plant density
                                                                    /// constraints, as defined by those

@@ -15,6 +15,6 @@
 /**
  * The PollinatorConstancyType enum
  */
- enum class PollinatorForagingStrategy {RANDOM, NEAREST_FLOWER, RANDOM_FLOWER};
+ enum class PollinatorForagingStrategy {RANDOM, NEAREST_FLOWER, RANDOM_FLOWER, RANDOM_GLOBAL};
 
 #endif /* _POLLINATORENUMS_H */

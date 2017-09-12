@@ -154,6 +154,12 @@ protected:
     virtual void forageRandom();
 
     /**
+     * Default implementation of Random foraging strategy.
+     * May be overridden by subclasses.
+     */
+     virtual void forageRandomGlobal();
+
+    /**
      * Default implementation of Nearest Flower foraging strategy.
      * May be overridden by subclasses.
      */

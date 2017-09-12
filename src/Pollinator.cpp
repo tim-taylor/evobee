@@ -363,6 +363,11 @@ void Pollinator::step()
                     forageRandomFlower();
                     break;
                 }
+                case (PollinatorForagingStrategy::RANDOM_GLOBAL):
+                {
+                    forageRandomGlobal();
+                    break;
+                }
                 default:
                 {
                     throw std::runtime_error("Unknown pollinator foraging strategy encountered");
@@ -409,6 +414,39 @@ void Pollinator::forageRandom()
 
     if (!flowerVisited)
     {
+        losePollenToAir(m_iPollenLossInAir);
+    }
+}
+
+
+// The Random Global foraging strategy involves the pollinator picking a random flower
+// accross the entire environment. This effectively simulates a well-mixed population, i.e.
+// one with no spatial aspects.
+void Pollinator::forageRandomGlobal()
+{
+    Flower* pFlower = nullptr;
+    bool flowerVisited = false;
+
+    FlowerPtrVector& allFlowerPtrVec = getEnvironment()->getAllFlowerPtrVector();
+
+    if (!allFlowerPtrVec.empty())
+    {
+        std::uniform_int_distribution<unsigned int> dist(0, allFlowerPtrVec.size()-1);
+        pFlower = allFlowerPtrVec.at(dist(EvoBeeModel::m_sRngEngine));
+        if (isVisitCandidate(pFlower))
+        {
+            m_Position = pFlower->getPosition();
+            visitFlower(pFlower);
+            flowerVisited = true;
+        }
+    }
+
+    if (!flowerVisited)
+    {
+        // there's no point in doing a random move if the flower is not visited,
+        // because next time we'll be chosing a new flower at random from the whole
+        // population in any case
+
         losePollenToAir(m_iPollenLossInAir);
     }
 }
