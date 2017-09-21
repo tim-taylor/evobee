@@ -429,10 +429,27 @@ void Pollinator::forageRandomGlobal()
 
     FlowerPtrVector& allFlowerPtrVec = getEnvironment()->getAllFlowerPtrVector();
 
-    if (!allFlowerPtrVec.empty())
+    if (allFlowerPtrVec.size() > m_RecentlyVisitedFlowers.size())
     {
-        std::uniform_int_distribution<unsigned int> dist(0, allFlowerPtrVec.size()-1);
-        pFlower = allFlowerPtrVec.at(dist(EvoBeeModel::m_sRngEngine));
+        do
+        {
+            // pick a random flower
+            std::uniform_int_distribution<unsigned int> dist(0, allFlowerPtrVec.size()-1);
+            pFlower = allFlowerPtrVec.at(dist(EvoBeeModel::m_sRngEngine));
+
+            // check whether it is on the recently visited list
+            if (std::find(m_RecentlyVisitedFlowers.begin(),
+                          m_RecentlyVisitedFlowers.end(),
+                          pFlower->getId() ) != m_RecentlyVisitedFlowers.end())
+            {
+                // if so, reset pFlower to nullptr
+                pFlower = nullptr;
+            }
+
+            // continue until we have found a flower that is not on the
+            // recently visited list
+        } while (pFlower == nullptr);
+
         if (isVisitCandidate(pFlower))
         {
             m_Position = pFlower->getPosition();
