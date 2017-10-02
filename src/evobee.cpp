@@ -491,6 +491,49 @@ void processJsonFile(std::ifstream& ifs)
                             PlantTypeDistributionConfig pc = itPTDs.value();
                             ModelParams::addPlantTypeDistributionConfig(pc);
                         }
+                        else if (key == "auto-distribs" && itPTDs.value().is_boolean()) {
+                            if (verbose) {
+                                std::cout << "PTD auto distribs -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdAutoDistribs(itPTDs.value());
+                        }
+                        else if (key == "auto-distrib-num-rows" && itPTDs.value().is_number()) {
+                            if (verbose) {
+                                std::cout << "PTD auto distrib num rows -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdAutoDistribNumRows(itPTDs.value());
+                        }
+                        else if (key == "auto-distrib-num-cols" && itPTDs.value().is_number()) {
+                            if (verbose) {
+                                std::cout << "PTD auto distrib num cols -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdAutoDistribNumCols(itPTDs.value());
+                        }
+                        else if (key == "auto-distrib-density" && itPTDs.value().is_number()) {
+                            if (verbose) {
+                                std::cout << "PTD auto distrib density -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdAutoDistribDensity(itPTDs.value());
+                        }
+                        else if (key == "auto-distrib-area-margin" && itPTDs.value().is_number()) {
+                            if (verbose) {
+                                std::cout << "PTD auto distrib area margin -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdAutoDistribAreaMargin(itPTDs.value());
+                        }
+                        /*
+                        else if (key == "auto-distrib-method" && itPTDs.value().is_number()) {
+                            if (verbose) {
+                                std::cout << "PTD auto distrib method -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdAutoDistribMethod(itPTDs.value());
+                        }
+                        else if (key == "auto-distrib-patchiness" && itPTDs.value().is_number()) {
+                            if (verbose) {
+                                std::cout << "PTD auto distrib patchiness -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdAutoDistribPatchiness(itPTDs.value());
+                        }*/
                         else {
                             std::cerr << "Unexpected entry in PlantTypeDistributions section of json file: "
                                 << itPTDs.key() << " : " << itPTDs.value() << std::endl;

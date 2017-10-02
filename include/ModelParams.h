@@ -57,7 +57,11 @@ public:
     static void setGenTerminationIntParam(int p);
     static void setGenTerminationFloatParam(float p);
     static void setRngSeedStr(const std::string& seed, bool bRewriteJsonEntry = false);
-
+    static void setPtdAutoDistribs(bool bAutoDistribs);
+    static void setPtdAutoDistribNumRows(int rows);
+    static void setPtdAutoDistribNumCols(int colss);
+    static void setPtdAutoDistribDensity(float density);
+    static void setPtdAutoDistribAreaMargin(float margin);
 
     static void addHiveConfig(HiveConfig& hc);
     static void addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc);
@@ -111,6 +115,11 @@ public:
     static bool  initialised() {return m_bInitialised;}
 
 private:
+
+    // private helper methods
+    static void autoGeneratePtds();
+
+    // data members
     static bool  m_bVisualisation;          ///< Use visualiation for this run?
     static int   m_iEnvSizeX;               ///< Environment size (num patches) in x direction
     static int   m_iEnvSizeY;               ///< Environment size (num patches) in y direction
@@ -146,6 +155,12 @@ private:
                                                     ///<   criterion for a generation
     static int   m_iGenTerminationParam;    ///< Integer parameter associated with m_GenTerminationType
     static float m_fGenTerminationParam;    ///< Float parameter associated with m_GenTerminationType
+    static bool  m_bPtdAutoDistribs;        ///< Use auto-generation tool for Plant Type Distributions?
+    static int   m_iPtdAutoDistribNumRows;  ///< PTD auto-generation number of rows of areas to generate
+    static int   m_iPtdAutoDistribNumCols;  ///< PTD auto-generation number of columns of areas to generate
+    static float m_fPtdAutoDistribDensity;  ///< PTD auto-generation density of plants in each area
+    static float m_fPtdAutoDistribAreaMargin;   ///< PTD auto-generation margin without flowers in each area
+                                                ///< (expressed in percentage of area's smaller side length)
     static unsigned int m_sNextFreePtdcId;  ///< Each PlantTypeDistributionConfig gets its own unique id
     static std::string m_strRngSeed;        ///< Seed string used to seeed RNG
     static std::vector<HiveConfig> m_Hives; ///< Configuration info for each hive

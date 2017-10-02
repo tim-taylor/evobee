@@ -146,9 +146,17 @@ void EvoBeeExperiment::run()
                     ///@todo - implement code for num-pollinator-steps termination type
                     break;
                 }
-                case GenTerminationType::POLLINATED_FRACTION:
+                case GenTerminationType::POLLINATED_FRACTION_ALL:
                 {
-                    if (m_Model.getEnv().getPollinatedFrac() >= ModelParams::getGenTerminationFloatParam())
+                    if (m_Model.getEnv().getPollinatedFracAll() >= ModelParams::getGenTerminationFloatParam())
+                    {
+                        endOfGen = true;
+                    }
+                    break;
+                }
+                case GenTerminationType::POLLINATED_FRACTION_SPECIES1:
+                {
+                    if (m_Model.getEnv().getPollinatedFracSpecies1() >= ModelParams::getGenTerminationFloatParam())
                     {
                         endOfGen = true;
                     }

@@ -19,7 +19,9 @@ struct PlantTypeDistributionConfig {
         id(0),
         density(0.1),
         refuge(false),
-        seedOutflowAllowed(true)
+        seedOutflowAllowed(true),
+        seedOutflowRestricted(false),
+        reproLocalDensityConstrained(false)
     {}
 
     unsigned int id;                ///< Each PTDC has a unique id assigned to it

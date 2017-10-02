@@ -420,7 +420,7 @@ void Pollinator::forageRandom()
 
 
 // The Random Global foraging strategy involves the pollinator picking a random flower
-// accross the entire environment. This effectively simulates a well-mixed population, i.e.
+// across the entire environment. This effectively simulates a well-mixed population, i.e.
 // one with no spatial aspects.
 void Pollinator::forageRandomGlobal()
 {

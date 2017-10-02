@@ -225,9 +225,15 @@ public:
     static iPos getPatchCoordFromFloatPos(const fPos& fpos);
 
     /**
-     * Returns the fraction of all plants that are currently pollinated
+     * Returns the fraction of all flowers that are currently pollinated
      */
-    float getPollinatedFrac() const;
+    float getPollinatedFracAll() const;
+
+    /**
+     * Returns the fraction of flowers of species id=1 that are currently pollinated
+     * (this should correspond to the first plant spcies that is defined in the JSON config file)
+     */
+    float getPollinatedFracSpecies1() const;
 
     /**
      * Add a pointer to a pollinator to the Environment's aggregate list of all

@@ -5,6 +5,7 @@
  */
 
 #include <exception>
+#include "tools.h"
 #include "ModelParams.h"
 #include "FloweringPlant.h"
 
@@ -35,6 +36,11 @@ bool   ModelParams::m_bLogFlowersFull = false;
 bool   ModelParams::m_bLogFlowersSummary = false;
 bool   ModelParams::m_bUseLogThreads = false;
 bool   ModelParams::m_bVerbose = true;
+bool   ModelParams::m_bPtdAutoDistribs = false;
+int    ModelParams::m_iPtdAutoDistribNumRows = 1;
+int    ModelParams::m_iPtdAutoDistribNumCols = 1;
+float  ModelParams::m_fPtdAutoDistribDensity = 0.5;
+float  ModelParams::m_fPtdAutoDistribAreaMargin = 0.0;
 unsigned int ModelParams::m_sNextFreePtdcId = 1;
 std::string ModelParams::m_strLogDir {"output"};
 std::string ModelParams::m_strLogFinalDir {""};
@@ -83,7 +89,9 @@ void ModelParams::setMaxScreenFracW(float fw)
     if (fw < 0.1)
     {
         m_fMaxScreenFracW = 0.1;
-        /// @todo... maybe output warning msg here and in next case?
+        if (verbose()) {
+            std::cout << "Warning: max screen frac W set too low (" << fw << "). Using 0.1 instead." << std::endl;
+        }
     }
     else if (fw > 1.0)
     {
@@ -100,7 +108,9 @@ void ModelParams::setMaxScreenFracH(float fh)
     if (fh < 0.1)
     {
         m_fMaxScreenFracH = 0.1;
-        /// @todo... maybe output warning msg here and in next case?
+        if (verbose()) {
+            std::cout << "Warning: max screen frac H set too low (" << fh << "). Using 0.1 instead." << std::endl;
+        }
     }
     else if (fh > 1.0)
     {
@@ -215,14 +225,21 @@ void ModelParams::setGenTerminationType(const std::string& typestr)
     {
         m_GenTerminationType = GenTerminationType::NUM_POLLINATOR_STEPS;
     }
-    else if (typestr == "pollinated-fraction")
+    else if (typestr == "pollinated-fraction-all")
     {
-        m_GenTerminationType = GenTerminationType::POLLINATED_FRACTION;
+        m_GenTerminationType = GenTerminationType::POLLINATED_FRACTION_ALL;
+    }
+    else if (typestr == "pollinated-fraction-species1")
+    {
+        m_GenTerminationType = GenTerminationType::POLLINATED_FRACTION_SPECIES1;
     }
     else
     {
         m_GenTerminationType = GenTerminationType::NUM_SIM_STEPS;
-        /// @todo... maybe output warning msg here and in next case?
+        if (verbose()) {
+            std::cout << "Warning: unrecognised generation termination type (" <<
+                typestr << "). Using num-sim-steps." << std::endl;
+        }
     }
 }
 
@@ -308,7 +325,10 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
     else
     {
         pc.constancyType = PollinatorConstancyType::NONE;
-        /// @todo... maybe output warning msg here and in next case?
+        if (verbose()) {
+            std::cout << "Warning: unrecognised pollinator constancy type (" <<
+                pc.strConstancyType << "). Using type=none." << std::endl;
+        }
     }
 
 
@@ -332,7 +352,10 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
     else
     {
         pc.foragingStrategy = PollinatorForagingStrategy::RANDOM;
-        /// @todo... maybe output warning msg here and in next case?
+        if (verbose()) {
+            std::cout << "Warning: unrecognised pollinator foraging stategy (" <<
+                pc.strForagingStrategy << "). Using random." << std::endl;
+        }
     }
 
     m_PollinatorConfigs.push_back(pc);
@@ -368,10 +391,120 @@ const PlantTypeConfig* ModelParams::getPlantTypeConfig(std::string speciesName)
 }
 
 
+void ModelParams::setPtdAutoDistribs(bool bAutoDistribs)
+{
+    m_bPtdAutoDistribs = bAutoDistribs;
+}
+
+
+void ModelParams::setPtdAutoDistribNumRows(int rows)
+{
+    if (rows < 1)
+    {
+        throw std::runtime_error("Invalid Plant Type Distribution auto distribution num rows (must be >= 1)");
+    }
+
+    m_iPtdAutoDistribNumRows = rows;
+}
+
+
+void ModelParams::setPtdAutoDistribNumCols(int cols)
+{
+    if (cols < 1)
+    {
+        throw std::runtime_error("Invalid Plant Type Distribution auto distribution num columns (must be >= 1)");
+    }
+
+    m_iPtdAutoDistribNumCols = cols;
+}
+
+
+void ModelParams::setPtdAutoDistribDensity(float density)
+{
+    if (density < EvoBee::FLOAT_COMPARISON_EPSILON)
+    {
+        throw std::runtime_error("Plant Type Distribution auto distribution density must be positive");
+    }
+
+    m_fPtdAutoDistribDensity = density;
+}
+
+
+void ModelParams::setPtdAutoDistribAreaMargin(float margin)
+{
+    if ((margin < -EvoBee::FLOAT_COMPARISON_EPSILON) || (margin > 1.0 + EvoBee::FLOAT_COMPARISON_EPSILON))
+    {
+        throw std::runtime_error("Invalid Plant Type Distribution auto distribution area margin (must be in range (0,1)");
+    }
+
+    m_fPtdAutoDistribAreaMargin = margin;
+}
+
+
+void ModelParams::autoGeneratePtds()
+{
+    assert(m_bPtdAutoDistribs);
+
+    int areaWidth = m_iEnvSizeX / m_iPtdAutoDistribNumCols;
+    int areaHeight = m_iEnvSizeY / m_iPtdAutoDistribNumRows;
+    int margin = (int)(0.5 * (float)std::min(areaWidth, areaHeight) * m_fPtdAutoDistribAreaMargin);
+
+    int curX = 0;
+    int curY = 0;
+
+    const std::map<unsigned int, std::string>& flowerSpeciesMap = FloweringPlant::getSpeciesMap();
+    auto nextColFirstSpeciesItr = flowerSpeciesMap.begin();
+
+    for (int x = 0; x < m_iPtdAutoDistribNumCols; x++)
+    {
+        auto nextSpeciesItr = nextColFirstSpeciesItr;
+
+        for (int y = 0; y < m_iPtdAutoDistribNumRows; y++)
+        {
+            PlantTypeDistributionConfig ptdc;
+            ptdc.species = nextSpeciesItr->second;
+            ptdc.areaTopLeft.x = curX + margin;
+            ptdc.areaTopLeft.y = curY + margin;
+            ptdc.areaBottomRight.x = curX + areaWidth - 1 - margin;
+            ptdc.areaBottomRight.y = curY + areaHeight - 1 - margin;
+            ptdc.density = m_fPtdAutoDistribDensity;
+
+            addPlantTypeDistributionConfig(ptdc);
+
+            nextSpeciesItr++;
+            if (nextSpeciesItr == flowerSpeciesMap.end())
+            {
+                nextSpeciesItr = flowerSpeciesMap.begin();
+            }
+
+            curY += areaHeight;
+        }
+
+        nextColFirstSpeciesItr++;
+        if (nextColFirstSpeciesItr == flowerSpeciesMap.end())
+        {
+            nextColFirstSpeciesItr = flowerSpeciesMap.begin();
+        }
+
+        curX += areaWidth;
+        curY = 0;
+    }
+}
+
+
 // perform any required global post-processing of parameter configuration after all
 // details have been read from the configuration file at the start of a run
 void ModelParams::postprocess()
 {
+    // if the auto generation tools has been requested for generated Plant Type Distributions,
+    // envoke it now
+    if (m_bPtdAutoDistribs)
+    {
+        autoGeneratePtds();
+    }
+
+    // for each plant species, create a list of which other species it clogs, for
+    // efficiency purposes
     FloweringPlant::constructCloggingMap(m_PlantTypes);
 }
 
@@ -397,13 +530,25 @@ void ModelParams::checkConsistency()
             }
             break;
         }
-        case GenTerminationType::POLLINATED_FRACTION:
+        case GenTerminationType::POLLINATED_FRACTION_ALL:
         {
-            if (m_fGenTerminationParam < 0.0)
+            if (m_fGenTerminationParam <= EvoBee::FLOAT_COMPARISON_EPSILON || m_fGenTerminationParam > 1.0 + EvoBee::FLOAT_COMPARISON_EPSILON)
             {
-                throw std::runtime_error("Must provide an int parameter for termination type pollinated-fraction");
+                throw std::runtime_error("Must provide a float parameter in range [0.0,1.0) for termination type pollinated-fraction-all");
             }
             break;
+        }
+        case GenTerminationType::POLLINATED_FRACTION_SPECIES1:
+        {
+            if (m_fGenTerminationParam <= EvoBee::FLOAT_COMPARISON_EPSILON || m_fGenTerminationParam > 1.0 + EvoBee::FLOAT_COMPARISON_EPSILON)
+            {
+                throw std::runtime_error("Must provide an float parameter in range [0.0,1.0) for termination type pollinated-fraction-species1");
+            }
+            break;
+        }
+        default:
+        {
+            throw std::runtime_error("Error: encountered unknown GenTerminationType in ModelParams::checkConsistency(). Aborting!");
         }
     }
 

@@ -18,9 +18,10 @@
  * Definition of allowable generation termination types
  */
 enum class GenTerminationType {
-    NUM_SIM_STEPS,          ///< number of simulation steps (takes int param)
-    NUM_POLLINATOR_STEPS,   ///< total number of steps taken by all pollinators (takes int param)
-    POLLINATED_FRACTION     ///< a given fraction of all plants have been pollinated (takes float param)
+    NUM_SIM_STEPS,              ///< number of simulation steps (takes int param)
+    NUM_POLLINATOR_STEPS,       ///< total number of steps taken by all pollinators (takes int param)
+    POLLINATED_FRACTION_ALL,    ///< a given fraction of all flowers have been pollinated (takes float param)
+    POLLINATED_FRACTION_SPECIES1///< a given fraction of flowers of species id=1 that have been pollinated (takes float param)
 };
 
 

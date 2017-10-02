@@ -100,7 +100,7 @@ Patch& Environment::getPatch(int x, int y)
  * It creates the required number and distribution of plants as specified in the config file.
  *
  * This method is somewhat convoluted for efficiency purposes. Having figured out how
- * many plants in total should be created, it then randomly assigned positions for each
+ * many plants in total should be created, it then randomly assigns positions for each
  * plant. These positions are stored in the patchInfo[][] array, where each element in
  * the array is a vector containing the positions of all new plants that fall within
  * that patch. We then loop through the patchInfo array, and for each vector contained therein,
@@ -455,10 +455,9 @@ Flower *Environment::findRandomUnvisitedFlower(const fPos &fpos,
     return pFlower;
 }
 
-/**
- *
- */
-float Environment::getPollinatedFrac() const
+
+// NB for the moment this metho assumes that plants just have one flower
+float Environment::getPollinatedFracAll() const
 {
     unsigned int numPlants = 0;
     unsigned int numPollinated = 0;
@@ -479,7 +478,35 @@ float Environment::getPollinatedFrac() const
         }
     }
 
-    return ((float)numPollinated) / ((float)numPlants);
+    return (numPlants == 0) ? 0.0 : ((float)numPollinated) / ((float)numPlants);
+}
+
+
+// NB for the moment this metho assumes that plants just have one flower
+float Environment::getPollinatedFracSpecies1() const
+{
+    unsigned int numPlants = 0;
+    unsigned int numPollinated = 0;
+
+    for (const Patch& p : m_Patches)
+    {
+        if (p.hasFloweringPlants())
+        {
+            for (const FloweringPlant& fplant : p.getFloweringPlants())
+            {
+                if (fplant.getSpeciesId() == 1)
+                {
+                    ++numPlants;
+                    if (fplant.pollinated())
+                    {
+                        ++numPollinated;
+                    }
+                }
+            }
+        }
+    }
+
+    return (numPlants == 0) ? 0.0 : ((float)numPollinated) / ((float)numPlants);
 }
 
 
