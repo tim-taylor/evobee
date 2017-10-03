@@ -222,7 +222,6 @@ void Logger::logFlowersInterPhaseSummary()
     std::ofstream ofs = openLogFile();
     auto gen = m_pModel->getGenNumber();
     std::vector<Patch>& patches = m_pEnv->getPatches();
-    //std::map<unsigned int, unsigned int> speciesCounts; // map species ID to count
 
     // create a map of species ID to counts of number of plants and number of pollinated plants
     std::map<unsigned int, std::pair<unsigned int,unsigned int>> speciesCounts;
@@ -267,14 +266,15 @@ void Logger::logFlowersIntraPhaseSummary()
     std::ofstream ofs = openLogFile();
     auto gen = m_pModel->getGenNumber();
     auto step = m_pModel->getStepNumber();
-
     std::vector<Patch>& patches = m_pEnv->getPatches();
-    std::map<unsigned int, unsigned int> speciesCounts; // map species ID to count
+
+    // create a map of species ID to counts of number of plants and number of pollinated plants
+    std::map<unsigned int, std::pair<unsigned int,unsigned int>> speciesCounts;
 
     const std::map<unsigned int, std::string>& speciesInfoMap = FloweringPlant::getSpeciesMap();
     for (auto& speciesInfo : speciesInfoMap)
     {
-        speciesCounts[speciesInfo.first] = 0;
+        speciesCounts[speciesInfo.first] = std::make_pair(0,0);
     }
 
     for (Patch& patch : patches)
@@ -284,17 +284,19 @@ void Logger::logFlowersIntraPhaseSummary()
             PlantVector& plants = patch.getFloweringPlants();
             for (FloweringPlant& plant : plants)
             {
-                speciesCounts[plant.getSpeciesId()]++;
+                speciesCounts[plant.getSpeciesId()].first++;
+                if (plant.pollinated())
+                {
+                    speciesCounts[plant.getSpeciesId()].second++;
+                }
             }
         }
     }
 
-    ///@todo... need to collect and output pollinated stats too (inc. proportion pollinated)
-
     for (auto& countInfo : speciesCounts)
     {
         ofs << "g," << gen << "," << step << "," << countInfo.first << "," << speciesInfoMap.at(countInfo.first)
-            << "," << countInfo.second << std::endl;
+            << "," << countInfo.second.first << "," << countInfo.second.second << std::endl;
     }
 }
 
