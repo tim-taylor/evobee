@@ -30,10 +30,11 @@ GenTerminationType ModelParams::m_GenTerminationType = GenTerminationType::NUM_S
 int    ModelParams::m_iGenTerminationParam = -1;
 float  ModelParams::m_fGenTerminationParam = -1.0;
 bool   ModelParams::m_bLogging = true;
-bool   ModelParams::m_bLogPollinatorsFull = false;
-bool   ModelParams::m_bLogPollinatorsSummary = false;
-bool   ModelParams::m_bLogFlowersFull = false;
-bool   ModelParams::m_bLogFlowersSummary = false;
+bool   ModelParams::m_bLogPollinatorsIntraPhaseFull = false;
+bool   ModelParams::m_bLogPollinatorsInterPhaseSummary = false;
+bool   ModelParams::m_bLogFlowersInterPhaseFull = false;
+bool   ModelParams::m_bLogFlowersInterPhaseSummary = false;
+bool   ModelParams::m_bLogFlowersIntraPhaseSummary = false;
 bool   ModelParams::m_bUseLogThreads = false;
 bool   ModelParams::m_bVerbose = true;
 bool   ModelParams::m_bPtdAutoDistribs = false;
@@ -174,29 +175,34 @@ void ModelParams::setLogFlags(const std::string& flags)
     {
         switch (flag)
         {
-        case 'P':
+        case 'Q':
         {
-            m_bLogPollinatorsFull = true;
+            m_bLogPollinatorsIntraPhaseFull = true;
             break;
         }
         case 'p':
         {
-            m_bLogPollinatorsSummary = true;
+            m_bLogPollinatorsInterPhaseSummary = true;
             break;
         }
         case 'F':
         {
-            m_bLogFlowersFull = true;
+            m_bLogFlowersInterPhaseFull = true;
             break;
         }
         case 'f':
         {
-            m_bLogFlowersSummary = true;
+            m_bLogFlowersInterPhaseSummary = true;
+            break;
+        }
+        case 'g':
+        {
+            m_bLogFlowersIntraPhaseSummary = true;
             break;
         }
         default:
         {
-            std::cerr << "Warning: Ignoring unknown log flag" << flag << std::endl;
+            std::cerr << "Warning: Ignoring unknown log flag '" << flag << "'" << std::endl;
         }
         }
     }

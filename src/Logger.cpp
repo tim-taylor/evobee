@@ -13,6 +13,7 @@
 #include <string>
 #include <experimental/filesystem>
 #include <chrono>
+#include <utility>
 #include "evobeeConfig.h"
 #include "EvoBeeModel.h"
 #include "Environment.h"
@@ -123,8 +124,11 @@ void Logger::logExptSetup()
 }
 
 
-// logPollinatorsIntraPhaseFull
-void Logger::logPollinatorsFull()
+// Log full details of pollinators at regular intervals within a foraging phase
+//
+// This logging is designated by log-flags="Q" in the JSON config file
+//
+void Logger::logPollinatorsIntraPhaseFull()
 {
     std::ofstream ofs = openLogFile();
 
@@ -134,13 +138,16 @@ void Logger::logPollinatorsFull()
 
     for (auto p : pollinators)
     {
-        ofs << "P," << gen << "," << step << "," << p->getStateString() << std::endl;
+        ofs << "Q," << gen << "," << step << "," << p->getStateString() << std::endl;
     }
 }
 
 
-// logPollinatorsInterPhaseSummary
-void Logger::logPollinatorsSummary()
+// Log summary details of pollinators at the end of each foraging phase
+//
+// This logging is designated by log-flags="p" in the JSON config file
+//
+void Logger::logPollinatorsInterPhaseSummary()
 {
     std::ofstream ofs = openLogFile();
     auto gen = m_pModel->getGenNumber();
@@ -163,8 +170,11 @@ void Logger::logPollinatorsSummary()
 }
 
 
-// logFlowersInterPhaseFull
-void Logger::logFlowersFull()
+// Log full details of flowers at the end of each foraging phase
+//
+// This logging is designated by log-flags="F" in the JSON config file
+//
+void Logger::logFlowersInterPhaseFull()
 {
     std::ofstream ofs = openLogFile();
     auto gen = m_pModel->getGenNumber();
@@ -182,7 +192,7 @@ void Logger::logFlowersFull()
                 ofs << "F," << gen << "," << plant.getId() << "," << plant.getSpeciesId()
                     << "," << pos << "," << patch.getLocalityId() << std::endl;
 
-                ///@todo Logger::logFlowersFull incomplete
+                ///@todo Logger::logFlowersInterPhaseFull incomplete
                 /*
                 if (plant.pollinated())
                 {
@@ -203,11 +213,61 @@ void Logger::logFlowersFull()
 }
 
 
-// logFlowersInterPhaseSummary
-void Logger::logFlowersSummary()
+// Log summary details of flowers at the end of each foraging phase
+//
+// This logging is designated by log-flags="f" in the JSON config file
+//
+void Logger::logFlowersInterPhaseSummary()
 {
     std::ofstream ofs = openLogFile();
     auto gen = m_pModel->getGenNumber();
+    std::vector<Patch>& patches = m_pEnv->getPatches();
+    //std::map<unsigned int, unsigned int> speciesCounts; // map species ID to count
+
+    // create a map of species ID to counts of number of plants and number of pollinated plants
+    std::map<unsigned int, std::pair<unsigned int,unsigned int>> speciesCounts;
+
+    const std::map<unsigned int, std::string>& speciesInfoMap = FloweringPlant::getSpeciesMap();
+    for (auto& speciesInfo : speciesInfoMap)
+    {
+        speciesCounts[speciesInfo.first] = std::make_pair(0,0);
+    }
+
+    for (Patch& patch : patches)
+    {
+        if (patch.hasFloweringPlants())
+        {
+            PlantVector& plants = patch.getFloweringPlants();
+            for (FloweringPlant& plant : plants)
+            {
+                speciesCounts[plant.getSpeciesId()].first++;
+                if (plant.pollinated())
+                {
+                    speciesCounts[plant.getSpeciesId()].second++;
+                }
+            }
+        }
+    }
+
+    for (auto& countInfo : speciesCounts)
+    {
+        ofs << "f," << gen << "," << m_pModel->getStepNumber() << ","
+            << countInfo.first << "," << speciesInfoMap.at(countInfo.first)
+            << "," << countInfo.second.first << "," << countInfo.second.second << std::endl;
+    }
+}
+
+
+// Log summary details of flowers at regular intervals within a foraging phase
+//
+// This logging is designated by log-flags="g" in the JSON config file
+//
+void Logger::logFlowersIntraPhaseSummary()
+{
+    std::ofstream ofs = openLogFile();
+    auto gen = m_pModel->getGenNumber();
+    auto step = m_pModel->getStepNumber();
+
     std::vector<Patch>& patches = m_pEnv->getPatches();
     std::map<unsigned int, unsigned int> speciesCounts; // map species ID to count
 
@@ -229,9 +289,11 @@ void Logger::logFlowersSummary()
         }
     }
 
+    ///@todo... need to collect and output pollinated stats too (inc. proportion pollinated)
+
     for (auto& countInfo : speciesCounts)
     {
-        ofs << "f," << gen << "," << countInfo.first << "," << speciesInfoMap.at(countInfo.first)
+        ofs << "g," << gen << "," << step << "," << countInfo.first << "," << speciesInfoMap.at(countInfo.first)
             << "," << countInfo.second << std::endl;
     }
 }

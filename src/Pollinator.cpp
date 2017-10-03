@@ -60,7 +60,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     // Set the starting position and heading of the pollinator
     resetToStartPosition();
 
-    if (ModelParams::logPollinatorsSummary())
+    if (ModelParams::logPollinatorsInterPhaseSummary())
     {
         // initialise PerformanceInfoMap by adding an entry for each species
         const std::map<unsigned int, std::string>& speciesInfoMap = FloweringPlant::getSpeciesMap();
@@ -603,9 +603,9 @@ void Pollinator::visitFlower(Flower* pFlower)
         }
     }
 
-
     // update count of number of flowers visited, and end bout if done
-    if (++m_iNumFlowersVisitedInBout >= m_iBoutLength)
+    ++m_iNumFlowersVisitedInBout;
+    if ((m_iBoutLength > 0) && (m_iNumFlowersVisitedInBout >= m_iBoutLength))
     {
         m_State = PollinatorState::BOUT_COMPLETE;
     }
@@ -693,7 +693,7 @@ int Pollinator::depositPollenOnStigma(Flower* pFlower)
     PollinatorPerformanceInfo* pPerfInfo = nullptr;
     bool pollinatedBefore;
 
-    if (ModelParams::logPollinatorsSummary())
+    if (ModelParams::logPollinatorsInterPhaseSummary())
     {
         auto& perfInfo = m_PerformanceInfoMap.at(pFlower->getSpeciesId());
         //auto& perfInfo = m_PerformanceInfoMap[pFlower->getSpeciesId())];
@@ -705,7 +705,7 @@ int Pollinator::depositPollenOnStigma(Flower* pFlower)
     numGrainsDeposited = pFlower->transferPollenFromPollinator( m_PollenStore,
                                                                 m_iPollenDepositPerFlowerVisit );
 
-    if (ModelParams::logPollinatorsSummary())
+    if (ModelParams::logPollinatorsInterPhaseSummary())
     {
         if ((!pollinatedBefore) && (pFlower->pollinated()))
         {

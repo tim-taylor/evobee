@@ -93,27 +93,40 @@ void EvoBeeExperiment::run()
             m_Model.step();
 
             // perform logging of pollinators if required
-            if (ModelParams::logging() &&
-                ModelParams::logPollinatorsFull() &&
-                (step % m_iLogUpdatePeriod == 0))
+            if (ModelParams::logging() && (step % m_iLogUpdatePeriod == 0))
             {
-                // We perform logging in a different thread, so that it can
-                // continue in parallel with everything else until the next
-                // time that the logging functionality is called.
-                //
-                // If the thread is still busy from a previous logger call,
-                // wait until it is finished before calling the logger again.
-                if (ModelParams::useLogThreads())
+                if (ModelParams::logPollinatorsIntraPhaseFull())
                 {
-                    if (m_threadLog.joinable())
+                    if (ModelParams::useLogThreads())
                     {
-                        m_threadLog.join();
+                        // If the thread is still busy from a previous logger call,
+                        // wait until it is finished before calling the logger again.
+                        if (m_threadLog.joinable())
+                        {
+                            m_threadLog.join();
+                        }
+                        m_threadLog = std::thread(&Logger::logPollinatorsIntraPhaseFull, m_Logger);
                     }
-                    m_threadLog = std::thread(&Logger::logPollinatorsFull, m_Logger);
+                    else
+                    {
+                        m_Logger.logPollinatorsIntraPhaseFull();
+                    }
                 }
-                else
+
+                if (ModelParams::logFlowersIntraPhaseSummary())
                 {
-                    m_Logger.logPollinatorsFull();
+                    if (ModelParams::useLogThreads())
+                    {
+                        if (m_threadLog.joinable())
+                        {
+                            m_threadLog.join();
+                        }
+                        m_threadLog = std::thread(&Logger::logFlowersIntraPhaseSummary, m_Logger);
+                    }
+                    else
+                    {
+                        m_Logger.logFlowersIntraPhaseSummary();
+                    }
                 }
             }
 
@@ -177,7 +190,7 @@ void EvoBeeExperiment::run()
         // perform logging of flowers at the end of the generation if required
         if (ModelParams::logging())
         {
-            if (ModelParams::logFlowersFull())
+            if (ModelParams::logFlowersInterPhaseFull())
             {
                 if (ModelParams::useLogThreads())
                 {
@@ -185,14 +198,14 @@ void EvoBeeExperiment::run()
                     {
                         m_threadLog.join();
                     }
-                    m_threadLog = std::thread(&Logger::logFlowersFull, m_Logger);
+                    m_threadLog = std::thread(&Logger::logFlowersInterPhaseFull, m_Logger);
                 }
                 else
                 {
-                    m_Logger.logFlowersFull();
+                    m_Logger.logFlowersInterPhaseFull();
                 }
             }
-            if (ModelParams::logFlowersSummary())
+            if (ModelParams::logFlowersInterPhaseSummary())
             {
                 if (ModelParams::useLogThreads())
                 {
@@ -200,14 +213,14 @@ void EvoBeeExperiment::run()
                     {
                         m_threadLog.join();
                     }
-                    m_threadLog = std::thread(&Logger::logFlowersSummary, m_Logger);
+                    m_threadLog = std::thread(&Logger::logFlowersInterPhaseSummary, m_Logger);
                 }
                 else
                 {
-                    m_Logger.logFlowersSummary();
+                    m_Logger.logFlowersInterPhaseSummary();
                 }
             }
-            if (ModelParams::logPollinatorsSummary())
+            if (ModelParams::logPollinatorsInterPhaseSummary())
             {
                 if (ModelParams::useLogThreads())
                 {
@@ -215,11 +228,11 @@ void EvoBeeExperiment::run()
                     {
                         m_threadLog.join();
                     }
-                    m_threadLog = std::thread(&Logger::logPollinatorsSummary, m_Logger);
+                    m_threadLog = std::thread(&Logger::logPollinatorsInterPhaseSummary, m_Logger);
                 }
                 else
                 {
-                    m_Logger.logPollinatorsSummary();
+                    m_Logger.logPollinatorsInterPhaseSummary();
                 }
             }
         }

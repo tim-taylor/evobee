@@ -293,7 +293,7 @@ protected:
     PollinatorForagingStrategy m_ForagingStrategy; ///< Determines exactly how the pollinator moves at each step
 
     // some constant parameters for this pollinator
-    const int       m_iBoutLength;              ///< Num flower visits allowed before returning to hive
+    const int       m_iBoutLength;              ///< Num flower visits allowed before returning to hive [0=unlimited]
     const int       m_iPollenDepositPerFlowerVisit;  ///< Amount of pollen deposited on a flower on each visit
     const int       m_iPollenLossInAir;         ///< Amount of pollen lost on each timestep when flying
     const int       m_iMaxPollenCapacity;       ///< Maximum amount of pollen the pollinator can carry

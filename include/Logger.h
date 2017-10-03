@@ -30,24 +30,34 @@ public:
     void logExptSetup();
 
     /**
-     *
+     * Log summary details of pollinators at the end of each foraging phase
+     * Designated by 'p' in log-flags param in JSON config file
      */
-    void logPollinatorsFull();
+    void logPollinatorsInterPhaseSummary();
 
     /**
-     *
+     * Log full details of pollinators every log-update-period steps within each foraging phase
+     * Designated by 'Q' in log-flags param in JSON config file
      */
-    void logPollinatorsSummary();
-
-     /**
-     *
-     */
-    void logFlowersFull();
+    void logPollinatorsIntraPhaseFull();
 
     /**
-     *
+     * Log full details of flowers at the end of each foraging phase
+     * Designated by 'F' in log-flags param in JSON config file
      */
-    void logFlowersSummary();
+    void logFlowersInterPhaseFull();
+
+    /**
+     * Log summary details of flowers at the end of each foraging phase
+     * Designated by 'f' in log-flags param in JSON config file
+     */
+    void logFlowersInterPhaseSummary();
+
+    /**
+     * Log summary details of flowers every log-update-period steps within each foraging phase
+     * Designated by 'g' in log-flags param in JSON config file
+     */
+    void logFlowersIntraPhaseSummary();
 
     /**
      *
