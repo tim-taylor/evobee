@@ -52,7 +52,7 @@ def main():
     # For each of the parameters specidied on the command line
     for param, val in params.items():
         # Swap the current entry in the file with the specified value
-        reg = '("' + param + '"\s*:\s*"?)([A-Za-z0-9.]*)("?)'
+        reg = '("' + param + '"\s*:\s*"?)([A-Za-z0-9.\-/]*)("?)'
         rep = r'\g<1>' + val + r'\g<3>'
         content = re.sub(reg, rep, content, flags = re.M)
 
