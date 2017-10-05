@@ -42,7 +42,7 @@ def main():
 EB_BUILD_DIR=/mnt/lustre/projects/ft13/ttay0006/evobee/code/evobee/build
 EB_EXEC=$EB_BUILD_DIR/evobee
 
-$EB_EXEC -q -c {bname}.cfg.json'''.format(bname=basename, nruns=numruns), file=f)
+$EB_EXEC -c {bname}.cfg.json'''.format(bname=basename, nruns=numruns), file=f)
 
 
 ##-------------------------------------------------------##
