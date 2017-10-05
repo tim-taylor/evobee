@@ -249,5 +249,8 @@ void EvoBeeExperiment::run()
 
     // at end of run, transfer all log files to the final destitination directory
     // if one has been specified
-    m_Logger.transferFilesToFinalDir();
+    if (ModelParams::logging())
+    {
+        m_Logger.transferFilesToFinalDir();
+    }
 }
