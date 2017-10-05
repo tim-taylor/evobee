@@ -267,50 +267,60 @@ bool Visualiser::update()
     SDL_RenderPresent(m_pRenderer);
 
     // Deal with user interactivity
-    SDL_Event e;
-    while (SDL_PollEvent(&e) != 0)
+    bool pause = false;
+
+    do
     {
-        if (e.type == SDL_QUIT)
+        SDL_Event e;
+        while (SDL_PollEvent(&e) != 0)
         {
-            bContinue = false;
-        }
-        else if (e.type == SDL_KEYDOWN)
-        {
-            switch (e.key.keysym.sym)
+            if (e.type == SDL_QUIT)
             {
-                case SDLK_x:
+                bContinue = false;
+            }
+            else if (e.type == SDL_KEYDOWN)
+            {
+                switch (e.key.keysym.sym)
                 {
-                    m_fZoomLevel = std::min(m_fZoomLevel + 0.1, 10.0);
-                    break;
-                }
-                case SDLK_z:
-                {
-                    m_fZoomLevel = std::max(m_fZoomLevel - 0.1, 0.1);
-                    break;
-                }
-                case SDLK_LEFT:
-                {
-                    m_iScreenOffsetX -= 5;
-                    break;
-                }
-                case SDLK_RIGHT:
-                {
-                    m_iScreenOffsetX += 5;
-                    break;
-                }
-                case SDLK_UP:
-                {
-                    m_iScreenOffsetY -= 5;
-                    break;
-                }
-                case SDLK_DOWN:
-                {
-                    m_iScreenOffsetY += 5;
-                    break;
+                    case SDLK_x:
+                    {
+                        m_fZoomLevel = std::min(m_fZoomLevel + 0.1, 10.0);
+                        break;
+                    }
+                    case SDLK_z:
+                    {
+                        m_fZoomLevel = std::max(m_fZoomLevel - 0.1, 0.1);
+                        break;
+                    }
+                    case SDLK_LEFT:
+                    {
+                        m_iScreenOffsetX -= 5;
+                        break;
+                    }
+                    case SDLK_RIGHT:
+                    {
+                        m_iScreenOffsetX += 5;
+                        break;
+                    }
+                    case SDLK_UP:
+                    {
+                        m_iScreenOffsetY -= 5;
+                        break;
+                    }
+                    case SDLK_DOWN:
+                    {
+                        m_iScreenOffsetY += 5;
+                        break;
+                    }
+                    case SDLK_p:
+                    {
+                        pause = !pause;
+                        break;
+                    }
                 }
             }
         }
-    }
+    } while (pause);
 
     if (m_iDelayMsPerFrame > 0)
     {

@@ -49,6 +49,7 @@ public:
     static void setLogFinalDir(const std::string& dir);
     static void setLogRunName(const std::string& name);
     static void setVerbose(bool verbose) {m_bVerbose = verbose;}
+    static void setCommandLineQuiet(bool quiet) {m_bCommandLineQuiet = quiet;}
     static void setInitialised();
     static void setSimTerminationNumGens(int gens);
     static void setGenTerminationType(const std::string& typestr);
@@ -96,6 +97,7 @@ public:
     static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
     static bool  useLogThreads() {return m_bUseLogThreads;}
     static bool  verbose() {return m_bVerbose;}
+    static bool  commandLineQuiet() {return m_bCommandLineQuiet;}
     static int   getSimTerminationNumGens() {return m_iSimTerminationNumGens;}
     static GenTerminationType getGenTerminationType() {return m_GenTerminationType;}
     static int   getGenTerminationIntParam() {return m_iGenTerminationParam;}
@@ -151,6 +153,7 @@ private:
     static std::string m_strLogRunName;     ///< Run name to be used as prefix for log filenames
     static bool  m_bUseLogThreads;          ///< Use a separate thread for writing log files?
     static bool  m_bVerbose;                ///< Should progress messages be printed on stdout?
+    static bool  m_bCommandLineQuiet;       ///< Was the -q option used on command line?
     static bool  m_bInitialised;            ///< Flag to indicate that parmas have been intiialised
     static int   m_iSimTerminationNumGens;  ///< Terminate run after this number of generations
     static GenTerminationType m_GenTerminationType; ///< Method used to define termination

@@ -74,6 +74,11 @@ void EvoBeeModel::seedRng()
         m_sRngEngine.seed(seed2);
     }
 
+    if (!ModelParams::commandLineQuiet())
+    {
+        std::cout << "Actual RNG seed used in run is: '" << ModelParams::getRngSeedStr() << "'" << std::endl;
+    }
+
     m_sbRngInitialised = true;
 }
 

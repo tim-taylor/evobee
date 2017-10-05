@@ -37,6 +37,7 @@ bool   ModelParams::m_bLogFlowersInterPhaseSummary = false;
 bool   ModelParams::m_bLogFlowersIntraPhaseSummary = false;
 bool   ModelParams::m_bUseLogThreads = false;
 bool   ModelParams::m_bVerbose = true;
+bool   ModelParams::m_bCommandLineQuiet = false;
 bool   ModelParams::m_bPtdAutoDistribs = false;
 int    ModelParams::m_iPtdAutoDistribNumRows = 1;
 int    ModelParams::m_iPtdAutoDistribNumCols = 1;

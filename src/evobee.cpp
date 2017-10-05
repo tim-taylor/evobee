@@ -207,8 +207,6 @@ void processConfigOptions(int argc, char **argv)
         store(po::command_line_parser(argc, argv).options(cmdline_options).positional(p).run(), vm);
         notify(vm);
 
-        bool bCommandLineQuiet = false;
-
         // first deal with command line options that do not involve running the model
         if (vm.count("help"))
         {
@@ -235,7 +233,7 @@ void processConfigOptions(int argc, char **argv)
         if (vm.count("quiet"))
         {
             ModelParams::setVerbose(false);
-            bCommandLineQuiet = true;
+            ModelParams::setCommandLineQuiet(true);
         }
 
         // process the contents of the configuration file
@@ -244,7 +242,7 @@ void processConfigOptions(int argc, char **argv)
         // if command line explicitly asked for no notifications, then set that option
         // again now, in case the configuration file conflicted with this (the command line
         // flag should override what is in the config file for this)
-        if (bCommandLineQuiet)
+        if (ModelParams::commandLineQuiet())
         {
             ModelParams::setVerbose(false);
         }
@@ -318,7 +316,7 @@ void processJsonFile(std::ifstream& ifs)
                 }
                 else if (it.key() == "rng-seed" && it.value().is_string()) {
                     if (verbose) {
-                        std::cout << "Seed -> '" << it.value() << "'" << std::endl;
+                        std::cout << "Seed -> value in config file is '" << it.value() << "'" << std::endl;
                     }
                     ModelParams::setRngSeedStr(it.value());
                 }
