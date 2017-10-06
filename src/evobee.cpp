@@ -28,7 +28,7 @@ using json = nlohmann::json;
 void processConfigOptions(int argc, char **argv);
 void processJsonFile(std::ifstream& ifs);
 
-json jsonDefaultValuesUsed;
+//json jsonDefaultValuesUsed;
 std::string strCurrentJsonSubSctName;
 
 
@@ -64,7 +64,7 @@ void json_read_opt_param(const json& j, const std::string& section,
     catch (const std::exception& e)
     {
         var = defaultValue;
-        jsonDefaultValuesUsed[section][strCurrentJsonSubSctName][name] = var;
+        //jsonDefaultValuesUsed[section][strCurrentJsonSubSctName][name] = var;
     }
 }
 
