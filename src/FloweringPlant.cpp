@@ -33,6 +33,7 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& typeConfig,
     m_id(m_sNextFreeId++),
     m_Position(pos),
     m_bHasLeaf(typeConfig.hasLeaf),
+    m_bPollinated(false),
     m_pPatch(pPatch)
 {
     assert(typeConfig.numFlowers > 0);
@@ -77,7 +78,8 @@ FloweringPlant::FloweringPlant( const FloweringPlant* pParent,
                                 const fPos& pos,
                                 Patch* pPatch,
                                 bool  mutate ) :
-    m_id(m_sNextFreeId++)
+    m_id(m_sNextFreeId++),
+    m_bPollinated(false)
 {
     assert(pParent != nullptr);
     assert(pPatch != nullptr);
