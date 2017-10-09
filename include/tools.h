@@ -11,7 +11,8 @@
 
 namespace EvoBee
 {
-    constexpr float FLOAT_COMPARISON_EPSILON = 0.00000001;
+    constexpr float FLOAT_COMPARISON_EPSILON = 0.00000001f;
+    constexpr float SMALL_FLOAT_NUMBER = 0.00001f;
 
     /**
      * Utility function to compare two floating point numbers for (near enough) equality

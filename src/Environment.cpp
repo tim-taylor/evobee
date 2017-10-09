@@ -126,8 +126,8 @@ void Environment::initialisePlants()
         int h = std::max(1, 1 + pdcfg.areaBottomRight.y - pdcfg.areaTopLeft.y);
         int area = w * h;
         int numPlants = (int)((float)area * pdcfg.density);
-        std::uniform_real_distribution<float> distW(0.0, w);
-        std::uniform_real_distribution<float> distH(0.0, h);
+        std::uniform_real_distribution<float> distW(0.0, w - EvoBee::SMALL_FLOAT_NUMBER);
+        std::uniform_real_distribution<float> distH(0.0, h - EvoBee::SMALL_FLOAT_NUMBER);
 
         // create a 2D array that will record, for each patch in the distribution area,
         // the coordinates of each plant to be added to that patch
