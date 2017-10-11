@@ -301,7 +301,8 @@ protected:
                                                   * the pollinator can visit this number of subsequent
                                                   * flowers to potentially deposit it. If the pollen is
                                                   * still not deposited after this numebr of visits, it
-                                                  * is is removed from the pollinator (i.e. it is lost)
+                                                  * is removed from the pollinator (i.e. it is lost)
+                                                  * A value of 0 indicates no limit in number of visits.
                                                   */
     /*
      * Some other properties that might be implemented in future versions include:

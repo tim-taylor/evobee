@@ -674,12 +674,17 @@ void Pollinator::updatePollenLandingCount()
 // Remove any pollen from the store that has exceeded m_iPollenCarryoverNumVisits
 void Pollinator::removeOldCarryoverPollen()
 {
-    m_PollenStore.erase(
-        std::remove_if( m_PollenStore.begin(),
-                        m_PollenStore.end(),
-                        [this](Pollen& p) {return (p.numLandings > m_iPollenCarryoverNumVisits);} ),
-        m_PollenStore.end()
-    );
+    // only perform this operator is m_iPollenCarryoverNumVisits > 0, as a value of 0 indicates
+    // that no limit is to be imposed on carryover number of visits
+    if (m_iPollenCarryoverNumVisits > 0)
+    {
+        m_PollenStore.erase(
+            std::remove_if( m_PollenStore.begin(),
+                            m_PollenStore.end(),
+                            [this](Pollen& p) {return (p.numLandings > m_iPollenCarryoverNumVisits);} ),
+            m_PollenStore.end()
+        );
+    }
 }
 
 
@@ -696,7 +701,6 @@ int Pollinator::depositPollenOnStigma(Flower* pFlower)
     if (ModelParams::logPollinatorsInterPhaseSummary())
     {
         auto& perfInfo = m_PerformanceInfoMap.at(pFlower->getSpeciesId());
-        //auto& perfInfo = m_PerformanceInfoMap[pFlower->getSpeciesId())];
         pPerfInfo = &perfInfo;
         pPerfInfo->numLandings++;
         pollinatedBefore = pFlower->pollinated();
