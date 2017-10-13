@@ -51,11 +51,13 @@ def main():
         plt.errorbar(x, y, yerr=e, fmt='-o', label=desc)
 
 
-    plt.xlabel('Patchiness')
+    plt.xlabel('<--big patches         Patchiness         small patches-->')
     plt.ylabel('Time to 50% pollination of Species 1')
     plt.legend(loc='lower right')
     plt.title(title)
+    plt.grid()
     plt.xlim(xmin-2, xmax+2)
+    #plt.ylim(140,350)
     #plt.show()
 
     t2 = title
