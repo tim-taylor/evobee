@@ -545,6 +545,18 @@ bool Pollinator::isVisitCandidate(Flower* pFlower) const
                 // whatever!
                 bOfInterest = true;
             }
+            else if (m_PreviousLandingSpeciesId == pFlower->getSpeciesId())
+            {
+                // land on the same species of flower with a high fixedd prob
+                float prob = 0.9;
+                bOfInterest = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
+            }
+            else {
+                // land on a different species of flower with prob determined by constancy param
+                float prob = 1.0 - m_fConstancyParam;
+                bOfInterest = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
+            }
+            /*
             else
             {
                 // consider whether this flower is of the same species as the previous one
@@ -553,6 +565,7 @@ bool Pollinator::isVisitCandidate(Flower* pFlower) const
 
                 bOfInterest = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
             }
+            */
 
             break;
         }
