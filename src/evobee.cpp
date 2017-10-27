@@ -162,9 +162,9 @@ int main(int argc, char **argv)
     try
     {
         processConfigOptions(argc, argv);
+        EvoBeeModel::seedRng();
         ModelParams::postprocess();
         ModelParams::checkConsistency();
-        EvoBeeModel::seedRng();
         EvoBeeExperiment expt;
         expt.run();
     }
@@ -519,19 +519,12 @@ void processJsonFile(std::ifstream& ifs)
                             }
                             ModelParams::setPtdAutoDistribAreaMargin(itPTDs.value());
                         }
-                        /*
-                        else if (key == "auto-distrib-method" && itPTDs.value().is_number()) {
+                        else if (key == "auto-distrib-regular" && itPTDs.value().is_boolean()) {
                             if (verbose) {
-                                std::cout << "PTD auto distrib method -> " << itPTDs.value() << std::endl;
+                                std::cout << "PTD auto distrib regular -> " << itPTDs.value() << std::endl;
                             }
-                            ModelParams::setPtdAutoDistribMethod(itPTDs.value());
+                            ModelParams::setPtdAutoDistribRegular(itPTDs.value());
                         }
-                        else if (key == "auto-distrib-patchiness" && itPTDs.value().is_number()) {
-                            if (verbose) {
-                                std::cout << "PTD auto distrib patchiness -> " << itPTDs.value() << std::endl;
-                            }
-                            ModelParams::setPtdAutoDistribPatchiness(itPTDs.value());
-                        }*/
                         else {
                             std::cerr << "Unexpected entry in PlantTypeDistributions section of json file: "
                                 << itPTDs.key() << " : " << itPTDs.value() << std::endl;
