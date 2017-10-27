@@ -43,6 +43,7 @@ int    ModelParams::m_iPtdAutoDistribNumRows = 1;
 int    ModelParams::m_iPtdAutoDistribNumCols = 1;
 float  ModelParams::m_fPtdAutoDistribDensity = 0.5;
 float  ModelParams::m_fPtdAutoDistribAreaMargin = 0.0;
+bool   ModelParams::m_bPtdAutoDistribRegular = true;
 unsigned int ModelParams::m_sNextFreePtdcId = 1;
 std::string ModelParams::m_strLogDir {"output"};
 std::string ModelParams::m_strLogFinalDir {""};
@@ -232,7 +233,7 @@ void ModelParams::setGenTerminationType(const std::string& typestr)
     {
         m_GenTerminationType = GenTerminationType::NUM_POLLINATOR_STEPS;
     }
-    else if (typestr == "pollinated-fraction-all")
+    else if ((typestr == "pollinated-fraction-all") || (typestr == "pollinated-fraction"))
     {
         m_GenTerminationType = GenTerminationType::POLLINATED_FRACTION_ALL;
     }
@@ -448,9 +449,29 @@ void ModelParams::setPtdAutoDistribAreaMargin(float margin)
 }
 
 
+void ModelParams::setPtdAutoDistribRegular(bool regular)
+{
+    m_bPtdAutoDistribRegular = regular;
+}
+
+
+// If the config parameter auto-distribs is set to true, we now have to automatically generate
+// the required set of PlantTypeDistributionConfig objects here based upon the specification
+// provided by the related config parameters.
 void ModelParams::autoGeneratePtds()
 {
     assert(m_bPtdAutoDistribs);
+
+    // First we initialise an 2D array (actually stored in a 1D vector) which contains
+    // info about which species will go into which patch. This initialisation is done by
+    // the helper method initialiseAutoGenPtdSpeciesPatchMap(), which takes into account
+    // whether the param m_bPtdAutoDistribRegular is true or false, to determine
+    // whether distribution is regular (checkerboard) or stochastic. Having created the
+    // map, within the nested loop below we can just call another helper method
+    // getAutoGenPtdSpeciesForPatch() to extract the corresponding species from the
+    // array for any given x and y patch coordinate.
+    std::vector<const std::string*> speciesPatchMap;
+    initialiseAutoGenPtdSpeciesPatchMap(speciesPatchMap);
 
     int areaWidth = m_iEnvSizeX / m_iPtdAutoDistribNumCols;
     int areaHeight = m_iEnvSizeY / m_iPtdAutoDistribNumRows;
@@ -459,17 +480,12 @@ void ModelParams::autoGeneratePtds()
     int curX = 0;
     int curY = 0;
 
-    const std::map<unsigned int, std::string>& flowerSpeciesMap = FloweringPlant::getSpeciesMap();
-    auto nextColFirstSpeciesItr = flowerSpeciesMap.begin();
-
     for (int x = 0; x < m_iPtdAutoDistribNumCols; x++)
     {
-        auto nextSpeciesItr = nextColFirstSpeciesItr;
-
         for (int y = 0; y < m_iPtdAutoDistribNumRows; y++)
         {
             PlantTypeDistributionConfig ptdc;
-            ptdc.species = nextSpeciesItr->second;
+            ptdc.species = getAutoGenPtdSpeciesForPatch(x, y, speciesPatchMap);
             ptdc.areaTopLeft.x = curX + margin;
             ptdc.areaTopLeft.y = curY + margin;
             ptdc.areaBottomRight.x = curX + areaWidth - 1 - margin;
@@ -478,24 +494,57 @@ void ModelParams::autoGeneratePtds()
 
             addPlantTypeDistributionConfig(ptdc);
 
-            nextSpeciesItr++;
-            if (nextSpeciesItr == flowerSpeciesMap.end())
-            {
-                nextSpeciesItr = flowerSpeciesMap.begin();
-            }
-
             curY += areaHeight;
-        }
-
-        nextColFirstSpeciesItr++;
-        if (nextColFirstSpeciesItr == flowerSpeciesMap.end())
-        {
-            nextColFirstSpeciesItr = flowerSpeciesMap.begin();
         }
 
         curX += areaWidth;
         curY = 0;
     }
+}
+
+
+// private helper method for ModelParams::autoGeneratePtds()
+void ModelParams::initialiseAutoGenPtdSpeciesPatchMap(std::vector<const std::string*>& speciesPatchMap)
+{
+    assert(speciesPatchMap.empty());
+
+    speciesPatchMap.reserve(m_iPtdAutoDistribNumCols * m_iPtdAutoDistribNumRows);
+
+    const std::map<unsigned int, std::string>& flowerSpeciesMap = FloweringPlant::getSpeciesMap();
+
+    // first allocate species to patches in a regular checkerboard pattern
+    auto nextColFirstSpeciesItr = flowerSpeciesMap.begin();
+    for (int x = 0; x < m_iPtdAutoDistribNumCols; x++)
+    {
+        auto nextSpeciesItr = nextColFirstSpeciesItr;
+        for (int y = 0; y < m_iPtdAutoDistribNumRows; y++)
+        {
+            speciesPatchMap.push_back(&(nextSpeciesItr->second));
+            nextSpeciesItr++;
+            if (nextSpeciesItr == flowerSpeciesMap.end())
+            {
+                nextSpeciesItr = flowerSpeciesMap.begin();
+            }
+        }
+        nextColFirstSpeciesItr++;
+        if (nextColFirstSpeciesItr == flowerSpeciesMap.end())
+        {
+            nextColFirstSpeciesItr = flowerSpeciesMap.begin();
+        }
+    }
+
+    // now, if we want a stochastic allocation, just jumble everything up!
+    if (!m_bPtdAutoDistribRegular)
+    {
+        std::shuffle(speciesPatchMap.begin(), speciesPatchMap.end(), EvoBeeModel::m_sRngEngine);
+    }
+}
+
+
+// private helper method for ModelParams::autoGeneratePtds()
+const std::string ModelParams::getAutoGenPtdSpeciesForPatch(int x, int y, std::vector<const std::string*>& speciesPatchMap)
+{
+    return *(speciesPatchMap.at(x*m_iPtdAutoDistribNumRows + y));
 }
 
 

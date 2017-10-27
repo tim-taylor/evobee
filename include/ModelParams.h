@@ -63,6 +63,7 @@ public:
     static void setPtdAutoDistribNumCols(int colss);
     static void setPtdAutoDistribDensity(float density);
     static void setPtdAutoDistribAreaMargin(float margin);
+    static void setPtdAutoDistribRegular(bool regular);
 
     static void addHiveConfig(HiveConfig& hc);
     static void addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc);
@@ -121,6 +122,9 @@ private:
 
     // private helper methods
     static void autoGeneratePtds();
+    static void initialiseAutoGenPtdSpeciesPatchMap(std::vector<const std::string*>& speciesPatchMap);
+    static const std::string getAutoGenPtdSpeciesForPatch(int x, int y, std::vector<const std::string*>& speciesPatchMap);
+
 
     // data members
     static bool  m_bVisualisation;          ///< Use visualiation for this run?
@@ -166,6 +170,7 @@ private:
     static float m_fPtdAutoDistribDensity;  ///< PTD auto-generation density of plants in each area
     static float m_fPtdAutoDistribAreaMargin;   ///< PTD auto-generation margin without flowers in each area
                                                 ///< (expressed in percentage of area's smaller side length)
+    static bool  m_bPtdAutoDistribRegular;  ///< Are the patches distributed in a regular or stockastic pattern?
     static unsigned int m_sNextFreePtdcId;  ///< Each PlantTypeDistributionConfig gets its own unique id
     static std::string m_strRngSeed;        ///< Seed string used to seeed RNG
     static std::vector<HiveConfig> m_Hives; ///< Configuration info for each hive
