@@ -1,90 +1,89 @@
 {
-    "Environment": {
-        "Hives": {
-            "Hive1": {
-                "area-bottom-right-x": 239,
-                "area-bottom-right-y": 239,
-                "area-top-left-x": 0,
-                "area-top-left-y": 0,
-                "migration-allowed": true,
-                "migration-prob": 0.5,
-                "migration-restricted": false,
-                "pollinator-number": 400,
-                "pollinator-type": "HoneyBee",
-                "pos-x": 119,
-                "pos-y": 119,
-                "start-from-hive": false
+    "SimulationParams" : {
+        "generation-termination-type" : "pollinated-fraction",
+        "generation-termination-param" : 0.5,
+        "sim-termination-num-gens" : 1,
+        "rng-seed" : "",
+        "visualisation" : true,
+        "vis-update-period" : 1,
+        "vis-delay-per-frame" : 0,
+        "vis-pollinator-trails" : true,
+        "vis-max-screen-frac-w" : 0.85,
+        "vis-max-screen-frac-h" : 0.85,
+        "logging" : true,
+        "log-flags" : "f",
+        "log-update-period" : 5,
+        "log-dir" : "output",
+        "log-final-dir" : "",
+        "log-run-name" : "auto-distribs-test",
+        "verbose" : false
+    },
+    "Environment" : {
+        "env-size-x" : 200,
+        "env-size-y" : 200,
+        "background-reflectance-mp" : 500,
+        "default-ambient-temp": 20.0,
+        "repro-global-density-constrained" : true,
+        "repro-global-density-max" : 0.4,
+        "Hives" : {
+            "Hive1" : {
+                "pollinator-type" : "HoneyBee",
+                "pollinator-number" : 400,
+                "start-from-hive" : false,
+                "pos-x" : 99,
+                "pos-y" : 99,
+                "area-top-left-x" : 0,
+                "area-top-left-y" : 0,
+                "area-bottom-right-x" : 199,
+                "area-bottom-right-y" : 199,
+                "migration-allowed" : true,
+                "migration-restricted" : false,
+                "migration-prob" : 0.5
             }
         },
-        "PlantTypeDistributions": {
-            "auto-distrib-area-margin": 0.0,
-            "auto-distrib-density": 0.5,
-            "auto-distrib-num-cols": 10,
-            "auto-distrib-num-rows": 10,
-            "auto-distribs": true
-        },
-        "background-reflectance-mp": 500,
-        "default-ambient-temp": 20.0,
-        "env-size-x": 240,
-        "env-size-y": 240,
-        "repro-global-density-constrained": true,
-        "repro-global-density-max": 0.4
-    },
-    "PlantTypes": {
-        "PlantType1": {
-            "anther-init-pollen": 100,
-            "anther-pollen-transfer-per-visit": 10,
-            "flower-reflectance-mp-init-max": 380,
-            "flower-reflectance-mp-init-min": 380,
-            "pollen-clogging": "",
-            "repro-seed-dispersal-global": true,
-            "repro-seed-dispersal-radius": 1.0,
-            "species": "PlantSpecies1",
-            "stigma-max-pollen-capacity": 5
-        },
-        "PlantType2": {
-            "anther-init-pollen": 100,
-            "anther-pollen-transfer-per-visit": 10,
-            "flower-reflectance-mp-init-max": 480,
-            "flower-reflectance-mp-init-min": 480,
-            "pollen-clogging": "",
-            "repro-seed-dispersal-global": true,
-            "repro-seed-dispersal-radius": 1.0,
-            "species": "PlantSpecies2",
-            "stigma-max-pollen-capacity": 5
+        "PlantTypeDistributions" : {
+            "auto-distribs" : true,
+            "auto-distrib-num-rows" : 25,
+            "auto-distrib-num-cols" : 25,
+            "auto-distrib-area-margin" : 0.0,
+            "auto-distrib-density" : 0.5
         }
     },
-    "Pollinators": {
-        "Pollinator1": {
-            "bout-length": 0,
-            "constancy-param": 0.5,
-            "constancy-type": "simple",
-            "foraging-strategy": "nearest-flower",
-            "max-pollen-capacity": 0,
-            "pollen-carryover-num-visits": 100,
-            "pollen-deposit-per-flower-visit": 3,
-            "pollen-loss-in-air": 0,
-            "species": "HoneyBee",
-            "visited-flower-memory-size": 5
+    "PlantTypes" : {
+        "PlantType1" : {
+            "species" : "PlantSpecies1",
+            "flower-reflectance-mp-init-min" : 380,
+            "flower-reflectance-mp-init-max" : 380,
+            "anther-init-pollen" : 100,
+            "anther-pollen-transfer-per-visit" : 10,
+            "stigma-max-pollen-capacity" : 5,
+            "pollen-clogging" : "",
+            "repro-seed-dispersal-global" : true,
+            "repro-seed-dispersal-radius" : 1.0
+        },
+        "PlantType2" : {
+            "species" : "PlantSpecies2",
+            "flower-reflectance-mp-init-min" : 480,
+            "flower-reflectance-mp-init-max" : 480,
+            "anther-init-pollen" : 100,
+            "anther-pollen-transfer-per-visit" : 10,
+            "stigma-max-pollen-capacity" : 5,
+            "pollen-clogging" : "",
+            "repro-seed-dispersal-global" : true,
+            "repro-seed-dispersal-radius" : 1.0
         }
     },
-    "SimulationParams": {
-        "generation-termination-param": 0.5,
-        "generation-termination-type": "pollinated-fraction-species1",
-        "log-dir": "output",
-        "log-final-dir": "",
-        "log-flags": "f",
-        "log-run-name": "auto-distrib-s10-c0p5",
-        "log-update-period": 5,
-        "logging": false,
-        "rng-seed": "Jt53TzmWWIzeGfQeOD0T",
-        "sim-termination-num-gens": 1,
-        "verbose": true,
-        "vis-delay-per-frame": 0,
-        "vis-max-screen-frac-h": 0.85,
-        "vis-max-screen-frac-w": 0.85,
-        "vis-pollinator-trails": true,
-        "vis-update-period": 1,
-        "visualisation": false
+    "Pollinators" : {
+        "Pollinator1" : {
+            "species" : "HoneyBee",
+            "bout-length" : 100,
+            "max-pollen-capacity" : 0,
+            "pollen-deposit-per-flower-visit" : 3,
+            "pollen-loss-in-air" : 0,
+            "pollen-carryover-num-visits" : 100,
+            "constancy-type" : "none",
+            "foraging-strategy" : "nearest-flower",
+            "visited-flower-memory-size" : 5
+        }
     }
 }

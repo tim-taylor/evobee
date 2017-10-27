@@ -53,19 +53,24 @@ def main():
 
     plt.xlabel('<--big patches         Patchiness         small patches-->')
     plt.ylabel('Time to 50% pollination of Species 1')
-    plt.legend(loc='lower right')
+    plt.legend(loc='upper left', prop={'size': 10})
     plt.title(title)
     plt.grid()
     plt.xlim(xmin-2, xmax+2)
     #plt.ylim(140,350)
+    plt.ylim(140,550)
     #plt.show()
 
-    t2 = title
-    for ch in [' ',',']:
-        if ch in t2:
-            t2=t2.replace(ch,"-")
+    # Replace spaces etc in title so we can use it in the filename of the graph
+    filename = 'graph-'+title+'.pdf'
+    for ch in [' ',',','(',')','[',']']:
+        if ch in filename:
+            filename = filename.replace(ch,"-")
+    filename = filename.replace('---','-')
+    filename = filename.replace('--','-')
 
-    plt.savefig('graph-'+t2+'.pdf')
+
+    plt.savefig(filename)
 
 
 

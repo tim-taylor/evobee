@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Script to generate an evobee configure file based upon a given template and specific parameter overrides
+# Script to generate an evobee configuration file based upon a given template and specific parameter overrides
 #
 # Usage: evobee-config-gen templatefile outputfile param1=param1val [param2=param2val [param3=param3val ...]]
 #
