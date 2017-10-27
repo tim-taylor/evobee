@@ -40,3 +40,5 @@ evobee
 src/old/
 include/old/
 build/
+*.csv
+*.pdf
