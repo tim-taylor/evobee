@@ -4,10 +4,14 @@
 #
 # Usage: evobee-config-gen templatefile outputfile param1=param1val [param2=param2val [param3=param3val ...]]
 #
+#   Note: for cases where a parameter name is used in multiple positions in the config file, you can use
+#         the syntax sct:param=val to specify the specific section of the Json file in which the desired
+#         parameter is located. In any case, the script only ever changes one instance of each parameter.
+#
 # Outputs: a new config file named <outputfile> based upon <templatefile> with the specified amendments
 #
 # Author: Tim Taylor (http://www.tim-taylor.com)
-# Last update: 3 October 2017
+# Last update: 31 October 2017
 
 import sys
 import os
@@ -52,7 +56,17 @@ def main():
     # For each of the parameters specidied on the command line
     for param, val in params.items():
         # Swap the current entry in the file with the specified value
-        reg = '("' + param + '"\s*:\s*"?)([A-Za-z0-9.\-/]*)("?)'
+
+        pspec = param.split(":",1)
+        if len(pspec) == 2:
+            # this param belongs to a specific section of the Json file, so we must look in the right place
+            sct = pspec[0]
+            prm = pspec[1]
+            reg = '("' + sct + '"\s*:\s*\{[^\}]*"' + prm + '"\s*:\s*"?)([A-Za-z0-9.\-/]*)("?)'
+        else:
+            # no section specified, so we can just do a simpler search for the parameter name by itself
+            reg = '("' + param + '"\s*:\s*"?)([A-Za-z0-9.\-/]*)("?)'
+
         rep = r'\g<1>' + val + r'\g<3>'
         content = re.sub(reg, rep, content, flags = re.M)
 
