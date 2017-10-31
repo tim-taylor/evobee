@@ -4,9 +4,9 @@
 #
 # Usage: evobee-config-gen templatefile outputfile param1=param1val [param2=param2val [param3=param3val ...]]
 #
-#   Note: for cases where a parameter name is used in multiple positions in the config file, you can use
-#         the syntax sct:param=val to specify the specific section of the Json file in which the desired
-#         parameter is located. In any case, the script only ever changes one instance of each parameter.
+#  Note: for cases where a parameter name is used in multiple positions in the config file, you can use
+#        the syntax sct:param=val to specify the specific section of the Json file in which the desired
+#        parameter is located. In any case, the script only ever changes one instance of each parameter.
 #
 # Outputs: a new config file named <outputfile> based upon <templatefile> with the specified amendments
 #
