@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# Quick script to process output file of an evobee run involving
+# two plant species, and work out the following two figures:
+#
+# 1. G1=the generation number when one species first decisively
+# outcompeted the other (i.e. the point where the other
+# species was never more numerouse in any further generation)
+#
+# 2. G2=the generation where the winning species achieved
+# complete fixation
+#
+# These two numbers are output on stdout
+# If no problems were encountered, then three numbers are
+#   output to stdout:  G1,G2,(G2-G1)
+# An output of NOFIX means neither species achieved fixation
+#   before the end of the run
+# An output of ALLEXTINCT means both species went extinct
+#   before the end of the run
+#
+# Usage:
+#   processFixationTimes logfile
+#
+# Author: Tim Taylor (http://www.tim-taylor.com)
+# Last updated: 1 November 2017
+
+if [ "$#" -ne "1" ]; then
+    echo "usage: processFixationTimes logfile"
+    exit
+fi
+
+gawk -F',' '{GEN=$2;P1=$6;getline;P2=$6;print GEN "," P1 "," P2}' $1 | tac | gawk -F',' 'BEGIN {G1=-1;G2=-1} FNR==1 {if ($2>0 && $3>0) {print "NOFIX"; exit} else if ($2==0 && $3==0) {print "ALLEXTINCT"; exit} else if ($2==0) {W=3;L=2} else {W=2;L=3}; PMAX=$W} $W<PMAX && G2<0 {G2=$1+1} $L>=$W && G1<0 {G1=$1+1} END {print G1 "," G2 "," G2-G1}'
