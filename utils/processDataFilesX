@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Quick script to process output file of an evobee run involving
+# two plant species, and produce graphs of the number of each
+# species over time.
+#
+# Usage:
+#   processDataFilesX envSize numGens logfile
+#
+# where envSize is length of one size of (square) environment
+#
+# Author: Tim Taylor (http://www.tim-taylor.com)
+# Last updated: 1 November 2017
+
+if [ "$#" -ne "3" ]; then
+    echo "usage: processDataFilesX envSize numGens logfile"
+    exit
+fi
+
+ENV_SIZE=$1
+NUM_GENS=$2
+LOG_FILE=$3
+
+MAX_POP=$((($ENV_SIZE*$ENV_SIZE*4)/10))
+Y_MARGIN=$(($MAX_POP/80))
+Y_MIN=$((-$Y_MARGIN))
+Y_MAX=$(($MAX_POP+$Y_MARGIN))
+X_MAX=$NUM_GENS
+
+gawk -F',' '/Species1/ {if ($2>=0) {print $2", "$6}}' $LOG_FILE > $LOG_FILE-s1.dat
+gawk -F',' '/Species2/ {if ($2>=0) {print $2", "$6}}' $LOG_FILE > $LOG_FILE-s2.dat
+
+gnuplot -e "set term png; set output '"$LOG_FILE"-s1s2.png'; set yrange ["$Y_MIN":"$Y_MAX"]; set xrange [0:"$X_MAX"]; set ylabel 'Number of plants'; set xlabel 'Generation'; plot '"$LOG_FILE"-s1.dat' with lines title 'Species X', '"$LOG_FILE"-s2.dat' with lines title 'Species Y'"
