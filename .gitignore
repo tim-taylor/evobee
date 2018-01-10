@@ -44,3 +44,4 @@ include/old/
 build/
 utils/fixation-stats-from-evobee-runs/
 utils/processFixationTimes.old
+utils/fixation-sim/fixationsim
