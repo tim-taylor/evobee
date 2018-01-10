@@ -34,11 +34,13 @@ CMakeFiles/
 Makefile
 *.cmake
 
-# Project specific files
+# Project specific files and directories
+*.csv
+*.pdf
 evobeeConfig.h
 evobee
 src/old/
 include/old/
 build/
-*.csv
-*.pdf
+utils/fixation-stats-from-evobee-runs/
+utils/processFixationTimes.old
