@@ -166,9 +166,9 @@ private:
                                     ///<   governed by the same PlantTypeDistributionConfig have the same
                                     ///<   value for locality id. This is used so that we can easily determine
                                     ///<   for any patch what constraints exist, if any, on seed flow etc.
-    iPos            m_ReproRestrictionAreaTopLeft;     ///< Defines the area within which seeds in this
+    iPos            m_ReproRestrictionAreaTopLeft;     ///< Defines the area within which seeds in
                                                        ///<   this patch may be dispersed during the
-                                                       ///<   reproduction phase (for plant's whose
+                                                       ///<   reproduction phase (for plants whose
                                                        ///<   seed dispersal method is set to global).
                                                        ///<   In addition, this area ALSO defines the
                                                        ///<   local area within which Pollinators may

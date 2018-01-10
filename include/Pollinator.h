@@ -313,7 +313,7 @@ protected:
      * - colour recog spec
      */
 
-     // housekeeping variables to keeping track of pollinator's performance during a forgaing phase
+     // housekeeping variables to keeping track of pollinator's performance during a foraging phase
      std::map<unsigned int, PollinatorPerformanceInfo> m_PerformanceInfoMap; //< records the pollinator's
                                                                              //< current performance info
                                                                              //< for each plant species

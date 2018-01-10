@@ -2,7 +2,11 @@
     "configurations": [
         {
             "name": "null",
-            "includePath": [],
+            "includePath": [
+                "${workspaceRoot}/include",
+                "/usr/include/c++/7",
+                "${workspaceRoot}/3rd-party/nlohmann-json"
+            ],
             "defines": [],
             "browse": {
                 "path": [

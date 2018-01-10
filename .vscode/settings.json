@@ -70,5 +70,6 @@
         "**/.DS_Store": true,
         "**/.html": true,
         "**/.js": true
-    }
+    },
+    "C_Cpp.intelliSenseEngineFallback": "Enabled"
 }

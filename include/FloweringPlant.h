@@ -167,7 +167,7 @@ private:
     ReflectanceInfo         m_LeafReflectance;
     bool                    m_bPollinated;  ///< Have any of this plant's flowers been pollinated?
     Patch*                  m_pPatch;       ///< (non-owning) pointer to Patch in which this plant resides
-    const PlantTypeConfig*  m_pPlantTypeConfig; ///< (non-owning) pointer to the Type Config object
+    const PlantTypeConfig*  m_pPlantTypeConfig; ///< (non-owning) pointer to the Plant Type Config object
 
     /**
      * Internal helper method for constructors and assignment operators

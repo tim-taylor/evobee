@@ -1,6 +1,6 @@
 {
     "SimulationParams" : {
-        "generation-termination-type" : "pollinated-fraction",
+        "generation-termination-type" : "pollinated-fraction-all",
         "generation-termination-param" : 0.5,
         "sim-termination-num-gens" : 1,
         "rng-seed" : "",
@@ -43,10 +43,11 @@
         },
         "PlantTypeDistributions" : {
             "auto-distribs" : true,
-            "auto-distrib-num-rows" : 25,
-            "auto-distrib-num-cols" : 25,
+            "auto-distrib-num-rows" : 10,
+            "auto-distrib-num-cols" : 10,
             "auto-distrib-area-margin" : 0.0,
-            "auto-distrib-density" : 0.5
+            "auto-distrib-density" : 0.5,
+	    "auto-distrib-regular" : true
         }
     },
     "PlantTypes" : {

@@ -552,8 +552,8 @@ const std::string ModelParams::getAutoGenPtdSpeciesForPatch(int x, int y, std::v
 // details have been read from the configuration file at the start of a run
 void ModelParams::postprocess()
 {
-    // if the auto generation tools has been requested for generated Plant Type Distributions,
-    // envoke it now
+    // if the auto generation tool has been requested for generated Plant Type Distributions,
+    // run it now
     if (m_bPtdAutoDistribs)
     {
         autoGeneratePtds();
