@@ -4,8 +4,10 @@
             "name": "null",
             "includePath": [
                 "${workspaceRoot}/include",
+                "${workspaceRoot}/3rd-party/nlohmann-json",
                 "/usr/include/c++/7",
-                "${workspaceRoot}/3rd-party/nlohmann-json"
+                "/usr/include/x86_64-linux-gnu/c++/7",
+                "/usr/lib/gcc/x86_64-linux-gnu/7/include/"
             ],
             "defines": [],
             "browse": {
