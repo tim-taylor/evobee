@@ -470,7 +470,7 @@ void ModelParams::autoGeneratePtds()
     // map, within the nested loop below we can just call another helper method
     // getAutoGenPtdSpeciesForPatch() to extract the corresponding species from the
     // array for any given x and y patch coordinate.
-    std::vector<const std::string*> speciesPatchMap;
+    std::vector<const std::string*> speciesPatchMap; // for each patch, record name of inhabitant species
     initialiseAutoGenPtdSpeciesPatchMap(speciesPatchMap);
 
     int areaWidth = m_iEnvSizeX / m_iPtdAutoDistribNumCols;
