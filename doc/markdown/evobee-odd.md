@@ -60,7 +60,7 @@ A second spatial aspect of the simulation is the floral density. Even though we 
 
 Pollen transfer processes occur during  each flower visit by a pollinator. These are described in a subsequent section (Pollinator action on flowers).
 
-<img src="img/EvoBee-Bee-Behaviour-Flowchart-FNF.png" alt="Flow diagram for Forage Nearest Flower strategy" width="200"/>
+<img src="img/EvoBee-Bee-Behaviour-Flowchart-FNF.png" alt="Flow diagram for Forage Nearest Flower strategy" width=50%/>
 
 ! [Flow diagram for Forage Nearest Flower strategy](img/EvoBee-Bee-Behaviour-Flowchart-FNF.png)
 
@@ -118,7 +118,7 @@ In these experiments, the main data recorded during experiments are, at the end 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMzE3NzE5MzksMTAwNDYzMjIxNywxMj
-I4NzUzMzQ3LDczMjUyNTE3MywtNDc0ODAyNzQ2LDg0NzA2MDE1
-OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5LC0yODU0NzA4M119
+eyJoaXN0b3J5IjpbLTQ0NDA3OTI1OSwxMDA0NjMyMjE3LDEyMj
+g3NTMzNDcsNzMyNTI1MTczLC00NzQ4MDI3NDYsODQ3MDYwMTU4
+LC01ODM0MzUyMjUsLTE2ODM3MTE1NDksLTI4NTQ3MDgzXX0=
 -->
