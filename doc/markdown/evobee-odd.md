@@ -66,7 +66,7 @@ Pollen transfer processes occur during  each flower visit by a pollinator. These
 
 Figure 1. Flow charts for individual pollinator agents following (a) the Forage Nearest flower strategy, and (b) the Forage Any  flower strategy. Bee-pollen refers to pollen carried on the body of the insect and potentially available for deposition on the stigma of a flower for pollination or pollen-clogging. Anther-pollen refers to pollen carried on a flower anther and potentially available for deposition on the body of a bee.
 
-2.3.4 Flower dynamics
+#### Flower dynamics
 
 At the start of a foraging phase, each flower begins with a fixed amount of anther pollen available for collection. Each flower also begins with a stigma free from pollen, but as the foraging phase progresses visiting pollinators may deposit pollen on its stigma. Pollinators may be allowed to deposit pollen from a different species onto the stigma (potentially pollen-clogging the flower) depending upon the configuration of the experiment. Configuration options are detailed in Table 2. A parameter specifies the capacity for pollen grains on a stigma. At the end of a foraging phase, every conspecific grain of pollen on the stigma forms a viable seed that enters the gene pool for the next generation of plants as described above (Overview of dynamics section). This is a simple proxy for the complexities of pollination in which several pollen grains may be required to fertilise an ovule [REF], but for the purposes of assessing the relative success of two competing species it is sufficient since  the two flowering plant  species we simulate are  treated consistently.
 
@@ -74,19 +74,19 @@ At the start of a foraging phase, each flower begins with a fixed amount of anth
 
 Each pollen grain carried by a pollinator visiting a flower is considered for transfer to the flower’s stigma subject to these limiting factors: the pollinator has a fixed maximum number of grains that it can transfer to the stigma during a visit; the stigma has a fixed maximum capacity for accepting pollen grains (above, section Flowers), and the stigma may or may not be susceptible to receiving pollen grains from a different species (above, section Flowers). Having taken all of these factors into account, if any pollen grains on the pollinator are eligible for transfer, then the determined number are picked at random from the pollinator for transferral to the stigma. Finally, the flower may transfer some of its anther pollen onto the pollinator’s body. Flower anthers start with a specified amount of pollen in each foraging phase; any available pollen on the anther is transferred to the pollinator, up to the fixed maximum transfer limit per visit.
 
-1.  Design concepts
+##  Design concepts
     
 
-Basic principles
+### Basic principles
 
-2.  Our simulation builds upon the earlier simulation work of Waser (1978). One notable difference between our software and his is our use of a continuous spatial environment to avoid potential artefactual effects arising from modelling pollinator movements on a discrete grid [REFS: Bonnell et al 2016; Birch et al 2007]. Modern computing environments also allow us to simulate much larger environments than those that were feasible in 1978. We model up to 16,000 plants and 400 pollinators, running for up to 1000 generations, with each experimental condition repeated in 100 replicates (more in some cases), in contrast to 100 plants, 1 pollinator and up to 400 generations with 20 replicates in the early study. We have determined experimentally that the values we employ are sufficient to: confirm that our software’s behaviour matches the behaviour of Waser’s simulations; and, robustly generate the system behaviour we require to explore our own hypotheses (see section  Testing (Verification and Validation)). The novel results we report here arise from experimental configurations that were not considered in Waser’s original paper.
+Our simulation builds upon the earlier simulation work of Waser (1978). One notable difference between our software and his is our use of a continuous spatial environment to avoid potential artefactual effects arising from modelling pollinator movements on a discrete grid [REFS: Bonnell et al 2016; Birch et al 2007]. Modern computing environments also allow us to simulate much larger environments than those that were feasible in 1978. We model up to 16,000 plants and 400 pollinators, running for up to 1000 generations, with each experimental condition repeated in 100 replicates (more in some cases), in contrast to 100 plants, 1 pollinator and up to 400 generations with 20 replicates in the early study. We have determined experimentally that the values we employ are sufficient to: confirm that our software’s behaviour matches the behaviour of Waser’s simulations; and, robustly generate the system behaviour we require to explore our own hypotheses (see section  Testing (Verification and Validation)). The novel results we report here arise from experimental configurations that were not considered in Waser’s original paper.
     
 
-Emergence
+### Emergence
 
 The key emergent property of interest in these experiments is whether or not both plant species X and Y can sustain viable coexistent populations for a given experimental configuration, or whether one species reaches fixation with the other dying out. We are primarily interested in how the pollen-clogging configuration (symmetric clogging, asymmetric clogging, or symmetric non-clogging) affects species coexistance.
 
-Pollinator perception
+### Pollinator perception
 
 Under the default Forage Nearest flower  strategy, pollinators can see flowers within 1 perceptual distance unit (pdu) of their current position, and move to the nearest flower seen within that distance  (Section,  Spatial Units).
 
@@ -106,5 +106,5 @@ Observation
 
 In these experiments, the main data recorded during experiments are, at the end of each generation, the generation number and the number of plants of each species X and Y currently in existence. For each experiment, we also record the full configuration set-up.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTkwMzUyMDUsLTI4NTQ3MDgzXX0=
+eyJoaXN0b3J5IjpbMTEyNzQyMjMzNiwtMjg1NDcwODNdfQ==
 -->
