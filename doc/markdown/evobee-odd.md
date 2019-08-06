@@ -4,7 +4,6 @@ This document provides a high-level description of the EvoBee agent based simula
 
 [^Grimm2010]: http://dx.doi.org/10.1016/j.ecolmodel.2010.08.019 "The ODD protocol: A review and first update"
 
-
 ## Purpose
 
 EvoBee is a spatially-explicit agent-based model designed to simulate interactions between pollinators and plant species under a variety of scenarios. It simulates a population of individual pollinators foraging an area containing one or more different plant species over the course of a season, and also changes and evolution in the plant population over the course of multiple seasons. 
@@ -13,7 +12,7 @@ EvoBee is a spatially-explicit agent-based model designed to simulate interactio
 
 ### Pollinator agents
 
-Each  pollinator has a unique identification number. It keeps a record of its current position in the environment (a two-dimensional floating-point vector) and its current heading (a floating-point angle [0, 2π]). It has a pollen store, in which is recorded any pollen carried  after collection from visited flowers. It keeps a list of the id. numbers of the five most recently visited flowers, and at any given time it will not revisit a flower that is currently on this list. Finally, each pollinator has a foraging strategy, which is either Forage Nearest flower, or Forage Any  flower. These strategies are explained in the Process Overview section.
+Each  pollinator has a unique identification number. It keeps a record of its current position in the environment (a two-dimensional floating-point vector) and its current heading (a floating-point angle [0, 2π]). It has a pollen store, in which is recorded any pollen carried  after collection from visited flowers. It keeps a list of the id. numbers of the five most recently visited flowers, and at any given time it will not revisit a flower that is currently on this list. Finally, each pollinator has a foraging strategy, which is either *Forage Nearest* flower, or *Forage Any* flower. These strategies are explained in the Process Overview section.
 
 ### Flower/Plant agents
 
@@ -111,7 +110,7 @@ In these experiments, the main data recorded during experiments are, at the end 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg0NDQ0OTY5NywtNDc0ODAyNzQ2LDg0Nz
-A2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5LC0yODU0NzA4
-M119
+eyJoaXN0b3J5IjpbNzMyNTI1MTczLC00NzQ4MDI3NDYsODQ3MD
+YwMTU4LC01ODM0MzUyMjUsLTE2ODM3MTE1NDksLTI4NTQ3MDgz
+XX0=
 -->
