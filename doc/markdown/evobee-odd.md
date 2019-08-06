@@ -7,7 +7,7 @@ This document provides a high-level description of the EvoBee agent based simula
 
 ## Purpose
 
-EvoBee is designed to study interactions between pollinators and the dynamics  of two plant species competing for a single species of inconstant insect pollinator. The pollen-clogging  scenarios modelled are specified in Table 1.
+EvoBee is a spatially-explicit agent-based model designed to simulate interactions between pollinators and plant species under a variety of scenarios.
 
 ## Entities, state variables, and scales
     
@@ -112,7 +112,7 @@ In these experiments, the main data recorded during experiments are, at the end 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NDQ5Nzg0NjYsLTQ3NDgwMjc0Niw4ND
-cwNjAxNTgsLTU4MzQzNTIyNSwtMTY4MzcxMTU0OSwtMjg1NDcw
-ODNdfQ==
+eyJoaXN0b3J5IjpbLTEyMzUzNjQ1MiwtNDc0ODAyNzQ2LDg0Nz
+A2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5LC0yODU0NzA4
+M119
 -->
