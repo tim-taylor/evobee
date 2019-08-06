@@ -1,10 +1,16 @@
 # evobee
-Simulation of evolution of flower colours with bee pollination
 
-**Note** This code is currently under initial development and is not yet complete! 
-Commits should at least compile, but you'll have to wait for release 1.0 for a 
-fully working system. This will be ready around July 2017.
+An agent-based simulation platform for modelling bee pollination of crops and its evolution under changing environmental conditions.
 
-### Authors
-* Tim Taylor ([github](https://github.com/tim-taylor), [twitter](https://twitter.com/drtimt))
-* Alan Dorin
+## Table of Contents
+- [High-level description of system (ODD format)](doc/markdown/evobee-odd.md)
+- [Install and compile](doc/markdown/evobee-install.md)
+- [Code architecture and documentation](doc/markdown/evobee-architecture.md)
+
+## Authors
+* [Tim Taylor](http://timt.co) ([github](https://github.com/tim-taylor), [twitter](https://twitter.com/drtimt)), Monash University, Australia
+* [Alan Dorin](https://research.monash.edu/en/persons/alan-dorin) ([twitter](https://twitter.com/NRGBunny1)), Monash University, Australia
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE3OTgwODY2NTgsLTE0OTg4NzkzMTcsLT
+c5NTIwODI3OCwtMTE1MDUyOTIyNV19
+-->
