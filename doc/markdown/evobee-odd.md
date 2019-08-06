@@ -1,6 +1,6 @@
 # EvoBee high level description
 
-This document provides a high-level description of the EvoBee agent based simulation platform. It follows the *ODD* protocol (Overview, Design concepts, and Details) proposed by Volker Grimm and colleagues [@Grimm2010] as a standardised format for the description of agent-based models.
+This document provides a high-level description of the EvoBee agent based simulation platform. It follows the *ODD* protocol (Overview, Design concepts, and Details) proposed by [Grimm et al][@Grimm2010] as a standardised format for the description of agent-based models.
 ```
 [@Grimm2010]: http://dx.doi.org/10.1016/j.ecolmodel.2010.08.019 "The ODD protocol: A review and first update"
 ```
@@ -111,6 +111,7 @@ In these experiments, the main data recorded during experiments are, at the end 
 ## Initialization
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ3NDgwMjc0Niw4NDcwNjAxNTgsLTU4Mz
-QzNTIyNSwtMTY4MzcxMTU0OSwtMjg1NDcwODNdfQ==
+eyJoaXN0b3J5IjpbNTc5MjMyODgyLC00NzQ4MDI3NDYsODQ3MD
+YwMTU4LC01ODM0MzUyMjUsLTE2ODM3MTE1NDksLTI4NTQ3MDgz
+XX0=
 -->
