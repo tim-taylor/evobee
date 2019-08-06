@@ -1,41 +1,41 @@
 # EvoBee high level description
 
-## Pollen-clogging simulation design and ODD model description
+Pollen-clogging simulation design and ODD model description
     
 
-### Purpose
+## Purpose
 
 Our model is designed to study the dynamics  of two plant species competing for a single species of inconstant insect pollinator. The pollen-clogging  scenarios modelled are specified in Table 1.
 
-### Entities, state variables, and scales
+## Entities, state variables, and scales
     
 
-#### Pollinator agents
+### Pollinator agents
 
 Each  pollinator has a unique identification number. It keeps a record of its current position in the environment (a two-dimensional floating-point vector) and its current heading (a floating-point angle [0, 2π]). It has a pollen store, in which is recorded any pollen carried  after collection from visited flowers. It keeps a list of the id. numbers of the five most recently visited flowers, and at any given time it will not revisit a flower that is currently on this list. Finally, each pollinator has a foraging strategy, which is either Forage Nearest flower, or Forage Any  flower. These strategies are explained in the Process Overview section.
 
-#### Flower/Plant agents
+### Flower/Plant agents
 
 In our model, each plant has a single flower, so we treat a plant and its flower as a single entity. Each flower has a unique identification number. It also has a species identification number, to signify which of the two species it belongs to. The flower keeps a record of its fixed position in the environment (a two-dimensional floating-point vector). It also keeps a record of the number of collectable pollen grains currently available in its anthers—this is initialised with a fixed number when a flower is created, and depleted when a pollinator visits the flower, when a fixed number of anther pollen grains are transferred to the pollinator’s pollen store. The flower has a stigma pollen store, recording any pollen that visiting pollinators have deposited (these may be conspecific or heterospecific grains). The only difference between flower  species is the pollen type produced and required for pollination.
 
-#### Pollen agents
+### Pollen agents
 
 Each pollen grain is modelled individually, and records the individual flower that produced it, its species type, and (when travelling in a pollinator’s pollen store), the number of flowers the pollinator has visited since the grain was originally collected. Pollen cannot move independently, it must be transferred between flower agents by pollinator agents and is at any time always on a flower anther, stigma, or on the body of a pollinator.
 
-#### Spatial Units
+### Spatial Units
 
 Simulation distances are measured in perceptual distance units (pdu). We define 1 pdu to correspond to the distance over which bumblebees can detect a plant’s flowers, ~0.7m [REF Dyer, Sparthe et al, 2008; Wertlen, Niggebrugge et al 2008].
 
 In these experiments the environment is homogeneous (with the exception of the refuge areas described in the following section), so there are no state variables associated with particular positions within the environment.
 
-#### Environment
+### Environment
 
 In most experiments, we study a continuous-space environment 200 x 200 pdu (140 x 140 m). We model a single species of insect pollinator and two species of flowering plant (labelled X and Y). A column of area 40 x 200 pdu on the “left” edge of the environment acts as a refuge for plant species X; only plants of this species can grow here. If during the reproduction phase a seed from species Y lands in the refuge of species X it is removed from the simulation. An equivalent column on the right edge of the environment acts as a refuge for species Y. Plants of either species can occupy the central remaining 120 x 200 pdu region. Following Waser’s approach, we have incorporated these refuges to promote the possibility of the stable coexistence of two plant species (see Waser’s experiment (4), Effects of Refugia). In Waser’s experiments, these refuges  lead to a slight increase in the mean duration for which the environment supported the coexistence of the two species before one went to fixation.
 
-### Process overview and scheduling
+## Process overview and scheduling
     
 
-#### Overview of dynamics: foraging and reproduction phases
+### Overview of dynamics: foraging and reproduction phases
     
 
 Our model features a 2D continuous spatial environment containing a population of flowering plants of two different species. Each plant has a single flower that can be foraged by members of a single population of insect pollinator agents. The simulation cycles through two phases, an insect  foraging and pollination phase, and a plant reproduction phase.
@@ -44,7 +44,7 @@ During the foraging and pollination phase, the pollinators forage from the fixed
 
 During the plant reproduction phase, viable seeds from pollinated plants form the gene pool for a new generation of plants. All plants and pollinators from the previous generation are removed from the environment, and new plants are created based upon parents picked at random (without replacement) from the gene pool. New plants are distributed to random positions in the environment. New plants are created until all members of the gene pool have been reproduced, or until the maximum carrying capacity of the environment is reached. A new population of pollinators is then created and distributed to random starting positions in the environment. Next, a new foraging phase commences. This simulation continues to cycle until a specified number of foraging/reproduction phases have been completed.
 
-#### Pollinator dynamics
+### Pollinator dynamics
 
 Each foraging phase begins with a population of 400 pollinators distributed uniform-randomly across the environment. Each pollinator collects a supply of pollen by visiting flowers. At each time step during the foraging phase, the order in which pollinators are selected is randomised. Each pollinator executes a new iteration of its foraging behaviour in each simulation time step. We studied two different pollinator foraging strategies in these experiments: Forage Nearest flower, and a variant,  Forage Any  flower. In both strategies, every pollinator maintains a list of its five most recently visited individual flowers, and it will not revisit a flower that currently appears on this list. The differences between the strategies are as follows.
 
@@ -66,15 +66,15 @@ Pollen transfer processes occur during  each flower visit by a pollinator. These
 
 Figure 1. Flow charts for individual pollinator agents following (a) the Forage Nearest flower strategy, and (b) the Forage Any  flower strategy. Bee-pollen refers to pollen carried on the body of the insect and potentially available for deposition on the stigma of a flower for pollination or pollen-clogging. Anther-pollen refers to pollen carried on a flower anther and potentially available for deposition on the body of a bee.
 
-#### Flower dynamics
+### Flower dynamics
 
 At the start of a foraging phase, each flower begins with a fixed amount of anther pollen available for collection. Each flower also begins with a stigma free from pollen, but as the foraging phase progresses visiting pollinators may deposit pollen on its stigma. Pollinators may be allowed to deposit pollen from a different species onto the stigma (potentially pollen-clogging the flower) depending upon the configuration of the experiment. Configuration options are detailed in Table 2. A parameter specifies the capacity for pollen grains on a stigma. At the end of a foraging phase, every conspecific grain of pollen on the stigma forms a viable seed that enters the gene pool for the next generation of plants as described above (Overview of dynamics section). This is a simple proxy for the complexities of pollination in which several pollen grains may be required to fertilise an ovule [REF], but for the purposes of assessing the relative success of two competing species it is sufficient since  the two flowering plant  species we simulate are  treated consistently.
 
-#### Pollinator action on flowers
+### Pollinator action on flowers
 
 Each pollen grain carried by a pollinator visiting a flower is considered for transfer to the flower’s stigma subject to these limiting factors: the pollinator has a fixed maximum number of grains that it can transfer to the stigma during a visit; the stigma has a fixed maximum capacity for accepting pollen grains (above, section Flowers), and the stigma may or may not be susceptible to receiving pollen grains from a different species (above, section Flowers). Having taken all of these factors into account, if any pollen grains on the pollinator are eligible for transfer, then the determined number are picked at random from the pollinator for transferral to the stigma. Finally, the flower may transfer some of its anther pollen onto the pollinator’s body. Flower anthers start with a specified amount of pollen in each foraging phase; any available pollen on the anther is transferred to the pollinator, up to the fixed maximum transfer limit per visit.
 
-##  Design concepts
+#  Design concepts
     
 
 ### Basic principles
@@ -102,9 +102,10 @@ The interactions between agents in the simulation are those between an individua
 
 The stochastic elements of the simulation are: placement of flowers and pollinators at the start of each foraging phase; the order in which pollinators are processed at each time step during the foraging phase; the direction a pollinator move if it doesn’t find a suitable nearby flower target in the FN strategy; the choice of target flower in the FA strategy; the choice of which individual pollen grains are transferred from a pollinator to a flower’s stigma upon landing; and, in the reproduction phase, the order in which viable seeds are considered for producing plants for the next generation.
 
-### Observation
+Observation
 
 In these experiments, the main data recorded during experiments are, at the end of each generation, the generation number and the number of plants of each species X and Y currently in existence. For each experiment, we also record the full configuration set-up.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2ODM3MTE1NDksLTI4NTQ3MDgzXX0=
+eyJoaXN0b3J5IjpbNDM0MjMyMjgxLC0xNjgzNzExNTQ5LC0yOD
+U0NzA4M119
 -->
