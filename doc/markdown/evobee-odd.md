@@ -105,7 +105,10 @@ The stochastic elements of the simulation are: placement of flowers and pollinat
 ### Observation
 
 In these experiments, the main data recorded during experiments are, at the end of each generation, the generation number and the number of plants of each species X and Y currently in existence. For each experiment, we also record the full configuration set-up.
+
+## Initialization
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODQ3MDYwMTU4LC01ODM0MzUyMjUsLTE2OD
-M3MTE1NDksLTI4NTQ3MDgzXX0=
+eyJoaXN0b3J5IjpbLTM5NjAzODYxNiw4NDcwNjAxNTgsLTU4Mz
+QzNTIyNSwtMTY4MzcxMTU0OSwtMjg1NDcwODNdfQ==
 -->
