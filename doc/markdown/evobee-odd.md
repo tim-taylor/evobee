@@ -94,17 +94,17 @@ Under the alternative Forage Any  flower strategy, pollinators  move to a random
 
 Pollinators maintain a list of the last 5 individual flowers they have visited, and will not revisit a flower while it is on this list. The reader is reminded that the simulated insect pollinators are not flower constant. They will land on a target flower, as directed by the FN or FA strategy,  paying no heed of flower species.
 
-Interaction
+### Interaction
 
 The interactions between agents in the simulation are those between an individual pollinators, pollen and individual flowers. These interactions take place when the pollinator lands on a flower, as described in the Pollinator action on flowers section. There are no direct pollinator-pollinator or flower-flower interactions. It is possible for multiple pollinators to land and interact with  a  single flower within a time step. The order of their interactions is randomised.
 
-Stochasticity
+### Stochasticity
 
 The stochastic elements of the simulation are: placement of flowers and pollinators at the start of each foraging phase; the order in which pollinators are processed at each time step during the foraging phase; the direction a pollinator move if it doesn’t find a suitable nearby flower target in the FN strategy; the choice of target flower in the FA strategy; the choice of which individual pollen grains are transferred from a pollinator to a flower’s stigma upon landing; and, in the reproduction phase, the order in which viable seeds are considered for producing plants for the next generation.
 
-Observation
+### Observation
 
 In these experiments, the main data recorded during experiments are, at the end of each generation, the generation number and the number of plants of each species X and Y currently in existence. For each experiment, we also record the full configuration set-up.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEyNzQyMjMzNiwtMjg1NDcwODNdfQ==
+eyJoaXN0b3J5IjpbLTE2ODM3MTE1NDksLTI4NTQ3MDgzXX0=
 -->
