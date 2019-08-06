@@ -1,7 +1,6 @@
 # EvoBee high level description
 
-This document provides a high-level description of the EvoBee agent based simulation platform. It follows the *ODD* protocol (Overview, Design concepts, and Details) proposed by Volker Grimm and colleagues as a standardised description
-Pollen-clogging simulation design and ODD model description
+This document provides a high-level description of the EvoBee agent based simulation platform. It follows the *ODD* protocol (Overview, Design concepts, and Details) proposed by Volker Grimm and colleagues [@Grimm2010] as a standardised format for the description of agent-based models.
     
 
 ## Purpose
@@ -110,6 +109,6 @@ In these experiments, the main data recorded during experiments are, at the end 
 ## Initialization
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjU3NDkzMjg1LDg0NzA2MDE1OCwtNTgzND
-M1MjI1LC0xNjgzNzExNTQ5LC0yODU0NzA4M119
+eyJoaXN0b3J5IjpbLTE3NjA5MzQyODQsODQ3MDYwMTU4LC01OD
+M0MzUyMjUsLTE2ODM3MTE1NDksLTI4NTQ3MDgzXX0=
 -->
