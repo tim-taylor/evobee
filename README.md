@@ -9,8 +9,8 @@ An agent-based simulation platform for modelling bee pollination of crops and it
 
 ## Authors
 * [Tim Taylor](http://timt.co) ([github](https://github.com/tim-taylor), [twitter](https://twitter.com/drtimt)), Monash University, Australia
-* [Alan Dorin](https://research.monash.edu/en/persons/alan-dorin) ([twitter]([https://twitter.com/NRGBunny1](https://twitter.com/NRGBunny1))), Monash University, Australia
+* [Alan Dorin](https://research.monash.edu/en/persons/alan-dorin) ([twitter](https://twitter.com/NRGBunny1)), Monash University, Australia
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQwMDA3MjA0OSwtMTQ5ODg3OTMxNywtNz
-k1MjA4Mjc4LC0xMTUwNTI5MjI1XX0=
+eyJoaXN0b3J5IjpbLTE3OTgwODY2NTgsLTE0OTg4NzkzMTcsLT
+c5NTIwODI3OCwtMTE1MDUyOTIyNV19
 -->
