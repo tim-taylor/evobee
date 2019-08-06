@@ -31,6 +31,10 @@ From the base directory of evobee:
 If all worked well, the evobee executable file should now be found  
 in the build directory.
 
+## To compile the documentation
+
+ - doxygen doxygen.cfg
+
 ## More details
 
 -   SDL2 and SDL2_image installed locally
@@ -60,5 +64,6 @@ in the build directory.
 	- export LD_LIBRARY_PATH=/home/ttay0006/evobee/code/sdl2/lib:$LD_LIBRARY_PATH
 	- export LD_RUN_PATH="/home/ttay0006/evobee/code/sdl2/lib"
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyOTM1MzU0LC02MTc1MDM3MTZdfQ==
+eyJoaXN0b3J5IjpbLTE2MzI0NzYzMTYsLTEyOTM1MzU0LC02MT
+c1MDM3MTZdfQ==
 -->
