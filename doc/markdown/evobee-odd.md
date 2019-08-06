@@ -60,15 +60,13 @@ A second spatial aspect of the simulation is the floral density. Even though we 
 
 Pollen transfer processes occur during  each flower visit by a pollinator. These are described in a subsequent section (Pollinator action on flowers).
 
-<img src="img/EvoBee-Bee-Behaviour-Flowchart-FNF.png" alt="Flow diagram for Forage Nearest Flower strategy" width=50%/>
 
 | <img src="img/EvoBee-Bee-Behaviour-Flowchart-FNF.png" alt="Flow diagram for Forage Nearest Flower strategy" width=45%/> | <img src="img/EvoBee-Bee-Behaviour-Flowchart-FAW.png" alt="Flow diagram for Forage Anywhere strategy" width=45%/> |
 |--|--|
-| Forage Nearest Flow |  |
+| Forage Nearest Flower | Forage Anywhere |
 
 
-
-Figure 1. Flow charts for individual pollinator agents following (a) the Forage Nearest flower strategy, and (b) the Forage Any  flower strategy. Bee-pollen refers to pollen carried on the body of the insect and potentially available for deposition on the stigma of a flower for pollination or pollen-clogging. Anther-pollen refers to pollen carried on a flower anther and potentially available for deposition on the body of a bee.
+> Figure 1. Flow charts for individual pollinator agents following (a) the Forage Nearest flower strategy, and (b) the Forage Any flower strategy. Bee-pollen refers to pollen carried on the body of the insect and potentially available for deposition on the stigma of a flower for pollination or pollen-clogging. Anther-pollen refers to pollen carried on a flower anther and potentially available for deposition on the body of a bee.
 
 ### Flower dynamics
 
@@ -114,7 +112,7 @@ In these experiments, the main data recorded during experiments are, at the end 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzE1NjcxOTU0LDEwMDQ2MzIyMTcsMTIyOD
-c1MzM0Nyw3MzI1MjUxNzMsLTQ3NDgwMjc0Niw4NDcwNjAxNTgs
-LTU4MzQzNTIyNSwtMTY4MzcxMTU0OSwtMjg1NDcwODNdfQ==
+eyJoaXN0b3J5IjpbLTMyODAyMjc2MiwxMDA0NjMyMjE3LDEyMj
+g3NTMzNDcsNzMyNTI1MTczLC00NzQ4MDI3NDYsODQ3MDYwMTU4
+LC01ODM0MzUyMjUsLTE2ODM3MTE1NDksLTI4NTQ3MDgzXX0=
 -->
