@@ -8,9 +8,9 @@ An agent-based simulation platform for modelling bee pollination of crops and it
 - [Code architecture and documentation](doc/markdown/evobee-architecture.md)
 
 ## Authors
-* [Tim Taylor](http://timt.co) ([github](https://github.com/tim-taylor), [twitter](https://twitter.com/drtimt), Monash University, Australia
-* [Alan Dorin](https://research.monash.edu/en/persons/alan-dorin), Monash University, Australia
+* [Tim Taylor](http://timt.co) ([github](https://github.com/tim-taylor), [twitter](https://twitter.com/drtimt)), Monash University, Australia
+* [Alan Dorin](https://research.monash.edu/en/persons/alan-dorin) ([twitter]([https://twitter.com/NRGBunny1](https://twitter.com/NRGBunny1))), Monash University, Australia
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNzYyMjYxNDIsLTE0OTg4NzkzMTcsLT
-c5NTIwODI3OCwtMTE1MDUyOTIyNV19
+eyJoaXN0b3J5IjpbLTMyMjYwMjU0OSwtMTQ5ODg3OTMxNywtNz
+k1MjA4Mjc4LC0xMTUwNTI5MjI1XX0=
 -->
