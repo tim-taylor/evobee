@@ -7,10 +7,9 @@ This document provides a high-level description of the EvoBee agent based simula
 
 ## Purpose
 
-EvoBee is a spatially-explicit agent-based model designed to simulate interactions between pollinators and plant species under a variety of scenarios. It simulates a population of individual pollinators foraging an area containing one or more different plant species over the course of a season, and also 
+EvoBee is a spatially-explicit agent-based model designed to simulate interactions between pollinators and plant species under a variety of scenarios. It simulates a population of individual pollinators foraging an area containing one or more different plant species over the course of a season, and also changes and evolution in the plant population over the course of multiple seasons. 
 
 ## Entities, state variables, and scales
-    
 
 ### Pollinator agents
 
@@ -112,7 +111,7 @@ In these experiments, the main data recorded during experiments are, at the end 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE1OTgwOTk3NywtNDc0ODAyNzQ2LDg0Nz
+eyJoaXN0b3J5IjpbMTg0NDQ0OTY5NywtNDc0ODAyNzQ2LDg0Nz
 A2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5LC0yODU0NzA4
 M119
 -->
