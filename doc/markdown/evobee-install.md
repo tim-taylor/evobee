@@ -2,7 +2,37 @@
 
 [[ [Return to top-level documentation menu](../../README.md) ]]
 
-### Compilation notes:
+## Overview
+
+External dependencies  
+---------------------  
+  
+To compile evobee from source, you will need the following libraries  
+(including header files) installed on your system:  
+  
+* Boost libraries (http://www.boost.org/)  
+-- specifically the program_options library  
+-- version 1.32.0 or higher  
+  
+* SDL 2.0 (https://www.libsdl.org/)  
+  
+  
+To build EvoBee  
+---------------  
+  
+The following instructions are for the Linux command line. Adapt  
+as appropriate according to your OS.  
+  
+From the base directory of evobee:  
+  
+* cd build  
+* cmake ..  
+* make  
+  
+If all worked well, the evobee executable file should now be found  
+in the build directory.
+
+# More details
 
 -   SDL2 and SDL2_image installed locally
     
@@ -27,11 +57,9 @@
 	- module unload cmake/3.2.3
 	- module load cmake/3.5.2
 	- module unload gcc/4.9.1
-	-   module load gcc/6.1.0
-    
--   export LD_LIBRARY_PATH=/home/ttay0006/evobee/code/sdl2/lib:$LD_LIBRARY_PATH
-    
--   export LD_RUN_PATH="/home/ttay0006/evobee/code/sdl2/lib"
+	- module load gcc/6.1.0
+	- export LD_LIBRARY_PATH=/home/ttay0006/evobee/code/sdl2/lib:$LD_LIBRARY_PATH
+	- export LD_RUN_PATH="/home/ttay0006/evobee/code/sdl2/lib"
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI4OTQwMjUzMl19
+eyJoaXN0b3J5IjpbNjk1NzY5MTRdfQ==
 -->
