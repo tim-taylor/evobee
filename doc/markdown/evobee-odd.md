@@ -1,6 +1,6 @@
 # EvoBee high level description
 
-Pollen-clogging simulation design and ODD model description
+This document provides a high-level description of the Pollen-clogging simulation design and ODD model description
     
 
 ## Purpose
@@ -106,6 +106,6 @@ The stochastic elements of the simulation are: placement of flowers and pollinat
 
 In these experiments, the main data recorded during experiments are, at the end of each generation, the generation number and the number of plants of each species X and Y currently in existence. For each experiment, we also record the full configuration set-up.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU4MzQzNTIyNSwtMTY4MzcxMTU0OSwtMj
-g1NDcwODNdfQ==
+eyJoaXN0b3J5IjpbODQ3MDYwMTU4LC01ODM0MzUyMjUsLTE2OD
+M3MTE1NDksLTI4NTQ3MDgzXX0=
 -->
