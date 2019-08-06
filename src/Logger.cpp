@@ -369,7 +369,7 @@ void Logger::transferFilesToFinalDir()
         }
         catch (std::exception& e)
         {
-            std::cerr << "Unable to move log files to final destination directory:" << e.what() << std::endl;
+            std::cerr << "Unable to move log files to final destination directory: " << e.what() << std::endl;
         }
     }
 }
