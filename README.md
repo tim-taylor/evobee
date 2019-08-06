@@ -4,7 +4,9 @@ An agent-based simulation platform for modelling bee pollination of crops and it
 
 Table of Contents
 ---------------------
-- System description (
+- High-level description of system (ODD format)
+- Installation and compiling
+- Code archi
 
 
 **Note** This code is currently under initial development and is not yet complete! 
@@ -15,6 +17,6 @@ fully working system. This will be ready around July 2017.
 * Tim Taylor ([github](https://github.com/tim-taylor), [twitter](https://twitter.com/drtimt))
 * Alan Dorin
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExOTY1NDI0OTMsLTc5NTIwODI3OCwtMT
-E1MDUyOTIyNV19
+eyJoaXN0b3J5IjpbLTY4MTQxNTMwOSwtNzk1MjA4Mjc4LC0xMT
+UwNTI5MjI1XX0=
 -->
