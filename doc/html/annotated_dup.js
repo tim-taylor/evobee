@@ -22,6 +22,7 @@ var annotated_dup =
     [ "Pollen", "structPollen.html", "structPollen" ],
     [ "Pollinator", "classPollinator.html", "classPollinator" ],
     [ "PollinatorConfig", "structPollinatorConfig.html", "structPollinatorConfig" ],
+    [ "PollinatorPerformanceInfo", "structPollinatorPerformanceInfo.html", "structPollinatorPerformanceInfo" ],
     [ "Position", "classPosition.html", "classPosition" ],
     [ "ReflectanceInfo", "classReflectanceInfo.html", "classReflectanceInfo" ],
     [ "SDL2_gfxBresenhamIterator", "structSDL2__gfxBresenhamIterator.html", "structSDL2__gfxBresenhamIterator" ],

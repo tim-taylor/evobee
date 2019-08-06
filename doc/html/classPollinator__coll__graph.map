@@ -1,9 +1,10 @@
 <map id="Pollinator" name="Pollinator">
-<area shape="rect" id="node2" href="$classPosition.html" title="Position\&lt; int \&gt;" alt="" coords="351,29,457,56"/>
-<area shape="rect" id="node3" href="$classEvoBeeModel.html" title="EvoBeeModel" alt="" coords="353,80,455,107"/>
-<area shape="rect" id="node5" href="$structPollen.html" title="Pollen" alt="" coords="168,131,227,157"/>
-<area shape="rect" id="node6" href="$classFlower.html" title="Flower" alt="" coords="5,131,67,157"/>
-<area shape="rect" id="node7" href="$classAbstractHive.html" title="AbstractHive" alt="" coords="355,181,453,208"/>
-<area shape="rect" id="node8" href="$classEnvironment.html" title="Environment" alt="" coords="357,232,451,259"/>
-<area shape="rect" id="node9" href="$classPosition.html" title="Position\&lt; float \&gt;" alt="" coords="345,283,463,309"/>
+<area shape="rect" id="node2" href="$classPosition.html" title="Position\&lt; int \&gt;" alt="" coords="480,37,587,64"/>
+<area shape="rect" id="node3" href="$classEvoBeeModel.html" title="EvoBeeModel" alt="" coords="482,88,585,115"/>
+<area shape="rect" id="node6" href="$structPollen.html" title="Pollen" alt="" coords="225,205,283,232"/>
+<area shape="rect" id="node7" href="$classFlower.html" title="Flower" alt="" coords="5,205,67,232"/>
+<area shape="rect" id="node8" href="$classAbstractHive.html" title="AbstractHive" alt="" coords="484,256,583,283"/>
+<area shape="rect" id="node10" href="$structPollinatorPerformanceInfo.html" title="PollinatorPerformanceInfo" alt="" coords="168,321,340,348"/>
+<area shape="rect" id="node11" href="$classEnvironment.html" title="Environment" alt="" coords="486,387,581,413"/>
+<area shape="rect" id="node12" href="$classPosition.html" title="Position\&lt; float \&gt;" alt="" coords="474,437,593,464"/>
 </map>

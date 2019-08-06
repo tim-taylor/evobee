@@ -25,6 +25,7 @@ var hierarchy =
       ] ]
     ] ],
     [ "PollinatorConfig", "structPollinatorConfig.html", null ],
+    [ "PollinatorPerformanceInfo", "structPollinatorPerformanceInfo.html", null ],
     [ "Position< T >", "classPosition.html", null ],
     [ "Position< float >", "classPosition.html", null ],
     [ "Position< int >", "classPosition.html", null ],

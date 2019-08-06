@@ -1,5 +1,6 @@
 var Pollinator_8h =
 [
+    [ "PollinatorPerformanceInfo", "structPollinatorPerformanceInfo.html", "structPollinatorPerformanceInfo" ],
     [ "Pollinator", "classPollinator.html", "classPollinator" ],
     [ "PollinatorState", "Pollinator_8h.html#a5379dda2e4215e9d198ec8912e50d0dc", [
       [ "UNINITIATED", "Pollinator_8h.html#a5379dda2e4215e9d198ec8912e50d0dcadcd049924c70d102e0aac255597dd1c8", null ],
