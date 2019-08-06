@@ -74,12 +74,12 @@ At the start of a foraging phase, each flower begins with a fixed amount of anth
 
 Each pollen grain carried by a pollinator visiting a flower is considered for transfer to the flower’s stigma subject to these limiting factors: the pollinator has a fixed maximum number of grains that it can transfer to the stigma during a visit; the stigma has a fixed maximum capacity for accepting pollen grains (above, section Flowers), and the stigma may or may not be susceptible to receiving pollen grains from a different species (above, section Flowers). Having taken all of these factors into account, if any pollen grains on the pollinator are eligible for transfer, then the determined number are picked at random from the pollinator for transferral to the stigma. Finally, the flower may transfer some of its anther pollen onto the pollinator’s body. Flower anthers start with a specified amount of pollen in each foraging phase; any available pollen on the anther is transferred to the pollinator, up to the fixed maximum transfer limit per visit.
 
-##  Design concepts
+1.  Design concepts
     
 
 Basic principles
 
-## Our simulation builds upon the earlier simulation work of Waser (1978). One notable difference between our software and his is our use of a continuous spatial environment to avoid potential artefactual effects arising from modelling pollinator movements on a discrete grid [REFS: Bonnell et al 2016; Birch et al 2007]. Modern computing environments also allow us to simulate much larger environments than those that were feasible in 1978. We model up to 16,000 plants and 400 pollinators, running for up to 1000 generations, with each experimental condition repeated in 100 replicates (more in some cases), in contrast to 100 plants, 1 pollinator and up to 400 generations with 20 replicates in the early study. We have determined experimentally that the values we employ are sufficient to: confirm that our software’s behaviour matches the behaviour of Waser’s simulations; and, robustly generate the system behaviour we require to explore our own hypotheses (see section  Testing (Verification and Validation)). The novel results we report here arise from experimental configurations that were not considered in Waser’s original paper.
+2.  Our simulation builds upon the earlier simulation work of Waser (1978). One notable difference between our software and his is our use of a continuous spatial environment to avoid potential artefactual effects arising from modelling pollinator movements on a discrete grid [REFS: Bonnell et al 2016; Birch et al 2007]. Modern computing environments also allow us to simulate much larger environments than those that were feasible in 1978. We model up to 16,000 plants and 400 pollinators, running for up to 1000 generations, with each experimental condition repeated in 100 replicates (more in some cases), in contrast to 100 plants, 1 pollinator and up to 400 generations with 20 replicates in the early study. We have determined experimentally that the values we employ are sufficient to: confirm that our software’s behaviour matches the behaviour of Waser’s simulations; and, robustly generate the system behaviour we require to explore our own hypotheses (see section  Testing (Verification and Validation)). The novel results we report here arise from experimental configurations that were not considered in Waser’s original paper.
     
 
 Emergence
@@ -106,5 +106,5 @@ Observation
 
 In these experiments, the main data recorded during experiments are, at the end of each generation, the generation number and the number of plants of each species X and Y currently in existence. For each experiment, we also record the full configuration set-up.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjgzOTc2Nzg0LC0yODU0NzA4M119
+eyJoaXN0b3J5IjpbOTkwMzUyMDUsLTI4NTQ3MDgzXX0=
 -->
