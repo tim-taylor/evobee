@@ -12,7 +12,7 @@ EvoBee is a spatially-explicit agent-based model designed to simulate interactio
 
 ### Pollinator agents
 
-Each  pollinator has a unique identification number. It keeps a record of its current position in the environment (a two-dimensional floating-point vector) and its current heading (a floating-point angle [0, 2π] ). It has a pollen store, in which is recorded any pollen carried  after collection from visited flowers. It keeps a list of the id. numbers of the five most recently visited flowers, and at any given time it will not revisit a flower that is currently on this list. Finally, each pollinator has a foraging strategy, which is either *Forage Nearest* flower, or *Forage Any* flower. These strategies are explained in the [Process Overview](#process-overview-and-scheduling) section.
+Each  pollinator has a unique identification number. It keeps a record of its current position in the environment (a two-dimensional floating-point vector) and its current heading (a floating-point angle [0, 2π]). It has a pollen store, in which is recorded any pollen carried  after collection from visited flowers. It keeps a list of the id. numbers of the five most recently visited flowers, and at any given time it will not revisit a flower that is currently on this list. Finally, each pollinator has a foraging strategy, which is either *Forage Nearest* flower, or *Forage Any* flower. These strategies are explained in the [Process Overview](#process-overview-and-scheduling) section.
 
 ### Flower/Plant agents
 
@@ -110,7 +110,7 @@ In these experiments, the main data recorded during experiments are, at the end 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjQ4MDc5OTYzLDczMjUyNTE3MywtNDc0OD
-AyNzQ2LDg0NzA2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5
-LC0yODU0NzA4M119
+eyJoaXN0b3J5IjpbMTIyODc1MzM0Nyw3MzI1MjUxNzMsLTQ3ND
+gwMjc0Niw4NDcwNjAxNTgsLTU4MzQzNTIyNSwtMTY4MzcxMTU0
+OSwtMjg1NDcwODNdfQ==
 -->
