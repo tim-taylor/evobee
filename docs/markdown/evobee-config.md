@@ -2,7 +2,8 @@
 
 [[ [Return to top-level documentation menu](../../README.md) ]]
 
-## In
+## Basic usage
+When the program has been successfully compiled
 
 ## Parameters
 
@@ -108,5 +109,5 @@ static  std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
 
 static  std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1OTQ1NTU1NTYsMjA1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbLTM2NDMxNDQxMSwyMDU2NDUwMzY1XX0=
 -->
