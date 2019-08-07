@@ -21,7 +21,7 @@ To compile evobee from source, you will need the following libraries  (including
 The following instructions are for the Linux command line. Adapt  
 as appropriate according to your OS.  
   
-From the base directory of evobee:  
+From the evobee base directory:  
   
 - `cd build`  
 - `cmake ..`  
@@ -37,7 +37,7 @@ in the `build` directory.
 
 Should you need to recompile the Doxygen auto-generated code documentation, run the following command from the evobee base directory:
 
- - doxygen doxygen.cfg
+ - `doxygen doxygen.cfg`
 
 ## More details
 
@@ -68,6 +68,6 @@ Should you need to recompile the Doxygen auto-generated code documentation, run 
 	- export LD_LIBRARY_PATH=/home/ttay0006/evobee/code/sdl2/lib:$LD_LIBRARY_PATH
 	- export LD_RUN_PATH="/home/ttay0006/evobee/code/sdl2/lib"
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIxOTM5NjIzNCwtMTYzMjQ3NjMxNiwtMT
+eyJoaXN0b3J5IjpbLTg2NjY0MTY5MywtMTYzMjQ3NjMxNiwtMT
 I5MzUzNTQsLTYxNzUwMzcxNl19
 -->
