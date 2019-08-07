@@ -29,7 +29,8 @@ From the base directory of evobee:
   
 If all worked well, the evobee executable file should now be found  
 in the build directory.
-Note for Linux users: should you ever need to do a completely fresh build of the system, there is a script in the `build` folder
+
+> Note for Linux users: should you ever need to do a completely fresh build of the system, there is a bash script named `clean` in the `build` folder, which can be run before repeating the steps listed above.
 
 
 ## To compile the documentation
@@ -65,6 +66,6 @@ Note for Linux users: should you ever need to do a completely fresh build of the
 	- export LD_LIBRARY_PATH=/home/ttay0006/evobee/code/sdl2/lib:$LD_LIBRARY_PATH
 	- export LD_RUN_PATH="/home/ttay0006/evobee/code/sdl2/lib"
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzc2NTUyNTIsLTE2MzI0NzYzMTYsLTEyOT
-M1MzU0LC02MTc1MDM3MTZdfQ==
+eyJoaXN0b3J5IjpbLTE1OTAwMzcwNSwtMTYzMjQ3NjMxNiwtMT
+I5MzUzNTQsLTYxNzUwMzcxNl19
 -->
