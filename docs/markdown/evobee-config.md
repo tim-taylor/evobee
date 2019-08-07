@@ -24,10 +24,11 @@ The vast majority of configuration options for the program are set using a confi
 
     ./evobee -c /home/me/my-config-file.cfg.json
 
-The format of the co
+The format of the configuration file and the options that can be specified within it are explained in the following sections.
 
+## Configuration file format
 
-## Parameters
+## Configuration options
 
 // data members
 
@@ -131,6 +132,6 @@ static  std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
 
 static  std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMDY0NjMxODQsLTExNjI4MTk1ODgsMj
-A1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIwNT
+Y0NTAzNjVdfQ==
 -->
