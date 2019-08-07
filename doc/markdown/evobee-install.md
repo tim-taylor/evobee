@@ -28,12 +28,14 @@ From the base directory of evobee:
 - `make`  
   
 If all worked well, the evobee executable file should now be found  
-in the build directory.
+in the `build` directory.
 
 > Note for Linux users: should you ever need to do a completely fresh build of the system, there is a bash script named `clean` in the `build` folder, which can be run before repeating the steps listed above.
 
 
 ## To compile the documentation
+
+Should you need to recompile the Doxygen auto-generated code documentation, run the following command from the evobee base directory:
 
  - doxygen doxygen.cfg
 
@@ -66,6 +68,6 @@ in the build directory.
 	- export LD_LIBRARY_PATH=/home/ttay0006/evobee/code/sdl2/lib:$LD_LIBRARY_PATH
 	- export LD_RUN_PATH="/home/ttay0006/evobee/code/sdl2/lib"
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1OTAwMzcwNSwtMTYzMjQ3NjMxNiwtMT
+eyJoaXN0b3J5IjpbMTIxOTM5NjIzNCwtMTYzMjQ3NjMxNiwtMT
 I5MzUzNTQsLTYxNzUwMzcxNl19
 -->
