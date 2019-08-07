@@ -13,7 +13,7 @@ To compile evobee from source, you will need the following libraries  (including
 	* on Ubuntu systems, installing the `libboost-all-dev` package should give you everything you need. 
   
 - SDL 2.0 (https://www.libsdl.org/)  
-	* on Ubuntu systems, installing the 
+	* on Ubuntu systems, installing the `libsdl2-dev` package should give you everything you need
   
   
 ## To build EvoBee  
@@ -23,10 +23,9 @@ as appropriate according to your OS.
   
 From the base directory of evobee:  
   
-* cd build  
-* (./clean)
-* cmake ..  
-* make  
+- `cd build`  
+- `cmake ..`  
+- `make`  
   
 If all worked well, the evobee executable file should now be found  
 in the build directory.
@@ -64,6 +63,6 @@ in the build directory.
 	- export LD_LIBRARY_PATH=/home/ttay0006/evobee/code/sdl2/lib:$LD_LIBRARY_PATH
 	- export LD_RUN_PATH="/home/ttay0006/evobee/code/sdl2/lib"
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MDY1MzE0LC0xNjMyNDc2MzE2LC0xMj
+eyJoaXN0b3J5IjpbMjE4ODg1ODM1LC0xNjMyNDc2MzE2LC0xMj
 kzNTM1NCwtNjE3NTAzNzE2XX0=
 -->
