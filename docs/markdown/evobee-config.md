@@ -20,7 +20,11 @@ This output should look like this:
 > -c [ --config ] arg (=evobee.cfg.json) configuration file  
 > -q [ --quiet ] disable verbose progress messages on stdout
 
-The vast majority of configuration options for the program are set using a configuration file rather than the command line. As shown in the output above, the default filename that `evobee` searches for is `evobee.cfg.json`, and it only searches in the current working directory. To specify a different name and location, use the -c flag when calling the exec
+The vast majority of configuration options for the program are set using a configuration file rather than the command line. As shown in the output above, the default filename that `evobee` searches for is `evobee.cfg.json`, and it only searches in the current working directory. To specify a different name and location, use the -c flag when calling the program. For example:
+
+    ./evobee -c /home/me/my-config-file.cfg.json
+
+The format of the co
 
 
 ## Parameters
@@ -127,6 +131,6 @@ static  std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
 
 static  std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjExNzg2ODE3LC0xMTYyODE5NTg4LDIwNT
-Y0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbLTEyMDY0NjMxODQsLTExNjI4MTk1ODgsMj
+A1NjQ1MDM2NV19
 -->
