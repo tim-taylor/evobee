@@ -12,6 +12,13 @@ The evobee executable accepts a small number of command-line arguments. To query
 
 This output should look like this:
 
+>  Allowed options:      
+>  
+> Generic options:  
+> -v [ --version ] display program version number  
+> -h [ --help ] display this help message  
+> -c [ --config ] arg (=evobee.cfg.json)   configuration file  
+> -q [ --quiet ] disable verbose progress messages on   stdout
 
 
 ## Parameters
@@ -118,5 +125,5 @@ static  std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
 
 static  std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MjQ3Njk0NzQsMjA1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbODA0ODg3MjAwLDIwNTY0NTAzNjVdfQ==
 -->
