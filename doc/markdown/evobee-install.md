@@ -29,6 +29,8 @@ From the base directory of evobee:
   
 If all worked well, the evobee executable file should now be found  
 in the build directory.
+Note for Linux users: should you ever n
+
 
 ## To compile the documentation
 
@@ -63,6 +65,6 @@ in the build directory.
 	- export LD_LIBRARY_PATH=/home/ttay0006/evobee/code/sdl2/lib:$LD_LIBRARY_PATH
 	- export LD_RUN_PATH="/home/ttay0006/evobee/code/sdl2/lib"
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjE4ODg1ODM1LC0xNjMyNDc2MzE2LC0xMj
+eyJoaXN0b3J5IjpbNDM1NjM1MDMyLC0xNjMyNDc2MzE2LC0xMj
 kzNTM1NCwtNjE3NTAzNzE2XX0=
 -->
