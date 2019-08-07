@@ -3,7 +3,8 @@
 [[ [Return to top-level documentation menu](../../README.md) ]]
 
 ## Basic usage
-When the program has been successfully compiled
+When the program has been successfully [compiled](evobee-install.md), the executable file named `evobee` can be found in the `build` directory.
+
 
 ## Parameters
 
@@ -109,5 +110,5 @@ static  std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
 
 static  std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM2NDMxNDQxMSwyMDU2NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbLTI3NTIxMDA3MywyMDU2NDUwMzY1XX0=
 -->
