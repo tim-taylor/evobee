@@ -47,5 +47,5 @@ utils/processFixationTimes.old
 utils/fixation-sim/fixationsim
 utils/fixation-sim/results/
 utils/graphs/
-doc/html
+docs/html
 src/.vscode
