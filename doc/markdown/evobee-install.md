@@ -8,13 +8,12 @@
 To compile evobee from source, you will need the following libraries  (including header files) installed on your system:  
   
 - Boost libraries (http://www.boost.org/)  
-	* specifically the program_options library  
+	* specifically the `program_options` library  
 	* version 1.32.0 or higher  
-	* on Ubuntu systems, installing the libboost-all-dev package should give you everything you need. 
-	* sudo apt-get install libboost-all-dev
-
+	* on Ubuntu systems, installing the `libboost-all-dev` package should give you everything you need. 
   
 - SDL 2.0 (https://www.libsdl.org/)  
+	* hsjdhsk
   
   
 ## To build EvoBee  
@@ -65,6 +64,6 @@ in the build directory.
 	- export LD_LIBRARY_PATH=/home/ttay0006/evobee/code/sdl2/lib:$LD_LIBRARY_PATH
 	- export LD_RUN_PATH="/home/ttay0006/evobee/code/sdl2/lib"
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjk2NDE2ODQ2LC0xNjMyNDc2MzE2LC0xMj
-kzNTM1NCwtNjE3NTAzNzE2XX0=
+eyJoaXN0b3J5IjpbLTE2MjQxNTE4NTksLTE2MzI0NzYzMTYsLT
+EyOTM1MzU0LC02MTc1MDM3MTZdfQ==
 -->
