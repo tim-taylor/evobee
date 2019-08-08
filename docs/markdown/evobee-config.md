@@ -72,7 +72,16 @@ The following table describes each parameter that can be specified in the config
 Hive configuration parameters for a single hive are stored in an instance of the `HiveConfig` structure, defined in source file `HiveConfig.h`. These are stored in the `ModelParams` member `m_Hives`.
 
 |Parameter name in JSON config file|Corresponding variable name in HiveConfig.h|Type of variable|Description|
- |---|---|---|---|  
+|---|---|---|---|  
+||type|std::string|Pollinator type|  
+||num|int|Number of pollinators|  
+||startFromHive|bool|Do all pollinators start at hive, or from random pos in initial foraging area?|  
+||position|fPos (Position\<float\>)|Position of the hive|  
+||areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial foraging area|  
+||areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial foraging area|  
+||migrationAllowed|bool|Are pollinators allowed to move outside initial foraging area?|  
+||migrationRestricted|bool|If migration allowed, is its probability restricted at all?|  
+||migrationProb|float|If migration allowed and restricted, and pollinator tries to leave initial foraging area, it succeeds with this prob, else it is reflected back into initial area|
  
  json_read_param(j, sct, "pollinator-type", hc.type);
 
@@ -106,9 +115,10 @@ json_read_opt_param(j, sct, "migration-prob", hc.migrationProb, 1.0f);
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2Nz
-U3MTIwMDEsLTEwODUyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2
-NCwtMTA4NTI1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLT
-E4NTE5MDQwOTQsLTIwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYx
-NzI4NTIyLC0xMTYyODE5NTg4LDIwNTY0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbMTY4NTY3NjY1LDEwNjg2ODUyMzYsLTE1MD
+M1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2MjE5LDE2OTY4MDk5
+NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMTMwMjI1NzQwOSwxMz
+A3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3Mzc3LC0xNzQ1
+NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OCwyMDU2NDUwMz
+Y1XX0=
 -->
