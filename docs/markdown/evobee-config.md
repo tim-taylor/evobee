@@ -103,19 +103,17 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 
 ### Plant Distribution configuration parameters
 
-Plant distribution configuration parameters for a specified plant type in a specified region of the environment are stored in an instance of the `PlantTypeDistributionConfig` structure, defined in source file `PlantTypeConfig.h`. These are stored in the `ModelParams` member `m_PlantTypes`.
+Plant distribution configuration parameters for a specified plant type in a specified region of the environment are stored in an instance of the `PlantTypeDistributionConfig` structure, defined in source file `PlantTypeDistributionConfig.h`. These are stored in the `ModelParams` member `m_PlantDists`.
 
-|Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
+|Parameter name in JSON config file|Corresponding variable name in PlantTypeDistributionConfig.h|Type of variable|Description|
 |---|---|---|---|  
 
 
-| |m_PlantDists|std::vector\<PlantTypeDistributionConfig\>|Config of plant distributions|  
-| |m_PlantTypes|std::vector\<PlantTypeConfig\>|Config of plant types|  
-| |m_PollinatorConfigs|std::vector\<PollinatorConfig\>|Config info for pollinator types|
+
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MDU0Njg0NDYsNzMxNzU2MDg5LDEwNj
+eyJoaXN0b3J5IjpbLTIwMDMyMjMxNDksNzMxNzU2MDg5LDEwNj
 g2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2
 MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMT
 MwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2
