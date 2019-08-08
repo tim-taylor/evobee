@@ -34,7 +34,96 @@ These files are shown below, followed by the [Configuration-options](#configurta
 
 ### evobee.cfg.json sample configuration file
 
-> Blockquote
+    {
+        "SimulationParams" : {
+            "generation-termination-type" : "pollinated-fraction-all",
+            "generation-termination-param" : 0.5,
+            "sim-termination-num-gens" : 1,
+            "rng-seed" : "",
+            "visualisation" : true,
+            "vis-update-period" : 1,
+            "vis-delay-per-frame" : 0,
+            "vis-pollinator-trails" : true,
+            "vis-max-screen-frac-w" : 0.85,
+            "vis-max-screen-frac-h" : 0.85,
+            "logging" : true,
+            "log-flags" : "f",
+            "log-update-period" : 5,
+            "log-dir" : "output",
+            "log-final-dir" : "",
+            "log-run-name" : "auto-distribs-test",
+            "verbose" : false
+        },
+        "Environment" : {
+            "env-size-x" : 200,
+            "env-size-y" : 200,
+            "background-reflectance-mp" : 500,
+            "default-ambient-temp": 20.0,
+            "repro-global-density-constrained" : true,
+            "repro-global-density-max" : 0.4,
+            "Hives" : {
+                "Hive1" : {
+                    "pollinator-type" : "HoneyBee",
+                    "pollinator-number" : 400,
+                    "start-from-hive" : false,
+                    "pos-x" : 99,
+                    "pos-y" : 99,
+                    "area-top-left-x" : 0,
+                    "area-top-left-y" : 0,
+                    "area-bottom-right-x" : 199,
+                    "area-bottom-right-y" : 199,
+                    "migration-allowed" : true,
+                    "migration-restricted" : false,
+                    "migration-prob" : 0.5
+                }
+            },
+            "PlantTypeDistributions" : {
+                "auto-distribs" : true,
+                "auto-distrib-num-rows" : 10,
+                "auto-distrib-num-cols" : 10,
+                "auto-distrib-area-margin" : 0.0,
+                "auto-distrib-density" : 0.5,
+    	    "auto-distrib-regular" : true
+            }
+        },
+        "PlantTypes" : {
+            "PlantType1" : {
+                "species" : "PlantSpecies1",
+                "flower-reflectance-mp-init-min" : 380,
+                "flower-reflectance-mp-init-max" : 380,
+                "anther-init-pollen" : 100,
+                "anther-pollen-transfer-per-visit" : 10,
+                "stigma-max-pollen-capacity" : 5,
+                "pollen-clogging" : "",
+                "repro-seed-dispersal-global" : true,
+                "repro-seed-dispersal-radius" : 1.0
+            },
+            "PlantType2" : {
+                "species" : "PlantSpecies2",
+                "flower-reflectance-mp-init-min" : 480,
+                "flower-reflectance-mp-init-max" : 480,
+                "anther-init-pollen" : 100,
+                "anther-pollen-transfer-per-visit" : 10,
+                "stigma-max-pollen-capacity" : 5,
+                "pollen-clogging" : "",
+                "repro-seed-dispersal-global" : true,
+                "repro-seed-dispersal-radius" : 1.0
+            }
+        },
+        "Pollinators" : {
+            "Pollinator1" : {
+                "species" : "HoneyBee",
+                "bout-length" : 100,
+                "max-pollen-capacity" : 0,
+                "pollen-deposit-per-flower-visit" : 3,
+                "pollen-loss-in-air" : 0,
+                "pollen-carryover-num-visits" : 100,
+                "constancy-type" : "none",
+                "foraging-strategy" : "nearest-flower",
+                "visited-flower-memory-size" : 5
+            }
+        }
+    }
 
 ### evobee-test-simple.cfg.json sample configuration file
 
@@ -150,7 +239,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ0MjU4MzA5Niw2NjE3NDQzMTEsMTgyOT
+eyJoaXN0b3J5IjpbMTE0NzE4ODg3Nyw2NjE3NDQzMTEsMTgyOT
 I2ODY3MCw3MzE3NTYwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1
 MSw2NzU3MTIwMDEsLTEwODUyNTYyMTksMTY5NjgwOTk1LC04OD
 I4NDk2NCwtMTA4NTI1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2
