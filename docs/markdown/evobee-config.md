@@ -77,17 +77,7 @@ The format of the configuration file and the options that can be specified withi
 | |m_PollinatorConfigs|std::vector\<PollinatorConfig\>|Config info for pollinator types|
 
 
-
-
-
-static  std::vector<HiveConfig> m_Hives; ///< Configuration info for each hive
-
-static  std::vector<PlantTypeDistributionConfig> m_PlantDists; ///< Config of plant distributions
-
-static  std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
-
-static  std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3ODQ3NjYzNywtMTc0NTQ0NzA0NCw0Nj
-E3Mjg1MjIsLTExNjI4MTk1ODgsMjA1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbLTIwOTY5NjczNzcsLTE3NDU0NDcwNDQsND
+YxNzI4NTIyLC0xMTYyODE5NTg4LDIwNTY0NTAzNjVdfQ==
 -->
