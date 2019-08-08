@@ -126,9 +126,9 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeDistributionConfig.h|Type of variable|Description|
 |---|---|---|---|  
-||species|std::string|Name of the plant species|  
-||areaTopLeft|iPos|Top-left corner of initial distribution area|  
-||areaBottomRight|iPos|Bottom-right corner of initial distribution area|  
+|species|species|std::string|Name of the plant species|  
+|area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial distribution area|  
+|area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial distribution area|  
 ||density|float|Density of initial distribution (wrt specified distrib area)|  
 ||refuge|bool|Is this area a refuge for this plant species?|  
 ||refugeAlienInflowProb|float|If this is a refuge, what is the probability that an alien species attempting to germinate in this area will do so successfully|  
@@ -142,7 +142,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU1MTc1MTgwNCwxODI5MjY4NjcwLDczMT
+eyJoaXN0b3J5IjpbMTAwNzcxOTQ5NiwxODI5MjY4NjcwLDczMT
 c1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAw
 MSwtMTA4NTI1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMD
 g1MjU2MjE5LDEzMDIyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkw
