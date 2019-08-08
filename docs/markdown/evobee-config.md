@@ -118,9 +118,6 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 ||pollenCloggingAll|bool||  
 ||pollenCloggingPartial|bool||  
 ||pollenCloggingSpecies|std::string||  
-||numFlowers|int||  
-||hasLeaf|bool||  
-||leafMP|MarkerPoint||  
 |repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|can seeds be dispersed at random across whole environment?|  
 |repro-seed-dispersal-radius|reproSeedDispersalRadius|float|expreseed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
 
@@ -137,7 +134,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM2MjYxMDM4OSw3MzE3NTYwODksMTA2OD
+eyJoaXN0b3J5IjpbMTE0ODM0ODUzNyw3MzE3NTYwODksMTA2OD
 Y4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwODUyNTYy
 MTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIxOSwxMz
 AyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLTIwOTY5
