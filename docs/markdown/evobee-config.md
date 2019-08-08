@@ -31,10 +31,9 @@ The format of the configuration file and the options that can be specified withi
 ## Configuration options
 
 
-|param name in JSON file|ty
+|Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
  |---|---|---|---|  
 | |bool|m_bVisualisation|Use visualiation for this run?|  
-
 | |int|m_iEnvSizeX|Environment size (num patches) in x direction|  
 
 |--|--|--|--|  
@@ -228,6 +227,6 @@ static  std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
 
 static  std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEyMTk0NzkyMywtMTc0NTQ0NzA0NCw0Nj
+eyJoaXN0b3J5IjpbMTM2MTUyMzYyMywtMTc0NTQ0NzA0NCw0Nj
 E3Mjg1MjIsLTExNjI4MTk1ODgsMjA1NjQ1MDM2NV19
 -->
