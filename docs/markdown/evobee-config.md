@@ -47,12 +47,7 @@ The following table describes each parameter that can be specified in the config
 |vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|  
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|  
 |logging|m_bLogging|bool|Is logging required for this run?|  
-|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseSummary|std::string|Flags to control logging functionality|
-| |m_bLogPollinatorsIntraPhaseFull|bool|Log full pollinator info every m_iLogUpdatePeriod steps|  
-| |m_bLogPollinatorsInterPhaseSummary|bool|Log summary pollinator info at end of each generation|  
-| |m_bLogFlowersInterPhaseFull|bool|Log full flower info at end of each generation|  
-| |m_bLogFlowersInterPhaseSummary|bool|Log summary flower info at end of each generation|  
-| |m_bLogFlowersIntraPhaseSummary|bool|Log summary flower info every m_iLogUpdatePeriod steps|  
+|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseSummary|std::string|Flags to control logging functionality (Q=IntraPhaseFull, p=InterPhas|
 |log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of logger|  
 |log-dir|m_strLogDir|std::string|Directory name for logging output during a run|  
 |log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|  
@@ -76,7 +71,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2OTYyMTM0ODAsLTE4NTE5MDQwOTQsLT
-IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
-ODE5NTg4LDIwNTY0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbMzQwMzk4MzUzLC0xODUxOTA0MDk0LC0yMD
+k2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2Mjgx
+OTU4OCwyMDU2NDUwMzY1XX0=
 -->
