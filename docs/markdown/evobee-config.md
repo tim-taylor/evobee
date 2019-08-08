@@ -55,7 +55,7 @@ The following table describes each parameter that can be specified in the config
 |use-log-threads|m_bUseLogThreads|bool|Use a separate thread for writing log files?|  
 |verbose|m_bVerbose|bool|Should progress messages be printed on stdout?|
 |sim-termination-num-gens|m_iSimTerminationNumGens|int|Terminate run after this number of generations|  
-|generation-termination-type|m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation|  
+|generation-termination-type|m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation. Allowed values: num-sim-steps, num-pollinator-steps, pollinated-fraction, pollinated-fraction-all, pollinated-fraction-species1.|  
 |generation-termination-param|m_iGenTerminationParam or m_fGenTerminationParam|int or float|Parameter associated with m_GenTerminationType (type of param depends on value of generation-termination-type)|  
 |auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|  
 |auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PTD auto-generation number of rows of areas to generate|  
@@ -71,7 +71,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMj
-A5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4
-MTk1ODgsMjA1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbMTI4MzU5MzEzOSwxMzA3NDc3NjI5LC0xOD
+UxOTA0MDk0LC0yMDk2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcy
+ODUyMiwtMTE2MjgxOTU4OCwyMDU2NDUwMzY1XX0=
 -->
