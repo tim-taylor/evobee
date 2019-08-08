@@ -71,7 +71,7 @@ The following table describes each parameter that can be specified in the config
 
 Hive configuration parameters for a single hive are stored in an instance of the `HiveConfig` structure, defined in source file `HiveConfig.h`. These are stored in the `ModelParams` member `m_Hives`.
 
-|Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
+|Parameter name in JSON config file|Corresponding variable name in HiveConfig.h|Type of variable|Description|
  |---|---|---|---|  
  
  json_read_param(j, sct, "pollinator-type", hc.type);
@@ -106,9 +106,9 @@ json_read_opt_param(j, sct, "migration-prob", hc.migrationProb, 1.0f);
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNjcyNDYxNjUsLTE1MDM1NDEzNTEsNj
-c1NzEyMDAxLC0xMDg1MjU2MjE5LDE2OTY4MDk5NSwtODgyODQ5
-NjQsLTEwODUyNTYyMTksMTMwMjI1NzQwOSwxMzA3NDc3NjI5LC
-0xODUxOTA0MDk0LC0yMDk2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2
-MTcyODUyMiwtMTE2MjgxOTU4OCwyMDU2NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2Nz
+U3MTIwMDEsLTEwODUyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2
+NCwtMTA4NTI1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLT
+E4NTE5MDQwOTQsLTIwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYx
+NzI4NTIyLC0xMTYyODE5NTg4LDIwNTY0NTAzNjVdfQ==
 -->
