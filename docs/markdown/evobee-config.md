@@ -30,9 +30,13 @@ The format of the configuration file and the options that can be specified withi
 
 EvoBee configuration files are specified in JSON format. Two sample configuration files are provided in the root directory of the source code. These are named `evobee.cfg.json` and `evobee-test-simple.cfg.json`. These two files demonstrate different aspects of system configuration, and it is recommended to study both of them.
 
-These files are shown below, followed by the [Configuration-options]()
+These files are shown below, followed by the [Configuration-options](#configurtaion-options) section which gives further details of each available configuration option.
 
+### evobee.cfg.json sample configuration file
 
+> Blockquote
+
+### evobee-test-simple.cfg.json sample configuration file
 
 
 ## Configuration options
@@ -146,7 +150,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMwMDc0MzAzOSw2NjE3NDQzMTEsMTgyOT
+eyJoaXN0b3J5IjpbMTQ0MjU4MzA5Niw2NjE3NDQzMTEsMTgyOT
 I2ODY3MCw3MzE3NTYwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1
 MSw2NzU3MTIwMDEsLTEwODUyNTYyMTksMTY5NjgwOTk1LC04OD
 I4NDk2NCwtMTA4NTI1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2
