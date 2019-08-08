@@ -109,20 +109,20 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|  
-||species|std::string||  
-||flowerMPInitMin|MarkerPoint||  
-||flowerMPInitMax|MarkerPoint||  
-||antherInitPollen|int||  
-||antherPollenTransferPerVisit|int||  
-||stigmaMaxPollenCapacity|int||  
+|species|species|std::string||  
+|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint||  
+|flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint||  
+|anther-init-pollen|antherInitPollen|int||  
+|anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int||  
+|stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int||  
 ||pollenCloggingAll|bool||  
 ||pollenCloggingPartial|bool||  
 ||pollenCloggingSpecies|std::string||  
 ||numFlowers|int||  
 ||hasLeaf|bool||  
 ||leafMP|MarkerPoint||  
-||reproSeedDispersalGlobal|bool|can seeds be dispersed at random across whole environment?|  
-||reproSeedDispersalRadius|float|expreseed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
+|repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|can seeds be dispersed at random across whole environment?|  
+|repro-seed-dispersal-radius|reproSeedDispersalRadius|float|expreseed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
 
 
 ### Plant Distribution configuration parameters
@@ -137,10 +137,10 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMjE4NjYwODMsNzMxNzU2MDg5LDEwNj
-g2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2
-MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMT
-MwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2
-OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOT
-U4OCwyMDU2NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbMTM2MjYxMDM4OSw3MzE3NTYwODksMTA2OD
+Y4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwODUyNTYy
+MTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIxOSwxMz
+AyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLTIwOTY5
+NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYyODE5NT
+g4LDIwNTY0NTAzNjVdfQ==
 -->
