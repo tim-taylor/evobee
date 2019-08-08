@@ -69,6 +69,8 @@ The following table describes each parameter that can be specified in the config
 
 ### Hive configuration parameters
 
+Hive configuration parameters for a single hive are stored in an instance of the HiveConfig structure, defined in source file HiveConfig.h. 
+
 |Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
  |---|---|---|---|  
  
@@ -104,9 +106,9 @@ json_read_opt_param(j, sct, "migration-prob", hc.migrationProb, 1.0f);
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMD
-g1MjU2MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYy
-MTksMTMwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC
-0yMDk2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2
-MjgxOTU4OCwyMDU2NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbMTY4Mzk0MTA1LC0xNTAzNTQxMzUxLDY3NT
+cxMjAwMSwtMTA4NTI1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0
+LC0xMDg1MjU2MjE5LDEzMDIyNTc0MDksMTMwNzQ3NzYyOSwtMT
+g1MTkwNDA5NCwtMjA5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3
+Mjg1MjIsLTExNjI4MTk1ODgsMjA1NjQ1MDM2NV19
 -->
