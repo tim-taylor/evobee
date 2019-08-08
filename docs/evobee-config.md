@@ -1,7 +1,5 @@
 # EvoBee simulation configuration and execution
 
-[[ [Return to top-level documentation menu](index.md) ]]
-
 ## Basic usage
 
 When the program has been successfully [compiled](evobee-install.md), the executable file named `evobee` can be found in the `build` directory.
@@ -366,11 +364,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgzNzc5MzgzNCwtNzA4NDQyMTc4LDY2MT
-c0NDMxMSwxODI5MjY4NjcwLDczMTc1NjA4OSwxMDY4Njg1MjM2
-LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIxOSwxNj
-k2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMDIyNTc0
-MDksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMjA5Njk2NzM3Ny
-wtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4MTk1ODgsMjA1
-NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbLTE0NTY5NTQ4NzIsLTcwODQ0MjE3OCw2Nj
+E3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NTYwODksMTA2ODY4NTIz
+NiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwODUyNTYyMTksMT
+Y5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIxOSwxMzAyMjU3
+NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLTIwOTY5NjczNz
+csLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIw
+NTY0NTAzNjVdfQ==
 -->
