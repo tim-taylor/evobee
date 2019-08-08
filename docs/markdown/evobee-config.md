@@ -32,12 +32,7 @@ The format of the configuration file and the options that can be specified withi
 
 The following table describes each parameter that can be specified in the configuration file. Parameters are read in from the configuration file and parsed by code in source file `evobee.cpp`. They are then stored in a static instance of the `ModelParams` class. See comments in the files `evobee.cpp` and `ModelParams.h` for further details of each parameter and the allowed values for each one.
 
-<style>
-table {  width: 100%;  margin: 20px auto;  table-layout: auto;}
-.fixed {  table-layout: fixed;}
-table,td,th {  border-collapse: collapse;}
-th,td {  padding: 10px;  border: solid 1px;  text-align: center;}
-</style>
+<style>table {  width: 100%;  margin: 20px auto;  table-layout: auto;} .fixed {  table-layout: fixed;} table,td,th {  border-collapse: collapse;} th,td {  padding: 10px;  border: solid 1px;  text-align: center;} </style>
 
 |Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
  |---|---|---|---|  
@@ -78,9 +73,9 @@ th,td {  padding: 10px;  border: solid 1px;  text-align: center;}
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NT
-I1NjIxOSwxMzAyMjU3NDA5LC0xMDg1MjU2MjE5LDEzMDc0Nzc2
-MjksLTE4NTE5MDQwOTQsLTIwOTY5NjczNzcsLTE3NDU0NDcwND
-QsNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIwNTY0NTAzNjVdfQ==
-
+eyJoaXN0b3J5IjpbMTQxNTQzNzM3MSwxNjk2ODA5OTUsLTg4Mj
+g0OTY0LC0xMDg1MjU2MjE5LDEzMDIyNTc0MDksLTEwODUyNTYy
+MTksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMjA5Njk2NzM3Ny
+wtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4MTk1ODgsMjA1
+NjQ1MDM2NV19
 -->
