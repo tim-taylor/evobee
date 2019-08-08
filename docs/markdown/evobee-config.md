@@ -58,10 +58,10 @@ The following table describes each parameter that can be specified in the config
 |generation-termination-type|m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation. Allowed values: num-sim-steps, num-pollinator-steps, pollinated-fraction, pollinated-fraction-all, pollinated-fraction-species1.|  
 |generation-termination-param|m_iGenTerminationParam or m_fGenTerminationParam|int or float|Parameter associated with m_GenTerminationType (type of param depends on value of generation-termination-type)|  
 |auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|  
-|auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PTD auto-generation number of rows of areas to generate|  
-|auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PTD auto-generation number of columns of areas to generate|  
-|auto-distrib-density|m_fPtdAutoDistribDensity|float|PTD auto-generation density of plants in each area|  
-|auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PTD auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
+|auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PlantTypeDistribution auto-generation number of rows of areas to generate|  
+|auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PlantTypeDistribution auto-generation number of columns of areas to generate|  
+|auto-distrib-density|m_fPtdAutoDistribDensity|float|PlantTypeDistribution auto-generation density of plants in each area|  
+|auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|
 |rng-seed|m_strRngSeed|std::string|Seed string used to seeed RNG|  
 | |m_Hives|std::vector\<HiveConfig\>|Configuration info for each hive|  
@@ -71,7 +71,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI4MzU5MzEzOSwxMzA3NDc3NjI5LC0xOD
-UxOTA0MDk0LC0yMDk2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcy
-ODUyMiwtMTE2MjgxOTU4OCwyMDU2NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbLTEwODUyNTYyMTksMTMwNzQ3NzYyOSwtMT
+g1MTkwNDA5NCwtMjA5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3
+Mjg1MjIsLTExNjI4MTk1ODgsMjA1NjQ1MDM2NV19
 -->
