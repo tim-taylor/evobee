@@ -82,10 +82,26 @@ Hive configuration parameters for a single hive are stored in an instance of the
 |migration-allowed|migrationAllowed|bool|Are pollinators allowed to move outside initial foraging area?|  
 |migration-restricted|migrationRestricted|bool|If migration allowed, is its probability restricted at all?|  
 |migration-prob|migrationProb|float|If migration allowed and restricted, and pollinator tries to leave initial foraging area, it succeeds with this prob, else it is reflected back into initial area|
- 
+
+### Pollinator configuration parameters
+
+Pollinator configuration parameters for a single hive are stored in an instance of the `PollinatorConfig` structure, defined in source file `PollinatorConfig.h`. These are stored in the `ModelParams` member `m_PlantTypes`.
+
+|Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
+|---|---|---|---|  
+
+
+
+
 ### Plant Type configuration parameters
 
-Hive configuration parameters for a single hive are stored in an instance of the `PlantTypeConfig` structure, defined in source file `PlantTypeConfig.h`. These are stored in the `ModelParams` member `m_`.
+Hive configuration parameters for a single hive are stored in an instance of the `PlantTypeConfig` structure, defined in source file `PlantTypeConfig.h`. These are stored in the `ModelParams` member `m_PlantTypes`.
+
+|Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
+|---|---|---|---|  
+
+
+
 
 | |m_PlantDists|std::vector\<PlantTypeDistributionConfig\>|Config of plant distributions|  
 | |m_PlantTypes|std::vector\<PlantTypeConfig\>|Config of plant types|  
@@ -93,10 +109,10 @@ Hive configuration parameters for a single hive are stored in an instance of the
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjk5MTc5MDMwLDczMTc1NjA4OSwxMDY4Nj
-g1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIx
-OSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMD
-IyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMjA5Njk2
-NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4MTk1OD
-gsMjA1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbNDg4OTQ3NzAsNzMxNzU2MDg5LDEwNjg2OD
+UyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2MjE5
+LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMTMwMj
+I1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3
+Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OC
+wyMDU2NDUwMzY1XX0=
 -->
