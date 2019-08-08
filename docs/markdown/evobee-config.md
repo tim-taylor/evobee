@@ -30,6 +30,96 @@ The format of the configuration file and the options that can be specified withi
 
 ## Configuration options
 
+
+
+|--|--|--|--| 
+| |bool|m_bVisualisation|Use visualiation for this run?|  
+|--|--|--|--|  
+| |int|m_iEnvSizeX|Environment size (num patches) in x direction|  
+|--|--|--|--|  
+| |int|m_iEnvSizeY|Environment size (num patches) in y direction|  
+|--|--|--|--|  
+| |float|m_fMaxScreenFracW|Max fraction of screen size for vis window width|  
+|--|--|--|--|  
+| |float|m_fMaxScreenFracH|Max fraction of screen size for vis window height|  
+|--|--|--|--|  
+| |float|m_fEnvDefaultAmbientTemp|Default ambient temperature for all Patches (in Celsius)|  
+|--|--|--|--|  
+| |MarkerPoint|m_EnvBackgroundReflectanceMP|Default background reflectance Marker Point for each Patch|  
+|--|--|--|--|  
+| |bool|m_bReproGlobalDensityContrained|During a reproduction cycle, is global plant density constrained?|  
+|--|--|--|--|  
+| |float|m_fReproGlobalDensityMax|If m_bReproGlobalDensityContrained, what is the maximum allowed density?|  
+|--|--|--|--|  
+| |bool|m_bVisPollinatorTrails|Display trails of pollinators' past movements?|  
+|--|--|--|--|  
+| |int|m_iVisUpdatePeriod|Number of model steps between each update of visualisation|  
+|--|--|--|--|  
+| |int|m_iVisDelayPerFrame|Specifies a delay (in ms) per frame of the visualisation code|  
+|--|--|--|--|  
+| |bool|m_bLogging|Is logging required for this run?|  
+|--|--|--|--|  
+| |bool|m_bLogPollinatorsIntraPhaseFull|Log full pollinator info every m_iLogUpdatePeriod steps|  
+|--|--|--|--|  
+| |bool|m_bLogPollinatorsInterPhaseSummary|Log summary pollinator info at end of each generation|  
+|--|--|--|--|  
+| |bool|m_bLogFlowersInterPhaseFull|Log full flower info at end of each generation|  
+|--|--|--|--|  
+| |bool|m_bLogFlowersInterPhaseSummary|Log summary flower info at end of each generation|  
+|--|--|--|--|  
+| |bool|m_bLogFlowersIntraPhaseSummary|Log summary flower info every m_iLogUpdatePeriod steps|  
+|--|--|--|--|  
+| |int|m_iLogUpdatePeriod|Number of model steps between each update of logger|  
+|--|--|--|--|  
+| |std::string|m_strLogDir|Directory name for logging output during a run|  
+|--|--|--|--|  
+| |std::string|m_strLogFinalDir|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|  
+|--|--|--|--|  
+| |std::string|m_strLogRunName|Run name to be used as prefix for log filenames|  
+|--|--|--|--|  
+| |bool|m_bUseLogThreads|Use a separate thread for writing log files?|  
+|--|--|--|--|  
+| |bool|m_bVerbose|Should progress messages be printed on stdout?|  
+|--|--|--|--|  
+| |bool|m_bCommandLineQuiet|Was the -q option used on command line?|  
+|--|--|--|--|  
+| |bool|m_bInitialised|Flag to indicate that parmas have been intiialised|  
+|--|--|--|--|  
+| |int|m_iSimTerminationNumGens|Terminate run after this number of generations|  
+|--|--|--|--|  
+| |GenTerminationType|m_GenTerminationType|Method used to define termination criterion for a generation|  
+|--|--|--|--|  
+| |int|m_iGenTerminationParam|Integer parameter associated with m_GenTerminationType|  
+|--|--|--|--|  
+| |float|m_fGenTerminationParam|Float parameter associated with m_GenTerminationType|  
+|--|--|--|--|  
+| |bool|m_bPtdAutoDistribs|Use auto-generation tool for Plant Type Distributions?|  
+|--|--|--|--|  
+| |int|m_iPtdAutoDistribNumRows|PTD auto-generation number of rows of areas to generate|  
+|--|--|--|--|  
+| |int|m_iPtdAutoDistribNumCols|PTD auto-generation number of columns of areas to generate|  
+|--|--|--|--|  
+| |float|m_fPtdAutoDistribDensity|PTD auto-generation density of plants in each area|  
+|--|--|--|--|  
+| |float|m_fPtdAutoDistribAreaMargin|PTD auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
+|--|--|--|--|  
+| |bool|m_bPtdAutoDistribRegular|Are the patches distributed in a regular or stockastic pattern?|  
+|--|--|--|--|  
+| |unsigned|int|m_sNextFreePtdcId Each PlantTypeDistributionConfig gets its own unique id|  
+|--|--|--|--|  
+| |std::string|m_strRngSeed|Seed string used to seeed RNG|  
+|--|--|--|--|  
+| |std::vector<HiveConfig>|m_Hives|Configuration info for each hive|  
+|--|--|--|--|  
+| |std::vector<PlantTypeDistributionConfig>|m_PlantDists|Config of plant distributions|  
+|--|--|--|--|  
+| |std::vector<PlantTypeConfig>|m_PlantTypes|Config of plant types|  
+|--|--|--|--|  
+| |std::vector<PollinatorConfig>|m_PollinatorConfigs|Config info for pollinator types|  
+|--|--|--|--|
+
+
+
 |  |  |
 |--|--|
 |  |  |
@@ -137,6 +227,6 @@ static  std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
 
 static  std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMT
-YyODE5NTg4LDIwNTY0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbMTY4NzEwNjE2MSwtMTc0NTQ0NzA0NCw0Nj
+E3Mjg1MjIsLTExNjI4MTk1ODgsMjA1NjQ1MDM2NV19
 -->
