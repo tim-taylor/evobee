@@ -65,6 +65,7 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|
 |rng-seed|m_strRngSeed|std::string|Seed string used to seeed RNG|
 
+### Give configuration parameters
 
 | |m_Hives|std::vector\<HiveConfig\>|Configuration info for each hive|  
 | |m_PlantDists|std::vector\<PlantTypeDistributionConfig\>|Config of plant distributions|  
@@ -73,9 +74,9 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjc1NzEyMDAxLC0xMDg1MjU2MjE5LDE2OT
-Y4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMTMwMjI1NzQw
-OSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3Mzc3LC
-0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OCwyMDU2
-NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbMTk2NTQ0MDcxNSw2NzU3MTIwMDEsLTEwOD
+UyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIx
+OSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLT
+IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
+ODE5NTg4LDIwNTY0NTAzNjVdfQ==
 -->
