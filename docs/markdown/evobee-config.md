@@ -101,9 +101,9 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |---|---|---|---|  
 
 
-### Plant Type Disconfiguration parameters
+### Plant Distribution configuration parameters
 
-Plant Type configuration parameters for a single plant type are stored in an instance of the `PlantTypeConfig` structure, defined in source file `PlantTypeConfig.h`. These are stored in the `ModelParams` member `m_PlantTypes`.
+Plant distribution configuration parameters for a specified plant type in a specified region of the environment are stored in an instance of the `PlantTypeDistributionConfig` structure, defined in source file `PlantTypeConfig.h`. These are stored in the `ModelParams` member `m_PlantTypes`.
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|  
@@ -115,10 +115,10 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTQ3OTQ0NDYxLDczMTc1NjA4OSwxMDY4Nj
-g1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIx
-OSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMD
-IyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMjA5Njk2
-NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4MTk1OD
-gsMjA1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbLTE1MDU0Njg0NDYsNzMxNzU2MDg5LDEwNj
+g2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2
+MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMT
+MwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2
+OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOT
+U4OCwyMDU2NDUwMzY1XX0=
 -->
