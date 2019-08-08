@@ -1,8 +1,5 @@
 # EvoBee installation and compilation
 
-[[ [Return to top-level documentation menu](index.md) ]]
-
-
 ## External dependencies  
  
 To compile evobee from source, you will need the following libraries  (including header files) installed on your system:  
@@ -40,7 +37,7 @@ Should you need to recompile the Doxygen auto-generated code documentation, run 
  - `doxygen doxygen.cfg`
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzQzMjMwNDQ2LDM1MjkxOTI2OCwtODY2Nj
-QxNjkzLC0xNjMyNDc2MzE2LC0xMjkzNTM1NCwtNjE3NTAzNzE2
-XX0=
+eyJoaXN0b3J5IjpbLTMyOTIxMTE2NiwzNDMyMzA0NDYsMzUyOT
+E5MjY4LC04NjY2NDE2OTMsLTE2MzI0NzYzMTYsLTEyOTM1MzU0
+LC02MTc1MDM3MTZdfQ==
 -->
