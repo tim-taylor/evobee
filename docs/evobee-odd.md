@@ -60,13 +60,13 @@ Pollen transfer processes occur during  each flower visit by a pollinator. These
 
 ### Flowchart for *Forage Nearest* strategy
 
-The following flowchart details a pollinator's decision process when using the *Forage Nearest* foraging strategy. Bee-pollen refers to pollen carried on the body of the insect and potentially available for deposition on the stigma of a flower for pollination or pollen-clogging. Anther-pollen refers to pollen carried on a flower anther and potentially available for deposition on the body of a bee.
+The following flowchart details an individual pollinator agent's decision process when using the *Forage Nearest* foraging strategy to search for flowers. 
 
-![Flow diagram for Forage Nearest flower strategy](https://tim-taylor.github.io/evobee/img/)
+In the diagram `bee-pollen` refers to pollen carried on the body of the insect and potentially available for deposition on the stigma of a flower for pollination or pollen-clogging. anther-pollen refers to pollen carried on a flower anther and potentially available for deposition on the body of a bee.
 
-| <img src="img/EvoBee-Bee-Behaviour-Flowchart-FNF.png" alt="Flow diagram for Forage Nearest flower strategy" width=95%/> | <img src="img/EvoBee-Bee-Behaviour-Flowchart-FAW.png" alt="Flow diagram for Forage Any flower strategy" width=95%/> |
-|--|--|
-| (a) *Forage Nearest* flower strategy | (b) *Forage Any* flower strategy |
+![Flow diagram for Forage Nearest flower strategy](https://tim-taylor.github.io/evobee/img/EvoBee-Bee-Behaviour-Flowchart-FNF.png)
+
+
 
 
 > Figure 1. Flow charts for individual pollinator agents following (a) the *Forage Nearest* flower strategy, and (b) the *Forage Any* flower strategy. Bee-pollen refers to pollen carried on the body of the insect and potentially available for deposition on the stigma of a flower for pollination or pollen-clogging. Anther-pollen refers to pollen carried on a flower anther and potentially available for deposition on the body of a bee.
@@ -115,7 +115,7 @@ In these experiments, the main data recorded during experiments are, at the end 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAzMDEwMzk4MCwtMTY0MTM4MTI0OSwtMT
+eyJoaXN0b3J5IjpbLTk4NDI0MzI4MCwtMTY0MTM4MTI0OSwtMT
 A5NzU2OTcxMSwtMTA3Njg1ODgwNCwxMDA0NjMyMjE3LDEyMjg3
 NTMzNDcsNzMyNTI1MTczLC00NzQ4MDI3NDYsODQ3MDYwMTU4LC
 01ODM0MzUyMjUsLTE2ODM3MTE1NDksLTI4NTQ3MDgzXX0=
