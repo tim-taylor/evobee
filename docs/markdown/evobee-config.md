@@ -74,7 +74,9 @@ at|
 
 
 
-
+<style>
+table {  width: 100%;  margin: 20px auto;  table-layout: auto;}.fixed {  table-layout: fixed;}table,td,th {  border-collapse: collapse;}th,td {  padding: 10px;  border: solid 1px;  text-align: center;}
+</style>
 
 |Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
  |---|---|---|---|  
@@ -115,8 +117,9 @@ at|
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMD
-IyNTc0MDksLTEwODUyNTYyMTksMTMwNzQ3NzYyOSwtMTg1MTkw
-NDA5NCwtMjA5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1Mj
-IsLTExNjI4MTk1ODgsMjA1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbMTQ3NjQwNTYxMiwtODgyODQ5NjQsLTEwOD
+UyNTYyMTksMTMwMjI1NzQwOSwtMTA4NTI1NjIxOSwxMzA3NDc3
+NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3Mzc3LC0xNzQ1NDQ3MD
+Q0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OCwyMDU2NDUwMzY1XX0=
+
 -->
