@@ -47,7 +47,7 @@ The following table describes each parameter that can be specified in the config
 |vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|  
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|  
 |logging|m_bLogging|bool|Is logging required for this run?|  
-|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseSummary|std::string|Flags to control logging functionality (Q=IntraPhaseFull, p=InterPhas|
+|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseSummary|std::string|Flags to control logging functionality (Q=PollinatorsIntraPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, g=FlowersIntraPhaseSummary)|
 |log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of logger|  
 |log-dir|m_strLogDir|std::string|Directory name for logging output during a run|  
 |log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|  
@@ -71,7 +71,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzQwMzk4MzUzLC0xODUxOTA0MDk0LC0yMD
-k2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2Mjgx
-OTU4OCwyMDU2NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMj
+A5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4
+MTk1ODgsMjA1NjQ1MDM2NV19
 -->
