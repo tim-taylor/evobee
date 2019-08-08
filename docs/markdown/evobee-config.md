@@ -64,15 +64,15 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|
 |rng-seed|m_strRngSeed|std::string|Seed string used to seeed RNG|  
-| |m_Hives|std::vector\< HiveConfig \>|Configuration info for each hive|  
-| |m_PlantDists|std::vector\< PlantTypeDistributionConfig \>|Config of plant distributions|  
-| |m_PlantTypes|std::vector\< PlantTypeConfig \>|Config of plant types|  
-| |m_PollinatorConfigs|std::vector\< PollinatorConfig \>|Config info for pollinator types|
+| |m_Hives|std::vector\<HiveConfig\>|Configuration info for each hive|  
+| |m_PlantDists|std::vector\<PlantTypeDistributionConfig\>|Config of plant distributions|  
+| |m_PlantTypes|std::vector\<PlantTypeConfig\>|Config of plant types|  
+| |m_PollinatorConfigs|std::vector\<PollinatorConfig\>|Config info for pollinator types|
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMwMjI1NzQwOSwtMTA4NTI1NjIxOSwxMz
-A3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3Mzc3LC0xNzQ1
-NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OCwyMDU2NDUwMz
-Y1XX0=
+eyJoaXN0b3J5IjpbLTEwODUyNTYyMTksMTMwMjI1NzQwOSwtMT
+A4NTI1NjIxOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2
+OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOT
+U4OCwyMDU2NDUwMzY1XX0=
 -->
