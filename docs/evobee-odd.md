@@ -118,11 +118,11 @@ In these experiments, the main data recorded during experiments are, at the end 
 
 ## Initialization
 
-Full details of the configuration o
+Full details of the configuration options available for EvoBee simulations are provided in the [EvoBee simulation configuration and execution](evobee-config.md) page.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MzY5NTY2MTAsLTYwMDYxNjQzMiwtMT
-Y0MTM4MTI0OSwtMTA5NzU2OTcxMSwtMTA3Njg1ODgwNCwxMDA0
-NjMyMjE3LDEyMjg3NTMzNDcsNzMyNTI1MTczLC00NzQ4MDI3ND
-YsODQ3MDYwMTU4LC01ODM0MzUyMjUsLTE2ODM3MTE1NDksLTI4
-NTQ3MDgzXX0=
+eyJoaXN0b3J5IjpbNjEwNjQ3MzcwLC02MDA2MTY0MzIsLTE2ND
+EzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYz
+MjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0ODAyNzQ2LD
+g0NzA2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5LC0yODU0
+NzA4M119
 -->
