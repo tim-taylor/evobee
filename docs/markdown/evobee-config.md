@@ -28,7 +28,7 @@ The format of the configuration file and the options that can be specified withi
 
 ## Configuration file format
 
-Te
+EvoBee configuration files are specified in JSON format
 
 
 ## Configuration options
@@ -142,11 +142,10 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQwMTkxMTk4NCw2NjE3NDQzMTEsMTgyOT
-I2ODY3MCw3MzE3NTYwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1
-MSw2NzU3MTIwMDEsLTEwODUyNTYyMTksMTY5NjgwOTk1LC04OD
-I4NDk2NCwtMTA4NTI1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2
-MjksLTE4NTE5MDQwOTQsLTIwOTY5NjczNzcsLTE3NDU0NDcwND
-QsNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIwNTY0NTAzNjVdfQ==
-
+eyJoaXN0b3J5IjpbMjMwODc2MDUwLDY2MTc0NDMxMSwxODI5Mj
+Y4NjcwLDczMTc1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUx
+LDY3NTcxMjAwMSwtMTA4NTI1NjIxOSwxNjk2ODA5OTUsLTg4Mj
+g0OTY0LC0xMDg1MjU2MjE5LDEzMDIyNTc0MDksMTMwNzQ3NzYy
+OSwtMTg1MTkwNDA5NCwtMjA5Njk2NzM3NywtMTc0NTQ0NzA0NC
+w0NjE3Mjg1MjIsLTExNjI4MTk1ODgsMjA1NjQ1MDM2NV19
 -->
