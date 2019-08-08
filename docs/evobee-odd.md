@@ -58,7 +58,7 @@ A second spatial aspect of the simulation is the floral density. Even though we 
 
 Pollen transfer processes occur during  each flower visit by a pollinator. These are described in a subsequent section (Pollinator action on flowers).
 
-### Flowchart for *Forage Nearest* strategy
+#### Flowchart for *Forage Nearest* strategy
 
 The following flowchart details an individual pollinator agent's decision process when using the *Forage Nearest* foraging strategy to search for flowers. 
 
@@ -67,7 +67,7 @@ In the diagram `bee-pollen` refers to pollen carried on the body of the insect a
 ![Flow diagram for Forage Nearest flower strategy](https://tim-taylor.github.io/evobee/img/EvoBee-Bee-Behaviour-Flowchart-FNF.png)
 
 
-### Flowchart for *Forage Any* strategy
+#### Flowchart for *Forage Any* strategy
 
 The following flowchart details an individual pollinator agent's decision process when using the *Forage Any* foraging strategy to search for flowers. 
 
@@ -120,8 +120,9 @@ In these experiments, the main data recorded during experiments are, at the end 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYwMDYxNjQzMiwtMTY0MTM4MTI0OSwtMT
-A5NzU2OTcxMSwtMTA3Njg1ODgwNCwxMDA0NjMyMjE3LDEyMjg3
-NTMzNDcsNzMyNTI1MTczLC00NzQ4MDI3NDYsODQ3MDYwMTU4LC
-01ODM0MzUyMjUsLTE2ODM3MTE1NDksLTI4NTQ3MDgzXX0=
+eyJoaXN0b3J5IjpbODMyOTQzNzA2LC02MDA2MTY0MzIsLTE2ND
+EzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYz
+MjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0ODAyNzQ2LD
+g0NzA2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5LC0yODU0
+NzA4M119
 -->
