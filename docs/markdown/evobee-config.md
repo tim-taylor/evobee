@@ -30,7 +30,7 @@ The format of the configuration file and the options that can be specified withi
 
 ## Configuration options
 
-Parameters 
+Parameters are read in from the config file and parsed in `evobee.cpp`. They are then stored in a static instance of the `ModelParams` class. See comments in the files `evobee.cpp` and ModelParams.h for further details of each parameter and the allowed values for each one.
 
 |Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
  |---|---|---|---|  
@@ -79,7 +79,7 @@ Parameters
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA0ODE4NjI2MywtMjA5Njk2NzM3NywtMT
-c0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4MTk1ODgsMjA1NjQ1
-MDM2NV19
+eyJoaXN0b3J5IjpbLTE1MjU4OTUzNTQsLTIwOTY5NjczNzcsLT
+E3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIwNTY0
+NTAzNjVdfQ==
 -->
