@@ -85,9 +85,9 @@ Hive configuration parameters for a single hive are stored in an instance of the
 
 ### Pollinator configuration parameters
 
-Pollinator configuration parameters for a single hive are stored in an instance of the `PollinatorConfig` structure, defined in source file `PollinatorConfig.h`. These are stored in the `ModelParams` member `m_PlantTypes`.
+Pollinator configuration parameters for a single pollinator species are stored in an instance of the `PollinatorConfig` structure, defined in source file `PollinatorConfig.h`. These are stored in the `ModelParams` member `m_PollinatorConfigs`.
 
-|Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
+|Parameter name in JSON config file|Corresponding variable name in PollinatorConfig.h|Type of variable|Description|
 |---|---|---|---|  
 
 
@@ -95,12 +95,18 @@ Pollinator configuration parameters for a single hive are stored in an instance 
 
 ### Plant Type configuration parameters
 
-Hive configuration parameters for a single hive are stored in an instance of the `PlantTypeConfig` structure, defined in source file `PlantTypeConfig.h`. These are stored in the `ModelParams` member `m_PlantTypes`.
+Plant Type configuration parameters for a single plant type are stored in an instance of the `PlantTypeConfig` structure, defined in source file `PlantTypeConfig.h`. These are stored in the `ModelParams` member `m_PlantTypes`.
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|  
 
 
+### Plant Type Disconfiguration parameters
+
+Plant Type configuration parameters for a single plant type are stored in an instance of the `PlantTypeConfig` structure, defined in source file `PlantTypeConfig.h`. These are stored in the `ModelParams` member `m_PlantTypes`.
+
+|Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
+|---|---|---|---|  
 
 
 | |m_PlantDists|std::vector\<PlantTypeDistributionConfig\>|Config of plant distributions|  
@@ -109,10 +115,10 @@ Hive configuration parameters for a single hive are stored in an instance of the
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDg4OTQ3NzAsNzMxNzU2MDg5LDEwNjg2OD
-UyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2MjE5
-LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMTMwMj
-I1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3
-Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OC
-wyMDU2NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbNTQ3OTQ0NDYxLDczMTc1NjA4OSwxMDY4Nj
+g1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIx
+OSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMD
+IyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMjA5Njk2
+NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4MTk1OD
+gsMjA1NjQ1MDM2NV19
 -->
