@@ -2,18 +2,20 @@
 
 An agent-based simulation platform for modelling bee pollination of crops and its evolution under changing environmental conditions.
 
+The source code can be found at 
+
 ## Table of Contents
-- [High-level description of system (ODD format)](docs/evobee-odd.md)
-- [Installation and compilation](docs/evobee-install.md)
-- [Simulation configuration and execution](docs/evobee-config.html)
-- [Code architecture and documentation](docs/evobee-architecture.html)
+- [High-level description of system (ODD format)](evobee-odd.md)
+- [Installation and compilation](evobee-install.md)
+- [Simulation configuration and execution](evobee-config.html)
+- [Code architecture and documentation](evobee-architecture.html)
 
 ## Authors
 * [Tim Taylor](http://timt.co) ([github](https://github.com/tim-taylor), [twitter](https://twitter.com/drtimt)), Monash University, Australia
 * [Alan Dorin](https://research.monash.edu/en/persons/alan-dorin) ([twitter](https://twitter.com/NRGBunny1)), Monash University, Australia
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQyNDEzNTYzNCwtMTU1NzI3Njc3NCwtMT
-gyNTk1NDg3OCwtMTA0MzIwMDQwNywtOTk5OTU5NTU0LC0xNzk4
-MDg2NjU4LC0xNDk4ODc5MzE3LC03OTUyMDgyNzgsLTExNTA1Mj
-kyMjVdfQ==
+eyJoaXN0b3J5IjpbLTkxMDg0NDM4NywtNDI0MTM1NjM0LC0xNT
+U3Mjc2Nzc0LC0xODI1OTU0ODc4LC0xMDQzMjAwNDA3LC05OTk5
+NTk1NTQsLTE3OTgwODY2NTgsLTE0OTg4NzkzMTcsLTc5NTIwOD
+I3OCwtMTE1MDUyOTIyNV19
 -->
