@@ -53,11 +53,11 @@ The following table describes each parameter that can be specified in the config
 | |m_bLogFlowersInterPhaseSummary|bool|Log summary flower info at end of each generation|  
 | |m_bLogFlowersIntraPhaseSummary|bool|Log summary flower info every m_iLogUpdatePeriod steps|  
 | |m_iLogUpdatePeriod|int|Number of model steps between each update of logger|  
-| |m_strLogDir|std::string|Directory name for logging output during a run|  
-| |m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|  
-| |m_strLogRunName|std::string|Run name to be used as prefix for log filenames|  
-| |m_bUseLogThreads|bool|Use a separate thread for writing log files?|  
-| |m_bVerbose|bool|Should progress messages be printed on stdout?|  
+|log-dir|m_strLogDir|std::string|Directory name for logging output during a run|  
+|log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|  
+|log-run-name|m_strLogRunName|std::string|Run name to be used as prefix for log filenames|  
+|use-log-threads|m_bUseLogThreads|bool|Use a separate thread for writing log files?|  
+|verbose|m_bVerbose|bool|Should progress messages be printed on stdout?|  
 | |m_bCommandLineQuiet|bool|Was the -q option used on command line?|  
 | |m_bInitialised|bool|Flag to indicate that parmas have been intiialised|  
 | |m_iSimTerminationNumGens|int|Terminate run after this number of generations|  
@@ -79,7 +79,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjEzODgzNDMzLC0yMDk2OTY3Mzc3LC0xNz
-Q1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OCwyMDU2NDUw
-MzY1XX0=
+eyJoaXN0b3J5IjpbLTE4NTE5MDQwOTQsLTIwOTY5NjczNzcsLT
+E3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIwNTY0
+NTAzNjVdfQ==
 -->
