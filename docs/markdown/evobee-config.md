@@ -89,14 +89,14 @@ Pollinator configuration parameters for a single pollinator species are stored i
 
 |Parameter name in JSON config file|Corresponding variable name in PollinatorConfig.h|Type of variable|Description|
 |---|---|---|---|  
-||species|std::string||  
-||boutLength|int||  
-||maxPollenCapacity|int||  
-||pollenDepositPerFlowerVisit|int||  
-||pollenLossInAir|int||  
-||pollenCarryoverNumVisits|int||  
-||innateMPPrefMin|MarkerPoint||  
-||innateMPPrefMax|MarkerPoint||  
+|species|species|std::string||  
+|bout-length|boutLength|int||  
+|max-pollen-capacity|maxPollenCapacity|int||  
+|pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int||  
+|pollen-loss-in-air|pollenLossInAir|int||  
+|pollen-carryover-num-visits|pollenCarryoverNumVisits|int||  
+|innate-mp-pref-min|innateMPPrefMin|MarkerPoint||  
+|innate-mp-pref-max|innateMPPrefMax|MarkerPoint||  
 ||strConstancyType|std::string||  
 ||constancyType|PollinatorConstancyType||  
 ||constancyParam|float||  
@@ -126,10 +126,10 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDg3NDM4MzE0LDczMTc1NjA4OSwxMDY4Nj
-g1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIx
-OSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMD
-IyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMjA5Njk2
-NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4MTk1OD
-gsMjA1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbLTE3NjI3Njg1NjcsNzMxNzU2MDg5LDEwNj
+g2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2
+MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMT
+MwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2
+OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOT
+U4OCwyMDU2NDUwMzY1XX0=
 -->
