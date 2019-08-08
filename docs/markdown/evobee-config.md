@@ -57,9 +57,7 @@ The following table describes each parameter that can be specified in the config
 |log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|  
 |log-run-name|m_strLogRunName|std::string|Run name to be used as prefix for log filenames|  
 |use-log-threads|m_bUseLogThreads|bool|Use a separate thread for writing log files?|  
-|verbose|m_bVerbose|bool|Should progress messages be printed on stdout?|  
-| |m_bCommandLineQuiet|bool|Was the -q option used on command line?|  
-| |m_bInitialised|bool|Flag to indicate that parmas have been intiialised|  
+|verbose|m_bVerbose|bool|Should progress messages be printed on stdout?| 
 | |m_iSimTerminationNumGens|int|Terminate run after this number of generations|  
 | |m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation|  
 | |m_iGenTerminationParam|int|Integer parameter associated with m_GenTerminationType|  
@@ -70,7 +68,7 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-density|m_fPtdAutoDistribDensity|float|PTD auto-generation density of plants in each area|  
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PTD auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|
-| |m_strRngSeed|std::string|Seed string used to seeed RNG|  
+|rng-seed|m_strRngSeed|std::string|Seed string used to seeed RNG|  
 | |m_Hives|std::vector\<HiveConfig\>|Configuration info for each hive|  
 | |m_PlantDists|std::vector\<PlantTypeDistributionConfig\>|Config of plant distributions|  
 | |m_PlantTypes|std::vector\<PlantTypeConfig\>|Config of plant types|  
@@ -78,7 +76,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODc2OTIwNzc5LC0xODUxOTA0MDk0LC0yMD
-k2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2Mjgx
-OTU4OCwyMDU2NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbLTEyMTU5OTc5NDEsLTE4NTE5MDQwOTQsLT
+IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
+ODE5NTg4LDIwNTY0NTAzNjVdfQ==
 -->
