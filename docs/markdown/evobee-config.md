@@ -41,8 +41,8 @@ The following table describes each parameter that can be specified in the config
 |vis-max-screen-frac-h|m_fMaxScreenFracH|float|Max fraction of screen size for vis window height|  
 |default-ambient-temp|m_fEnvDefaultAmbientTemp|float|Default ambient temperature for all Patches (in Celsius)|  
 |background-reflectance-mp|m_EnvBackgroundReflectanceMP|MarkerPoint|Default background reflectance Marker Point for each Patch|  
-| |m_bReproGlobalDensityContrained|bool|During a reproduction cycle, is global plant density constrained?|  
-| |m_fReproGlobalDensityMax|float|If m_bReproGlobalDensityContrained, what is the maximum allowed density?|  
+|repro-global-density-constrained|m_bReproGlobalDensityContrained|bool|During a reproduction cycle, is global plant density constrained?|  
+|repro-global-density-max|m_fReproGlobalDensityMax|float|If m_bReproGlobalDensityContrained, what is the maximum allowed density?|  
 |vis-pollinator-trails|m_bVisPollinatorTrails|bool|Display trails of pollinators' past movements?|  
 |vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|  
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|  
@@ -64,10 +64,10 @@ The following table describes each parameter that can be specified in the config
 | |m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation|  
 | |m_iGenTerminationParam|int|Integer parameter associated with m_GenTerminationType|  
 | |m_fGenTerminationParam|float|Float parameter associated with m_GenTerminationType|  
-| |m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|  
-| |m_iPtdAutoDistribNumRows|int|PTD auto-generation number of rows of areas to generate|  
-| |m_iPtdAutoDistribNumCols|int|PTD auto-generation number of columns of areas to generate|  
-| |m_fPtdAutoDistribDensity|float|PTD auto-generation density of plants in each area|  
+|auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|  
+|auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PTD auto-generation number of rows of areas to generate|  
+|auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PTD auto-generation number of columns of areas to generate|  
+|auto-distrib-density|m_fPtdAutoDistribDensity|float|PTD auto-generation density of plants in each area|  
 | |m_fPtdAutoDistribAreaMargin|float|PTD auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
 | |m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|  
 | |int|unsigned|m_sNextFreePtdcId Each PlantTypeDistributionConfig gets its own unique id|  
@@ -79,7 +79,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNDYxNzQ1NTYsLTE4NTE5MDQwOTQsLT
-IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
-ODE5NTg4LDIwNTY0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbLTI3ODM0MDYyOCwtMTg1MTkwNDA5NCwtMj
+A5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4
+MTk1ODgsMjA1NjQ1MDM2NV19
 -->
