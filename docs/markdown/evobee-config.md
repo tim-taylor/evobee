@@ -69,8 +69,7 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PTD auto-generation number of columns of areas to generate|  
 |auto-distrib-density|m_fPtdAutoDistribDensity|float|PTD auto-generation density of plants in each area|  
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PTD auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
-|auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|  
-| ||unsigned int|m_sNextFreePtdcId Each PlantTypeDistributionConfig gets its own unique id|  
+|auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|
 | |m_strRngSeed|std::string|Seed string used to seeed RNG|  
 | |m_Hives|std::vector\<HiveConfig\>|Configuration info for each hive|  
 | |m_PlantDists|std::vector\<PlantTypeDistributionConfig\>|Config of plant distributions|  
@@ -79,7 +78,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjU1MDI1ODU0LC0xODUxOTA0MDk0LC0yMD
+eyJoaXN0b3J5IjpbODc2OTIwNzc5LC0xODUxOTA0MDk0LC0yMD
 k2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2Mjgx
 OTU4OCwyMDU2NDUwMzY1XX0=
 -->
