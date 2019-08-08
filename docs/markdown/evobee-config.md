@@ -126,16 +126,26 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeDistributionConfig.h|Type of variable|Description|
 |---|---|---|---|  
-
+||species|std::string|Name of the plant species|  
+||areaTopLeft|iPos|Top-left corner of initial distribution area|  
+||areaBottomRight|iPos|Bottom-right corner of initial distribution area|  
+||density|float|Density of initial distribution (wrt specified distrib area)|  
+||refuge|bool|Is this area a refuge for this plant species?|  
+||refugeAlienInflowProb|float|If this is a refuge, what is the probability that an alien species attempting to germinate in this area will do so successfully|  
+||seedOutflowAllowed|bool|Can the plants germinate outside of the initial distrib area?|  
+||seedOutflowRestricted|bool|If seedOutflowAllowed, is it restricted?|  
+||seedOutflowProb|float|If seedOutflowAllowed and seedOutflowRestricted, what is the probability that they are successful if attempting to do so?|  
+||reproLocalDensityConstrained|bool|During reproduction, is the maximum density of plants in this local area constrained?|  
+||reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NTUwNDE0NTIsMTgyOTI2ODY3MCw3Mz
-E3NTYwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIw
-MDEsLTEwODUyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMT
-A4NTI1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5
-MDQwOTQsLTIwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NT
-IyLC0xMTYyODE5NTg4LDIwNTY0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbLTU1MTc1MTgwNCwxODI5MjY4NjcwLDczMT
+c1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAw
+MSwtMTA4NTI1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMD
+g1MjU2MjE5LDEzMDIyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkw
+NDA5NCwtMjA5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1Mj
+IsLTExNjI4MTk1ODgsMjA1NjQ1MDM2NV19
 -->
