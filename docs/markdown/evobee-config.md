@@ -46,7 +46,7 @@ The following table describes each parameter that can be specified in the config
 |vis-pollinator-trails|m_bVisPollinatorTrails|bool|Display trails of pollinators' past movements?|  
 |vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|  
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|  
-| |m_bLogging|bool|Is logging required for this run?|  
+|logging|m_bLogging|bool|Is logging required for this run?|  
 | |m_bLogPollinatorsIntraPhaseFull|bool|Log full pollinator info every m_iLogUpdatePeriod steps|  
 | |m_bLogPollinatorsInterPhaseSummary|bool|Log summary pollinator info at end of each generation|  
 | |m_bLogFlowersInterPhaseFull|bool|Log full flower info at end of each generation|  
@@ -60,8 +60,7 @@ The following table describes each parameter that can be specified in the config
 |verbose|m_bVerbose|bool|Should progress messages be printed on stdout?|
 |sim-termination-num-gens|m_iSimTerminationNumGens|int|Terminate run after this number of generations|  
 |generation-termination-type|m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation|  
-|generation-termination-param|m_iGenTerminationParam or m_fGenTerminationParam|int or flo|Integer parameter associated with m_GenTerminationType|  
-| |m_fGenTerminationParam|float|Float parameter associated with m_GenTerminationType|  
+|generation-termination-param|m_iGenTerminationParam or m_fGenTerminationParam|int or float|Parameter associated with m_GenTerminationType (type of param depends on value of generation-termination-type)|  
 |auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|  
 |auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PTD auto-generation number of rows of areas to generate|  
 |auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PTD auto-generation number of columns of areas to generate|  
@@ -76,7 +75,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MjIwNjM2MDEsLTE4NTE5MDQwOTQsLT
-IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
-ODE5NTg4LDIwNTY0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbLTc2NTU2NjA5OCwtMTg1MTkwNDA5NCwtMj
+A5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4
+MTk1ODgsMjA1NjQ1MDM2NV19
 -->
