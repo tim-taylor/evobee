@@ -129,23 +129,20 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |species|species|std::string|Name of the plant species|  
 |area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial distribution area|  
 |area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial distribution area|  
-||density|float|Density of initial distribution (wrt specified distrib area)|  
-||refuge|bool|Is this area a refuge for this plant species?|  
-||refugeAlienInflowProb|float|If this is a refuge, what is the probability that an alien species attempting to germinate in this area will do so successfully|  
-||seedOutflowAllowed|bool|Can the plants germinate outside of the initial distrib area?|  
-||seedOutflowRestricted|bool|If seedOutflowAllowed, is it restricted?|  
-||seedOutflowProb|float|If seedOutflowAllowed and seedOutflowRestricted, what is the probability that they are successful if attempting to do so?|  
-||reproLocalDensityConstrained|bool|During reproduction, is the maximum density of plants in this local area constrained?|  
-||reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
-
-
-
+|density|density|float|Density of initial distribution (wrt specified distrib area)|  
+|refuge|refuge|bool|Is this area a refuge for this plant species?|  
+|refuge-alien-inflow-prob|refugeAlienInflowProb|float|If this is a refuge, what is the probability that an alien species attempting to germinate in this area will do so successfully|  
+|seed-outflow-allowed|seedOutflowAllowed|bool|Can the plants germinate outside of the initial distrib area?|  
+|seed-outflow-restricted|seedOutflowRestricted|bool|If seedOutflowAllowed, is it restricted?|  
+|seed-outflow-prob|seedOutflowProb|float|If seedOutflowAllowed and seedOutflowRestricted, what is the probability that they are successful if attempting to do so?|  
+|repro-local-density-constrained|reproLocalDensityConstrained|bool|During reproduction, is the maximum density of plants in this local area constrained?|  
+|repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAwNzcxOTQ5NiwxODI5MjY4NjcwLDczMT
-c1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAw
-MSwtMTA4NTI1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMD
-g1MjU2MjE5LDEzMDIyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkw
-NDA5NCwtMjA5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1Mj
-IsLTExNjI4MTk1ODgsMjA1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbNjYxNzQ0MzExLDE4MjkyNjg2NzAsNzMxNz
+U2MDg5LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAx
+LC0xMDg1MjU2MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwOD
+UyNTYyMTksMTMwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0
+MDk0LC0yMDk2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMi
+wtMTE2MjgxOTU4OCwyMDU2NDUwMzY1XX0=
 -->
