@@ -1,6 +1,6 @@
 # EvoBee simulation configuration and execution
 
-[[ [Return to top-level documentation menu](../../README.md) ]]
+[[ [Return to top-level documentation menu](index.md) ]]
 
 ## Basic usage
 
@@ -366,11 +366,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcwODQ0MjE3OCw2NjE3NDQzMTEsMTgyOT
-I2ODY3MCw3MzE3NTYwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1
-MSw2NzU3MTIwMDEsLTEwODUyNTYyMTksMTY5NjgwOTk1LC04OD
-I4NDk2NCwtMTA4NTI1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2
-MjksLTE4NTE5MDQwOTQsLTIwOTY5NjczNzcsLTE3NDU0NDcwND
-QsNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIwNTY0NTAzNjVdfQ==
-
+eyJoaXN0b3J5IjpbLTE1ODIwMTIxODgsLTcwODQ0MjE3OCw2Nj
+E3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NTYwODksMTA2ODY4NTIz
+NiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwODUyNTYyMTksMT
+Y5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIxOSwxMzAyMjU3
+NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLTIwOTY5NjczNz
+csLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIw
+NTY0NTAzNjVdfQ==
 -->
