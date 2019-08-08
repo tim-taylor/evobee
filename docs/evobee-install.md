@@ -1,6 +1,6 @@
 # EvoBee installation and compilation
 
-[[ [Return to top-level documentation menu](../../README.md) ]]
+[[ [Return to top-level documentation menu](index.md) ]]
 
 
 ## External dependencies  
@@ -40,6 +40,7 @@ Should you need to recompile the Doxygen auto-generated code documentation, run 
  - `doxygen doxygen.cfg`
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzUyOTE5MjY4LC04NjY2NDE2OTMsLTE2Mz
-I0NzYzMTYsLTEyOTM1MzU0LC02MTc1MDM3MTZdfQ==
+eyJoaXN0b3J5IjpbMzQzMjMwNDQ2LDM1MjkxOTI2OCwtODY2Nj
+QxNjkzLC0xNjMyNDc2MzE2LC0xMjkzNTM1NCwtNjE3NTAzNzE2
+XX0=
 -->
