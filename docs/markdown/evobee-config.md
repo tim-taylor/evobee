@@ -28,6 +28,9 @@ The format of the configuration file and the options that can be specified withi
 
 ## Configuration file format
 
+Te
+
+
 ## Configuration options
 
 The following table describes each parameter that can be specified in the configuration file. Parameters are read in from the configuration file and parsed by code in source file `evobee.cpp`. They are then stored in a static instance of the `ModelParams` class. See comments in the files `evobee.cpp` and `ModelParams.h` for further details of each parameter and the allowed values for each one.
@@ -139,10 +142,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjYxNzQ0MzExLDE4MjkyNjg2NzAsNzMxNz
-U2MDg5LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAx
-LC0xMDg1MjU2MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwOD
-UyNTYyMTksMTMwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0
-MDk0LC0yMDk2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMi
-wtMTE2MjgxOTU4OCwyMDU2NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbLTQwMTkxMTk4NCw2NjE3NDQzMTEsMTgyOT
+I2ODY3MCw3MzE3NTYwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1
+MSw2NzU3MTIwMDEsLTEwODUyNTYyMTksMTY5NjgwOTk1LC04OD
+I4NDk2NCwtMTA4NTI1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2
+MjksLTE4NTE5MDQwOTQsLTIwOTY5NjczNzcsLTE3NDU0NDcwND
+QsNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIwNTY0NTAzNjVdfQ==
+
 -->
