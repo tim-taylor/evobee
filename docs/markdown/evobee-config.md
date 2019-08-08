@@ -83,6 +83,9 @@ Hive configuration parameters for a single hive are stored in an instance of the
 |migration-restricted|migrationRestricted|bool|If migration allowed, is its probability restricted at all?|  
 |migration-prob|migrationProb|float|If migration allowed and restricted, and pollinator tries to leave initial foraging area, it succeeds with this prob, else it is reflected back into initial area|
  
+### Plant Type configuration parameters
+
+Hive configuration parameters for a single hive are stored in an instance of the `PlantTypeConfig` structure, defined in source file `PlantTypeConfig.h`. These are stored in the `ModelParams` member `m_`.
 
 | |m_PlantDists|std::vector\<PlantTypeDistributionConfig\>|Config of plant distributions|  
 | |m_PlantTypes|std::vector\<PlantTypeConfig\>|Config of plant types|  
@@ -90,10 +93,10 @@ Hive configuration parameters for a single hive are stored in an instance of the
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzMxNzU2MDg5LDEwNjg2ODUyMzYsLTE1MD
-M1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2MjE5LDE2OTY4MDk5
-NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMTMwMjI1NzQwOSwxMz
-A3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3Mzc3LC0xNzQ1
-NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OCwyMDU2NDUwMz
-Y1XX0=
+eyJoaXN0b3J5IjpbMjk5MTc5MDMwLDczMTc1NjA4OSwxMDY4Nj
+g1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIx
+OSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMD
+IyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMjA5Njk2
+NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4MTk1OD
+gsMjA1NjQ1MDM2NV19
 -->
