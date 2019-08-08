@@ -63,7 +63,9 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-density|m_fPtdAutoDistribDensity|float|PlantTypeDistribution auto-generation density of plants in each area|  
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|
-|rng-seed|m_strRngSeed|std::string|Seed string used to seeed RNG|  
+|rng-seed|m_strRngSeed|std::string|Seed string used to seeed RNG|
+
+
 | |m_Hives|std::vector\<HiveConfig\>|Configuration info for each hive|  
 | |m_PlantDists|std::vector\<PlantTypeDistributionConfig\>|Config of plant distributions|  
 | |m_PlantTypes|std::vector\<PlantTypeConfig\>|Config of plant types|  
@@ -71,9 +73,9 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwODUyNTYyMTksMTY5NjgwOTk1LC04OD
-I4NDk2NCwtMTA4NTI1NjIxOSwxMzAyMjU3NDA5LC0xMDg1MjU2
-MjE5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLTIwOTY5NjczNz
-csLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIw
-NTY0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbNjc1NzEyMDAxLC0xMDg1MjU2MjE5LDE2OT
+Y4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMTMwMjI1NzQw
+OSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3Mzc3LC
+0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OCwyMDU2
+NDUwMzY1XX0=
 -->
