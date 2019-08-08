@@ -115,8 +115,6 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |anther-init-pollen|antherInitPollen|int||  
 |anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int||  
 |stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int||  
-||pollenCloggingAll|bool||  
-||pollenCloggingPartial|bool||  
 |pollen-clogging|pollenCloggingSpecies|std::string||  
 |repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|can seeds be dispersed at random across whole environment?|  
 |repro-seed-dispersal-radius|reproSeedDispersalRadius|float|expreseed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
@@ -134,10 +132,10 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgyOTI2ODY3MCw3MzE3NTYwODksMTA2OD
-Y4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwODUyNTYy
-MTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIxOSwxMz
-AyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLTIwOTY5
-NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYyODE5NT
-g4LDIwNTY0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbLTE4NTUwNDE0NTIsMTgyOTI2ODY3MCw3Mz
+E3NTYwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIw
+MDEsLTEwODUyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMT
+A4NTI1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5
+MDQwOTQsLTIwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NT
+IyLC0xMTYyODE5NTg4LDIwNTY0NTAzNjVdfQ==
 -->
