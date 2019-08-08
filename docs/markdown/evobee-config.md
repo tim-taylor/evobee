@@ -97,13 +97,10 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |pollen-carryover-num-visits|pollenCarryoverNumVisits|int||  
 |innate-mp-pref-min|innateMPPrefMin|MarkerPoint||  
 |innate-mp-pref-max|innateMPPrefMax|MarkerPoint||  
-||strConstancyType|std::string||  
-||constancyType|PollinatorConstancyType||  
-||constancyParam|float||  
-||strForagingStrategy|std::string||  
-||foragingStrategy|PollinatorForagingStrategy||  
-||int|unsigned|visitedFlowerMemorySize|
-
+|constancy-type|strConstancyType|std::string||  
+|constancy-param|constancyParam|float||  
+|foraging-strategy|strForagingStrategy|std::string||  
+|visited-flower-memory-size|unsigned int|visitedFlowerMemorySize|
 
 
 ### Plant Type configuration parameters
@@ -126,7 +123,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NjI3Njg1NjcsNzMxNzU2MDg5LDEwNj
+eyJoaXN0b3J5IjpbLTEwOTQyMDE1NjMsNzMxNzU2MDg5LDEwNj
 g2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2
 MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMT
 MwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2
