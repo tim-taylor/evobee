@@ -33,6 +33,52 @@ The format of the configuration file and the options that can be specified withi
 
 |Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
  |---|---|---|---|  
+| |m_bVisualisation|bool|Use visualiation for this run?|  
+| |m_iEnvSizeX|int|Environment size (num patches) in x direction|  
+| |m_iEnvSizeY|int|Environment size (num patches) in y direction|  
+| |m_fMaxScreenFracW|float|Max fraction of screen size for vis window width|  
+| |m_fMaxScreenFracH|float|Max fraction of screen size for vis window height|  
+| |m_fEnvDefaultAmbientTemp|float|Default ambient temperature for all Patches (in Celsius)|  
+| |m_EnvBackgroundReflectanceMP|MarkerPoint|Default background reflectance Marker Point for each Patch|  
+| |m_bReproGlobalDensityContrained|bool|During a reproduction cycle, is global plant density constrained?|  
+| |m_fReproGlobalDensityMax|float|If m_bReproGlobalDensityContrained, what is the maximum allowed density?|  
+| |m_bVisPollinatorTrails|bool|Display trails of pollinators' past movements?|  
+| |m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|  
+| |m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|  
+| |m_bLogging|bool|Is logging required for this run?|  
+| |m_bLogPollinatorsIntraPhaseFull|bool|Log full pollinator info every m_iLogUpdatePeriod steps|  
+| |m_bLogPollinatorsInterPhaseSummary|bool|Log summary pollinator info at end of each generation|  
+| |m_bLogFlowersInterPhaseFull|bool|Log full flower info at end of each generation|  
+| |m_bLogFlowersInterPhaseSummary|bool|Log summary flower info at end of each generation|  
+| |m_bLogFlowersIntraPhaseSummary|bool|Log summary flower info every m_iLogUpdatePeriod steps|  
+| |m_iLogUpdatePeriod|int|Number of model steps between each update of logger|  
+| |m_strLogDir|std::string|Directory name for logging output during a run|  
+| |m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|  
+| |m_strLogRunName|std::string|Run name to be used as prefix for log filenames|  
+| |m_bUseLogThreads|bool|Use a separate thread for writing log files?|  
+| |m_bVerbose|bool|Should progress messages be printed on stdout?|  
+| |m_bCommandLineQuiet|bool|Was the -q option used on command line?|  
+| |m_bInitialised|bool|Flag to indicate that parmas have been intiialised|  
+| |m_iSimTerminationNumGens|int|Terminate run after this number of generations|  
+| |m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation|  
+| |m_iGenTerminationParam|int|Integer parameter associated with m_GenTerminationType|  
+| |m_fGenTerminationParam|float|Float parameter associated with m_GenTerminationType|  
+| |m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|  
+| |m_iPtdAutoDistribNumRows|int|PTD auto-generation number of rows of areas to generate|  
+| |m_iPtdAutoDistribNumCols|int|PTD auto-generation number of columns of areas to generate|  
+| |m_fPtdAutoDistribDensity|float|PTD auto-generation density of plants in each area|  
+| |m_fPtdAutoDistribAreaMargin|float|PTD auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
+| |m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|  
+| |int|unsigned|m_sNextFreePtdcId Each PlantTypeDistributionConfig gets its own unique id|  
+| |m_strRngSeed|std::string|Seed string used to seeed RNG|  
+| |m_Hives|std::vector<HiveConfig>|Configuration info for each hive|  
+| |m_PlantDists|std::vector<PlantTypeDistributionConfig>|Config of plant distributions|  
+| |m_PlantTypes|std::vector<PlantTypeConfig>|Config of plant types|  
+| |m_PollinatorConfigs|std::vector<PollinatorConfig>|Config info for pollinator types|
+
+
+
+
 | |bool|m_bVisualisation|Use visualiation for this run?|  
 | |int|m_iEnvSizeX|Environment size (num patches) in x direction|  
 
@@ -227,6 +273,6 @@ static  std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
 
 static  std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM2MTUyMzYyMywtMTc0NTQ0NzA0NCw0Nj
-E3Mjg1MjIsLTExNjI4MTk1ODgsMjA1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbMjg5NDA1NTY4LC0xNzQ1NDQ3MDQ0LDQ2MT
+cyODUyMiwtMTE2MjgxOTU4OCwyMDU2NDUwMzY1XX0=
 -->
