@@ -57,10 +57,10 @@ The following table describes each parameter that can be specified in the config
 |log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|  
 |log-run-name|m_strLogRunName|std::string|Run name to be used as prefix for log filenames|  
 |use-log-threads|m_bUseLogThreads|bool|Use a separate thread for writing log files?|  
-|verbose|m_bVerbose|bool|Should progress messages be printed on stdout?| 
-| |m_iSimTerminationNumGens|int|Terminate run after this number of generations|  
-| |m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation|  
-| |m_iGenTerminationParam|int|Integer parameter associated with m_GenTerminationType|  
+|verbose|m_bVerbose|bool|Should progress messages be printed on stdout?|
+|sim-termination-num-gens|m_iSimTerminationNumGens|int|Terminate run after this number of generations|  
+|generation-termination-type|m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation|  
+|generation-termination-param|m_iGenTerminationParam or m_fGenTerminationParam|int or flo|Integer parameter associated with m_GenTerminationType|  
 | |m_fGenTerminationParam|float|Float parameter associated with m_GenTerminationType|  
 |auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|  
 |auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PTD auto-generation number of rows of areas to generate|  
@@ -76,7 +76,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMTU5OTc5NDEsLTE4NTE5MDQwOTQsLT
+eyJoaXN0b3J5IjpbLTE1MjIwNjM2MDEsLTE4NTE5MDQwOTQsLT
 IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
 ODE5NTg4LDIwNTY0NTAzNjVdfQ==
 -->
