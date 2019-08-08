@@ -35,12 +35,12 @@ The following table describes each parameter that can be specified in the config
 |Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
  |---|---|---|---|  
 |visualisation|m_bVisualisation|bool|Use visualiation for this run?|  
-| |m_iEnvSizeX|int|Environment size (num patches) in x direction|  
-| |m_iEnvSizeY|int|Environment size (num patches) in y direction|  
-| |m_fMaxScreenFracW|float|Max fraction of screen size for vis window width|  
-| |m_fMaxScreenFracH|float|Max fraction of screen size for vis window height|  
-| |m_fEnvDefaultAmbientTemp|float|Default ambient temperature for all Patches (in Celsius)|  
-| |m_EnvBackgroundReflectanceMP|MarkerPoint|Default background reflectance Marker Point for each Patch|  
+|env-size-x|m_iEnvSizeX|int|Environment size (num patches) in x direction|  
+|env-size-y|m_iEnvSizeY|int|Environment size (num patches) in y direction|  
+|vis-max-screen-frac-w|m_fMaxScreenFracW|float|Max fraction of screen size for vis window width|  
+|vis-max-screen-frac-h|m_fMaxScreenFracH|float|Max fraction of screen size for vis window height|  
+|default-ambient-temp|m_fEnvDefaultAmbientTemp|float|Default ambient temperature for all Patches (in Celsius)|  
+|background-reflectance-mp|m_EnvBackgroundReflectanceMP|MarkerPoint|Default background reflectance Marker Point for each Patch|  
 | |m_bReproGlobalDensityContrained|bool|During a reproduction cycle, is global plant density constrained?|  
 | |m_fReproGlobalDensityMax|float|If m_bReproGlobalDensityContrained, what is the maximum allowed density?|  
 |vis-pollinator-trails|m_bVisPollinatorTrails|bool|Display trails of pollinators' past movements?|  
@@ -79,7 +79,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NTE5MDQwOTQsLTIwOTY5NjczNzcsLT
-E3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIwNTY0
-NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbLTEzNDYxNzQ1NTYsLTE4NTE5MDQwOTQsLT
+IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
+ODE5NTg4LDIwNTY0NTAzNjVdfQ==
 -->
