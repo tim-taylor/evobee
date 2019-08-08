@@ -77,48 +77,23 @@ Hive configuration parameters for a single hive are stored in an instance of the
 |pollinator-number|num|int|Number of pollinators|  
 |start-from-hive|startFromHive|bool|Do all pollinators start at hive, or from random pos in initial foraging area?|  
 |pos-x, pos-y|position|fPos (Position\<float\>)|Position of the hive|  
-|area-top-left-x, area-top-le|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial foraging area|  
-||areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial foraging area|  
-||migrationAllowed|bool|Are pollinators allowed to move outside initial foraging area?|  
-||migrationRestricted|bool|If migration allowed, is its probability restricted at all?|  
-||migrationProb|float|If migration allowed and restricted, and pollinator tries to leave initial foraging area, it succeeds with this prob, else it is reflected back into initial area|
+|area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial foraging area|  
+|area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial foraging area|  
+|migration-allowed|migrationAllowed|bool|Are pollinators allowed to move outside initial foraging area?|  
+|migration-restricted|migrationRestricted|bool|If migration allowed, is its probability restricted at all?|  
+|migration-prob|migrationProb|float|If migration allowed and restricted, and pollinator tries to leave initial foraging area, it succeeds with this prob, else it is reflected back into initial area|
  
- json_read_param(j, sct, "pollinator-type", hc.type);
 
-json_read_param(j, sct, "pollinator-number", hc.num);
-
-json_read_param(j, sct, "start-from-hive", hc.startFromHive);
-
-json_read_param(j, sct, "pos-x", hc.position.x);
-
-json_read_param(j, sct, "pos-y", hc.position.y);
-
-json_read_param(j, sct, "area-top-left-x", hc.areaTopLeft.x);
-
-json_read_param(j, sct, "area-top-left-y", hc.areaTopLeft.y);
-
-json_read_param(j, sct, "area-bottom-right-x", hc.areaBottomRight.x);
-
-json_read_param(j, sct, "area-bottom-right-y", hc.areaBottomRight.y);
-
-json_read_opt_param(j, sct, "migration-allowed", hc.migrationAllowed, true);
-
-json_read_opt_param(j, sct, "migration-restricted", hc.migrationRestricted, false);
-
-json_read_opt_param(j, sct, "migration-prob", hc.migrationProb, 1.0f);
-
-
-| |m_Hives|std::vector\<HiveConfig\>|Configuration info for each hive|  
 | |m_PlantDists|std::vector\<PlantTypeDistributionConfig\>|Config of plant distributions|  
 | |m_PlantTypes|std::vector\<PlantTypeConfig\>|Config of plant types|  
 | |m_PollinatorConfigs|std::vector\<PollinatorConfig\>|Config info for pollinator types|
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUyNzI3NTczMCwxMDY4Njg1MjM2LC0xNT
-AzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIxOSwxNjk2ODA5
-OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMDIyNTc0MDksMT
-MwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMjA5Njk2NzM3NywtMTc0
-NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4MTk1ODgsMjA1NjQ1MD
-M2NV19
+eyJoaXN0b3J5IjpbNzMxNzU2MDg5LDEwNjg2ODUyMzYsLTE1MD
+M1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2MjE5LDE2OTY4MDk5
+NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMTMwMjI1NzQwOSwxMz
+A3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3Mzc3LC0xNzQ1
+NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OCwyMDU2NDUwMz
+Y1XX0=
 -->
