@@ -31,13 +31,12 @@ The format of the configuration file and the options that can be specified withi
 ## Configuration options
 
 
-
-|--|--|--|--|
-## jdhsk
- 
+|param name in JSON file|ty
+ |---|---|---|---|  
 | |bool|m_bVisualisation|Use visualiation for this run?|  
-|--|--|--|--|  
+
 | |int|m_iEnvSizeX|Environment size (num patches) in x direction|  
+
 |--|--|--|--|  
 | |int|m_iEnvSizeY|Environment size (num patches) in y direction|  
 |--|--|--|--|  
@@ -229,6 +228,6 @@ static  std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
 
 static  std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MDU5NjI0ODksLTE3NDU0NDcwNDQsND
-YxNzI4NTIyLC0xMTYyODE5NTg4LDIwNTY0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbMTEyMTk0NzkyMywtMTc0NTQ0NzA0NCw0Nj
+E3Mjg1MjIsLTExNjI4MTk1ODgsMjA1NjQ1MDM2NV19
 -->
