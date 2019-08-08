@@ -100,7 +100,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |constancy-type|strConstancyType|std::string||  
 |constancy-param|constancyParam|float||  
 |foraging-strategy|strForagingStrategy|std::string||  
-|visited-flower-memory-size|unsigned int|visitedFlowerMemorySize|
+|visited-flower-memory-size|visitedFlowerMemorySize|unsigned int||
 
 
 ### Plant Type configuration parameters
@@ -123,10 +123,10 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwOTQyMDE1NjMsNzMxNzU2MDg5LDEwNj
-g2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2
-MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMT
-MwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2
-OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOT
-U4OCwyMDU2NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbLTQ0MjMzNzU4OSw3MzE3NTYwODksMTA2OD
+Y4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwODUyNTYy
+MTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIxOSwxMz
+AyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLTIwOTY5
+NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYyODE5NT
+g4LDIwNTY0NTAzNjVdfQ==
 -->
