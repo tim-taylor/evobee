@@ -30,6 +30,11 @@ The format of the configuration file and the options that can be specified withi
 
 ## Configuration options
 
+|  |  |
+|--|--|
+|  |  |
+
+
 // data members
 
 static  bool m_bVisualisation; ///< Use visualiation for this run?
@@ -132,6 +137,6 @@ static  std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
 
 static  std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDYxNzI4NTIyLC0xMTYyODE5NTg4LDIwNT
-Y0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMT
+YyODE5NTg4LDIwNTY0NTAzNjVdfQ==
 -->
