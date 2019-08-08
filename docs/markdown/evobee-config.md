@@ -32,6 +32,8 @@ The format of the configuration file and the options that can be specified withi
 
 The following table describes each parameter that can be specified in the configuration file. Parameters are read in from the configuration file and parsed by code in source file `evobee.cpp`. They are then stored in a static instance of the `ModelParams` class. See comments in the files `evobee.cpp` and `ModelParams.h` for further details of each parameter and the allowed values for each one.
 
+### General parameters
+
 |Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
  |---|---|---|---|  
 |visualisation|m_bVisualisation|bool|Use visualiation for this run?|  
@@ -65,7 +67,35 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|
 |rng-seed|m_strRngSeed|std::string|Seed string used to seeed RNG|
 
-### Give configuration parameters
+### Hive configuration parameters
+
+|Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
+ |---|---|---|---|  
+ 
+ json_read_param(j, sct, "pollinator-type", hc.type);
+
+json_read_param(j, sct, "pollinator-number", hc.num);
+
+json_read_param(j, sct, "start-from-hive", hc.startFromHive);
+
+json_read_param(j, sct, "pos-x", hc.position.x);
+
+json_read_param(j, sct, "pos-y", hc.position.y);
+
+json_read_param(j, sct, "area-top-left-x", hc.areaTopLeft.x);
+
+json_read_param(j, sct, "area-top-left-y", hc.areaTopLeft.y);
+
+json_read_param(j, sct, "area-bottom-right-x", hc.areaBottomRight.x);
+
+json_read_param(j, sct, "area-bottom-right-y", hc.areaBottomRight.y);
+
+json_read_opt_param(j, sct, "migration-allowed", hc.migrationAllowed, true);
+
+json_read_opt_param(j, sct, "migration-restricted", hc.migrationRestricted, false);
+
+json_read_opt_param(j, sct, "migration-prob", hc.migrationProb, 1.0f);
+
 
 | |m_Hives|std::vector\<HiveConfig\>|Configuration info for each hive|  
 | |m_PlantDists|std::vector\<PlantTypeDistributionConfig\>|Config of plant distributions|  
@@ -74,9 +104,9 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk2NTQ0MDcxNSw2NzU3MTIwMDEsLTEwOD
-UyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIx
-OSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLT
-IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
-ODE5NTg4LDIwNTY0NTAzNjVdfQ==
+eyJoaXN0b3J5IjpbLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMD
+g1MjU2MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYy
+MTksMTMwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC
+0yMDk2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2
+MjgxOTU4OCwyMDU2NDUwMzY1XX0=
 -->
