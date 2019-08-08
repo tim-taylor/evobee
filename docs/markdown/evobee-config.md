@@ -47,7 +47,7 @@ The following table describes each parameter that can be specified in the config
 |vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|  
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|  
 |logging|m_bLogging|bool|Is logging required for this run?|  
-|log-flags|m_bLogPollinatorsIntraPhaseFull, |std::string|Flags to control logging functionality|
+|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseSummary|std::string|Flags to control logging functionality|
 | |m_bLogPollinatorsIntraPhaseFull|bool|Log full pollinator info every m_iLogUpdatePeriod steps|  
 | |m_bLogPollinatorsInterPhaseSummary|bool|Log summary pollinator info at end of each generation|  
 | |m_bLogFlowersInterPhaseFull|bool|Log full flower info at end of each generation|  
@@ -76,7 +76,7 @@ The following table describes each parameter that can be specified in the config
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2Mzk4ODg4MCwtMTg1MTkwNDA5NCwtMj
-A5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4
-MTk1ODgsMjA1NjQ1MDM2NV19
+eyJoaXN0b3J5IjpbLTE2OTYyMTM0ODAsLTE4NTE5MDQwOTQsLT
+IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
+ODE5NTg4LDIwNTY0NTAzNjVdfQ==
 -->
