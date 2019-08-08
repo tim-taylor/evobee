@@ -60,7 +60,9 @@ Pollen transfer processes occur during  each flower visit by a pollinator. These
 
 ### Flowchart for *Forage Nearest* strategy
 
-The following flowchart  the *Forage Nearest* foraging strategy, a pollinator 
+The following flowchart details a pollinator's decision process when using the *Forage Nearest* foraging strategy. Bee-pollen refers to pollen carried on the body of the insect and potentially available for deposition on the stigma of a flower for pollination or pollen-clogging. Anther-pollen refers to pollen carried on a flower anther and potentially available for deposition on the body of a bee.
+
+![Flow diagram for Forage Nearest flower strategy](https://tim-taylor.github.io/evobee/img/)
 
 | <img src="img/EvoBee-Bee-Behaviour-Flowchart-FNF.png" alt="Flow diagram for Forage Nearest flower strategy" width=95%/> | <img src="img/EvoBee-Bee-Behaviour-Flowchart-FAW.png" alt="Flow diagram for Forage Any flower strategy" width=95%/> |
 |--|--|
@@ -113,8 +115,8 @@ In these experiments, the main data recorded during experiments are, at the end 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjM0ODg3NjYsLTE2NDEzODEyNDksLTEwOT
-c1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNywxMjI4NzUz
-MzQ3LDczMjUyNTE3MywtNDc0ODAyNzQ2LDg0NzA2MDE1OCwtNT
-gzNDM1MjI1LC0xNjgzNzExNTQ5LC0yODU0NzA4M119
+eyJoaXN0b3J5IjpbMTAzMDEwMzk4MCwtMTY0MTM4MTI0OSwtMT
+A5NzU2OTcxMSwtMTA3Njg1ODgwNCwxMDA0NjMyMjE3LDEyMjg3
+NTMzNDcsNzMyNTI1MTczLC00NzQ4MDI3NDYsODQ3MDYwMTU4LC
+01ODM0MzUyMjUsLTE2ODM3MTE1NDksLTI4NTQ3MDgzXX0=
 -->
