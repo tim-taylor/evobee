@@ -127,7 +127,7 @@ private:
 
 
     // data members
-    static bool  m_bVisualisation;          ///< Use visualiation for this run?
+    static bool  m_bVisualisation;          ///< Use visualisation for this run?
     static int   m_iEnvSizeX;               ///< Environment size (num patches) in x direction
     static int   m_iEnvSizeY;               ///< Environment size (num patches) in y direction
     static float m_fMaxScreenFracW;         ///< Max fraction of screen size for vis window width
@@ -170,9 +170,9 @@ private:
     static float m_fPtdAutoDistribDensity;  ///< PTD auto-generation density of plants in each area
     static float m_fPtdAutoDistribAreaMargin;   ///< PTD auto-generation margin without flowers in each area
                                                 ///< (expressed in percentage of area's smaller side length)
-    static bool  m_bPtdAutoDistribRegular;  ///< Are the patches distributed in a regular or stockastic pattern?
+    static bool  m_bPtdAutoDistribRegular;  ///< Are the patches distributed in a regular or stochastic pattern?
     static unsigned int m_sNextFreePtdcId;  ///< Each PlantTypeDistributionConfig gets its own unique id
-    static std::string m_strRngSeed;        ///< Seed string used to seeed RNG
+    static std::string m_strRngSeed;        ///< Seed string used to seed RNG
     static std::vector<HiveConfig> m_Hives; ///< Configuration info for each hive
     static std::vector<PlantTypeDistributionConfig> m_PlantDists; ///< Config of plant distributions
     static std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types

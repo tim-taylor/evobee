@@ -300,7 +300,7 @@ protected:
     const int       m_iPollenCarryoverNumVisits; /** After collecting a grain of pollen from a flower,
                                                   * the pollinator can visit this number of subsequent
                                                   * flowers to potentially deposit it. If the pollen is
-                                                  * still not deposited after this numebr of visits, it
+                                                  * still not deposited after this number of visits, it
                                                   * is removed from the pollinator (i.e. it is lost)
                                                   * A value of 0 indicates no limit in number of visits.
                                                   */

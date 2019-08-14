@@ -25,10 +25,10 @@ struct PollinatorConfig {
     int pollenCarryoverNumVisits;
     MarkerPoint innateMPPrefMin;
     MarkerPoint innateMPPrefMax;
-    std::string strConstancyType;
+    std::string strConstancyType;          ///< allowed values: none, simple
     PollinatorConstancyType constancyType;
     float constancyParam;
-    std::string strForagingStrategy;
+    std::string strForagingStrategy;       ///< allowed values: random, nearest-flower, random-flower, random-global
     PollinatorForagingStrategy foragingStrategy;
     unsigned int visitedFlowerMemorySize;
 };

@@ -38,7 +38,7 @@ struct PlantTypeConfig {
     bool        hasLeaf;
     MarkerPoint leafMP;
     bool        reproSeedDispersalGlobal;   ///< can seeds be dispersed at random across whole environment?
-    float       reproSeedDispersalRadius;   ///< expreseed in env units (1.0=one patch), overridden
+    float       reproSeedDispersalRadius;   ///< expressed in env units (1.0=one patch), overridden
                                             ///<   if reproSeedDispersalGlobal=true
 };
 
