@@ -18,7 +18,7 @@ Each  pollinator has a unique identification number. It keeps a record of its cu
 
 ### Flower/Plant agents
 
-Each plant belongs to a particular species, identified by a species ID number. Each plant also has a unique plant identification number. Each plant has one or more flowers. Each flower has a unique flower identification number. It also has a species identification number, to signify which plant species it belongs to. A flower keeps a record of its fixed position in the environment (a two-dimensional floating-point vector). It also keeps a record of the number of collectable pollen grains currently available in its anthers—this is initialised with a fixed number when a flower is created, and depleted when a pollinator visits the flower, when a fixed number of anther pollen grains are transferred to the pollinator’s pollen store. The flower has a stigma pollen store, recording any pollen that visiting pollinators have deposited (these may be conspecific or heterospecific grains). The only difference between flower  species is the pollen type produced and required for pollination.
+Each plant belongs to a particular species, identified by a species ID number. Each plant also has a unique plant identification number. Each plant has one or more flowers. Each flower has a unique flower identification number. It also has a species identification number, to signify which plant species it belongs to. A flower keeps a record of its fixed position in the environment (a two-dimensional floating-point vector). It also keeps a record of the number of collectable pollen grains currently available in its anthers—this is initialised with a fixed number when a flower is created, and depleted when a pollinator visits the flower, when a fixed number of anther pollen grains are transferred to the pollinator’s pollen store. The flower has a stigma pollen store, recording any pollen that visiting pollinators have deposited (these may be conspecific or heterospecific grains). The only difference between flower species is the pollen type produced and required for pollination.
 
 ### Pollen agents
 
@@ -123,7 +123,7 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkxNTA2MzcyNywxMDgwMTA4NzA0LDExOT
+eyJoaXN0b3J5IjpbLTQxOTE3NDA5NSwxMDgwMTA4NzA0LDExOT
 U5Mzc4MCwtNjAwNjE2NDMyLC0xNjQxMzgxMjQ5LC0xMDk3NTY5
 NzExLC0xMDc2ODU4ODA0LDEwMDQ2MzIyMTcsMTIyODc1MzM0Ny
 w3MzI1MjUxNzMsLTQ3NDgwMjc0Niw4NDcwNjAxNTgsLTU4MzQz
