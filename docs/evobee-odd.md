@@ -28,8 +28,6 @@ Each pollen grain is modelled individually, and records the individual flower th
 
 Simulation distances are measured in perceptual distance units (pdu). We define 1 pdu to correspond to the distance over which bumblebees can detect a plant’s flowers, which is approximately 0.7m.
 
-In these experiments the environment is homogeneous (with the exception of the refuge areas described in the following section), so there are no state variables associated with particular positions within the environment.
-
 ### Environment
 
 In most experiments, we study a continuous-space environment 200 x 200 pdu (140 x 140 m). We model a single species of insect pollinator and two species of flowering plant (labelled X and Y). A column of area 40 x 200 pdu on the “left” edge of the environment acts as a refuge for plant species X; only plants of this species can grow here. If during the reproduction phase a seed from species Y lands in the refuge of species X it is removed from the simulation. An equivalent column on the right edge of the environment acts as a refuge for species Y. Plants of either species can occupy the central remaining 120 x 200 pdu region. Following Waser’s approach, we have incorporated these refuges to promote the possibility of the stable coexistence of two plant species (see Waser’s experiment (4), Effects of Refugia). In Waser’s experiments, these refuges  lead to a slight increase in the mean duration for which the environment supported the coexistence of the two species before one went to fixation.
@@ -123,7 +121,7 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMxMTM1NzU5NSwtNDE5MTc0MDk1LDEwOD
+eyJoaXN0b3J5IjpbMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEwOD
 AxMDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzODEy
 NDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNy
 wxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0ODAyNzQ2LDg0NzA2
