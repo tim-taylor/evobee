@@ -52,9 +52,7 @@ A pollinator following the *Forage Nearest* flower strategy  (see [Flowchart](#f
 
 A pollinator following the *Forage Any* flower strategy (see [Flowchart](#flowchart-for-forage-any-strategy) below) picks a flower to visit at random from all flowers in the entire environment, excluding those on its list of recently visited flowers. 
 
-The other available foraging strategies are `random`, and `random-flower`.  The `random` strategy involves first making a move in a random direction, then looking for a nearby flower. If a flower is found, the pollinator then moves to that if it is a visit candidate. The `random-flower` strategy involves first looking for a nearby unvisited flower from the pollinator's current position. If one is found and it is a visit candidate, move to a randomly selected flower from the eligible flowers found. If no flower is seen, move in a random direction.
-
-
+The other available foraging strategies are `random`, and `random-flower`.  The `random` strategy involves first making a move in a random direction, then looking for a nearby flower. If a flower is found, the pollinator then moves to that if it is a visit candidate. The `random-flower` strategy involves first looking for a nearby unvisited flower from the pollinator's current position. If one is found and it is a visit candidate, the pollinator moves to a randomly selected flower from the eligible flowers found. If no flower is seen, it moves in a random direction.
 
 Pollen transfer processes occur during each flower visit by a pollinator. These are described in a subsequent section ([Pollinator action on flowers](#pollinator-action-on-flowers])).
 
@@ -123,11 +121,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MDcxNzE0MzYsLTExMzkyMzI2MTAsLT
-E2MjI4NDk3MDUsLTIwNjYyMDc2ODcsLTE4MjUzMzMwMjgsMjA4
-ODU1OTI2MywtNDE5MTc0MDk1LDEwODAxMDg3MDQsMTE5NTkzNz
-gwLC02MDA2MTY0MzIsLTE2NDEzODEyNDksLTEwOTc1Njk3MTEs
-LTEwNzY4NTg4MDQsMTAwNDYzMjIxNywxMjI4NzUzMzQ3LDczMj
-UyNTE3MywtNDc0ODAyNzQ2LDg0NzA2MDE1OCwtNTgzNDM1MjI1
-LC0xNjgzNzExNTQ5XX0=
+eyJoaXN0b3J5IjpbLTc2MTg4MDE4LC0xMTM5MjMyNjEwLC0xNj
+IyODQ5NzA1LC0yMDY2MjA3Njg3LC0xODI1MzMzMDI4LDIwODg1
+NTkyNjMsLTQxOTE3NDA5NSwxMDgwMTA4NzA0LDExOTU5Mzc4MC
+wtNjAwNjE2NDMyLC0xNjQxMzgxMjQ5LC0xMDk3NTY5NzExLC0x
+MDc2ODU4ODA0LDEwMDQ2MzIyMTcsMTIyODc1MzM0Nyw3MzI1Mj
+UxNzMsLTQ3NDgwMjc0Niw4NDcwNjAxNTgsLTU4MzQzNTIyNSwt
+MTY4MzcxMTU0OV19
 -->
