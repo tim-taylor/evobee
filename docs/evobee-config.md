@@ -6,7 +6,7 @@ When the program has been successfully [compiled](evobee-install.md), the execut
 
 The evobee executable accepts a small number of command-line arguments. To query what these are, run the command
 
-    ./evobee --help
+    > ./evobee --help
 
 This output should look like this:
 
@@ -20,7 +20,7 @@ This output should look like this:
 
 The vast majority of configuration options for the program are set using a configuration file rather than the command line. As shown in the output above, the default filename that `evobee` searches for is `evobee.cfg.json`, and it only searches in the current working directory. To specify a different name and location, use the -c flag when calling the program. For example:
 
-    ./evobee -c /home/me/my-config-file.cfg.json
+    > ./evobee -c /home/me/my-config-file.cfg.json
 
 The format of the configuration file and the options that can be specified within it are explained in the following sections.
 
@@ -362,11 +362,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcxMDkwNjgxNywzNzE4ODcxNjMsLTcwOD
-Q0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NTYwODks
-MTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwOD
-UyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIx
-OSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLT
-IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
-ODE5NTg4XX0=
+eyJoaXN0b3J5IjpbNjU4NTQ4NDE1LDM3MTg4NzE2MywtNzA4ND
+QyMTc4LDY2MTc0NDMxMSwxODI5MjY4NjcwLDczMTc1NjA4OSwx
+MDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NT
+I1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5
+LDEzMDIyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMj
+A5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4
+MTk1ODhdfQ==
 -->
