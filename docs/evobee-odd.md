@@ -87,8 +87,7 @@ Each pollen grain carried by a pollinator visiting a flower is considered for tr
 
 ### Basic principles
 
-Our simulation builds upon the earlier simulation work of Waser (1978). One notable difference between our software and his is our use of a continuous spatial environment to avoid potential artefactual effects arising from modelling pollinator movements on a discrete grid [REFS: Bonnell et al 2016; Birch et al 2007]. Modern computing environments also allow us to simulate much larger environments than those that were feasible in 1978. We model up to 16,000 plants and 400 pollinators, running for up to 1000 generations, with each experimental condition repeated in 100 replicates (more in some cases), in contrast to 100 plants, 1 pollinator and up to 400 generations with 20 replicates in the early study. We have determined experimentally that the values we employ are sufficient to: confirm that our software’s behaviour matches the behaviour of Waser’s simulations; and, robustly generate the system behaviour we require to explore our own hypotheses (see section  Testing (Verification and Validation)). The novel results we report here arise from experimental configurations that were not considered in Waser’s original paper.
-    
+Our simulation builds upon the earlier simulation work of Waser (1978). One notable difference between our software and his is our use of a continuous spatial environment to avoid potential artefactual effects arising from modelling pollinator movements on a discrete grid. 
 
 ### Emergence
 
@@ -121,7 +120,7 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMjU5NTIyOCwxNzkyNzczNzE1LC03Nj
+eyJoaXN0b3J5IjpbLTcxMjk5MzgwNywxNzkyNzczNzE1LC03Nj
 E4ODAxOCwtMTEzOTIzMjYxMCwtMTYyMjg0OTcwNSwtMjA2NjIw
 NzY4NywtMTgyNTMzMzAyOCwyMDg4NTU5MjYzLC00MTkxNzQwOT
 UsMTA4MDEwODcwNCwxMTk1OTM3ODAsLTYwMDYxNjQzMiwtMTY0
