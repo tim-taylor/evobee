@@ -54,7 +54,7 @@ A pollinator following the *Forage Any* flower strategy (see [Flowchart](#flowch
 
 The other available foraging strategies are `random`, and `random-flower`.  The `random` strategy involves first making a move in a random direction, then looking for a nearby flower. If a flower is found, the pollinator then moves to that if it is a visit candidate. The `random-flower` strategy involves first looking for a nearby unvisited flower from the pollinator's current position. If one is found and it is a visit candidate, the pollinator moves to a randomly selected flower from the eligible flowers found. If no flower is seen, it moves in a random direction.
 
-In addition to the foraging logic outlined above, each species of pollinator may be configured to exhibit *pollen constancy* (constancy-type=simple in the configurat. 
+In addition to the foraging logic outlined above, each species of pollinator may be configured to exhibit *pollen constancy* (`constancy-type=simple` in the configuration file). In this case, the probability that a pollinator lands on a flower is further regulated by whether the flower is the 
 
 Pollen transfer processes occur during each flower visit by a pollinator. These are described in a subsequent section ([Pollinator action on flowers](#pollinator-action-on-flowers])).
 
@@ -120,11 +120,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3Njg4NTc0NDAsNjcyMDM0NzI3LC03MT
-I5OTM4MDcsMTc5Mjc3MzcxNSwtNzYxODgwMTgsLTExMzkyMzI2
-MTAsLTE2MjI4NDk3MDUsLTIwNjYyMDc2ODcsLTE4MjUzMzMwMj
-gsMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEwODAxMDg3MDQsMTE5
-NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzODEyNDksLTEwOTc1Nj
-k3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNywxMjI4NzUzMzQ3
-LDczMjUyNTE3M119
+eyJoaXN0b3J5IjpbMTUzNzc3ODU0OSw2NzIwMzQ3MjcsLTcxMj
+k5MzgwNywxNzkyNzczNzE1LC03NjE4ODAxOCwtMTEzOTIzMjYx
+MCwtMTYyMjg0OTcwNSwtMjA2NjIwNzY4NywtMTgyNTMzMzAyOC
+wyMDg4NTU5MjYzLC00MTkxNzQwOTUsMTA4MDEwODcwNCwxMTk1
+OTM3ODAsLTYwMDYxNjQzMiwtMTY0MTM4MTI0OSwtMTA5NzU2OT
+cxMSwtMTA3Njg1ODgwNCwxMDA0NjMyMjE3LDEyMjg3NTMzNDcs
+NzMyNTI1MTczXX0=
 -->
