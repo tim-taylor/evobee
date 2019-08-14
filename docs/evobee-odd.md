@@ -76,7 +76,7 @@ In the diagram `bee-pollen` refers to pollen carried on the body of the insect a
 
 ### Flower dynamics
 
-At the start of a foraging phase, each flower begins with a fixed amount of anther pollen available for collection. Each flower also begins with a stigma free from pollen, but as the foraging phase progresses visiting pollinators may deposit pollen on its stigma. Pollinators may be allowed to deposit pollen from a different species onto the stigma (potentially pollen-clogging the flower) depending upon the configuration of the experiment. Configuration options are detailed in Table 2. A parameter specifies the capacity for pollen grains on a stigma. At the end of a foraging phase, every conspecific grain of pollen on the stigma forms a viable seed that enters the gene pool for the next generation of plants as described above (Overview of dynamics section). This is a simple proxy for the complexities of pollination in which several pollen grains may be required to fertilise an ovule [REF], but for the purposes of assessing the relative success of two competing species it is sufficient since  the two flowering plant  species we simulate are  treated consistently.
+At the start of a foraging phase, each flower begins with a fixed amount of anther pollen available for collection. Each flower also begins with a stigma free from pollen, but as the foraging phase progresses visiting pollinators may deposit pollen on its stigma. Pollinators may be allowed to deposit pollen from a different species onto the stigma (potentially pollen-clogging the flower) depending upon the configuration of the experiment. A parameter specifies the capacity for pollen grains on a stigma. At the end of a foraging phase, every conspecific grain of pollen on the stigma forms a viable seed that enters the gene pool for the next generation of plants as described above (Overview of dynamics section). This is a simple proxy for the complexities of pollination in which several pollen grains may be required to fertilise an ovule [REF], but for the purposes of assessing the relative success of two competing species it is sufficient since  the two flowering plant  species we simulate are  treated consistently.
 
 ### Pollinator action on flowers
 
@@ -121,11 +121,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc2MTg4MDE4LC0xMTM5MjMyNjEwLC0xNj
-IyODQ5NzA1LC0yMDY2MjA3Njg3LC0xODI1MzMzMDI4LDIwODg1
-NTkyNjMsLTQxOTE3NDA5NSwxMDgwMTA4NzA0LDExOTU5Mzc4MC
-wtNjAwNjE2NDMyLC0xNjQxMzgxMjQ5LC0xMDk3NTY5NzExLC0x
-MDc2ODU4ODA0LDEwMDQ2MzIyMTcsMTIyODc1MzM0Nyw3MzI1Mj
-UxNzMsLTQ3NDgwMjc0Niw4NDcwNjAxNTgsLTU4MzQzNTIyNSwt
-MTY4MzcxMTU0OV19
+eyJoaXN0b3J5IjpbNDc3MjA5NzgxLC03NjE4ODAxOCwtMTEzOT
+IzMjYxMCwtMTYyMjg0OTcwNSwtMjA2NjIwNzY4NywtMTgyNTMz
+MzAyOCwyMDg4NTU5MjYzLC00MTkxNzQwOTUsMTA4MDEwODcwNC
+wxMTk1OTM3ODAsLTYwMDYxNjQzMiwtMTY0MTM4MTI0OSwtMTA5
+NzU2OTcxMSwtMTA3Njg1ODgwNCwxMDA0NjMyMjE3LDEyMjg3NT
+MzNDcsNzMyNTI1MTczLC00NzQ4MDI3NDYsODQ3MDYwMTU4LC01
+ODM0MzUyMjVdfQ==
 -->
