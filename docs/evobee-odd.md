@@ -101,7 +101,7 @@ Pollinators maintain a list of the last *N* individual flowers they have visited
 
 ### Interaction
 
-The interactions between agents in the simulation are those between an individual pollinators, pollen and individual flowers. These interactions take place when the pollinator lands on a flower, as described in the Pollinator action on flowers section. There are no direct pollinator-pollinator or flower-flower interactions. It is possible for multiple pollinators to land and interact with  a  single flower within a time step. The order of their interactions is randomised.
+The interactions between agents in the simulation are those between an individual pollinators, pollen and individual flowers. These interactions take place when the pollinator lands on a flower, as described in the [Pollinator action on flowers](#) section. There are no direct pollinator-pollinator or flower-flower interactions. It is possible for multiple pollinators to land and interact with  a  single flower within a time step. The order of their interactions is randomised.
 
 ### Stochasticity
 
@@ -118,7 +118,7 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMzM2ODgzMCwtNzEyOTkzODA3LDE3OT
+eyJoaXN0b3J5IjpbLTc4MjM4NDQ5MCwtNzEyOTkzODA3LDE3OT
 I3NzM3MTUsLTc2MTg4MDE4LC0xMTM5MjMyNjEwLC0xNjIyODQ5
 NzA1LC0yMDY2MjA3Njg3LC0xODI1MzMzMDI4LDIwODg1NTkyNj
 MsLTQxOTE3NDA5NSwxMDgwMTA4NzA0LDExOTU5Mzc4MCwtNjAw
