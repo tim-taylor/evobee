@@ -181,7 +181,6 @@ These files are shown below, followed by the [Configuration options](#configurat
                     "area-bottom-right-y" : 99,
                     "density" : 0.5,
                     "refuge" : false,
-                    "refuge-alien-inflow-prob" : 0.5,
                     "seed-outflow-allowed" : true,
                     "seed-outflow-restricted" : false,
                     "seed-outflow-prob" : 0.5,
@@ -196,7 +195,6 @@ These files are shown below, followed by the [Configuration options](#configurat
                     "area-bottom-right-y" : 99,
                     "density" : 0.5,
                     "refuge" : false,
-                    "refuge-alien-inflow-prob" : 0.5,
                     "seed-outflow-allowed" : true,
                     "seed-outflow-restricted" : false,
                     "seed-outflow-prob" : 0.5,
@@ -364,11 +362,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzcxODg3MTYzLC03MDg0NDIxNzgsNjYxNz
-Q0MzExLDE4MjkyNjg2NzAsNzMxNzU2MDg5LDEwNjg2ODUyMzYs
-LTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2MjE5LDE2OT
-Y4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMTMwMjI1NzQw
-OSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3Mzc3LC
-0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OCwyMDU2
-NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbMTk5NjE2OTUxNSwzNzE4ODcxNjMsLTcwOD
+Q0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NTYwODks
+MTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwOD
+UyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIx
+OSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLT
+IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
+ODE5NTg4XX0=
 -->
