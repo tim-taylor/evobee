@@ -20,9 +20,9 @@ as appropriate according to your OS.
   
 From the evobee base directory:  
   
-- `cd build`  
-- `cmake ..`  
-- `make`  
+cd build  
+cmake ..
+make
   
 If all worked well, the evobee executable file should now be found  
 in the `build` directory.
@@ -37,7 +37,7 @@ Should you need to recompile the Doxygen auto-generated code documentation, run 
  - `doxygen doxygen.cfg`
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMyOTIxMTE2NiwzNDMyMzA0NDYsMzUyOT
-E5MjY4LC04NjY2NDE2OTMsLTE2MzI0NzYzMTYsLTEyOTM1MzU0
-LC02MTc1MDM3MTZdfQ==
+eyJoaXN0b3J5IjpbMzk4NTQzNjE3LDM0MzIzMDQ0NiwzNTI5MT
+kyNjgsLTg2NjY0MTY5MywtMTYzMjQ3NjMxNiwtMTI5MzUzNTQs
+LTYxNzUwMzcxNl19
 -->
