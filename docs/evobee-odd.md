@@ -30,6 +30,7 @@ Simulation distances are measured in perceptual distance units (pdu). We define 
 
 ### Environment
 
+In an EvoBee simulation,  plants, flowers and pollinators exist in a 2D continuous-space environment. 
 In most experiments, we study a continuous-space environment 200 x 200 pdu (140 x 140 m). We model a single species of insect pollinator and two species of flowering plant (labelled X and Y). A column of area 40 x 200 pdu on the “left” edge of the environment acts as a refuge for plant species X; only plants of this species can grow here. If during the reproduction phase a seed from species Y lands in the refuge of species X it is removed from the simulation. An equivalent column on the right edge of the environment acts as a refuge for species Y. Plants of either species can occupy the central remaining 120 x 200 pdu region. Following Waser’s approach, we have incorporated these refuges to promote the possibility of the stable coexistence of two plant species (see Waser’s experiment (4), Effects of Refugia). In Waser’s experiments, these refuges  lead to a slight increase in the mean duration for which the environment supported the coexistence of the two species before one went to fixation.
 
 ## Process overview and scheduling
@@ -121,10 +122,10 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEwOD
-AxMDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzODEy
-NDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNy
-wxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0ODAyNzQ2LDg0NzA2
-MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5LC0yODU0NzA4M1
-19
+eyJoaXN0b3J5IjpbLTE3ODQ0OTk2NjQsMjA4ODU1OTI2MywtND
+E5MTc0MDk1LDEwODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0
+MzIsLTE2NDEzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MD
+QsMTAwNDYzMjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0
+ODAyNzQ2LDg0NzA2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNT
+Q5LC0yODU0NzA4M119
 -->
