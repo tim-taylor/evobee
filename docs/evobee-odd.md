@@ -56,7 +56,7 @@ The other available foraging strategies are `random`, and `random-flower`.  The 
 
 In addition to the foraging logic outlined above, each species of pollinator may be configured to exhibit *pollen constancy* (`constancy-type=simple` in the configuration file). In this case, the probability that a pollinator lands on a flower is further regulated by whether the flower is of the same species as the previously-visited flower. See the explanation of `constancy-param`  in the [EvoBee simulation configuration and execution](evobee-config.md) page for further details.
 
-Pollen transfer processes occur during each flower visit by a pollinator. These are described in a subsequent section ([Pollinator action on flowers](#pollinator-action-on-flowers])).
+Pollen transfer processes occur during each flower visit by a pollinator. These are described in [Pollinator action on flowers](#pollinator-action-on-flowers).
 
 #### Flowchart for *Forage Nearest* strategy
 
@@ -120,11 +120,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjA0NjgzNDMsLTEwODQ4Mzg4ODIsNjcyMD
-M0NzI3LC03MTI5OTM4MDcsMTc5Mjc3MzcxNSwtNzYxODgwMTgs
-LTExMzkyMzI2MTAsLTE2MjI4NDk3MDUsLTIwNjYyMDc2ODcsLT
-E4MjUzMzMwMjgsMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEwODAx
-MDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzODEyND
-ksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNywx
-MjI4NzUzMzQ3XX0=
+eyJoaXN0b3J5IjpbLTEyMDI1NzcxNzQsLTEwODQ4Mzg4ODIsNj
+cyMDM0NzI3LC03MTI5OTM4MDcsMTc5Mjc3MzcxNSwtNzYxODgw
+MTgsLTExMzkyMzI2MTAsLTE2MjI4NDk3MDUsLTIwNjYyMDc2OD
+csLTE4MjUzMzMwMjgsMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEw
+ODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzOD
+EyNDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIx
+NywxMjI4NzUzMzQ3XX0=
 -->
