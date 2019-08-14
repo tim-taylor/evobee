@@ -338,7 +338,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |anther-init-pollen|antherInitPollen|int|Amount of pollen available on anther at the start of each foraging phase|  
 |anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int|Number of pollen grains deposited on a pollinator per visit|  
 |stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int|Maximum amount of pollen the stigma can carry|  
-|pollen-clogging|pollenCloggingSpecies|std::string||  
+|pollen-clogging|pollenCloggingSpecies|std::string|Allowed values: empty string (does not clog any other species), "all" (clogs all other species), or a comma separated list of the names of the plant species that this species clo|  
 |repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|can seeds be dispersed at random across whole environment?|  
 |repro-seed-dispersal-radius|reproSeedDispersalRadius|float|expressed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
 
@@ -362,11 +362,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MjExMjk5MzYsOTIwMTg0MzU0LDM3MT
-g4NzE2MywtNzA4NDQyMTc4LDY2MTc0NDMxMSwxODI5MjY4Njcw
-LDczMTc1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NT
-cxMjAwMSwtMTA4NTI1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0
-LC0xMDg1MjU2MjE5LDEzMDIyNTc0MDksMTMwNzQ3NzYyOSwtMT
-g1MTkwNDA5NCwtMjA5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3
-Mjg1MjJdfQ==
+eyJoaXN0b3J5IjpbLTIwMzkxOTA5MTMsLTE4MjExMjk5MzYsOT
+IwMTg0MzU0LDM3MTg4NzE2MywtNzA4NDQyMTc4LDY2MTc0NDMx
+MSwxODI5MjY4NjcwLDczMTc1NjA4OSwxMDY4Njg1MjM2LC0xNT
+AzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIxOSwxNjk2ODA5
+OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMDIyNTc0MDksMT
+MwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMjA5Njk2NzM3NywtMTc0
+NTQ0NzA0NF19
 -->
