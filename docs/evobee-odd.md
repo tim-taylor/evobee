@@ -52,11 +52,14 @@ A pollinator following the *Forage Nearest* flower strategy  (see [Flowchart](#f
 
 A pollinator following the *Forage Any* flower strategy (see [Flowchart](#flowchart-for-forage-any-strategy) below) picks a flower to visit at random from all flowers in the entire environment, excluding those on its list of recently visited flowers. 
 
+The other available foraging strategies are `random` (), and `random-flower` (). 
+// The Random foraging strategy involves first making a move in a random direction, then looking for
+// a nearby flower. If a flower is found, the pollinator then moves to that if it is a visit candidate.
 
 
 
 
-Pollen transfer processes occur during  each flower visit by a pollinator. These are described in a subsequent section (Pollinator action on flowers).
+Pollen transfer processes occur during each flower visit by a pollinator. These are described in a subsequent section ([Pollinator action on flowers](#pollinator-action-on-flowers])).
 
 #### Flowchart for *Forage Nearest* strategy
 
@@ -123,11 +126,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMzkyMzI2MTAsLTE2MjI4NDk3MDUsLT
-IwNjYyMDc2ODcsLTE4MjUzMzMwMjgsMjA4ODU1OTI2MywtNDE5
-MTc0MDk1LDEwODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0Mz
-IsLTE2NDEzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQs
-MTAwNDYzMjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0OD
-AyNzQ2LDg0NzA2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5
-LC0yODU0NzA4M119
+eyJoaXN0b3J5IjpbMTIzMjA4MzQ2NywtMTEzOTIzMjYxMCwtMT
+YyMjg0OTcwNSwtMjA2NjIwNzY4NywtMTgyNTMzMzAyOCwyMDg4
+NTU5MjYzLC00MTkxNzQwOTUsMTA4MDEwODcwNCwxMTk1OTM3OD
+AsLTYwMDYxNjQzMiwtMTY0MTM4MTI0OSwtMTA5NzU2OTcxMSwt
+MTA3Njg1ODgwNCwxMDA0NjMyMjE3LDEyMjg3NTMzNDcsNzMyNT
+I1MTczLC00NzQ4MDI3NDYsODQ3MDYwMTU4LC01ODM0MzUyMjUs
+LTE2ODM3MTE1NDldfQ==
 -->
