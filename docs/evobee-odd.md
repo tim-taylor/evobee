@@ -97,7 +97,7 @@ Under the default *Forage Nearest* flower strategy, pollinators can see flowers 
 
 Under the alternative *Forage Any* flower strategy, pollinators  move to a random flower anywhere in the entire environment. This strategy simulates an aspatial, well-mixed population of plants—it does not represent a real-world situation, but is of interest to indicate the underlying dynamics of the system.
 
-Pollinators maintain a list of the last 5 individual flowers they have visited, and will not revisit a flower while it is on this list. The reader is reminded that the simulated insect pollinators are not flower constant. They will land on a target flower, as directed by the FN or FA strategy,  paying no heed of flower species.
+Pollinators maintain a list of the last *N* individual flowers they have visited (`visited-flower-memory-size`), and will not revisit a flower while it is on this list. The reader is reminded that the simulated insect pollinators are not flower constant. They will land on a target flower, as directed by the FN or FA strategy,  paying no heed of flower species.
 
 ### Interaction
 
@@ -118,11 +118,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzgxOTU3MTYwLC03MTI5OTM4MDcsMTc5Mj
-c3MzcxNSwtNzYxODgwMTgsLTExMzkyMzI2MTAsLTE2MjI4NDk3
-MDUsLTIwNjYyMDc2ODcsLTE4MjUzMzMwMjgsMjA4ODU1OTI2My
-wtNDE5MTc0MDk1LDEwODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2
-MTY0MzIsLTE2NDEzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NT
-g4MDQsMTAwNDYzMjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3Mywt
-NDc0ODAyNzQ2XX0=
+eyJoaXN0b3J5IjpbMTQ3MDg1MDgyNCwtNzEyOTkzODA3LDE3OT
+I3NzM3MTUsLTc2MTg4MDE4LC0xMTM5MjMyNjEwLC0xNjIyODQ5
+NzA1LC0yMDY2MjA3Njg3LC0xODI1MzMzMDI4LDIwODg1NTkyNj
+MsLTQxOTE3NDA5NSwxMDgwMTA4NzA0LDExOTU5Mzc4MCwtNjAw
+NjE2NDMyLC0xNjQxMzgxMjQ5LC0xMDk3NTY5NzExLC0xMDc2OD
+U4ODA0LDEwMDQ2MzIyMTcsMTIyODc1MzM0Nyw3MzI1MjUxNzMs
+LTQ3NDgwMjc0Nl19
 -->
