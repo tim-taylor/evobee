@@ -14,7 +14,7 @@ EvoBee is a spatially-explicit agent-based model designed to simulate interactio
 
 ### Pollinator agents
 
-Each  pollinator has a unique identification number. It keeps a record of its current position in the environment (a two-dimensional floating-point vector) and its current heading (a floating-point angle [0, 2π]). It has a pollen store, in which is recorded any pollen carried  after collection from visited flowers. It keeps a list of the ID numbers of the most recently visited flowers (the size of this list is defined by the parameter in the configuration file), and at any given time it will not revisit a flower that is currently on this list. Finally, each pollinator has a foraging strategy, which is either *Forage Nearest* flower, or *Forage Any* flower. These strategies are explained in the [Process Overview](#process-overview-and-scheduling) section.
+Each  pollinator has a unique identification number. It keeps a record of its current position in the environment (a two-dimensional floating-point vector) and its current heading (a floating-point angle [0, 2π]). It has a pollen store, in which is recorded any pollen carried  after collection from visited flowers. It keeps a list of the ID numbers of the most recently visited flowers (the size of this list is defined by the `visited-flower-memory-size` parameter in the configuration file), and at any given time it will not revisit a flower that is currently on this list. Finally, each pollinator has a foraging strategy, which are explained in the [Process Overview](#process-overview-and-scheduling) section.
 
 ### Flower/Plant agents
 
@@ -53,6 +53,8 @@ A pollinator following the *Forage Nearest* flower strategy  (see [Flowchart](#f
 A pollinator following the *Forage Any* flower strategy (see [Flowchart](#flowchart-for-forage-any-strategy) below) picks a flower to visit at random from all flowers in the entire environment, excluding those on its list of recently visited flowers. 
 
 The other available foraging strategies are `random`, and `random-flower`.  The `random` strategy involves first making a move in a random direction, then looking for a nearby flower. If a flower is found, the pollinator then moves to that if it is a visit candidate. The `random-flower` strategy involves first looking for a nearby unvisited flower from the pollinator's current position. If one is found and it is a visit candidate, the pollinator moves to a randomly selected flower from the eligible flowers found. If no flower is seen, it moves in a random direction.
+
+In addition to the foraging logic outlined above, each species of pollinator may be configured to exhibit *pollen constancy* (constancy-type=simple in the configurat. 
 
 Pollen transfer processes occur during each flower visit by a pollinator. These are described in a subsequent section ([Pollinator action on flowers](#pollinator-action-on-flowers])).
 
@@ -118,11 +120,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDkzNDE3MTk3LDY3MjAzNDcyNywtNzEyOT
-kzODA3LDE3OTI3NzM3MTUsLTc2MTg4MDE4LC0xMTM5MjMyNjEw
-LC0xNjIyODQ5NzA1LC0yMDY2MjA3Njg3LC0xODI1MzMzMDI4LD
-IwODg1NTkyNjMsLTQxOTE3NDA5NSwxMDgwMTA4NzA0LDExOTU5
-Mzc4MCwtNjAwNjE2NDMyLC0xNjQxMzgxMjQ5LC0xMDk3NTY5Nz
-ExLC0xMDc2ODU4ODA0LDEwMDQ2MzIyMTcsMTIyODc1MzM0Nyw3
-MzI1MjUxNzNdfQ==
+eyJoaXN0b3J5IjpbLTE3Njg4NTc0NDAsNjcyMDM0NzI3LC03MT
+I5OTM4MDcsMTc5Mjc3MzcxNSwtNzYxODgwMTgsLTExMzkyMzI2
+MTAsLTE2MjI4NDk3MDUsLTIwNjYyMDc2ODcsLTE4MjUzMzMwMj
+gsMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEwODAxMDg3MDQsMTE5
+NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzODEyNDksLTEwOTc1Nj
+k3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNywxMjI4NzUzMzQ3
+LDczMjUyNTE3M119
 -->
