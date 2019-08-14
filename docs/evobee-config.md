@@ -323,7 +323,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |constancy-type|strConstancyType|std::string|Allowed values: none, simple|  
 |constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|  
 |foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|  
-|visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it re|
+|visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it relands on a given flower, depending upon its foraging strategy.|
 
 
 ### Plant Type configuration parameters
@@ -362,11 +362,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NjI4MTQwNDEsMzcxODg3MTYzLC03MD
-g0NDIxNzgsNjYxNzQ0MzExLDE4MjkyNjg2NzAsNzMxNzU2MDg5
-LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMD
-g1MjU2MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYy
-MTksMTMwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC
-0yMDk2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2
-MjgxOTU4OF19
+eyJoaXN0b3J5IjpbLTcxMDkwNjgxNywzNzE4ODcxNjMsLTcwOD
+Q0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NTYwODks
+MTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwOD
+UyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIx
+OSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLT
+IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
+ODE5NTg4XX0=
 -->
