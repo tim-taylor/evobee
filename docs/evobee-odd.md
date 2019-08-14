@@ -101,11 +101,11 @@ Pollinators maintain a list of the last *N* individual flowers they have visited
 
 ### Interaction
 
-The interactions between agents in the simulation are those between an individual pollinators, pollen and individual flowers. These interactions take place when the pollinator lands on a flower, as described in the [Pollinator action on flowers](#) section. There are no direct pollinator-pollinator or flower-flower interactions. It is possible for multiple pollinators to land and interact with  a  single flower within a time step. The order of their interactions is randomised.
+The interactions between agents in the simulation are those between an individual pollinators, pollen and individual flowers. These interactions take place when the pollinator lands on a flower, as described in the [Pollinator action on flowers](#pollinator-action-on-flowers) section. There are no direct pollinator-pollinator or flower-flower interactions. It is possible for multiple pollinators to land and interact with a single flower within a time step. The order of their interactions is randomised.
 
 ### Stochasticity
 
-The stochastic elements of the simulation are: placement of flowers and pollinators at the start of each foraging phase; the order in which pollinators are processed at each time step during the foraging phase; the direction a pollinator move if it doesn’t find a suitable nearby flower target in the FN strategy; the choice of target flower in the FA strategy; the choice of which individual pollen grains are transferred from a pollinator to a flower’s stigma upon landing; and, in the reproduction phase, the order in which viable seeds are considered for producing plants for the next generation.
+The stochastic elements of the simulation are: placement of flowers and pollinators at the start of each foraging phase; the order in which pollinators are processed at each time step during the foraging phase; the direction a pollinator move if it doesn’t find a suitable nearby flower target in the *Forage Nearest* flower strategy; the choice of target flower in the *Forage Any* flower strategy; the choice of which individual pollen grains are transferred from a pollinator to a flower’s stigma upon landing; and, in the reproduction phase, the order in which viable seeds are considered for producing plants for the next generation.
 
 ### Observation
 
@@ -118,11 +118,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc4MjM4NDQ5MCwtNzEyOTkzODA3LDE3OT
-I3NzM3MTUsLTc2MTg4MDE4LC0xMTM5MjMyNjEwLC0xNjIyODQ5
-NzA1LC0yMDY2MjA3Njg3LC0xODI1MzMzMDI4LDIwODg1NTkyNj
-MsLTQxOTE3NDA5NSwxMDgwMTA4NzA0LDExOTU5Mzc4MCwtNjAw
-NjE2NDMyLC0xNjQxMzgxMjQ5LC0xMDk3NTY5NzExLC0xMDc2OD
-U4ODA0LDEwMDQ2MzIyMTcsMTIyODc1MzM0Nyw3MzI1MjUxNzMs
-LTQ3NDgwMjc0Nl19
+eyJoaXN0b3J5IjpbNjcyMDM0NzI3LC03MTI5OTM4MDcsMTc5Mj
+c3MzcxNSwtNzYxODgwMTgsLTExMzkyMzI2MTAsLTE2MjI4NDk3
+MDUsLTIwNjYyMDc2ODcsLTE4MjUzMzMwMjgsMjA4ODU1OTI2My
+wtNDE5MTc0MDk1LDEwODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2
+MTY0MzIsLTE2NDEzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NT
+g4MDQsMTAwNDYzMjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3Mywt
+NDc0ODAyNzQ2XX0=
 -->
