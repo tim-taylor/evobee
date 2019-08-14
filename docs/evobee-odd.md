@@ -76,7 +76,7 @@ In the diagram `bee-pollen` refers to pollen carried on the body of the insect a
 
 ### Flower dynamics
 
-At the start of a foraging phase, each flower begins with a fixed amount of anther pollen available for collection. Each flower also begins with a stigma free from pollen, but as the foraging phase progresses visiting pollinators may deposit pollen on its stigma. Pollinators may be allowed to deposit pollen from a different species onto the stigma (potentially pollen-clogging the flower) depending upon the configuration of the experiment. The `stigma-max-pollen-capacity` parameter specifies the capacity for pollen grains on a stigma. At the end of a foraging phase, every conspecific grain of pollen on the stigma forms a viable seed that enters the gene pool for the next generation of plants as described above ([Overview of dynamics](#overview-of-dynamics)). 
+At the start of a foraging phase, each flower begins with a fixed amount of anther pollen available for collection. Each flower also begins with a stigma free from pollen, but as the foraging phase progresses visiting pollinators may deposit pollen on its stigma. Pollinators may be allowed to deposit pollen from a different species onto the stigma (potentially pollen-clogging the flower) depending upon the configuration of the experiment. The `stigma-max-pollen-capacity` parameter specifies the capacity for pollen grains on a stigma. At the end of a foraging phase, every conspecific grain of pollen on the stigma forms a viable seed that enters the gene pool for the next generation of plants as described above ([Overview of dynamics](#overview-of-dynamics-foraging-and-reproduction-phases)). 
 
 ### Pollinator action on flowers
 
@@ -121,11 +121,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMTc5MTY1MTUsLTc2MTg4MDE4LC0xMT
-M5MjMyNjEwLC0xNjIyODQ5NzA1LC0yMDY2MjA3Njg3LC0xODI1
-MzMzMDI4LDIwODg1NTkyNjMsLTQxOTE3NDA5NSwxMDgwMTA4Nz
-A0LDExOTU5Mzc4MCwtNjAwNjE2NDMyLC0xNjQxMzgxMjQ5LC0x
-MDk3NTY5NzExLC0xMDc2ODU4ODA0LDEwMDQ2MzIyMTcsMTIyOD
-c1MzM0Nyw3MzI1MjUxNzMsLTQ3NDgwMjc0Niw4NDcwNjAxNTgs
-LTU4MzQzNTIyNV19
+eyJoaXN0b3J5IjpbMTc5Mjc3MzcxNSwtNzYxODgwMTgsLTExMz
+kyMzI2MTAsLTE2MjI4NDk3MDUsLTIwNjYyMDc2ODcsLTE4MjUz
+MzMwMjgsMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEwODAxMDg3MD
+QsMTE5NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzODEyNDksLTEw
+OTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNywxMjI4Nz
+UzMzQ3LDczMjUyNTE3MywtNDc0ODAyNzQ2LDg0NzA2MDE1OCwt
+NTgzNDM1MjI1XX0=
 -->
