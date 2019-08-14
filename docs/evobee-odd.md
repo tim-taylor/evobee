@@ -31,7 +31,7 @@ Simulation distances are measured in perceptual distance units (pdu). We define 
 ### Environment
 
 In an EvoBee simulation,  plants, flowers and pollinators exist in a 2D continuous-space environment. The initial distribution of plants is defined by the `PlantTypeDistribution` section of the configuration file, and the initial distribution of pollinators is defined by the `Hives` section of the configuration file. It is possible to specify one or more areas of the environment as refuges for particular plant species. This is done in the `PlantTypeDistribution` section of the configuration file. 
- only plants of this species can grow here. If during the reproduction phase a seed from species Y lands in the refuge of species X it is removed from the simulation. An equivalent column on the right edge of the environment acts as a refuge for species Y. Plants of either species can occupy the central remaining 120 x 200 pdu region. Following Waser’s approach, we have incorporated these refuges to promote the possibility of the stable coexistence of two plant species (see Waser’s experiment (4), Effects of Refugia). In Waser’s experiments, these refuges  lead to a slight increase in the mean duration for which the environment supported the coexistence of the two species before one went to fixation.
+Only plants of one specified species can grow in a refuge area. If during the reproduction phase of the simulation (see Process overview and scheduling) a seed from a different species lands in the refuge, it is removed from the simulation. An equivalent column on the right edge of the environment acts as a refuge for species Y. Plants of either species can occupy the central remaining 120 x 200 pdu region. Following Waser’s approach, we have incorporated these refuges to promote the possibility of the stable coexistence of two plant species (see Waser’s experiment (4), Effects of Refugia). In Waser’s experiments, these refuges  lead to a slight increase in the mean duration for which the environment supported the coexistence of the two species before one went to fixation.
 
 ## Process overview and scheduling
     
@@ -122,10 +122,10 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MjI3NTI2MSwyMDg4NTU5MjYzLC00MT
-kxNzQwOTUsMTA4MDEwODcwNCwxMTk1OTM3ODAsLTYwMDYxNjQz
-MiwtMTY0MTM4MTI0OSwtMTA5NzU2OTcxMSwtMTA3Njg1ODgwNC
-wxMDA0NjMyMjE3LDEyMjg3NTMzNDcsNzMyNTI1MTczLC00NzQ4
-MDI3NDYsODQ3MDYwMTU4LC01ODM0MzUyMjUsLTE2ODM3MTE1ND
-ksLTI4NTQ3MDgzXX0=
+eyJoaXN0b3J5IjpbLTEzNjI1OTUwMDAsMjA4ODU1OTI2MywtND
+E5MTc0MDk1LDEwODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0
+MzIsLTE2NDEzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MD
+QsMTAwNDYzMjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0
+ODAyNzQ2LDg0NzA2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNT
+Q5LC0yODU0NzA4M119
 -->
