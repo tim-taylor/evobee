@@ -26,7 +26,7 @@ Each pollen grain is modelled individually, and records the individual flower th
 
 ### Spatial Units
 
-Simulation distances are measured in perceptual distance units (pdu). We define 1 pdu to correspond to the distance over which bumblebees can detect a plant’s flowers, ~0.7m [REF Dyer, Sparthe et al, 2008; Wertlen, Niggebrugge et al 2008].
+Simulation distances are measured in perceptual distance units (pdu). We define 1 pdu to correspond to the distance over which bumblebees can detect a plant’s flowers, which is approximately 0.7m.
 
 In these experiments the environment is homogeneous (with the exception of the refuge areas described in the following section), so there are no state variables associated with particular positions within the environment.
 
@@ -123,9 +123,10 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQxOTE3NDA5NSwxMDgwMTA4NzA0LDExOT
-U5Mzc4MCwtNjAwNjE2NDMyLC0xNjQxMzgxMjQ5LC0xMDk3NTY5
-NzExLC0xMDc2ODU4ODA0LDEwMDQ2MzIyMTcsMTIyODc1MzM0Ny
-w3MzI1MjUxNzMsLTQ3NDgwMjc0Niw4NDcwNjAxNTgsLTU4MzQz
-NTIyNSwtMTY4MzcxMTU0OSwtMjg1NDcwODNdfQ==
+eyJoaXN0b3J5IjpbLTMxMTM1NzU5NSwtNDE5MTc0MDk1LDEwOD
+AxMDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzODEy
+NDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNy
+wxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0ODAyNzQ2LDg0NzA2
+MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5LC0yODU0NzA4M1
+19
 -->
