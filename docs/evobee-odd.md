@@ -109,7 +109,7 @@ The stochastic elements of the simulation are: placement of flowers and pollinat
 
 ### Observation
 
-In these experiments, the main data recorded during experiments are, at the end of each generation, the generation number and the number of plants of each species X and Y currently in existence. For each experiment, we also record the full configuration set-up.
+A variety of logging options are available. These can be configured using the logging-related parameters in the configuration file.
 
 ## Initialization
 
@@ -118,11 +118,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjcyMDM0NzI3LC03MTI5OTM4MDcsMTc5Mj
-c3MzcxNSwtNzYxODgwMTgsLTExMzkyMzI2MTAsLTE2MjI4NDk3
-MDUsLTIwNjYyMDc2ODcsLTE4MjUzMzMwMjgsMjA4ODU1OTI2My
-wtNDE5MTc0MDk1LDEwODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2
-MTY0MzIsLTE2NDEzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NT
-g4MDQsMTAwNDYzMjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3Mywt
-NDc0ODAyNzQ2XX0=
+eyJoaXN0b3J5IjpbLTEwNTg3Mzk4MzEsNjcyMDM0NzI3LC03MT
+I5OTM4MDcsMTc5Mjc3MzcxNSwtNzYxODgwMTgsLTExMzkyMzI2
+MTAsLTE2MjI4NDk3MDUsLTIwNjYyMDc2ODcsLTE4MjUzMzMwMj
+gsMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEwODAxMDg3MDQsMTE5
+NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzODEyNDksLTEwOTc1Nj
+k3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNywxMjI4NzUzMzQ3
+LDczMjUyNTE3M119
 -->
