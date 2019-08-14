@@ -317,12 +317,11 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|  
 |pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|  
 |pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|  
-|pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it
-is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|  
+|pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|  
 |innate-mp-pref-min|innateMPPrefMin|MarkerPoint||  
 |innate-mp-pref-max|innateMPPrefMax|MarkerPoint||  
 |constancy-type|strConstancyType|std::string|Allowed values: none, simple|  
-|constancy-param|constancyParam|float||  
+|constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number|  
 |foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|  
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int||
 
@@ -363,11 +362,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTczMzAxNDA5OSwzNzE4ODcxNjMsLTcwOD
-Q0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NTYwODks
-MTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwOD
-UyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIx
-OSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLT
-IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
-ODE5NTg4XX0=
+eyJoaXN0b3J5IjpbMjg4OTE3MjQwLDM3MTg4NzE2MywtNzA4ND
+QyMTc4LDY2MTc0NDMxMSwxODI5MjY4NjcwLDczMTc1NjA4OSwx
+MDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NT
+I1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5
+LDEzMDIyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMj
+A5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4
+MTk1ODhdfQ==
 -->
