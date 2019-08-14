@@ -37,13 +37,12 @@ Only plants of one specified species can grow in a refuge area. If during the re
     
 
 ### Overview of dynamics: foraging and reproduction phases
-    
 
 The simulation features a 2D continuous spatial environment containing a population of flowering plants of two different species. Each plant has one or more flowers that can be foraged by members of a single population of insect pollinator agents. The simulation cycles through two phases, an *insect foraging and pollination phase*, and a *plant reproduction phase*.
 
 During the foraging and pollination phase, the pollinators forage from the fixed population of flowers, transferring pollen between flowers as they visit and, potentially, pollinating them. This phase proceeds in discrete steps until the specified termination criterion has been reached (e.g. after a specified number of steps have elapsed). The termination criterion for the foraging and pollination phase is specified by the `generation-termination-type` parameter in the configuration file. At this point, the plant reproduction phase begins.
 
-During the plant reproduction phase, viable seeds from pollinated plants form the gene pool for a new generation of plants. All plants and pollinators from the previous generation are removed from the environment, and new plants are created based upon parents picked at random (without replacement) from the gene pool. New plants are distributed to random positions in the environment. New plants are created until all members of the gene pool have been reproduced, or until the maximum carrying capacity of the environment is reached. A new population of pollinators is then created and distributed to random starting positions in the environment. Next, a new foraging phase commences. This simulation continues to cycle until a specified number of foraging/reproduction phases have been completed.
+During the plant reproduction phase, viable seeds from pollinated plants form the gene pool for a new generation of plants. All plants and pollinators from the previous generation are removed from the environment, and new plants are created based upon parents picked at random (without replacement) from the gene pool. New plants are distributed to random positions in the environment. New plants are created until all members of the gene pool have been reproduced, or until the maximum carrying capacity of the environment is reached. A new population of pollinators is then created and distributed to random starting positions in the environment. Next, a new foraging phase commences. This simulation continues to cycle until a specified number of foraging/reproduction phases have been completed (defined by the `sim-termination-num-gens` parameter in the configuration file).
 
 ### Pollinator dynamics
 
@@ -122,10 +121,10 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgzMDcxNTQ0NiwyMDg4NTU5MjYzLC00MT
-kxNzQwOTUsMTA4MDEwODcwNCwxMTk1OTM3ODAsLTYwMDYxNjQz
-MiwtMTY0MTM4MTI0OSwtMTA5NzU2OTcxMSwtMTA3Njg1ODgwNC
-wxMDA0NjMyMjE3LDEyMjg3NTMzNDcsNzMyNTI1MTczLC00NzQ4
-MDI3NDYsODQ3MDYwMTU4LC01ODM0MzUyMjUsLTE2ODM3MTE1ND
-ksLTI4NTQ3MDgzXX0=
+eyJoaXN0b3J5IjpbLTE4MjUzMzMwMjgsMjA4ODU1OTI2MywtND
+E5MTc0MDk1LDEwODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0
+MzIsLTE2NDEzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MD
+QsMTAwNDYzMjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0
+ODAyNzQ2LDg0NzA2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNT
+Q5LC0yODU0NzA4M119
 -->
