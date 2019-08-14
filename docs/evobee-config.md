@@ -6,7 +6,7 @@ When the program has been successfully [compiled](evobee-install.md), the execut
 
 The evobee executable accepts a small number of command-line arguments. To query what these are, run the command
 
-    ./evobee --help
+    > ./evobee --help
 
 This output should look like this:
 
@@ -20,7 +20,7 @@ This output should look like this:
 
 The vast majority of configuration options for the program are set using a configuration file rather than the command line. As shown in the output above, the default filename that `evobee` searches for is `evobee.cfg.json`, and it only searches in the current working directory. To specify a different name and location, use the -c flag when calling the program. For example:
 
-    ./evobee -c /home/me/my-config-file.cfg.json
+    > ./evobee -c /home/me/my-config-file.cfg.json
 
 The format of the configuration file and the options that can be specified within it are explained in the following sections.
 
@@ -181,7 +181,6 @@ These files are shown below, followed by the [Configuration options](#configurat
                     "area-bottom-right-y" : 99,
                     "density" : 0.5,
                     "refuge" : false,
-                    "refuge-alien-inflow-prob" : 0.5,
                     "seed-outflow-allowed" : true,
                     "seed-outflow-restricted" : false,
                     "seed-outflow-prob" : 0.5,
@@ -196,7 +195,6 @@ These files are shown below, followed by the [Configuration options](#configurat
                     "area-bottom-right-y" : 99,
                     "density" : 0.5,
                     "refuge" : false,
-                    "refuge-alien-inflow-prob" : 0.5,
                     "seed-outflow-allowed" : true,
                     "seed-outflow-restricted" : false,
                     "seed-outflow-prob" : 0.5,
@@ -261,7 +259,7 @@ The following table describes each parameter that can be specified in the config
 
 |Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
  |---|---|---|---|  
-|visualisation|m_bVisualisation|bool|Use visualiation for this run?|  
+|visualisation|m_bVisualisation|bool|Use visualisation for this run?|  
 |env-size-x|m_iEnvSizeX|int|Environment size (num patches) in x direction|  
 |env-size-y|m_iEnvSizeY|int|Environment size (num patches) in y direction|  
 |vis-max-screen-frac-w|m_fMaxScreenFracW|float|Max fraction of screen size for vis window width|  
@@ -289,8 +287,8 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PlantTypeDistribution auto-generation number of columns of areas to generate|  
 |auto-distrib-density|m_fPtdAutoDistribDensity|float|PlantTypeDistribution auto-generation density of plants in each area|  
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
-|auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|
-|rng-seed|m_strRngSeed|std::string|Seed string used to seeed RNG|
+|auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stochastic pattern?|
+|rng-seed|m_strRngSeed|std::string|Seed string used to seed RNG|
 
 ### Hive configuration parameters
 
@@ -314,18 +312,18 @@ Pollinator configuration parameters for a single pollinator species are stored i
 
 |Parameter name in JSON config file|Corresponding variable name in PollinatorConfig.h|Type of variable|Description|
 |---|---|---|---|  
-|species|species|std::string||  
-|bout-length|boutLength|int||  
-|max-pollen-capacity|maxPollenCapacity|int||  
-|pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int||  
-|pollen-loss-in-air|pollenLossInAir|int||  
-|pollen-carryover-num-visits|pollenCarryoverNumVisits|int||  
+|species|species|std::string|Text label designating species of pollinator (any text is allowed)|  
+|bout-length|boutLength|int|Number of flower visits allowed before returning to hive [0=unlimited]|  
+|max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|  
+|pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|  
+|pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|  
+|pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|  
 |innate-mp-pref-min|innateMPPrefMin|MarkerPoint||  
 |innate-mp-pref-max|innateMPPrefMax|MarkerPoint||  
-|constancy-type|strConstancyType|std::string||  
-|constancy-param|constancyParam|float||  
-|foraging-strategy|strForagingStrategy|std::string||  
-|visited-flower-memory-size|visitedFlowerMemorySize|unsigned int||
+|constancy-type|strConstancyType|std::string|Allowed values: none, simple|  
+|constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|  
+|foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|  
+|visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it relands on a given flower, depending upon its foraging strategy.|
 
 
 ### Plant Type configuration parameters
@@ -334,15 +332,15 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|  
-|species|species|std::string||  
+|species|species|std::string|Text label designating species of plant (any text is allowed)|  
 |flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint||  
 |flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint||  
-|anther-init-pollen|antherInitPollen|int||  
-|anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int||  
-|stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int||  
-|pollen-clogging|pollenCloggingSpecies|std::string||  
-|repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|can seeds be dispersed at random across whole environment?|  
-|repro-seed-dispersal-radius|reproSeedDispersalRadius|float|expreseed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
+|anther-init-pollen|antherInitPollen|int|Amount of pollen available on anther at the start of each foraging phase|  
+|anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int|Number of pollen grains deposited on a pollinator per visit|  
+|stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int|Maximum amount of pollen the stigma can carry|  
+|pollen-clogging|pollenCloggingSpecies|std::string|Allowed values: empty string (does not clog any other species), "all" (clogs all other species), or a comma separated list of the names of the plant species that this species clogs|  
+|repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|Can seeds be dispersed at random across whole environment?|  
+|repro-seed-dispersal-radius|reproSeedDispersalRadius|float|Expressed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
 
 
 ### Plant Distribution configuration parameters
@@ -364,11 +362,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzcxODg3MTYzLC03MDg0NDIxNzgsNjYxNz
-Q0MzExLDE4MjkyNjg2NzAsNzMxNzU2MDg5LDEwNjg2ODUyMzYs
-LTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2MjE5LDE2OT
-Y4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMTMwMjI1NzQw
-OSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3Mzc3LC
-0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2MjgxOTU4OCwyMDU2
-NDUwMzY1XX0=
+eyJoaXN0b3J5IjpbMzI4ODIzMjMsLTE4MjExMjk5MzYsOTIwMT
+g0MzU0LDM3MTg4NzE2MywtNzA4NDQyMTc4LDY2MTc0NDMxMSwx
+ODI5MjY4NjcwLDczMTc1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNT
+QxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIxOSwxNjk2ODA5OTUs
+LTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMDIyNTc0MDksMTMwNz
+Q3NzYyOSwtMTg1MTkwNDA5NCwtMjA5Njk2NzM3NywtMTc0NTQ0
+NzA0NF19
 -->
