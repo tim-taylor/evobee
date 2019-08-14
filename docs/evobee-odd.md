@@ -14,7 +14,7 @@ EvoBee is a spatially-explicit agent-based model designed to simulate interactio
 
 ### Pollinator agents
 
-Each  pollinator has a unique identification number. It keeps a record of its current position in the environment (a two-dimensional floating-point vector) and its current heading (a floating-point angle [0, 2π]). It has a pollen store, in which is recorded any pollen carried  after collection from visited flowers. It keeps a list of the id. numbers of the five most recently visited flowers, and at any given time it will not revisit a flower that is currently on this list. Finally, each pollinator has a foraging strategy, which is either *Forage Nearest* flower, or *Forage Any* flower. These strategies are explained in the [Process Overview](#process-overview-and-scheduling) section.
+Each  pollinator has a unique identification number. It keeps a record of its current position in the environment (a two-dimensional floating-point vector) and its current heading (a floating-point angle [0, 2π]). It has a pollen store, in which is recorded any pollen carried  after collection from visited flowers. It keeps a list of the ID numbers of the five most recently visited flowers, and at any given time it will not revisit a flower that is currently on this list. Finally, each pollinator has a foraging strategy, which is either *Forage Nearest* flower, or *Forage Any* flower. These strategies are explained in the [Process Overview](#process-overview-and-scheduling) section.
 
 ### Flower/Plant agents
 
@@ -123,9 +123,9 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE5NTkzNzgwLC02MDA2MTY0MzIsLTE2ND
-EzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYz
-MjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0ODAyNzQ2LD
-g0NzA2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5LC0yODU0
-NzA4M119
+eyJoaXN0b3J5IjpbMTA4MDEwODcwNCwxMTk1OTM3ODAsLTYwMD
+YxNjQzMiwtMTY0MTM4MTI0OSwtMTA5NzU2OTcxMSwtMTA3Njg1
+ODgwNCwxMDA0NjMyMjE3LDEyMjg3NTMzNDcsNzMyNTI1MTczLC
+00NzQ4MDI3NDYsODQ3MDYwMTU4LC01ODM0MzUyMjUsLTE2ODM3
+MTE1NDksLTI4NTQ3MDgzXX0=
 -->
