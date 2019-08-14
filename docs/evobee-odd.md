@@ -30,7 +30,7 @@ Simulation distances are measured in perceptual distance units (pdu). We define 
 
 ### Environment
 
-In an EvoBee simulation,  plants, flowers and pollinators exist in a 2D continuous-space environment. The initial distribution of plants is defined by the PlantTypeDistribution section of the configuaration file, and the initial distribution of pollinators is defi
+In an EvoBee simulation,  plants, flowers and pollinators exist in a 2D continuous-space environment. The initial distribution of plants is defined by the `PlantTypeDistribution` section of the configuration file, and the initial distribution of pollinators is defined by the `Hives` section of the configuration file. 
 In most experiments, we study a continuous-space environment 200 x 200 pdu (140 x 140 m). We model a single species of insect pollinator and two species of flowering plant (labelled X and Y). A column of area 40 x 200 pdu on the “left” edge of the environment acts as a refuge for plant species X; only plants of this species can grow here. If during the reproduction phase a seed from species Y lands in the refuge of species X it is removed from the simulation. An equivalent column on the right edge of the environment acts as a refuge for species Y. Plants of either species can occupy the central remaining 120 x 200 pdu region. Following Waser’s approach, we have incorporated these refuges to promote the possibility of the stable coexistence of two plant species (see Waser’s experiment (4), Effects of Refugia). In Waser’s experiments, these refuges  lead to a slight increase in the mean duration for which the environment supported the coexistence of the two species before one went to fixation.
 
 ## Process overview and scheduling
@@ -122,10 +122,10 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUzMzQwMDgzNCwyMDg4NTU5MjYzLC00MT
-kxNzQwOTUsMTA4MDEwODcwNCwxMTk1OTM3ODAsLTYwMDYxNjQz
-MiwtMTY0MTM4MTI0OSwtMTA5NzU2OTcxMSwtMTA3Njg1ODgwNC
-wxMDA0NjMyMjE3LDEyMjg3NTMzNDcsNzMyNTI1MTczLC00NzQ4
-MDI3NDYsODQ3MDYwMTU4LC01ODM0MzUyMjUsLTE2ODM3MTE1ND
-ksLTI4NTQ3MDgzXX0=
+eyJoaXN0b3J5IjpbMTMyOTA4OTIyLDIwODg1NTkyNjMsLTQxOT
+E3NDA5NSwxMDgwMTA4NzA0LDExOTU5Mzc4MCwtNjAwNjE2NDMy
+LC0xNjQxMzgxMjQ5LC0xMDk3NTY5NzExLC0xMDc2ODU4ODA0LD
+EwMDQ2MzIyMTcsMTIyODc1MzM0Nyw3MzI1MjUxNzMsLTQ3NDgw
+Mjc0Niw4NDcwNjAxNTgsLTU4MzQzNTIyNSwtMTY4MzcxMTU0OS
+wtMjg1NDcwODNdfQ==
 -->
