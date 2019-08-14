@@ -317,13 +317,8 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|  
 |pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|  
 |pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|  
-|pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is
-
-* still not deposited after this numebr of visits, it
-
-* is removed from the pollinator (i.e. it is lost)
-
-* A value of 0 indicates no limit in number of visits.|  
+|pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it
+is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|  
 |innate-mp-pref-min|innateMPPrefMin|MarkerPoint||  
 |innate-mp-pref-max|innateMPPrefMax|MarkerPoint||  
 |constancy-type|strConstancyType|std::string|Allowed values: none, simple|  
@@ -338,7 +333,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|  
-|species|species|std::string||  
+|species|species|std::string|Text label designating species |  
 |flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint||  
 |flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint||  
 |anther-init-pollen|antherInitPollen|int||  
@@ -368,11 +363,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNjYwMjkwMzQsMzcxODg3MTYzLC03MD
-g0NDIxNzgsNjYxNzQ0MzExLDE4MjkyNjg2NzAsNzMxNzU2MDg5
-LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMD
-g1MjU2MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYy
-MTksMTMwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC
-0yMDk2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2
-MjgxOTU4OF19
+eyJoaXN0b3J5IjpbMTIyNjQ4MTA4OCwzNzE4ODcxNjMsLTcwOD
+Q0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NTYwODks
+MTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwOD
+UyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIx
+OSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLT
+IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
+ODE5NTg4XX0=
 -->
