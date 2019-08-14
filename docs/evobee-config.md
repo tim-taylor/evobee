@@ -312,7 +312,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 
 |Parameter name in JSON config file|Corresponding variable name in PollinatorConfig.h|Type of variable|Description|
 |---|---|---|---|  
-|species|species|std::string||  
+|species|species|std::string|Text label designating species of pollinator (any text is allowed)|  
 |bout-length|boutLength|int|Number of flower visits allowed before returning to hive [0=unlimited]|  
 |max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|  
 |pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|  
@@ -333,7 +333,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|  
-|species|species|std::string|Text label designating species |  
+|species|species|std::string|Text label designating species of plant (any text is allowed)|  
 |flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint||  
 |flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint||  
 |anther-init-pollen|antherInitPollen|int||  
@@ -363,7 +363,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIyNjQ4MTA4OCwzNzE4ODcxNjMsLTcwOD
+eyJoaXN0b3J5IjpbMTczMzAxNDA5OSwzNzE4ODcxNjMsLTcwOD
 Q0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NTYwODks
 MTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwOD
 UyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIx
