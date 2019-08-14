@@ -259,7 +259,7 @@ The following table describes each parameter that can be specified in the config
 
 |Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
  |---|---|---|---|  
-|visualisation|m_bVisualisation|bool|Use visualiation for this run?|  
+|visualisation|m_bVisualisation|bool|Use visualisation for this run?|  
 |env-size-x|m_iEnvSizeX|int|Environment size (num patches) in x direction|  
 |env-size-y|m_iEnvSizeY|int|Environment size (num patches) in y direction|  
 |vis-max-screen-frac-w|m_fMaxScreenFracW|float|Max fraction of screen size for vis window width|  
@@ -288,7 +288,7 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-density|m_fPtdAutoDistribDensity|float|PlantTypeDistribution auto-generation density of plants in each area|  
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stochastic pattern?|
-|rng-seed|m_strRngSeed|std::string|Seed string used to seeed RNG|
+|rng-seed|m_strRngSeed|std::string|Seed string used to seed RNG|
 
 ### Hive configuration parameters
 
@@ -362,11 +362,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTEyNzUxNTg2LDM3MTg4NzE2MywtNzA4ND
-QyMTc4LDY2MTc0NDMxMSwxODI5MjY4NjcwLDczMTc1NjA4OSwx
-MDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NT
-I1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5
-LDEzMDIyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMj
-A5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4
-MTk1ODhdfQ==
+eyJoaXN0b3J5IjpbLTgzODIxMDE5MiwzNzE4ODcxNjMsLTcwOD
+Q0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NTYwODks
+MTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEsLTEwOD
+UyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NTI1NjIx
+OSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQwOTQsLT
+IwOTY5NjczNzcsLTE3NDU0NDcwNDQsNDYxNzI4NTIyLC0xMTYy
+ODE5NTg4XX0=
 -->
