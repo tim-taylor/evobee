@@ -14,7 +14,7 @@ EvoBee is a spatially-explicit agent-based model designed to simulate interactio
 
 ### Pollinator agents
 
-Each  pollinator has a unique identification number. It keeps a record of its current position in the environment (a two-dimensional floating-point vector) and its current heading (a floating-point angle [0, 2π]). It has a pollen store, in which is recorded any pollen carried  after collection from visited flowers. It keeps a list of the ID numbers of the five most recently visited flowers, and at any given time it will not revisit a flower that is currently on this list. Finally, each pollinator has a foraging strategy, which is either *Forage Nearest* flower, or *Forage Any* flower. These strategies are explained in the [Process Overview](#process-overview-and-scheduling) section.
+Each  pollinator has a unique identification number. It keeps a record of its current position in the environment (a two-dimensional floating-point vector) and its current heading (a floating-point angle [0, 2π]). It has a pollen store, in which is recorded any pollen carried  after collection from visited flowers. It keeps a list of the ID numbers of the most recently visited flowers (the size of this list is defined by the parameter in the configuration file), and at any given time it will not revisit a flower that is currently on this list. Finally, each pollinator has a foraging strategy, which is either *Forage Nearest* flower, or *Forage Any* flower. These strategies are explained in the [Process Overview](#process-overview-and-scheduling) section.
 
 ### Flower/Plant agents
 
@@ -118,11 +118,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNTg3Mzk4MzEsNjcyMDM0NzI3LC03MT
-I5OTM4MDcsMTc5Mjc3MzcxNSwtNzYxODgwMTgsLTExMzkyMzI2
-MTAsLTE2MjI4NDk3MDUsLTIwNjYyMDc2ODcsLTE4MjUzMzMwMj
-gsMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEwODAxMDg3MDQsMTE5
-NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzODEyNDksLTEwOTc1Nj
-k3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNywxMjI4NzUzMzQ3
-LDczMjUyNTE3M119
+eyJoaXN0b3J5IjpbNDkzNDE3MTk3LDY3MjAzNDcyNywtNzEyOT
+kzODA3LDE3OTI3NzM3MTUsLTc2MTg4MDE4LC0xMTM5MjMyNjEw
+LC0xNjIyODQ5NzA1LC0yMDY2MjA3Njg3LC0xODI1MzMzMDI4LD
+IwODg1NTkyNjMsLTQxOTE3NDA5NSwxMDgwMTA4NzA0LDExOTU5
+Mzc4MCwtNjAwNjE2NDMyLC0xNjQxMzgxMjQ5LC0xMDk3NTY5Nz
+ExLC0xMDc2ODU4ODA0LDEwMDQ2MzIyMTcsMTIyODc1MzM0Nyw3
+MzI1MjUxNzNdfQ==
 -->
