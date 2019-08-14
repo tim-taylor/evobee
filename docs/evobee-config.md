@@ -321,9 +321,9 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |innate-mp-pref-min|innateMPPrefMin|MarkerPoint||  
 |innate-mp-pref-max|innateMPPrefMax|MarkerPoint||  
 |constancy-type|strConstancyType|std::string|Allowed values: none, simple|  
-|constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probablity 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|  
+|constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|  
 |foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|  
-|visited-flower-memory-size|visitedFlowerMemorySize|unsigned int||
+|visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it re|
 
 
 ### Plant Type configuration parameters
@@ -362,11 +362,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTQzMzkyMzU5LDM3MTg4NzE2MywtNzA4ND
-QyMTc4LDY2MTc0NDMxMSwxODI5MjY4NjcwLDczMTc1NjA4OSwx
-MDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NT
-I1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5
-LDEzMDIyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5NCwtMj
-A5Njk2NzM3NywtMTc0NTQ0NzA0NCw0NjE3Mjg1MjIsLTExNjI4
-MTk1ODhdfQ==
+eyJoaXN0b3J5IjpbLTE4NjI4MTQwNDEsMzcxODg3MTYzLC03MD
+g0NDIxNzgsNjYxNzQ0MzExLDE4MjkyNjg2NzAsNzMxNzU2MDg5
+LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMD
+g1MjU2MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYy
+MTksMTMwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC
+0yMDk2OTY3Mzc3LC0xNzQ1NDQ3MDQ0LDQ2MTcyODUyMiwtMTE2
+MjgxOTU4OF19
 -->
