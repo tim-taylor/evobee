@@ -80,7 +80,7 @@ At the start of a foraging phase, each flower begins with a fixed amount of anth
 
 ### Pollinator action on flowers
 
-Each pollen grain carried by a pollinator visiting a flower is considered for transfer to the flower’s stigma subject to these limiting factors: the pollinator has a fixed maximum number of grains that it can transfer to the stigma during a visit (`pollen-deposit-per-flower-visit`); the stigma has a fixed maximum capacity for accepting pollen grains (`stigma-max-pollen-capacity`), and the stigma may or may not be susceptible to receiving pollen grains from a different species (`pollen-clogging`). Having taken all of these factors into account, if any pollen grains on the pollinator are eligible for transfer, then the determined number are picked at random from the pollinator for transferral to the stigma. Finally, the flower may transfer some of its anther pollen onto the pollinator’s body. Flower anthers start with a specified amount of pollen in each foraging phase; any available pollen on the anther is transferred to the pollinator, up to the fixed maximum transfer limit per visit.
+Each pollen grain carried by a pollinator visiting a flower is considered for transfer to the flower’s stigma subject to these limiting factors: the pollinator has a fixed maximum number of grains that it can transfer to the stigma during a visit (`pollen-deposit-per-flower-visit`); the stigma has a fixed maximum capacity for accepting pollen grains (`stigma-max-pollen-capacity`), and the stigma may or may not be susceptible to receiving pollen grains from a different species (`pollen-clogging`). Having taken all of these factors into account, if any pollen grains on the pollinator are eligible for transfer, then the determined number are picked at random from the pollinator for transferral to the stigma. Finally, the flower may transfer some of its anther pollen onto the pollinator’s body. Flower anthers start with a specified amount of pollen in each foraging phase (`anther-init-pollen`); any available pollen on the anther is transferred to the pollinator, up to the fixed maximum transfer limit per visit (`anther-pollen-transfer-per-visit`).
 
 ##  Design concepts
     
@@ -121,7 +121,7 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA4MDg0NDQ0OSwxNzkyNzczNzE1LC03Nj
+eyJoaXN0b3J5IjpbLTIxMjU5NTIyOCwxNzkyNzczNzE1LC03Nj
 E4ODAxOCwtMTEzOTIzMjYxMCwtMTYyMjg0OTcwNSwtMjA2NjIw
 NzY4NywtMTgyNTMzMzAyOCwyMDg4NTU5MjYzLC00MTkxNzQwOT
 UsMTA4MDEwODcwNCwxMTk1OTM3ODAsLTYwMDYxNjQzMiwtMTY0
