@@ -287,7 +287,7 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PlantTypeDistribution auto-generation number of columns of areas to generate|  
 |auto-distrib-density|m_fPtdAutoDistribDensity|float|PlantTypeDistribution auto-generation density of plants in each area|  
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
-|auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stockastic pattern?|
+|auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stochastic pattern?|
 |rng-seed|m_strRngSeed|std::string|Seed string used to seeed RNG|
 
 ### Hive configuration parameters
@@ -362,7 +362,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjU4NTQ4NDE1LDM3MTg4NzE2MywtNzA4ND
+eyJoaXN0b3J5IjpbOTEyNzUxNTg2LDM3MTg4NzE2MywtNzA4ND
 QyMTc4LDY2MTc0NDMxMSwxODI5MjY4NjcwLDczMTc1NjA4OSwx
 MDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NT
 I1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5
