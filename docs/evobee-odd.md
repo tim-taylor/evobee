@@ -46,7 +46,7 @@ During the plant reproduction phase, viable seeds from pollinated plants form th
 
 ### Pollinator dynamics
 
-Each foraging phase begins with a population of pollinators of size and distribution as specified in the configuration file; they either all start at their Hive position, or distributed uniform-randomly in their initial foraging area defined in the `Hive` section of the configuration file. Each pollinator collects a supply of pollen by visiting flowers. At each time step during the foraging phase, the order in which pollinators are selected is randomised. Each pollinator executes a new iteration of its foraging behaviour in each simulation time step. A number of different pollinator foraging strategies are available, the most commonly used being: *Forage Nearest* flower, and *Forage Any* flower. In both strategies, every pollinator maintains a list of its most recently visited individual flowers, and it will not revisit a flower that currently appears on this list. The size of the list (the pollinator's memory of recent flowers) is defined by the `visited-flower-memory-size` parameter in the configuration file. The differences between the strategies are as follows.
+Each foraging phase begins with a population of pollinators of size and distribution as specified in the configuration file; they either all start at their Hive position, or distributed uniform-randomly in their initial foraging area defined in the `Hive` section of the configuration file. Each pollinator collects a supply of pollen by visiting flowers. At each time step during the foraging phase, the order in which pollinators are selected is randomised. Each pollinator executes a new iteration of its foraging behaviour in each simulation time step. A number of different pollinator foraging strategies are available, the most commonly used being: *Forage Nearest* flower (, and *Forage Any* flower. In both strategies, every pollinator maintains a list of its most recently visited individual flowers, and it will not revisit a flower that currently appears on this list. The size of the list (the pollinator's memory of recent flowers) is defined by the `visited-flower-memory-size` parameter in the configuration file. The differences between the strategies are as follows.
 
 A pollinator following the *Forage Nearest* flower strategy  (see [Flowchart](#flowchart-for-forage-nearest-strategy) below) will move to (and land upon) the nearest flower within a search radius of 1 pdu from its current position and that does not appear on its recently visited flower  list. If no flower meets these criteria, the pollinator moves a distance of 1 pdu in a uniform-randomly chosen direction. This is not a strategy real insects use,  but if we are only interested in the relative success of flowering plants, as long as we are consistent in our approach across all simulations and we maintain our aspatial / well-mixed plant population, this simple model has been shown to be sufficient.
 
@@ -121,11 +121,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MjI4NDk3MDUsLTIwNjYyMDc2ODcsLT
-E4MjUzMzMwMjgsMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEwODAx
-MDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzODEyND
-ksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNywx
-MjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0ODAyNzQ2LDg0NzA2MD
-E1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5LC0yODU0NzA4M119
-
+eyJoaXN0b3J5IjpbLTE4NTg4MTA2MDksLTE2MjI4NDk3MDUsLT
+IwNjYyMDc2ODcsLTE4MjUzMzMwMjgsMjA4ODU1OTI2MywtNDE5
+MTc0MDk1LDEwODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0Mz
+IsLTE2NDEzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQs
+MTAwNDYzMjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0OD
+AyNzQ2LDg0NzA2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5
+LC0yODU0NzA4M119
 -->
