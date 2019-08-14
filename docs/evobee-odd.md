@@ -31,7 +31,7 @@ Simulation distances are measured in perceptual distance units (pdu). We define 
 ### Environment
 
 In an EvoBee simulation,  plants, flowers and pollinators exist in a 2D continuous-space environment. The initial distribution of plants is defined by the `PlantTypeDistribution` section of the configuration file, and the initial distribution of pollinators is defined by the `Hives` section of the configuration file. It is possible to specify one or more areas of the environment as refuges for particular plant species. This is done in the `PlantTypeDistribution` section of the configuration file. 
-Only plants of one specified species can grow in a refuge area. If during the reproduction phase of the simulation (see Process overview and scheduling) a seed from a different species lands in the refuge, it has a reduced chance of survival (as defined by the refuge-alien-inflow-prob paramater in the configuris removed from the simulation. An equivalent column on the right edge of the environment acts as a refuge for species Y. Plants of either species can occupy the central remaining 120 x 200 pdu region. Following Waser’s approach, we have incorporated these refuges to promote the possibility of the stable coexistence of two plant species (see Waser’s experiment (4), Effects of Refugia). In Waser’s experiments, these refuges  lead to a slight increase in the mean duration for which the environment supported the coexistence of the two species before one went to fixation.
+Only plants of one specified species can grow in a refuge area. If during the reproduction phase of the simulation (see [Process overview and scheduling](#process-overview-and-scheduling)) a seed from a different species lands in the refuge, it has a reduced chance of survival (as defined by the `refuge-alien-inflow-prob` parameter in the configuration file).  
 
 ## Process overview and scheduling
     
@@ -39,7 +39,7 @@ Only plants of one specified species can grow in a refuge area. If during the re
 ### Overview of dynamics: foraging and reproduction phases
     
 
-Our model features a 2D continuous spatial environment containing a population of flowering plants of two different species. Each plant has a single flower that can be foraged by members of a single population of insect pollinator agents. The simulation cycles through two phases, an insect  foraging and pollination phase, and a plant reproduction phase.
+The simulation features a 2D continuous spatial environment containing a population of flowering plants of two different species. Each plant has a single flower that can be foraged by members of a single population of insect pollinator agents. The simulation cycles through two phases, an insect  foraging and pollination phase, and a plant reproduction phase.
 
 During the foraging and pollination phase, the pollinators forage from the fixed population of flowers, transferring pollen between flowers as they visit and, potentially, pollinating them. This  phase proceeds in discrete steps and ends after a specified number have elapsed. At this point, the plant reproduction phase begins.
 
@@ -122,10 +122,10 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIwMzUwMjYxNSwyMDg4NTU5MjYzLC00MT
-kxNzQwOTUsMTA4MDEwODcwNCwxMTk1OTM3ODAsLTYwMDYxNjQz
-MiwtMTY0MTM4MTI0OSwtMTA5NzU2OTcxMSwtMTA3Njg1ODgwNC
-wxMDA0NjMyMjE3LDEyMjg3NTMzNDcsNzMyNTI1MTczLC00NzQ4
-MDI3NDYsODQ3MDYwMTU4LC01ODM0MzUyMjUsLTE2ODM3MTE1ND
-ksLTI4NTQ3MDgzXX0=
+eyJoaXN0b3J5IjpbMjM0NDI5MTM3LDIwODg1NTkyNjMsLTQxOT
+E3NDA5NSwxMDgwMTA4NzA0LDExOTU5Mzc4MCwtNjAwNjE2NDMy
+LC0xNjQxMzgxMjQ5LC0xMDk3NTY5NzExLC0xMDc2ODU4ODA0LD
+EwMDQ2MzIyMTcsMTIyODc1MzM0Nyw3MzI1MjUxNzMsLTQ3NDgw
+Mjc0Niw4NDcwNjAxNTgsLTU4MzQzNTIyNSwtMTY4MzcxMTU0OS
+wtMjg1NDcwODNdfQ==
 -->
