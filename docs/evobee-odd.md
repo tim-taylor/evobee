@@ -50,11 +50,11 @@ Each foraging phase begins with a population of pollinators of size and distribu
 
 A pollinator following the *Forage Nearest* flower strategy  (see [Flowchart](#flowchart-for-forage-nearest-strategy) below) will move to (and land upon) the nearest flower within a search radius of 1 pdu from its current position and that does not appear on its recently visited flower  list. If no flower meets these criteria, the pollinator moves a distance of 1 pdu in a uniform-randomly chosen direction. This is not a strategy real insects use,  but if we are only interested in the relative success of flowering plants, as long as we are consistent in our approach across all simulations and we maintain our aspatial / well-mixed plant population, this simple model has been shown to be sufficient.
 
-A pollinator following the *Forage Any* flower strategy (see [Flowchart](#flowchart-for-forage-nearest-strategy) below) picks a flower to visit at random from all flowers in the entire environment, excluding those on its list of recently visited flowers. 
+A pollinator following the *Forage Any* flower strategy (see [Flowchart](#flowchart-for-forage-any-strategy) below) picks a flower to visit at random from all flowers in the entire environment, excluding those on its list of recently visited flowers. 
 
 
 
-A second spatial aspect of the simulation is the floral density. Even though we eliminate floral patchiness in the central environmental foraging area by enforcing a well-mixed planting regime, flower density is only 0.4 flowers per (1 pdu2) cell. Consequently, a pollinator  will often see no flowers at all from its current location and will resort to a random walk as just noted above. The *Forage Any* flower  removes this floral density component from consideration by ensuring that the insect can fly directly to any flower in the environment immediately, whether or not it is within visual range. This extreme aspatial behaviour effectively collapses the environment to a single point from the perspective of the insect, and enables us to compare  standard spatial restrictions on movement to a completely aspatial baseline simulation.
+
 
 Pollen transfer processes occur during  each flower visit by a pollinator. These are described in a subsequent section (Pollinator action on flowers).
 
@@ -123,11 +123,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI4MzY0ODk5MCwtMTYyMjg0OTcwNSwtMj
-A2NjIwNzY4NywtMTgyNTMzMzAyOCwyMDg4NTU5MjYzLC00MTkx
-NzQwOTUsMTA4MDEwODcwNCwxMTk1OTM3ODAsLTYwMDYxNjQzMi
-wtMTY0MTM4MTI0OSwtMTA5NzU2OTcxMSwtMTA3Njg1ODgwNCwx
-MDA0NjMyMjE3LDEyMjg3NTMzNDcsNzMyNTI1MTczLC00NzQ4MD
-I3NDYsODQ3MDYwMTU4LC01ODM0MzUyMjUsLTE2ODM3MTE1NDks
-LTI4NTQ3MDgzXX0=
+eyJoaXN0b3J5IjpbLTExMzkyMzI2MTAsLTE2MjI4NDk3MDUsLT
+IwNjYyMDc2ODcsLTE4MjUzMzMwMjgsMjA4ODU1OTI2MywtNDE5
+MTc0MDk1LDEwODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0Mz
+IsLTE2NDEzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQs
+MTAwNDYzMjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3MywtNDc0OD
+AyNzQ2LDg0NzA2MDE1OCwtNTgzNDM1MjI1LC0xNjgzNzExNTQ5
+LC0yODU0NzA4M119
 -->
