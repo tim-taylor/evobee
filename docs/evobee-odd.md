@@ -89,15 +89,11 @@ Each pollen grain carried by a pollinator visiting a flower is considered for tr
 
 Our simulation builds upon the earlier simulation work of Waser[^Waser1978]. One notable difference between our software and his is our use of a continuous spatial environment to avoid potential artefactual effects arising from modelling pollinator movements on a discrete grid. 
 
-[^Waser1978]: http://dx.doi.org/10.1016/j.ecolmodel.2010.08.019 "Interspecific Pollen Transfer and Competition between Co-Occurring Plant Species"
-
-### Emergence
-
-The key emergent property of interest in these experiments is whether or not both plant species X and Y can sustain viable coexistent populations for a given experimental configuration, or whether one species reaches fixation with the other dying out. We are primarily interested in how the pollen-clogging configuration (symmetric clogging, asymmetric clogging, or symmetric non-clogging) affects species coexistance.
+[^Waser1978]: https://doi.org/10.1007/BF00349811 "Interspecific Pollen Transfer and Competition between Co-Occurring Plant Species"
 
 ### Pollinator perception
 
-Under the default *Forage Nearest* flower strategy, pollinators can see flowers within 1 perceptual distance unit (pdu) of their current position, and move to the nearest flower seen within that distance  (Section,  Spatial Units).
+Under the default *Forage Nearest* flower strategy, pollinators can see flowers within 1 perceptual distance unit (pdu) of their current position, and move to the nearest flower seen within that distance  ([Spatial Units](#spatial-units)).
 
 Under the alternative *Forage Any* flower strategy, pollinators  move to a random flower anywhere in the entire environment. This strategy simulates an aspatial, well-mixed population of plants—it does not represent a real-world situation, but is of interest to indicate the underlying dynamics of the system.
 
@@ -122,11 +118,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkyNTA1MzQ1NCwtNzEyOTkzODA3LDE3OT
-I3NzM3MTUsLTc2MTg4MDE4LC0xMTM5MjMyNjEwLC0xNjIyODQ5
-NzA1LC0yMDY2MjA3Njg3LC0xODI1MzMzMDI4LDIwODg1NTkyNj
-MsLTQxOTE3NDA5NSwxMDgwMTA4NzA0LDExOTU5Mzc4MCwtNjAw
-NjE2NDMyLC0xNjQxMzgxMjQ5LC0xMDk3NTY5NzExLC0xMDc2OD
-U4ODA0LDEwMDQ2MzIyMTcsMTIyODc1MzM0Nyw3MzI1MjUxNzMs
-LTQ3NDgwMjc0Nl19
+eyJoaXN0b3J5IjpbMzgxOTU3MTYwLC03MTI5OTM4MDcsMTc5Mj
+c3MzcxNSwtNzYxODgwMTgsLTExMzkyMzI2MTAsLTE2MjI4NDk3
+MDUsLTIwNjYyMDc2ODcsLTE4MjUzMzMwMjgsMjA4ODU1OTI2My
+wtNDE5MTc0MDk1LDEwODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2
+MTY0MzIsLTE2NDEzODEyNDksLTEwOTc1Njk3MTEsLTEwNzY4NT
+g4MDQsMTAwNDYzMjIxNywxMjI4NzUzMzQ3LDczMjUyNTE3Mywt
+NDc0ODAyNzQ2XX0=
 -->
