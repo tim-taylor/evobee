@@ -87,7 +87,9 @@ Each pollen grain carried by a pollinator visiting a flower is considered for tr
 
 ### Basic principles
 
-Our simulation builds upon the earlier simulation work of Waser (1978). One notable difference between our software and his is our use of a continuous spatial environment to avoid potential artefactual effects arising from modelling pollinator movements on a discrete grid. 
+Our simulation builds upon the earlier simulation work of Waser[^Waser1978]. One notable difference between our software and his is our use of a continuous spatial environment to avoid potential artefactual effects arising from modelling pollinator movements on a discrete grid. 
+
+[^Waser1978]: http://dx.doi.org/10.1016/j.ecolmodel.2010.08.019 "Interspecific Pollen Transfer and Competition between Co-Occurring Plant Species"
 
 ### Emergence
 
@@ -120,11 +122,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcxMjk5MzgwNywxNzkyNzczNzE1LC03Nj
-E4ODAxOCwtMTEzOTIzMjYxMCwtMTYyMjg0OTcwNSwtMjA2NjIw
-NzY4NywtMTgyNTMzMzAyOCwyMDg4NTU5MjYzLC00MTkxNzQwOT
-UsMTA4MDEwODcwNCwxMTk1OTM3ODAsLTYwMDYxNjQzMiwtMTY0
-MTM4MTI0OSwtMTA5NzU2OTcxMSwtMTA3Njg1ODgwNCwxMDA0Nj
-MyMjE3LDEyMjg3NTMzNDcsNzMyNTI1MTczLC00NzQ4MDI3NDYs
-ODQ3MDYwMTU4XX0=
+eyJoaXN0b3J5IjpbLTkyNTA1MzQ1NCwtNzEyOTkzODA3LDE3OT
+I3NzM3MTUsLTc2MTg4MDE4LC0xMTM5MjMyNjEwLC0xNjIyODQ5
+NzA1LC0yMDY2MjA3Njg3LC0xODI1MzMzMDI4LDIwODg1NTkyNj
+MsLTQxOTE3NDA5NSwxMDgwMTA4NzA0LDExOTU5Mzc4MCwtNjAw
+NjE2NDMyLC0xNjQxMzgxMjQ5LC0xMDk3NTY5NzExLC0xMDc2OD
+U4ODA0LDEwMDQ2MzIyMTcsMTIyODc1MzM0Nyw3MzI1MjUxNzMs
+LTQ3NDgwMjc0Nl19
 -->
