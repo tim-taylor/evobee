@@ -281,7 +281,7 @@ protected:
     unsigned int    m_PreviousLandingSpeciesId; ///< Species id of the most recently visited
                                                 ///<   flower by this pollinator (or 0 if none visited)
 
-    unsigned int    m_uiVisitedFlowerMemorySize;///< The meximum number of recently visited flowers that
+    unsigned int    m_uiVisitedFlowerMemorySize;///< The maximum number of recently visited flowers that
                                                 ///<   the pollinator can remember
     std::vector<unsigned int> m_RecentlyVisitedFlowers; ///< A record of the ids for recently visited
                                                         ///<   flowers (up to maximum length defined

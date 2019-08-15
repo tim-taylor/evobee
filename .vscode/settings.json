@@ -71,5 +71,6 @@
         "**/.html": true,
         "**/.js": true
     },
-    "C_Cpp.intelliSenseEngineFallback": "Enabled"
+    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "cmake.configureOnOpen": true
 }

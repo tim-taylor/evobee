@@ -547,7 +547,7 @@ bool Pollinator::isVisitCandidate(Flower* pFlower) const
             }
             else if (m_PreviousLandingSpeciesId == pFlower->getSpeciesId())
             {
-                // land on the same species of flower with a high fixedd prob
+                // land on the same species of flower with a high fixed prob
                 float prob = 0.9;
                 bOfInterest = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
             }
