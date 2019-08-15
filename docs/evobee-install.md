@@ -37,9 +37,10 @@ in the `build` directory.
 Should you need to recompile the Doxygen auto-generated code documentation, run the following command from the evobee base directory:
 
     > doxygen doxygen.cfg
+
 The generated code documentation can be found in the `docs/html` folder of the evobee base directory.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjkwMTY2ODI1LDYyMjA1ODgxMCwzNDMyMz
-A0NDYsMzUyOTE5MjY4LC04NjY2NDE2OTMsLTE2MzI0NzYzMTYs
-LTEyOTM1MzU0LC02MTc1MDM3MTZdfQ==
+eyJoaXN0b3J5IjpbLTE1NTQ0MzQ3NTcsNjIyMDU4ODEwLDM0Mz
+IzMDQ0NiwzNTI5MTkyNjgsLTg2NjY0MTY5MywtMTYzMjQ3NjMx
+NiwtMTI5MzUzNTQsLTYxNzUwMzcxNl19
 -->
