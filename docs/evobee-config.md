@@ -257,7 +257,7 @@ The following table describes each parameter that can be specified in the config
 
 ### General parameters
 
-|Parameter name in JSON config file|Corresponding variable name in ModeParams.h|Type of variable|Description|
+|Parameter name in JSON config file|Corresponding variable name in ModelParams.h|Type of variable|Description|
  |---|---|---|---|  
 |visualisation|m_bVisualisation|bool|Use visualisation for this run?|  
 |env-size-x|m_iEnvSizeX|int|Environment size (num patches) in x direction|  
@@ -362,11 +362,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzI4ODIzMjMsLTE4MjExMjk5MzYsOTIwMT
-g0MzU0LDM3MTg4NzE2MywtNzA4NDQyMTc4LDY2MTc0NDMxMSwx
-ODI5MjY4NjcwLDczMTc1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNT
-QxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIxOSwxNjk2ODA5OTUs
-LTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMDIyNTc0MDksMTMwNz
-Q3NzYyOSwtMTg1MTkwNDA5NCwtMjA5Njk2NzM3NywtMTc0NTQ0
-NzA0NF19
+eyJoaXN0b3J5IjpbMjA4NzA2NTQ1NSwzMjg4MjMyMywtMTgyMT
+EyOTkzNiw5MjAxODQzNTQsMzcxODg3MTYzLC03MDg0NDIxNzgs
+NjYxNzQ0MzExLDE4MjkyNjg2NzAsNzMxNzU2MDg5LDEwNjg2OD
+UyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2MjE5
+LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwODUyNTYyMTksMTMwMj
+I1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0MDk0LC0yMDk2OTY3
+Mzc3XX0=
 -->
