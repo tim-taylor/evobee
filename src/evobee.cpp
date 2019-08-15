@@ -13,7 +13,7 @@
  * navigate around the documentation.
  * 
  * \subsection userdoc User Documentation
- * General user documentation can be foound at https://tim-taylor.github.io/evobee
+ * General user documentation can be found at https://tim-taylor.github.io/evobee
  * 
  * \subsection code Source code
  * The EvoBee source code can be found at https://github.com/tim-taylor/evobee
