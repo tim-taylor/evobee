@@ -13,5 +13,7 @@ var searchData=
   ['setrgb',['setRgb',['../classColour.html#afb296f7181ed33b7d6df0522f223c5c6',1,'Colour']]],
   ['species',['species',['../structPlantTypeDistributionConfig.html#a4616ecbaa8be018516a693b055ffd190',1,'PlantTypeDistributionConfig']]],
   ['startfromhive',['startFromHive',['../structHiveConfig.html#a414eec8b01c1549b34331eedfec74c32',1,'HiveConfig']]],
-  ['step',['step',['../classEvoBeeModel.html#a046b1d72d09ae408686af178e07b8fa6',1,'EvoBeeModel::step()'],['../classPollinator.html#a34711d8328b6133fb1d22778dc692e99',1,'Pollinator::step()']]]
+  ['step',['step',['../classEvoBeeModel.html#a046b1d72d09ae408686af178e07b8fa6',1,'EvoBeeModel::step()'],['../classPollinator.html#a34711d8328b6133fb1d22778dc692e99',1,'Pollinator::step()']]],
+  ['strconstancytype',['strConstancyType',['../structPollinatorConfig.html#afe9bcc2247818e915c088769cfd8df48',1,'PollinatorConfig']]],
+  ['strforagingstrategy',['strForagingStrategy',['../structPollinatorConfig.html#a0b12269be0f8140621eadcf637924c1d',1,'PollinatorConfig']]]
 ];

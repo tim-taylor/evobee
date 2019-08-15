@@ -1,7 +1,25 @@
 /**
  * @file
  *
- * Implementation of the simulation's main method
+ * Implementation of the simulation's main method. This deals with reading in the configuration file
+ * and setting the static variables in ModelParams accordingly, performing necessary postprocessing
+ * steps and consistency checks on the configurtation options, creating a new EvoBeeExperiment object
+ * and calling its run() method.
+ * 
+ * \mainpage EvoBee
+ * 
+ * \section main Source Documentation
+ * This is the homepage of the EvoBee source documentation. Use the menus above and to the left to
+ * navigate around the documentation.
+ * 
+ * \subsection userdoc User Documentation
+ * General user documentation can be foound at https://tim-taylor.github.io/evobee
+ * 
+ * \subsection code Source code
+ * The EvoBee source code can be found at https://github.com/tim-taylor/evobee
+ * 
+ * \subsection authors Authors
+ * Tim Taylor and Alan Dorin, Monash University, Australia
  */
 
 #include <iostream>
@@ -68,8 +86,13 @@ void json_read_opt_param(const json& j, const std::string& section,
     }
 }
 
+//-----------------------------------------------------------------------------
+// Helper functions for JSON conversion
+//
+// The following from_json() functions are used by the JSON library (json.hpp)
+// to enable it to read in objects of the type specified by the second argument
+// of each function. See https://github.com/nlohmann/json for further details.
 
-// helper functions for JSON conversion
 void from_json(const json& j, HiveConfig& hc)
 {
     std::string sct = "HiveConfig";
@@ -150,6 +173,9 @@ void from_json(const json& j, PollinatorConfig& p)
         p.maxPollenCapacity = 99999;
     }
 }
+
+// End of from_json helper functions
+//-----------------------------------------------------------------------------
 
 
 /**

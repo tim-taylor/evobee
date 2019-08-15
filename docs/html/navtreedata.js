@@ -1,6 +1,11 @@
 var NAVTREE =
 [
   [ "EvoBee", "index.html", [
+    [ "Source Documentation", "index.html#main", [
+      [ "User Documentation", "index.html#userdoc", null ],
+      [ "Source code", "index.html#code", null ],
+      [ "Authors", "index.html#authors", null ]
+    ] ],
     [ "Todo List", "todo.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -27,7 +32,7 @@ var NAVTREEINDEX =
 [
 "AbstractHive_8cpp.html",
 "classHymenoptera.html#a88ddb0f006fbb0550267c2cb40b62873",
-"structSDL2__gfxMurphyIterator.html#a139dce8a7b6f565583c928a89bd7cd7a"
+"structSDL2__gfxBresenhamIterator.html#acb9c61f5a736243a60b846bfcd5130ec"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

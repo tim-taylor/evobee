@@ -7,7 +7,7 @@ var indexSectionsWithContent =
   4: "adimnprst",
   5: "gp",
   6: "np",
-  7: "t"
+  7: "et"
 };
 
 var indexSectionNames =
