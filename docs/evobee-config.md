@@ -55,9 +55,14 @@ EvoBee configuration files are specified in JSON format. These follow a hierarch
 		    }
 	    },
 	    "PlantTypes" : {
-		    # specification of one or more "PlantType" to be 
+		    # specification of one or more "PlantType" to be used
+		    # in the simulation. These types are referred to in the
+		    # "PlantTypeDistributions" section above
 	    },
 	    "Pollinators" : {
+		    # specification of one or more "Pollinator" to to used
+		    # in the simulation. These are referred to in the
+		    # "Hives" section above 
 	    }
 	}  
 
@@ -397,11 +402,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMDM5NDIyNDEsMjA4NzA2NTQ1NSwzMj
-g4MjMyMywtMTgyMTEyOTkzNiw5MjAxODQzNTQsMzcxODg3MTYz
-LC03MDg0NDIxNzgsNjYxNzQ0MzExLDE4MjkyNjg2NzAsNzMxNz
-U2MDg5LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAx
-LC0xMDg1MjU2MjE5LDE2OTY4MDk5NSwtODgyODQ5NjQsLTEwOD
-UyNTYyMTksMTMwMjI1NzQwOSwxMzA3NDc3NjI5LC0xODUxOTA0
-MDk0XX0=
+eyJoaXN0b3J5IjpbLTQ2NzkxNjc1OCwyMDg3MDY1NDU1LDMyOD
+gyMzIzLC0xODIxMTI5OTM2LDkyMDE4NDM1NCwzNzE4ODcxNjMs
+LTcwODQ0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NT
+YwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEs
+LTEwODUyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NT
+I1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQw
+OTRdfQ==
 -->
