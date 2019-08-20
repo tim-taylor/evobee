@@ -39,9 +39,11 @@ EvoBee configuration files are specified in JSON format. These follow a hierarch
 		    "Hives" : {
 			    # specification of one or more "Hive" section
 			    # detailing hive position, pollinator type,
-			    # initial forage
+			    # initial foraging area, etc.
 		    },
 		    "PlantTypeDistributions" : {
+			    # specification of one or more "PlantTypeDistribution"
+			    # sections detailing spacie
 		    }
 	    },
 	    "PlantTypes" : {
@@ -386,7 +388,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk0OTc4NDQ5NiwyMDg3MDY1NDU1LDMyOD
+eyJoaXN0b3J5IjpbMTc4OTM4NzQ0MSwyMDg3MDY1NDU1LDMyOD
 gyMzIzLC0xODIxMTI5OTM2LDkyMDE4NDM1NCwzNzE4ODcxNjMs
 LTcwODQ0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NT
 YwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEs
