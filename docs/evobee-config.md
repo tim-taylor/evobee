@@ -37,6 +37,9 @@ EvoBee configuration files are specified in JSON format. These follow a hierarch
 		    # configuration of environment size, density
 		    # parameters, and other global specs, followed by:
 		    "Hives" : {
+			    # specification of one or more "Hive" section
+			    # detailing hive position, pollinator type,
+			    # initial forage
 		    },
 		    "PlantTypeDistributions" : {
 		    }
@@ -46,8 +49,6 @@ EvoBee configuration files are specified in JSON format. These follow a hierarch
 	    "Pollinators" : {
 	    }
 	}  
-
-### Example configuration files
 
 Two sample configuration files are provided in the root directory of the source code. These are named `evobee.cfg.json` and `evobee-test-simple.cfg.json`. These two files demonstrate different aspects of system configuration, and it is recommended to study both of them.
 
@@ -385,7 +386,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk1NTg5NDg4NCwyMDg3MDY1NDU1LDMyOD
+eyJoaXN0b3J5IjpbMTk0OTc4NDQ5NiwyMDg3MDY1NDU1LDMyOD
 gyMzIzLC0xODIxMTI5OTM2LDkyMDE4NDM1NCwzNzE4ODcxNjMs
 LTcwODQ0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NT
 YwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEs
