@@ -279,7 +279,7 @@ private:
     float         m_fSizeY;      ///< Num patches in Y dir (float coords should be less than this)
 
     PollinatorPtrVector m_AllPollinators; /** Aggregation of pointers to all Pollinators
-                                           *  NB The Pollinators are actually owened by
+                                           *  NB The Pollinators are actually owned by
                                            *  individual Hives
                                            */
 
