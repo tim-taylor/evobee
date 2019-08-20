@@ -26,7 +26,14 @@ The format of the configuration file and the options that can be specified withi
 
 ## Configuration file format
 
-EvoBee configuration files are specified in JSON format. These follow a hierarchical structure with the following outline
+EvoBee configuration files are specified in JSON format. These follow a hierarchical structure with the following outline:
+
+    {
+	    "SimulationParams" : {
+		    # general
+	    },
+	    "Environment" : {
+	    }
 
 
 
@@ -366,7 +373,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTAxNjIwNzc4LDIwODcwNjU0NTUsMzI4OD
+eyJoaXN0b3J5IjpbNDg2MzExNzQwLDIwODcwNjU0NTUsMzI4OD
 IzMjMsLTE4MjExMjk5MzYsOTIwMTg0MzU0LDM3MTg4NzE2Mywt
 NzA4NDQyMTc4LDY2MTc0NDMxMSwxODI5MjY4NjcwLDczMTc1Nj
 A4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwt
