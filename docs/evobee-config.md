@@ -43,7 +43,10 @@ EvoBee configuration files are specified in JSON format. These follow a hierarch
 		    },
 		    "PlantTypeDistributions" : {
 			    # specification of one or more "PlantTypeDistribution"
-			    # sections detailing spacie
+			    # sections detailing species of plant, its initial 
+			    # distribution area and related parameters. Note that
+			    # multiple PlantTypeDistributions can overlap in
+			    # their specified areas. Alternatively, 
 		    }
 	    },
 	    "PlantTypes" : {
@@ -388,11 +391,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc4OTM4NzQ0MSwyMDg3MDY1NDU1LDMyOD
-gyMzIzLC0xODIxMTI5OTM2LDkyMDE4NDM1NCwzNzE4ODcxNjMs
-LTcwODQ0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NT
-YwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDEs
-LTEwODUyNTYyMTksMTY5NjgwOTk1LC04ODI4NDk2NCwtMTA4NT
-I1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2MjksLTE4NTE5MDQw
-OTRdfQ==
+eyJoaXN0b3J5IjpbNDQxNTU1Mjc1LDIwODcwNjU0NTUsMzI4OD
+IzMjMsLTE4MjExMjk5MzYsOTIwMTg0MzU0LDM3MTg4NzE2Mywt
+NzA4NDQyMTc4LDY2MTc0NDMxMSwxODI5MjY4NjcwLDczMTc1Nj
+A4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwt
+MTA4NTI1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1Mj
+U2MjE5LDEzMDIyNTc0MDksMTMwNzQ3NzYyOSwtMTg1MTkwNDA5
+NF19
 -->
