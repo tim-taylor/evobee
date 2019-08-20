@@ -49,10 +49,13 @@ EvoBee configuration files are specified in JSON format. These follow a hierarch
 			    # their specified areas. Alternatively, rather than 
 			    # explicity givine PlantTypeDistribution areas, this
 			    # section can specify "auto-distribs : true" and use
-			    # the related 
+			    # the related parameters to have EvoBee automatically
+			    # distribute the plants described in the "PlantTypes"
+			    # section across the environment in the requested way.
 		    }
 	    },
 	    "PlantTypes" : {
+		    # specification of one or more "PlantType" to be 
 	    },
 	    "Pollinators" : {
 	    }
@@ -394,7 +397,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3ODMzNjA4MTcsMjA4NzA2NTQ1NSwzMj
+eyJoaXN0b3J5IjpbLTExMDM5NDIyNDEsMjA4NzA2NTQ1NSwzMj
 g4MjMyMywtMTgyMTEyOTkzNiw5MjAxODQzNTQsMzcxODg3MTYz
 LC03MDg0NDIxNzgsNjYxNzQ0MzExLDE4MjkyNjg2NzAsNzMxNz
 U2MDg5LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAx
