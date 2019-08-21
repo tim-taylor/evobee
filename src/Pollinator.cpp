@@ -57,6 +57,9 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
         m_InnateMPPref = dist(EvoBeeModel::m_sRngEngine);
     }
 
+    // At birth the pollinator's target Marker Point is set to its innate preference
+    m_TargetMP = m_InnateMPPref;
+
     // Set the starting position and heading of the pollinator
     resetToStartPosition();
 
@@ -86,6 +89,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
     m_InnateMPPref(other.m_InnateMPPref),
+    m_TargetMP(other.m_TargetMP),
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
     m_PreviousLandingSpeciesId(other.m_PreviousLandingSpeciesId),
@@ -124,6 +128,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
     m_InnateMPPref(other.m_InnateMPPref),
+    m_TargetMP(other.m_TargetMP),
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
     m_PreviousLandingSpeciesId(other.m_PreviousLandingSpeciesId),
@@ -175,6 +180,7 @@ void Pollinator::reset()
     m_PollenStore.clear();
     m_iNumFlowersVisitedInBout = 0;
     m_PreviousLandingSpeciesId = 0;
+    m_TargetMP = m_InnateMPPref;
     m_RecentlyVisitedFlowers.clear();
     for (auto& perfInfo : m_PerformanceInfoMap)
     {
