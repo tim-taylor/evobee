@@ -57,5 +57,6 @@ var classPollinator =
     [ "m_PreviousLandingSpeciesId", "classPollinator.html#a26064ff1bcdb4d17c095405ba4de8b9b", null ],
     [ "m_RecentlyVisitedFlowers", "classPollinator.html#a7db6e4c6df4caa613088753f1a26d4a6", null ],
     [ "m_State", "classPollinator.html#ac25c92d93b4267479b997b80a2889195", null ],
+    [ "m_TargetMP", "classPollinator.html#ab93b7bfa9f2b61d147d4d0ee169dd5b1", null ],
     [ "m_uiVisitedFlowerMemorySize", "classPollinator.html#a1616b630db61472923b1f7b69f4c53a5", null ]
 ];

@@ -45,7 +45,7 @@ var NAVTREEINDEX1 =
 "classPollinator.html#a0ddac5d8dc49d4be9f23cd36476cedcc":[2,0,20,35],
 "classPollinator.html#a11c5f4a9c088689b61b72af355dcd383":[2,0,20,38],
 "classPollinator.html#a1323f14dddb2d7ae8d38185d5381a57d":[2,0,20,37],
-"classPollinator.html#a1616b630db61472923b1f7b69f4c53a5":[2,0,20,57],
+"classPollinator.html#a1616b630db61472923b1f7b69f4c53a5":[2,0,20,58],
 "classPollinator.html#a1d660588b85f6f6870ffb5c7923c7c37":[2,0,20,42],
 "classPollinator.html#a1fae7c4f5a03de8b253383594505204b":[2,0,20,51],
 "classPollinator.html#a26064ff1bcdb4d17c095405ba4de8b9b":[2,0,20,54],
@@ -77,6 +77,7 @@ var NAVTREEINDEX1 =
 "classPollinator.html#aa43ed5277f07e81412b020d62e716128":[2,0,20,52],
 "classPollinator.html#aafbdf7620e9bf4231b47bc0870186316":[2,0,20,26],
 "classPollinator.html#ab4055e86ccdfc6a359caf9915a708767":[2,0,20,27],
+"classPollinator.html#ab93b7bfa9f2b61d147d4d0ee169dd5b1":[2,0,20,57],
 "classPollinator.html#abd0f7c7f0c5b358eb6d3b3978d5f54e2":[2,0,20,4],
 "classPollinator.html#ac072833c8eb10afca0a6396a2eaaf3cf":[2,0,20,0],
 "classPollinator.html#ac25c92d93b4267479b997b80a2889195":[2,0,20,56],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "structSDL2__gfxBresenhamIterator.html#a4150912b93de3da001e15b3b2253d7dc":[2,0,25,2],
 "structSDL2__gfxBresenhamIterator.html#a5c7c096a70854502a2f16965da07fb1a":[2,0,25,1],
 "structSDL2__gfxBresenhamIterator.html#a649c27195d47747caeda0c3c526731e4":[2,0,25,0],
-"structSDL2__gfxBresenhamIterator.html#a8591cd8e0667e1df4263008731ed3b6e":[2,0,25,5],
-"structSDL2__gfxBresenhamIterator.html#a8de2d778984cfb2b38c64b0cbc7fd8dc":[2,0,25,4]
+"structSDL2__gfxBresenhamIterator.html#a8591cd8e0667e1df4263008731ed3b6e":[2,0,25,5]
 };

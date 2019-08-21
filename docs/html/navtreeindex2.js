@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"structSDL2__gfxBresenhamIterator.html#a8de2d778984cfb2b38c64b0cbc7fd8dc":[2,0,25,4],
 "structSDL2__gfxBresenhamIterator.html#acb9c61f5a736243a60b846bfcd5130ec":[2,0,25,3],
 "structSDL2__gfxBresenhamIterator.html#ade722fc4580a73005ccb447a247b517a":[2,0,25,6],
 "structSDL2__gfxMurphyIterator.html":[2,0,26],

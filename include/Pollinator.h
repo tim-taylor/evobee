@@ -274,6 +274,9 @@ protected:
     MarkerPoint     m_InnateMPPref;             ///< This pollinator's innate preference for flower
                                                 ///<   colour marker point
 
+    MarkerPoint     m_TargetMP;                 ///< This pollinator's current target flower colour
+                                                ///<   marker point
+
     PollinatorConstancyType m_ConstancyType;    ///< Specification of what type of constancy (if any)
                                                 ///<   this pollinator exhibits in flower visits
     float           m_fConstancyParam;          ///< Parameter for constancy (interpretation depends
