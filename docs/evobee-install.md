@@ -7,7 +7,7 @@ To compile evobee from source, you will need the following libraries  (including
 - Boost libraries (http://www.boost.org/)  
 	* specifically the `program_options` library  
 	* version 1.32.0 or higher  
-	* on Ubuntu systems, installing the `libboost-all-dev` package should give you everything you need. 
+	* on Ubuntu systems, installing the `libboost-program-options-dev` package should give you everything you need. 
   
 - SDL 2.0 (https://www.libsdl.org/)  
 	* on Ubuntu systems, installing the `libsdl2-dev` package should give you everything you need
@@ -41,7 +41,7 @@ Should you need to recompile the Doxygen auto-generated code documentation, run 
 
 The generated code documentation can be found in the `docs/html` folder of the evobee base directory.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM5NTA2MTgxMSw2MjIwNTg4MTAsMzQzMj
+eyJoaXN0b3J5IjpbMTQzOTE4NDc2OSw2MjIwNTg4MTAsMzQzMj
 MwNDQ2LDM1MjkxOTI2OCwtODY2NjQxNjkzLC0xNjMyNDc2MzE2
 LC0xMjkzNTM1NCwtNjE3NTAzNzE2XX0=
 -->
