@@ -3,8 +3,8 @@
         {
             "name": "null",
             "includePath": [
-                "${workspaceRoot}/include",
-                "${workspaceRoot}/3rd-party/nlohmann-json",
+                "/home/tim/evobee/code/evobee/include",
+                "/home/tim/evobee/code/evobee/3rd-party/nlohmann-json",
                 "/usr/include/c++/7",
                 "/usr/include/x86_64-linux-gnu/c++/7",
                 "/usr/lib/gcc/x86_64-linux-gnu/7/include/"
@@ -17,12 +17,24 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
             },
-            "intelliSenseMode": "clang-x64",
+            "intelliSenseMode": "gcc-x64",
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "configurationProvider": "vector-of-bool.cmake-tools",
-            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+            "compilerArgs": []
+        },
+        {
+            "name": "EvoBee",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
         }
     ],
     "version": 4

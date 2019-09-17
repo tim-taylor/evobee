@@ -5,19 +5,19 @@
  * and setting the static variables in ModelParams accordingly, performing necessary postprocessing
  * steps and consistency checks on the configurtation options, creating a new EvoBeeExperiment object
  * and calling its run() method.
- * 
+ *
  * \mainpage EvoBee
- * 
+ *
  * \section main Source Documentation
  * This is the homepage of the EvoBee source documentation. Use the menus above and to the left to
  * navigate around the documentation.
- * 
+ *
  * \subsection userdoc User Documentation
  * General user documentation can be found at https://tim-taylor.github.io/evobee
- * 
+ *
  * \subsection code Source code
  * The EvoBee source code can be found at https://github.com/tim-taylor/evobee
- * 
+ *
  * \subsection authors Authors
  * Tim Taylor and Alan Dorin, Monash University, Australia
  */
@@ -63,7 +63,7 @@ void json_read_param(const json& j, const std::string& section, const std::strin
     catch (const std::exception& e)
     {
         std::cerr << "Error: " << section << " does not contain a "
-            << name << " element! Aborting" << std::endl;
+            << name << " element. Aborting!" << std::endl;
         exit(1);
     }
 }
@@ -172,7 +172,107 @@ void from_json(const json& j, PollinatorConfig& p)
         // is set to an effectively unlimited value
         p.maxPollenCapacity = 99999;
     }
+
+    // now deal with vis-data array of arrays, if present
+    if (j.find("vis-data") != j.end()) {
+        int  numEntries = 0;
+        MarkerPoint mpPrev = 0;
+
+        auto visdata = j.at("vis-data");
+        if (visdata.is_array())
+        {
+            // we've found an array! It should be an array of arrays, so let's try iterating through it
+            for (json::iterator itAA = visdata.begin(); itAA != visdata.end(); ++itAA)
+            {
+                if (itAA.value().is_array() && itAA.value().size() == 5)
+                {
+                    // we've found an array within the array, so now read the values
+
+                    // TEMP CODE!!!!!!
+                    //std::cout << itAA.value() << std::endl;
+
+                    json::iterator itV = itAA->begin();
+                    try
+                    {
+                        MarkerPoint mp = itV.value(); // marker point
+                        float dp = (++itV).value();   // detection probability
+                        float gc = (++itV).value();   // green contast
+                        float x = (++itV).value();    // hexagonal colour space x coord
+                        float y = (++itV).value();    // hexagonal colour space y coord
+
+                        // TEMP CODE!!!!
+                        //std::cout << "Vis data entry: " << mp << ", " << dp << ", " << gc << ", " << x << ", " << y << std::endl;
+
+                        numEntries++;
+                        if (numEntries == 1) {
+                            // This is the first entry in the array of arrays defining the visual data.
+                            // So the marker point should be the lowest marker point defined in the data.
+                            // For now we set the step size to 1 in case this is the only entry in the array,
+                            // but we will probably reset this step size to a different value if and when we
+                            // find a second entry in the array.
+                            p.visDataMPMin = mp;
+                            p.visDataMPStep = 1;
+                        }
+                        else if (numEntries == 2) {
+                            // This is the second entry in the array of arrays defining the visual data.
+                            // We set the step size here, calculated as the difference between this marker
+                            // point and the first one. We expect all subsequent entries to increase
+                            // regularly according to the same step size.
+                            if (mp > p.visDataMPMin) {
+                                p.visDataMPStep = mp - p.visDataMPMin;
+                            }
+                            else {
+                                // error! data must be in ascending order
+                                std::cerr << "Error in vis-data section of config file "
+                                          << "(line starting with marker point " << mp << "). " << std::endl
+                                          << "Entries must appear in ascending order of wavelength. Aborting!" << std::endl;
+                                exit(1);
+                            }
+                        }
+                        else if (mp - mpPrev != p.visDataMPStep) {
+                            // This is at least the third entry in the array of arrays defining the visual data,
+                            // so we just check that the step size is consistant with what has come before.
+                            //
+                            // error! all entries must have same step size
+                            std::cerr << "Error in vis-data section of config file "
+                                      << "(line starting with marker point " << mp << "). " << std::endl
+                                      << "All entries must have the same wavelength step size. Aborting!" << std::endl;
+                            exit(1);
+                        }
+                        // All checks are complete and passed at this stage, so we can add the data
+                        // to the visData vector
+                        p.visData.emplace_back(mp, dp, gc, x, y);
+                        p.visDataMPMax = mp;
+                        mpPrev = mp;
+                    }
+                    catch (const std::exception& e)
+                    {
+                        std::cerr << "Error in vis-data section of config file, in line " << itAA.value() << std::endl
+                            << "Unable to parse data values. Expecting format [markerPoint, DetectionProb, GreenContrast, Xcoord, Ycoord]."  << std::endl
+                            << "Aborting!" << std::endl;
+                        exit(1);
+                    }
+                }
+                else
+                {
+                    std::cerr << "Error in vis-data section of config file, in line " << itAA.value() << std::endl
+                              << "Unable to parse data array. Expecting format [markerPoint, DetectionProb, GreenContrast, Xcoord, Ycoord]." << std::endl
+                              << "Aborting!" << std::endl;
+                    exit(1);
+                }
+            }
+        }
+        else
+        {
+            std::cerr << "Error in vis-data section of config file." << std::endl
+                      << "Expected data to be presented as an array of arrays. Aborting!" << std::endl;
+            exit(1);
+        }
+
+        p.visDataDefined = true;
+    }
 }
+
 
 // End of from_json helper functions
 //-----------------------------------------------------------------------------

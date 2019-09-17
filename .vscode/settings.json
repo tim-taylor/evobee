@@ -60,7 +60,16 @@
         "sdl2_rotozoom.c": "cpp",
         "sdl2_gfxprimitives.c": "cpp",
         "bitset": "cpp",
-        "slist": "cpp"
+        "slist": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "optional": "cpp",
+        "numeric": "cpp",
+        "typeindex": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "variant": "cpp"
     },
     "files.exclude": {
         "**/.git": true,

@@ -8,14 +8,16 @@
 #define _POLLINATORCONFIG_H
 
 #include <string>
+#include <vector>
 #include "PollinatorEnums.h"
+#include "PollinatorStructs.h"
 #include "ReflectanceInfo.h"
 
 /**
  * The PollinatorConfig class ...
  */
 struct PollinatorConfig {
-    PollinatorConfig() {};
+    PollinatorConfig() : visDataDefined(false) {};
 
     std::string species;
     int boutLength;
@@ -31,6 +33,13 @@ struct PollinatorConfig {
     std::string strForagingStrategy;       ///< allowed values: random, nearest-flower, random-flower, random-global
     PollinatorForagingStrategy foragingStrategy;
     unsigned int visitedFlowerMemorySize;
+
+    bool visDataDefined;
+	std::vector<VisualStimulusInfo> visData;
+	MarkerPoint visDataMPMin;
+	MarkerPoint visDataMPStep;
+	MarkerPoint visDataMPMax;
+
 };
 
 #endif /* _POLLINATORCONFIG_H */

@@ -18,26 +18,9 @@
 #include "Pollen.h"
 #include "PollinatorConfig.h"
 #include "PollinatorEnums.h"
+#include "PollinatorStructs.h"
 
 class Environment;
-
-
-/**
- * The PollinatorState enum
- */
-enum class PollinatorState {UNINITIATED, FORAGING, BOUT_COMPLETE};
-
-/**
- * The PollinatorPerformanceInfo struct
- */
-struct PollinatorPerformanceInfo {
-    PollinatorPerformanceInfo() : numLandings(0), numPollinations(0) {}
-    inline void reset() {numLandings = 0; numPollinations = 0;}
-
-    int numLandings;
-    int numPollinations;
-};
-
 
 /**
  * The Pollinator class ...
@@ -139,10 +122,15 @@ public:
     int getNumPollenGrainsInStore(unsigned int speciesId) const;
 
     /**
-    *
-    */
-    const std::map<unsigned int, PollinatorPerformanceInfo>& getPerformanceInfoMap() const {
-                                                                    return m_PerformanceInfoMap;}
+     *
+     */
+    const std::map<unsigned int, PollinatorPerformanceInfo>& getPerformanceInfoMap() const {return m_PerformanceInfoMap;}
+
+    /**
+     * Checks whether the pollinator classifies the given visual stimulus as a match against its
+     * current target marker point.
+     */
+    bool matchesTargetMP(const ReflectanceInfo& stimulus);
 
 
 protected:
@@ -250,6 +238,33 @@ protected:
      *  number requested if the store originally contained less than that amount)
      */
     int losePollenToAir(int num);
+
+    /**
+     * Returns the probability that this pollinator detects a visual stimulus which
+     * possesses a single marker point as specified by the mp parameter.
+     *
+     * This is a pure virtual method that should be overridden by derived classes.
+     *
+     * @return Detection probablility in the range 0.0 to 1.0
+     */
+    virtual float getMPDetectionProb(MarkerPoint mp) const = 0;
+
+    /**
+     * Returns information about how a given stimulus with a single marker point
+     * as specified by the mp parameter is perceived by this pollinator's visual
+     * system.
+     *
+     * This is a pure virtual method that should be overridden by derived classes.
+     *
+     * @return A const reference to a VisualStimulusInfo which specifies the stimulus's
+     * location in hexagonal colour space, its green contrast, and detection probability
+     */
+    virtual const VisualStimulusInfo& getVisStimulusInfo(MarkerPoint mp) const = 0;
+
+    /**
+     * Calculate the Euclidean distance between two points in hexagonal colour space
+     */
+    static float getVisHexDistance(const VisualStimulusInfo& infoStimulus, const VisualStimulusInfo& infoTarget);
 
 
     // protected data memebers
