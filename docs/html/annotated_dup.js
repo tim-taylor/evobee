@@ -27,5 +27,6 @@ var annotated_dup =
     [ "ReflectanceInfo", "classReflectanceInfo.html", "classReflectanceInfo" ],
     [ "SDL2_gfxBresenhamIterator", "structSDL2__gfxBresenhamIterator.html", "structSDL2__gfxBresenhamIterator" ],
     [ "SDL2_gfxMurphyIterator", "structSDL2__gfxMurphyIterator.html", "structSDL2__gfxMurphyIterator" ],
-    [ "Visualiser", "classVisualiser.html", "classVisualiser" ]
+    [ "Visualiser", "classVisualiser.html", "classVisualiser" ],
+    [ "VisualStimulusInfo", "structVisualStimulusInfo.html", "structVisualStimulusInfo" ]
 ];

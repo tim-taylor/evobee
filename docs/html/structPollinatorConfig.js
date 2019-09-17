@@ -14,5 +14,10 @@ var structPollinatorConfig =
     [ "species", "structPollinatorConfig.html#aacc726adb36c6ac87de545104ee21a44", null ],
     [ "strConstancyType", "structPollinatorConfig.html#afe9bcc2247818e915c088769cfd8df48", null ],
     [ "strForagingStrategy", "structPollinatorConfig.html#a0b12269be0f8140621eadcf637924c1d", null ],
+    [ "visData", "structPollinatorConfig.html#afd8f6c1a0cdf3ed27ab64e587fb696f0", null ],
+    [ "visDataDefined", "structPollinatorConfig.html#a3b51ab1fa9deae2ab37879586732687e", null ],
+    [ "visDataMPMax", "structPollinatorConfig.html#a804bca2f499d6bca8e422058f28fd781", null ],
+    [ "visDataMPMin", "structPollinatorConfig.html#a95ace0b05f9ae65ee3d8a408284a8471", null ],
+    [ "visDataMPStep", "structPollinatorConfig.html#ab659274721c92f4e098ba56ed2580b4f", null ],
     [ "visitedFlowerMemorySize", "structPollinatorConfig.html#a86ad2485a7cf69a26593640a4159aa5a", null ]
 ];

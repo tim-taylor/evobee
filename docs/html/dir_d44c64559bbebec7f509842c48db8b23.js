@@ -51,11 +51,17 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "Pollen.h", "Pollen_8h.html", [
       [ "Pollen", "structPollen.html", "structPollen" ]
     ] ],
-    [ "Pollinator.h", "Pollinator_8h.html", "Pollinator_8h" ],
+    [ "Pollinator.h", "Pollinator_8h.html", [
+      [ "Pollinator", "classPollinator.html", "classPollinator" ]
+    ] ],
     [ "PollinatorConfig.h", "PollinatorConfig_8h.html", [
       [ "PollinatorConfig", "structPollinatorConfig.html", "structPollinatorConfig" ]
     ] ],
     [ "PollinatorEnums.h", "PollinatorEnums_8h.html", "PollinatorEnums_8h" ],
+    [ "PollinatorStructs.h", "PollinatorStructs_8h.html", [
+      [ "PollinatorPerformanceInfo", "structPollinatorPerformanceInfo.html", "structPollinatorPerformanceInfo" ],
+      [ "VisualStimulusInfo", "structVisualStimulusInfo.html", "structVisualStimulusInfo" ]
+    ] ],
     [ "Position.h", "Position_8h.html", "Position_8h" ],
     [ "ReflectanceInfo.h", "ReflectanceInfo_8h.html", "ReflectanceInfo_8h" ],
     [ "SDL2_gfxPrimitives.h", "SDL2__gfxPrimitives_8h_source.html", null ],

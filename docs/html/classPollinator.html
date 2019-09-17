@@ -83,9 +83,10 @@ $(document).ready(function(){initNavTree('classPollinator.html','');});
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">Pollinator Class Reference</div>  </div>
+<div class="title">Pollinator Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -157,13 +158,15 @@ virtual const std::string &amp;&#160;</td><td class="memItemRight" valign="botto
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getId</b> () const</td></tr>
 <tr class="separator:aa26fc2c240cc1ab13dd56534060257d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8c7a6a1d4964dd80ebfe96108785c5e"><td class="memItemLeft" align="right" valign="top"><a id="ae8c7a6a1d4964dd80ebfe96108785c5e"></a>
-<a class="el" href="Pollinator_8h.html#a5379dda2e4215e9d198ec8912e50d0dc">PollinatorState</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getState</b> () const</td></tr>
+<a class="el" href="PollinatorEnums_8h.html#a5379dda2e4215e9d198ec8912e50d0dc">PollinatorState</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getState</b> () const</td></tr>
 <tr class="separator:ae8c7a6a1d4964dd80ebfe96108785c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ca43a5aefb81a6ce1a9cbfb8271b986"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a4ca43a5aefb81a6ce1a9cbfb8271b986">getNumPollenGrainsInStore</a> (unsigned int speciesId) const</td></tr>
 <tr class="separator:a4ca43a5aefb81a6ce1a9cbfb8271b986"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a691572e1ed297ab20349e61f99d0a97c"><td class="memItemLeft" align="right" valign="top"><a id="a691572e1ed297ab20349e61f99d0a97c"></a>
 const std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.html">PollinatorPerformanceInfo</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPerformanceInfoMap</b> () const</td></tr>
 <tr class="separator:a691572e1ed297ab20349e61f99d0a97c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79242ffe52796658407b480e72e73ab9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a79242ffe52796658407b480e72e73ab9">matchesTargetMP</a> (const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;stimulus)</td></tr>
+<tr class="separator:a79242ffe52796658407b480e72e73ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -203,6 +206,15 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:abd0f7c7f0c5b358eb6d3b3978d5f54e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedfce6be503ca4094ae7590a523cdb53"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#aedfce6be503ca4094ae7590a523cdb53">losePollenToAir</a> (int num)</td></tr>
 <tr class="separator:aedfce6be503ca4094ae7590a523cdb53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06b87bff2971c89849685d8cfd144e10"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a06b87bff2971c89849685d8cfd144e10">getMPDetectionProb</a> (MarkerPoint mp) const =0</td></tr>
+<tr class="separator:a06b87bff2971c89849685d8cfd144e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae191a95dfa9584d44c80806def197c1f"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="structVisualStimulusInfo.html">VisualStimulusInfo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ae191a95dfa9584d44c80806def197c1f">getVisStimulusInfo</a> (MarkerPoint mp) const =0</td></tr>
+<tr class="separator:ae191a95dfa9584d44c80806def197c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
+Static Protected Member Functions</h2></td></tr>
+<tr class="memitem:a7ec96650c0edfaed4a28b94ae8893e04"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a7ec96650c0edfaed4a28b94ae8893e04">getVisHexDistance</a> (const <a class="el" href="structVisualStimulusInfo.html">VisualStimulusInfo</a> &amp;infoStimulus, const <a class="el" href="structVisualStimulusInfo.html">VisualStimulusInfo</a> &amp;infoTarget)</td></tr>
+<tr class="separator:a7ec96650c0edfaed4a28b94ae8893e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -231,7 +243,7 @@ const <a class="el" href="classEvoBeeModel.html">EvoBeeModel</a> *&#160;</td><td
 <tr class="memdesc:a1fae7c4f5a03de8b253383594505204b"><td class="mdescLeft">&#160;</td><td class="mdescRight">(non-owned) pointer to <a class="el" href="classEvoBeeModel.html">EvoBeeModel</a> <br /></td></tr>
 <tr class="separator:a1fae7c4f5a03de8b253383594505204b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac25c92d93b4267479b997b80a2889195"><td class="memItemLeft" align="right" valign="top"><a id="ac25c92d93b4267479b997b80a2889195"></a>
-<a class="el" href="Pollinator_8h.html#a5379dda2e4215e9d198ec8912e50d0dc">PollinatorState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ac25c92d93b4267479b997b80a2889195">m_State</a></td></tr>
+<a class="el" href="PollinatorEnums_8h.html#a5379dda2e4215e9d198ec8912e50d0dc">PollinatorState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ac25c92d93b4267479b997b80a2889195">m_State</a></td></tr>
 <tr class="memdesc:ac25c92d93b4267479b997b80a2889195"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current state of the pollinator. <br /></td></tr>
 <tr class="separator:ac25c92d93b4267479b997b80a2889195"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d660588b85f6f6870ffb5c7923c7c37"><td class="memItemLeft" align="right" valign="top"><a id="a1d660588b85f6f6870ffb5c7923c7c37"></a>
@@ -307,7 +319,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classPollinator.html">Pollinator</a> class ... </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8h_source.html#l00045">45</a> of file <a class="el" href="Pollinator_8h_source.html">Pollinator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8h_source.html#l00028">28</a> of file <a class="el" href="Pollinator_8h_source.html">Pollinator.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="abd0f7c7f0c5b358eb6d3b3978d5f54e2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abd0f7c7f0c5b358eb6d3b3978d5f54e2">&#9670;&nbsp;</a></span>collectPollenFromAnther()</h2>
@@ -334,7 +346,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>Collect pollen from flower if available, and add to our store. If our store exceeds its maximum capacity after collecting new pollen, a random selection of pollen grains are deleted from the store to bring it back down to its capacity. </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00744">744</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00750">750</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -364,7 +376,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 <p>Transfer some of our pollen to the flower (potentially pollinating it) Also, if we are in a logging mode that cares about it, update the pollinator's performance info about number of landings and pollinations of the specified flower species.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of pollen grains deposited </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00708">708</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00714">714</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -393,7 +405,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 <p>Default implementation of Nearest <a class="el" href="classFlower.html">Flower</a> foraging strategy. May be overridden by subclasses. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>should we allow variable step lengths? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00475">475</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00481">481</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -425,7 +437,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00393">393</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00399">399</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -454,7 +466,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 <p>Default implementation of Random <a class="el" href="classFlower.html">Flower</a> foraging strategy. May be overridden by subclasses. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>should we allow variable step lengths? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00501">501</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00507">507</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -482,7 +494,38 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>Default implementation of Random foraging strategy. May be overridden by subclasses. </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00425">425</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00431">431</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a06b87bff2971c89849685d8cfd144e10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06b87bff2971c89849685d8cfd144e10">&#9670;&nbsp;</a></span>getMPDetectionProb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual float Pollinator::getMPDetectionProb </td>
+          <td>(</td>
+          <td class="paramtype">MarkerPoint&#160;</td>
+          <td class="paramname"><em>mp</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the probability that this pollinator detects a visual stimulus which possesses a single marker point as specified by the mp parameter.</p>
+<p>This is a pure virtual method that should be overridden by derived classes.</p>
+<dl class="section return"><dt>Returns</dt><dd>Detection probablility in the range 0.0 to 1.0 </dd></dl>
+
+<p>Implemented in <a class="el" href="classHymenoptera.html#a3f53614ff040d9ca15edf16ce84926ff">Hymenoptera</a>.</p>
 
 </div>
 </div>
@@ -503,7 +546,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>Returns the number of pollen grains of the specified plant species currently being carried by the pollinator </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00791">791</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00797">797</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -533,7 +576,77 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 
 <p>Reimplemented in <a class="el" href="classHoneyBee.html#a3b27bb970dc0eea4e5b31b99fa231fd6">HoneyBee</a>, and <a class="el" href="classHymenoptera.html#ace1e947c4b1bbf9c4b0370d0ede7d161">Hymenoptera</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00776">776</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00782">782</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a7ec96650c0edfaed4a28b94ae8893e04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ec96650c0edfaed4a28b94ae8893e04">&#9670;&nbsp;</a></span>getVisHexDistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Pollinator::getVisHexDistance </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structVisualStimulusInfo.html">VisualStimulusInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>infoStimulus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structVisualStimulusInfo.html">VisualStimulusInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>infoTarget</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Calculate the Euclidean distance between two points in hexagonal colour space </p>
+
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00835">835</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ae191a95dfa9584d44c80806def197c1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae191a95dfa9584d44c80806def197c1f">&#9670;&nbsp;</a></span>getVisStimulusInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="structVisualStimulusInfo.html">VisualStimulusInfo</a>&amp; Pollinator::getVisStimulusInfo </td>
+          <td>(</td>
+          <td class="paramtype">MarkerPoint&#160;</td>
+          <td class="paramname"><em>mp</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns information about how a given stimulus with a single marker point as specified by the mp parameter is perceived by this pollinator's visual system.</p>
+<p>This is a pure virtual method that should be overridden by derived classes.</p>
+<dl class="section return"><dt>Returns</dt><dd>A const reference to a <a class="el" href="structVisualStimulusInfo.html">VisualStimulusInfo</a> which specifies the stimulus's location in hexagonal colour space, its green contrast, and detection probability </dd></dl>
+
+<p>Implemented in <a class="el" href="classHymenoptera.html#ab796acc19c980dadc9db8206a5b647b2">Hymenoptera</a>.</p>
 
 </div>
 </div>
@@ -555,7 +668,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 <p>NB This method also considers the migration restrictions defined for the <a class="el" href="classHive.html">Hive</a>. If the pollinator has moved out of its previously allowed movement area and the migration is deemed to be allowed, then the pollinator's allowed movement area is updated according to the reproRestructionArea of the new patch. Hence, this is NOT a const method.</p>
 <p>Also see the comments for the <a class="el" href="classAbstractHive.html#a6ae8c44dcc49561911e6c5e41a6ee643">AbstractHive::getInitForageAreaTopLeft()</a> method for more information about the relationship between Pollinator::m_MovementAreaTL/BR and AbstractHive::m_InitForageAreaTL/BR. </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00228">228</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00234">234</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -583,7 +696,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>Query whether this pollinator is currently within the bounds of the <a class="el" href="classEnvironment.html">Environment</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8h_source.html#l00090">90</a> of file <a class="el" href="Pollinator_8h_source.html">Pollinator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8h_source.html#l00073">73</a> of file <a class="el" href="Pollinator_8h_source.html">Pollinator.h</a>.</p>
 
 </div>
 </div>
@@ -612,7 +725,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>Default implementation of method to determine whether the pollinator should harvest the specified flower. May be overridden by subclasses. </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00526">526</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00532">532</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -642,7 +755,28 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 <p>Lose the specified amount of pollen to the air.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of pollen grains lost (which might be less than the number requested if the store originally contained less than that amount) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00768">768</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00774">774</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a79242ffe52796658407b480e72e73ab9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79242ffe52796658407b480e72e73ab9">&#9670;&nbsp;</a></span>matchesTargetMP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pollinator::matchesTargetMP </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>stimulus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks whether the pollinator classifies the given visual stimulus as a match against its current target marker point. </p>
+
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00805">805</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -682,7 +816,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 <p>Move by the given distance in a direction biassed by the experimental bee flight data recorded by Waddington </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>implement moveBiassed </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00646">646</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00652">652</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -722,7 +856,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 <p>Move according to a Levy flight pattern: direction of travel is uniform random, and distance travelled is selected according to a specific probability distribution (TBC) </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>implement moveLevy </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00662">662</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00668">668</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -757,7 +891,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if pollinator is within the bounds of the environment after the move, false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00632">632</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00638">638</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -785,7 +919,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>Remove any stored pollen that has now exceeded the maximum number of flower visits subsequent to being collected, as defined by the carryover limit. </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00688">688</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00694">694</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -816,7 +950,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 
 <p>Reimplemented in <a class="el" href="classHoneyBee.html#afbaafcd0ee136500bdacab237612d67d">HoneyBee</a>, and <a class="el" href="classHymenoptera.html#a88ddb0f006fbb0550267c2cb40b62873">Hymenoptera</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00172">172</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00177">177</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -844,7 +978,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>Reset this pollinator's allowed movement area according to the ReproRestrictionArea constraints of the current <a class="el" href="classPatch.html">Patch</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00208">208</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00214">214</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -864,7 +998,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>Move back to the start position, which is either the <a class="el" href="classHive.html">Hive</a> position or a random position, depending upon how the <a class="el" href="classHive.html">Hive</a> is configured. Also reset to a random heading. </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00191">191</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00197">197</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -892,7 +1026,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>Default implemenation of the pollinator's update logic at each step of the foraging phase. May be overridden by subclasses. </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00338">338</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00344">344</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -920,7 +1054,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>Increment the landing count of each <a class="el" href="structPollen.html">Pollen</a> grain in the store. This method should be called each time a <a class="el" href="classPollinator.html">Pollinator</a> lands on a flower. Note that this method does not remove any <a class="el" href="structPollen.html">Pollen</a> from the store; to remove grains that now exceed their carryover limit, call <a class="el" href="classPollinator.html#ab4055e86ccdfc6a359caf9915a708767">removeOldCarryoverPollen()</a> afterwards. </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00679">679</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00685">685</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -949,7 +1083,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>Default implementation of method coding the logic of what happens when the pollinator visits a flower. May be overridden by subclasses. </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00583">583</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8cpp_source.html#l00589">589</a> of file <a class="el" href="Pollinator_8cpp_source.html">Pollinator.cpp</a>.</p>
 
 </div>
 </div>
@@ -975,7 +1109,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>m_iPollenCarryov
 </div><div class="memdoc">
 <p>After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost) A value of 0 indicates no limit in number of visits. </p>
 
-<p class="definition">Definition at line <a class="el" href="Pollinator_8h_source.html#l00320">320</a> of file <a class="el" href="Pollinator_8h_source.html">Pollinator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Pollinator_8h_source.html#l00335">335</a> of file <a class="el" href="Pollinator_8h_source.html">Pollinator.h</a>.</p>
 
 </div>
 </div>

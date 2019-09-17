@@ -9,5 +9,10 @@ var PollinatorEnums_8h =
       [ "NEAREST_FLOWER", "PollinatorEnums_8h.html#a2e750e668cb4a3b3fb9f7e5cc0c70c1bae1e26dc49687a61680f2229e2b47c053", null ],
       [ "RANDOM_FLOWER", "PollinatorEnums_8h.html#a2e750e668cb4a3b3fb9f7e5cc0c70c1ba60dbe6c97b29be6e377b031201978651", null ],
       [ "RANDOM_GLOBAL", "PollinatorEnums_8h.html#a2e750e668cb4a3b3fb9f7e5cc0c70c1bafae625123d2ea63e5c78c1c80f0ccaad", null ]
+    ] ],
+    [ "PollinatorState", "PollinatorEnums_8h.html#a5379dda2e4215e9d198ec8912e50d0dc", [
+      [ "UNINITIATED", "PollinatorEnums_8h.html#a5379dda2e4215e9d198ec8912e50d0dcadcd049924c70d102e0aac255597dd1c8", null ],
+      [ "FORAGING", "PollinatorEnums_8h.html#a5379dda2e4215e9d198ec8912e50d0dca65f7b5db8916185e1f8e33dbc7465f60", null ],
+      [ "BOUT_COMPLETE", "PollinatorEnums_8h.html#a5379dda2e4215e9d198ec8912e50d0dca690410f86fa9736711d532f66b064cb2", null ]
     ] ]
 ];

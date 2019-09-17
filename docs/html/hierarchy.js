@@ -33,5 +33,6 @@ var hierarchy =
     [ "Colour::RGB", "classColour_1_1RGB.html", null ],
     [ "SDL2_gfxBresenhamIterator", "structSDL2__gfxBresenhamIterator.html", null ],
     [ "SDL2_gfxMurphyIterator", "structSDL2__gfxMurphyIterator.html", null ],
-    [ "Visualiser", "classVisualiser.html", null ]
+    [ "Visualiser", "classVisualiser.html", null ],
+    [ "VisualStimulusInfo", "structVisualStimulusInfo.html", null ]
 ];

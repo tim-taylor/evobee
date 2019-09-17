@@ -16,6 +16,7 @@ var searchData=
   ['getinitforageareatopleft',['getInitForageAreaTopLeft',['../classAbstractHive.html#a6ae8c44dcc49561911e6c5e41a6ee643',1,'AbstractHive']]],
   ['getlocalityid',['getLocalityId',['../classPatch.html#ab8d4691b4dc96f5677190918ef1f4a3e',1,'Patch']]],
   ['getmodel',['getModel',['../classEnvironment.html#a2b2d44f2389122a1ef6ff8098b3d940f',1,'Environment']]],
+  ['getmpdetectionprob',['getMPDetectionProb',['../classHymenoptera.html#a3f53614ff040d9ca15edf16ce84926ff',1,'Hymenoptera::getMPDetectionProb()'],['../classPollinator.html#a06b87bff2971c89849685d8cfd144e10',1,'Pollinator::getMPDetectionProb()']]],
   ['getnumpollengrainsinstore',['getNumPollenGrainsInStore',['../classPollinator.html#a4ca43a5aefb81a6ce1a9cbfb8271b986',1,'Pollinator']]],
   ['getpatch',['getPatch',['../classFloweringPlant.html#aa91da58f3ac6480eca0c0e79c3909e37',1,'FloweringPlant']]],
   ['getpatchcoordfromfloatpos',['getPatchCoordFromFloatPos',['../classEnvironment.html#a5e4e6b6b178dd5957ca56d9bdadef350',1,'Environment']]],
@@ -33,5 +34,7 @@ var searchData=
   ['getspeciesmap',['getSpeciesMap',['../classFloweringPlant.html#abfe1ee5d1cc6e3f976cef12e1875425b',1,'FloweringPlant']]],
   ['getstatestring',['getStateString',['../classHoneyBee.html#a3b27bb970dc0eea4e5b31b99fa231fd6',1,'HoneyBee::getStateString()'],['../classHymenoptera.html#ace1e947c4b1bbf9c4b0370d0ede7d161',1,'Hymenoptera::getStateString()'],['../classPollinator.html#a2e0b2fda2a76a6af741e9d09882546a1',1,'Pollinator::getStateString()']]],
   ['getstepnumber',['getStepNumber',['../classEvoBeeModel.html#a66fc8a9a7a5a3be99910ab5e00f3574f',1,'EvoBeeModel']]],
-  ['getstigmapollen',['getStigmaPollen',['../classFlower.html#a55f38d41a88131b8d2f5bd150262f381',1,'Flower']]]
+  ['getstigmapollen',['getStigmaPollen',['../classFlower.html#a55f38d41a88131b8d2f5bd150262f381',1,'Flower']]],
+  ['getvishexdistance',['getVisHexDistance',['../classPollinator.html#a7ec96650c0edfaed4a28b94ae8893e04',1,'Pollinator']]],
+  ['getvisstimulusinfo',['getVisStimulusInfo',['../classHymenoptera.html#ab796acc19c980dadc9db8206a5b647b2',1,'Hymenoptera::getVisStimulusInfo()'],['../classPollinator.html#ae191a95dfa9584d44c80806def197c1f',1,'Pollinator::getVisStimulusInfo()']]]
 ];
