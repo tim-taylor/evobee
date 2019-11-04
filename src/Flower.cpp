@@ -25,6 +25,7 @@ Flower::Flower( FloweringPlant* pPlant,
     m_Reflectance(mp),
     m_bPollinated(false),
     m_iAntherPollen(ptc.antherInitPollen),
+    m_iAvailableNectar(ptc.initNectar),
     m_fTemperature(ptc.initTemp),
     m_pPlant(pPlant),
     m_iAntherPollenTransferPerVisit(ptc.antherPollenTransferPerVisit),
@@ -46,6 +47,7 @@ Flower::Flower( FloweringPlant* pPlant,
     m_Reflectance(reflectance),
     m_bPollinated(false),
     m_iAntherPollen(pPlant->m_pPlantTypeConfig->antherInitPollen),
+    m_iAvailableNectar(pPlant->m_pPlantTypeConfig->initNectar),
     m_fTemperature(pPlant->m_pPlantTypeConfig->initTemp),
     m_pPlant(pPlant),
     m_iAntherPollenTransferPerVisit(pPlant->m_pPlantTypeConfig->antherPollenTransferPerVisit),
@@ -65,6 +67,7 @@ Flower::Flower(const Flower& other) :
     m_bPollinated(other.m_bPollinated),
     m_iAntherPollen(other.m_iAntherPollen),
     m_StigmaPollen(other.m_StigmaPollen),
+    m_iAvailableNectar(other.m_iAvailableNectar),
     m_fTemperature(other.m_fTemperature),
     m_pPlant(other.m_pPlant),
     m_iAntherPollenTransferPerVisit(other.m_iAntherPollenTransferPerVisit),
@@ -93,6 +96,7 @@ Flower::Flower(Flower&& other) noexcept :
     m_bPollinated(other.m_bPollinated),
     m_iAntherPollen(other.m_iAntherPollen),
     m_StigmaPollen(std::move(other.m_StigmaPollen)),
+    m_iAvailableNectar(other.m_iAvailableNectar),
     m_fTemperature(other.m_fTemperature),
     m_pPlant(other.m_pPlant),
     m_iAntherPollenTransferPerVisit(other.m_iAntherPollenTransferPerVisit),
@@ -151,12 +155,19 @@ Flower& Flower::operator= (Flower&& other) noexcept
 // helper method used by copy/move assignment operators
 void Flower::copyCommon(const Flower& other) noexcept
 {
+    // N.B. we don't expect this method to get called in the current code... the methods that call
+    // it now throw an exception or assertion failure before calling this!
+    assert(false);
+    //throw std::runtime_error("Attempt to call a flower's copyCommon method - not expecting this!");
+
+    /*
     m_SpeciesId = other.m_SpeciesId;
     m_Position = other.m_Position;
     m_Reflectance = other.m_Reflectance;
     m_bPollinated = other.m_bPollinated;
     m_iAntherPollen = other.m_iAntherPollen;
     m_StigmaPollen = other.m_StigmaPollen;
+    m_iAvailableNectar = other.m_iAvailableNectar;
     m_fTemperature = other.m_fTemperature;
     m_pPlant = other.m_pPlant;
     m_iAntherPollenTransferPerVisit = other.m_iAntherPollenTransferPerVisit;
@@ -164,6 +175,7 @@ void Flower::copyCommon(const Flower& other) noexcept
     m_bPollenCloggingAll = other.m_bPollenCloggingAll;
     m_bPollenCloggingPartial = other.m_bPollenCloggingPartial;
     //m_CloggingSpeciesVec = other.m_CloggingSpeciesVec; // can't copy this as it is constant!
+    */
 }
 
 
@@ -304,4 +316,13 @@ int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int sugg
     }
 
     return actualNum;
+}
+
+
+// Respond to a pollinator's request for nectar
+int Flower::collectNectar(int amountRequested)
+{
+    int amountGiven = std::min(amountRequested, m_iAvailableNectar);
+    m_iAvailableNectar -= amountGiven;
+    return amountGiven;
 }

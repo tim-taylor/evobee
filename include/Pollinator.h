@@ -130,7 +130,7 @@ public:
      * Checks whether the pollinator classifies the given visual stimulus as a match against its
      * current target marker point.
      */
-    bool matchesTargetMP(const ReflectanceInfo& stimulus);
+    bool matchesTargetMP(const ReflectanceInfo& stimulus) const;
 
 
 protected:
@@ -164,6 +164,20 @@ protected:
      * harvest the specified flower. May be overridden by subclasses.
      */
     virtual bool isVisitCandidate(Flower* pFlower) const;
+
+    /**
+     * Default implementation of method to determine whether the pollinator should
+     * harvest the specified flower using its visual perception. This is a special case
+     * called by isVisitCandidate() in the case that m_ConstancyType is VISUAL.
+     * May be overridden by subclasses.
+     */
+    virtual bool isVisitCandidateVisual(Flower* pFlower) const;
+
+    /**
+     * Default implementation of method to update the pollinator's visual preference
+     * data after each visit to a flower. May be overridden by subclasses.
+     */
+    virtual void updateVisualPreferences(const Flower* pFlower, int nectarCollected);
 
     /**
      * Default implementation of method coding the logic of what happens when the
@@ -232,6 +246,11 @@ protected:
     void collectPollenFromAnther(Flower* pFlower);
 
     /**
+     * Collect nectar reward from flower if available.
+     */
+    int collectNectar(Flower* pFlower);
+
+    /**
      * Lose the specified amount of pollen to the air.
      *
      * @return The number of pollen grains lost (which might be less than the
@@ -248,6 +267,11 @@ protected:
      * @return Detection probablility in the range 0.0 to 1.0
      */
     virtual float getMPDetectionProb(MarkerPoint mp) const = 0;
+
+    /**
+     * Returns true if a flower with the specified marker point is in the list of recently visited flowers
+     */
+    //bool isRecentlyVisited(MarkerPoint mp) const;
 
     /**
      * Returns information about how a given stimulus with a single marker point
@@ -276,7 +300,11 @@ protected:
     const EvoBeeModel* m_pModel;///< (non-owned) pointer to EvoBeeModel
 
     PollinatorState m_State;    ///< The current state of the pollinator
+
     int             m_iNumFlowersVisitedInBout; ///< Number of flowers visited so far in current bout
+
+    int             m_iCollectedNectar;         ///< Total amount of nectar currently collected from flowers
+
     PollenVector    m_PollenStore;              ///< Container for Pollen currently being carried
 
     iPos            m_MovementAreaTopLeft;      ///< Boundary of area in which pollinator is allowed to move
@@ -311,17 +339,19 @@ protected:
     PollinatorForagingStrategy m_ForagingStrategy; ///< Determines exactly how the pollinator moves at each step
 
     // some constant parameters for this pollinator
-    const int       m_iBoutLength;              ///< Num flower visits allowed before returning to hive [0=unlimited]
-    const int       m_iPollenDepositPerFlowerVisit;  ///< Amount of pollen deposited on a flower on each visit
-    const int       m_iPollenLossInAir;         ///< Amount of pollen lost on each timestep when flying
-    const int       m_iMaxPollenCapacity;       ///< Maximum amount of pollen the pollinator can carry
-    const int       m_iPollenCarryoverNumVisits; /** After collecting a grain of pollen from a flower,
-                                                  * the pollinator can visit this number of subsequent
-                                                  * flowers to potentially deposit it. If the pollen is
-                                                  * still not deposited after this number of visits, it
-                                                  * is removed from the pollinator (i.e. it is lost)
-                                                  * A value of 0 indicates no limit in number of visits.
-                                                  */
+    const int       m_iBoutLength;                  ///< Num flower visits allowed before returning to hive [0=unlimited]
+    const int       m_iPollenDepositPerFlowerVisit; ///< Amount of pollen deposited on a flower on each visit
+    const int       m_iPollenLossInAir;             ///< Amount of pollen lost on each timestep when flying
+    const int       m_iMaxPollenCapacity;           ///< Maximum amount of pollen the pollinator can carry
+    const int       m_iPollenCarryoverNumVisits;    /** After collecting a grain of pollen from a flower,
+                                                    * the pollinator can visit this number of subsequent
+                                                    * flowers to potentially deposit it. If the pollen is
+                                                    * still not deposited after this number of visits, it
+                                                    * is removed from the pollinator (i.e. it is lost)
+                                                    * A value of 0 indicates no limit in number of visits.
+                                                    */
+    const int       m_iNectarCollectPerFlowerVisit; ///< Amount of nectar pollinator attempts to collect
+                                                    ///< from a flower on a single visit
     /*
      * Some other properties that might be implemented in future versions include:
      * - controller (commute speed, steering tendancy [random, biased, levy], )

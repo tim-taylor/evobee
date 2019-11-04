@@ -25,9 +25,10 @@ struct PollinatorConfig {
     int pollenDepositPerFlowerVisit;
     int pollenLossInAir;
     int pollenCarryoverNumVisits;
+    int nectarCollectPerFlowerVisit;
     MarkerPoint innateMPPrefMin;
     MarkerPoint innateMPPrefMax;
-    std::string strConstancyType;          ///< allowed values: none, simple
+    std::string strConstancyType;          ///< allowed values: none, simple, visual
     PollinatorConstancyType constancyType;
     float constancyParam;
     std::string strForagingStrategy;       ///< allowed values: random, nearest-flower, random-flower, random-global
@@ -40,6 +41,9 @@ struct PollinatorConfig {
 	MarkerPoint visDataMPStep;
 	MarkerPoint visDataMPMax;
 
+    float visBaseProbLandTarget;
+    float visProbLandNoTargetSetDelta;
+    float visProbLandNonTargetIndivStdDev;
 };
 
 #endif /* _POLLINATORCONFIG_H */

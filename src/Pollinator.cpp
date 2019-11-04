@@ -29,6 +29,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_pModel(nullptr),
     m_State(PollinatorState::UNINITIATED),
     m_iNumFlowersVisitedInBout(0),
+    m_iCollectedNectar(0),
     m_ConstancyType(pc.constancyType),
     m_fConstancyParam(pc.constancyParam),
     m_PreviousLandingSpeciesId(0),
@@ -38,7 +39,8 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_iPollenDepositPerFlowerVisit(pc.pollenDepositPerFlowerVisit),
     m_iPollenLossInAir(pc.pollenLossInAir),
     m_iMaxPollenCapacity(pc.maxPollenCapacity),
-    m_iPollenCarryoverNumVisits(pc.pollenCarryoverNumVisits)
+    m_iPollenCarryoverNumVisits(pc.pollenCarryoverNumVisits),
+    m_iNectarCollectPerFlowerVisit(pc.nectarCollectPerFlowerVisit)
 {
     // Each pollinator has a pointer to the environment and to the model for
     // convenience, to save having to ask the Hive for these each time we need them
@@ -58,7 +60,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     }
 
     // At birth the pollinator's target Marker Point is set to its innate preference
-    m_TargetMP = m_InnateMPPref;
+    m_TargetMP = NO_MARKER_POINT;
 
     // Set the starting position and heading of the pollinator
     resetToStartPosition();
@@ -85,6 +87,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_pModel(other.m_pModel),
     m_State(other.m_State),
     m_iNumFlowersVisitedInBout(other.m_iNumFlowersVisitedInBout),
+    m_iCollectedNectar(other.m_iCollectedNectar),
     m_PollenStore(other.m_PollenStore),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
@@ -101,6 +104,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_iPollenLossInAir(other.m_iPollenLossInAir),
     m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
     m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits),
+    m_iNectarCollectPerFlowerVisit(other.m_iNectarCollectPerFlowerVisit),
     m_PerformanceInfoMap(other.m_PerformanceInfoMap)
 {
     // NB we should not be in a situation where we are making a copy of a Pollinator
@@ -124,6 +128,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_pModel(other.m_pModel),
     m_State(other.m_State),
     m_iNumFlowersVisitedInBout(other.m_iNumFlowersVisitedInBout),
+    m_iCollectedNectar(other.m_iCollectedNectar),
     m_PollenStore(std::move(other.m_PollenStore)),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
@@ -140,6 +145,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_iPollenLossInAir(other.m_iPollenLossInAir),
     m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
     m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits),
+    m_iNectarCollectPerFlowerVisit(other.m_iNectarCollectPerFlowerVisit),
     m_PerformanceInfoMap(other.m_PerformanceInfoMap)
 {
     other.m_id = 0;
@@ -179,18 +185,15 @@ void Pollinator::reset()
     m_State = PollinatorState::UNINITIATED;
     m_PollenStore.clear();
     m_iNumFlowersVisitedInBout = 0;
+    m_iCollectedNectar = 0;
     m_PreviousLandingSpeciesId = 0;
-    m_TargetMP = m_InnateMPPref;
+    m_TargetMP = NO_MARKER_POINT;
     m_RecentlyVisitedFlowers.clear();
     for (auto& perfInfo : m_PerformanceInfoMap)
     {
         perfInfo.second.reset();
     }
     resetToStartPosition();
-    ///@todo Should m_InnateMPPref be reset in Pollinator::reset? If so, we'll need to
-    // store the originally specified min and max values passed into the constructor
-    // from PollinatorConfig. It's possible that we might want either the value itself,
-    // or the min and max values of the range, to evolve over time as well.
 }
 
 
@@ -531,13 +534,13 @@ void Pollinator::forageRandomFlower()
 // which depends on its flower constancy characteristics etc.
 bool Pollinator::isVisitCandidate(Flower* pFlower) const
 {
-    bool bOfInterest = true;
+    bool bIsVisitCandidate = true;
 
     switch (m_ConstancyType)
     {
         case (PollinatorConstancyType::NONE):
         {
-            bOfInterest = true;
+            bIsVisitCandidate = true;
             break;
         }
         case (PollinatorConstancyType::SIMPLE):
@@ -549,18 +552,18 @@ bool Pollinator::isVisitCandidate(Flower* pFlower) const
             {
                 // have not landed on a flower previously, so we'll land on this one
                 // whatever!
-                bOfInterest = true;
+                bIsVisitCandidate = true;
             }
             else if (m_PreviousLandingSpeciesId == pFlower->getSpeciesId())
             {
                 // land on the same species of flower with a high fixed prob
                 float prob = 0.9;
-                bOfInterest = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
+                bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
             }
             else {
                 // land on a different species of flower with prob determined by constancy param
                 float prob = 1.0 - m_fConstancyParam;
-                bOfInterest = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
+                bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
             }
             /*
             else
@@ -569,11 +572,15 @@ bool Pollinator::isVisitCandidate(Flower* pFlower) const
                 float prob = (m_PreviousLandingSpeciesId == pFlower->getSpeciesId()) ?
                     m_fConstancyParam : (1.0 - m_fConstancyParam);
 
-                bOfInterest = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
+                bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
             }
             */
 
             break;
+        }
+        case (PollinatorConstancyType::VISUAL):
+        {
+            bIsVisitCandidate = isVisitCandidateVisual(pFlower);
         }
         default:
         {
@@ -581,7 +588,28 @@ bool Pollinator::isVisitCandidate(Flower* pFlower) const
         }
     }
 
-    return bOfInterest;
+    return bIsVisitCandidate;
+}
+
+
+// Determine whether the pollinator will decide to land on the given flower,
+// using its visual perception. This is the base class implementation of this method,
+// which should generally be overridden by subclass implementations for more
+// specific types of pollinator.
+bool Pollinator::isVisitCandidateVisual(Flower* pFlower) const
+{
+    throw std::runtime_error("Calling base class implementation of Pollinator::isVisitCandidateVisual. Probably not what was wanted!");
+    return true;
+}
+
+
+// Update the pollinator's visual preference info after each visit to a flower.
+// This is the base class implementation of this method,
+// which should generally be overridden by subclass implementations for more
+// specific types of pollinator.
+void Pollinator::updateVisualPreferences(const Flower* pFlower, int nectarCollected)
+{
+    throw std::runtime_error("Calling base class implementation of Pollinator::updateVisualPreferences. Probably not what was wanted!");
 }
 
 
@@ -599,6 +627,15 @@ void Pollinator::visitFlower(Flower* pFlower)
 
     // now pick up more pollen from the flower
     collectPollenFromAnther(pFlower);
+
+    // and collect nectar reward if available
+    int nectarCollected = collectNectar(pFlower);
+
+    // if pollinator is using visual system for foraging, update its preferences after visiting this flower
+    if (m_ConstancyType == PollinatorConstancyType::VISUAL)
+    {
+        updateVisualPreferences(pFlower, nectarCollected);
+    }
 
     // update record of most recent landing to this one
     m_PreviousLandingSpeciesId = pFlower->getSpeciesId();
@@ -770,6 +807,15 @@ void Pollinator::collectPollenFromAnther(Flower* pFlower)
 }
 
 
+// Collect nectar from flower if available
+int Pollinator::collectNectar(Flower* pFlower)
+{
+    int nectarCollected = pFlower->collectNectar(m_iNectarCollectPerFlowerVisit);
+    m_iCollectedNectar += nectarCollected;
+    return nectarCollected;
+}
+
+
 // Lose the specified amount of pollen to the air
 int Pollinator::losePollenToAir(int num)
 {
@@ -802,7 +848,7 @@ int Pollinator::getNumPollenGrainsInStore(unsigned int speciesId) const
 }
 
 
-bool Pollinator::matchesTargetMP(const ReflectanceInfo& stimulus)
+bool Pollinator::matchesTargetMP(const ReflectanceInfo& stimulus) const
 {
     const float minHexDistance = 0.05;
     const float maxHexDistance = 0.19;

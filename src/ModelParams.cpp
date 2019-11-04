@@ -330,6 +330,10 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
     {
         pc.constancyType = PollinatorConstancyType::SIMPLE;
     }
+    else if (pc.strConstancyType == "visual")
+    {
+        pc.constancyType = PollinatorConstancyType::VISUAL;
+    }
     else
     {
         pc.constancyType = PollinatorConstancyType::NONE;

@@ -32,7 +32,7 @@ struct PlantTypeConfig {
     bool        pollenCloggingAll;
     bool        pollenCloggingPartial;
     std::string pollenCloggingSpecies;
-    //int       nectarReward;               // (currently unused)
+    int         initNectar;
     float       initTemp;                   ///<@todo (unused just now) // init temp of flowers and leaves
     int         numFlowers;
     bool        hasLeaf;

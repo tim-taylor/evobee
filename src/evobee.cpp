@@ -137,7 +137,6 @@ void from_json(const json& j, PlantTypeConfig& pt)
     json_read_param(j, sct, "flower-reflectance-mp-init-max", pt.flowerMPInitMax);
     json_read_param(j, sct, "anther-init-pollen", pt.antherInitPollen);
     json_read_param(j, sct, "anther-pollen-transfer-per-visit", pt.antherPollenTransferPerVisit);
-    //json_read_param(j, sct, "nectar-reward", pt.nectarReward);
     json_read_param(j, sct, "stigma-max-pollen-capacity", pt.stigmaMaxPollenCapacity);
     if (pt.stigmaMaxPollenCapacity < 1)
     {
@@ -148,6 +147,7 @@ void from_json(const json& j, PlantTypeConfig& pt)
     json_read_param(j, sct, "pollen-clogging", pt.pollenCloggingSpecies);
     json_read_param(j, sct, "repro-seed-dispersal-global", pt.reproSeedDispersalGlobal);
     json_read_opt_param(j, sct, "repro-seed-dispersal-radius", pt.reproSeedDispersalRadius, 1.0f);
+    json_read_opt_param(j, sct, "init-nectar", pt.initNectar, 0);
 
 }
 
@@ -166,6 +166,11 @@ void from_json(const json& j, PollinatorConfig& p)
     json_read_opt_param(j, sct, "constancy-param", p.constancyParam, 0.5f);
     json_read_opt_param(j, sct, "foraging-strategy", p.strForagingStrategy, std::string("random"));
     json_read_opt_param(j, sct, "visited-flower-memory-size", p.visitedFlowerMemorySize, (unsigned int)5);
+    json_read_opt_param(j, sct, "vis-base-prob-land-target", p.visBaseProbLandTarget, 0.9f);
+    json_read_opt_param(j, sct, "vis-prob-land-no-target-set-delta", p.visProbLandNoTargetSetDelta, 0.2f);
+    json_read_opt_param(j, sct, "vis-prob-land-nontarget-indiv-stddev", p.visProbLandNonTargetIndivStdDev, 0.01f);
+    json_read_opt_param(j, sct, "nectar-collect-per-flower-visit", p.nectarCollectPerFlowerVisit, 0);
+
     if (p.maxPollenCapacity < 1)
     {
         // a user supplied value of 0 or negative means that the maximum capacity
@@ -184,13 +189,9 @@ void from_json(const json& j, PollinatorConfig& p)
             // we've found an array! It should be an array of arrays, so let's try iterating through it
             for (json::iterator itAA = visdata.begin(); itAA != visdata.end(); ++itAA)
             {
-                if (itAA.value().is_array() && itAA.value().size() == 5)
+                if (itAA.value().is_array() && itAA.value().size() == 6)
                 {
                     // we've found an array within the array, so now read the values
-
-                    // TEMP CODE!!!!!!
-                    //std::cout << itAA.value() << std::endl;
-
                     json::iterator itV = itAA->begin();
                     try
                     {
@@ -199,9 +200,7 @@ void from_json(const json& j, PollinatorConfig& p)
                         float gc = (++itV).value();   // green contast
                         float x = (++itV).value();    // hexagonal colour space x coord
                         float y = (++itV).value();    // hexagonal colour space y coord
-
-                        // TEMP CODE!!!!
-                        //std::cout << "Vis data entry: " << mp << ", " << dp << ", " << gc << ", " << x << ", " << y << std::endl;
+                        float bpli = (++itV).value(); // pollinator's base probability of landing on this mp (non target, innate)
 
                         numEntries++;
                         if (numEntries == 1) {
@@ -241,14 +240,14 @@ void from_json(const json& j, PollinatorConfig& p)
                         }
                         // All checks are complete and passed at this stage, so we can add the data
                         // to the visData vector
-                        p.visData.emplace_back(mp, dp, gc, x, y);
+                        p.visData.emplace_back(mp, dp, gc, x, y, bpli);
                         p.visDataMPMax = mp;
                         mpPrev = mp;
                     }
                     catch (const std::exception& e)
                     {
                         std::cerr << "Error in vis-data section of config file, in line " << itAA.value() << std::endl
-                            << "Unable to parse data values. Expecting format [markerPoint, DetectionProb, GreenContrast, Xcoord, Ycoord]."  << std::endl
+                            << "Unable to parse data values. Expecting format [markerPoint, DetectionProb, GreenContrast, Xcoord, Ycoord, BaseProbLandNonTargetInnate]."  << std::endl
                             << "Aborting!" << std::endl;
                         exit(1);
                     }

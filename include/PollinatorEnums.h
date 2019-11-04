@@ -1,7 +1,7 @@
 /**
  * @file
  *
- * Declaration of enums associated with Pollinators: 
+ * Declaration of enums associated with Pollinators:
  * PollinatorState, PollinatorConstancyType and PollinatorForagingStrategy
  */
 
@@ -16,7 +16,7 @@ enum class PollinatorState {UNINITIATED, FORAGING, BOUT_COMPLETE};
 /**
  * The PollinatorConstancyType enum
  */
-enum class PollinatorConstancyType {NONE, SIMPLE};
+enum class PollinatorConstancyType {NONE, SIMPLE, VISUAL};
 
 /**
  * The PollinatorConstancyType enum

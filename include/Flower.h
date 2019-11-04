@@ -124,6 +124,13 @@ public:
     int transferPollenFromPollinator(PollenVector& pollinatorStore, int suggestedNum);
 
     /**
+     * Respond to a pollinator's request for nectar. Provide the full amount
+     * requested if available, otherwise provide as much as is available. The
+     * amount actually provided is indicated by the return value.
+     */
+    int collectNectar(int amountRequested);
+
+    /**
      * Return a reference to the flower's vector of pollen on its stigma
      */
     const PollenVector& getStigmaPollen() const {return m_StigmaPollen;}
@@ -153,7 +160,7 @@ private:
     bool            m_bPollinated;      ///< Is the flower pollinated?
     int             m_iAntherPollen;    ///< Amount of collectable pollen remaining
     PollenVector    m_StigmaPollen;     ///< Collection of deposited Pollen grains on stigma
-    //int             m_iNumViableSeeds;  ///<
+    int             m_iAvailableNectar; ///< Amount of nectar currently available for collection by pollinators
     float           m_fTemperature;     ///< Current temperature of flower
     FloweringPlant* m_pPlant;           ///< (non-owning) pointer to the plant this flower belongs to
 
@@ -163,7 +170,6 @@ private:
     bool    m_bPollenCloggingAll;
     bool    m_bPollenCloggingPartial;
     const std::vector<unsigned int>& m_CloggingSpeciesVec;
-    //const int m_iNectarRewardPerVisit;    ///< Amount of reward given to a pollinator (CURRENTLY UNUSED)
 
     /**
      * Record of next available unique ID number to be assigned to a new Flower
