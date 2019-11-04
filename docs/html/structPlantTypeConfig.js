@@ -6,6 +6,7 @@ var structPlantTypeConfig =
     [ "flowerMPInitMax", "structPlantTypeConfig.html#a61dc1b2c9bb6445fc4401286eb1c531d", null ],
     [ "flowerMPInitMin", "structPlantTypeConfig.html#a81667c52fde8a84325e9a10eab53edc4", null ],
     [ "hasLeaf", "structPlantTypeConfig.html#a0584e7fdb3e522c60c5f697dac71b671", null ],
+    [ "initNectar", "structPlantTypeConfig.html#a0208f48d8c9174ac6493993d857062b0", null ],
     [ "initTemp", "structPlantTypeConfig.html#a8163a11e10b14241d0d55087a5091439", null ],
     [ "leafMP", "structPlantTypeConfig.html#a44937037d1241150b0bf54a727e58ec5", null ],
     [ "numFlowers", "structPlantTypeConfig.html#abfdf37db16bab7526c1a95c48897478e", null ],

@@ -34,5 +34,6 @@ var hierarchy =
     [ "SDL2_gfxBresenhamIterator", "structSDL2__gfxBresenhamIterator.html", null ],
     [ "SDL2_gfxMurphyIterator", "structSDL2__gfxMurphyIterator.html", null ],
     [ "Visualiser", "classVisualiser.html", null ],
+    [ "VisualPreferenceInfo", "structVisualPreferenceInfo.html", null ],
     [ "VisualStimulusInfo", "structVisualStimulusInfo.html", null ]
 ];

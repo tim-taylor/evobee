@@ -60,7 +60,8 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "PollinatorEnums.h", "PollinatorEnums_8h.html", "PollinatorEnums_8h" ],
     [ "PollinatorStructs.h", "PollinatorStructs_8h.html", [
       [ "PollinatorPerformanceInfo", "structPollinatorPerformanceInfo.html", "structPollinatorPerformanceInfo" ],
-      [ "VisualStimulusInfo", "structVisualStimulusInfo.html", "structVisualStimulusInfo" ]
+      [ "VisualStimulusInfo", "structVisualStimulusInfo.html", "structVisualStimulusInfo" ],
+      [ "VisualPreferenceInfo", "structVisualPreferenceInfo.html", "structVisualPreferenceInfo" ]
     ] ],
     [ "Position.h", "Position_8h.html", "Position_8h" ],
     [ "ReflectanceInfo.h", "ReflectanceInfo_8h.html", "ReflectanceInfo_8h" ],

@@ -134,6 +134,8 @@ const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;&#
 <tr class="separator:a3523abeac646d7a2e39aa37e3f867472"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a383880f10a52b8dcc8537d9050fc7c80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a383880f10a52b8dcc8537d9050fc7c80">transferPollenFromPollinator</a> (PollenVector &amp;pollinatorStore, int suggestedNum)</td></tr>
 <tr class="separator:a383880f10a52b8dcc8537d9050fc7c80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02a79982b45290a60ec766a5c7861ed1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a02a79982b45290a60ec766a5c7861ed1">collectNectar</a> (int amountRequested)</td></tr>
+<tr class="separator:a02a79982b45290a60ec766a5c7861ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55f38d41a88131b8d2f5bd150262f381"><td class="memItemLeft" align="right" valign="top">const PollenVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlower.html#a55f38d41a88131b8d2f5bd150262f381">getStigmaPollen</a> () const</td></tr>
 <tr class="separator:a55f38d41a88131b8d2f5bd150262f381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd2aec0992fcc93973a4033e5a54ba22"><td class="memItemLeft" align="right" valign="top"><a id="afd2aec0992fcc93973a4033e5a54ba22"></a>
@@ -230,11 +232,32 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 </div><div class="memdoc">
 <p>Consructor to create an offspring flower based upon parent </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00039">39</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00040">40</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a02a79982b45290a60ec766a5c7861ed1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02a79982b45290a60ec766a5c7861ed1">&#9670;&nbsp;</a></span>collectNectar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Flower::collectNectar </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>amountRequested</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Respond to a pollinator's request for nectar. Provide the full amount requested if available, otherwise provide as much as is available. The amount actually provided is indicated by the return value. </p>
+
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00323">323</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a658e6726f9a63f34e133ce0ad576e52f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a658e6726f9a63f34e133ce0ad576e52f">&#9670;&nbsp;</a></span>getSpecies()</h2>
 
@@ -251,7 +274,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 </div><div class="memdoc">
 <p>Return a string identifying the owning plant species </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00170">170</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00182">182</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -279,7 +302,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 </div><div class="memdoc">
 <p>Return a reference to the flower's vector of pollen on its stigma </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00129">129</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00136">136</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
 
 </div>
 </div>
@@ -365,7 +388,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 <dl class="section return"><dt>Returns</dt><dd>The number of grains transferred</dd></dl>
 <p>Note, no check is made as to whether the capacity of the pollinator's store has been exceeded. It is the responsibility of the pollinator to perform such a check after it has called this method. </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00176">176</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00188">188</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -404,7 +427,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of grains transferred </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00203">203</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00215">215</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>

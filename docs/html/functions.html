@@ -99,6 +99,16 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </ul>
 
 
+<h3><a id="index_b"></a>- b -</h3><ul>
+<li>baseProbLandNonTarget
+: <a class="el" href="structVisualPreferenceInfo.html#ab228a2dc3607ccb03f034c74ff3083b2">VisualPreferenceInfo</a>
+</li>
+<li>baseProbLandTarget
+: <a class="el" href="structVisualPreferenceInfo.html#a070ef2cf239751bb61ab76a8153c5d26">VisualPreferenceInfo</a>
+</li>
+</ul>
+
+
 <h3><a id="index_c"></a>- c -</h3><ul>
 <li>checkConsistency()
 : <a class="el" href="classModelParams.html#a0321538fbb586af34d7181efa7c3812d">ModelParams</a>
@@ -108,6 +118,10 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>cloggingNone()
 : <a class="el" href="classFloweringPlant.html#a71e6d015dddbb5afe66293bc1044ef9c">FloweringPlant</a>
+</li>
+<li>collectNectar()
+: <a class="el" href="classFlower.html#a02a79982b45290a60ec766a5c7861ed1">Flower</a>
+, <a class="el" href="classPollinator.html#aff3ad8b3961ad3bef27a9e34afdfd53b">Pollinator</a>
 </li>
 <li>collectPollenFromAnther()
 : <a class="el" href="classPollinator.html#abd0f7c7f0c5b358eb6d3b3978d5f54e2">Pollinator</a>
@@ -145,7 +159,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="classFlower.html#af0e4ddda44ff370970abdad48a157889">Flower</a>
 </li>
 <li>FloweringPlant()
-: <a class="el" href="classFloweringPlant.html#a528f0afc32a77bef2b66c94db1cb049a">FloweringPlant</a>
+: <a class="el" href="classFloweringPlant.html#a5030ef51c45eaf0cbe38e453078a07ea">FloweringPlant</a>
 </li>
 <li>forageNearestFlower()
 : <a class="el" href="classPollinator.html#a85eee1f95a94e7d95f050575c6d67630">Pollinator</a>
@@ -272,6 +286,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>getVisHexDistance()
 : <a class="el" href="classPollinator.html#a7ec96650c0edfaed4a28b94ae8893e04">Pollinator</a>
 </li>
+<li>getVisPrefInfoFromMPConst()
+: <a class="el" href="classHymenoptera.html#a8c13fa9ea52cd989446829fd0cb7a14e">Hymenoptera</a>
+</li>
 <li>getVisStimulusInfo()
 : <a class="el" href="classHymenoptera.html#ab796acc19c980dadc9db8206a5b647b2">Hymenoptera</a>
 , <a class="el" href="classPollinator.html#ae191a95dfa9584d44c80806def197c1f">Pollinator</a>
@@ -308,6 +325,10 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>isVisitCandidate()
 : <a class="el" href="classPollinator.html#a6c457a0454c0a0cdfce6e35b93a1f91c">Pollinator</a>
+</li>
+<li>isVisitCandidateVisual()
+: <a class="el" href="classHymenoptera.html#a683867044d0f4b03d8aa953cf577446c">Hymenoptera</a>
+, <a class="el" href="classPollinator.html#aca20a9423c2f043be1628f01348f5621">Pollinator</a>
 </li>
 </ul>
 
@@ -357,11 +378,17 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>m_iBoutLength
 : <a class="el" href="classPollinator.html#a11c5f4a9c088689b61b72af355dcd383">Pollinator</a>
 </li>
+<li>m_iCollectedNectar
+: <a class="el" href="classPollinator.html#a25e6d59086fa35dab4b8d7f6fe10eb65">Pollinator</a>
+</li>
 <li>m_id
 : <a class="el" href="classPollinator.html#ae1eb6c51a0096f233728719ab42f39ef">Pollinator</a>
 </li>
 <li>m_iMaxPollenCapacity
 : <a class="el" href="classPollinator.html#a2cf5f719fbf925b4914f5e68b4ccccd5">Pollinator</a>
+</li>
+<li>m_iNectarCollectPerFlowerVisit
+: <a class="el" href="classPollinator.html#a74b4157eb05bd620ce6fc349feeb4edf">Pollinator</a>
 </li>
 <li>m_InnateMPPref
 : <a class="el" href="classPollinator.html#ac9179703f3a704d6cd83515eb57e9a5f">Pollinator</a>
@@ -383,9 +410,6 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>m_pEnv
 : <a class="el" href="classPollinator.html#ad3e13436a9a7d9015a777b6e55788f9c">Pollinator</a>
-</li>
-<li>m_PerformanceInfoMap
-: <a class="el" href="classPollinator.html#a617b44aed941c963876b436fa9fcf526">Pollinator</a>
 </li>
 <li>m_pHive
 : <a class="el" href="classPollinator.html#a771ffca4348f9d7e5e39d871640ff6eb">Pollinator</a>
@@ -427,7 +451,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="classAbstractHive.html#a9df78d5ccc85ec4dd81be35028e4c686">AbstractHive</a>
 </li>
 <li>matchesTargetMP()
-: <a class="el" href="classPollinator.html#a79242ffe52796658407b480e72e73ab9">Pollinator</a>
+: <a class="el" href="classPollinator.html#ab2c25ea31d08eb2b171480ffd6070b19">Pollinator</a>
 </li>
 <li>migrationAllowed
 : <a class="el" href="structHiveConfig.html#a826904ab191ba75bf11101da19804eec">HiveConfig</a>
@@ -470,6 +494,12 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>postprocess()
 : <a class="el" href="classModelParams.html#a6385a994b94f6b01952d9c3f82edb0c5">ModelParams</a>
+</li>
+<li>probLandNonTarget
+: <a class="el" href="structVisualPreferenceInfo.html#a7fc72f4b8de18ce9cc42b51c416a3e6a">VisualPreferenceInfo</a>
+</li>
+<li>probLandTarget
+: <a class="el" href="structVisualPreferenceInfo.html#a12916e926f44b6d2bdfc6b637368c260">VisualPreferenceInfo</a>
 </li>
 </ul>
 
@@ -581,6 +611,10 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>updatePollenLandingCount()
 : <a class="el" href="classPollinator.html#ad87e24d80ae5e1f4cc811b5d68936a5f">Pollinator</a>
+</li>
+<li>updateVisualPreferences()
+: <a class="el" href="classHymenoptera.html#a3fc1afa0cae00243ba1d1710f4eeccb6">Hymenoptera</a>
+, <a class="el" href="classPollinator.html#ac63b25e0d8c835579cf3cc1a0aa4488e">Pollinator</a>
 </li>
 </ul>
 

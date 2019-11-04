@@ -31,8 +31,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AbstractHive_8cpp.html",
-"classHymenoptera.html#a3d22cb7f1f07fe0a4374dcfe62f9e33d",
-"structPollinatorPerformanceInfo.html"
+"classHymenoptera.html",
+"structPollinatorConfig.html#a235050ae8f29670abd26216cec5dc745"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

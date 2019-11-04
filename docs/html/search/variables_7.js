@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['seedoutflowallowed',['seedOutflowAllowed',['../structPlantTypeDistributionConfig.html#a918028f65ed089ee2c4322b078dbb0ee',1,'PlantTypeDistributionConfig']]],
-  ['seedoutflowprob',['seedOutflowProb',['../structPlantTypeDistributionConfig.html#a810cde43d62d58fcc340eff8422cef0d',1,'PlantTypeDistributionConfig']]],
-  ['seedoutflowrestricted',['seedOutflowRestricted',['../structPlantTypeDistributionConfig.html#a33a53b9076f72b7f64934ea262230fc0',1,'PlantTypeDistributionConfig']]],
-  ['species',['species',['../structPlantTypeDistributionConfig.html#a4616ecbaa8be018516a693b055ffd190',1,'PlantTypeDistributionConfig']]],
-  ['startfromhive',['startFromHive',['../structHiveConfig.html#a414eec8b01c1549b34331eedfec74c32',1,'HiveConfig']]],
-  ['strconstancytype',['strConstancyType',['../structPollinatorConfig.html#afe9bcc2247818e915c088769cfd8df48',1,'PollinatorConfig']]],
-  ['strforagingstrategy',['strForagingStrategy',['../structPollinatorConfig.html#a0b12269be0f8140621eadcf637924c1d',1,'PollinatorConfig']]]
+  ['refuge',['refuge',['../structPlantTypeDistributionConfig.html#a1d0dc38525c55f7d1ddb4c9265a98b33',1,'PlantTypeDistributionConfig']]],
+  ['refugealieninflowprob',['refugeAlienInflowProb',['../structPlantTypeDistributionConfig.html#a69c3b4d6e153ae8226fd6776f237ef3d',1,'PlantTypeDistributionConfig']]],
+  ['reprolocaldensityconstrained',['reproLocalDensityConstrained',['../structPlantTypeDistributionConfig.html#a91b2d8d2dc7d3654235e48d30591d7be',1,'PlantTypeDistributionConfig']]],
+  ['reprolocaldensitymax',['reproLocalDensityMax',['../structPlantTypeDistributionConfig.html#ab0326ce0f69321cb889195c271cc3fa5',1,'PlantTypeDistributionConfig']]],
+  ['reproseeddispersalglobal',['reproSeedDispersalGlobal',['../structPlantTypeConfig.html#aa926f4a80d63c5021bda1896d0fbc589',1,'PlantTypeConfig']]],
+  ['reproseeddispersalradius',['reproSeedDispersalRadius',['../structPlantTypeConfig.html#a3d96c1fc0c970ab0ba68db62b187bb27',1,'PlantTypeConfig']]]
 ];

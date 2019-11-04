@@ -2,7 +2,8 @@ var PollinatorEnums_8h =
 [
     [ "PollinatorConstancyType", "PollinatorEnums_8h.html#aec603fc20a01cb977bfdf945fd90d19b", [
       [ "NONE", "PollinatorEnums_8h.html#aec603fc20a01cb977bfdf945fd90d19bab50339a10e1de285ac99d4c3990b8693", null ],
-      [ "SIMPLE", "PollinatorEnums_8h.html#aec603fc20a01cb977bfdf945fd90d19bae5564829e2f85f6a6873a9d5c4f26d09", null ]
+      [ "SIMPLE", "PollinatorEnums_8h.html#aec603fc20a01cb977bfdf945fd90d19bae5564829e2f85f6a6873a9d5c4f26d09", null ],
+      [ "VISUAL", "PollinatorEnums_8h.html#aec603fc20a01cb977bfdf945fd90d19ba8daf3496602a64f00b16ce266e7084dc", null ]
     ] ],
     [ "PollinatorForagingStrategy", "PollinatorEnums_8h.html#a2e750e668cb4a3b3fb9f7e5cc0c70c1b", [
       [ "RANDOM", "PollinatorEnums_8h.html#a2e750e668cb4a3b3fb9f7e5cc0c70c1ba170e02e86972c2be8559884cc3c12254", null ],

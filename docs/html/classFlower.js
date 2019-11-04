@@ -5,6 +5,7 @@ var classFlower =
     [ "Flower", "classFlower.html#a315e8befd2b0ffbc55b896c022977166", null ],
     [ "Flower", "classFlower.html#ab852887f3063eaa001b8e6607270b34c", null ],
     [ "~Flower", "classFlower.html#afcb8d82daafb6c2185a3de18dd75a810", null ],
+    [ "collectNectar", "classFlower.html#a02a79982b45290a60ec766a5c7861ed1", null ],
     [ "getId", "classFlower.html#ad26c4ee61a8db33cab00968360e093ef", null ],
     [ "getMarkerPoint", "classFlower.html#a6bdce28b24a30ed6134a49e1b2fb2b8c", null ],
     [ "getPosition", "classFlower.html#a0c9408fe1007dcf833558a6831c9c4ef", null ],

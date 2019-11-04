@@ -6,5 +6,6 @@ var searchData=
   ['init',['init',['../classVisualiser.html#a0dd3bd60cdd4d20b551dec127f5be7c7',1,'Visualiser']]],
   ['initialisenewgeneration',['initialiseNewGeneration',['../classEnvironment.html#ad3912473b1cdbafaea1d8bb5ee3d1187',1,'Environment::initialiseNewGeneration()'],['../classEvoBeeModel.html#ac9f718354e603826373d27b3a256f1b1',1,'EvoBeeModel::initialiseNewGeneration()']]],
   ['inreprorestrictionarea',['inReproRestrictionArea',['../classPatch.html#a605d0fdd9712279c50296cfd03433951',1,'Patch']]],
-  ['isvisitcandidate',['isVisitCandidate',['../classPollinator.html#a6c457a0454c0a0cdfce6e35b93a1f91c',1,'Pollinator']]]
+  ['isvisitcandidate',['isVisitCandidate',['../classPollinator.html#a6c457a0454c0a0cdfce6e35b93a1f91c',1,'Pollinator']]],
+  ['isvisitcandidatevisual',['isVisitCandidateVisual',['../classHymenoptera.html#a683867044d0f4b03d8aa953cf577446c',1,'Hymenoptera::isVisitCandidateVisual()'],['../classPollinator.html#aca20a9423c2f043be1628f01348f5621',1,'Pollinator::isVisitCandidateVisual()']]]
 ];

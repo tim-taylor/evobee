@@ -35,5 +35,6 @@ var searchData=
   ['getstepnumber',['getStepNumber',['../classEvoBeeModel.html#a66fc8a9a7a5a3be99910ab5e00f3574f',1,'EvoBeeModel']]],
   ['getstigmapollen',['getStigmaPollen',['../classFlower.html#a55f38d41a88131b8d2f5bd150262f381',1,'Flower']]],
   ['getvishexdistance',['getVisHexDistance',['../classPollinator.html#a7ec96650c0edfaed4a28b94ae8893e04',1,'Pollinator']]],
+  ['getvisprefinfofrommpconst',['getVisPrefInfoFromMPConst',['../classHymenoptera.html#a8c13fa9ea52cd989446829fd0cb7a14e',1,'Hymenoptera']]],
   ['getvisstimulusinfo',['getVisStimulusInfo',['../classHymenoptera.html#ab796acc19c980dadc9db8206a5b647b2',1,'Hymenoptera::getVisStimulusInfo()'],['../classPollinator.html#ae191a95dfa9584d44c80806def197c1f',1,'Pollinator::getVisStimulusInfo()']]]
 ];
