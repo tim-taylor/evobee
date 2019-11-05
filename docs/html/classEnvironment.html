@@ -129,10 +129,10 @@ HivePtrVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getHiv
 <tr class="separator:a0d7e4bb673f73d93c081aeb1ffb53e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a139255397b83b06cfb8a62d528da0dd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFloweringPlant.html">FloweringPlant</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a139255397b83b06cfb8a62d528da0dd7">findNearestFloweringPlant</a> (const <a class="el" href="classPosition.html">fPos</a> &amp;pos, float fRadius=1.0, bool excludeCurrentPos=true)</td></tr>
 <tr class="separator:a139255397b83b06cfb8a62d528da0dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e6ad5027d1f15fe062e41aa0436482a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFlower.html">Flower</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a1e6ad5027d1f15fe062e41aa0436482a">findNearestUnvisitedFlower</a> (const <a class="el" href="classPosition.html">fPos</a> &amp;fpos, const std::vector&lt; unsigned int &gt; &amp;excludeIdVec, float fRadius=1.0, bool excludeCurrentPos=true)</td></tr>
-<tr class="separator:a1e6ad5027d1f15fe062e41aa0436482a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4759d5470ee0b434ca74ea67c024d633"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFlower.html">Flower</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a4759d5470ee0b434ca74ea67c024d633">findRandomUnvisitedFlower</a> (const <a class="el" href="classPosition.html">fPos</a> &amp;fpos, const std::vector&lt; unsigned int &gt; &amp;excludeIdVec, float fRadius=1.0, bool excludeCurrentPos=true)</td></tr>
-<tr class="separator:a4759d5470ee0b434ca74ea67c024d633"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae59c78933dcf4b4f41967ad433873ab3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFlower.html">Flower</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#ae59c78933dcf4b4f41967ad433873ab3">findNearestUnvisitedFlower</a> (const <a class="el" href="classPosition.html">fPos</a> &amp;fpos, const std::vector&lt; <a class="el" href="classFlower.html">Flower</a> *&gt; &amp;excludeVec, float fRadius=1.0, bool excludeCurrentPos=true)</td></tr>
+<tr class="separator:ae59c78933dcf4b4f41967ad433873ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e584a7f45baf59a9f36155866bbb5fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFlower.html">Flower</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a4e584a7f45baf59a9f36155866bbb5fb">findRandomUnvisitedFlower</a> (const <a class="el" href="classPosition.html">fPos</a> &amp;fpos, const std::vector&lt; <a class="el" href="classFlower.html">Flower</a> *&gt; &amp;excludeVec, float fRadius=1.0, bool excludeCurrentPos=true)</td></tr>
+<tr class="separator:a4e584a7f45baf59a9f36155866bbb5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e1925ff4bb3786a4d57f208d3369485"><td class="memItemLeft" align="right" valign="top"><a id="a0e1925ff4bb3786a4d57f208d3369485"></a>
 <a class="el" href="classPosition.html">fPos</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getRandomPositionF</b> () const</td></tr>
 <tr class="separator:a0e1925ff4bb3786a4d57f208d3369485"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -237,8 +237,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1e6ad5027d1f15fe062e41aa0436482a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e6ad5027d1f15fe062e41aa0436482a">&#9670;&nbsp;</a></span>findNearestUnvisitedFlower()</h2>
+<a id="ae59c78933dcf4b4f41967ad433873ab3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae59c78933dcf4b4f41967ad433873ab3">&#9670;&nbsp;</a></span>findNearestUnvisitedFlower()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -252,8 +252,8 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; unsigned int &gt; &amp;&#160;</td>
-          <td class="paramname"><em>excludeIdVec</em>, </td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classFlower.html">Flower</a> *&gt; &amp;&#160;</td>
+          <td class="paramname"><em>excludeVec</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -287,8 +287,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4759d5470ee0b434ca74ea67c024d633"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4759d5470ee0b434ca74ea67c024d633">&#9670;&nbsp;</a></span>findRandomUnvisitedFlower()</h2>
+<a id="a4e584a7f45baf59a9f36155866bbb5fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e584a7f45baf59a9f36155866bbb5fb">&#9670;&nbsp;</a></span>findRandomUnvisitedFlower()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -302,8 +302,8 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; unsigned int &gt; &amp;&#160;</td>
-          <td class="paramname"><em>excludeIdVec</em>, </td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classFlower.html">Flower</a> *&gt; &amp;&#160;</td>
+          <td class="paramname"><em>excludeVec</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -333,7 +333,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00392">392</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00394">394</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -353,7 +353,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Returns a vector of pointers to all flowers across the whole environment. This is only required in special cases (e.g. with the forage-random-global strategy. Hence, the vector is only populated as and when this method is called for the first time. </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00783">783</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00787">787</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -484,7 +484,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Returns the fraction of all flowers that are currently pollinated </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00460">460</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00464">464</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -504,7 +504,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Returns the fraction of flowers of species id=1 that are currently pollinated (this should correspond to the first plant spcies that is defined in the JSON config file) </p>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00486">486</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00490">490</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -777,7 +777,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Some more details: overall goal: replace all plants (stored in individual Patches) with a new generation of plants assumptions: If PTD area is refuge or seedOutflow is restricted (outflow prob &lt; 1.0), that area is not allowed to overlap with any other area (see implementation details below) approach: create a vector of all pollinated plants (pollinatedPlantPtrs) and shuffle it create an empty newPlants vector to store new generation for each plant in pollinatedPlantPtrs (up to global max repro num for env) consider a nearby position in which to reproduce determine prob that it will successfully reproduce in that position, taking into acccount seed outflow prob of current patch seed inflow prob (refuge incoming) of destination any local PTDConfig density constraints (consult m_LocalDensityConstraints) if successful, create new plant and put in newPlants vector empty plant vectors for all patches - delete all plants from previous generation for each plant in newPlants, move plant to appropriate <a class="el" href="classPatch.html">Patch</a> vector implementation details: each <a class="el" href="classPatch.html">Patch</a> needs outflow prob (and allowed/restricted flags, corresponding to p&gt;0, p&lt;1) isRefuge flag refugeNativeSpecies id alienInflowProb We deal with constraints on overlapping PTD areas (see assumptions above) by thowing an exception if there is an attempt to set these <a class="el" href="classPatch.html">Patch</a> probs/flags multiple times for any single <a class="el" href="classPatch.html">Patch</a> (this is done in <a class="el" href="classPatch.html#a54f2cf62fd6ec676e79e17b3da4035b3">Patch::setReproConstraints</a>) </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>when we implement mutation, we will actually want to record the plant AND a ptr to the pollinating flower (pollen.pSource) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00552">552</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Environment_8cpp_source.html#l00556">556</a> of file <a class="el" href="Environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>

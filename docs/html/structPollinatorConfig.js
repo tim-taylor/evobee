@@ -22,6 +22,9 @@ var structPollinatorConfig =
     [ "visDataMPMin", "structPollinatorConfig.html#a95ace0b05f9ae65ee3d8a408284a8471", null ],
     [ "visDataMPStep", "structPollinatorConfig.html#ab659274721c92f4e098ba56ed2580b4f", null ],
     [ "visitedFlowerMemorySize", "structPollinatorConfig.html#a86ad2485a7cf69a26593640a4159aa5a", null ],
+    [ "visProbLandDecrementOnNoReward", "structPollinatorConfig.html#aa9d5dcf27b12a3bf47dfe172a009fe9f", null ],
+    [ "visProbLandDecrementOnUnseen", "structPollinatorConfig.html#aea715bcd4e3b4792faeebc0ab87e35bd", null ],
+    [ "visProbLandIncrementOnReward", "structPollinatorConfig.html#a21ba6c77841460ca7869e081bdbc8468", null ],
     [ "visProbLandNonTargetIndivStdDev", "structPollinatorConfig.html#a08c3291ccfce00774f947fbd162d8138", null ],
     [ "visProbLandNoTargetSetDelta", "structPollinatorConfig.html#a1d4190fe53f97bef5dc6f80330481b87", null ]
 ];

@@ -81,7 +81,6 @@ var NAVTREEINDEX1 =
 "classPollinator.html#a74856ab0492c4bfdfb91b98790876206":[2,0,20,3],
 "classPollinator.html#a74b4157eb05bd620ce6fc349feeb4edf":[2,0,20,48],
 "classPollinator.html#a771ffca4348f9d7e5e39d871640ff6eb":[2,0,20,58],
-"classPollinator.html#a7db6e4c6df4caa613088753f1a26d4a6":[2,0,20,63],
 "classPollinator.html#a85eee1f95a94e7d95f050575c6d67630":[2,0,20,7],
 "classPollinator.html#a86b296064fc4f8eba29ba4e116d1da0b":[2,0,20,54],
 "classPollinator.html#a8727ac6332df381a267bb67fb247c423":[2,0,20,40],
@@ -103,6 +102,7 @@ var NAVTREEINDEX1 =
 "classPollinator.html#aca20a9423c2f043be1628f01348f5621":[2,0,20,24],
 "classPollinator.html#ad03277df915384e641aa3c22d2ebeaac":[2,0,20,28],
 "classPollinator.html#ad09af1bd539e5635de728a7187bd15e7":[2,0,20,27],
+"classPollinator.html#ad33f95b8d8ca477a3ec499e8695672c1":[2,0,20,63],
 "classPollinator.html#ad36f1d71e368a4b181f3cf55760fc995":[2,0,20,2],
 "classPollinator.html#ad3e13436a9a7d9015a777b6e55788f9c":[2,0,20,56],
 "classPollinator.html#ad87e24d80ae5e1f4cc811b5d68936a5f":[2,0,20,37],
@@ -246,8 +246,8 @@ var NAVTREEINDEX1 =
 "structPollinatorConfig.html#a012228491b7566cf7a8e201fc8f9b037":[2,0,21,6],
 "structPollinatorConfig.html#a0131300d246a6c1c8d08e54c6eced1f3":[2,0,21,2],
 "structPollinatorConfig.html#a05c9518f4094d5b80d42b9a9aeca20a5":[2,0,21,4],
-"structPollinatorConfig.html#a08c3291ccfce00774f947fbd162d8138":[2,0,21,22],
+"structPollinatorConfig.html#a08c3291ccfce00774f947fbd162d8138":[2,0,21,25],
 "structPollinatorConfig.html#a0b12269be0f8140621eadcf637924c1d":[2,0,21,14],
 "structPollinatorConfig.html#a1aa3cbdef0f6f9f979c9de067d97fd05":[2,0,21,5],
-"structPollinatorConfig.html#a1d4190fe53f97bef5dc6f80330481b87":[2,0,21,23]
+"structPollinatorConfig.html#a1d4190fe53f97bef5dc6f80330481b87":[2,0,21,26]
 };

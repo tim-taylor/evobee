@@ -102,15 +102,15 @@ Collaboration diagram for Hymenoptera:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHymenoptera__coll__graph.png" border="0" usemap="#Hymenoptera_coll__map" alt="Collaboration graph"/></div>
 <map name="Hymenoptera_coll__map" id="Hymenoptera_coll__map">
-<area shape="rect" id="node2" href="classPollinator.html" title="Pollinator" alt="" coords="853,232,929,259"/>
-<area shape="rect" id="node3" href="classPosition.html" title="Position\&lt; int \&gt;" alt="" coords="480,37,587,64"/>
-<area shape="rect" id="node4" href="classEvoBeeModel.html" title="EvoBeeModel" alt="" coords="482,88,585,115"/>
-<area shape="rect" id="node7" href="structPollen.html" title="Pollen" alt="" coords="225,205,283,232"/>
-<area shape="rect" id="node8" href="classFlower.html" title="Flower" alt="" coords="5,205,67,232"/>
-<area shape="rect" id="node9" href="classAbstractHive.html" title="AbstractHive" alt="" coords="484,256,583,283"/>
-<area shape="rect" id="node11" href="structPollinatorPerformanceInfo.html" title="PollinatorPerformanceInfo" alt="" coords="168,321,340,348"/>
-<area shape="rect" id="node12" href="classEnvironment.html" title="Environment" alt="" coords="486,387,581,413"/>
-<area shape="rect" id="node13" href="classPosition.html" title="Position\&lt; float \&gt;" alt="" coords="474,437,593,464"/>
+<area shape="rect" id="node2" href="classPollinator.html" title="Pollinator" alt="" coords="952,229,1028,256"/>
+<area shape="rect" id="node4" href="classFlower.html" title="Flower" alt="" coords="5,69,67,96"/>
+<area shape="rect" id="node8" href="structPollen.html" title="Pollen" alt="" coords="229,97,287,124"/>
+<area shape="rect" id="node5" href="classPosition.html" title="Position\&lt; int \&gt;" alt="" coords="579,153,685,180"/>
+<area shape="rect" id="node6" href="classEvoBeeModel.html" title="EvoBeeModel" alt="" coords="581,204,683,231"/>
+<area shape="rect" id="node9" href="classAbstractHive.html" title="AbstractHive" alt="" coords="583,255,681,281"/>
+<area shape="rect" id="node11" href="structPollinatorPerformanceInfo.html" title="PollinatorPerformanceInfo" alt="" coords="172,320,344,347"/>
+<area shape="rect" id="node12" href="classEnvironment.html" title="Environment" alt="" coords="585,385,679,412"/>
+<area shape="rect" id="node13" href="classPosition.html" title="Position\&lt; float \&gt;" alt="" coords="573,436,691,463"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -307,10 +307,10 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a1616b630db61472923b1f7b69f4c53a5">m_uiVisitedFlowerMemorySize</a></td></tr>
 <tr class="memdesc:a1616b630db61472923b1f7b69f4c53a5 inherit pro_attribs_classPollinator"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of recently visited flowers that the pollinator can remember. <br /></td></tr>
 <tr class="separator:a1616b630db61472923b1f7b69f4c53a5 inherit pro_attribs_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7db6e4c6df4caa613088753f1a26d4a6 inherit pro_attribs_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="a7db6e4c6df4caa613088753f1a26d4a6"></a>
-std::vector&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a7db6e4c6df4caa613088753f1a26d4a6">m_RecentlyVisitedFlowers</a></td></tr>
-<tr class="memdesc:a7db6e4c6df4caa613088753f1a26d4a6 inherit pro_attribs_classPollinator"><td class="mdescLeft">&#160;</td><td class="mdescRight">A record of the ids for recently visited flowers (up to maximum length defined by m_uiVisitedFlowerMemorySize) NB: this vector records individual <a class="el" href="classFlower.html">Flower</a> ids, in contrast to m_PreviousLandingSpeciesId which records the previous <em>speciesId</em> <br /></td></tr>
-<tr class="separator:a7db6e4c6df4caa613088753f1a26d4a6 inherit pro_attribs_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad33f95b8d8ca477a3ec499e8695672c1 inherit pro_attribs_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="ad33f95b8d8ca477a3ec499e8695672c1"></a>
+std::vector&lt; <a class="el" href="classFlower.html">Flower</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ad33f95b8d8ca477a3ec499e8695672c1">m_RecentlyVisitedFlowers</a></td></tr>
+<tr class="memdesc:ad33f95b8d8ca477a3ec499e8695672c1 inherit pro_attribs_classPollinator"><td class="mdescLeft">&#160;</td><td class="mdescRight">A record of the ids for recently visited flowers (up to maximum length defined by m_uiVisitedFlowerMemorySize) NB: this vector records individual <a class="el" href="classFlower.html">Flower</a> ids, in contrast to m_PreviousLandingSpeciesId which records the previous <em>speciesId</em> <br /></td></tr>
+<tr class="separator:ad33f95b8d8ca477a3ec499e8695672c1 inherit pro_attribs_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1323f14dddb2d7ae8d38185d5381a57d inherit pro_attribs_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="a1323f14dddb2d7ae8d38185d5381a57d"></a>
 <a class="el" href="PollinatorEnums_8h.html#a2e750e668cb4a3b3fb9f7e5cc0c70c1b">PollinatorForagingStrategy</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a1323f14dddb2d7ae8d38185d5381a57d">m_ForagingStrategy</a></td></tr>
 <tr class="memdesc:a1323f14dddb2d7ae8d38185d5381a57d inherit pro_attribs_classPollinator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines exactly how the pollinator moves at each step. <br /></td></tr>
@@ -374,7 +374,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 
 <p>Implements <a class="el" href="classPollinator.html#a06b87bff2971c89849685d8cfd144e10">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00088">88</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00091">91</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -404,7 +404,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 
 <p>Reimplemented from <a class="el" href="classPollinator.html#a2e0b2fda2a76a6af741e9d09882546a1">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00077">77</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00080">80</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -433,7 +433,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 </div><div class="memdoc">
 <p>Returns information about the pollinator's current preferences for a stimulus with the specified marker point </p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00176">176</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00179">179</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -465,7 +465,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 
 <p>Implements <a class="el" href="classPollinator.html#ae191a95dfa9584d44c80806def197c1f">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00106">106</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00109">109</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -496,7 +496,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 
 <p>Reimplemented from <a class="el" href="classPollinator.html#aca20a9423c2f043be1628f01348f5621">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00190">190</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00193">193</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -526,7 +526,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 
 <p>Reimplemented from <a class="el" href="classPollinator.html#a65d13ef9bcf2a6e7ebe30ece3f1531e4">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00067">67</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00070">70</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -567,7 +567,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 
 <p>Reimplemented from <a class="el" href="classPollinator.html#ac63b25e0d8c835579cf3cc1a0aa4488e">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00229">229</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00232">232</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
