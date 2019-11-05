@@ -44,6 +44,9 @@ struct PollinatorConfig {
     float visBaseProbLandTarget;
     float visProbLandNoTargetSetDelta;
     float visProbLandNonTargetIndivStdDev;
+    float visProbLandIncrementOnReward;
+    float visProbLandDecrementOnNoReward;
+    float visProbLandDecrementOnUnseen;
 };
 
 #endif /* _POLLINATORCONFIG_H */

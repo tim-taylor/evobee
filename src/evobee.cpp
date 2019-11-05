@@ -169,6 +169,9 @@ void from_json(const json& j, PollinatorConfig& p)
     json_read_opt_param(j, sct, "vis-base-prob-land-target", p.visBaseProbLandTarget, 0.9f);
     json_read_opt_param(j, sct, "vis-prob-land-no-target-set-delta", p.visProbLandNoTargetSetDelta, 0.2f);
     json_read_opt_param(j, sct, "vis-prob-land-nontarget-indiv-stddev", p.visProbLandNonTargetIndivStdDev, 0.01f);
+    json_read_opt_param(j, sct, "vis-prob-land-increment-on-reward", p.visProbLandIncrementOnReward, 0.01f);
+    json_read_opt_param(j, sct, "vis-prob-land-decrement-on-no-reward", p.visProbLandDecrementOnNoReward, 0.01f);
+    json_read_opt_param(j, sct, "vis-prob-land-decrement-on-unseen", p.visProbLandDecrementOnUnseen, 0.005f);
     json_read_opt_param(j, sct, "nectar-collect-per-flower-visit", p.nectarCollectPerFlowerVisit, 0);
 
     if (p.maxPollenCapacity < 1)

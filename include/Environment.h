@@ -178,7 +178,7 @@ public:
      * current position will not be considered).
      */
     Flower* findNearestUnvisitedFlower(const fPos &fpos,
-        const std::vector<unsigned int>& excludeIdVec,
+        const std::vector<Flower*>& excludeVec,
         float fRadius = 1.0,
         bool excludeCurrentPos = true);
 
@@ -201,8 +201,8 @@ public:
      * should be considered (it is set to true by default, meaning a flower at the
      * current position will not be considered).
      */
-     Flower* findRandomUnvisitedFlower(const fPos &fpos,
-        const std::vector<unsigned int>& excludeIdVec,
+    Flower* findRandomUnvisitedFlower(const fPos &fpos,
+        const std::vector<Flower*>& excludeVec,
         float fRadius = 1.0,
         bool excludeCurrentPos = true);
 

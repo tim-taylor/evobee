@@ -71,6 +71,7 @@ protected:
      */
     void updateVisualPreferences(const Flower* pFlower, int nectarCollected) override;
 
+
 private:
     std::vector<VisualPreferenceInfo>       m_VisualPreferences;///< record of the pollinator's current preferences for
                                                                 ///< difference visual stimuli
@@ -91,9 +92,18 @@ private:
     static float                    m_sVisBaseProbLandTarget;   ///< the base probability that a pollinator of this species will
                                                                 ///< land on a flower that it judges to match its target type
 
-    static float                    m_sVisProbLandNoTargetSetDelta; ///< the delta probability to add to the baseProbLandNonTarget[mp]
-                                                                    ///< probability in the case where the pollinator does not yet
-                                                                    ///< have any target
+    static float                    m_sVisProbLandNoTargetSetDelta;     ///< the delta probability to add to the
+                                                                        ///< baseProbLandNonTarget[mp] probability in the case
+                                                                        ///< where the pollinator does not yet have any target
+
+    static float                    m_sVisProbLandIncrementOnReward;    ///< learning rate: increase in landing probability when
+                                                                        ///< the pollinator lands on a rewarding flower
+
+    static float                    m_sVisProbLandDecrementOnNoReward;  ///< learning rate: decrease in landing probability when
+                                                                        ///< the pollinator lands on a non-rewarding flower
+
+    static float                    m_sVisProbLandDecrementOnUnseen;    ///< learning rate: decrease in landing probability when
+                                                                        ///< pollinator hasn't seen a particular marker point recently
 
     static bool                     m_sbStaticsInitialised;     ///< Flags whether statics have been initialised from config file
 
@@ -103,6 +113,8 @@ private:
     static std::string m_sTypeNameStr;
 
     // private helper methods
+    void updateTarget();
+    void attenuatePreferences();
     static const VisualStimulusInfo& getVisStimInfoFromMP(MarkerPoint mp);
     static std::size_t getVisualDataVectorIdx(MarkerPoint mp);
     static float getBaseProbLandNonTargetInnate(MarkerPoint mp);

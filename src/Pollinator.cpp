@@ -111,7 +111,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     // with non-empty m_PollenStore. The only time when the Pollinator copy constructor
     // might get called is when we're initially creating it and putting it in the
     // owning Hive's m_Pollinators vector.
-    if (!m_PollenStore.empty())
+    if ((!m_PollenStore.empty()) || (!m_RecentlyVisitedFlowers.empty()))
     {
         throw std::runtime_error("Attempt to copy an old Pollinator! Something is badly wrong...");
     }
@@ -445,11 +445,13 @@ void Pollinator::forageRandomGlobal()
             // pick a random flower
             std::uniform_int_distribution<unsigned int> dist(0, allFlowerPtrVec.size()-1);
             pFlower = allFlowerPtrVec.at(dist(EvoBeeModel::m_sRngEngine));
+            unsigned int flowerID = pFlower->getId();
 
             // check whether it is on the recently visited list
-            if (std::find(m_RecentlyVisitedFlowers.begin(),
-                          m_RecentlyVisitedFlowers.end(),
-                          pFlower->getId() ) != m_RecentlyVisitedFlowers.end())
+            if (std::find_if(m_RecentlyVisitedFlowers.begin(),
+                             m_RecentlyVisitedFlowers.end(),
+                             [flowerID](Flower* pOtherFlower){return (pOtherFlower->getId() == flowerID);})
+                != m_RecentlyVisitedFlowers.end())
             {
                 // if so, reset pFlower to nullptr
                 pFlower = nullptr;
@@ -643,16 +645,16 @@ void Pollinator::visitFlower(Flower* pFlower)
     {
         if (m_RecentlyVisitedFlowers.empty())
         {
-            m_RecentlyVisitedFlowers.push_back(pFlower->getId());
+            m_RecentlyVisitedFlowers.push_back(pFlower);
         }
         else
         {
-            m_RecentlyVisitedFlowers[0] = pFlower->getId();
+            m_RecentlyVisitedFlowers[0] = pFlower;
         }
     }
     else if (m_uiVisitedFlowerMemorySize > 1)
     {
-        m_RecentlyVisitedFlowers.push_back(pFlower->getId());
+        m_RecentlyVisitedFlowers.push_back(pFlower);
         if (m_RecentlyVisitedFlowers.size() > m_uiVisitedFlowerMemorySize)
         {
             m_RecentlyVisitedFlowers.erase(m_RecentlyVisitedFlowers.begin());

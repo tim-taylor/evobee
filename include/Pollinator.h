@@ -329,14 +329,15 @@ protected:
 
     unsigned int    m_uiVisitedFlowerMemorySize;///< The maximum number of recently visited flowers that
                                                 ///<   the pollinator can remember
-    std::vector<unsigned int> m_RecentlyVisitedFlowers; ///< A record of the ids for recently visited
-                                                        ///<   flowers (up to maximum length defined
-                                                        ///<   by m_uiVisitedFlowerMemorySize)
-                                                        ///<   NB: this vector records individual Flower ids,
-                                                        ///<   in contrast to m_PreviousLandingSpeciesId
-                                                        ///<   which records the previous *speciesId*
 
-    PollinatorForagingStrategy m_ForagingStrategy; ///< Determines exactly how the pollinator moves at each step
+    std::vector<Flower*> m_RecentlyVisitedFlowers;  ///< A record of the ids for recently visited
+                                                    ///<   flowers (up to maximum length defined
+                                                    ///<   by m_uiVisitedFlowerMemorySize)
+                                                    ///<   NB: this vector records individual Flower ids,
+                                                    ///<   in contrast to m_PreviousLandingSpeciesId
+                                                    ///<   which records the previous *speciesId*
+
+    PollinatorForagingStrategy m_ForagingStrategy;  ///< Determines exactly how the pollinator moves at each step
 
     // some constant parameters for this pollinator
     const int       m_iBoutLength;                  ///< Num flower visits allowed before returning to hive [0=unlimited]

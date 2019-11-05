@@ -303,7 +303,7 @@ FloweringPlant* Environment::findNearestFloweringPlant( const fPos& fpos,
 // current position will not be considered).
 //
 Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
-                                                const std::vector<unsigned int>& excludeIdVec,
+                                                const std::vector<Flower*>& excludeVec,
                                                 float fRadius /*= 1.0*/,
                                                 bool excludeCurrentPos /*= true*/)
 {
@@ -337,9 +337,11 @@ Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
                             for (Flower& flower : flowers)
                             {
                                 // for each flower on plant...
-                                if (std::find(excludeIdVec.begin(),
-                                              excludeIdVec.end(),
-                                              flower.getId() ) == excludeIdVec.end())
+                                unsigned int flowerID = flower.getId();
+                                if (std::find_if(excludeVec.begin(),
+                                                 excludeVec.end(),
+                                                 [flowerID](Flower* pOtherFlower){return (pOtherFlower->getId() == flowerID);})
+                                    == excludeVec.end())
                                 {
                                     // if flower not on exclude list...
                                     float distSq = EvoBee::distanceSq(fpos, flower.getPosition());
@@ -390,7 +392,7 @@ Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
 // current position will not be considered).
 //
 Flower *Environment::findRandomUnvisitedFlower(const fPos &fpos,
-                                               const std::vector<unsigned int> &excludeIdVec,
+                                               const std::vector<Flower*> &excludeVec,
                                                float fRadius /*= 1.0*/,
                                                bool excludeCurrentPos /*= true*/)
 {
@@ -424,9 +426,11 @@ Flower *Environment::findRandomUnvisitedFlower(const fPos &fpos,
                             for (Flower& flower : flowers)
                             {
                                 // for each flower on plant...
-                                if (std::find(excludeIdVec.begin(),
-                                              excludeIdVec.end(),
-                                              flower.getId()) == excludeIdVec.end())
+                                unsigned int flowerID = flower.getId();
+                                if (std::find_if(excludeVec.begin(),
+                                                 excludeVec.end(),
+                                                 [flowerID](Flower* pOtherFlower){return (pOtherFlower->getId() == flowerID);})
+                                    == excludeVec.end())
                                 {
                                     // if flower not on exclude list...
                                     float distSq = EvoBee::distanceSq(fpos, flower.getPosition());

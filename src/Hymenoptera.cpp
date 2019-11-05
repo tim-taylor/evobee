@@ -22,6 +22,9 @@ MarkerPoint Hymenoptera::m_sVisDataMPStep = 1;
 MarkerPoint Hymenoptera::m_sVisDataMPMax = 1;
 float Hymenoptera::m_sVisBaseProbLandTarget = 0.9;
 float Hymenoptera::m_sVisProbLandNoTargetSetDelta = 0.2;
+float Hymenoptera::m_sVisProbLandIncrementOnReward = 0.01;
+float Hymenoptera::m_sVisProbLandDecrementOnNoReward = 0.01;
+float Hymenoptera::m_sVisProbLandDecrementOnUnseen = 0.005;
 bool Hymenoptera::m_sbStaticsInitialised = false;
 
 
@@ -228,41 +231,48 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower) const
 // Update the pollinator's visual preference info after each visit to a flower.
 void Hymenoptera::updateVisualPreferences(const Flower* pFlower, int nectarCollected)
 {
-    //////////////////////////////////////////////////////////
-    // Update the pollinator's preferences on the basis of the latest flower visit and rewards received
-
     const ReflectanceInfo& flowerReflectance = pFlower->getReflectanceInfo();
     MarkerPoint flowerMP = flowerReflectance.getMarkerPoint();
     VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromMP(flowerMP);
-    bool bLooksLikeTarget = matchesTargetMP(flowerReflectance); // TODO do we wnat "looks like Target" or "IS Target" here??
+    bool isTarget = (flowerMP == m_TargetMP);
 
     if (nectarCollected > 0)
     {
         // if the visitied flower was rewarding...
-        if (bLooksLikeTarget) {
-            visPrefInfo.incrementProbLandTarget(0.01);  // TODO must make a param to specify learning rate
+        if (isTarget) {
+            visPrefInfo.incrementProbLandTarget(m_sVisProbLandIncrementOnReward);
         }
         else {
-            visPrefInfo.incrementProbLandNonTarget(0.01);
+            visPrefInfo.incrementProbLandNonTarget(m_sVisProbLandIncrementOnReward);
         }
     }
     else
     {
         // if the visited flower was not rewarding...
-        if (bLooksLikeTarget) {
-            visPrefInfo.decrementProbLandTarget(0.01);  // TODO must make a param to specify learning rate
+        if (isTarget) {
+            visPrefInfo.decrementProbLandTarget(m_sVisProbLandDecrementOnNoReward);
         }
         else {
-            visPrefInfo.decrementProbLandNonTarget(0.01);
+            visPrefInfo.decrementProbLandNonTarget(m_sVisProbLandDecrementOnNoReward);
         }
     }
 
-    //////////////////////////////////////////////////////////
-    // Consider switching to a new target based upon newly updated preferences
+    // consider switching to a new target flower based upon the newly updated preferences
+    updateTarget();
 
-    VisualPreferenceInfo& vpiCurrentTarget = getVisPrefInfoFromMP(m_TargetMP);
+    // attenuate preferences for non-target flowers that have not been recently encountered
+    attenuatePreferences();
+}
+
+
+// Consider switching to a new target flower colour based upon newly updated preferences
+void Hymenoptera::updateTarget()
+{
     float maxProbLandNonTarget = 0.0;
+    VisualPreferenceInfo& vpiCurrentTarget = getVisPrefInfoFromMP(m_TargetMP);
     VisualPreferenceInfo* pVpiMaxNonTarget = nullptr;
+
+    // find the non-target marker point that currently has the highest landing probability
     for (auto& vpi : m_VisualPreferences)
     {
         if ((vpi.getMarkerPoint() != m_TargetMP) && (vpi.getProbLandNonTarget() > maxProbLandNonTarget))
@@ -272,45 +282,35 @@ void Hymenoptera::updateVisualPreferences(const Flower* pFlower, int nectarColle
         }
     }
 
+    // if the landing probability of the highest non-target marker point is higher than that of the
+    // current target marker point, make it the new target
     if ((pVpiMaxNonTarget != nullptr) && (maxProbLandNonTarget > vpiCurrentTarget.getProbLandTarget()))
     {
         m_TargetMP = pVpiMaxNonTarget->getMarkerPoint();
-        pVpiMaxNonTarget->setTarget();
-        vpiCurrentTarget.setNonTarget();
+                                            // make the (old) non-target flower the new target
+
+        pVpiMaxNonTarget->setTarget();      // set the (old) non-target flower's target prob land to the default target prob land
+
+        vpiCurrentTarget.setNonTarget();    // set the (old) target flower's non-target prob land to the (old) target flower's target prob land
+                                            // (i.e. it used to have a high preference, keep it, but now use it as the non-target preference)
     }
-
-    /*
-    ...Now call Procedure: update target bool
-    Iterate through the bee pref% array
-    Get the target% for the current target flower
-
-    Iterate through the bee pref% array
-    For each flower in the array that is not the target
-        Get the non-target% for the flower and find the non-target with the highest non-target% (Randomly? handle multiple flowers with equal highest non-target%)
-
-    if the highest non-target% > target% for the current target flower then
-        set the non-target flower's target%=baseTarget% // return its value to the (high) default
-        set the non-target flower's isCurrentTarget=true // make it the new target
-        set the (old) target flower's non-target% = the (old) target flower's target% // i.e. it used to have a high preference, keep it, but now use it as the non-target preference
-        set the (old) target flower's isCurrentTarget=false // make it now just a non-target
-    */
+}
 
 
-    //////////////////////////////////////////////////////////
-    // Attenuate preferences for non-target flowers
-
+// Attenuate preferences for non-target flowers that have not been recently visited
+void Hymenoptera::attenuatePreferences()
+{
     for (auto& vpi : m_VisualPreferences)
     {
-        //if (!isRecentlyVisited(vpi.getMarkerPoint()))
-        //{
-        vpi.decrementProbLandNonTarget(0.01); // TODO figure out what this should be and use a param - and for now we're decrementing
-            // prob land non target for all stimuli, even those not recently visited
-        //}
+        MarkerPoint mp = vpi.getMarkerPoint();
+        if (std::find_if(m_RecentlyVisitedFlowers.begin(),
+                         m_RecentlyVisitedFlowers.end(),
+                         [mp](Flower* pRecentFlower){return (pRecentFlower->getMarkerPoint() == mp);})
+            == m_RecentlyVisitedFlowers.end())
+        {
+            // This marker point has not been recently seen
+            vpi.decrementProbLandNonTarget(m_sVisProbLandDecrementOnUnseen);// decrement its non-target prob land
+                                                                            // (i.e. forget the preference for it a little)
+        }
     }
-
-    /*
-    Iterate through the bee pref% array
-    For every flower not in the recently visited list
-    decrement its non-target% (i.e. forget the preference for it a little << not sure how this should work yet)
-    */
 }
