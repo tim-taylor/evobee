@@ -33,13 +33,16 @@ Hymenoptera::Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive) :
 {
     // first initialise the Hymenoptera class' static data relating to its visual system,
     // if this has not already been done
-    if (!m_sbStaticsInitialised && pc.visDataDefined) {
+    if ((!m_sbStaticsInitialised) && pc.visDataDefined) {
         m_sVisDataMPMin = pc.visDataMPMin;
         m_sVisDataMPStep = pc.visDataMPStep;
         m_sVisDataMPMax = pc.visDataMPMax;
         m_sVisData = pc.visData;
         m_sVisBaseProbLandTarget = pc.visBaseProbLandTarget;
         m_sVisProbLandNoTargetSetDelta = pc.visProbLandNoTargetSetDelta;
+        m_sVisProbLandIncrementOnReward = pc.visProbLandIncrementOnReward;
+        m_sVisProbLandDecrementOnNoReward = pc.visProbLandDecrementOnNoReward;
+        m_sVisProbLandDecrementOnUnseen = pc.visProbLandDecrementOnUnseen;
         m_sbStaticsInitialised = true;
     }
 
@@ -58,12 +61,14 @@ Hymenoptera::Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive) :
 }
 
 Hymenoptera::Hymenoptera(const Hymenoptera& other) :
-    Pollinator(other)
+    Pollinator(other),
+    m_VisualPreferences(other.m_VisualPreferences)
 {
 }
 
 Hymenoptera::Hymenoptera(Hymenoptera&& other) noexcept :
-    Pollinator(std::move(other))
+    Pollinator(std::move(other)),
+    m_VisualPreferences(std::move(other.m_VisualPreferences))
 {
 }
 
@@ -211,11 +216,16 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower) const
         }
         else
         {
+            /// TODO temp testing
             bool bLooksLikeTarget = matchesTargetMP(pFlower->getReflectanceInfo());
+            //bool bLooksLikeTarget = true;
 
             if (bLooksLikeTarget)
             {
-                bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < visPrefInfo.getProbLandTarget());
+                float randnum = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
+                float probLandTarget = visPrefInfo.getProbLandTarget();
+                bIsVisitCandidate = (randnum < probLandTarget);
+                //bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < visPrefInfo.getProbLandTarget());
             }
             else
             {
@@ -223,6 +233,9 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower) const
             }
         }
     }
+
+    // TODO temp testing code
+    //std::cout << "Pollinator " << this << ", Flower " << pFlower << ": " << (bIsVisitCandidate ? "IS" : "is NOT") << " a visit candidate" << std::endl;
 
     return bIsVisitCandidate;
 }
@@ -235,11 +248,18 @@ void Hymenoptera::updateVisualPreferences(const Flower* pFlower, int nectarColle
     MarkerPoint flowerMP = flowerReflectance.getMarkerPoint();
     VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromMP(flowerMP);
     bool isTarget = (flowerMP == m_TargetMP);
+    bool noTarget = (m_TargetMP == NO_MARKER_POINT);
+    bool firstTarget = false;
 
     if (nectarCollected > 0)
     {
         // if the visitied flower was rewarding...
-        if (isTarget) {
+        if (noTarget) {
+            m_TargetMP = flowerMP;
+            visPrefInfo.setTarget();
+            firstTarget = true;
+        }
+        else if (isTarget) {
             visPrefInfo.incrementProbLandTarget(m_sVisProbLandIncrementOnReward);
         }
         else {
@@ -258,7 +278,9 @@ void Hymenoptera::updateVisualPreferences(const Flower* pFlower, int nectarColle
     }
 
     // consider switching to a new target flower based upon the newly updated preferences
-    updateTarget();
+    if (!firstTarget) {
+        updateTarget();
+    }
 
     // attenuate preferences for non-target flowers that have not been recently encountered
     attenuatePreferences();

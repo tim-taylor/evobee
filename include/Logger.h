@@ -59,6 +59,12 @@ public:
      */
     void logFlowersIntraPhaseSummary();
 
+    /*
+     * Log summary details of flower marker points at the end of each foraging phase
+     * Designated by log-flags="m" in the JSON config file
+    */
+    void logFlowerMPsInterPhaseSummary();
+
     /**
      *
      */

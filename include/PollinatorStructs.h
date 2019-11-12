@@ -62,8 +62,8 @@ struct VisualPreferenceInfo {
     }
 
     MarkerPoint getMarkerPoint() const  {return mp;}
-    int getProbLandTarget() const       {return probLandTarget;}
-    int getProbLandNonTarget() const    {return probLandNonTarget;}
+    float getProbLandTarget() const     {return probLandTarget;}
+    float getProbLandNonTarget() const  {return probLandNonTarget;}
 
     void incrementProbLandTarget(float delta)
     {

@@ -314,9 +314,6 @@ protected:
                                                 ///<  (see AbstractHive::getInitForageAreaTopLeft() for
                                                 ///<   details of usage of this variable)
 
-    MarkerPoint     m_InnateMPPref;             ///< This pollinator's innate preference for flower
-                                                ///<   colour marker point
-
     MarkerPoint     m_TargetMP;                 ///< This pollinator's current target flower colour
                                                 ///<   marker point
 

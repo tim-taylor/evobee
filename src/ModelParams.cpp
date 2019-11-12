@@ -35,6 +35,7 @@ bool   ModelParams::m_bLogPollinatorsInterPhaseSummary = false;
 bool   ModelParams::m_bLogFlowersInterPhaseFull = false;
 bool   ModelParams::m_bLogFlowersInterPhaseSummary = false;
 bool   ModelParams::m_bLogFlowersIntraPhaseSummary = false;
+bool   ModelParams::m_bLogFlowerMPsInterPhaseSummary = false;
 bool   ModelParams::m_bUseLogThreads = false;
 bool   ModelParams::m_bVerbose = true;
 bool   ModelParams::m_bCommandLineQuiet = false;
@@ -200,6 +201,11 @@ void ModelParams::setLogFlags(const std::string& flags)
         case 'g':
         {
             m_bLogFlowersIntraPhaseSummary = true;
+            break;
+        }
+        case 'm':
+        {
+            m_bLogFlowerMPsInterPhaseSummary = true;
             break;
         }
         default:

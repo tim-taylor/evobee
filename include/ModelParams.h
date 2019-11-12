@@ -94,6 +94,7 @@ public:
     static bool  logFlowersInterPhaseFull() {return m_bLogFlowersInterPhaseFull;}
     static bool  logFlowersInterPhaseSummary() {return m_bLogFlowersInterPhaseSummary;}
     static bool  logFlowersIntraPhaseSummary() {return m_bLogFlowersIntraPhaseSummary;}
+    static bool  logFlowerMPsInterPhaseSummary() {return m_bLogFlowerMPsInterPhaseSummary;}
     static bool  logFinalDirSet() {return !m_strLogFinalDir.empty();}
     static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
     static bool  useLogThreads() {return m_bUseLogThreads;}
@@ -150,6 +151,7 @@ private:
     static bool  m_bLogFlowersInterPhaseFull;         ///< Log full flower info at end of each generation
     static bool  m_bLogFlowersInterPhaseSummary;      ///< Log summary flower info at end of each generation
     static bool  m_bLogFlowersIntraPhaseSummary;      ///< Log summary flower info every m_iLogUpdatePeriod steps
+    static bool  m_bLogFlowerMPsInterPhaseSummary;    ///< Log summary of flower marker points at end of each generation
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
     static std::string m_strLogDir;         ///< Directory name for logging output during a run
     static std::string m_strLogFinalDir;    ///< Directory to which to move all log files at end of run

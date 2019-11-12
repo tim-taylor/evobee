@@ -49,7 +49,7 @@ public:
 
     /**
      * Explicitly set the display colour (making it unlinked from Marker Point)
-     */    
+     */
     void setRgb(unsigned short r, unsigned short g, unsigned short b);
 
     /**
@@ -64,7 +64,7 @@ public:
 
     /**
      *
-     */    
+     */
     const RGB& getRgb() const {return m_RGB;}
 
 private:
@@ -75,6 +75,7 @@ private:
 
     static const std::map<MarkerPoint, RGB> m_sMarkerPoint2RgbMap;
     static const std::map<std::string, RGB> m_sColourName2RgbMap;
+    static const Colour::RGB m_sDefaultColour;
 };
 
 #endif /* _COLOUR_H */

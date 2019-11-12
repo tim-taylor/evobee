@@ -47,18 +47,6 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_pEnv = m_pHive->getEnvironment();
     m_pModel = m_pEnv->getModel();
 
-    // Set this pollinators innate preference for a flower colour marker point
-    if (pc.innateMPPrefMin == pc.innateMPPrefMax)
-    {
-        m_InnateMPPref = pc.innateMPPrefMin;
-    }
-    else
-    {
-        // pick a marker point at uniform random between the min and max values supplied
-        std::uniform_int_distribution<MarkerPoint> dist(pc.innateMPPrefMin, pc.innateMPPrefMax);
-        m_InnateMPPref = dist(EvoBeeModel::m_sRngEngine);
-    }
-
     // At birth the pollinator's target Marker Point is set to its innate preference
     m_TargetMP = NO_MARKER_POINT;
 
@@ -91,7 +79,6 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_PollenStore(other.m_PollenStore),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
-    m_InnateMPPref(other.m_InnateMPPref),
     m_TargetMP(other.m_TargetMP),
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
@@ -132,7 +119,6 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_PollenStore(std::move(other.m_PollenStore)),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
-    m_InnateMPPref(other.m_InnateMPPref),
     m_TargetMP(other.m_TargetMP),
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
@@ -583,6 +569,7 @@ bool Pollinator::isVisitCandidate(Flower* pFlower) const
         case (PollinatorConstancyType::VISUAL):
         {
             bIsVisitCandidate = isVisitCandidateVisual(pFlower);
+            break;
         }
         default:
         {

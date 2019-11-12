@@ -1,6 +1,8 @@
 {
     "version": "0.2.0",
     "configurations": [
+
+
         {
             "name": "C++ Launch",
             "type": "cppdbg",
@@ -8,7 +10,7 @@
             "program": "${workspaceRoot}/build/evobee",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceRoot}/build",
             "environment": [],
             "externalConsole": true,
             "linux": {

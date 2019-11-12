@@ -235,6 +235,21 @@ void EvoBeeExperiment::run()
                     m_Logger.logPollinatorsInterPhaseSummary();
                 }
             }
+            if (ModelParams::logFlowerMPsInterPhaseSummary())
+            {
+                if (ModelParams::useLogThreads())
+                {
+                    if (m_threadLog.joinable())
+                    {
+                        m_threadLog.join();
+                    }
+                    m_threadLog = std::thread(&Logger::logFlowerMPsInterPhaseSummary, m_Logger);
+                }
+                else
+                {
+                    m_Logger.logFlowerMPsInterPhaseSummary();
+                }
+            }
         }
 
         if (!bContinue)

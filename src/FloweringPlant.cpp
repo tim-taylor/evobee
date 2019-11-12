@@ -60,9 +60,23 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& typeConfig,
         else
         {
             // pick a marker point at uniform random between the min and max values supplied
+
+            ///TODO this is temporary hard-coded stuff to only generate flowers in
+            /// MP increments of 10
+            unsigned int mpRange = typeConfig.flowerMPInitMax - typeConfig.flowerMPInitMin;
+            const unsigned int stepSize = 10;
+            unsigned int numPointsMinusOne = mpRange / stepSize;
+            std::uniform_int_distribution<unsigned int> dist(0, numPointsMinusOne);
+            unsigned int rndIdx = dist(EvoBeeModel::m_sRngEngine);
+            mp = typeConfig.flowerMPInitMin + (rndIdx * stepSize);
+            assert(mp >= typeConfig.flowerMPInitMin);
+            assert(mp <= typeConfig.flowerMPInitMax);
+
+            /*
             std::uniform_int_distribution<MarkerPoint> dist(
                 typeConfig.flowerMPInitMin, typeConfig.flowerMPInitMax);
             mp = dist(EvoBeeModel::m_sRngEngine);
+            */
         }
 
         ///@todo - for now, we are placing all flowers at the same position

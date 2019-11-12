@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ "$#" -ne "2" ]; then
+    echo "usage: extract-mp-counts numgens logfile"
+    exit
+fi
+
+NUMGENS=$1
+LOGFILE=$2
+NGM1=$((NUMGENS - 1))
+
+for G in `seq 0 $NGM1`
+do
+  gawk -F',' -vG=$G '$2==G {print $4 "," $5}' $LOGFILE > mp-counts-gen-$G.csv
+done

@@ -301,6 +301,46 @@ void Logger::logFlowersIntraPhaseSummary()
 }
 
 
+// Log summary details of flower marker points at the end of each foraging phase
+//
+// This logging is designated by log-flags="m" in the JSON config file
+//
+void Logger::logFlowerMPsInterPhaseSummary()
+{
+    std::ofstream ofs = openLogFile();
+    auto gen = m_pModel->getGenNumber();
+    std::vector<Patch>& patches = m_pEnv->getPatches();
+
+    // create a map of marker points to counts of number of plants
+    std::map<MarkerPoint, unsigned int> mpCounts;
+
+    for (Patch& patch : patches)
+    {
+        if (patch.hasFloweringPlants())
+        {
+            PlantVector& plants = patch.getFloweringPlants();
+            for (FloweringPlant& plant : plants)
+            {
+                MarkerPoint mp = plant.getFlowerMarkerPoint();
+                auto it = mpCounts.find(mp);
+                if (it == mpCounts.end()) {
+                    mpCounts.insert(std::make_pair(mp, 1));
+                }
+                else {
+                    it->second++;
+                }
+            }
+        }
+    }
+
+    for (auto& countInfo : mpCounts)
+    {
+        ofs << "f," << gen << "," << m_pModel->getStepNumber() << ","
+            << countInfo.first << "," << countInfo.second << std::endl;
+    }
+}
+
+
 // private helper method to open the log file for appending
 // (the compiler should use the move assignment operator to efficiently return the ofstream object)
 std::ofstream Logger::openLogFile()
