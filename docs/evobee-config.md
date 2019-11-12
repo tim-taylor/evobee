@@ -312,7 +312,7 @@ The following table describes each parameter that can be specified in the config
 |vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|  
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|  
 |logging|m_bLogging|bool|Is logging required for this run?|  
-|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseSummary,m_bLogFlowerMPsInterPhaseSummary|std::string|Flags to control logging functionality (Q=PollinatorsIntraPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, g=FlowersIntraPhaseSummary), m=FlowerMPsInterPhaseSummary|
+|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseSummary,m_bLogFlowerMPsInterPhaseSummary|std::string|Flags to control logging functionality (Q=PollinatorsIntraPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary)|
 |log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of logger|  
 |log-dir|m_strLogDir|std::string|Directory name for logging output during a run|  
 |log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|  
@@ -402,11 +402,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMDU3NjIyNjAsLTQ2NzkxNjc1OCwyMD
-g3MDY1NDU1LDMyODgyMzIzLC0xODIxMTI5OTM2LDkyMDE4NDM1
-NCwzNzE4ODcxNjMsLTcwODQ0MjE3OCw2NjE3NDQzMTEsMTgyOT
-I2ODY3MCw3MzE3NTYwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1
-MSw2NzU3MTIwMDEsLTEwODUyNTYyMTksMTY5NjgwOTk1LC04OD
-I4NDk2NCwtMTA4NTI1NjIxOSwxMzAyMjU3NDA5LDEzMDc0Nzc2
-MjldfQ==
+eyJoaXN0b3J5IjpbLTg3NDExMTE2OCwtMTIwNTc2MjI2MCwtND
+Y3OTE2NzU4LDIwODcwNjU0NTUsMzI4ODIzMjMsLTE4MjExMjk5
+MzYsOTIwMTg0MzU0LDM3MTg4NzE2MywtNzA4NDQyMTc4LDY2MT
+c0NDMxMSwxODI5MjY4NjcwLDczMTc1NjA4OSwxMDY4Njg1MjM2
+LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIxOSwxNj
+k2ODA5OTUsLTg4Mjg0OTY0LC0xMDg1MjU2MjE5LDEzMDIyNTc0
+MDldfQ==
 -->
