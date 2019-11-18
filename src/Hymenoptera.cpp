@@ -6,6 +6,7 @@
 
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <algorithm>
 #include <cassert>
@@ -84,7 +85,16 @@ void Hymenoptera::reset()
 
 std::string Hymenoptera::getStateString() const
 {
-    return Pollinator::getStateString();
+    std::string polState = Pollinator::getStateString();
+    std::stringstream ssState;
+    ssState << std::fixed << std::setprecision(3);
+    ssState << ",T=" << m_TargetMP << "," << "::" << ",";
+    for (auto& vpi : m_VisualPreferences)
+    {
+        ssState << vpi.mp << "," << vpi.probLandTarget << "," << vpi.probLandNonTarget << ",";
+    }
+    ssState << "::";
+    return polState + ssState.str();
 }
 
 

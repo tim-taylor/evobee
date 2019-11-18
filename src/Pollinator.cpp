@@ -818,7 +818,8 @@ std::string Pollinator::getStateString() const
 {
     std::stringstream ssState;
     ssState << std::fixed << std::setprecision(3) << getTypeName() << ","
-        << m_id << "," << m_Position.x << "," << m_Position.y << "," << m_fHeading;
+        << m_id << "," << m_Position.x << "," << m_Position.y << "," << m_fHeading
+        << "," << m_iNumFlowersVisitedInBout;
     return ssState.str();
 }
 

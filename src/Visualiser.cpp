@@ -166,7 +166,8 @@ bool Visualiser::update()
                         getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.15),
                         getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.85),
                         getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.85),
-                        150, 150, 150, 255
+                        c.r, c.g, c.b, 200
+                        //150, 150, 150, 255
                     );
                 }
                 else
@@ -206,6 +207,8 @@ bool Visualiser::update()
         {
             Pollinator* p = pHive->getPollinator(i);
             const fPos& ppos = p->getPosition();
+            MarkerPoint mpTarget = p->getTargetMP();
+            const Colour::RGB & c = Colour::getRgbFromMarkerPoint(mpTarget);
 
             // draw the pollinator
             boxRGBA(
@@ -214,7 +217,8 @@ bool Visualiser::update()
                 getScreenCoordFromFloatWithRelOffsetY(ppos.y, 0.35),
                 getScreenCoordFromFloatWithRelOffsetX(ppos.x, 0.65),
                 getScreenCoordFromFloatWithRelOffsetY(ppos.y, 0.65),
-                255, 255, 255, 255 ///@todo for now Hive visualisation colour is hard-coded as white
+                c.r, c.g, c.b, 200
+                //255, 255, 255, 255 ///@todo for now pollinator visualisation colour is hard-coded as white
             );
 
             if (m_bShowTrails)

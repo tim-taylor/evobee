@@ -93,6 +93,7 @@ public:
     static bool  logPollinatorsInterPhaseSummary() {return m_bLogPollinatorsInterPhaseSummary;}
     static bool  logFlowersInterPhaseFull() {return m_bLogFlowersInterPhaseFull;}
     static bool  logFlowersInterPhaseSummary() {return m_bLogFlowersInterPhaseSummary;}
+    static bool  logFlowersIntraPhaseFull() {return m_bLogFlowersIntraPhaseFull;}
     static bool  logFlowersIntraPhaseSummary() {return m_bLogFlowersIntraPhaseSummary;}
     static bool  logFlowerMPsInterPhaseSummary() {return m_bLogFlowerMPsInterPhaseSummary;}
     static bool  logFinalDirSet() {return !m_strLogFinalDir.empty();}
@@ -150,6 +151,7 @@ private:
     static bool  m_bLogPollinatorsInterPhaseSummary;  ///< Log summary pollinator info at end of each generation
     static bool  m_bLogFlowersInterPhaseFull;         ///< Log full flower info at end of each generation
     static bool  m_bLogFlowersInterPhaseSummary;      ///< Log summary flower info at end of each generation
+    static bool  m_bLogFlowersIntraPhaseFull;         ///< Log full flower info every m_iLogUpdatePeriod steps
     static bool  m_bLogFlowersIntraPhaseSummary;      ///< Log summary flower info every m_iLogUpdatePeriod steps
     static bool  m_bLogFlowerMPsInterPhaseSummary;    ///< Log summary of flower marker points at end of each generation
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger

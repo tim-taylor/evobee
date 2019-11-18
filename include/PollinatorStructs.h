@@ -82,7 +82,6 @@ struct VisualPreferenceInfo {
     {
         probLandNonTarget += delta;
         constrainProbLandNonTarget();
-
     }
 
     void decrementProbLandNonTarget(float delta)

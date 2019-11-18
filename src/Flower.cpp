@@ -6,6 +6,8 @@
 
 #include <iostream>
 #include <algorithm>
+#include <sstream>
+#include <iomanip>
 #include <exception>
 #include <cassert>
 #include "FloweringPlant.h"
@@ -176,6 +178,17 @@ void Flower::copyCommon(const Flower& other) noexcept
     m_bPollenCloggingPartial = other.m_bPollenCloggingPartial;
     //m_CloggingSpeciesVec = other.m_CloggingSpeciesVec; // can't copy this as it is constant!
     */
+}
+
+
+std::string Flower::getStateString() const
+{
+    std::stringstream ssState;
+    ssState << std::fixed << std::setprecision(3)
+        << m_id << "," << m_SpeciesId << "," << m_Position.x << "," << m_Position.y << ","
+        << getMarkerPoint() << "," << (m_bPollinated ? "P":"N") << ","
+        << m_iAntherPollen << "," << m_StigmaPollen.size() << "," << m_iAvailableNectar;
+    return ssState.str();
 }
 
 

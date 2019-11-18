@@ -132,6 +132,12 @@ public:
      */
     bool matchesTargetMP(const ReflectanceInfo& stimulus) const;
 
+    /**
+     * Returns the pollinator's current target marker point.
+     * N.B. If the pollinator does not yet have a target, the returned value will be 0 (=NO_MARKER_POINT)
+     */
+    MarkerPoint getTargetMP() const {return m_TargetMP;}
+
 
 protected:
 

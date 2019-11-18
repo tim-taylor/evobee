@@ -54,6 +54,12 @@ public:
     void logFlowersInterPhaseSummary();
 
     /**
+     * Log full details of flowers every log-update-period steps within each foraging phase
+     * Designated by 'G' in log-flags param in JSON config file
+     */
+    void logFlowersIntraPhaseFull();
+
+    /**
      * Log summary details of flowers every log-update-period steps within each foraging phase
      * Designated by 'g' in log-flags param in JSON config file
      */

@@ -257,6 +257,33 @@ void Logger::logFlowersInterPhaseSummary()
 }
 
 
+// Log full details of flowers at regular intervals within a foraging phase
+//
+// This logging is designated by log-flags="G" in the JSON config file
+//
+void Logger::logFlowersIntraPhaseFull()
+{
+    std::ofstream ofs = openLogFile();
+    auto gen = m_pModel->getGenNumber();
+    auto step = m_pModel->getStepNumber();
+    std::vector<Patch>& patches = m_pEnv->getPatches();
+
+    for (Patch& patch : patches)
+    {
+        if (patch.hasFloweringPlants())
+        {
+            PlantVector& plants = patch.getFloweringPlants();
+            for (FloweringPlant& plant : plants)
+            {
+                Flower* pFlower = plant.getFlower(0);
+                ofs << "G," << gen << "," << step << "," << pFlower->getStateString() << std::endl;
+            }
+        }
+    }
+
+}
+
+
 // Log summary details of flowers at regular intervals within a foraging phase
 //
 // This logging is designated by log-flags="g" in the JSON config file
@@ -335,7 +362,7 @@ void Logger::logFlowerMPsInterPhaseSummary()
 
     for (auto& countInfo : mpCounts)
     {
-        ofs << "f," << gen << "," << m_pModel->getStepNumber() << ","
+        ofs << "m," << gen << "," << m_pModel->getStepNumber() << ","
             << countInfo.first << "," << countInfo.second << std::endl;
     }
 }

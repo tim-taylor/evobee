@@ -113,6 +113,22 @@ void EvoBeeExperiment::run()
                     }
                 }
 
+                if (ModelParams::logFlowersIntraPhaseFull())
+                {
+                    if (ModelParams::useLogThreads())
+                    {
+                        if (m_threadLog.joinable())
+                        {
+                            m_threadLog.join();
+                        }
+                        m_threadLog = std::thread(&Logger::logFlowersIntraPhaseFull, m_Logger);
+                    }
+                    else
+                    {
+                        m_Logger.logFlowersIntraPhaseFull();
+                    }
+                }
+
                 if (ModelParams::logFlowersIntraPhaseSummary())
                 {
                     if (ModelParams::useLogThreads())

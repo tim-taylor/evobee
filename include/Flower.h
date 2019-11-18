@@ -56,6 +56,11 @@ public:
     /**
      *
      */
+    std::string getStateString() const;
+
+    /**
+     *
+     */
     const fPos& getPosition() const {return m_Position;}
 
     /**
