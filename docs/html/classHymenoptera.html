@@ -175,6 +175,8 @@ const std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformance
 <tr class="separator:a691572e1ed297ab20349e61f99d0a97c inherit pub_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2c25ea31d08eb2b171480ffd6070b19 inherit pub_methods_classPollinator"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ab2c25ea31d08eb2b171480ffd6070b19">matchesTargetMP</a> (const <a class="el" href="classReflectanceInfo.html">ReflectanceInfo</a> &amp;stimulus) const</td></tr>
 <tr class="separator:ab2c25ea31d08eb2b171480ffd6070b19 inherit pub_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf8a5e13f4876acdef46cbab4ca7f73c inherit pub_methods_classPollinator"><td class="memItemLeft" align="right" valign="top">MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#acf8a5e13f4876acdef46cbab4ca7f73c">getTargetMP</a> () const</td></tr>
+<tr class="separator:acf8a5e13f4876acdef46cbab4ca7f73c inherit pub_methods_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -283,10 +285,6 @@ PollenVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <a class="el" href="classPosition.html">iPos</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#a86b296064fc4f8eba29ba4e116d1da0b">m_MovementAreaBottomRight</a></td></tr>
 <tr class="memdesc:a86b296064fc4f8eba29ba4e116d1da0b inherit pro_attribs_classPollinator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boundary of area in which pollinator is allowed to move (see <a class="el" href="classAbstractHive.html#a6ae8c44dcc49561911e6c5e41a6ee643">AbstractHive::getInitForageAreaTopLeft()</a> for details of usage of this variable) <br /></td></tr>
 <tr class="separator:a86b296064fc4f8eba29ba4e116d1da0b inherit pro_attribs_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9179703f3a704d6cd83515eb57e9a5f inherit pro_attribs_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="ac9179703f3a704d6cd83515eb57e9a5f"></a>
-MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ac9179703f3a704d6cd83515eb57e9a5f">m_InnateMPPref</a></td></tr>
-<tr class="memdesc:ac9179703f3a704d6cd83515eb57e9a5f inherit pro_attribs_classPollinator"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pollinator's innate preference for flower colour marker point. <br /></td></tr>
-<tr class="separator:ac9179703f3a704d6cd83515eb57e9a5f inherit pro_attribs_classPollinator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab93b7bfa9f2b61d147d4d0ee169dd5b1 inherit pro_attribs_classPollinator"><td class="memItemLeft" align="right" valign="top"><a id="ab93b7bfa9f2b61d147d4d0ee169dd5b1"></a>
 MarkerPoint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPollinator.html#ab93b7bfa9f2b61d147d4d0ee169dd5b1">m_TargetMP</a></td></tr>
 <tr class="memdesc:ab93b7bfa9f2b61d147d4d0ee169dd5b1 inherit pro_attribs_classPollinator"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pollinator's current target flower colour marker point. <br /></td></tr>
@@ -374,7 +372,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 
 <p>Implements <a class="el" href="classPollinator.html#a06b87bff2971c89849685d8cfd144e10">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00091">91</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00106">106</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -404,7 +402,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 
 <p>Reimplemented from <a class="el" href="classPollinator.html#a2e0b2fda2a76a6af741e9d09882546a1">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00080">80</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00086">86</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -433,7 +431,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 </div><div class="memdoc">
 <p>Returns information about the pollinator's current preferences for a stimulus with the specified marker point </p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00179">179</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00194">194</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -465,7 +463,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 
 <p>Implements <a class="el" href="classPollinator.html#ae191a95dfa9584d44c80806def197c1f">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00109">109</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00124">124</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -493,10 +491,11 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 </table>
 </div><div class="memdoc">
 <p>Overridden implementation of method to determine whether the pollinator should harvest the specified flower using its visual perception. This is a special case called by <a class="el" href="classPollinator.html#a6c457a0454c0a0cdfce6e35b93a1f91c">isVisitCandidate()</a> in the case that m_ConstancyType is VISUAL. </p>
+<p>TODO temp testing </p>
 
 <p>Reimplemented from <a class="el" href="classPollinator.html#aca20a9423c2f043be1628f01348f5621">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00193">193</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00208">208</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -526,7 +525,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 
 <p>Reimplemented from <a class="el" href="classPollinator.html#a65d13ef9bcf2a6e7ebe30ece3f1531e4">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00070">70</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00076">76</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>
@@ -567,7 +566,7 @@ std::map&lt; unsigned int, <a class="el" href="structPollinatorPerformanceInfo.h
 
 <p>Reimplemented from <a class="el" href="classPollinator.html#ac63b25e0d8c835579cf3cc1a0aa4488e">Pollinator</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00232">232</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Hymenoptera_8cpp_source.html#l00255">255</a> of file <a class="el" href="Hymenoptera_8cpp_source.html">Hymenoptera.cpp</a>.</p>
 
 </div>
 </div>

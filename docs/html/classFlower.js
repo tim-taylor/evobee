@@ -12,6 +12,7 @@ var classFlower =
     [ "getReflectanceInfo", "classFlower.html#af71b3efcbdc222972c47b0e84a54b796", null ],
     [ "getSpecies", "classFlower.html#a658e6726f9a63f34e133ce0ad576e52f", null ],
     [ "getSpeciesId", "classFlower.html#a41d06ebcebf88251a7077a3c4522a060", null ],
+    [ "getStateString", "classFlower.html#a49b1f15529d9d97a848e5186ae4b27f4", null ],
     [ "getStigmaPollen", "classFlower.html#a55f38d41a88131b8d2f5bd150262f381", null ],
     [ "getTemperature", "classFlower.html#abb18f858a350f19793a4eb634acf5ded", null ],
     [ "operator=", "classFlower.html#abd369d748d0e66c7e466e60fbbd6d9c2", null ],

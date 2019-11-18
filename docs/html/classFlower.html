@@ -111,6 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad26c4ee61a8db33cab00968360e093ef"><td class="memItemLeft" align="right" valign="top"><a id="ad26c4ee61a8db33cab00968360e093ef"></a>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getId</b> () const</td></tr>
 <tr class="separator:ad26c4ee61a8db33cab00968360e093ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49b1f15529d9d97a848e5186ae4b27f4"><td class="memItemLeft" align="right" valign="top"><a id="a49b1f15529d9d97a848e5186ae4b27f4"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getStateString</b> () const</td></tr>
+<tr class="separator:a49b1f15529d9d97a848e5186ae4b27f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c9408fe1007dcf833558a6831c9c4ef"><td class="memItemLeft" align="right" valign="top"><a id="a0c9408fe1007dcf833558a6831c9c4ef"></a>
 const <a class="el" href="classPosition.html">fPos</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
 <tr class="separator:a0c9408fe1007dcf833558a6831c9c4ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,7 +192,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 </div><div class="memdoc">
 <p>Constructor to create a brand new flower from config info at start of simulation </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00018">18</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00020">20</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -232,7 +235,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 </div><div class="memdoc">
 <p>Consructor to create an offspring flower based upon parent </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00040">40</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00042">42</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,7 +257,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 </div><div class="memdoc">
 <p>Respond to a pollinator's request for nectar. Provide the full amount requested if available, otherwise provide as much as is available. The amount actually provided is indicated by the return value. </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00323">323</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00336">336</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -274,7 +277,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 </div><div class="memdoc">
 <p>Return a string identifying the owning plant species </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00182">182</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00195">195</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -302,7 +305,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 </div><div class="memdoc">
 <p>Return a reference to the flower's vector of pollen on its stigma </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00136">136</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00141">141</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
 
 </div>
 </div>
@@ -330,7 +333,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 </div><div class="memdoc">
 <p>Is the flower pollinated? </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00069">69</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8h_source.html#l00074">74</a> of file <a class="el" href="Flower_8h_source.html">Flower.h</a>.</p>
 
 </div>
 </div>
@@ -388,7 +391,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 <dl class="section return"><dt>Returns</dt><dd>The number of grains transferred</dd></dl>
 <p>Note, no check is made as to whether the capacity of the pollinator's store has been exceeded. It is the responsibility of the pollinator to perform such a check after it has called this method. </p>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00188">188</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00201">201</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
@@ -427,7 +430,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>pollenCloggingPartial
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of grains transferred </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00215">215</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Flower_8cpp_source.html#l00228">228</a> of file <a class="el" href="Flower_8cpp_source.html">Flower.cpp</a>.</p>
 
 </div>
 </div>
