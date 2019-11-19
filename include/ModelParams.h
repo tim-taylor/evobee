@@ -90,6 +90,7 @@ public:
     static int   getVisDelayPerFrame() {return m_iVisDelayPerFrame;}
     static bool  logging() {return m_bLogging;}
     static bool  logPollinatorsIntraPhaseFull() {return m_bLogPollinatorsIntraPhaseFull;}
+    static bool  logPollinatorsInterPhaseFull() {return m_bLogPollinatorsInterPhaseFull;}
     static bool  logPollinatorsInterPhaseSummary() {return m_bLogPollinatorsInterPhaseSummary;}
     static bool  logFlowersInterPhaseFull() {return m_bLogFlowersInterPhaseFull;}
     static bool  logFlowersInterPhaseSummary() {return m_bLogFlowersInterPhaseSummary;}
@@ -148,6 +149,7 @@ private:
                                             ///<   visualisation code
     static bool  m_bLogging;                ///< Is logging required for this run?
     static bool  m_bLogPollinatorsIntraPhaseFull;     ///< Log full pollinator info every m_iLogUpdatePeriod steps
+    static bool  m_bLogPollinatorsInterPhaseFull;     ///< Log full pollinator info at end of each generation
     static bool  m_bLogPollinatorsInterPhaseSummary;  ///< Log summary pollinator info at end of each generation
     static bool  m_bLogFlowersInterPhaseFull;         ///< Log full flower info at end of each generation
     static bool  m_bLogFlowersInterPhaseSummary;      ///< Log summary flower info at end of each generation

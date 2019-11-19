@@ -31,6 +31,7 @@ int    ModelParams::m_iGenTerminationParam = -1;
 float  ModelParams::m_fGenTerminationParam = -1.0;
 bool   ModelParams::m_bLogging = true;
 bool   ModelParams::m_bLogPollinatorsIntraPhaseFull = false;
+bool   ModelParams::m_bLogPollinatorsInterPhaseFull = false;
 bool   ModelParams::m_bLogPollinatorsInterPhaseSummary = false;
 bool   ModelParams::m_bLogFlowersInterPhaseFull = false;
 bool   ModelParams::m_bLogFlowersInterPhaseSummary = false;
@@ -182,6 +183,11 @@ void ModelParams::setLogFlags(const std::string& flags)
         case 'Q':
         {
             m_bLogPollinatorsIntraPhaseFull = true;
+            break;
+        }
+        case 'P':
+        {
+            m_bLogPollinatorsInterPhaseFull = true;
             break;
         }
         case 'p':

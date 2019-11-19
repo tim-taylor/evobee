@@ -88,7 +88,7 @@ std::string Hymenoptera::getStateString() const
     std::string polState = Pollinator::getStateString();
     std::stringstream ssState;
     ssState << std::fixed << std::setprecision(3);
-    ssState << ",T=" << m_TargetMP << "," << "::" << ",";
+    ssState << ",//," << m_TargetMP << ",::,";
     for (auto& vpi : m_VisualPreferences)
     {
         ssState << vpi.mp << "," << vpi.probLandTarget << "," << vpi.probLandNonTarget << ",";

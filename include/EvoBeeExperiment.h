@@ -46,6 +46,9 @@ private:
     int             m_iVisUpdatePeriod;
     int             m_iLogUpdatePeriod;
     std::thread     m_threadLog;
+
+    // private helper functions
+    void callLoggerMethod(void (Logger::*pLoggerMethod)());
 };
 
 #endif /* _EVOBEEEXPERIMENT_H */

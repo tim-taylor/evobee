@@ -40,8 +40,8 @@ endif(NOT CMAKE_BUILD_TYPE)
 
 # Specify flags for specific build types
 ## (TODO is there a more generic way to do this?)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -std=c++11 -pthread")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -std=c++11 -pthread")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -std=c++1z -pthread")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -std=c++1z -pthread")
 
 # We can also make our own build targets, e.g.
 #SET(CMAKE_BUILD_TYPE distribution)
