@@ -312,7 +312,7 @@ The following table describes each parameter that can be specified in the config
 |vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|  
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|  
 |logging|m_bLogging|bool|Is logging required for this run?|  
-|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseFull, m_bLogFlowersIntraPhaseSummary, m_bLogFlowerMPsInterPhaseSummary|std::string|Flags to control logging functionality (Q=PollinatorsIntraPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, G=FlowersIntraPhaseFull, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary)|
+|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseFull, m_bLogFlowersIntraPhaseSummary, m_bLogFlowerMPsInterPhaseSummary|std::string|Flags to control logging functionality (Q=PollinatorsIntraPhaseFull, P=PollinatorsInterPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, G=FlowersIntraPhaseFull, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary)|
 |log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of logger|  
 |log-dir|m_strLogDir|std::string|Directory name for logging output during a run|  
 |log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|  
@@ -402,11 +402,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTExNjk5OTYyLC00MjcwNTc5NzAsLTg3ND
-ExMTE2OCwtMTIwNTc2MjI2MCwtNDY3OTE2NzU4LDIwODcwNjU0
-NTUsMzI4ODIzMjMsLTE4MjExMjk5MzYsOTIwMTg0MzU0LDM3MT
-g4NzE2MywtNzA4NDQyMTc4LDY2MTc0NDMxMSwxODI5MjY4Njcw
-LDczMTc1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NT
-cxMjAwMSwtMTA4NTI1NjIxOSwxNjk2ODA5OTUsLTg4Mjg0OTY0
-XX0=
+eyJoaXN0b3J5IjpbMTM5MjQ3NDU1MSw1MTE2OTk5NjIsLTQyNz
+A1Nzk3MCwtODc0MTExMTY4LC0xMjA1NzYyMjYwLC00Njc5MTY3
+NTgsMjA4NzA2NTQ1NSwzMjg4MjMyMywtMTgyMTEyOTkzNiw5Mj
+AxODQzNTQsMzcxODg3MTYzLC03MDg0NDIxNzgsNjYxNzQ0MzEx
+LDE4MjkyNjg2NzAsNzMxNzU2MDg5LDEwNjg2ODUyMzYsLTE1MD
+M1NDEzNTEsNjc1NzEyMDAxLC0xMDg1MjU2MjE5LDE2OTY4MDk5
+NV19
 -->
