@@ -48,4 +48,5 @@ utils/fixation-sim/fixationsim
 utils/fixation-sim/results/
 utils/graphs/
 #docs/html
+.vscode
 src/.vscode

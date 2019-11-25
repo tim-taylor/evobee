@@ -78,7 +78,11 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/.html": true,
-        "**/.js": true
+        "**/.js": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
     },
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
     "cmake.configureOnOpen": true

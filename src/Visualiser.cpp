@@ -139,7 +139,7 @@ bool Visualiser::update()
             getScreenCoordFromIntY(pos.y),
             getScreenCoordFromIntWithAbsOffsetX(pos.x+1, -1),
             getScreenCoordFromIntWithAbsOffsetY(pos.y+1, -1),
-            c.r, c.g, c.b, 255
+            c.r, c.g, c.b, 50
         );
     }
 

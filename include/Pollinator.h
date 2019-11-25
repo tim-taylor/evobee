@@ -138,6 +138,9 @@ public:
      */
     MarkerPoint getTargetMP() const {return m_TargetMP;}
 
+    /// TODO this method is just included for testing purposes...
+    void setTargetMP(MarkerPoint mp) {m_TargetMP = mp;}
+
 
 protected:
 

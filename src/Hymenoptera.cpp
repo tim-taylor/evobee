@@ -226,9 +226,7 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower) const
         }
         else
         {
-            /// TODO temp testing
             bool bLooksLikeTarget = matchesTargetMP(pFlower->getReflectanceInfo());
-            //bool bLooksLikeTarget = true;
 
             if (bLooksLikeTarget)
             {
@@ -243,9 +241,6 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower) const
             }
         }
     }
-
-    // TODO temp testing code
-    //std::cout << "Pollinator " << this << ", Flower " << pFlower << ": " << (bIsVisitCandidate ? "IS" : "is NOT") << " a visit candidate" << std::endl;
 
     return bIsVisitCandidate;
 }

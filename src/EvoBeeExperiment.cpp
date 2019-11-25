@@ -12,6 +12,8 @@
 #include "Visualiser.h"
 #include "EvoBeeExperiment.h"
 
+/// TODO - temp include
+//#include "HoneyBee.h"
 
 EvoBeeExperiment::EvoBeeExperiment() :
     m_Model(),
@@ -60,6 +62,25 @@ EvoBeeExperiment::~EvoBeeExperiment()
  */
 void EvoBeeExperiment::run()
 {
+    /////////////////////////////////////////
+    /// TODO temp code....
+    /*
+    auto pPolConfig = ModelParams::getPollinatorConfigPtr("HoneyBee");
+    auto hives = m_Model.getEnv().getHives();
+    auto pHive = hives.at(0);
+    for (MarkerPoint mp = 300; mp <= 650; mp+=10) {
+        HoneyBee bee{*pPolConfig, (AbstractHive*)&(*pHive)};
+        bee.setTargetMP(mp);
+        for (MarkerPoint mp2 = 300; mp2 <= 650; mp2+=10) {
+            ReflectanceInfo stimulus{mp2};
+            bool matches = bee.matchesTargetMP(stimulus);
+            std::cout << mp << "," << mp2 << "," << (matches ? "1" : "0") << std::endl;
+        }
+    }
+    return;
+    */
+    /////////////////////////////////////////
+
     for (int gen = 0; gen < ModelParams::getSimTerminationNumGens(); ++gen)
     {
         ////////////////////////
@@ -95,54 +116,14 @@ void EvoBeeExperiment::run()
             // perform logging of pollinators if required
             if (ModelParams::logging() && (step % m_iLogUpdatePeriod == 0))
             {
-                if (ModelParams::logPollinatorsIntraPhaseFull())
-                {
-                    if (ModelParams::useLogThreads())
-                    {
-                        // If the thread is still busy from a previous logger call,
-                        // wait until it is finished before calling the logger again.
-                        if (m_threadLog.joinable())
-                        {
-                            m_threadLog.join();
-                        }
-                        m_threadLog = std::thread(&Logger::logPollinatorsIntraPhaseFull, m_Logger);
-                    }
-                    else
-                    {
-                        m_Logger.logPollinatorsIntraPhaseFull();
-                    }
+                if (ModelParams::logPollinatorsIntraPhaseFull()) {
+                    callLoggerMethod(&Logger::logPollinatorsIntraPhaseFull);
                 }
-
-                if (ModelParams::logFlowersIntraPhaseFull())
-                {
-                    if (ModelParams::useLogThreads())
-                    {
-                        if (m_threadLog.joinable())
-                        {
-                            m_threadLog.join();
-                        }
-                        m_threadLog = std::thread(&Logger::logFlowersIntraPhaseFull, m_Logger);
-                    }
-                    else
-                    {
-                        m_Logger.logFlowersIntraPhaseFull();
-                    }
+                if (ModelParams::logFlowersIntraPhaseFull()) {
+                    callLoggerMethod(&Logger::logFlowersIntraPhaseFull);
                 }
-
-                if (ModelParams::logFlowersIntraPhaseSummary())
-                {
-                    if (ModelParams::useLogThreads())
-                    {
-                        if (m_threadLog.joinable())
-                        {
-                            m_threadLog.join();
-                        }
-                        m_threadLog = std::thread(&Logger::logFlowersIntraPhaseSummary, m_Logger);
-                    }
-                    else
-                    {
-                        m_Logger.logFlowersIntraPhaseSummary();
-                    }
+                if (ModelParams::logFlowersIntraPhaseSummary()) {
+                    callLoggerMethod(&Logger::logFlowersIntraPhaseSummary);
                 }
             }
 
