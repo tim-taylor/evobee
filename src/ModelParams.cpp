@@ -330,7 +330,17 @@ void ModelParams::addHiveConfig(HiveConfig& hc)
 
 void ModelParams::addPlantTypeDistributionConfig(PlantTypeDistributionConfig& ptdc)
 {
-    // first assign a unique ID to this PlantTypeDistributionConfig
+    if (ptdc.species == "Any") ptdc.species = "any";
+
+    // first do some sanity checking of values
+    if (ptdc.species == "any" && ptdc.refuge)
+    {
+        std::stringstream msg;
+        msg << "Not allowed to specify a PlantTypeDistribution as a refuge where species=='any'!";
+        throw std::runtime_error(msg.str());
+    }
+
+    // assign a unique ID to this PlantTypeDistributionConfig
     ptdc.id = m_sNextFreePtdcId++;
 
     // and add it to our list of all PlantTypeDistributionConfigs
@@ -406,18 +416,66 @@ PollinatorConfig* ModelParams::getPollinatorConfigPtr(const std::string& pollina
 
 void ModelParams::addPlantTypeConfig(PlantTypeConfig& pt)
 {
-    m_PlantTypes.push_back(pt);
-    FloweringPlant::registerSpecies(pt.species);
+    // first do some sanity checking of values
+    if (pt.flowerMPInitMin > pt.flowerMPInitMax)
+    {
+        std::stringstream msg;
+        msg << "PlantTypeConfig error for type " << pt.species
+            << ": flowerMPInitMin (" << pt.flowerMPInitMin
+            << ") cannot be larger than flowerMPInitMax (" << pt.flowerMPInitMax << ")!";
+        throw std::runtime_error(msg.str());
+    }
+
+    if (pt.diffMPIsDiffSpecies && (pt.flowerMPInitMin != pt.flowerMPInitMax))
+    {
+        // deal with case where we need to create a separate species for each
+        // different marker point that might be generated
+        for (MarkerPoint mp = pt.flowerMPInitMin; mp <= pt.flowerMPInitMax; mp+=10)
+        {
+            PlantTypeConfig newpt{pt};
+            std::stringstream species;
+            species << "PlantSpecies" << mp;
+            newpt.species = species.str();
+            newpt.flowerMPInitMin = mp;
+            newpt.flowerMPInitMax = mp;
+            newpt.diffMPIsDiffSpecies = false;
+            m_PlantTypes.push_back(newpt);
+            FloweringPlant::registerSpecies(newpt.species);
+        }
+    }
+    else
+    {
+        // this is the straightforward default case where we just need to record a
+        // single new plant type
+        m_PlantTypes.push_back(pt);
+        FloweringPlant::registerSpecies(pt.species);
+    }
 }
 
 
 const PlantTypeConfig* ModelParams::getPlantTypeConfig(std::string speciesName)
 {
-    for (auto& pt : m_PlantTypes)
+    if (speciesName == "any")
     {
-        if (pt.species == speciesName) return &pt;
+        if (m_PlantTypes.empty())
+        {
+            return nullptr;
+        }
+        else
+        {
+            std::uniform_int_distribution<int> dist(0, m_PlantTypes.size()-1);
+            int idx = dist(EvoBeeModel::m_sRngEngine);
+            return &(m_PlantTypes.at(idx));
+        }
     }
-    return nullptr;
+    else
+    {
+        for (auto& pt : m_PlantTypes)
+        {
+            if (pt.species == speciesName) return &pt;
+        }
+        return nullptr;
+    }
 }
 
 

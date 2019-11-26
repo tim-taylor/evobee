@@ -199,6 +199,8 @@ void Logger::logFlowersInterPhaseFull()
     auto gen = m_pModel->getGenNumber();
     std::vector<Patch>& patches = m_pEnv->getPatches();
 
+    std::map<MarkerPoint, int> pollenSourceMpMap;
+
     for (Patch& patch : patches)
     {
         if (patch.hasFloweringPlants())
@@ -209,23 +211,41 @@ void Logger::logFlowersInterPhaseFull()
             for (FloweringPlant& plant : plants)
             {
                 ofs << "F," << gen << "," << plant.getId() << "," << plant.getSpeciesId()
-                    << "," << pos << "," << patch.getLocalityId() << std::endl;
+                    << "," << pos << "," << patch.getLocalityId();
 
-                ///@todo Logger::logFlowersInterPhaseFull incomplete
-                /*
-                if (plant.pollinated())
+                if (true) //plant.pollinated())
                 {
                     const std::vector<Flower>& flowers = plant.getFlowers();
                     for (const Flower& flower : flowers)
                     {
+                        pollenSourceMpMap.clear();
+
+                        MarkerPoint thisMP = flower.getMarkerPoint();
+                        ofs << ",:," << (flower.pollinated() ? "P" : "N") << "," << thisMP << ",~,";
+
                         const PollenVector& stigmaPollen = flower.getStigmaPollen();
                         for (const Pollen& pollen : stigmaPollen)
                         {
-                            ///@todo - at some point we actually need to log something!!
+                            const Flower* pSourceFlower = pollen.pSource;
+                            MarkerPoint sourceMP = pSourceFlower->getMarkerPoint();
+                            auto it = pollenSourceMpMap.find(sourceMP);
+                            if (it == pollenSourceMpMap.end()) {
+                                pollenSourceMpMap.insert(std::make_pair(sourceMP, 1));
+                            }
+                            else {
+                                it->second++;
+                            }
                         }
+
+                        for (auto& info : pollenSourceMpMap) {
+                            ofs << info.first << "," << info.second << ",";
+                        }
+
+                        ofs << "~";
                     }
                 }
-                */
+
+                ofs << std::endl;
             }
         }
     }

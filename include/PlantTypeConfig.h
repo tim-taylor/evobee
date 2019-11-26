@@ -20,7 +20,8 @@ struct PlantTypeConfig {
         numFlowers(1),
         hasLeaf(false),
         reproSeedDispersalGlobal(false),
-        reproSeedDispersalRadius(1.0)
+        reproSeedDispersalRadius(1.0),
+        diffMPIsDiffSpecies(false)
     {};
 
     std::string species;
@@ -40,6 +41,9 @@ struct PlantTypeConfig {
     bool        reproSeedDispersalGlobal;   ///< can seeds be dispersed at random across whole environment?
     float       reproSeedDispersalRadius;   ///< expressed in env units (1.0=one patch), overridden
                                             ///<   if reproSeedDispersalGlobal=true
+    bool        diffMPIsDiffSpecies;        ///< if true and flowerMPInitMin != flowerMPInitMax, plants
+                                            ///<   created with different marker points are treated as
+                                            ///<   different species (default=false)
 };
 
 #endif /* _PLANTTYPECONFIG_H */

@@ -113,14 +113,6 @@ void Environment::initialisePlants()
 
     for (const PlantTypeDistributionConfig& pdcfg : pdconfigs)
     {
-        // first find the corresponding PlantTypeConfig
-        const PlantTypeConfig* pPTC = ModelParams::getPlantTypeConfig(pdcfg.species);
-        if (pPTC == nullptr)
-        {
-            throw std::runtime_error("Unknown plant species '" + pdcfg.species +
-                "' specified in config file");
-        }
-
         // calculate some basic values associated with the requested distribution
         int w = std::max(1, 1 + pdcfg.areaBottomRight.x - pdcfg.areaTopLeft.x);
         int h = std::max(1, 1 + pdcfg.areaBottomRight.y - pdcfg.areaTopLeft.y);
@@ -142,6 +134,18 @@ void Environment::initialisePlants()
             patchInfo[iLocalX][iLocalY].push_back(fpos);
         }
 
+        // find the corresponding PlantTypeConfig (unless pdcfg.species is "any")
+        const PlantTypeConfig* pPTC = nullptr;
+        if (pdcfg.species != "any")
+        {
+            pPTC = ModelParams::getPlantTypeConfig(pdcfg.species);
+            if (pPTC == nullptr)
+            {
+                throw std::runtime_error("Unknown plant species '" + pdcfg.species +
+                    "' specified in config file");
+            }
+        }
+
         // now go through the patchInfo array, and for each patch, go through all plants
         // to be added to that patch
         for (int x = 0; x < w; ++x)
@@ -152,6 +156,16 @@ void Environment::initialisePlants()
                 std::vector<fPos>& posvec = patchInfo[x][y];
                 for (fPos& pos : posvec)
                 {
+                    if (pdcfg.species == "any")
+                    {
+                        pPTC = ModelParams::getPlantTypeConfig(pdcfg.species);
+                        if (pPTC == nullptr)
+                        {
+                            throw std::runtime_error("Unknown plant species '" + pdcfg.species +
+                                "' specified in config file");
+                        }
+                    }
+
                     patch.addPlant(*pPTC, pos);
                 }
 
@@ -555,8 +569,6 @@ float Environment::getPollinatedFracSpecies1() const
  */
 void Environment::initialiseNewGeneration()
 {
-
-
     //////////////////////////////////////////////////////////////
     // Step 0: Internal book-keeping
     resetLocalDensityCounts();
@@ -587,7 +599,7 @@ void Environment::initialiseNewGeneration()
                             if (pollen.speciesId == flower.getSpeciesId())
                             {
                                 pollinatedPlantPtrs.push_back(&plant);
-                                ///@todo when we implement mutation, we will actually want
+                                ///@todo TODO when we implement mutation, we will actually want
                                 /// to record the plant AND a ptr to the pollinating flower
                                 /// (pollen.pSource)
                             }

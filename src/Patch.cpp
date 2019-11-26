@@ -107,8 +107,10 @@ void Patch::setReproConstraints(const PlantTypeDistributionConfig& ptdc)
     m_bSeedOutflowRestricted = ptdc.seedOutflowRestricted;
     m_fSeedOutflowProb = ptdc.seedOutflowProb;
     m_bRefuge = ptdc.refuge;
-    m_iRefugeNativeSpecesId = FloweringPlant::getSpeciesId(ptdc.species);
-    m_fRefugeAlienInflowProb = ptdc.refugeAlienInflowProb;
+    if (m_bRefuge) {
+        m_iRefugeNativeSpecesId = FloweringPlant::getSpeciesId(ptdc.species);
+        m_fRefugeAlienInflowProb = ptdc.refugeAlienInflowProb;
+    }
 
     m_bReproConstraintsSetExplicitly = true;
 }
