@@ -390,7 +390,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeDistributionConfig.h|Type of variable|Description|
 |---|---|---|---|  
-|species|species|std::string|Name of the plant species, |  
+|species|species|std::string|Name of the plant species, or "any". If set to "any", then each plant in the distribution is chosen at random|  
 |area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial distribution area|  
 |area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial distribution area|  
 |density|density|float|Density of initial distribution (wrt specified distrib area)|  
@@ -403,7 +403,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDI1Mjg5MTEsMTcxNzM2MDEwLDEzOT
+eyJoaXN0b3J5IjpbLTE0NzU2NjMwMjksMTcxNzM2MDEwLDEzOT
 I0NzQ1NTEsNTExNjk5OTYyLC00MjcwNTc5NzAsLTg3NDExMTE2
 OCwtMTIwNTc2MjI2MCwtNDY3OTE2NzU4LDIwODcwNjU0NTUsMz
 I4ODIzMjMsLTE4MjExMjk5MzYsOTIwMTg0MzU0LDM3MTg4NzE2
