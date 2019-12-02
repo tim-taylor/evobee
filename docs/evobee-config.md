@@ -375,7 +375,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |species|species|std::string|Text label designating species of plant (any text is allowed)|  
 |flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint||  
 |flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint||  
-|diff-mp-is-diff-species|||
+|diff-mp-is-diff-species|diffMPIsDif|bool||
 |anther-init-pollen|antherInitPollen|int|Amount of pollen available on anther at the start of each foraging phase|  
 |anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int|Number of pollen grains deposited on a pollinator per visit|  
 |stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int|Maximum amount of pollen the stigma can carry|  
@@ -403,11 +403,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTc3NjU0ODgzLDE3MTczNjAxMCwxMzkyND
-c0NTUxLDUxMTY5OTk2MiwtNDI3MDU3OTcwLC04NzQxMTExNjgs
-LTEyMDU3NjIyNjAsLTQ2NzkxNjc1OCwyMDg3MDY1NDU1LDMyOD
-gyMzIzLC0xODIxMTI5OTM2LDkyMDE4NDM1NCwzNzE4ODcxNjMs
-LTcwODQ0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NT
-YwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDFd
-fQ==
+eyJoaXN0b3J5IjpbMTU1NTY3NTk0OCwxNzE3MzYwMTAsMTM5Mj
+Q3NDU1MSw1MTE2OTk5NjIsLTQyNzA1Nzk3MCwtODc0MTExMTY4
+LC0xMjA1NzYyMjYwLC00Njc5MTY3NTgsMjA4NzA2NTQ1NSwzMj
+g4MjMyMywtMTgyMTEyOTkzNiw5MjAxODQzNTQsMzcxODg3MTYz
+LC03MDg0NDIxNzgsNjYxNzQ0MzExLDE4MjkyNjg2NzAsNzMxNz
+U2MDg5LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAx
+XX0=
 -->
