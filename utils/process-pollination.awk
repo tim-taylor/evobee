@@ -4,34 +4,33 @@
 #
 # Typical usage:
 #
-# > for F in `ls *log.txt`; do gawk -f process-pollination.awk $F > $F".conspecific-counts.csv"; done
-# > rm -f conspecific-totals.csv 
-# > for L in `seq 300 10 650`; do grep "$L," *conspecific-counts.csv | gawk -F',' -vL=$L '{tot+=$2} END {print L "," tot}' >> conspecific-totals.csv; done
+# > for F in `ls *log.txt`; do gawk -f process-pollination.awk $F > $F".pollination-counts.csv"; done
+# > rm -f pollination-totals.csv 
+# > for L in `seq 300 10 650`; do grep "$L," *pollination-counts.csv | gawk -F',' -vL=$L '{totC+=$2; totH+=$3} END {print L "," totC "," totH}' >> pollination-totals.csv; done
 #
 
 BEGIN {
     FS=",";
 }
 
-$1=="F" && NF>12 {
-    mp=$10;
-    numpol=(NF-12)/2;
+$1=="F" && NF>13 {
+    mp=$11;
+    numpol=(NF-13)/3;
     for (i=0; i<numpol; i++) {
-	pf=12+(i*2);
+	pf=13+(i*3);
 	pmp = $pf;
 	pmpc = $(pf+1);
 	if (pmp==mp) {
 	    conspecific[mp] += pmpc;
 	}
 	else {
-	    heterspecific[mp] += pmpc
+	    heterospecific[mp] += pmpc
 	}
     };
 }
 
 END {
-#    for (mp in conspecific) {
     for (mp=300; mp<=650; mp+=10) {
-	printf "%i,%i\n", mp, conspecific[mp];
+	printf "%i,%i,%i\n", mp, conspecific[mp], heterospecific[mp];
     }
 }

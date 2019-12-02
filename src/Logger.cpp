@@ -199,7 +199,7 @@ void Logger::logFlowersInterPhaseFull()
     auto gen = m_pModel->getGenNumber();
     std::vector<Patch>& patches = m_pEnv->getPatches();
 
-    std::map<MarkerPoint, int> pollenSourceMpMap;
+    std::map<MarkerPoint, std::pair<int, unsigned int>> pollenSourceMpMap;
 
     for (Patch& patch : patches)
     {
@@ -221,7 +221,8 @@ void Logger::logFlowersInterPhaseFull()
                         pollenSourceMpMap.clear();
 
                         MarkerPoint thisMP = flower.getMarkerPoint();
-                        ofs << ",:," << (flower.pollinated() ? "P" : "N") << "," << thisMP << ",~,";
+                        ofs << ",:," << flower.getId() << "," << (flower.pollinated() ? "P" : "N")
+                            << "," << thisMP << ",~,";
 
                         const PollenVector& stigmaPollen = flower.getStigmaPollen();
                         for (const Pollen& pollen : stigmaPollen)
@@ -230,15 +231,16 @@ void Logger::logFlowersInterPhaseFull()
                             MarkerPoint sourceMP = pSourceFlower->getMarkerPoint();
                             auto it = pollenSourceMpMap.find(sourceMP);
                             if (it == pollenSourceMpMap.end()) {
-                                pollenSourceMpMap.insert(std::make_pair(sourceMP, 1));
+                                pollenSourceMpMap.insert(std::make_pair(sourceMP,
+                                                            std::make_pair(1, pSourceFlower->getId())));
                             }
                             else {
-                                it->second++;
+                                it->second.first++;
                             }
                         }
 
                         for (auto& info : pollenSourceMpMap) {
-                            ofs << info.first << "," << info.second << ",";
+                            ofs << info.first << "," << info.second.first << "," << info.second.second << ",";
                         }
 
                         ofs << "~";
