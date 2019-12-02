@@ -375,6 +375,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |species|species|std::string|Text label designating species of plant (any text is allowed)|  
 |flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint||  
 |flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint||  
+|diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|If true and flowerMPInitMax != flowerMPInitMin, then plants with different flower marker points generated from this configuration are treated as different species. In this case, each individual species is given a name "PlantSpeciesNNN" (where NNN is the wavelength of the marker point) - this naming scheme overrides anything specified in the "species" field in the Plant Type configuration.|
 |anther-init-pollen|antherInitPollen|int|Amount of pollen available on anther at the start of each foraging phase|  
 |anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int|Number of pollen grains deposited on a pollinator per visit|  
 |stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int|Maximum amount of pollen the stigma can carry|  
@@ -389,7 +390,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeDistributionConfig.h|Type of variable|Description|
 |---|---|---|---|  
-|species|species|std::string|Name of the plant species|  
+|species|species|std::string|Name of the plant species, or "any". If set to "any", then each plant in the distribution is of a randomly chosen species from all species specified in the PlantTypes section.|
 |area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial distribution area|  
 |area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial distribution area|  
 |density|density|float|Density of initial distribution (wrt specified distrib area)|  
@@ -402,11 +403,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcxNzM2MDEwLDEzOTI0NzQ1NTEsNTExNj
-k5OTYyLC00MjcwNTc5NzAsLTg3NDExMTE2OCwtMTIwNTc2MjI2
-MCwtNDY3OTE2NzU4LDIwODcwNjU0NTUsMzI4ODIzMjMsLTE4Mj
-ExMjk5MzYsOTIwMTg0MzU0LDM3MTg4NzE2MywtNzA4NDQyMTc4
-LDY2MTc0NDMxMSwxODI5MjY4NjcwLDczMTc1NjA4OSwxMDY4Nj
-g1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAwMSwtMTA4NTI1NjIx
-OV19
+eyJoaXN0b3J5IjpbLTg5NDc1MTQ2LDE3MTczNjAxMCwxMzkyND
+c0NTUxLDUxMTY5OTk2MiwtNDI3MDU3OTcwLC04NzQxMTExNjgs
+LTEyMDU3NjIyNjAsLTQ2NzkxNjc1OCwyMDg3MDY1NDU1LDMyOD
+gyMzIzLC0xODIxMTI5OTM2LDkyMDE4NDM1NCwzNzE4ODcxNjMs
+LTcwODQ0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NT
+YwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDFd
+fQ==
 -->
