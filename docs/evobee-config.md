@@ -390,7 +390,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeDistributionConfig.h|Type of variable|Description|
 |---|---|---|---|  
-|species|species|std::string|Name of the plant species|  
+|species|species|std::string|Name of the plant species, |  
 |area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial distribution area|  
 |area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial distribution area|  
 |density|density|float|Density of initial distribution (wrt specified distrib area)|  
@@ -403,11 +403,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMwMzAzMjMxNywxNzE3MzYwMTAsMTM5Mj
-Q3NDU1MSw1MTE2OTk5NjIsLTQyNzA1Nzk3MCwtODc0MTExMTY4
-LC0xMjA1NzYyMjYwLC00Njc5MTY3NTgsMjA4NzA2NTQ1NSwzMj
-g4MjMyMywtMTgyMTEyOTkzNiw5MjAxODQzNTQsMzcxODg3MTYz
-LC03MDg0NDIxNzgsNjYxNzQ0MzExLDE4MjkyNjg2NzAsNzMxNz
-U2MDg5LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTEsNjc1NzEyMDAx
-XX0=
+eyJoaXN0b3J5IjpbLTIwMDI1Mjg5MTEsMTcxNzM2MDEwLDEzOT
+I0NzQ1NTEsNTExNjk5OTYyLC00MjcwNTc5NzAsLTg3NDExMTE2
+OCwtMTIwNTc2MjI2MCwtNDY3OTE2NzU4LDIwODcwNjU0NTUsMz
+I4ODIzMjMsLTE4MjExMjk5MzYsOTIwMTg0MzU0LDM3MTg4NzE2
+MywtNzA4NDQyMTc4LDY2MTc0NDMxMSwxODI5MjY4NjcwLDczMT
+c1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUxLDY3NTcxMjAw
+MV19
 -->
