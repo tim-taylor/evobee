@@ -29,7 +29,7 @@ $1=="F" && NF>13 {
         else {
             heterospecific[mp] += pmpc;
         }
-        h[mp][pmp] = pmpc;
+        h[mp][pmp] += pmpc;
     };
 }
 

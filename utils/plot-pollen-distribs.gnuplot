@@ -6,7 +6,8 @@ set multiplot layout 36,1 margins 0.04, 0.995, 0.04, 0.995 spacing 0.0
 set boxwidth 0.75 relative
 set style fill solid 1.0
 set xrange [290:660]
-set yrange [0:1250]
+#set yrange [0:1250]
+set yrange [0:5500]
 unset xtics
 unset ytics
 unset xlabel

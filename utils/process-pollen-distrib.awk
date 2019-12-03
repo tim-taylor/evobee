@@ -4,9 +4,9 @@
 #
 # Typical usage:
 #
-# > for F in `ls *log.txt`; do gawk -f ../../../utils/process-pollination.awk $F > $F".heterospecific-distrib.csv" ; done
-# > for L in `seq 300 10 650`; do egrep -h "^$L," *heterospecific-distrib.csv | gawk -f ../../../utils/process-pollen-distrib.awk; done > heterospecific-distrib-totals.csv
-# > for L in `seq 300 10 650`; do egrep -h "^$L" heterospecific-distrib-totals.csv | gawk -F',' '{for (i=2;i<=NF;i++) {printf "%i", $i; if (i%2==0) {printf ",";} else {printf "\n";}}}' > heterospecific-distrib-totals-$L.csv; done
+# > for F in `ls *log.txt`; do gawk -f ../../../utils/process-pollination.awk $F > $F".all-pollen-distrib.csv" ; done
+# > for L in `seq 300 10 650`; do egrep -h "^$L," *all-pollen-distrib.csv | gawk -f ../../../utils/process-pollen-distrib.awk; done > all-pollen-distrib-totals.csv
+# > for L in `seq 300 10 650`; do egrep -h "^$L" all-pollen-distrib-totals.csv | gawk -F',' '{for (i=2;i<=NF;i++) {printf "%i", $i; if (i%2==0) {printf ",";} else {printf "\n";}}}' > all-pollen-distrib-totals-$L.csv; done
 #
 
 BEGIN {
