@@ -313,15 +313,16 @@ void processConfigOptions(int argc, char **argv)
     try
     {
         std::string config_file;
+        unsigned int iTestNum = 0;
 
-        // Declare a group of options that will be
-        // allowed only on command line
+        // Declare a group of options that will be allowed only on command line
         po::options_description generic("Generic options");
         generic.add_options()
             ("version,v", "display program version number")
             ("help,h", "display this help message")
             ("config,c", po::value<std::string>(&config_file)->default_value("evobee.cfg.json"), "configuration file")
-            ("quiet,q", "disable verbose progress messages on stdout");
+            ("quiet,q", "disable verbose progress messages on stdout")
+            ("test,t", po::value<unsigned int>(&iTestNum)->default_value(0), "Perform test number N instead of regular run");
 
         po::options_description cmdline_options;
         cmdline_options.add(generic);
@@ -362,6 +363,11 @@ void processConfigOptions(int argc, char **argv)
         {
             ModelParams::setVerbose(false);
             ModelParams::setCommandLineQuiet(true);
+        }
+
+        if (iTestNum > 0)
+        {
+            ModelParams::setTestNumber(iTestNum);
         }
 
         // process the contents of the configuration file

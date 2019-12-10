@@ -70,6 +70,8 @@ public:
     static void addPlantTypeConfig(PlantTypeConfig& pt);
     static void addPollinatorConfig(PollinatorConfig& pt);
 
+    static void setTestNumber(unsigned int num);
+
     /// perform any necessary global post-processing after config file has been read in
     static void postprocess();
 
@@ -116,6 +118,7 @@ public:
     static const std::vector<PlantTypeConfig>& getPlantTypeConfigs() {return m_PlantTypes;}
     static const PlantTypeConfig* getPlantTypeConfig(std::string speciesName);
     static PollinatorConfig* getPollinatorConfigPtr(const std::string& pollinatorName);
+    static unsigned int getTestNumber() {return m_iTestNumber;}
 
     static nlohmann::json& getJson() {return m_Json;}
 
@@ -180,9 +183,13 @@ private:
     static unsigned int m_sNextFreePtdcId;  ///< Each PlantTypeDistributionConfig gets its own unique id
     static std::string m_strRngSeed;        ///< Seed string used to seed RNG
     static std::vector<HiveConfig> m_Hives; ///< Configuration info for each hive
-    static std::vector<PlantTypeDistributionConfig> m_PlantDists; ///< Config of plant distributions
-    static std::vector<PlantTypeConfig> m_PlantTypes; ///< Config of plant types
-    static std::vector<PollinatorConfig> m_PollinatorConfigs; ///< Config info for pollinator types
+    static std::vector<PlantTypeDistributionConfig> m_PlantDists;   ///< Config of plant distributions
+    static std::vector<PlantTypeConfig> m_PlantTypes;               ///< Config of plant types
+    static std::vector<PollinatorConfig> m_PollinatorConfigs;       ///< Config info for pollinator types
+
+    static unsigned int m_iTestNumber;      ///< Specifies that we should run a special test on the
+                                            ///<   code rather than a normal run (default value is 0
+                                            ///<   which means do a normal run).
 
     static nlohmann::json m_Json;           ///< JSON representation of all Model Params
 };

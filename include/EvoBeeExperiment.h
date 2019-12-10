@@ -48,6 +48,8 @@ private:
     std::thread     m_threadLog;
 
     // private helper functions
+    void runStandardExperiment();
+    void runMarkerPointSimilarityTest();
     void callLoggerMethod(void (Logger::*pLoggerMethod)());
 };
 

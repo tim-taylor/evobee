@@ -58,6 +58,8 @@ std::vector<PlantTypeDistributionConfig> ModelParams::m_PlantDists;
 std::vector<PlantTypeConfig> ModelParams::m_PlantTypes;
 std::vector<PollinatorConfig> ModelParams::m_PollinatorConfigs;
 
+unsigned int ModelParams::m_iTestNumber = 0;
+
 nlohmann::json ModelParams::m_Json;
 
 
@@ -321,6 +323,11 @@ void ModelParams::setLogRunName(const std::string& name)
 void ModelParams::setInitialised()
 {
     m_bInitialised = true;
+}
+
+void ModelParams::setTestNumber(unsigned int num)
+{
+    m_iTestNumber = num;
 }
 
 void ModelParams::addHiveConfig(HiveConfig& hc)
