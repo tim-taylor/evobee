@@ -191,8 +191,10 @@ protected:
     /**
      * Default implementation of method coding the logic of what happens when the
      * pollinator visits a flower. May be overridden by subclasses.
+     *
+     * @return the amount of nectar collected on this visit
      */
-    virtual void visitFlower(Flower* pFlower);
+    virtual int visitFlower(Flower* pFlower);
 
     /**
      * Move by the given distance in a uniform random direction
@@ -309,6 +311,9 @@ protected:
     const EvoBeeModel* m_pModel;///< (non-owned) pointer to EvoBeeModel
 
     PollinatorState m_State;    ///< The current state of the pollinator
+
+    PollinatorLatestAction m_LatestAction;      ///< Record of the latest action made by the pollinator,
+                                                ///<   updated at each step
 
     int             m_iNumFlowersVisitedInBout; ///< Number of flowers visited so far in current bout
 

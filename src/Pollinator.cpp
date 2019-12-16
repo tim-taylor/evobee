@@ -378,7 +378,6 @@ void Pollinator::step()
         {
             throw std::runtime_error("Unknown pollinator state encountered");
         }
-
     }
 }
 
@@ -387,6 +386,8 @@ void Pollinator::step()
 // a nearby flower. If a flower is found, the pollinator then moves to that if it is a visit candidate.
 void Pollinator::forageRandom()
 {
+    unsigned int stepnum = m_pModel->getStepNumber();
+
     // first move in a random direction
     moveRandom();
 
@@ -402,9 +403,17 @@ void Pollinator::forageRandom()
         if (isVisitCandidate(pFlower))
         {
             m_Position = pFlower->getPosition();
-            visitFlower(pFlower);
+            int rewardCollected = visitFlower(pFlower);
             flowerVisited = true;
+            m_LatestAction.update(stepnum, PollinatorCurrentStatus::ON_FLOWER, pFlower, rewardCollected);
         }
+        else {
+            m_LatestAction.update(stepnum, PollinatorCurrentStatus::DECLINED_FLOWER, pFlower, 0);
+        }
+    }
+    else
+    {
+        m_LatestAction.update(stepnum, PollinatorCurrentStatus::NO_FLOWER_SEEN, nullptr, 0);
     }
 
     if (!flowerVisited)
@@ -421,6 +430,7 @@ void Pollinator::forageRandomGlobal()
 {
     Flower* pFlower = nullptr;
     bool flowerVisited = false;
+    unsigned int stepnum = m_pModel->getStepNumber();
 
     FlowerPtrVector& allFlowerPtrVec = getEnvironment()->getAllFlowerPtrVector();
 
@@ -450,8 +460,13 @@ void Pollinator::forageRandomGlobal()
         if (isVisitCandidate(pFlower))
         {
             m_Position = pFlower->getPosition();
-            visitFlower(pFlower);
+            int rewardCollected = visitFlower(pFlower);
             flowerVisited = true;
+            m_LatestAction.update(stepnum, PollinatorCurrentStatus::ON_FLOWER, pFlower, rewardCollected);
+        }
+        else
+        {
+            m_LatestAction.update(stepnum, PollinatorCurrentStatus::DECLINED_FLOWER, pFlower, 0);
         }
     }
 
@@ -472,6 +487,7 @@ void Pollinator::forageRandomGlobal()
 void Pollinator::forageNearestFlower()
 {
     bool flowerVisited = false;
+    unsigned int stepnum = m_pModel->getStepNumber();
 
     Flower* pFlower = getEnvironment()->findNearestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers);
     if (pFlower != nullptr)
@@ -479,9 +495,18 @@ void Pollinator::forageNearestFlower()
         if (isVisitCandidate(pFlower))
         {
             m_Position = pFlower->getPosition();
-            visitFlower(pFlower);
+            int rewardCollected = visitFlower(pFlower);
             flowerVisited = true;
+            m_LatestAction.update(stepnum, PollinatorCurrentStatus::ON_FLOWER, pFlower, rewardCollected);
         }
+        else
+        {
+            m_LatestAction.update(stepnum, PollinatorCurrentStatus::DECLINED_FLOWER, pFlower, 0);
+        }
+    }
+    else
+    {
+        m_LatestAction.update(stepnum, PollinatorCurrentStatus::NO_FLOWER_SEEN, nullptr, 0);
     }
 
     if (!flowerVisited)
@@ -498,6 +523,7 @@ void Pollinator::forageNearestFlower()
 void Pollinator::forageRandomFlower()
 {
     bool flowerVisited = false;
+    unsigned int stepnum = m_pModel->getStepNumber();
 
     Flower* pFlower = getEnvironment()->findRandomUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers);
     if (pFlower != nullptr)
@@ -505,10 +531,20 @@ void Pollinator::forageRandomFlower()
         if (isVisitCandidate(pFlower))
         {
             m_Position = pFlower->getPosition();
-            visitFlower(pFlower);
+            int rewardCollected = visitFlower(pFlower);
             flowerVisited = true;
+            m_LatestAction.update(stepnum, PollinatorCurrentStatus::ON_FLOWER, pFlower, rewardCollected);
+        }
+        else
+        {
+            m_LatestAction.update(stepnum, PollinatorCurrentStatus::DECLINED_FLOWER, pFlower, 0);
         }
     }
+    else
+    {
+        m_LatestAction.update(stepnum, PollinatorCurrentStatus::NO_FLOWER_SEEN, nullptr, 0);
+    }
+
 
     if (!flowerVisited)
     {
@@ -602,8 +638,9 @@ void Pollinator::updateVisualPreferences(const Flower* pFlower, int nectarCollec
 }
 
 
-// The logic of what a pollinator does when it lands on a flower
-void Pollinator::visitFlower(Flower* pFlower)
+// The logic of what a pollinator does when it lands on a flower.
+// Returns the amount of nectar collected on this visit.
+int Pollinator::visitFlower(Flower* pFlower)
 {
     // for each Pollen grain in the store, update its landing count
     updatePollenLandingCount();
@@ -654,6 +691,8 @@ void Pollinator::visitFlower(Flower* pFlower)
     {
         m_State = PollinatorState::BOUT_COMPLETE;
     }
+
+    return nectarCollected;
 }
 
 
@@ -817,9 +856,32 @@ int Pollinator::losePollenToAir(int num)
 std::string Pollinator::getStateString() const
 {
     std::stringstream ssState;
+
     ssState << std::fixed << std::setprecision(3) << getTypeName() << ","
         << m_id << "," << m_Position.x << "," << m_Position.y << "," << m_fHeading
-        << "," << m_iNumFlowersVisitedInBout;
+        << "," << m_iNumFlowersVisitedInBout
+        << "," << m_LatestAction.stepnum << ",";
+
+    switch (m_LatestAction.status) {
+    case PollinatorCurrentStatus::ON_FLOWER: {
+        assert(m_LatestAction.pFlower != nullptr);
+        ssState << m_LatestAction.pFlower->getMarkerPoint() << "," << m_LatestAction.rewardReceived;
+        break;
+    }
+    case PollinatorCurrentStatus::DECLINED_FLOWER: {
+        assert(m_LatestAction.pFlower != nullptr);
+        ssState << m_LatestAction.pFlower->getMarkerPoint() << ",-1";
+        break;
+    }
+    case PollinatorCurrentStatus::NO_FLOWER_SEEN: {
+        ssState << "0,-2";
+        break;
+    }
+    default: {
+        throw std::runtime_error("Unknown PollinatorCurrentStatus value in Pollinator::getStateString(). Aborting!");
+    }
+    }
+
     return ssState.str();
 }
 

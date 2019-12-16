@@ -8,7 +8,9 @@
 #ifndef _POLLINATORSTRUCTS_H
 #define _POLLINATORSTRUCTS_H
 
+#include "PollinatorEnums.h"
 #include "ReflectanceInfo.h"
+#include "Flower.h"
 
 
 /**
@@ -144,5 +146,26 @@ struct VisualPreferenceInfo {
     const float baseProbLandTarget;     ///> The pollinators base value for probLandTarget before any learning has occured (or after a reset)
     const float baseProbLandNonTarget;  ///> This pollinator's base value for probLandNonTarget before any learning has occured (or after a reset)
 };
+
+
+struct PollinatorLatestAction
+{
+    PollinatorLatestAction() :
+        stepnum(0), status(PollinatorCurrentStatus::NO_FLOWER_SEEN), pFlower(nullptr), rewardReceived(0)
+        {};
+
+    void update(int _step, PollinatorCurrentStatus _status, Flower* _pFlower, int _reward) {
+        stepnum = _step;
+        status = _status;
+        pFlower = _pFlower;
+        rewardReceived = _reward;
+    };
+
+    int stepnum;
+    PollinatorCurrentStatus status;
+    Flower* pFlower;
+    int rewardReceived;
+};
+
 
 #endif /* _POLLINATORSTRUCTS_H */

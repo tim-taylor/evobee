@@ -23,4 +23,10 @@ enum class PollinatorConstancyType {NONE, SIMPLE, VISUAL};
  */
 enum class PollinatorForagingStrategy {RANDOM, NEAREST_FLOWER, RANDOM_FLOWER, RANDOM_GLOBAL};
 
+/**
+ * The PollinatorCurrentStatus enum
+ */
+enum class PollinatorCurrentStatus {ON_FLOWER, DECLINED_FLOWER, NO_FLOWER_SEEN};
+
+
 #endif /* _POLLINATORENUMS_H */

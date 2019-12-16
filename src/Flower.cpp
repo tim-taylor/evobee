@@ -223,7 +223,10 @@ int Flower::transferAntherPollenToPollinator(PollenVector& pollinatorStore)
 
 // Attempt to transfer the requested number of Pollen grains from the specified
 // pollinator's store to the flower's stigma. If any of the deposited pollen
-// is from the same species, the flower will be pollinated.
+// is from the same species, the flower will be pollinated. If less pollen gets
+// transferred to the flower than the requested number, the difference between
+// the requested and actual number of pollen grains transferred is removed
+// from the pollinator's store and treated as lost.
 //
 int Flower::transferPollenFromPollinator(PollenVector& pollinatorStore, int suggestedNum)
 {
