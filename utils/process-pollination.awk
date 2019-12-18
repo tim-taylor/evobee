@@ -4,7 +4,7 @@
 #
 # Typical usage: (see also comments in process-pollen-distrib.awk file)
 #
-# > for F in `ls *log.txt`; do gawk -f process-pollination.awk $F > $F".pollination-counts.csv"; done
+# > for F in `ls *log.txt`; do gawk -f ../../../utils/process-pollination.awk $F > $F".pollination-counts.csv"; done
 # > for F in `ls *log.txt`; do gawk -f ../../../utils/process-pollination.awk $F > $F".heterospecific-distrib.csv" ; done
 # > for F in `ls *log.txt`; do gawk -f ../../../utils/process-pollination.awk $F > $F".all-pollen-distrib.csv" ; done
 #
@@ -34,15 +34,18 @@ $1=="F" && NF>13 {
 }
 
 END {
-    # this block outputs data in format for pollination-totals.csv
-#     for (mp=300; mp<=650; mp+=10) {
-#         printf "%i,%i,%i\n", mp, conspecific[mp], heterospecific[mp];
-#     }
+    MPMIN = 300;
+    MPMAX = 650;
+    
+    # this block outputs data in format for pollination-counts.csv
+    for (mp=MPMIN; mp<=MPMAX; mp+=10) {
+        printf "%i,%i,%i\n", mp, conspecific[mp], heterospecific[mp];
+    }
 
     # this block outputs data in format for heterospecifc-distrib.csv
-#     for (mp=300; mp<=650; mp+=10) {
+#     for (mp=MPMIN; mp<=MPMAX; mp+=10) {
 #         printf "%i", mp
-#         for (pmp=300; pmp<=650; pmp+=10) {
+#         for (pmp=MPMIN; pmp<=MPMAX; pmp+=10) {
 #             if (mp==pmp) {
 #                 printf ",%i,%i", pmp, 0;
 #             }
@@ -54,11 +57,11 @@ END {
 #     }
     
     # this block outputs data in format for all-pollen-distrib.csv
-    for (mp=300; mp<=650; mp+=10) {
-        printf "%i", mp
-        for (pmp=300; pmp<=650; pmp+=10) {
-            printf ",%i,%i", pmp, h[mp][pmp];
-        }
-        printf "\n";
-    }    
+#     for (mp=MPMIN; mp<=MPMAX; mp+=10) {
+#         printf "%i", mp
+#         for (pmp=MPMIN; pmp<=MPMAX; pmp+=10) {
+#             printf ",%i,%i", pmp, h[mp][pmp];
+#         }
+#         printf "\n";
+#     }
 }

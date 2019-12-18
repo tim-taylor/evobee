@@ -50,6 +50,7 @@ private:
     // private helper functions
     void runStandardExperiment();
     void runMarkerPointSimilarityTest();
+    void runMatchConfidenceTest();
     void callLoggerMethod(void (Logger::*pLoggerMethod)());
 };
 

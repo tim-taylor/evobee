@@ -1,7 +1,7 @@
 # Script to process logging output with Q flag
 # (PollinatorIntraPhaseFull) and extract details
 # of flower visits and rewards from a single specified
-# pollinator (specified by pollintaor id as an
+# pollinator (specified by pollinator id as an
 # argument to the script).
 #
 # Sample usage:

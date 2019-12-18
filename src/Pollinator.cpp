@@ -900,6 +900,37 @@ int Pollinator::getNumPollenGrainsInStore(unsigned int speciesId) const
 }
 
 
+float Pollinator::confidenceMatchesTarget(const ReflectanceInfo& stimulus) const
+{
+    const float minHexDistance = 0.05;
+    const float maxHexDistance = 0.19;
+    const float maxConfidence = 0.95;
+    const float minConfidence = 0.05;
+
+    float confidence = minConfidence;
+
+    const VisualStimulusInfo& infoStimulus = getVisStimulusInfo(stimulus.getMarkerPoint());
+    const VisualStimulusInfo& infoTarget = getVisStimulusInfo(m_TargetMP);
+    float hexDistance = getVisHexDistance(infoStimulus, infoTarget);
+
+    if (hexDistance <= minHexDistance)
+    {
+        confidence = maxConfidence;
+    }
+    else if (hexDistance >= maxHexDistance)
+    {
+        confidence = minConfidence;
+    }
+    else
+    {
+        float distanceFrac = (hexDistance - minHexDistance) / (maxHexDistance - minHexDistance);
+        confidence = maxConfidence - distanceFrac * (maxConfidence - minConfidence);
+    }
+
+    return confidence;
+}
+
+
 bool Pollinator::matchesTargetMP(const ReflectanceInfo& stimulus) const
 {
     const float minHexDistance = 0.05;

@@ -133,6 +133,13 @@ public:
     bool matchesTargetMP(const ReflectanceInfo& stimulus) const;
 
     /**
+     * Compares a given stimulus to the pollinator's current target marker point and
+     * returns a confidence level between 0.0 and 1.0 that the stimulus matches
+     * the target.
+     */
+    float confidenceMatchesTarget(const ReflectanceInfo& stimulus) const;
+
+    /**
      * Returns the pollinator's current target marker point.
      * N.B. If the pollinator does not yet have a target, the returned value will be 0 (=NO_MARKER_POINT)
      */

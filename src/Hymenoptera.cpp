@@ -226,6 +226,11 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower) const
         }
         else
         {
+            float confidenceOfMatch = confidenceMatchesTarget(pFlower->getReflectanceInfo());
+            float randnum = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
+            bIsVisitCandidate = (randnum < confidenceOfMatch);
+
+            /*
             bool bLooksLikeTarget = matchesTargetMP(pFlower->getReflectanceInfo());
 
             if (bLooksLikeTarget)
@@ -233,12 +238,12 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower) const
                 float randnum = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
                 float probLandTarget = visPrefInfo.getProbLandTarget();
                 bIsVisitCandidate = (randnum < probLandTarget);
-                //bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < visPrefInfo.getProbLandTarget());
             }
             else
             {
                 bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < visPrefInfo.getProbLandNonTarget());
             }
+            */
         }
     }
 

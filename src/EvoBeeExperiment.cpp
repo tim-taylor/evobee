@@ -69,6 +69,9 @@ void EvoBeeExperiment::run()
     case 1:
         runMarkerPointSimilarityTest();
         break;
+    case 2:
+        runMatchConfidenceTest();
+        break;
     default:
         std::cerr << "Unknown test number " << testnum << " requested. Aborting." << std::endl;
         exit(1);
@@ -233,6 +236,24 @@ void EvoBeeExperiment::runMarkerPointSimilarityTest()
             ReflectanceInfo stimulus{mp2};
             bool matches = bee.matchesTargetMP(stimulus);
             std::cout << mp << "," << mp2 << "," << (matches ? "1" : "0") << std::endl;
+        }
+    }
+    return;
+}
+
+
+void EvoBeeExperiment::runMatchConfidenceTest()
+{
+    auto pPolConfig = ModelParams::getPollinatorConfigPtr("HoneyBee");
+    auto hives = m_Model.getEnv().getHives();
+    auto pHive = hives.at(0);
+    for (MarkerPoint mp = 300; mp <= 650; mp+=10) {
+        HoneyBee bee{*pPolConfig, (AbstractHive*)&(*pHive)};
+        bee.setTargetMP(mp);
+        for (MarkerPoint mp2 = 300; mp2 <= 650; mp2+=10) {
+            ReflectanceInfo stimulus{mp2};
+            float confidence = bee.confidenceMatchesTarget(stimulus);
+            std::cout << mp << "," << mp2 << "," << std::setprecision(5) << confidence << std::endl;
         }
     }
     return;
