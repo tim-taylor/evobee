@@ -19,8 +19,7 @@ This output should look like this:
 > -q [ --quiet ] -> disable verbose progress messages on stdout
 > -t [ --test ] arg (=0) -> Perform test number N instead of regular run
 
-
-*The final option, -t, is used to perform various tests on the code rather than a regular run. There are currently two tests defined: 1=MarkerPointSimilarityTest and 2=MatchConfidenceTest. For more information on these tests see the EvoBeeExperiment.cpp file, which calls the tests from the method EvoBeeExperiment::run().)
+*The final option, -t, is used to perform various tests on the code rather than a regular run. There are currently two tests defined: 1=MarkerPointSimilarityTest and 2=MatchConfidenceTest. For more information on these tests see the EvoBeeExperiment.cpp file, which calls the tests from the method EvoBeeExperiment::run().*
 
 The vast majority of configuration options for the program are set using a configuration file rather than the command line. As shown in the output above, the default filename that `evobee` searches for is `evobee.cfg.json`, and it only searches in the current working directory. To specify a different name and location, use the -c flag when calling the program. For example:
 
@@ -407,11 +406,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjMxNjA3NzU1LC04OTQ3NTE0NiwxNzE3Mz
-YwMTAsMTM5MjQ3NDU1MSw1MTE2OTk5NjIsLTQyNzA1Nzk3MCwt
-ODc0MTExMTY4LC0xMjA1NzYyMjYwLC00Njc5MTY3NTgsMjA4Nz
-A2NTQ1NSwzMjg4MjMyMywtMTgyMTEyOTkzNiw5MjAxODQzNTQs
-MzcxODg3MTYzLC03MDg0NDIxNzgsNjYxNzQ0MzExLDE4MjkyNj
-g2NzAsNzMxNzU2MDg5LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTFd
-fQ==
+eyJoaXN0b3J5IjpbLTE4MzAyNzkzOCwtODk0NzUxNDYsMTcxNz
+M2MDEwLDEzOTI0NzQ1NTEsNTExNjk5OTYyLC00MjcwNTc5NzAs
+LTg3NDExMTE2OCwtMTIwNTc2MjI2MCwtNDY3OTE2NzU4LDIwOD
+cwNjU0NTUsMzI4ODIzMjMsLTE4MjExMjk5MzYsOTIwMTg0MzU0
+LDM3MTg4NzE2MywtNzA4NDQyMTc4LDY2MTc0NDMxMSwxODI5Mj
+Y4NjcwLDczMTc1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUx
+XX0=
 -->
