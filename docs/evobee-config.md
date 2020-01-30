@@ -14,15 +14,11 @@ This output should look like this:
 >
 > Generic options:
 > 
-> -v [ --version ] -> display program version number
-> 
-> -h [ --help ] -> display this help message
-> 
-> -c [ --config ] arg (=evobee.cfg.json) -> configuration file
-> 
-> -q [ --quiet ] -> disable verbose progress messages on stdout
-> 
-> -t [ --test ] arg (=0) -> Perform test number N instead of regular run
+> -v [ --version ] -> display program version number 
+> -h [ --help ] -> display this help message 
+> -c [ --config ] arg (=evobee.cfg.json) -> configuration file 
+> -q [ --quiet ] -> disable verbose progress messages on stdout 
+> -t [ --test ] arg (=0) -> Perform test number N instead of regular run 
 
 *The final option, -t, is used to perform various tests on the code rather than a regular run. There are currently two tests defined: 1=MarkerPointSimilarityTest and 2=MatchConfidenceTest. For more information on these tests see the EvoBeeExperiment.cpp file, which calls the tests from the method EvoBeeExperiment::run().*
 
@@ -415,11 +411,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5OTgyOTEyODIsLTY4MTM4Mzg4MCwtNT
-EwMzkxOTE1LC02NzI4OTA2OTksLTIwNTAyNTc0ODgsLTE0OTM2
-MzgyMzMsMTkyNTY3MjExMiwtNzk0NzU4NTM1LDE4OTM3NDUyMz
-UsLTQwNTc5OTYwMCwtMTA4NDU2NTk3OSwtNjE2MTI0MTk2LDEw
-Mzc1MjgwMzQsLTg5NDc1MTQ2LDE3MTczNjAxMCwxMzkyNDc0NT
-UxLDUxMTY5OTk2MiwtNDI3MDU3OTcwLC04NzQxMTExNjgsLTEy
-MDU3NjIyNjBdfQ==
+eyJoaXN0b3J5IjpbLTEyMjE4NTg5MTYsLTE5OTgyOTEyODIsLT
+Y4MTM4Mzg4MCwtNTEwMzkxOTE1LC02NzI4OTA2OTksLTIwNTAy
+NTc0ODgsLTE0OTM2MzgyMzMsMTkyNTY3MjExMiwtNzk0NzU4NT
+M1LDE4OTM3NDUyMzUsLTQwNTc5OTYwMCwtMTA4NDU2NTk3OSwt
+NjE2MTI0MTk2LDEwMzc1MjgwMzQsLTg5NDc1MTQ2LDE3MTczNj
+AxMCwxMzkyNDc0NTUxLDUxMTY5OTk2MiwtNDI3MDU3OTcwLC04
+NzQxMTExNjhdfQ==
 -->
