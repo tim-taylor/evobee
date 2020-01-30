@@ -375,7 +375,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|  
 |species|species|std::string|Text label designating species of plant (any text is allowed)|  
-|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint||  
+|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint|Flow|  
 |flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint||  
 |diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|If true and flowerMPInitMax != flowerMPInitMin, then plants with different flower marker points generated from this configuration are treated as different species. In this case, each individual species is given a name "PlantSpeciesNNN" (where NNN is the wavelength of the marker point) - this naming scheme overrides anything specified in the "species" field in the Plant Type configuration.|
 |anther-init-pollen|antherInitPollen|int|Amount of pollen available on anther at the start of each foraging phase|  
@@ -383,7 +383,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int|Maximum amount of pollen the stigma can carry|  
 |pollen-clogging|pollenCloggingSpecies|std::string|Allowed values: empty string (does not clog any other species), "all" (clogs all other species), or a comma separated list of the names of the plant species that this species clogs|
 |init-nectar|initNectar|int||
-|diff-mp-is-diff-species|diffMPIsDiffSpecies|bool||
+|diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|if true and flowerMPInitMin != flowerMPInitMax, plants created with different marker points are treated as different species (default=false)|
 |repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|Can seeds be dispersed at random across whole environment?|  
 |repro-seed-dispersal-radius|reproSeedDispersalRadius|float|Expressed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
 
@@ -407,11 +407,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEzNjc2Njg1NiwxMDM3NTI4MDM0LC04OT
-Q3NTE0NiwxNzE3MzYwMTAsMTM5MjQ3NDU1MSw1MTE2OTk5NjIs
-LTQyNzA1Nzk3MCwtODc0MTExMTY4LC0xMjA1NzYyMjYwLC00Nj
-c5MTY3NTgsMjA4NzA2NTQ1NSwzMjg4MjMyMywtMTgyMTEyOTkz
-Niw5MjAxODQzNTQsMzcxODg3MTYzLC03MDg0NDIxNzgsNjYxNz
-Q0MzExLDE4MjkyNjg2NzAsNzMxNzU2MDg5LDEwNjg2ODUyMzZd
-fQ==
+eyJoaXN0b3J5IjpbMjQwOTQwMTE2LDEwMzc1MjgwMzQsLTg5ND
+c1MTQ2LDE3MTczNjAxMCwxMzkyNDc0NTUxLDUxMTY5OTk2Miwt
+NDI3MDU3OTcwLC04NzQxMTExNjgsLTEyMDU3NjIyNjAsLTQ2Nz
+kxNjc1OCwyMDg3MDY1NDU1LDMyODgyMzIzLC0xODIxMTI5OTM2
+LDkyMDE4NDM1NCwzNzE4ODcxNjMsLTcwODQ0MjE3OCw2NjE3ND
+QzMTEsMTgyOTI2ODY3MCw3MzE3NTYwODksMTA2ODY4NTIzNl19
+
 -->
