@@ -371,8 +371,8 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-base-prob-land-target|visBaseProbLandTarget|float|Pollinator's base probability of landing on a target flower. (default: 0.9)|
 |vis-prob-land-no-target-set-delta|visProbLandNoTargetSetDelta|float|If pollinator currently has no target, its innate probability of landing on a given marker point is increased by this amount. (default: 0.2)|
 |vis-prob-land-nontarget-indiv-stddev|visProbLandNonTargetIndivStdDev|float|Each pollinator's innate probability of landing on a given (non-target) marker point has an element of stochasticity as determined by this parameter, which defines the standard deviation around the base value defined in the corresponding vis-data row. (default: 0.01)|
-|vis-prob-land-increment-on-reward|visProbLandIncrementOnReward|float|0.01|
-|vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|0.01|
+|vis-prob-land-increment-on-reward|visProbLandIncrementOnReward|float|Learning algorithm parameter for increase in probability of landing on a marker point if the current flower is rewarding. (default: 0.01)|
+|vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|0.005|
 
 
@@ -417,11 +417,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0OTM2MzgyMzMsMTkyNTY3MjExMiwtNz
-k0NzU4NTM1LDE4OTM3NDUyMzUsLTQwNTc5OTYwMCwtMTA4NDU2
-NTk3OSwtNjE2MTI0MTk2LDEwMzc1MjgwMzQsLTg5NDc1MTQ2LD
-E3MTczNjAxMCwxMzkyNDc0NTUxLDUxMTY5OTk2MiwtNDI3MDU3
-OTcwLC04NzQxMTExNjgsLTEyMDU3NjIyNjAsLTQ2NzkxNjc1OC
-wyMDg3MDY1NDU1LDMyODgyMzIzLC0xODIxMTI5OTM2LDkyMDE4
-NDM1NF19
+eyJoaXN0b3J5IjpbLTIwNTAyNTc0ODgsLTE0OTM2MzgyMzMsMT
+kyNTY3MjExMiwtNzk0NzU4NTM1LDE4OTM3NDUyMzUsLTQwNTc5
+OTYwMCwtMTA4NDU2NTk3OSwtNjE2MTI0MTk2LDEwMzc1MjgwMz
+QsLTg5NDc1MTQ2LDE3MTczNjAxMCwxMzkyNDc0NTUxLDUxMTY5
+OTk2MiwtNDI3MDU3OTcwLC04NzQxMTExNjgsLTEyMDU3NjIyNj
+AsLTQ2NzkxNjc1OCwyMDg3MDY1NDU1LDMyODgyMzIzLC0xODIx
+MTI5OTM2XX0=
 -->
