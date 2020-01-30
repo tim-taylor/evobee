@@ -373,7 +373,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-prob-land-nontarget-indiv-stddev|visProbLandNonTargetIndivStdDev|float|Each pollinator's innate probability of landing on a given (non-target) marker point has an element of stochasticity as determined by this parameter, which defines the standard deviation around the base value defined in the corresponding vis-data row. (default: 0.01)|
 |vis-prob-land-increment-on-reward|visProbLandIncrementOnReward|float|Learning algorithm parameter for increase in probability of landing on a marker point if the current flower is rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
-|vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowersm_RecentlyVisitedFlowers list. (default: 0.005)|
+|vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowers. (default: 0.005) [see also visited-flower-memory-size]|
 
 
 
@@ -417,11 +417,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ2ODQwMDUzLC0yMDUwMjU3NDg4LC0xND
-kzNjM4MjMzLDE5MjU2NzIxMTIsLTc5NDc1ODUzNSwxODkzNzQ1
-MjM1LC00MDU3OTk2MDAsLTEwODQ1NjU5NzksLTYxNjEyNDE5Ni
-wxMDM3NTI4MDM0LC04OTQ3NTE0NiwxNzE3MzYwMTAsMTM5MjQ3
-NDU1MSw1MTE2OTk5NjIsLTQyNzA1Nzk3MCwtODc0MTExMTY4LC
-0xMjA1NzYyMjYwLC00Njc5MTY3NTgsMjA4NzA2NTQ1NSwzMjg4
-MjMyM119
+eyJoaXN0b3J5IjpbLTY3Mjg5MDY5OSwtMjA1MDI1NzQ4OCwtMT
+Q5MzYzODIzMywxOTI1NjcyMTEyLC03OTQ3NTg1MzUsMTg5Mzc0
+NTIzNSwtNDA1Nzk5NjAwLC0xMDg0NTY1OTc5LC02MTYxMjQxOT
+YsMTAzNzUyODAzNCwtODk0NzUxNDYsMTcxNzM2MDEwLDEzOTI0
+NzQ1NTEsNTExNjk5OTYyLC00MjcwNTc5NzAsLTg3NDExMTE2OC
+wtMTIwNTc2MjI2MCwtNDY3OTE2NzU4LDIwODcwNjU0NTUsMzI4
+ODIzMjNdfQ==
 -->
