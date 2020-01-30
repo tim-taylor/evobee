@@ -375,7 +375,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|  
 |species|species|std::string|Text label designating species of plant (any text is allowed)|  
-|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint|Newly created flowers of this type are assigned a marker point in the region flowerMPInitMin to flowerMPInitMax |  
+|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint|Newly created flowers of this type are assigned a marker point in the region flowerMPInitMin to flowerMPInitMax with step size typeCflowerMPInitStep|  
 |flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint||  
 |diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|If true and flowerMPInitMax != flowerMPInitMin, then plants with different flower marker points generated from this configuration are treated as different species. In this case, each individual species is given a name "PlantSpeciesNNN" (where NNN is the wavelength of the marker point) - this naming scheme overrides anything specified in the "species" field in the Plant Type configuration.|
 |anther-init-pollen|antherInitPollen|int|Amount of pollen available on anther at the start of each foraging phase|  
@@ -407,11 +407,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYxNjEyNDE5NiwxMDM3NTI4MDM0LC04OT
-Q3NTE0NiwxNzE3MzYwMTAsMTM5MjQ3NDU1MSw1MTE2OTk5NjIs
-LTQyNzA1Nzk3MCwtODc0MTExMTY4LC0xMjA1NzYyMjYwLC00Nj
-c5MTY3NTgsMjA4NzA2NTQ1NSwzMjg4MjMyMywtMTgyMTEyOTkz
-Niw5MjAxODQzNTQsMzcxODg3MTYzLC03MDg0NDIxNzgsNjYxNz
-Q0MzExLDE4MjkyNjg2NzAsNzMxNzU2MDg5LDEwNjg2ODUyMzZd
+eyJoaXN0b3J5IjpbMTU2NjM1NTI5NCwtNjE2MTI0MTk2LDEwMz
+c1MjgwMzQsLTg5NDc1MTQ2LDE3MTczNjAxMCwxMzkyNDc0NTUx
+LDUxMTY5OTk2MiwtNDI3MDU3OTcwLC04NzQxMTExNjgsLTEyMD
+U3NjIyNjAsLTQ2NzkxNjc1OCwyMDg3MDY1NDU1LDMyODgyMzIz
+LC0xODIxMTI5OTM2LDkyMDE4NDM1NCwzNzE4ODcxNjMsLTcwOD
+Q0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NTYwODld
 fQ==
 -->
