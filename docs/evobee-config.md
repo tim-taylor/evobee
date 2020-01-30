@@ -15,8 +15,9 @@ This output should look like this:
 > Generic options:  
 > -v [ --version ] display program version number  
 > -h [ --help ] display this help message  
-> -c [ --config ] arg (=evobee.cfg.json) configuration file  
-> -q [ --quiet ] disable verbose progress messages on stdout
+> -c [ --config ] arg (=evobee.cfg.json) -> configuration file  
+> -q [ --quiet ] -> disable verbose progress messages on stdout
+> -t [ --test ] arg (=0) -> Perform test number N instead of regular run
 
 The vast majority of configuration options for the program are set using a configuration file rather than the command line. As shown in the output above, the default filename that `evobee` searches for is `evobee.cfg.json`, and it only searches in the current working directory. To specify a different name and location, use the -c flag when calling the program. For example:
 
@@ -403,11 +404,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg5NDc1MTQ2LDE3MTczNjAxMCwxMzkyND
-c0NTUxLDUxMTY5OTk2MiwtNDI3MDU3OTcwLC04NzQxMTExNjgs
-LTEyMDU3NjIyNjAsLTQ2NzkxNjc1OCwyMDg3MDY1NDU1LDMyOD
-gyMzIzLC0xODIxMTI5OTM2LDkyMDE4NDM1NCwzNzE4ODcxNjMs
-LTcwODQ0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NT
-YwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDFd
+eyJoaXN0b3J5IjpbNDE1ODg4ODA4LC04OTQ3NTE0NiwxNzE3Mz
+YwMTAsMTM5MjQ3NDU1MSw1MTE2OTk5NjIsLTQyNzA1Nzk3MCwt
+ODc0MTExMTY4LC0xMjA1NzYyMjYwLC00Njc5MTY3NTgsMjA4Nz
+A2NTQ1NSwzMjg4MjMyMywtMTgyMTEyOTkzNiw5MjAxODQzNTQs
+MzcxODg3MTYzLC03MDg0NDIxNzgsNjYxNzQ0MzExLDE4MjkyNj
+g2NzAsNzMxNzU2MDg5LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTFd
 fQ==
 -->
