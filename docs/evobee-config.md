@@ -258,7 +258,6 @@ These files are shown below, followed by the [Configuration options](#configurat
                 "repro-seed-dispersal-global" : true,
                 "repro-seed-dispersal-radius" : 1.0,
                 "comment0" : "items below this line in PlantType not currently used",
-                "nectar-reward" : 10,
                 "comment1" : "plus replenish rate for all of these things - ",
                 "comment2" : "if second bee visits, does it get the same reward or none;",
                 "comment3" : "replenish, instant or n per timestep",
@@ -406,7 +405,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MzAyNzkzOCwtODk0NzUxNDYsMTcxNz
+eyJoaXN0b3J5IjpbMTAzNzUyODAzNCwtODk0NzUxNDYsMTcxNz
 M2MDEwLDEzOTI0NzQ1NTEsNTExNjk5OTYyLC00MjcwNTc5NzAs
 LTg3NDExMTE2OCwtMTIwNTc2MjI2MCwtNDY3OTE2NzU4LDIwOD
 cwNjU0NTUsMzI4ODIzMjMsLTE4MjExMjk5MzYsOTIwMTg0MzU0
