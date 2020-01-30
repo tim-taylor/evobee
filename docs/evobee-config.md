@@ -19,6 +19,8 @@ This output should look like this:
 > -q [ --quiet ] -> disable verbose progress messages on stdout
 > -t [ --test ] arg (=0) -> Perform test number N instead of regular run
 
+(The final option, -t, is used to perform various tests on the code rather than a regular run. These tests are defined
+
 The vast majority of configuration options for the program are set using a configuration file rather than the command line. As shown in the output above, the default filename that `evobee` searches for is `evobee.cfg.json`, and it only searches in the current working directory. To specify a different name and location, use the -c flag when calling the program. For example:
 
     > ./evobee -c /home/me/my-config-file.cfg.json
@@ -404,7 +406,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY3MTcxMzQ3OCwtODk0NzUxNDYsMTcxNz
+eyJoaXN0b3J5IjpbMTYyMzgwMTYyOSwtODk0NzUxNDYsMTcxNz
 M2MDEwLDEzOTI0NzQ1NTEsNTExNjk5OTYyLC00MjcwNTc5NzAs
 LTg3NDExMTE2OCwtMTIwNTc2MjI2MCwtNDY3OTE2NzU4LDIwOD
 cwNjU0NTUsMzI4ODIzMjMsLTE4MjExMjk5MzYsOTIwMTg0MzU0
