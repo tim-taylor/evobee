@@ -365,7 +365,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |constancy-type|strConstancyType|std::string|Allowed values: none, simple|  
 |constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|  
 |foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|  
-|visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it relands on a given flower, depending upon its foraging strategy.|
+|visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it re-lands on a given flower, depending upon its foraging strategy.|
 |nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower on a single visit.|
 |vis-data|visData|6xN array|This array holds the data that specifies the pollinator's visual system. In the JSON config file it takes the form of a 6xN array, where each row contains 6 numbers representing (1) Marker Point of stimulus (int); (2) Pollinator's probability of detecting this marker point (float in range 0.0 to 1.0); (3) The green contrast value for this marker point (float in range 0.0 to 1.0); (4) X coordinate of this marker point in hexagon colour space (float); (5) Y coordinate of this marker point in hexagon colour space (float); (6) the pollinator's base innate probability of landing on this marker point when it is not the target marker point (float in range 0.0 to 1.0) [but see also vis-prob-land-nontarget-indiv-stddev].|
 |vis-base-prob-land-target|visBaseProbLandTarget|float|Pollinator's base probability of landing on a target flower. (default: 0.9)|
@@ -373,7 +373,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-prob-land-nontarget-indiv-stddev|visProbLandNonTargetIndivStdDev|float|Each pollinator's innate probability of landing on a given (non-target) marker point has an element of stochasticity as determined by this parameter, which defines the standard deviation around the base value defined in the corresponding vis-data row. (default: 0.01)|
 |vis-prob-land-increment-on-reward|visProbLandIncrementOnReward|float|Learning algorithm parameter for increase in probability of landing on a marker point if the current flower is rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
-|vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|0.005|
+|vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowersm_RecentlyVisitedFlowers list. (default: 0.005)|
 
 
 
@@ -417,11 +417,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNTAyNTc0ODgsLTE0OTM2MzgyMzMsMT
-kyNTY3MjExMiwtNzk0NzU4NTM1LDE4OTM3NDUyMzUsLTQwNTc5
-OTYwMCwtMTA4NDU2NTk3OSwtNjE2MTI0MTk2LDEwMzc1MjgwMz
-QsLTg5NDc1MTQ2LDE3MTczNjAxMCwxMzkyNDc0NTUxLDUxMTY5
-OTk2MiwtNDI3MDU3OTcwLC04NzQxMTExNjgsLTEyMDU3NjIyNj
-AsLTQ2NzkxNjc1OCwyMDg3MDY1NDU1LDMyODgyMzIzLC0xODIx
-MTI5OTM2XX0=
+eyJoaXN0b3J5IjpbLTQ2ODQwMDUzLC0yMDUwMjU3NDg4LC0xND
+kzNjM4MjMzLDE5MjU2NzIxMTIsLTc5NDc1ODUzNSwxODkzNzQ1
+MjM1LC00MDU3OTk2MDAsLTEwODQ1NjU5NzksLTYxNjEyNDE5Ni
+wxMDM3NTI4MDM0LC04OTQ3NTE0NiwxNzE3MzYwMTAsMTM5MjQ3
+NDU1MSw1MTE2OTk5NjIsLTQyNzA1Nzk3MCwtODc0MTExMTY4LC
+0xMjA1NzYyMjYwLC00Njc5MTY3NTgsMjA4NzA2NTQ1NSwzMjg4
+MjMyM119
 -->
