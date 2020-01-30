@@ -376,8 +376,6 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|0.005|
 
 
-json_read_opt_param(j, sct, "", p.visProbLandDecrementOnUnseen, 0.005f);
-
 
 ### Plant Type configuration parameters
 
@@ -419,11 +417,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMTY1MDIxMDksLTQwNTc5OTYwMCwtMT
-A4NDU2NTk3OSwtNjE2MTI0MTk2LDEwMzc1MjgwMzQsLTg5NDc1
-MTQ2LDE3MTczNjAxMCwxMzkyNDc0NTUxLDUxMTY5OTk2MiwtND
-I3MDU3OTcwLC04NzQxMTExNjgsLTEyMDU3NjIyNjAsLTQ2Nzkx
-Njc1OCwyMDg3MDY1NDU1LDMyODgyMzIzLC0xODIxMTI5OTM2LD
-kyMDE4NDM1NCwzNzE4ODcxNjMsLTcwODQ0MjE3OCw2NjE3NDQz
-MTFdfQ==
+eyJoaXN0b3J5IjpbMTg5Mzc0NTIzNSwtNDA1Nzk5NjAwLC0xMD
+g0NTY1OTc5LC02MTYxMjQxOTYsMTAzNzUyODAzNCwtODk0NzUx
+NDYsMTcxNzM2MDEwLDEzOTI0NzQ1NTEsNTExNjk5OTYyLC00Mj
+cwNTc5NzAsLTg3NDExMTE2OCwtMTIwNTc2MjI2MCwtNDY3OTE2
+NzU4LDIwODcwNjU0NTUsMzI4ODIzMjMsLTE4MjExMjk5MzYsOT
+IwMTg0MzU0LDM3MTg4NzE2MywtNzA4NDQyMTc4LDY2MTc0NDMx
+MV19
 -->
