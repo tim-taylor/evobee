@@ -13,8 +13,8 @@ This output should look like this:
 >  Allowed options:      
 >  
 > Generic options:  
-> -v [ --version ] display program version number  
-> -h [ --help ] display this help message  
+> -v [ --version ] -> display program version number  
+> -h [ --help ] -> display this help message  
 > -c [ --config ] arg (=evobee.cfg.json) -> configuration file  
 > -q [ --quiet ] -> disable verbose progress messages on stdout
 > -t [ --test ] arg (=0) -> Perform test number N instead of regular run
@@ -404,11 +404,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDE1ODg4ODA4LC04OTQ3NTE0NiwxNzE3Mz
-YwMTAsMTM5MjQ3NDU1MSw1MTE2OTk5NjIsLTQyNzA1Nzk3MCwt
-ODc0MTExMTY4LC0xMjA1NzYyMjYwLC00Njc5MTY3NTgsMjA4Nz
-A2NTQ1NSwzMjg4MjMyMywtMTgyMTEyOTkzNiw5MjAxODQzNTQs
-MzcxODg3MTYzLC03MDg0NDIxNzgsNjYxNzQ0MzExLDE4MjkyNj
-g2NzAsNzMxNzU2MDg5LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTFd
-fQ==
+eyJoaXN0b3J5IjpbLTY3MTcxMzQ3OCwtODk0NzUxNDYsMTcxNz
+M2MDEwLDEzOTI0NzQ1NTEsNTExNjk5OTYyLC00MjcwNTc5NzAs
+LTg3NDExMTE2OCwtMTIwNTc2MjI2MCwtNDY3OTE2NzU4LDIwOD
+cwNjU0NTUsMzI4ODIzMjMsLTE4MjExMjk5MzYsOTIwMTg0MzU0
+LDM3MTg4NzE2MywtNzA4NDQyMTc4LDY2MTc0NDMxMSwxODI5Mj
+Y4NjcwLDczMTc1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUx
+XX0=
 -->
