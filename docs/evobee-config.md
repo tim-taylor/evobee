@@ -10,13 +10,13 @@ The evobee executable accepts a small number of command-line arguments. To query
 
 This output should look like this:
 
->  Allowed options:      
->  
-> Generic options:  
-> -v [ --version ] -> display program version number  
-> -h [ --help ] -> display this help message  
-> -c [ --config ] arg (=evobee.cfg.json) -> configuration file  
-> -q [ --quiet ] -> disable verbose progress messages on stdout 
+> Allowed options:
+>
+> Generic options:
+> -v [ --version ] -> display program version number
+> -h [ --help ] -> display this help message
+> -c [ --config ] arg (=evobee.cfg.json) -> configuration file
+> -q [ --quiet ] -> disable verbose progress messages on stdout
 > -t [ --test ] arg (=0) -> Perform test number N instead of regular run
 
 *The final option, -t, is used to perform various tests on the code rather than a regular run. There are currently two tests defined: 1=MarkerPointSimilarityTest and 2=MatchConfidenceTest. For more information on these tests see the EvoBeeExperiment.cpp file, which calls the tests from the method EvoBeeExperiment::run().*
@@ -32,42 +32,42 @@ The format of the configuration file and the options that can be specified withi
 EvoBee configuration files are specified in JSON format. These follow a hierarchical structure with the following outline:
 
     {
-	    "SimulationParams" : {
-		    # general params for stopping criteria, logging, 
-		    # visualisation, etc
-	    },
-	    "Environment" : {
-		    # configuration of environment size, density
-		    # parameters, and other global specs, followed by:
-		    "Hives" : {
-			    # specification of one or more "Hive" section
-			    # detailing hive position, pollinator type,
-			    # initial foraging area, etc.
-		    },
-		    "PlantTypeDistributions" : {
-			    # specification of one or more "PlantTypeDistribution"
-			    # sections detailing species of plant, its initial 
-			    # distribution area and related parameters. Note that
-			    # multiple PlantTypeDistributions can overlap in
-			    # their specified areas. Alternatively, rather than 
-			    # explicity givine PlantTypeDistribution areas, this
-			    # section can specify "auto-distribs : true" and use
-			    # the related parameters to have EvoBee automatically
-			    # distribute the plants described in the "PlantTypes"
-			    # section across the environment in the requested way.
-		    }
-	    },
-	    "PlantTypes" : {
-		    # specification of one or more "PlantType" to be used
-		    # in the simulation. These types are referred to in the
-		    # "PlantTypeDistributions" section above
-	    },
-	    "Pollinators" : {
-		    # specification of one or more "Pollinator" to to used
-		    # in the simulation. These are referred to in the
-		    # "Hives" section above 
-	    }
-	}  
+        "SimulationParams" : {
+            # general params for stopping criteria, logging,
+            # visualisation, etc
+        },
+        "Environment" : {
+            # configuration of environment size, density
+            # parameters, and other global specs, followed by:
+            "Hives" : {
+                # specification of one or more "Hive" section
+                # detailing hive position, pollinator type,
+                # initial foraging area, etc.
+            },
+            "PlantTypeDistributions" : {
+                # specification of one or more "PlantTypeDistribution"
+                # sections detailing species of plant, its initial
+                # distribution area and related parameters. Note that
+       # multiple PlantTypeDistributions can overlap in
+                # their specified areas. Alternatively, rather than
+                # explicity givine PlantTypeDistribution areas, this
+                # section can specify "auto-distribs : true" and use
+                # the related parameters to have EvoBee automatically
+                # distribute the plants described in the "PlantTypes"
+                # section across the environment in the requested way.
+            }
+        },
+        "PlantTypes" : {
+            # specification of one or more "PlantType" to be used
+            # in the simulation. These types are referred to in the
+            # "PlantTypeDistributions" section above
+        },
+        "Pollinators" : {
+            # specification of one or more "Pollinator" to to used
+            # in the simulation. These are referred to in the
+            # "Hives" section above
+        }
+    }
 
 Two sample configuration files are provided in the root directory of the source code. These are named `evobee.cfg.json` and `evobee-test-simple.cfg.json`. These two files demonstrate different aspects of system configuration, and it is recommended to study both of them.
 
@@ -124,7 +124,7 @@ These files are shown below, followed by the [Configuration options](#configurat
                 "auto-distrib-num-cols" : 10,
                 "auto-distrib-area-margin" : 0.0,
                 "auto-distrib-density" : 0.5,
-	    	    "auto-distrib-regular" : true
+                "auto-distrib-regular" : true
             }
         },
         "PlantTypes" : {
@@ -298,35 +298,35 @@ The following table describes each parameter that can be specified in the config
 ### General parameters
 
 |Parameter name in JSON config file|Corresponding variable name in ModelParams.h|Type of variable|Description|
- |---|---|---|---|  
-|visualisation|m_bVisualisation|bool|Use visualisation for this run?|  
-|env-size-x|m_iEnvSizeX|int|Environment size (num patches) in x direction|  
-|env-size-y|m_iEnvSizeY|int|Environment size (num patches) in y direction|  
-|vis-max-screen-frac-w|m_fMaxScreenFracW|float|Max fraction of screen size for vis window width|  
-|vis-max-screen-frac-h|m_fMaxScreenFracH|float|Max fraction of screen size for vis window height|  
-|default-ambient-temp|m_fEnvDefaultAmbientTemp|float|Default ambient temperature for all Patches (in Celsius)|  
-|background-reflectance-mp|m_EnvBackgroundReflectanceMP|MarkerPoint|Default background reflectance Marker Point for each Patch|  
-|repro-global-density-constrained|m_bReproGlobalDensityContrained|bool|During a reproduction cycle, is global plant density constrained?|  
-|repro-global-density-max|m_fReproGlobalDensityMax|float|If m_bReproGlobalDensityContrained, what is the maximum allowed density?|  
-|vis-pollinator-trails|m_bVisPollinatorTrails|bool|Display trails of pollinators' past movements?|  
-|vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|  
-|vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|  
-|logging|m_bLogging|bool|Is logging required for this run?|  
+ |---|---|---|---|
+|visualisation|m_bVisualisation|bool|Use visualisation for this run?|
+|env-size-x|m_iEnvSizeX|int|Environment size (num patches) in x direction|
+|env-size-y|m_iEnvSizeY|int|Environment size (num patches) in y direction|
+|vis-max-screen-frac-w|m_fMaxScreenFracW|float|Max fraction of screen size for vis window width|
+|vis-max-screen-frac-h|m_fMaxScreenFracH|float|Max fraction of screen size for vis window height|
+|default-ambient-temp|m_fEnvDefaultAmbientTemp|float|Default ambient temperature for all Patches (in Celsius)|
+|background-reflectance-mp|m_EnvBackgroundReflectanceMP|MarkerPoint|Default background reflectance Marker Point for each Patch|
+|repro-global-density-constrained|m_bReproGlobalDensityContrained|bool|During a reproduction cycle, is global plant density constrained?|
+|repro-global-density-max|m_fReproGlobalDensityMax|float|If m_bReproGlobalDensityContrained, what is the maximum allowed density?|
+|vis-pollinator-trails|m_bVisPollinatorTrails|bool|Display trails of pollinators' past movements?|
+|vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|
+|vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|
+|logging|m_bLogging|bool|Is logging required for this run?|
 |log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseFull, m_bLogFlowersIntraPhaseSummary, m_bLogFlowerMPsInterPhaseSummary|std::string|Flags to control logging functionality. Any combination of the following flags may be listed in the string, no separator is required: Q=PollinatorsIntraPhaseFull, P=PollinatorsInterPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, G=FlowersIntraPhaseFull, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary|
-|log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of logger|  
-|log-dir|m_strLogDir|std::string|Directory name for logging output during a run|  
-|log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|  
-|log-run-name|m_strLogRunName|std::string|Run name to be used as prefix for log filenames|  
-|use-log-threads|m_bUseLogThreads|bool|Use a separate thread for writing log files?|  
+|log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of logger|
+|log-dir|m_strLogDir|std::string|Directory name for logging output during a run|
+|log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|
+|log-run-name|m_strLogRunName|std::string|Run name to be used as prefix for log filenames|
+|use-log-threads|m_bUseLogThreads|bool|Use a separate thread for writing log files?|
 |verbose|m_bVerbose|bool|Should progress messages be printed on stdout?|
-|sim-termination-num-gens|m_iSimTerminationNumGens|int|Terminate run after this number of generations|  
-|generation-termination-type|m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation. Allowed values: num-sim-steps, num-pollinator-steps, pollinated-fraction, pollinated-fraction-all, pollinated-fraction-species1.|  
-|generation-termination-param|m_iGenTerminationParam or m_fGenTerminationParam|int or float|Parameter associated with m_GenTerminationType (type of param depends on value of generation-termination-type)|  
-|auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|  
-|auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PlantTypeDistribution auto-generation number of rows of areas to generate|  
-|auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PlantTypeDistribution auto-generation number of columns of areas to generate|  
-|auto-distrib-density|m_fPtdAutoDistribDensity|float|PlantTypeDistribution auto-generation density of plants in each area|  
-|auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|  
+|sim-termination-num-gens|m_iSimTerminationNumGens|int|Terminate run after this number of generations|
+|generation-termination-type|m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation. Allowed values: num-sim-steps, num-pollinator-steps, pollinated-fraction, pollinated-fraction-all, pollinated-fraction-species1.|
+|generation-termination-param|m_iGenTerminationParam or m_fGenTerminationParam|int or float|Parameter associated with m_GenTerminationType (type of param depends on value of generation-termination-type)|
+|auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|
+|auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PlantTypeDistribution auto-generation number of rows of areas to generate|
+|auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PlantTypeDistribution auto-generation number of columns of areas to generate|
+|auto-distrib-density|m_fPtdAutoDistribDensity|float|PlantTypeDistribution auto-generation density of plants in each area|
+|auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stochastic pattern?|
 |rng-seed|m_strRngSeed|std::string|Seed string used to seed RNG|
 
@@ -335,15 +335,15 @@ The following table describes each parameter that can be specified in the config
 Hive configuration parameters for a single hive are stored in an instance of the `HiveConfig` structure, defined in source file `HiveConfig.h`. These are stored in the `ModelParams` member `m_Hives`.
 
 |Parameter name in JSON config file|Corresponding variable name in HiveConfig.h|Type of variable|Description|
-|---|---|---|---|  
-|pollinator-type|type|std::string|Pollinator type|  
-|pollinator-number|num|int|Number of pollinators|  
-|start-from-hive|startFromHive|bool|Do all pollinators start at hive, or from random pos in initial foraging area?|  
-|pos-x, pos-y|position|fPos (Position\<float\>)|Position of the hive|  
-|area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial foraging area|  
-|area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial foraging area|  
-|migration-allowed|migrationAllowed|bool|Are pollinators allowed to move outside initial foraging area?|  
-|migration-restricted|migrationRestricted|bool|If migration allowed, is its probability restricted at all?|  
+|---|---|---|---|
+|pollinator-type|type|std::string|Pollinator type|
+|pollinator-number|num|int|Number of pollinators|
+|start-from-hive|startFromHive|bool|Do all pollinators start at hive, or from random pos in initial foraging area?|
+|pos-x, pos-y|position|fPos (Position\<float\>)|Position of the hive|
+|area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial foraging area|
+|area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial foraging area|
+|migration-allowed|migrationAllowed|bool|Are pollinators allowed to move outside initial foraging area?|
+|migration-restricted|migrationRestricted|bool|If migration allowed, is its probability restricted at all?|
 |migration-prob|migrationProb|float|If migration allowed and restricted, and pollinator tries to leave initial foraging area, it succeeds with this prob, else it is reflected back into initial area|
 
 ### Pollinator configuration parameters
@@ -351,16 +351,16 @@ Hive configuration parameters for a single hive are stored in an instance of the
 Pollinator configuration parameters for a single pollinator species are stored in an instance of the `PollinatorConfig` structure, defined in source file `PollinatorConfig.h`. These are stored in the `ModelParams` member `m_PollinatorConfigs`.
 
 |Parameter name in JSON config file|Corresponding variable name in PollinatorConfig.h|Type of variable|Description|
-|---|---|---|---|  
-|species|species|std::string|Text label designating species of pollinator (any text is allowed)|  
-|bout-length|boutLength|int|Number of flower visits allowed before returning to hive [0=unlimited]|  
-|max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|  
-|pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|  
-|pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|  
-|pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|   
-|constancy-type|strConstancyType|std::string|Allowed values: none, simple|  
-|constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|  
-|foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|  
+|---|---|---|---|
+|species|species|std::string|Text label designating species of pollinator (any text is allowed)|
+|bout-length|boutLength|int|Number of flower visits allowed before returning to hive [0=unlimited]|
+|max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|
+|pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|
+|pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|
+|pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|
+|constancy-type|strConstancyType|std::string|Allowed values: none, simple|
+|constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|
+|foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it re-lands on a given flower, depending upon its foraging strategy.|
 |nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower on a single visit.|
 |vis-data|visData|6xN array|This array holds the data that specifies the pollinator's visual system. In the JSON config file it takes the form of a 6xN array, where each row contains 6 numbers representing (1) Marker Point of stimulus (int); (2) Pollinator's probability of detecting this marker point (float in range 0.0 to 1.0); (3) The green contrast value for this marker point (float in range 0.0 to 1.0); (4) X coordinate of this marker point in hexagon colour space (float); (5) Y coordinate of this marker point in hexagon colour space (float); (6) the pollinator's base innate probability of landing on this marker point when it is not the target marker point (float in range 0.0 to 1.0) [but see also vis-prob-land-nontarget-indiv-stddev].|
@@ -371,45 +371,42 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowers. (default: 0.005) [see also visited-flower-memory-size]|
 
-
-
 ### Plant Type configuration parameters
 
 Plant Type configuration parameters for a single plant type are stored in an instance of the `PlantTypeConfig` structure, defined in source file `PlantTypeConfig.h`. These are stored in the `ModelParams` member `m_PlantTypes`.
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
-|---|---|---|---|  
-|species|species|std::string|Text label designating species of plant (any text is allowed)|  
-|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint|Newly created flowers of this type are randomly assigned a marker point in the range flowerMPInitMin to flowerMPInitMax with step size flowerMPInitStep within this range.|  
+|---|---|---|---|
+|species|species|std::string|Text label designating species of plant (any text is allowed)|
+|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint|Newly created flowers of this type are randomly assigned a marker point in the range flowerMPInitMin to flowerMPInitMax with step size flowerMPInitStep within this range.|
 |flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint|See flowerMPInitMin|
 |flower-reflectance-mp-init-step|flowerMPInitStep|MarkerPoint|See flowerMPInitMin. Default value is 10.|
 |diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|If true and flowerMPInitMax != flowerMPInitMin, then plants with different flower marker points generated from this configuration are treated as different species. In this case, each individual species is given a name "PlantSpeciesNNN" (where NNN is the wavelength of the marker point) - this naming scheme overrides anything specified in the "species" field in the Plant Type configuration.|
-|anther-init-pollen|antherInitPollen|int|Amount of pollen available on anther at the start of each foraging phase|  
-|anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int|Number of pollen grains deposited on a pollinator per visit|  
-|stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int|Maximum amount of pollen the stigma can carry|  
+|anther-init-pollen|antherInitPollen|int|Amount of pollen available on anther at the start of each foraging phase|
+|anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int|Number of pollen grains deposited on a pollinator per visit|
+|stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int|Maximum amount of pollen the stigma can carry|
 |pollen-clogging|pollenCloggingSpecies|std::string|Allowed values: empty string (does not clog any other species), "all" (clogs all other species), or a comma separated list of the names of the plant species that this species clogs|
 |init-nectar|initNectar|int|Initial amount of nectar available in a new flower.|
 |diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|if true and flowerMPInitMin != flowerMPInitMax, plants created with different marker points are treated as different species (default=false)|
-|repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|Can seeds be dispersed at random across whole environment?|  
+|repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|Can seeds be dispersed at random across whole environment?|
 |repro-seed-dispersal-radius|reproSeedDispersalRadius|float|Expressed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
-
 
 ### Plant Distribution configuration parameters
 
 Plant distribution configuration parameters for a specified plant type in a specified region of the environment are stored in an instance of the `PlantTypeDistributionConfig` structure, defined in source file `PlantTypeDistributionConfig.h`. These are stored in the `ModelParams` member `m_PlantDists`.
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeDistributionConfig.h|Type of variable|Description|
-|---|---|---|---|  
+|---|---|---|---|
 |species|species|std::string|Name of the plant species, or "any". If set to "any", then each plant in the distribution is of a randomly chosen species from all species specified in the PlantTypes section.|
-|area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial distribution area|  
-|area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial distribution area|  
-|density|density|float|Density of initial distribution (wrt specified distrib area)|  
-|refuge|refuge|bool|Is this area a refuge for this plant species?|  
-|refuge-alien-inflow-prob|refugeAlienInflowProb|float|If this is a refuge, what is the probability that an alien species attempting to germinate in this area will do so successfully|  
-|seed-outflow-allowed|seedOutflowAllowed|bool|Can the plants germinate outside of the initial distrib area?|  
-|seed-outflow-restricted|seedOutflowRestricted|bool|If seedOutflowAllowed, is it restricted?|  
-|seed-outflow-prob|seedOutflowProb|float|If seedOutflowAllowed and seedOutflowRestricted, what is the probability that they are successful if attempting to do so?|  
-|repro-local-density-constrained|reproLocalDensityConstrained|bool|During reproduction, is the maximum density of plants in this local area constrained?|  
+|area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial distribution area|
+|area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial distribution area|
+|density|density|float|Density of initial distribution (wrt specified distrib area)|
+|refuge|refuge|bool|Is this area a refuge for this plant species?|
+|refuge-alien-inflow-prob|refugeAlienInflowProb|float|If this is a refuge, what is the probability that an alien species attempting to germinate in this area will do so successfully|
+|seed-outflow-allowed|seedOutflowAllowed|bool|Can the plants germinate outside of the initial distrib area?|
+|seed-outflow-restricted|seedOutflowRestricted|bool|If seedOutflowAllowed, is it restricted?|
+|seed-outflow-prob|seedOutflowProb|float|If seedOutflowAllowed and seedOutflowRestricted, what is the probability that they are successful if attempting to do so?|
+|repro-local-density-constrained|reproLocalDensityConstrained|bool|During reproduction, is the maximum density of plants in this local area constrained?|
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
