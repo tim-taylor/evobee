@@ -283,8 +283,6 @@ These files are shown below, followed by the [Configuration options](#configurat
                 "pollen-deposit-per-flower-visit" : 3,
                 "pollen-loss-in-air" : 0,
                 "pollen-carryover-num-visits" : 100,
-                "innate-mp-pref-min" : 400,
-                "innate-mp-pref-max" : 500,
                 "constancy-type" : "simple",
                 "constancy-param" : 1.0,
                 "foraging-strategy" : "nearest-flower",
@@ -359,9 +357,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|  
 |pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|  
 |pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|  
-|pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|  
-|innate-mp-pref-min|innateMPPrefMin|MarkerPoint||  
-|innate-mp-pref-max|innateMPPrefMax|MarkerPoint||  
+|pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|   
 |constancy-type|strConstancyType|std::string|Allowed values: none, simple|  
 |constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|  
 |foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|  
@@ -417,11 +413,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUxMDM5MTkxNSwtNjcyODkwNjk5LC0yMD
-UwMjU3NDg4LC0xNDkzNjM4MjMzLDE5MjU2NzIxMTIsLTc5NDc1
-ODUzNSwxODkzNzQ1MjM1LC00MDU3OTk2MDAsLTEwODQ1NjU5Nz
-ksLTYxNjEyNDE5NiwxMDM3NTI4MDM0LC04OTQ3NTE0NiwxNzE3
-MzYwMTAsMTM5MjQ3NDU1MSw1MTE2OTk5NjIsLTQyNzA1Nzk3MC
-wtODc0MTExMTY4LC0xMjA1NzYyMjYwLC00Njc5MTY3NTgsMjA4
-NzA2NTQ1NV19
+eyJoaXN0b3J5IjpbLTY4MTM4Mzg4MCwtNTEwMzkxOTE1LC02Nz
+I4OTA2OTksLTIwNTAyNTc0ODgsLTE0OTM2MzgyMzMsMTkyNTY3
+MjExMiwtNzk0NzU4NTM1LDE4OTM3NDUyMzUsLTQwNTc5OTYwMC
+wtMTA4NDU2NTk3OSwtNjE2MTI0MTk2LDEwMzc1MjgwMzQsLTg5
+NDc1MTQ2LDE3MTczNjAxMCwxMzkyNDc0NTUxLDUxMTY5OTk2Mi
+wtNDI3MDU3OTcwLC04NzQxMTExNjgsLTEyMDU3NjIyNjAsLTQ2
+NzkxNjc1OF19
 -->
