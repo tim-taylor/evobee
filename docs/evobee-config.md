@@ -368,12 +368,17 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it relands on a given flower, depending upon its foraging strategy.|
 |nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower on a single visit.|
 |vis-data|||
-||||
-||||
-||||
-||||
-||||
-||||
+|vis-base-prob-land-target|visBaseProbLandTarget|float|0.9|
+|vis-prob-land-no-target-set-delta|visProbLandNoTargetSetDelta|float|0.2|
+|||||
+|||||
+|||||
+|||||
+
+json_read_opt_param(j, sct, "vis-prob-land-nontarget-indiv-stddev", p.visProbLandNonTargetIndivStdDev, 0.01f);
+json_read_opt_param(j, sct, "vis-prob-land-increment-on-reward", p.visProbLandIncrementOnReward, 0.01f);
+json_read_opt_param(j, sct, "vis-prob-land-decrement-on-no-reward", p.visProbLandDecrementOnNoReward, 0.01f);
+json_read_opt_param(j, sct, "vis-prob-land-decrement-on-unseen", p.visProbLandDecrementOnUnseen, 0.005f);
 
 
 ### Plant Type configuration parameters
@@ -416,11 +421,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5Njc4MzcyNTcsLTQwNTc5OTYwMCwtMT
-A4NDU2NTk3OSwtNjE2MTI0MTk2LDEwMzc1MjgwMzQsLTg5NDc1
-MTQ2LDE3MTczNjAxMCwxMzkyNDc0NTUxLDUxMTY5OTk2MiwtND
-I3MDU3OTcwLC04NzQxMTExNjgsLTEyMDU3NjIyNjAsLTQ2Nzkx
-Njc1OCwyMDg3MDY1NDU1LDMyODgyMzIzLC0xODIxMTI5OTM2LD
-kyMDE4NDM1NCwzNzE4ODcxNjMsLTcwODQ0MjE3OCw2NjE3NDQz
-MTFdfQ==
+eyJoaXN0b3J5IjpbODY5MzgxNjQ1LC00MDU3OTk2MDAsLTEwOD
+Q1NjU5NzksLTYxNjEyNDE5NiwxMDM3NTI4MDM0LC04OTQ3NTE0
+NiwxNzE3MzYwMTAsMTM5MjQ3NDU1MSw1MTE2OTk5NjIsLTQyNz
+A1Nzk3MCwtODc0MTExMTY4LC0xMjA1NzYyMjYwLC00Njc5MTY3
+NTgsMjA4NzA2NTQ1NSwzMjg4MjMyMywtMTgyMTEyOTkzNiw5Mj
+AxODQzNTQsMzcxODg3MTYzLC03MDg0NDIxNzgsNjYxNzQ0MzEx
+XX0=
 -->
