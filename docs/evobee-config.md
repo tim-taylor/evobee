@@ -366,7 +366,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|  
 |foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|  
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it relands on a given flower, depending upon its foraging strategy.|
-|nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|
+|nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower
 
 
 ### Plant Type configuration parameters
@@ -409,7 +409,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgzNzcyNjEyNCwtMTA4NDU2NTk3OSwtNj
+eyJoaXN0b3J5IjpbLTczMTk2NDYyNSwtMTA4NDU2NTk3OSwtNj
 E2MTI0MTk2LDEwMzc1MjgwMzQsLTg5NDc1MTQ2LDE3MTczNjAx
 MCwxMzkyNDc0NTUxLDUxMTY5OTk2MiwtNDI3MDU3OTcwLC04Nz
 QxMTExNjgsLTEyMDU3NjIyNjAsLTQ2NzkxNjc1OCwyMDg3MDY1
