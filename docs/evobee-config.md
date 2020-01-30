@@ -381,7 +381,9 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |anther-init-pollen|antherInitPollen|int|Amount of pollen available on anther at the start of each foraging phase|  
 |anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int|Number of pollen grains deposited on a pollinator per visit|  
 |stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int|Maximum amount of pollen the stigma can carry|  
-|pollen-clogging|pollenCloggingSpecies|std::string|Allowed values: empty string (does not clog any other species), "all" (clogs all other species), or a comma separated list of the names of the plant species that this species clogs|  
+|pollen-clogging|pollenCloggingSpecies|std::string|Allowed values: empty string (does not clog any other species), "all" (clogs all other species), or a comma separated list of the names of the plant species that this species clogs|
+|init-nectar||
+|diffMPIsDiffSpecies||bool|
 |repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|Can seeds be dispersed at random across whole environment?|  
 |repro-seed-dispersal-radius|reproSeedDispersalRadius|float|Expressed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
 
@@ -405,11 +407,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAzNzUyODAzNCwtODk0NzUxNDYsMTcxNz
-M2MDEwLDEzOTI0NzQ1NTEsNTExNjk5OTYyLC00MjcwNTc5NzAs
-LTg3NDExMTE2OCwtMTIwNTc2MjI2MCwtNDY3OTE2NzU4LDIwOD
-cwNjU0NTUsMzI4ODIzMjMsLTE4MjExMjk5MzYsOTIwMTg0MzU0
-LDM3MTg4NzE2MywtNzA4NDQyMTc4LDY2MTc0NDMxMSwxODI5Mj
-Y4NjcwLDczMTc1NjA4OSwxMDY4Njg1MjM2LC0xNTAzNTQxMzUx
-XX0=
+eyJoaXN0b3J5IjpbMTUwNTY2OTMzOSwxMDM3NTI4MDM0LC04OT
+Q3NTE0NiwxNzE3MzYwMTAsMTM5MjQ3NDU1MSw1MTE2OTk5NjIs
+LTQyNzA1Nzk3MCwtODc0MTExMTY4LC0xMjA1NzYyMjYwLC00Nj
+c5MTY3NTgsMjA4NzA2NTQ1NSwzMjg4MjMyMywtMTgyMTEyOTkz
+Niw5MjAxODQzNTQsMzcxODg3MTYzLC03MDg0NDIxNzgsNjYxNz
+Q0MzExLDE4MjkyNjg2NzAsNzMxNzU2MDg5LDEwNjg2ODUyMzZd
+fQ==
 -->
