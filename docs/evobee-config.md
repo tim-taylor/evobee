@@ -367,7 +367,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|  
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it relands on a given flower, depending upon its foraging strategy.|
 |nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower on a single visit.|
-|vis-data|visData|6xN array|This array holds the data that specifies the pollinator's visual system. In the JSON config file it takes the form of a 6xN array, where each row contains 6 numbers representing (1) Marker Point of stim|
+|vis-data|visData|6xN array|This array holds the data that specifies the pollinator's visual system. In the JSON config file it takes the form of a 6xN array, where each row contains 6 numbers representing (1) Marker Point of stimulus (int); (2) Pollinator's probability of detecting this marker point (float in range 0.0 to 1.0); (3) The green contrast value for this marker point (float in range 0.0 to 1.0); (4) X coordinate of this marker point in|
 |vis-base-prob-land-target|visBaseProbLandTarget|float|0.9|
 |vis-prob-land-no-target-set-delta|visProbLandNoTargetSetDelta|float|0.2|
 |vis-prob-land-nontarget-indiv-stddev|visProbLandNonTargetIndivStdDev|float|0.01|
@@ -417,7 +417,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQzNzQ0NDEyNCwxODkzNzQ1MjM1LC00MD
+eyJoaXN0b3J5IjpbMTA3ODU5ODEwMSwxODkzNzQ1MjM1LC00MD
 U3OTk2MDAsLTEwODQ1NjU5NzksLTYxNjEyNDE5NiwxMDM3NTI4
 MDM0LC04OTQ3NTE0NiwxNzE3MzYwMTAsMTM5MjQ3NDU1MSw1MT
 E2OTk5NjIsLTQyNzA1Nzk3MCwtODc0MTExMTY4LC0xMjA1NzYy
