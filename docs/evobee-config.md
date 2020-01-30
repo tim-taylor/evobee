@@ -367,7 +367,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|  
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it relands on a given flower, depending upon its foraging strategy.|
 |nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower on a single visit.|
-|vis-data|||
+|vis-data|visData|6xN array||
 |vis-base-prob-land-target|visBaseProbLandTarget|float|0.9|
 |vis-prob-land-no-target-set-delta|visProbLandNoTargetSetDelta|float|0.2|
 |vis-prob-land-nontarget-indiv-stddev|visProbLandNonTargetIndivStdDev|float|0.01|
@@ -417,11 +417,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg5Mzc0NTIzNSwtNDA1Nzk5NjAwLC0xMD
-g0NTY1OTc5LC02MTYxMjQxOTYsMTAzNzUyODAzNCwtODk0NzUx
-NDYsMTcxNzM2MDEwLDEzOTI0NzQ1NTEsNTExNjk5OTYyLC00Mj
-cwNTc5NzAsLTg3NDExMTE2OCwtMTIwNTc2MjI2MCwtNDY3OTE2
-NzU4LDIwODcwNjU0NTUsMzI4ODIzMjMsLTE4MjExMjk5MzYsOT
-IwMTg0MzU0LDM3MTg4NzE2MywtNzA4NDQyMTc4LDY2MTc0NDMx
-MV19
+eyJoaXN0b3J5IjpbMzQ0NDIwNjM4LDE4OTM3NDUyMzUsLTQwNT
+c5OTYwMCwtMTA4NDU2NTk3OSwtNjE2MTI0MTk2LDEwMzc1Mjgw
+MzQsLTg5NDc1MTQ2LDE3MTczNjAxMCwxMzkyNDc0NTUxLDUxMT
+Y5OTk2MiwtNDI3MDU3OTcwLC04NzQxMTExNjgsLTEyMDU3NjIy
+NjAsLTQ2NzkxNjc1OCwyMDg3MDY1NDU1LDMyODgyMzIzLC0xOD
+IxMTI5OTM2LDkyMDE4NDM1NCwzNzE4ODcxNjMsLTcwODQ0MjE3
+OF19
 -->
