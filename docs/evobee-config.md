@@ -19,7 +19,8 @@ This output should look like this:
 > -q [ --quiet ] -> disable verbose progress messages on stdout
 > -t [ --test ] arg (=0) -> Perform test number N instead of regular run
 
-(The final option, -t, is used to perform various tests on the code rather than a regular run. There are currently two tests defined: 1=MarkerPointSimilarityTest and 2=MatchConfidenceTest. For more information on these tests see the 
+
+*The final option, -t, is used to perform various tests on the code rather than a regular run. There are currently two tests defined: 1=MarkerPointSimilarityTest and 2=MatchConfidenceTest. For more information on these tests see the EvoBeeExperiment.cpp file, which calls the tests from the method EvoBeeExperiment::run().)
 
 The vast majority of configuration options for the program are set using a configuration file rather than the command line. As shown in the output above, the default filename that `evobee` searches for is `evobee.cfg.json`, and it only searches in the current working directory. To specify a different name and location, use the -c flag when calling the program. For example:
 
@@ -406,11 +407,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MDU4NTA0MjcsLTg5NDc1MTQ2LDE3MT
-czNjAxMCwxMzkyNDc0NTUxLDUxMTY5OTk2MiwtNDI3MDU3OTcw
-LC04NzQxMTExNjgsLTEyMDU3NjIyNjAsLTQ2NzkxNjc1OCwyMD
-g3MDY1NDU1LDMyODgyMzIzLC0xODIxMTI5OTM2LDkyMDE4NDM1
-NCwzNzE4ODcxNjMsLTcwODQ0MjE3OCw2NjE3NDQzMTEsMTgyOT
-I2ODY3MCw3MzE3NTYwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1
-MV19
+eyJoaXN0b3J5IjpbMjMxNjA3NzU1LC04OTQ3NTE0NiwxNzE3Mz
+YwMTAsMTM5MjQ3NDU1MSw1MTE2OTk5NjIsLTQyNzA1Nzk3MCwt
+ODc0MTExMTY4LC0xMjA1NzYyMjYwLC00Njc5MTY3NTgsMjA4Nz
+A2NTQ1NSwzMjg4MjMyMywtMTgyMTEyOTkzNiw5MjAxODQzNTQs
+MzcxODg3MTYzLC03MDg0NDIxNzgsNjYxNzQ0MzExLDE4MjkyNj
+g2NzAsNzMxNzU2MDg5LDEwNjg2ODUyMzYsLTE1MDM1NDEzNTFd
+fQ==
 -->
