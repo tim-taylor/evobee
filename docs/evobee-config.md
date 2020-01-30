@@ -370,7 +370,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-data|visData|6xN array|This array holds the data that specifies the pollinator's visual system. In the JSON config file it takes the form of a 6xN array, where each row contains 6 numbers representing (1) Marker Point of stimulus (int); (2) Pollinator's probability of detecting this marker point (float in range 0.0 to 1.0); (3) The green contrast value for this marker point (float in range 0.0 to 1.0); (4) X coordinate of this marker point in hexagon colour space (float); (5) Y coordinate of this marker point in hexagon colour space (float); (6) the pollinator's base innate probability of landing on this marker point when it is not the target marker point (float in range 0.0 to 1.0) [but see also vis-prob-land-nontarget-indiv-stddev].|
 |vis-base-prob-land-target|visBaseProbLandTarget|float|Pollinator's base probability of landing on a target flower. (default: 0.9)|
 |vis-prob-land-no-target-set-delta|visProbLandNoTargetSetDelta|float|If pollinator currently has no target, its innate probability of landing on a given marker point is increased by this amount. (default: 0.2)|
-|vis-prob-land-nontarget-indiv-stddev|visProbLandNonTargetIndivStdDev|float|Each pollinator's innate probability of landing on a given marker point has an element of stochasticity as determined by this parameter, which defines the standard deviation around the base value defined in the corresponding vis-data row. (default: 0.01)|
+|vis-prob-land-nontarget-indiv-stddev|visProbLandNonTargetIndivStdDev|float|Each pollinator's innate probability of landing on a given (non-target) marker point has an element of stochasticity as determined by this parameter, which defines the standard deviation around the base value defined in the corresponding vis-data row. (default: 0.01)|
 |vis-prob-land-increment-on-reward|visProbLandIncrementOnReward|float|0.01|
 |vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|0.01|
 |vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|0.005|
@@ -417,11 +417,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk0MzI4OTEyNywxOTI1NjcyMTEyLC03OT
-Q3NTg1MzUsMTg5Mzc0NTIzNSwtNDA1Nzk5NjAwLC0xMDg0NTY1
-OTc5LC02MTYxMjQxOTYsMTAzNzUyODAzNCwtODk0NzUxNDYsMT
-cxNzM2MDEwLDEzOTI0NzQ1NTEsNTExNjk5OTYyLC00MjcwNTc5
-NzAsLTg3NDExMTE2OCwtMTIwNTc2MjI2MCwtNDY3OTE2NzU4LD
-IwODcwNjU0NTUsMzI4ODIzMjMsLTE4MjExMjk5MzYsOTIwMTg0
-MzU0XX0=
+eyJoaXN0b3J5IjpbLTE0OTM2MzgyMzMsMTkyNTY3MjExMiwtNz
+k0NzU4NTM1LDE4OTM3NDUyMzUsLTQwNTc5OTYwMCwtMTA4NDU2
+NTk3OSwtNjE2MTI0MTk2LDEwMzc1MjgwMzQsLTg5NDc1MTQ2LD
+E3MTczNjAxMCwxMzkyNDc0NTUxLDUxMTY5OTk2MiwtNDI3MDU3
+OTcwLC04NzQxMTExNjgsLTEyMDU3NjIyNjAsLTQ2NzkxNjc1OC
+wyMDg3MDY1NDU1LDMyODgyMzIzLC0xODIxMTI5OTM2LDkyMDE4
+NDM1NF19
 -->
