@@ -375,8 +375,9 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|  
 |species|species|std::string|Text label designating species of plant (any text is allowed)|  
-|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint|Newly created flowers of this type are assigned a marker point in the region flowerMPInitMin to flowerMPInitMax with step size typeCflowerMPInitStep|  
-|flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint||  
+|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint|Newly created flowers of this type are randomly assigned a marker point in the range flowerMPInitMin to flowerMPInitMax with step size flowerMPInitStep within this range.|  
+|flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint|See flowerMPInitMin|
+|flower-reflectance-mp-init-step|flowerMPInitStep|MarkerPoint|See flowerMPInitMin  
 |diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|If true and flowerMPInitMax != flowerMPInitMin, then plants with different flower marker points generated from this configuration are treated as different species. In this case, each individual species is given a name "PlantSpeciesNNN" (where NNN is the wavelength of the marker point) - this naming scheme overrides anything specified in the "species" field in the Plant Type configuration.|
 |anther-init-pollen|antherInitPollen|int|Amount of pollen available on anther at the start of each foraging phase|  
 |anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int|Number of pollen grains deposited on a pollinator per visit|  
@@ -407,7 +408,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2NjM1NTI5NCwtNjE2MTI0MTk2LDEwMz
+eyJoaXN0b3J5IjpbLTY4MTIyOTg0NCwtNjE2MTI0MTk2LDEwMz
 c1MjgwMzQsLTg5NDc1MTQ2LDE3MTczNjAxMCwxMzkyNDc0NTUx
 LDUxMTY5OTk2MiwtNDI3MDU3OTcwLC04NzQxMTExNjgsLTEyMD
 U3NjIyNjAsLTQ2NzkxNjc1OCwyMDg3MDY1NDU1LDMyODgyMzIz
