@@ -17,11 +17,15 @@ struct PlantTypeDistributionConfig {
 
     PlantTypeDistributionConfig() :
         id(0),
+        species("Unknown"),
         density(0.1),
         refuge(false),
+        refugeAlienInflowProb(0.0),
         seedOutflowAllowed(true),
         seedOutflowRestricted(false),
-        reproLocalDensityConstrained(false)
+        seedOutflowProb(0.5),
+        reproLocalDensityConstrained(false),
+        reproLocalDensityMax(0.5)
     {}
 
     unsigned int id;                ///< Each PTDC has a unique id assigned to it

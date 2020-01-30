@@ -47,7 +47,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_pEnv = m_pHive->getEnvironment();
     m_pModel = m_pEnv->getModel();
 
-    // At birth the pollinator's target Marker Point is set to its innate preference
+    // At birth the pollinator has no target marker point
     m_TargetMP = NO_MARKER_POINT;
 
     // Set the starting position and heading of the pollinator

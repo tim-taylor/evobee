@@ -45,8 +45,9 @@ using json = nlohmann::json;
 // forward declaration of functions in this file
 void processConfigOptions(int argc, char **argv);
 void processJsonFile(std::ifstream& ifs);
+void extractVidDataFromPollinatorConfig(const json& j, PollinatorConfig& p);
 
-//json jsonDefaultValuesUsed;
+
 std::string strCurrentJsonSubSctName;
 
 
@@ -135,6 +136,16 @@ void from_json(const json& j, PlantTypeConfig& pt)
     json_read_param(j, sct, "species", pt.species);
     json_read_param(j, sct, "flower-reflectance-mp-init-min", pt.flowerMPInitMin);
     json_read_param(j, sct, "flower-reflectance-mp-init-max", pt.flowerMPInitMax);
+    json_read_param(j, sct, "flower-reflectance-mp-init-step", pt.flowerMPInitStep);
+    if (pt.flowerMPInitMax < pt.flowerMPInitMin) {
+        pt.flowerMPInitMax = pt.flowerMPInitMin;
+    }
+    if (pt.flowerMPInitStep > (pt.flowerMPInitMax - pt.flowerMPInitMax)) {
+        pt.flowerMPInitStep = pt.flowerMPInitMax - pt.flowerMPInitMax;
+    }
+    if (pt.flowerMPInitStep < 1) {
+        pt.flowerMPInitStep = 1;
+    }
     json_read_param(j, sct, "anther-init-pollen", pt.antherInitPollen);
     json_read_param(j, sct, "anther-pollen-transfer-per-visit", pt.antherPollenTransferPerVisit);
     json_read_param(j, sct, "stigma-max-pollen-capacity", pt.stigmaMaxPollenCapacity);
@@ -160,8 +171,6 @@ void from_json(const json& j, PollinatorConfig& p)
     json_read_param(j, sct, "pollen-loss-in-air", p.pollenLossInAir);
     json_read_param(j, sct, "pollen-carryover-num-visits", p.pollenCarryoverNumVisits);
     json_read_param(j, sct, "max-pollen-capacity", p.maxPollenCapacity);
-    json_read_opt_param(j, sct, "innate-mp-pref-min", p.innateMPPrefMin, (MarkerPoint)400);
-    json_read_opt_param(j, sct, "innate-mp-pref-max", p.innateMPPrefMax, (MarkerPoint)400);
     json_read_opt_param(j, sct, "constancy-type", p.strConstancyType, std::string("none"));
     json_read_opt_param(j, sct, "constancy-param", p.constancyParam, 0.5f);
     json_read_opt_param(j, sct, "foraging-strategy", p.strForagingStrategy, std::string("random"));
@@ -181,7 +190,15 @@ void from_json(const json& j, PollinatorConfig& p)
         p.maxPollenCapacity = 99999;
     }
 
-    // now deal with vis-data array of arrays, if present
+    // now deal with vis-data array of arrays, and associated data, if present
+    extractVidDataFromPollinatorConfig(j, p);
+}
+
+
+void extractVidDataFromPollinatorConfig(const json& j, PollinatorConfig& p)
+{
+    // parse the vis-data part of the Pollinator configuration section of the config file and
+    // store the data in the PollinatorConfig object
     if (j.find("vis-data") != j.end()) {
         int  numEntries = 0;
         MarkerPoint mpPrev = 0;

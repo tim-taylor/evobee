@@ -15,8 +15,16 @@
  */
 struct PlantTypeConfig {
     PlantTypeConfig() :
+        species("Unknown"),
+        flowerMPInitMin(300),
+        flowerMPInitMax(650),
+        flowerMPInitStep(10),
+        antherInitPollen(100),
+        antherPollenTransferPerVisit(10),
+        stigmaMaxPollenCapacity(5),
         pollenCloggingAll(false),
         pollenCloggingPartial(false),
+        initNectar(100),
         numFlowers(1),
         hasLeaf(false),
         reproSeedDispersalGlobal(false),
@@ -27,12 +35,15 @@ struct PlantTypeConfig {
     std::string species;
     MarkerPoint flowerMPInitMin;
     MarkerPoint flowerMPInitMax;
+    MarkerPoint flowerMPInitStep;
     int         antherInitPollen;
     int         antherPollenTransferPerVisit;
     int         stigmaMaxPollenCapacity;
     bool        pollenCloggingAll;
     bool        pollenCloggingPartial;
-    std::string pollenCloggingSpecies;
+    std::string pollenCloggingSpecies;      ///< Allowed values: empty string (does not clog any other species),
+                                            ///<   "all" (clogs all other species), or a comma separated list
+                                            ///<   of the names of the plant species that this species clogs
     int         initNectar;
     float       initTemp;                   ///<@todo (unused just now) // init temp of flowers and leaves
     int         numFlowers;

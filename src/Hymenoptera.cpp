@@ -231,6 +231,8 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower) const
             bIsVisitCandidate = (randnum < confidenceOfMatch);
 
             /*
+            // THIS IS THE OLD CODE THAT MADE A SECOND PROBABILISTIC DECISION ON LANDING AFTER
+            // CALLING THE (PROBABILISITIC) matchesTargetMP(). THIS CODE IS INCORRECT AND CAN NOW BE DELETED...
             bool bLooksLikeTarget = matchesTargetMP(pFlower->getReflectanceInfo());
 
             if (bLooksLikeTarget)
