@@ -13,10 +13,13 @@ This output should look like this:
 >  Allowed options:      
 >  
 > Generic options:  
-> -v [ --version ] display program version number  
-> -h [ --help ] display this help message  
-> -c [ --config ] arg (=evobee.cfg.json) configuration file  
-> -q [ --quiet ] disable verbose progress messages on stdout
+> -v [ --version ] -> display program version number  
+> -h [ --help ] -> display this help message  
+> -c [ --config ] arg (=evobee.cfg.json) -> configuration file  
+> -q [ --quiet ] -> disable verbose progress messages on stdout 
+> -t [ --test ] arg (=0) -> Perform test number N instead of regular run
+
+*The final option, -t, is used to perform various tests on the code rather than a regular run. There are currently two tests defined: 1=MarkerPointSimilarityTest and 2=MatchConfidenceTest. For more information on these tests see the EvoBeeExperiment.cpp file, which calls the tests from the method EvoBeeExperiment::run().*
 
 The vast majority of configuration options for the program are set using a configuration file rather than the command line. As shown in the output above, the default filename that `evobee` searches for is `evobee.cfg.json`, and it only searches in the current working directory. To specify a different name and location, use the -c flag when calling the program. For example:
 
@@ -255,7 +258,6 @@ These files are shown below, followed by the [Configuration options](#configurat
                 "repro-seed-dispersal-global" : true,
                 "repro-seed-dispersal-radius" : 1.0,
                 "comment0" : "items below this line in PlantType not currently used",
-                "nectar-reward" : 10,
                 "comment1" : "plus replenish rate for all of these things - ",
                 "comment2" : "if second bee visits, does it get the same reward or none;",
                 "comment3" : "replenish, instant or n per timestep",
@@ -281,8 +283,6 @@ These files are shown below, followed by the [Configuration options](#configurat
                 "pollen-deposit-per-flower-visit" : 3,
                 "pollen-loss-in-air" : 0,
                 "pollen-carryover-num-visits" : 100,
-                "innate-mp-pref-min" : 400,
-                "innate-mp-pref-max" : 500,
                 "constancy-type" : "simple",
                 "constancy-param" : 1.0,
                 "foraging-strategy" : "nearest-flower",
@@ -357,13 +357,20 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|  
 |pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|  
 |pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|  
-|pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|  
-|innate-mp-pref-min|innateMPPrefMin|MarkerPoint||  
-|innate-mp-pref-max|innateMPPrefMax|MarkerPoint||  
+|pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|   
 |constancy-type|strConstancyType|std::string|Allowed values: none, simple|  
 |constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|  
 |foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|  
-|visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it relands on a given flower, depending upon its foraging strategy.|
+|visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it re-lands on a given flower, depending upon its foraging strategy.|
+|nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower on a single visit.|
+|vis-data|visData|6xN array|This array holds the data that specifies the pollinator's visual system. In the JSON config file it takes the form of a 6xN array, where each row contains 6 numbers representing (1) Marker Point of stimulus (int); (2) Pollinator's probability of detecting this marker point (float in range 0.0 to 1.0); (3) The green contrast value for this marker point (float in range 0.0 to 1.0); (4) X coordinate of this marker point in hexagon colour space (float); (5) Y coordinate of this marker point in hexagon colour space (float); (6) the pollinator's base innate probability of landing on this marker point when it is not the target marker point (float in range 0.0 to 1.0) [but see also vis-prob-land-nontarget-indiv-stddev].|
+|vis-base-prob-land-target|visBaseProbLandTarget|float|Pollinator's base probability of landing on a target flower. (default: 0.9)|
+|vis-prob-land-no-target-set-delta|visProbLandNoTargetSetDelta|float|If pollinator currently has no target, its innate probability of landing on a given marker point is increased by this amount. (default: 0.2)|
+|vis-prob-land-nontarget-indiv-stddev|visProbLandNonTargetIndivStdDev|float|Each pollinator's innate probability of landing on a given (non-target) marker point has an element of stochasticity as determined by this parameter, which defines the standard deviation around the base value defined in the corresponding vis-data row. (default: 0.01)|
+|vis-prob-land-increment-on-reward|visProbLandIncrementOnReward|float|Learning algorithm parameter for increase in probability of landing on a marker point if the current flower is rewarding. (default: 0.01)|
+|vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
+|vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowers. (default: 0.005) [see also visited-flower-memory-size]|
+
 
 
 ### Plant Type configuration parameters
@@ -373,13 +380,16 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|  
 |species|species|std::string|Text label designating species of plant (any text is allowed)|  
-|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint||  
-|flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint||  
+|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint|Newly created flowers of this type are randomly assigned a marker point in the range flowerMPInitMin to flowerMPInitMax with step size flowerMPInitStep within this range.|  
+|flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint|See flowerMPInitMin|
+|flower-reflectance-mp-init-step|flowerMPInitStep|MarkerPoint|See flowerMPInitMin. Default value is 10.|
 |diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|If true and flowerMPInitMax != flowerMPInitMin, then plants with different flower marker points generated from this configuration are treated as different species. In this case, each individual species is given a name "PlantSpeciesNNN" (where NNN is the wavelength of the marker point) - this naming scheme overrides anything specified in the "species" field in the Plant Type configuration.|
 |anther-init-pollen|antherInitPollen|int|Amount of pollen available on anther at the start of each foraging phase|  
 |anther-pollen-transfer-per-visit|antherPollenTransferPerVisit|int|Number of pollen grains deposited on a pollinator per visit|  
 |stigma-max-pollen-capacity|stigmaMaxPollenCapacity|int|Maximum amount of pollen the stigma can carry|  
-|pollen-clogging|pollenCloggingSpecies|std::string|Allowed values: empty string (does not clog any other species), "all" (clogs all other species), or a comma separated list of the names of the plant species that this species clogs|  
+|pollen-clogging|pollenCloggingSpecies|std::string|Allowed values: empty string (does not clog any other species), "all" (clogs all other species), or a comma separated list of the names of the plant species that this species clogs|
+|init-nectar|initNectar|int|Initial amount of nectar available in a new flower.|
+|diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|if true and flowerMPInitMin != flowerMPInitMax, plants created with different marker points are treated as different species (default=false)|
 |repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|Can seeds be dispersed at random across whole environment?|  
 |repro-seed-dispersal-radius|reproSeedDispersalRadius|float|Expressed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
 
@@ -403,11 +413,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg5NDc1MTQ2LDE3MTczNjAxMCwxMzkyND
-c0NTUxLDUxMTY5OTk2MiwtNDI3MDU3OTcwLC04NzQxMTExNjgs
-LTEyMDU3NjIyNjAsLTQ2NzkxNjc1OCwyMDg3MDY1NDU1LDMyOD
-gyMzIzLC0xODIxMTI5OTM2LDkyMDE4NDM1NCwzNzE4ODcxNjMs
-LTcwODQ0MjE3OCw2NjE3NDQzMTEsMTgyOTI2ODY3MCw3MzE3NT
-YwODksMTA2ODY4NTIzNiwtMTUwMzU0MTM1MSw2NzU3MTIwMDFd
-fQ==
+eyJoaXN0b3J5IjpbLTY4MTM4Mzg4MCwtNTEwMzkxOTE1LC02Nz
+I4OTA2OTksLTIwNTAyNTc0ODgsLTE0OTM2MzgyMzMsMTkyNTY3
+MjExMiwtNzk0NzU4NTM1LDE4OTM3NDUyMzUsLTQwNTc5OTYwMC
+wtMTA4NDU2NTk3OSwtNjE2MTI0MTk2LDEwMzc1MjgwMzQsLTg5
+NDc1MTQ2LDE3MTczNjAxMCwxMzkyNDc0NTUxLDUxMTY5OTk2Mi
+wtNDI3MDU3OTcwLC04NzQxMTExNjgsLTEyMDU3NjIyNjAsLTQ2
+NzkxNjc1OF19
 -->
