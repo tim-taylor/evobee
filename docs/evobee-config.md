@@ -368,7 +368,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it relands on a given flower, depending upon its foraging strategy.|
 |nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower on a single visit.|
 |vis-data|visData|6xN array|This array holds the data that specifies the pollinator's visual system. In the JSON config file it takes the form of a 6xN array, where each row contains 6 numbers representing (1) Marker Point of stimulus (int); (2) Pollinator's probability of detecting this marker point (float in range 0.0 to 1.0); (3) The green contrast value for this marker point (float in range 0.0 to 1.0); (4) X coordinate of this marker point in hexagon colour space (float); (5) Y coordinate of this marker point in hexagon colour space (float); (6) the pollinator's base innate probability of landing on this marker point when it is not the target marker point (float in range 0.0 to 1.0).|
-|vis-base-prob-land-target|visBaseProbLandTarget|float|Pollinator's base probability of landing on a target flower (default: 0.9).|
+|vis-base-prob-land-target|visBaseProbLandTarget|float|Pollinator's base probability of landing on a target flower. (default: 0.9)|
 |vis-prob-land-no-target-set-delta|visProbLandNoTargetSetDelta|float|If pollinator currently has no target, its innate probability of landing on a given marker point is increased by this amount. (default: 0.2)|
 |vis-prob-land-nontarget-indiv-stddev|visProbLandNonTargetIndivStdDev|float|0.01|
 |vis-prob-land-increment-on-reward|visProbLandIncrementOnReward|float|0.01|
@@ -417,7 +417,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM5ODgwMTAxMCwtNzk0NzU4NTM1LDE4OT
+eyJoaXN0b3J5IjpbMTkyNTY3MjExMiwtNzk0NzU4NTM1LDE4OT
 M3NDUyMzUsLTQwNTc5OTYwMCwtMTA4NDU2NTk3OSwtNjE2MTI0
 MTk2LDEwMzc1MjgwMzQsLTg5NDc1MTQ2LDE3MTczNjAxMCwxMz
 kyNDc0NTUxLDUxMTY5OTk2MiwtNDI3MDU3OTcwLC04NzQxMTEx
