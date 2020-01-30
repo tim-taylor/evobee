@@ -1,17 +1,17 @@
 <map id="include/Hymenoptera.h" name="include/Hymenoptera.h">
-<area shape="rect" id="node3" href="$PollinatorConfig_8h.html" title="PollinatorConfig.h" alt="" coords="211,155,337,181"/>
-<area shape="rect" id="node8" href="$Pollinator_8h.html" title="Pollinator.h" alt="" coords="535,80,621,107"/>
-<area shape="rect" id="node5" href="$PollinatorEnums_8h.html" title="PollinatorEnums.h" alt="" coords="311,229,439,256"/>
-<area shape="rect" id="node6" href="$PollinatorStructs_8h.html" title="PollinatorStructs.h" alt="" coords="5,229,135,256"/>
-<area shape="rect" id="node7" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="534,528,659,555"/>
-<area shape="rect" id="node10" href="$Position_8h.html" title="Position.h" alt="" coords="1206,453,1286,480"/>
-<area shape="rect" id="node12" href="$AbstractHive_8h.html" title="AbstractHive.h" alt="" coords="1226,229,1335,256"/>
-<area shape="rect" id="node15" href="$Environment_8h.html" title="Environment.h" alt="" coords="990,155,1097,181"/>
-<area shape="rect" id="node21" href="$Flower_8h.html" title="Flower.h" alt="" coords="687,379,759,405"/>
-<area shape="rect" id="node22" href="$Pollen_8h.html" title="Pollen.h" alt="" coords="886,453,955,480"/>
-<area shape="rect" id="node14" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="1461,379,1559,405"/>
-<area shape="rect" id="node17" href="$Patch_8h.html" title="Patch.h" alt="" coords="865,229,931,256"/>
-<area shape="rect" id="node19" href="$PlantTypeDistributionConfig_8h.html" title="PlantTypeDistributionConfig.h" alt="" coords="987,379,1183,405"/>
-<area shape="rect" id="node18" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="731,453,862,480"/>
-<area shape="rect" id="node20" href="$FloweringPlant_8h.html" title="FloweringPlant.h" alt="" coords="737,304,856,331"/>
+<area shape="rect" id="node3" href="$PollinatorConfig_8h.html" title="PollinatorConfig.h" alt="" coords="161,229,286,256"/>
+<area shape="rect" id="node14" href="$Pollinator_8h.html" title="Pollinator.h" alt="" coords="1043,80,1129,107"/>
+<area shape="rect" id="node5" href="$PollinatorEnums_8h.html" title="PollinatorEnums.h" alt="" coords="58,379,186,405"/>
+<area shape="rect" id="node6" href="$PollinatorStructs_8h.html" title="PollinatorStructs.h" alt="" coords="5,304,135,331"/>
+<area shape="rect" id="node7" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="583,528,709,555"/>
+<area shape="rect" id="node8" href="$Flower_8h.html" title="Flower.h" alt="" coords="666,379,738,405"/>
+<area shape="rect" id="node9" href="$Position_8h.html" title="Position.h" alt="" coords="1306,453,1386,480"/>
+<area shape="rect" id="node11" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="709,453,839,480"/>
+<area shape="rect" id="node12" href="$Pollen_8h.html" title="Pollen.h" alt="" coords="914,453,983,480"/>
+<area shape="rect" id="node16" href="$AbstractHive_8h.html" title="AbstractHive.h" alt="" coords="1225,229,1334,256"/>
+<area shape="rect" id="node19" href="$Environment_8h.html" title="Environment.h" alt="" coords="1033,155,1139,181"/>
+<area shape="rect" id="node18" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="1561,379,1659,405"/>
+<area shape="rect" id="node21" href="$Patch_8h.html" title="Patch.h" alt="" coords="931,229,998,256"/>
+<area shape="rect" id="node22" href="$PlantTypeDistributionConfig_8h.html" title="PlantTypeDistributionConfig.h" alt="" coords="1016,379,1212,405"/>
+<area shape="rect" id="node23" href="$FloweringPlant_8h.html" title="FloweringPlant.h" alt="" coords="856,304,975,331"/>
 </map>

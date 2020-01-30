@@ -8,6 +8,7 @@ var classLogger =
     [ "logFlowersInterPhaseSummary", "classLogger.html#a3bff47b782820a6d72d02f5a33733743", null ],
     [ "logFlowersIntraPhaseFull", "classLogger.html#aef6d4ad6aa7b3470a815370441265bca", null ],
     [ "logFlowersIntraPhaseSummary", "classLogger.html#ae1d54e3c14eb81b1e2e79924a1192f62", null ],
+    [ "logPollinatorsInterPhaseFull", "classLogger.html#a9603668c7975ebd19f91d59eeff1695b", null ],
     [ "logPollinatorsInterPhaseSummary", "classLogger.html#a6e2c78d701e445d982464a7e64be35fb", null ],
     [ "logPollinatorsIntraPhaseFull", "classLogger.html#a68af8944486f5a17d6caab2e09379b62", null ],
     [ "transferFilesToFinalDir", "classLogger.html#ab4a812afa27c21e53c6bbb2330f4e5a8", null ]

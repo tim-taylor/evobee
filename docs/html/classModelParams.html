@@ -213,6 +213,9 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>addPlantTypeCo
 <tr class="memitem:ad748e64863135affa5a0302a459c0722"><td class="memItemLeft" align="right" valign="top"><a id="ad748e64863135affa5a0302a459c0722"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>addPollinatorConfig</b> (<a class="el" href="structPollinatorConfig.html">PollinatorConfig</a> &amp;pt)</td></tr>
 <tr class="separator:ad748e64863135affa5a0302a459c0722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a430dfc34f4f8293ba87b4a3a4abf0b0c"><td class="memItemLeft" align="right" valign="top"><a id="a430dfc34f4f8293ba87b4a3a4abf0b0c"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setTestNumber</b> (unsigned int num)</td></tr>
+<tr class="separator:a430dfc34f4f8293ba87b4a3a4abf0b0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6385a994b94f6b01952d9c3f82edb0c5"><td class="memItemLeft" align="right" valign="top"><a id="a6385a994b94f6b01952d9c3f82edb0c5"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelParams.html#a6385a994b94f6b01952d9c3f82edb0c5">postprocess</a> ()</td></tr>
 <tr class="memdesc:a6385a994b94f6b01952d9c3f82edb0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">perform any necessary global post-processing after config file has been read in <br /></td></tr>
@@ -262,6 +265,9 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b> ()
 <tr class="memitem:ac2f3ef1dba219e535d777d5f9caa6ac0"><td class="memItemLeft" align="right" valign="top"><a id="ac2f3ef1dba219e535d777d5f9caa6ac0"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>logPollinatorsIntraPhaseFull</b> ()</td></tr>
 <tr class="separator:ac2f3ef1dba219e535d777d5f9caa6ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77fb79e9173c25802ad65e158f2f495b"><td class="memItemLeft" align="right" valign="top"><a id="a77fb79e9173c25802ad65e158f2f495b"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>logPollinatorsInterPhaseFull</b> ()</td></tr>
+<tr class="separator:a77fb79e9173c25802ad65e158f2f495b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81c3ccccab52790aef1a5d1d0f96bdf7"><td class="memItemLeft" align="right" valign="top"><a id="a81c3ccccab52790aef1a5d1d0f96bdf7"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>logPollinatorsInterPhaseSummary</b> ()</td></tr>
 <tr class="separator:a81c3ccccab52790aef1a5d1d0f96bdf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -337,6 +343,9 @@ static const <a class="el" href="structPlantTypeConfig.html">PlantTypeConfig</a>
 <tr class="memitem:ad61beef9d13302e1d80775b0bed7dad4"><td class="memItemLeft" align="right" valign="top"><a id="ad61beef9d13302e1d80775b0bed7dad4"></a>
 static <a class="el" href="structPollinatorConfig.html">PollinatorConfig</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getPollinatorConfigPtr</b> (const std::string &amp;pollinatorName)</td></tr>
 <tr class="separator:ad61beef9d13302e1d80775b0bed7dad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a256d8b6db17bc2fea866cb699a52abce"><td class="memItemLeft" align="right" valign="top"><a id="a256d8b6db17bc2fea866cb699a52abce"></a>
+static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getTestNumber</b> ()</td></tr>
+<tr class="separator:a256d8b6db17bc2fea866cb699a52abce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a816fd707d0e3153a808c6e96e2e9404e"><td class="memItemLeft" align="right" valign="top"><a id="a816fd707d0e3153a808c6e96e2e9404e"></a>
 static nlohmann::json &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getJson</b> ()</td></tr>
 <tr class="separator:a816fd707d0e3153a808c6e96e2e9404e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -374,12 +383,12 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialised</b
 </div><div class="memdoc">
 
 <p>check consistency of parameters once the whole config file has been processed </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd><ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd><ul>
 <li>other things to check re parameter consistency... </li>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00585">585</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelParams_8cpp_source.html#l00656">656</a> of file <a class="el" href="ModelParams_8cpp_source.html">ModelParams.cpp</a>.</p>
 
 </div>
 </div>

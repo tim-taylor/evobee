@@ -1,3 +1,8 @@
 <map id="include/PollinatorStructs.h" name="include/PollinatorStructs.h">
-<area shape="rect" id="node2" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="30,80,155,107"/>
+<area shape="rect" id="node2" href="$PollinatorEnums_8h.html" title="PollinatorEnums.h" alt="" coords="5,80,133,107"/>
+<area shape="rect" id="node3" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="152,229,277,256"/>
+<area shape="rect" id="node4" href="$Flower_8h.html" title="Flower.h" alt="" coords="347,80,419,107"/>
+<area shape="rect" id="node6" href="$Position_8h.html" title="Position.h" alt="" coords="496,155,576,181"/>
+<area shape="rect" id="node8" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="259,155,389,181"/>
+<area shape="rect" id="node10" href="$Pollen_8h.html" title="Pollen.h" alt="" coords="600,155,669,181"/>
 </map>

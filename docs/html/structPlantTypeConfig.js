@@ -3,6 +3,7 @@ var structPlantTypeConfig =
     [ "PlantTypeConfig", "structPlantTypeConfig.html#a19a73a7142f3ec6421504f77975df02b", null ],
     [ "antherInitPollen", "structPlantTypeConfig.html#ac27ba665424436025af30f4da39a8bd6", null ],
     [ "antherPollenTransferPerVisit", "structPlantTypeConfig.html#afada9297bcc0f3e3ca11eed1b9789f35", null ],
+    [ "diffMPIsDiffSpecies", "structPlantTypeConfig.html#afce13b8f3da18ea6e53028b182c6964d", null ],
     [ "flowerMPInitMax", "structPlantTypeConfig.html#a61dc1b2c9bb6445fc4401286eb1c531d", null ],
     [ "flowerMPInitMin", "structPlantTypeConfig.html#a81667c52fde8a84325e9a10eab53edc4", null ],
     [ "hasLeaf", "structPlantTypeConfig.html#a0584e7fdb3e522c60c5f697dac71b671", null ],

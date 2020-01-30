@@ -5,6 +5,11 @@ var PollinatorEnums_8h =
       [ "SIMPLE", "PollinatorEnums_8h.html#aec603fc20a01cb977bfdf945fd90d19bae5564829e2f85f6a6873a9d5c4f26d09", null ],
       [ "VISUAL", "PollinatorEnums_8h.html#aec603fc20a01cb977bfdf945fd90d19ba8daf3496602a64f00b16ce266e7084dc", null ]
     ] ],
+    [ "PollinatorCurrentStatus", "PollinatorEnums_8h.html#a6ea46888c55d5332abfbac4adb6f56f5", [
+      [ "ON_FLOWER", "PollinatorEnums_8h.html#a6ea46888c55d5332abfbac4adb6f56f5a815479b7d9e58ccd5ae2b6b63617de29", null ],
+      [ "DECLINED_FLOWER", "PollinatorEnums_8h.html#a6ea46888c55d5332abfbac4adb6f56f5a35341c2afbf7a62fe808c0955bfd6bda", null ],
+      [ "NO_FLOWER_SEEN", "PollinatorEnums_8h.html#a6ea46888c55d5332abfbac4adb6f56f5ada5201ff868b84671573f970d44f4b94", null ]
+    ] ],
     [ "PollinatorForagingStrategy", "PollinatorEnums_8h.html#a2e750e668cb4a3b3fb9f7e5cc0c70c1b", [
       [ "RANDOM", "PollinatorEnums_8h.html#a2e750e668cb4a3b3fb9f7e5cc0c70c1ba170e02e86972c2be8559884cc3c12254", null ],
       [ "NEAREST_FLOWER", "PollinatorEnums_8h.html#a2e750e668cb4a3b3fb9f7e5cc0c70c1bae1e26dc49687a61680f2229e2b47c053", null ],

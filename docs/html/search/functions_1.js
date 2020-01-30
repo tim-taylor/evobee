@@ -6,5 +6,6 @@ var searchData=
   ['collectnectar',['collectNectar',['../classFlower.html#a02a79982b45290a60ec766a5c7861ed1',1,'Flower::collectNectar()'],['../classPollinator.html#aff3ad8b3961ad3bef27a9e34afdfd53b',1,'Pollinator::collectNectar()']]],
   ['collectpollenfromanther',['collectPollenFromAnther',['../classPollinator.html#abd0f7c7f0c5b358eb6d3b3978d5f54e2',1,'Pollinator']]],
   ['colour',['Colour',['../classColour.html#ab9f2aec49ee59e2672281841ab5e73c4',1,'Colour']]],
+  ['confidencematchestarget',['confidenceMatchesTarget',['../classPollinator.html#a37e1a452706a7833ca93f64f7e6fa95c',1,'Pollinator']]],
   ['constructcloggingmap',['constructCloggingMap',['../classFloweringPlant.html#a56bc3673f85d6af27bf72e4f493c159b',1,'FloweringPlant']]]
 ];
