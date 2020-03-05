@@ -358,7 +358,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|
 |pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|
 |constancy-type|strConstancyType|std::string|Defines the pollinator's constancy behaviour while foraging (NB 'simple'=if sees a flower of same species as last visited, land with probablity 0.9, if its a different species, land with probability 1.0-constancy-param. 'visual'=utilise the pollinator's full visual system and learning strategies for deciding which flowers to visit - this option should be used in conjunction with foraging-strategy='nearest-flower'). Allowed values: none, simple, visual|
-|constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|
+|constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1.0-constancy-param).|
 |foraging-strategy|strForagingStrategy|std::string|Defines how the pollinator forages (NB for foraging using visual system, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: random, nearest-flower, random-flower, random-global|
 |learning-strategy|strLearningStrategy|std::string|Defines how the pollinator learns from experience (NB for this parameter to have effect, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: stay, fickle-circumspect, deliberative-decisive|
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it re-lands on a given flower, depending upon its foraging strategy.|
@@ -410,11 +410,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTE1ODQ5MTQ1LDY3MTAwNjQ1MSw2MjczND
-Y4NTYsLTE5NTQxMzczOTQsLTEyMjE4NTg5MTYsLTE5OTgyOTEy
-ODIsLTY4MTM4Mzg4MCwtNTEwMzkxOTE1LC02NzI4OTA2OTksLT
-IwNTAyNTc0ODgsLTE0OTM2MzgyMzMsMTkyNTY3MjExMiwtNzk0
-NzU4NTM1LDE4OTM3NDUyMzUsLTQwNTc5OTYwMCwtMTA4NDU2NT
-k3OSwtNjE2MTI0MTk2LDEwMzc1MjgwMzQsLTg5NDc1MTQ2LDE3
-MTczNjAxMF19
+eyJoaXN0b3J5IjpbLTE5MTU3MTIzMzUsNjcxMDA2NDUxLDYyNz
+M0Njg1NiwtMTk1NDEzNzM5NCwtMTIyMTg1ODkxNiwtMTk5ODI5
+MTI4MiwtNjgxMzgzODgwLC01MTAzOTE5MTUsLTY3Mjg5MDY5OS
+wtMjA1MDI1NzQ4OCwtMTQ5MzYzODIzMywxOTI1NjcyMTEyLC03
+OTQ3NTg1MzUsMTg5Mzc0NTIzNSwtNDA1Nzk5NjAwLC0xMDg0NT
+Y1OTc5LC02MTYxMjQxOTYsMTAzNzUyODAzNCwtODk0NzUxNDYs
+MTcxNzM2MDEwXX0=
 -->
