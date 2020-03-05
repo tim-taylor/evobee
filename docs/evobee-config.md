@@ -360,6 +360,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |constancy-type|strConstancyType|std::string|Allowed values: none, simple|
 |constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|
 |foraging-strategy|strForagingStrategy|std::string|Allowed values: random, nearest-flower, random-flower, random-global|
+|learning-strategy|strLearningStrategy|std::string|Allowed values:|
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it re-lands on a given flower, depending upon its foraging strategy.|
 |nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower on a single visit.|
 |vis-data|visData|6xN array|This array holds the data that specifies the pollinator's visual system. In the JSON config file it takes the form of a 6xN array, where each row contains 6 numbers representing (1) Marker Point of stimulus (int); (2) Pollinator's probability of detecting this marker point (float in range 0.0 to 1.0); (3) The green contrast value for this marker point (float in range 0.0 to 1.0); (4) X coordinate of this marker point in hexagon colour space (float); (5) Y coordinate of this marker point in hexagon colour space (float); (6) the pollinator's base innate probability of landing on this marker point when it is not the target marker point (float in range 0.0 to 1.0) [but see also vis-prob-land-nontarget-indiv-stddev].|
@@ -409,11 +410,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjI3MzQ2ODU2LC0xOTU0MTM3Mzk0LC0xMj
-IxODU4OTE2LC0xOTk4MjkxMjgyLC02ODEzODM4ODAsLTUxMDM5
-MTkxNSwtNjcyODkwNjk5LC0yMDUwMjU3NDg4LC0xNDkzNjM4Mj
-MzLDE5MjU2NzIxMTIsLTc5NDc1ODUzNSwxODkzNzQ1MjM1LC00
-MDU3OTk2MDAsLTEwODQ1NjU5NzksLTYxNjEyNDE5NiwxMDM3NT
-I4MDM0LC04OTQ3NTE0NiwxNzE3MzYwMTAsMTM5MjQ3NDU1MSw1
-MTE2OTk5NjJdfQ==
+eyJoaXN0b3J5IjpbLTEyNzkwNjg0MDQsNjI3MzQ2ODU2LC0xOT
+U0MTM3Mzk0LC0xMjIxODU4OTE2LC0xOTk4MjkxMjgyLC02ODEz
+ODM4ODAsLTUxMDM5MTkxNSwtNjcyODkwNjk5LC0yMDUwMjU3ND
+g4LC0xNDkzNjM4MjMzLDE5MjU2NzIxMTIsLTc5NDc1ODUzNSwx
+ODkzNzQ1MjM1LC00MDU3OTk2MDAsLTEwODQ1NjU5NzksLTYxNj
+EyNDE5NiwxMDM3NTI4MDM0LC04OTQ3NTE0NiwxNzE3MzYwMTAs
+MTM5MjQ3NDU1MV19
 -->
