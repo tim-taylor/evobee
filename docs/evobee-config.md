@@ -357,9 +357,9 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|
 |pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|
 |pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|
-|constancy-type|strConstancyType|std::string|Allowed values: none, simple|
+|constancy-type|strConstancyType|std::string|Defines the pollinator's Allowed values: none, simple, visual|
 |constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1 - constancy-param).|
-|foraging-strategy|strForagingStrategy|std::string|Defines Allowed values: random, nearest-flower, random-flower, random-global|
+|foraging-strategy|strForagingStrategy|std::string|Defines how the pollinator forages (NB for foraging using visual system, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: random, nearest-flower, random-flower, random-global|
 |learning-strategy|strLearningStrategy|std::string|Defines how the pollinator learns from experience (NB for this parameter to have effect, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: stay, fickle-circumspect, deliberative-decisive|
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it re-lands on a given flower, depending upon its foraging strategy.|
 |nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower on a single visit.|
@@ -410,11 +410,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MjIwNjI2NjEsNjI3MzQ2ODU2LC0xOT
-U0MTM3Mzk0LC0xMjIxODU4OTE2LC0xOTk4MjkxMjgyLC02ODEz
-ODM4ODAsLTUxMDM5MTkxNSwtNjcyODkwNjk5LC0yMDUwMjU3ND
-g4LC0xNDkzNjM4MjMzLDE5MjU2NzIxMTIsLTc5NDc1ODUzNSwx
-ODkzNzQ1MjM1LC00MDU3OTk2MDAsLTEwODQ1NjU5NzksLTYxNj
-EyNDE5NiwxMDM3NTI4MDM0LC04OTQ3NTE0NiwxNzE3MzYwMTAs
-MTM5MjQ3NDU1MV19
+eyJoaXN0b3J5IjpbLTI1NTQ2MDg3MSw2MjczNDY4NTYsLTE5NT
+QxMzczOTQsLTEyMjE4NTg5MTYsLTE5OTgyOTEyODIsLTY4MTM4
+Mzg4MCwtNTEwMzkxOTE1LC02NzI4OTA2OTksLTIwNTAyNTc0OD
+gsLTE0OTM2MzgyMzMsMTkyNTY3MjExMiwtNzk0NzU4NTM1LDE4
+OTM3NDUyMzUsLTQwNTc5OTYwMCwtMTA4NDU2NTk3OSwtNjE2MT
+I0MTk2LDEwMzc1MjgwMzQsLTg5NDc1MTQ2LDE3MTczNjAxMCwx
+MzkyNDc0NTUxXX0=
 -->
