@@ -136,7 +136,7 @@ void from_json(const json& j, PlantTypeConfig& pt)
     json_read_param(j, sct, "species", pt.species);
     json_read_param(j, sct, "flower-reflectance-mp-init-min", pt.flowerMPInitMin);
     json_read_param(j, sct, "flower-reflectance-mp-init-max", pt.flowerMPInitMax);
-    json_read_param(j, sct, "flower-reflectance-mp-init-step", pt.flowerMPInitStep);
+    json_read_opt_param(j, sct, "flower-reflectance-mp-init-step", pt.flowerMPInitStep, (MarkerPoint)10);
     if (pt.flowerMPInitMax < pt.flowerMPInitMin) {
         pt.flowerMPInitMax = pt.flowerMPInitMin;
     }
@@ -174,6 +174,7 @@ void from_json(const json& j, PollinatorConfig& p)
     json_read_opt_param(j, sct, "constancy-type", p.strConstancyType, std::string("none"));
     json_read_opt_param(j, sct, "constancy-param", p.constancyParam, 0.5f);
     json_read_opt_param(j, sct, "foraging-strategy", p.strForagingStrategy, std::string("random"));
+    json_read_opt_param(j, sct, "learning-strategy", p.strLearningStrategy, std::string("stay"));
     json_read_opt_param(j, sct, "visited-flower-memory-size", p.visitedFlowerMemorySize, (unsigned int)5);
     json_read_opt_param(j, sct, "vis-base-prob-land-target", p.visBaseProbLandTarget, 0.9f);
     json_read_opt_param(j, sct, "vis-prob-land-no-target-set-delta", p.visProbLandNoTargetSetDelta, 0.2f);

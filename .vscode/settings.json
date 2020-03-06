@@ -69,7 +69,8 @@
         "typeindex": "cpp",
         "map": "cpp",
         "set": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "bit": "cpp"
     },
     "files.exclude": {
         "**/.git": true,

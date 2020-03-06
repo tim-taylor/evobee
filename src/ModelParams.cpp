@@ -357,20 +357,13 @@ void ModelParams::addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pt
 void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
 {
     // Set the constancy type according to the given specification string
-    if (pc.strConstancyType == "none")
-    {
+    if (pc.strConstancyType == "none") {
         pc.constancyType = PollinatorConstancyType::NONE;
-    }
-    else if (pc.strConstancyType == "simple")
-    {
+    } else if (pc.strConstancyType == "simple") {
         pc.constancyType = PollinatorConstancyType::SIMPLE;
-    }
-    else if (pc.strConstancyType == "visual")
-    {
+    } else if (pc.strConstancyType == "visual") {
         pc.constancyType = PollinatorConstancyType::VISUAL;
-    }
-    else
-    {
+    } else {
         pc.constancyType = PollinatorConstancyType::NONE;
         if (verbose()) {
             std::cout << "Warning: unrecognised pollinator constancy type (" <<
@@ -378,30 +371,35 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
         }
     }
 
-
     // Set the foraging strategy according to the given specification string
-    if (pc.strForagingStrategy == "random")
-    {
+    if (pc.strForagingStrategy == "random") {
         pc.foragingStrategy = PollinatorForagingStrategy::RANDOM;
-    }
-    else if (pc.strForagingStrategy == "nearest-flower")
-    {
+    } else if (pc.strForagingStrategy == "nearest-flower") {
         pc.foragingStrategy = PollinatorForagingStrategy::NEAREST_FLOWER;
-    }
-    else if (pc.strForagingStrategy == "random-flower")
-    {
+    } else if (pc.strForagingStrategy == "random-flower") {
         pc.foragingStrategy = PollinatorForagingStrategy::RANDOM_FLOWER;
-    }
-    else if (pc.strForagingStrategy == "random-global")
-    {
+    } else if (pc.strForagingStrategy == "random-global") {
         pc.foragingStrategy = PollinatorForagingStrategy::RANDOM_GLOBAL;
-    }
-    else
-    {
+    } else {
         pc.foragingStrategy = PollinatorForagingStrategy::RANDOM;
         if (verbose()) {
             std::cout << "Warning: unrecognised pollinator foraging stategy (" <<
                 pc.strForagingStrategy << "). Using random." << std::endl;
+        }
+    }
+
+    // Set the learning strategy according to the given specification string
+    if (pc.strLearningStrategy == "stay") {
+        pc.learningStrategy = PollinatorLearningStrategy::STAY;
+    } else if (pc.strLearningStrategy == "deliberative-decisive") {
+        pc.learningStrategy = PollinatorLearningStrategy::DELIBERATIVE_DECISIVE;
+    } else if (pc.strLearningStrategy == "fickle-circumspect") {
+        pc.learningStrategy = PollinatorLearningStrategy::FICKLE_CIRCUMSPECT;
+    } else {
+        pc.learningStrategy = PollinatorLearningStrategy::STAY;
+        if (verbose()) {
+            std::cout << "Warning: unrecognised pollinator learning stategy (" <<
+                pc.strLearningStrategy << "). Using stay." << std::endl;
         }
     }
 

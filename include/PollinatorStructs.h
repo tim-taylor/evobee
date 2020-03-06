@@ -151,20 +151,23 @@ struct VisualPreferenceInfo {
 struct PollinatorLatestAction
 {
     PollinatorLatestAction() :
-        stepnum(0), status(PollinatorCurrentStatus::NO_FLOWER_SEEN), pFlower(nullptr), rewardReceived(0)
+        stepnum(0), status(PollinatorCurrentStatus::NO_FLOWER_SEEN),
+        pFlower(nullptr), rewardReceived(0), bJudgedToMatchTarget(false)
         {};
 
-    void update(int _step, PollinatorCurrentStatus _status, Flower* _pFlower, int _reward) {
+    void update(int _step, PollinatorCurrentStatus _status, Flower* _pFlower, int _reward, bool _matchedTarget = false) {
         stepnum = _step;
         status = _status;
         pFlower = _pFlower;
         rewardReceived = _reward;
+        bJudgedToMatchTarget = _matchedTarget;
     };
 
     int stepnum;
     PollinatorCurrentStatus status;
     Flower* pFlower;
     int rewardReceived;
+    bool bJudgedToMatchTarget;
 };
 
 

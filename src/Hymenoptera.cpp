@@ -203,50 +203,63 @@ float Hymenoptera::getBaseProbLandNonTargetInnate(MarkerPoint mp)
 }
 
 
+// Make a probabilistic decision, for a given marker point, on whether the pollinator
+// can detect it.
+bool Hymenoptera::isDetected(MarkerPoint mp) const
+{
+    float detectionProb = getMPDetectionProb(mp);
+    return (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < detectionProb);
+}
+
+
 // Determine whether the pollinator will decide to land on the given flower,
-// using its visual perception
-bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower) const
+// using its visual perception. This entails three separate steps, (1) DETECT
+// the flower, (2) DISTINGUISH  whether or not the flower matches the pollinator's
+// current target, and (3) DECIDE whether or not to land based upon the pollinator's
+// learned probabilities of landing on a target or non-target flower as appropriate.
+//
+// This method performs the second and third of these steps (DISTINGUISH and DECIDE).
+// The first step was already dealt with in Pollinator::forageNearestFlower.
+//
+// The second parameter, pJudgedToMatchTarget, is an optional pointer to a boolean
+// variable used to return an indication of whether or not the pollinator judged
+// the flower to match its target (whether or not it landed on it).
+///
+bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower, bool* pJudgedToMatchTarget) const
 {
     bool bIsVisitCandidate = false;
+    bool bNoTargetSet = (m_TargetMP == NO_MARKER_POINT);
+    bool bJudgedToBeTarget = false;
 
-    MarkerPoint flowerMP = pFlower->getMarkerPoint();
+    // (1) DETECT step
+    // We have already dealt with the pollinator's DETECT step by calling Pollinator::isDetected in
+    // Environment::findNearestUnvisitedFlower called from Pollinator::forageNearestFlower
 
-    float detectionProb = getMPDetectionProb(flowerMP);
-
-    bool bDetected = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < detectionProb);
-
-    if (bDetected)
+    // (2) DISTINGUISH step
+    if (!bNoTargetSet)
     {
-        const VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromMPConst(flowerMP);
-
-        if (m_TargetMP == NO_MARKER_POINT)
-        {
-            float landProb = visPrefInfo.getProbLandNonTarget() + m_sVisProbLandNoTargetSetDelta;
-            bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < landProb);
+        float confidenceOfMatch = confidenceMatchesTarget(pFlower->getReflectanceInfo());
+        bJudgedToBeTarget = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < confidenceOfMatch);
+        if (pJudgedToMatchTarget != nullptr) {
+            *pJudgedToMatchTarget = bJudgedToBeTarget;
         }
-        else
-        {
-            float confidenceOfMatch = confidenceMatchesTarget(pFlower->getReflectanceInfo());
-            float randnum = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
-            bIsVisitCandidate = (randnum < confidenceOfMatch);
+    }
 
-            /*
-            // THIS IS THE OLD CODE THAT MADE A SECOND PROBABILISTIC DECISION ON LANDING AFTER
-            // CALLING THE (PROBABILISITIC) matchesTargetMP(). THIS CODE IS INCORRECT AND CAN NOW BE DELETED...
-            bool bLooksLikeTarget = matchesTargetMP(pFlower->getReflectanceInfo());
+    // (3) DECIDE step
+    // Here we make use of the pollinator's learned probabilities of landing on a target or non-target flower
+    // to make the final decision of whether to land
+    MarkerPoint flowerMP = pFlower->getMarkerPoint();
+    const VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromMPConst(flowerMP);
 
-            if (bLooksLikeTarget)
-            {
-                float randnum = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
-                float probLandTarget = visPrefInfo.getProbLandTarget();
-                bIsVisitCandidate = (randnum < probLandTarget);
-            }
-            else
-            {
-                bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < visPrefInfo.getProbLandNonTarget());
-            }
-            */
-        }
+    if (bNoTargetSet)
+    {
+        float landProb = visPrefInfo.getProbLandNonTarget() + m_sVisProbLandNoTargetSetDelta;
+        bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < landProb);
+    }
+    else
+    {
+        float landingProb = bJudgedToBeTarget ? visPrefInfo.getProbLandTarget() : visPrefInfo.getProbLandNonTarget();
+        bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < landingProb);
     }
 
     return bIsVisitCandidate;
@@ -255,6 +268,26 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower) const
 
 // Update the pollinator's visual preference info after each visit to a flower.
 void Hymenoptera::updateVisualPreferences(const Flower* pFlower, int nectarCollected)
+{
+    switch (m_LearningStrategy) {
+        case PollinatorLearningStrategy::FICKLE_CIRCUMSPECT: {
+            updateVisualPrefsFickleCircumspect(pFlower, nectarCollected);
+            break;
+        }
+        case PollinatorLearningStrategy::STAY: {
+            updateVisualPrefsStay(pFlower, nectarCollected);
+            break;
+        }
+        case PollinatorLearningStrategy::DELIBERATIVE_DECISIVE: // NOT YET IMPLEMENTED
+        default: {
+            throw std::runtime_error("Unhandled learning strategy encountered in Hymenoptera::updateVisualPreferences");
+        }
+    }
+}
+
+
+// Update the pollinator's visual preference info according to the fickle-circumspect strategy
+void Hymenoptera::updateVisualPrefsFickleCircumspect(const Flower* pFlower, int nectarCollected)
 {
     const ReflectanceInfo& flowerReflectance = pFlower->getReflectanceInfo();
     MarkerPoint flowerMP = flowerReflectance.getMarkerPoint();
@@ -296,6 +329,20 @@ void Hymenoptera::updateVisualPreferences(const Flower* pFlower, int nectarColle
 
     // attenuate preferences for non-target flowers that have not been recently encountered
     attenuatePreferences();
+}
+
+
+// Update the pollinator's visual preference info according to the stay strategy
+void Hymenoptera::updateVisualPrefsStay(const Flower* pFlower, int nectarCollected)
+{
+    if ((m_TargetMP == NO_MARKER_POINT) && (nectarCollected > 0))
+    {
+        const ReflectanceInfo& flowerReflectance = pFlower->getReflectanceInfo();
+        MarkerPoint flowerMP = flowerReflectance.getMarkerPoint();
+        VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromMP(flowerMP);
+        m_TargetMP = flowerMP;
+        visPrefInfo.setTarget();
+    }
 }
 
 

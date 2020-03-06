@@ -28,5 +28,10 @@ enum class PollinatorForagingStrategy {RANDOM, NEAREST_FLOWER, RANDOM_FLOWER, RA
  */
 enum class PollinatorCurrentStatus {ON_FLOWER, DECLINED_FLOWER, NO_FLOWER_SEEN};
 
+/**
+ * The PollinatorLearningStrategy enum
+ */
+enum class PollinatorLearningStrategy {DELIBERATIVE_DECISIVE, FICKLE_CIRCUMSPECT, STAY};
+
 
 #endif /* _POLLINATORENUMS_H */

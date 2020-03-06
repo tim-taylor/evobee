@@ -32,6 +32,12 @@ public:
 
     const std::string& getTypeName() const override;
 
+    /**
+     * Overridden implementation of a method to make a probabilistic decision,
+     * for a given marker point, on whether the pollinator can detect it.
+     */
+    bool isDetected(MarkerPoint mp) const override;
+
 protected:
     /**
      * Returns the probability that this pollinator detects a visual stimulus which
@@ -63,7 +69,7 @@ protected:
      * harvest the specified flower using its visual perception. This is a special case
      * called by isVisitCandidate() in the case that m_ConstancyType is VISUAL.
      */
-    bool isVisitCandidateVisual(Flower* pFlower) const override;
+    bool isVisitCandidateVisual(Flower* pFlower, bool* pJudgedToMatchTarget = nullptr) const override;
 
     /**
      * Overridden implementation of method to update the pollinator's visual preference
@@ -115,6 +121,9 @@ private:
     // private helper methods
     void updateTarget();
     void attenuatePreferences();
+    void updateVisualPrefsFickleCircumspect(const Flower* pFlower, int nectarCollected);
+    void updateVisualPrefsStay(const Flower* pFlower, int nectarCollected);
+
     static const VisualStimulusInfo& getVisStimInfoFromMP(MarkerPoint mp);
     static std::size_t getVisualDataVectorIdx(MarkerPoint mp);
     static float getBaseProbLandNonTargetInnate(MarkerPoint mp);

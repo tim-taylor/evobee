@@ -47,6 +47,8 @@ struct PollinatorConfig {
     float constancyParam;
     std::string strForagingStrategy;        ///< allowed values: random, nearest-flower, random-flower, random-global
     PollinatorForagingStrategy foragingStrategy;
+    std::string strLearningStrategy;        ///< allowed values: stay, fickle-circumspect, deliberative-decisive
+    PollinatorLearningStrategy learningStrategy;
     unsigned int visitedFlowerMemorySize;
 
     bool visDataDefined;                    ///< This is set to true if appropriate in extractVidDataFromPollinatorConfig in evobee.cpp.

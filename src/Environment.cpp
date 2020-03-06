@@ -229,7 +229,7 @@ bool Environment::inArea(const iPos& pos, const iPos& areaTopLeft, const iPos& a
 //
 // The second parameter (default value = 1.0) specifies a maximum search radius.
 // If this is given a zero or negative value, then it is ignored, and all flowers
-// withiin the Moore neighbourhood are considered regardless of distance (but
+// within the Moore neighbourhood are considered regardless of distance (but
 // note that this means that the search radius is effectively asymmetric in
 // different directions because the patches are squares). If the radius is set
 // to a positive value, then only flowers within that distance of fpos will be
@@ -301,10 +301,14 @@ FloweringPlant* Environment::findNearestFloweringPlant( const fPos& fpos,
 // Search for flowers in the local patch and its 8 closest neighbours
 // (Moore neighbourhood), and return a pointer to the closest flower found
 // that is not in the supplied list of excluded flowers, or nullptr if none found.
+// Optionally, a Pollinator may be supplied as the final argument
+// (pPollinator), which, if present, only considers flowers that the
+// Pollinator can detect (as determined by calling its isDetected(MarkerPoint)
+// method).
 //
 // The third parameter (default value = 1.0) specifies a maximum search radius.
 // If this is given a zero or negative value, then it is ignored, and all flowers
-// withiin the Moore neighbourhood are considered regardless of distance (but
+// within the Moore neighbourhood are considered regardless of distance (but
 // note that this means that the search radius is effectively asymmetric in
 // different directions because the patches are squares). If the radius is set
 // to a positive value, then only flowers within that distance of fpos will be
@@ -319,7 +323,8 @@ FloweringPlant* Environment::findNearestFloweringPlant( const fPos& fpos,
 Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
                                                 const std::vector<Flower*>& excludeVec,
                                                 float fRadius /*= 1.0*/,
-                                                bool excludeCurrentPos /*= true*/)
+                                                bool excludeCurrentPos /*= true*/,
+                                                Pollinator* pPollinator /*= nullptr*/)
 {
     assert(fRadius < 1.0 + EvoBee::FLOAT_COMPARISON_EPSILON);
 
@@ -361,11 +366,18 @@ Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
                                     float distSq = EvoBee::distanceSq(fpos, flower.getPosition());
                                     if (distSq < minDistSq)
                                     {
+                                        // this flower is closer than the closest eligible flower we've found so far...
                                         if ((!excludeCurrentPos) || (distSq > EvoBee::FLOAT_COMPARISON_EPSILON))
                                         {
-                                            // this is the closest eligible flower we've found so far, so record it!
-                                            minDistSq = distSq;
-                                            pFlower = &flower;
+                                            // it's either not at the central focus position or we don't care if it is...
+                                            if (pPollinator == nullptr || pPollinator->isDetected(flower.getMarkerPoint())) {
+                                                // if we care about whether the pollinator can detect the flower, then
+                                                // yes, it can detect it...
+
+                                                // this is the closest eligible flower we've found so far, so record it!
+                                                minDistSq = distSq;
+                                                pFlower = &flower;
+                                            }
                                         }
                                     }
                                 }
@@ -393,7 +405,7 @@ Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
 //
 // The third parameter (default value = 1.0) specifies a maximum search radius.
 // If this is given a zero or negative value, then it is ignored, and all flowers
-// withiin the Moore neighbourhood are considered regardless of distance (but
+// within the Moore neighbourhood are considered regardless of distance (but
 // note that this means that the search radius is effectively asymmetric in
 // different directions because the patches are squares). If the radius is set
 // to a positive value, then only flowers within that distance of fpos will be

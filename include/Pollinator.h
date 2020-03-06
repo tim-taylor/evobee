@@ -148,6 +148,13 @@ public:
     /// TODO this method is just included for testing purposes...
     void setTargetMP(MarkerPoint mp) {m_TargetMP = mp;}
 
+    /**
+     * Default implementation of a method to make a probabilistic decision,
+     * for a given marker point, on whether the pollinator can
+     * detect it. May be overriden by subclasses.
+     */
+    virtual bool isDetected(MarkerPoint mp) const;
+
 
 protected:
 
@@ -179,7 +186,7 @@ protected:
      * Default implementation of method to determine whether the pollinator should
      * harvest the specified flower. May be overridden by subclasses.
      */
-    virtual bool isVisitCandidate(Flower* pFlower) const;
+    virtual bool isVisitCandidate(Flower* pFlower, bool* pJudgedToMatchTarget = nullptr) const;
 
     /**
      * Default implementation of method to determine whether the pollinator should
@@ -187,7 +194,7 @@ protected:
      * called by isVisitCandidate() in the case that m_ConstancyType is VISUAL.
      * May be overridden by subclasses.
      */
-    virtual bool isVisitCandidateVisual(Flower* pFlower) const;
+    virtual bool isVisitCandidateVisual(Flower* pFlower, bool* pJudgedToMatchTarget = nullptr) const;
 
     /**
      * Default implementation of method to update the pollinator's visual preference
@@ -356,6 +363,10 @@ protected:
                                                     ///<   which records the previous *speciesId*
 
     PollinatorForagingStrategy m_ForagingStrategy;  ///< Determines exactly how the pollinator moves at each step
+
+    PollinatorLearningStrategy m_LearningStrategy;  ///< Determines how the pollinator updates its preferences
+                                                    ///<    for landing on different types of flower in light
+                                                    ///<    on its experience of rewards gained
 
     // some constant parameters for this pollinator
     const int       m_iBoutLength;                  ///< Num flower visits allowed before returning to hive [0=unlimited]

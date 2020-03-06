@@ -35,6 +35,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_PreviousLandingSpeciesId(0),
     m_uiVisitedFlowerMemorySize(pc.visitedFlowerMemorySize),
     m_ForagingStrategy(pc.foragingStrategy),
+    m_LearningStrategy(pc.learningStrategy),
     m_iBoutLength(pc.boutLength),
     m_iPollenDepositPerFlowerVisit(pc.pollenDepositPerFlowerVisit),
     m_iPollenLossInAir(pc.pollenLossInAir),
@@ -86,6 +87,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_uiVisitedFlowerMemorySize(other.m_uiVisitedFlowerMemorySize),
     m_RecentlyVisitedFlowers(other.m_RecentlyVisitedFlowers),
     m_ForagingStrategy(other.m_ForagingStrategy),
+    m_LearningStrategy(other.m_LearningStrategy),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -126,6 +128,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_uiVisitedFlowerMemorySize(other.m_uiVisitedFlowerMemorySize),
     m_RecentlyVisitedFlowers(other.m_RecentlyVisitedFlowers),
     m_ForagingStrategy(other.m_ForagingStrategy),
+    m_LearningStrategy(other.m_LearningStrategy),
     m_iBoutLength(other.m_iBoutLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -488,20 +491,28 @@ void Pollinator::forageNearestFlower()
 {
     bool flowerVisited = false;
     unsigned int stepnum = m_pModel->getStepNumber();
+    Flower* pFlower = nullptr;
 
-    Flower* pFlower = getEnvironment()->findNearestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers);
+    if (m_ConstancyType == PollinatorConstancyType::VISUAL) {
+        pFlower = getEnvironment()->findNearestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers, 1.0, true, this);
+    }
+    else {
+        pFlower = getEnvironment()->findNearestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers);
+    }
+
     if (pFlower != nullptr)
     {
-        if (isVisitCandidate(pFlower))
+        bool bJudgedToMatchTarget = false;
+        if (isVisitCandidate(pFlower, &bJudgedToMatchTarget))
         {
             m_Position = pFlower->getPosition();
             int rewardCollected = visitFlower(pFlower);
             flowerVisited = true;
-            m_LatestAction.update(stepnum, PollinatorCurrentStatus::ON_FLOWER, pFlower, rewardCollected);
+            m_LatestAction.update(stepnum, PollinatorCurrentStatus::ON_FLOWER, pFlower, rewardCollected, bJudgedToMatchTarget);
         }
         else
         {
-            m_LatestAction.update(stepnum, PollinatorCurrentStatus::DECLINED_FLOWER, pFlower, 0);
+            m_LatestAction.update(stepnum, PollinatorCurrentStatus::DECLINED_FLOWER, pFlower, 0, bJudgedToMatchTarget);
         }
     }
     else
@@ -554,9 +565,16 @@ void Pollinator::forageRandomFlower()
 }
 
 
-// determine whether the pollinator will decide to land on the given flower,
+// Determine whether the pollinator will decide to land on the given flower,
 // which depends on its flower constancy characteristics etc.
-bool Pollinator::isVisitCandidate(Flower* pFlower) const
+//
+// The second parameter, pJudgedToMatchTarget, is an optional pointer to a boolean
+// variable used to return an indication of whether or not the pollinator judged
+// the flower to match its target (whether or not it landed on it). This is only
+// relevant for visual foraging (foraging-strategy='nearest-flower' and
+// constancy-type='visual').
+//
+bool Pollinator::isVisitCandidate(Flower* pFlower, bool* pJudgedToMatchTarget) const
 {
     bool bIsVisitCandidate = true;
 
@@ -589,22 +607,12 @@ bool Pollinator::isVisitCandidate(Flower* pFlower) const
                 float prob = 1.0 - m_fConstancyParam;
                 bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
             }
-            /*
-            else
-            {
-                // consider whether this flower is of the same species as the previous one
-                float prob = (m_PreviousLandingSpeciesId == pFlower->getSpeciesId()) ?
-                    m_fConstancyParam : (1.0 - m_fConstancyParam);
-
-                bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < prob);
-            }
-            */
 
             break;
         }
         case (PollinatorConstancyType::VISUAL):
         {
-            bIsVisitCandidate = isVisitCandidateVisual(pFlower);
+            bIsVisitCandidate = isVisitCandidateVisual(pFlower, pJudgedToMatchTarget);
             break;
         }
         default:
@@ -621,9 +629,20 @@ bool Pollinator::isVisitCandidate(Flower* pFlower) const
 // using its visual perception. This is the base class implementation of this method,
 // which should generally be overridden by subclass implementations for more
 // specific types of pollinator.
-bool Pollinator::isVisitCandidateVisual(Flower* pFlower) const
+bool Pollinator::isVisitCandidateVisual(Flower* pFlower, bool* pJudgedToMatchTarget) const
 {
     throw std::runtime_error("Calling base class implementation of Pollinator::isVisitCandidateVisual. Probably not what was wanted!");
+    return true;
+}
+
+
+// Make a probabilistic decision, for a given marker point, on whether the pollinator
+// can detect it. This is the base class implementation of this method, which should
+// generally be overridden by subclass implementations for more specific types of
+// pollinator.
+bool Pollinator::isDetected(MarkerPoint mp) const
+{
+    throw std::runtime_error("Calling base class implementation of Pollinator::isDetected. Probably not what was wanted!");
     return true;
 }
 
@@ -639,7 +658,13 @@ void Pollinator::updateVisualPreferences(const Flower* pFlower, int nectarCollec
 
 
 // The logic of what a pollinator does when it lands on a flower.
+// This method implement transfer of pollen between the pollinator and the flower
+// (in both directions), collection of nectar by the pollinator, updating of the
+// pollinator's visual preferences according to its learning strategy (if relevant),
+// and various bits of housekeeping.
+//
 // Returns the amount of nectar collected on this visit.
+//
 int Pollinator::visitFlower(Flower* pFlower)
 {
     // for each Pollen grain in the store, update its landing count
@@ -865,16 +890,18 @@ std::string Pollinator::getStateString() const
     switch (m_LatestAction.status) {
     case PollinatorCurrentStatus::ON_FLOWER: {
         assert(m_LatestAction.pFlower != nullptr);
-        ssState << m_LatestAction.pFlower->getMarkerPoint() << "," << m_LatestAction.rewardReceived;
+        ssState << m_LatestAction.pFlower->getMarkerPoint() << "," << m_LatestAction.rewardReceived << ","
+            << (m_LatestAction.bJudgedToMatchTarget ? "T" : "F");
         break;
     }
     case PollinatorCurrentStatus::DECLINED_FLOWER: {
         assert(m_LatestAction.pFlower != nullptr);
-        ssState << m_LatestAction.pFlower->getMarkerPoint() << ",-1";
+        ssState << m_LatestAction.pFlower->getMarkerPoint() << ",-1,"
+            << (m_LatestAction.bJudgedToMatchTarget ? "T" : "F");
         break;
     }
     case PollinatorCurrentStatus::NO_FLOWER_SEEN: {
-        ssState << "0,-2";
+        ssState << "0,-2,F";
         break;
     }
     default: {

@@ -45,8 +45,6 @@ public:
 
 
 protected:
-    //bool isVisitCandidate(Flower* pFlower) const;
-    //void visitFlower(Flower* pFlower);
 
 
 private:
