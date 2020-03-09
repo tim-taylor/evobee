@@ -98,7 +98,7 @@ public:
     bool inReproRestrictionArea(const iPos& dest) const;
 
     /**
-     * During reproduction, is seed flow allowed from this patch to to a destination
+     * During reproduction, is seed flow allowed from this patch to a destination
      * patch outside of this patch's restricted reproduction area?
      * NB: depending on usage, you should first consider calling inReproRestrictionArea(dest)
      * to check whether this restriction applies at all to the destination patch under

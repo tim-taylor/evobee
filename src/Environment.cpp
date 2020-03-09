@@ -696,7 +696,7 @@ void Environment::initialiseNewGeneration()
             else
             {
                 // new plant is still in environment but in a different patch to old one.
-                // consider chances of succesfully moving into the new patch
+                // consider chances of successfully moving into the new patch
                 Patch& newPatch = getPatch(iNewPos);
                 if (newPatch.refuge() && (newPatch.getRefugeNativeSpeciesId() != pPlant->getSpeciesId()))
                 {

@@ -77,7 +77,7 @@ void Patch::setReproConstraints(const PlantTypeDistributionConfig& ptdc)
         // one species of plant).
         //
         // If, however, we are only dealing with constraints on seed outflow
-        // (no refugia constraints) and these have already been set on this patch
+        // (no refugia constraints) and these have already been set on this
         // patch, allow it if the new constraints are exactly the same as
         // the existing ones (otherwise throw an exception).
         //

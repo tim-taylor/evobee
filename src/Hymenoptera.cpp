@@ -13,6 +13,7 @@
 #include "Hymenoptera.h"
 #include "PollinatorStructs.h"
 #include "EvoBeeModel.h"
+#include "tools.h"
 
 
 // Instantiate static data members
@@ -208,7 +209,15 @@ float Hymenoptera::getBaseProbLandNonTargetInnate(MarkerPoint mp)
 bool Hymenoptera::isDetected(MarkerPoint mp) const
 {
     float detectionProb = getMPDetectionProb(mp);
-    return (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < detectionProb);
+    if (detectionProb > (1.0f - EvoBee::FLOAT_COMPARISON_EPSILON)) {
+        return true;
+    }
+    else if (detectionProb < (0.0f + EvoBee::FLOAT_COMPARISON_EPSILON)) {
+        return false;
+    }
+    else {
+        return (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < detectionProb);
+    }
 }
 
 
