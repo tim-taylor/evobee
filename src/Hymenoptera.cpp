@@ -312,6 +312,7 @@ void Hymenoptera::updateVisualPrefsFickleCircumspect(const Flower* pFlower, int 
             m_TargetMP = flowerMP;
             visPrefInfo.setTarget();
             firstTarget = true;
+            noTarget = false;
         }
         else if (isTarget) {
             visPrefInfo.incrementProbLandTarget(m_sVisProbLandIncrementOnReward);
@@ -332,7 +333,7 @@ void Hymenoptera::updateVisualPrefsFickleCircumspect(const Flower* pFlower, int 
     }
 
     // consider switching to a new target flower based upon the newly updated preferences
-    if (!firstTarget) {
+    if ((!firstTarget) && (!noTarget)) {
         updateTarget();
     }
 

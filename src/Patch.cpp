@@ -24,6 +24,7 @@ Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
     m_bSeedOutflowAllowed(true),
     m_bSeedOutflowRestricted(false),
     m_fSeedOutflowProb(1.0),
+    m_bNoGoArea(false),
     m_bRefuge(false),
     m_iRefugeNativeSpecesId(0),
     m_fRefugeAlienInflowProb(1.0)
@@ -106,6 +107,7 @@ void Patch::setReproConstraints(const PlantTypeDistributionConfig& ptdc)
     m_bSeedOutflowAllowed = ptdc.seedOutflowAllowed;
     m_bSeedOutflowRestricted = ptdc.seedOutflowRestricted;
     m_fSeedOutflowProb = ptdc.seedOutflowProb;
+    m_bNoGoArea = (ptdc.species == "nogo");
     m_bRefuge = ptdc.refuge;
     if (m_bRefuge) {
         m_iRefugeNativeSpecesId = FloweringPlant::getSpeciesId(ptdc.species);

@@ -347,6 +347,15 @@ void ModelParams::addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pt
         throw std::runtime_error(msg.str());
     }
 
+    // if this is a no go area, hardcode some associated values, ignoring anything that was in config file
+    if (ptdc.species == "nogo")
+    {
+        ptdc.density = 0.0f;
+        ptdc.refuge = true;
+        ptdc.refugeAlienInflowProb = 0.0f;
+        ptdc.seedOutflowAllowed = false;
+    }
+
     // assign a unique ID to this PlantTypeDistributionConfig
     ptdc.id = m_sNextFreePtdcId++;
 

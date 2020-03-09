@@ -35,7 +35,7 @@ std::shared_ptr<AbstractHive> AbstractHive::makeHive(Environment* pEnv, const Hi
     {
         return std::make_shared<Hive<BumbleBee>>(hc);
     }
-    */ 
+    */
     else
     {
         throw std::runtime_error("Unknown Hive type " + hc.type + " in config file");
@@ -45,5 +45,19 @@ std::shared_ptr<AbstractHive> AbstractHive::makeHive(Environment* pEnv, const Hi
 
 fPos AbstractHive::getRandomPollinatorStartPosition() const
 {
-    return m_pEnv->getRandomPositionF(m_InitForageAreaTopLeft, m_InitForageAreaBottomRight);
+    fPos pos;
+    bool bNoGoArea = true;
+    int count = 0;
+
+    do {
+        pos = m_pEnv->getRandomPositionF(m_InitForageAreaTopLeft, m_InitForageAreaBottomRight);
+        Patch& patch = m_pEnv->getPatch(pos);
+        bNoGoArea = patch.noGoArea();
+        if (++count > 100) {
+            throw std::runtime_error("Unable to find legal start position of pollinator in AbstractHive::getRandomPollinatorStartPosition(). Aborting!");
+        }
+    }
+    while (bNoGoArea);
+
+    return pos;
 }

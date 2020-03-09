@@ -128,6 +128,11 @@ public:
     /**
      *
      */
+    bool noGoArea() const {return m_bNoGoArea;}
+
+    /**
+     *
+     */
     bool refuge() const {return m_bRefuge;}
 
     /**
@@ -182,6 +187,7 @@ private:
     bool            m_bSeedOutflowAllowed;
     bool            m_bSeedOutflowRestricted;
     float           m_fSeedOutflowProb;
+    bool            m_bNoGoArea;
     bool            m_bRefuge;
     unsigned int    m_iRefugeNativeSpecesId;
     float           m_fRefugeAlienInflowProb;

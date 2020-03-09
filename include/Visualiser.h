@@ -61,7 +61,7 @@ private:
 
     inline std::int16_t getScreenCoordFromIntWithAbsOffsetX(int x, int absOff);
     inline std::int16_t getScreenCoordFromIntWithAbsOffsetY(int y, int absOff);
-    
+
     inline std::int16_t getScreenCoordFromIntWithRelOffsetX(int x, float relOff);
     inline std::int16_t getScreenCoordFromIntWithRelOffsetY(int y, float relOff);
 
@@ -71,7 +71,7 @@ private:
 
     inline std::int16_t getScreenCoordFromFloatWithAbsOffsetX(float x, int absOff);
     inline std::int16_t getScreenCoordFromFloatWithAbsOffsetY(float y, int absOff);
-    
+
     inline std::int16_t getScreenCoordFromFloatWithRelOffsetX(float x, float relOff);
     inline std::int16_t getScreenCoordFromFloatWithRelOffsetY(float y, float relOff);
 
@@ -90,7 +90,8 @@ private:
     int     m_iScreenOffsetY;
 
     int     m_iDelayMsPerFrame;
-    
+
+    bool    m_bShowPollinators;
     bool    m_bShowTrails;
     std::map<unsigned int, std::vector<fPos>> m_PollMoveHists; /** map of Pollinator ids with the movement
                                                                 *  history of that pollinator */

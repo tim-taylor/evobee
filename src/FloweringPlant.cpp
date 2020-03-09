@@ -234,20 +234,27 @@ const std::string& FloweringPlant::getSpecies() const
 }
 
 
-// return species id of the species whose name is given as a param (static method)
+// Static method to return species id of the species whose name is given as a param.
 unsigned int FloweringPlant::getSpeciesId(const std::string& name)
 {
-    auto it = std::find_if( m_sSpeciesMap.begin(),
-                            m_sSpeciesMap.end(),
-                            [name](const std::pair<unsigned int, std::string>& pair)
-                                {return (pair.second == name);} );
-
-    if (it == m_sSpeciesMap.end())
+    if (name == "nogo")
     {
-        throw std::runtime_error("Unable to find id for plant species " + name);
+        return 0;
     }
+    else
+    {
+        auto it = std::find_if( m_sSpeciesMap.begin(),
+                                m_sSpeciesMap.end(),
+                                [name](const std::pair<unsigned int, std::string>& pair)
+                                    {return (pair.second == name);} );
 
-    return it->first;
+        if (it == m_sSpeciesMap.end())
+        {
+            throw std::runtime_error("Unable to find id for plant species " + name);
+        }
+
+        return it->first;
+    }
 }
 
 

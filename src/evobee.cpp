@@ -120,7 +120,7 @@ void from_json(const json& j, PlantTypeDistributionConfig& pc)
     json_read_param(j, sct, "area-top-left-y", pc.areaTopLeft.y);
     json_read_param(j, sct, "area-bottom-right-x", pc.areaBottomRight.x);
     json_read_param(j, sct, "area-bottom-right-y", pc.areaBottomRight.y);
-    json_read_param(j, sct, "density", pc.density);
+    json_read_opt_param(j, sct, "density", pc.density, 0.5f);
     json_read_opt_param(j, sct, "refuge", pc.refuge, false);
     json_read_opt_param(j, sct, "refuge-alien-inflow-prob", pc.refugeAlienInflowProb, 0.0f);
     json_read_opt_param(j, sct, "seed-outflow-allowed", pc.seedOutflowAllowed, true);

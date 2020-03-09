@@ -52,19 +52,24 @@ Environment::Environment(EvoBeeModel* pModel) :
         );
     }
 
+    // Initialise Plants
+    initialisePlants();
+
+    // Initialise internal book-keeping for local density limits during plant reproduction
+    initialiseLocalDensityCounts();
+
     // Initialise Hives
+    //
+    // N.B. this has to happen *after* initialisePlants() is called, because that deals with
+    //  any no-go areas in the environemnt, which we might have to take account of when
+    //  deciding the initial placement of the pollinators from the hive.
+    //
     const std::vector<HiveConfig> & hconfigs = ModelParams::getHiveConfigs();
     for (const HiveConfig& hconfig : hconfigs)
     {
         // Use the AbstractHive::makeHive factory method to make a Hive of the right type
         m_Hives.push_back( AbstractHive::makeHive(this, hconfig) );
     }
-
-    // Initialise Plants
-    initialisePlants();
-
-    // Initialise internal book-keeping for local density limits during plant reproduction
-    initialiseLocalDensityCounts();
 
     if (ModelParams::verbose())
     {
@@ -117,7 +122,7 @@ void Environment::initialisePlants()
         int w = std::max(1, 1 + pdcfg.areaBottomRight.x - pdcfg.areaTopLeft.x);
         int h = std::max(1, 1 + pdcfg.areaBottomRight.y - pdcfg.areaTopLeft.y);
         int area = w * h;
-        int numPlants = (int)((float)area * pdcfg.density);
+        int numPlants = (pdcfg.species == "nogo") ? 0 : (int)((float)area * pdcfg.density);
         std::uniform_real_distribution<float> distW(0.0, w - EvoBee::SMALL_FLOAT_NUMBER);
         std::uniform_real_distribution<float> distH(0.0, h - EvoBee::SMALL_FLOAT_NUMBER);
 
@@ -136,7 +141,7 @@ void Environment::initialisePlants()
 
         // find the corresponding PlantTypeConfig (unless pdcfg.species is "any")
         const PlantTypeConfig* pPTC = nullptr;
-        if (pdcfg.species != "any")
+        if ((pdcfg.species != "any") && (pdcfg.species != "nogo"))
         {
             pPTC = ModelParams::getPlantTypeConfig(pdcfg.species);
             if (pPTC == nullptr)
