@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+# Script that takes one or more log files as input (for runs
+# that have been run with the 'f' log flag) and generates
+# individual summary files for each plant type in the range
+# 300:10:650, plus one single file summarising the numbers
+# of each type of plant at each generation in the run.
+# This latter file is suitable for plotting in gnuplot
+# using the commands found in plant-types-over-time.gnuplot
+#
+# Example usage of this script:
+#
+# > gen-plant-type-summaries my-log.txt
+# or
+# > gen-plant-type-summaries *-log.txt
+
+if [ "$#" -lt "1" ]; then
+    echo "usage: "$0" outputlogfile [outputlogfile [...]]"
+    exit
+fi
+
+for R in $@;
+do
+    for T in `seq 300 10 650`;
+    do
+	gawk -F',' -vT=$T 'BEGIN {pattern="MP"T} $0~pattern {sub(/PlantTypeMP/,"",$5); print $2","$3","$4","$5","$6","$7}' $R > $R-$T.csv;
+    done;
+
+    gawk -F',' '{print $1","$4","$5}' $R-*.csv > $R-all-summary.csv
+done
