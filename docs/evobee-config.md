@@ -411,13 +411,15 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 ## Output log file formats
 
-As shown in the [General parameters](#general-parameters) section above, there are various types of logging data that may be requested from a run. The `log-flags` parameter specifies zero, one or more flags for different kinds of output. The output from all requested flags is recording in a single log file. Each logging event appears as a separate line in the log file, and each line is a list of comma separated values (so the log file is in .csv format). The first item of every line in a single letter showing the corresponding log-flag 
+As shown in the [General parameters](#general-parameters) section above, there are various types of logging data that may be requested from a run. The `log-flags` parameter specifies zero, one or more flags for different kinds of output. The output from all requested flags is recording in a single log file. Each logging event appears as a separate line in the log file, and each line is a list of comma separated values (so the log file is in .csv format). The first item of every line in a single letter showing the corresponding log-flag associated with the line (e.g. Q|P|F|G|p|f|g|m).
+
+To understand the specific format of each line
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc1NTA0NTE3NywxNDIwOTM1OTUzLC0xMT
-cyNjgxNzAxLDc0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEwMDY0
-NTEsNjI3MzQ2ODU2LC0xOTU0MTM3Mzk0LC0xMjIxODU4OTE2LC
-0xOTk4MjkxMjgyLC02ODEzODM4ODAsLTUxMDM5MTkxNSwtNjcy
-ODkwNjk5LC0yMDUwMjU3NDg4LC0xNDkzNjM4MjMzLDE5MjU2Nz
-IxMTIsLTc5NDc1ODUzNSwxODkzNzQ1MjM1LC00MDU3OTk2MDAs
-LTEwODQ1NjU5NzldfQ==
+eyJoaXN0b3J5IjpbOTY3MzgwMzM2LDE0MjA5MzU5NTMsLTExNz
+I2ODE3MDEsNzQ3NzMxNjcyLC0xOTE1NzEyMzM1LDY3MTAwNjQ1
+MSw2MjczNDY4NTYsLTE5NTQxMzczOTQsLTEyMjE4NTg5MTYsLT
+E5OTgyOTEyODIsLTY4MTM4Mzg4MCwtNTEwMzkxOTE1LC02NzI4
+OTA2OTksLTIwNTAyNTc0ODgsLTE0OTM2MzgyMzMsMTkyNTY3Mj
+ExMiwtNzk0NzU4NTM1LDE4OTM3NDUyMzUsLTQwNTc5OTYwMCwt
+MTA4NDU2NTk3OV19
 -->
