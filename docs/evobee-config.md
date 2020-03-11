@@ -431,10 +431,14 @@ A summary of some of the formats is shown below.
  10. step number of most recent action
  11. flower marker point (if action=ON_FLOWER or DECLINED_FLOWER) or 0 (if action=NO_FLOWER_SEEN)
  12. reward received (if action=ON_FLOWER) or -1 (if action=DECLINED_FLOWER) or -2 (if action=NO_FLOWER_SEEN)
- 13. "T" if pollinator judged flower to match its current target, other
+ 13. "T" if pollinator judged flower to match its current target, otherwise "F"
+ 14. "//"
+ 15. pollinator's current target marker point
+ 16. "::"
+ 17. fields 
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI2NDM5NTE3NCwxNDIwOTM1OTUzLC0xMT
+eyJoaXN0b3J5IjpbMTY5NzYzMTkzMSwxNDIwOTM1OTUzLC0xMT
 cyNjgxNzAxLDc0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEwMDY0
 NTEsNjI3MzQ2ODU2LC0xOTU0MTM3Mzk0LC0xMjIxODU4OTE2LC
 0xOTk4MjkxMjgyLC02ODEzODM4ODAsLTUxMDM5MTkxNSwtNjcy
