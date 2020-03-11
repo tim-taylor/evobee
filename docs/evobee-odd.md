@@ -35,7 +35,7 @@ In an EvoBee simulation,  plants, flowers and pollinators exist in a 2D continuo
 It is possible to specify one or more areas of the environment as refuges for particular plant species. This is done in the `PlantTypeDistribution` section of the configuration file. 
 Only plants of one specified species can grow in a refuge area. If during the reproduction phase of the simulation (see [Process overview and scheduling](#process-overview-and-scheduling)) a seed from a different species lands in the refuge, it has a reduced chance of survival (as defined by the `refuge-alien-inflow-prob` parameter in the configuration file). 
 
-It is also possible to specify one or more areas of the environment as "no go" areas. Again, this 
+It is also possible to specify one or more areas of the environment as "no go" areas. Again, this is done in the `PlantTypeDistribution` section of the configuration file. No plants can grow in a no go area, and no pollinators will be placed there at the start of a bout (they can, however, wander into a no
 
 Internally to the simulation code, the environment comprises a 2D grid of Patches. Each Patch holds the contents of a 1 pdu^2 area of the environment. Patches are mostly an internal implementation detail. Their primary purpose is the improve the efficiency of various operations in the simulation, such as searching for nearby plants. In the run configuration file (see [EvoBee simulation configuration and execution](evobee-config.md)), areas and dimensions are mostly specified as integer values, corresponding to the underlying patches in the environment. On the other hand, specific positions (e.g. the position of a Hive) are specified as floating point values, corresponding to a point in continuous space. The the latter case, the code automatically places the object (e.g. the Hive) in the appropriate Patch. 
 
@@ -126,11 +126,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODY3OTA5MzgsMTM2NTAzOTczLC0xMDg0OD
-M4ODgyLDY3MjAzNDcyNywtNzEyOTkzODA3LDE3OTI3NzM3MTUs
-LTc2MTg4MDE4LC0xMTM5MjMyNjEwLC0xNjIyODQ5NzA1LC0yMD
-Y2MjA3Njg3LC0xODI1MzMzMDI4LDIwODg1NTkyNjMsLTQxOTE3
-NDA5NSwxMDgwMTA4NzA0LDExOTU5Mzc4MCwtNjAwNjE2NDMyLC
-0xNjQxMzgxMjQ5LC0xMDk3NTY5NzExLC0xMDc2ODU4ODA0LDEw
-MDQ2MzIyMTddfQ==
+eyJoaXN0b3J5IjpbLTE5ODU3MDYyMjgsMTM2NTAzOTczLC0xMD
+g0ODM4ODgyLDY3MjAzNDcyNywtNzEyOTkzODA3LDE3OTI3NzM3
+MTUsLTc2MTg4MDE4LC0xMTM5MjMyNjEwLC0xNjIyODQ5NzA1LC
+0yMDY2MjA3Njg3LC0xODI1MzMzMDI4LDIwODg1NTkyNjMsLTQx
+OTE3NDA5NSwxMDgwMTA4NzA0LDExOTU5Mzc4MCwtNjAwNjE2ND
+MyLC0xNjQxMzgxMjQ5LC0xMDk3NTY5NzExLC0xMDc2ODU4ODA0
+LDEwMDQ2MzIyMTddfQ==
 -->
