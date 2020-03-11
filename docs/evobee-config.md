@@ -435,10 +435,10 @@ A summary of some of the formats is shown below.
  14. "//"
  15. pollinator's current target marker point
  16. "::"
- 17. fields 
+ 17. fields 17 onward record the pollinator's current visual preference data
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY5NzYzMTkzMSwxNDIwOTM1OTUzLC0xMT
+eyJoaXN0b3J5IjpbLTQxMjk1ODE0NiwxNDIwOTM1OTUzLC0xMT
 cyNjgxNzAxLDc0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEwMDY0
 NTEsNjI3MzQ2ODU2LC0xOTU0MTM3Mzk0LC0xMjIxODU4OTE2LC
 0xOTk4MjkxMjgyLC02ODEzODM4ODAsLTUxMDM5MTkxNSwtNjcy
