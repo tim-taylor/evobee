@@ -411,13 +411,15 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 ## Output log file formats
 
-As shown in the [General parameters](#general-parameters) section above, there are various types of logging data that may be requested from a run. The `log-flags` parameter specifies zero, one or more flags for different kinds of output. The output from all requested flags is recording in a single log file. Each logging event appears as a separate line in the log file, and each line is a list of comma separated values (so the log file is in .csv format). The first item of every line in a single letter showing the corresponding log-flag associated with the line (e.g. Q|P|F|G|p|f|g|m).
+As shown in the [General parameters](#general-parameters) section above, there are various types of logging data that may be requested from a run. The `log-flags` parameter specifies zero, one or more flags for different kinds of output. The output from all requested flags is recording in a single log file. Each logging event appears as a separate line in the log file, and each line is a list of comma separated values (so the log file is in .csv format). The first item of every line in a single letter showing the corresponding log-flag associated with the line (e.g. Q|P|F|G|p|f|g|m) - capital letters refer to full reporting, and lower
 
 To fully understand the specific format of each line, consult the corresponding methods in the Logger.cpp file.
 
-A
+A summary of some of the formats is shown below.
+
+### log-files=Q (logPollinatorsIntraPhaseFull)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc3NTM4MTc2OCwxNDIwOTM1OTUzLC0xMT
+eyJoaXN0b3J5IjpbMTI2Njg0OTU4MCwxNDIwOTM1OTUzLC0xMT
 cyNjgxNzAxLDc0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEwMDY0
 NTEsNjI3MzQ2ODU2LC0xOTU0MTM3Mzk0LC0xMjIxODU4OTE2LC
 0xOTk4MjkxMjgyLC02ODEzODM4ODAsLTUxMDM5MTkxNSwtNjcy
