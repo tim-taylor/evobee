@@ -33,7 +33,7 @@ Simulation distances are measured in perceptual distance units (pdu). We define 
 In an EvoBee simulation,  plants, flowers and pollinators exist in a 2D continuous-space environment. The initial distribution of plants is defined by the `PlantTypeDistribution` section of the configuration file, and the initial distribution of pollinators is defined by the `Hives` section of the configuration file. It is possible to specify one or more areas of the environment as refuges for particular plant species. This is done in the `PlantTypeDistribution` section of the configuration file. 
 Only plants of one specified species can grow in a refuge area. If during the reproduction phase of the simulation (see [Process overview and scheduling](#process-overview-and-scheduling)) a seed from a different species lands in the refuge, it has a reduced chance of survival (as defined by the `refuge-alien-inflow-prob` parameter in the configuration file). 
 
-Internally to the simulation code, the environment comprises a 2D grid of Patches. Each Patch holds the contents of a 1 pdu^2 area of the environment. In the configuration file, areas and dimensions are mostly specified as integer values, corresponding to the underlying patches in the environment. On the other hand, specific positions such as the position of a Hive, 
+Internally to the simulation code, the environment comprises a 2D grid of Patches. Each Patch holds the contents of a 1 pdu^2 area of the environment. In the configuration file, areas and dimensions are mostly specified as integer values, corresponding to the underlying patches in the environment. On the other hand, specific positions (e.g. the position of a Hive) are specified as floating point values, corresponding to a point in continuous space. The the latter case, the code automatically places the object (e.g. the Hive) in the appropriate Patch. 
 
 ## Process overview and scheduling
     
@@ -122,11 +122,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU3NjQ0NTU5NiwtMTA4NDgzODg4Miw2Nz
-IwMzQ3MjcsLTcxMjk5MzgwNywxNzkyNzczNzE1LC03NjE4ODAx
-OCwtMTEzOTIzMjYxMCwtMTYyMjg0OTcwNSwtMjA2NjIwNzY4Ny
-wtMTgyNTMzMzAyOCwyMDg4NTU5MjYzLC00MTkxNzQwOTUsMTA4
-MDEwODcwNCwxMTk1OTM3ODAsLTYwMDYxNjQzMiwtMTY0MTM4MT
-I0OSwtMTA5NzU2OTcxMSwtMTA3Njg1ODgwNCwxMDA0NjMyMjE3
-LDEyMjg3NTMzNDddfQ==
+eyJoaXN0b3J5IjpbNzI0ODE4OTksLTEwODQ4Mzg4ODIsNjcyMD
+M0NzI3LC03MTI5OTM4MDcsMTc5Mjc3MzcxNSwtNzYxODgwMTgs
+LTExMzkyMzI2MTAsLTE2MjI4NDk3MDUsLTIwNjYyMDc2ODcsLT
+E4MjUzMzMwMjgsMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEwODAx
+MDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzODEyND
+ksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIxNywx
+MjI4NzUzMzQ3XX0=
 -->
