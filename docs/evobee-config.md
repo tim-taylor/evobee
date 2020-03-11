@@ -311,7 +311,7 @@ The following table describes each parameter that can be specified in the config
 |vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|
 |logging|m_bLogging|bool|Is logging required for this run?|
-|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseFull, m_bLogFlowersIntraPhaseSummary, m_bLogFlowerMPsInterPhaseSummary|std::string|Flags to control logging functionality. Any combination of the following flags may be listed in the string, no separator is required: Q=PollinatorsIntraPhaseFull, P=PollinatorsInterPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, G=FlowersIntraPhaseFull, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary|
+|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseFull, m_bLogFlowersIntraPhaseSummary, m_bLogFlowerMPsInterPhaseSummary|std::string|Flags to control logging functionality. Any combination of the following flags may be listed in the string, no separator is required: Q=PollinatorsIntraPhaseFull, P=PollinatorsInterPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, G=FlowersIntraPhaseFull, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary. See the [Output log file formats](#output-log-file-formats) section below for further information.|
 |log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of logger|
 |log-dir|m_strLogDir|std::string|Directory name for logging output during a run|
 |log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|
@@ -438,11 +438,11 @@ A summary of some of the formats is shown below.
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MDMxODc1MDksMTE1NzAwMDE3NSwxND
-IwOTM1OTUzLC0xMTcyNjgxNzAxLDc0NzczMTY3MiwtMTkxNTcx
-MjMzNSw2NzEwMDY0NTEsNjI3MzQ2ODU2LC0xOTU0MTM3Mzk0LC
-0xMjIxODU4OTE2LC0xOTk4MjkxMjgyLC02ODEzODM4ODAsLTUx
-MDM5MTkxNSwtNjcyODkwNjk5LC0yMDUwMjU3NDg4LC0xNDkzNj
-M4MjMzLDE5MjU2NzIxMTIsLTc5NDc1ODUzNSwxODkzNzQ1MjM1
-LC00MDU3OTk2MDBdfQ==
+eyJoaXN0b3J5IjpbMTc0MDUyOTMyNywxMTU3MDAwMTc1LDE0Mj
+A5MzU5NTMsLTExNzI2ODE3MDEsNzQ3NzMxNjcyLC0xOTE1NzEy
+MzM1LDY3MTAwNjQ1MSw2MjczNDY4NTYsLTE5NTQxMzczOTQsLT
+EyMjE4NTg5MTYsLTE5OTgyOTEyODIsLTY4MTM4Mzg4MCwtNTEw
+MzkxOTE1LC02NzI4OTA2OTksLTIwNTAyNTc0ODgsLTE0OTM2Mz
+gyMzMsMTkyNTY3MjExMiwtNzk0NzU4NTM1LDE4OTM3NDUyMzUs
+LTQwNTc5OTYwMF19
 -->
