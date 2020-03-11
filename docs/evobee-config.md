@@ -409,12 +409,15 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-constrained|reproLocalDensityConstrained|bool|During reproduction, is the maximum density of plants in this local area constrained?|
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
+## Output log file formats
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNzI2ODE3MDEsNzQ3NzMxNjcyLC0xOT
-E1NzEyMzM1LDY3MTAwNjQ1MSw2MjczNDY4NTYsLTE5NTQxMzcz
-OTQsLTEyMjE4NTg5MTYsLTE5OTgyOTEyODIsLTY4MTM4Mzg4MC
-wtNTEwMzkxOTE1LC02NzI4OTA2OTksLTIwNTAyNTc0ODgsLTE0
-OTM2MzgyMzMsMTkyNTY3MjExMiwtNzk0NzU4NTM1LDE4OTM3ND
-UyMzUsLTQwNTc5OTYwMCwtMTA4NDU2NTk3OSwtNjE2MTI0MTk2
-LDEwMzc1MjgwMzRdfQ==
+eyJoaXN0b3J5IjpbLTcyNzA5MDkyNiwtMTE3MjY4MTcwMSw3ND
+c3MzE2NzIsLTE5MTU3MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1
+NiwtMTk1NDEzNzM5NCwtMTIyMTg1ODkxNiwtMTk5ODI5MTI4Mi
+wtNjgxMzgzODgwLC01MTAzOTE5MTUsLTY3Mjg5MDY5OSwtMjA1
+MDI1NzQ4OCwtMTQ5MzYzODIzMywxOTI1NjcyMTEyLC03OTQ3NT
+g1MzUsMTg5Mzc0NTIzNSwtNDA1Nzk5NjAwLC0xMDg0NTY1OTc5
+LC02MTYxMjQxOTZdfQ==
 -->
