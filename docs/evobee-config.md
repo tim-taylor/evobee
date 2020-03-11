@@ -397,7 +397,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeDistributionConfig.h|Type of variable|Description|
 |---|---|---|---|
-|species|species|std::string|Name of the plant species, or one of the following: "any" or "nogo". If set to "any", then each plant in the distribution is of a randomly chosen species from all species specified in the PlantTypes section. If set to "nogo", then this is a "no go" area in which neither plants nor pollinators may be placed. For "nogo" areas, the only other parameters that should be specified in the `PlantTypeDistribution` section are the top/left and bottom/right coordinates of the area. In this case, all other parameters in this section are set internally in the code to appropriate values.|
+|species|species|std::string|Name of the plant species, or one of the following: "any" or "nogo". If set to "any", then each plant in the distribution is of a randomly chosen species from all species specified in the PlantTypes section. If set to "nogo", then this is a "no go" area in which neither plants nor pollinators may be placed. For "nogo" areas, the only other parameters that need to be specified in the `PlantTypeDistribution` section are the top/left and bottom/right coordinates of the area.|
 |area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial distribution area|
 |area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial distribution area|
 |density|density|float|Density of initial distribution (wrt specified distrib area)|
@@ -410,11 +410,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY0OTI3MjkwLDc0NzczMTY3MiwtMTkxNT
-cxMjMzNSw2NzEwMDY0NTEsNjI3MzQ2ODU2LC0xOTU0MTM3Mzk0
-LC0xMjIxODU4OTE2LC0xOTk4MjkxMjgyLC02ODEzODM4ODAsLT
-UxMDM5MTkxNSwtNjcyODkwNjk5LC0yMDUwMjU3NDg4LC0xNDkz
-NjM4MjMzLDE5MjU2NzIxMTIsLTc5NDc1ODUzNSwxODkzNzQ1Mj
-M1LC00MDU3OTk2MDAsLTEwODQ1NjU5NzksLTYxNjEyNDE5Niwx
-MDM3NTI4MDM0XX0=
+eyJoaXN0b3J5IjpbLTExNzI2ODE3MDEsNzQ3NzMxNjcyLC0xOT
+E1NzEyMzM1LDY3MTAwNjQ1MSw2MjczNDY4NTYsLTE5NTQxMzcz
+OTQsLTEyMjE4NTg5MTYsLTE5OTgyOTEyODIsLTY4MTM4Mzg4MC
+wtNTEwMzkxOTE1LC02NzI4OTA2OTksLTIwNTAyNTc0ODgsLTE0
+OTM2MzgyMzMsMTkyNTY3MjExMiwtNzk0NzU4NTM1LDE4OTM3ND
+UyMzUsLTQwNTc5OTYwMCwtMTA4NDU2NTk3OSwtNjE2MTI0MTk2
+LDEwMzc1MjgwMzRdfQ==
 -->
