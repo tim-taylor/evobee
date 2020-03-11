@@ -33,7 +33,7 @@ Simulation distances are measured in perceptual distance units (pdu). We define 
 In an EvoBee simulation,  plants, flowers and pollinators exist in a 2D continuous-space environment. The initial distribution of plants is defined by the `PlantTypeDistribution` section of the configuration file, and the initial distribution of pollinators is defined by the `Hives` section of the configuration file. It is possible to specify one or more areas of the environment as refuges for particular plant species. This is done in the `PlantTypeDistribution` section of the configuration file. 
 Only plants of one specified species can grow in a refuge area. If during the reproduction phase of the simulation (see [Process overview and scheduling](#process-overview-and-scheduling)) a seed from a different species lands in the refuge, it has a reduced chance of survival (as defined by the `refuge-alien-inflow-prob` parameter in the configuration file). 
 
-Internally to the simu 
+Internally to the simulation code, the environment comprises a 2D grid of Patches
 
 ## Process overview and scheduling
     
@@ -122,11 +122,11 @@ Full details of the configuration options available for EvoBee simulations are p
 ## References
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTU5Nzc0ODI2LC0xMDg0ODM4ODgyLDY3Mj
-AzNDcyNywtNzEyOTkzODA3LDE3OTI3NzM3MTUsLTc2MTg4MDE4
-LC0xMTM5MjMyNjEwLC0xNjIyODQ5NzA1LC0yMDY2MjA3Njg3LC
-0xODI1MzMzMDI4LDIwODg1NTkyNjMsLTQxOTE3NDA5NSwxMDgw
-MTA4NzA0LDExOTU5Mzc4MCwtNjAwNjE2NDMyLC0xNjQxMzgxMj
-Q5LC0xMDk3NTY5NzExLC0xMDc2ODU4ODA0LDEwMDQ2MzIyMTcs
-MTIyODc1MzM0N119
+eyJoaXN0b3J5IjpbLTEwOTI0NTI5OTksLTEwODQ4Mzg4ODIsNj
+cyMDM0NzI3LC03MTI5OTM4MDcsMTc5Mjc3MzcxNSwtNzYxODgw
+MTgsLTExMzkyMzI2MTAsLTE2MjI4NDk3MDUsLTIwNjYyMDc2OD
+csLTE4MjUzMzMwMjgsMjA4ODU1OTI2MywtNDE5MTc0MDk1LDEw
+ODAxMDg3MDQsMTE5NTkzNzgwLC02MDA2MTY0MzIsLTE2NDEzOD
+EyNDksLTEwOTc1Njk3MTEsLTEwNzY4NTg4MDQsMTAwNDYzMjIx
+NywxMjI4NzUzMzQ3XX0=
 -->
