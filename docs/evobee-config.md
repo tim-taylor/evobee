@@ -411,9 +411,9 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 ## Output log file formats
 
-
+As shown in the [General parameters](#general-parameters) section above, there are various types of logging data that may be requested from a run. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcyNzA5MDkyNiwtMTE3MjY4MTcwMSw3ND
+eyJoaXN0b3J5IjpbLTk3MDI3OTc2OSwtMTE3MjY4MTcwMSw3ND
 c3MzE2NzIsLTE5MTU3MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1
 NiwtMTk1NDEzNzM5NCwtMTIyMTg1ODkxNiwtMTk5ODI5MTI4Mi
 wtNjgxMzgzODgwLC01MTAzOTE5MTUsLTY3Mjg5MDY5OSwtMjA1
