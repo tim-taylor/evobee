@@ -411,9 +411,9 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 ## Output log file formats
 
-As shown in the [General parameters](#general-parameters) section above, there are various types of logging data that may be requested from a run. 
+As shown in the [General parameters](#general-parameters) section above, there are various types of logging data that may be requested from a run. The log-flags parameter specifies zero, one or more flags for different kinds of output. The output from all requested flags is recording in a single log file in 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk3MDI3OTc2OSwtMTE3MjY4MTcwMSw3ND
+eyJoaXN0b3J5IjpbLTg4MTMyMjU2OCwtMTE3MjY4MTcwMSw3ND
 c3MzE2NzIsLTE5MTU3MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1
 NiwtMTk1NDEzNzM5NCwtMTIyMTg1ODkxNiwtMTk5ODI5MTI4Mi
 wtNjgxMzgzODgwLC01MTAzOTE5MTUsLTY3Mjg5MDY5OSwtMjA1
