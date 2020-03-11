@@ -435,14 +435,14 @@ A summary of some of the formats is shown below.
  14. "//"
  15. pollinator's current target marker point
  16. "::"
- 17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. 
+ 17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MjM2NzkwNTAsMTQyMDkzNTk1MywtMT
-E3MjY4MTcwMSw3NDc3MzE2NzIsLTE5MTU3MTIzMzUsNjcxMDA2
-NDUxLDYyNzM0Njg1NiwtMTk1NDEzNzM5NCwtMTIyMTg1ODkxNi
-wtMTk5ODI5MTI4MiwtNjgxMzgzODgwLC01MTAzOTE5MTUsLTY3
-Mjg5MDY5OSwtMjA1MDI1NzQ4OCwtMTQ5MzYzODIzMywxOTI1Nj
-cyMTEyLC03OTQ3NTg1MzUsMTg5Mzc0NTIzNSwtNDA1Nzk5NjAw
-LC0xMDg0NTY1OTc5XX0=
+eyJoaXN0b3J5IjpbMTE1NzAwMDE3NSwxNDIwOTM1OTUzLC0xMT
+cyNjgxNzAxLDc0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEwMDY0
+NTEsNjI3MzQ2ODU2LC0xOTU0MTM3Mzk0LC0xMjIxODU4OTE2LC
+0xOTk4MjkxMjgyLC02ODEzODM4ODAsLTUxMDM5MTkxNSwtNjcy
+ODkwNjk5LC0yMDUwMjU3NDg4LC0xNDkzNjM4MjMzLDE5MjU2Nz
+IxMTIsLTc5NDc1ODUzNSwxODkzNzQ1MjM1LC00MDU3OTk2MDAs
+LTEwODQ1NjU5NzldfQ==
 -->
