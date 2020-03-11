@@ -84,6 +84,11 @@ void Hymenoptera::reset()
 }
 
 
+// Output the hymenoptera's current state as a string, suitable for logging purposes.
+// Note, if you are looking at this code to understand the contents of a log file,
+// remember that the Hymenoptera class is a virtual class. Classes that
+// inherit from Hymenoptera may append additional information to this string,
+// e.g. see HoneyBee::getStateString().
 std::string Hymenoptera::getStateString() const
 {
     std::string polState = Pollinator::getStateString();

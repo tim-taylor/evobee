@@ -878,6 +878,11 @@ int Pollinator::losePollenToAir(int num)
 }
 
 
+// Output the pollinator's current state as a string, suitable for logging purposes.
+// Note, if you are looking at this code to understand the contents of a log file,
+// remember that the Pollinator class is a virtual base class. Classes that
+// inherit from Pollinator may append additional information to this string,
+// e.g. see Hymenoptera::getStateString().
 std::string Pollinator::getStateString() const
 {
     std::stringstream ssState;
