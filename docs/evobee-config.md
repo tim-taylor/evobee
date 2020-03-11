@@ -397,7 +397,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeDistributionConfig.h|Type of variable|Description|
 |---|---|---|---|
-|species|species|std::string|Name of the plant species, or one of the following: "any" or "nogo". If set to "any", then each plant in the distribution is of a randomly chosen species from all species specified in the PlantTypes section. If set to "nogo", then this is a no|
+|species|species|std::string|Name of the plant species, or one of the following: "any" or "nogo". If set to "any", then each plant in the distribution is of a randomly chosen species from all species specified in the PlantTypes section. If set to "nogo", then this is a "no go" area|
 |area-top-left-x, area-top-left-y|areaTopLeft|iPos (Position\<int\>)|Top-left corner of initial distribution area|
 |area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial distribution area|
 |density|density|float|Density of initial distribution (wrt specified distrib area)|
@@ -410,11 +410,11 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |repro-local-density-max|reproLocalDensityMax|float|If reproLocalDensityConstrained, this is the maximum allowed density|
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjUyOTk4ODc1LDc0NzczMTY3MiwtMTkxNT
-cxMjMzNSw2NzEwMDY0NTEsNjI3MzQ2ODU2LC0xOTU0MTM3Mzk0
-LC0xMjIxODU4OTE2LC0xOTk4MjkxMjgyLC02ODEzODM4ODAsLT
-UxMDM5MTkxNSwtNjcyODkwNjk5LC0yMDUwMjU3NDg4LC0xNDkz
-NjM4MjMzLDE5MjU2NzIxMTIsLTc5NDc1ODUzNSwxODkzNzQ1Mj
-M1LC00MDU3OTk2MDAsLTEwODQ1NjU5NzksLTYxNjEyNDE5Niwx
-MDM3NTI4MDM0XX0=
+eyJoaXN0b3J5IjpbLTM2ODcwMTc2MCw3NDc3MzE2NzIsLTE5MT
+U3MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1NiwtMTk1NDEzNzM5
+NCwtMTIyMTg1ODkxNiwtMTk5ODI5MTI4MiwtNjgxMzgzODgwLC
+01MTAzOTE5MTUsLTY3Mjg5MDY5OSwtMjA1MDI1NzQ4OCwtMTQ5
+MzYzODIzMywxOTI1NjcyMTEyLC03OTQ3NTg1MzUsMTg5Mzc0NT
+IzNSwtNDA1Nzk5NjAwLC0xMDg0NTY1OTc5LC02MTYxMjQxOTYs
+MTAzNzUyODAzNF19
 -->
