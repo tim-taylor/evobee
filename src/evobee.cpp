@@ -45,7 +45,7 @@ using json = nlohmann::json;
 // forward declaration of functions in this file
 void processConfigOptions(int argc, char **argv);
 void processJsonFile(std::ifstream& ifs);
-void extractVidDataFromPollinatorConfig(const json& j, PollinatorConfig& p);
+void extractVisDataFromPollinatorConfig(const json& j, PollinatorConfig& p);
 
 
 std::string strCurrentJsonSubSctName;
@@ -192,11 +192,11 @@ void from_json(const json& j, PollinatorConfig& p)
     }
 
     // now deal with vis-data array of arrays, and associated data, if present
-    extractVidDataFromPollinatorConfig(j, p);
+    extractVisDataFromPollinatorConfig(j, p);
 }
 
 
-void extractVidDataFromPollinatorConfig(const json& j, PollinatorConfig& p)
+void extractVisDataFromPollinatorConfig(const json& j, PollinatorConfig& p)
 {
     // parse the vis-data part of the Pollinator configuration section of the config file and
     // store the data in the PollinatorConfig object
