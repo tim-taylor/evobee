@@ -402,7 +402,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 |area-bottom-right-x, area-bottom-right-y|areaBottomRight|iPos (Position\<int\>)|Bottom-right corner of initial distribution area|
 |density|density|float|Density of initial distribution (wrt specified distrib area)|
 |refuge|refuge|bool|Is this area a refuge for this plant species?|
-|refuge-alien-inflow-prob|refugeAlienInflowProb|float|If this is a refuge, what is the probability that an alien species attempting to germinate in this area will do so successfully|
+|refuge-alien-inflow-prob|refugeAlienInflowProb|float|If this is a refuge, what is the probability that an alien species attempting to germinate in this area will do so successfully?|
 |seed-outflow-allowed|seedOutflowAllowed|bool|Can the plants germinate outside of the initial distrib area?|
 |seed-outflow-restricted|seedOutflowRestricted|bool|If seedOutflowAllowed, is it restricted?|
 |seed-outflow-prob|seedOutflowProb|float|If seedOutflowAllowed and seedOutflowRestricted, what is the probability that they are successful if attempting to do so?|
