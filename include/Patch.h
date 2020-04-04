@@ -166,11 +166,13 @@ private:
 
     // The following parameters place restrictions on plant reproduction
     bool            m_bReproConstraintsSetExplicitly;
+
     unsigned int    m_LocalityId;   ///< if repro constraints set, this is set to the PlantTypeDistConfig
                                     ///<   responsible for definining the constraints. Therefore, all patches
                                     ///<   governed by the same PlantTypeDistributionConfig have the same
                                     ///<   value for locality id. This is used so that we can easily determine
                                     ///<   for any patch what constraints exist, if any, on seed flow etc.
+
     iPos            m_ReproRestrictionAreaTopLeft;     ///< Defines the area within which seeds in
                                                        ///<   this patch may be dispersed during the
                                                        ///<   reproduction phase (for plants whose
@@ -181,7 +183,8 @@ private:
                                                        ///<   are allowed to - and successfully manage to -
                                                        ///<   migrate to another area): see comments in
                                                        ///<   AbstractHive::getInitForageAreaTopLeft() for
-                                                       ///<   further details of this latter usage)
+                                                       ///<   further details of this latter usage).
+
     iPos            m_ReproRestrictionAreaBottomRight; ///< (See comments for m_ReproRestrictionAreaTopLeft)
 
     bool            m_bSeedOutflowAllowed;

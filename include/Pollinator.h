@@ -220,6 +220,7 @@ protected:
     /**
      * Move by the given distance in a direction biassed by the experimental
      * bee flight data recorded by Waddington
+     * @note CURRENTLY UNUSED AND UNIMPLEMENTED
      */
     bool moveBiassed(bool allowOffEnv = false, float stepLength = 1.0);
 
@@ -227,6 +228,7 @@ protected:
      * Move according to a Levy flight pattern: direction of travel is
      * uniform random, and distance travelled is selected according to a
      * specific probability distribution (TBC)
+     * @note CURRENTLY UNUSED AND UNIMPLEMENTED
      */
     bool moveLevy(bool allowOffEnv = false, float stepLength = 1.0);
 

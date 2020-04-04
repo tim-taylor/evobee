@@ -23,7 +23,7 @@ class Position {
 public:
     Position() {};
 
-    Position(T _x, T _y) : 
+    Position(T _x, T _y) :
         x(_x),
         y(_y)
     {}
@@ -42,6 +42,13 @@ public:
     {
         x += p2.x;
         y += p2.y;
+        return *this;
+    }
+
+    Position& operator-=(const Position& p2)
+    {
+        x -= p2.x;
+        y -= p2.y;
         return *this;
     }
 };

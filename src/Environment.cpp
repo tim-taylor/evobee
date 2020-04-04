@@ -550,7 +550,7 @@ float Environment::getPollinatedFracSpecies1() const
  * the previous generation, then delete all plants from previous generation.
  *
  * 1. Construct a new generation of plants based upon those successfully
- *    pollinated in the previous generation, taking into acconut any refuges
+ *    pollinated in the previous generation, taking into account any refuges
  *    and/or restrictions to seed flow.
  * 2. Reset all pollinators to initial state.
  *
@@ -637,7 +637,7 @@ void Environment::initialiseNewGeneration()
 
     for (FloweringPlant* pPlant : pollinatedPlantPtrs)
     {
-        // -- Step 1c.1: consider a nearby position in which to reproduce
+        // -- Step 1c.1: consider a possible position in which to reproduce
         const Patch& curPatch = pPlant->getPatch();
 
         fPos fCurPos { pPlant->getPosition() };
@@ -701,7 +701,11 @@ void Environment::initialiseNewGeneration()
             else
             {
                 // new plant is still in environment but in a different patch to old one.
-                // consider chances of successfully moving into the new patch
+                // consider chances of successfully moving into the new patch.
+                // N.B. if the new patch is a no-go area, this will have been
+                // explicitly set up to be a refuge with alienInflowProb = 0.0
+                // (see ModelParams::addPlantTypeDistributionConfig) - therefore in this
+                // case the following code will set successProb to 0.0.
                 Patch& newPatch = getPatch(iNewPos);
                 if (newPatch.refuge() && (newPatch.getRefugeNativeSpeciesId() != pPlant->getSpeciesId()))
                 {

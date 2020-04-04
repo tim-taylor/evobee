@@ -216,7 +216,9 @@ void Pollinator::resetMovementArea()
 /*
  * Query whether this pollinator is currently within its allowed area,
  * taking into account whether migration is allowed to outside of the
- * Hive's initial area.
+ * Hive's initial area, and whether the new position is in a no-go
+ * area.
+ *
  * NB This method also considers the migration restrictions defined for the
  * Hive. If the pollinator has moved out of its previously allowed movement
  * area and the migration is deemed to be allowed, then the pollinator's
@@ -225,6 +227,8 @@ void Pollinator::resetMovementArea()
  */
 bool Pollinator::inAllowedArea()
 {
+    bool migrated = false;
+
     bool ok = ((m_Position.x >= (float)m_MovementAreaTopLeft.x) &&
                (m_Position.x <  (float)(m_MovementAreaBottomRight.x+1)) &&
                (m_Position.y >= (float)m_MovementAreaTopLeft.y) &&
@@ -238,9 +242,21 @@ bool Pollinator::inAllowedArea()
             if (inEnvironment())
             {
                 ok = true;
-                resetMovementArea();
+                migrated = true;
             }
         }
+    }
+
+    if (ok) {
+        Patch& patch = m_pEnv->getPatch(m_Position);
+        if (patch.noGoArea()) {
+            ok = false;
+            migrated = false;
+        }
+    }
+
+    if (migrated) {
+        resetMovementArea();
     }
 
     return ok;
@@ -268,11 +284,7 @@ void Pollinator::repositionInEnv(fPos delta)
 // allowed area
 void Pollinator::repositionInAllowedArea(fPos delta)
 {
-    /*
-    const iPos& TL = m_pHive->getInitForageAreaTopLeft();
-    const iPos& BR = m_pHive->getInitForageAreaBottomRight();
-    repositionInArea(delta, (float)TL.x, (float)TL.y, (float)(BR.x+1), (float)(BR.y+1));
-    */
+    fPos originalPos = m_Position - delta;
 
     repositionInArea(delta,
         (float)(m_MovementAreaTopLeft.x),
@@ -280,11 +292,20 @@ void Pollinator::repositionInAllowedArea(fPos delta)
         (float)(m_MovementAreaBottomRight.x+1),
         (float)(m_MovementAreaBottomRight.y+1));
 
+    Patch& patch = m_pEnv->getPatch(m_Position);
+    if (patch.noGoArea()) {
+        // if after all of this the pollinator has ended up in a no-go
+        // area, simply return it to its previous position (doing
+        // anything more complicated than this gets a bit tricky)
+        m_Position = originalPos;
+    }
+
     assert(inEnvironment());
+    assert(inAllowedArea());
 }
 
 
-// A helper method for the move... methods for use when a pollinator has
+// A helper method for the moveXXX methods for use when a pollinator has
 // wandered out of the specified area. Reflect the movement off the edge of
 // the environment and reposition the pollinator back within the allowed
 // area

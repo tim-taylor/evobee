@@ -52,7 +52,7 @@ public:
      *
      */
     virtual int getNumPollinators() const = 0;
-    
+
     /**
      *
      */
@@ -67,7 +67,7 @@ public:
      *
      */
     bool migrationAllowed() const {return m_bMigrationAllowed;}
-    
+
     /**
      *
      */
@@ -76,7 +76,7 @@ public:
     /**
      *
      */
-    float migrationProb() const {return m_fMigrationProb;}    
+    float migrationProb() const {return m_fMigrationProb;}
 
     /**
      * Return the coordinate of the top left corner of the initial foraging area
@@ -90,14 +90,17 @@ public:
      * file. The pollinator's m_MovementAreaTL/BR may be updated during a
      * foraging phase if the pollinator successfully migrates to a new
      * area (this happens in Pollinator::inAllowedArea(), called from the
-     * Pollinator moveXXX methods).
+     * Pollinator moveXXX methods). Also note that the m_MovementAreaTL/BR
+     * variables define a rectangular region and may include some no-go
+     * areas within this region. These possible no-go areas are dealt with
+     * as a special case in Pollinator::inAllowedArea().
      */
     const iPos& getInitForageAreaTopLeft() const {return m_InitForageAreaTopLeft;}
 
     /**
      * See comments for AbstractHive::getInitForageAreaTopLeft() for more
      * information about this method.
-     */    
+     */
     const iPos& getInitForageAreaBottomRight() const {return m_InitForageAreaBottomRight;}
 
 private:
