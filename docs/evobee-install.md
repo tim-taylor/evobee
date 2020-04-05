@@ -10,7 +10,7 @@ To compile evobee from source, you will need the following libraries  (including
 	* on Ubuntu systems, installing the `libboost-program-options-dev` package should give you everything you need.
 
 - SDL 2.0 ([https://www.libsdl.org/](https://www.libsdl.org/))
-	* on Ubuntu systems, installing the `libsdl2-dev` and `libsdl2-image-dev` packages should give you everything you need
+	* on Ubuntu systems, installing the `libsdl2-dev` and `libsdl2-image-dev` packages should give you everything you need.
 
 
 ## To build EvoBee
