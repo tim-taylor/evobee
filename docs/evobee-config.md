@@ -135,8 +135,7 @@ These files are shown below, followed by the [Configuration options](#configurat
                 "anther-pollen-transfer-per-visit" : 10,
                 "stigma-max-pollen-capacity" : 5,
                 "pollen-clogging" : "",
-                "repro-seed-dispersal-global" : true,
-                "repro-seed-dispersal-radius" : 1.0
+                "repro-seed-dispersal-global" : true
             },
             "PlantType2" : {
                 "species" : "PlantSpecies2",
@@ -146,8 +145,7 @@ These files are shown below, followed by the [Configuration options](#configurat
                 "anther-pollen-transfer-per-visit" : 10,
                 "stigma-max-pollen-capacity" : 5,
                 "pollen-clogging" : "",
-                "repro-seed-dispersal-global" : true,
-                "repro-seed-dispersal-radius" : 1.0
+                "repro-seed-dispersal-global" : true
             }
         },
         "Pollinators" : {
@@ -255,7 +253,6 @@ These files are shown below, followed by the [Configuration options](#configurat
                 "stigma-max-pollen-capacity" : 5,
                 "pollen-clogging" : "",
                 "repro-seed-dispersal-global" : true,
-                "repro-seed-dispersal-radius" : 1.0,
                 "comment0" : "items below this line in PlantType not currently used",
                 "comment1" : "plus replenish rate for all of these things - ",
                 "comment2" : "if second bee visits, does it get the same reward or none;",
@@ -270,8 +267,7 @@ These files are shown below, followed by the [Configuration options](#configurat
                 "anther-pollen-transfer-per-visit" : 10,
                 "stigma-max-pollen-capacity" : 5,
                 "pollen-clogging" : "",
-                "repro-seed-dispersal-global" : true,
-                "repro-seed-dispersal-radius" : 1.0
+                "repro-seed-dispersal-global" : true
             }
         },
         "Pollinators" : {
@@ -389,7 +385,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |init-nectar|initNectar|int|Initial amount of nectar available in a new flower.|
 |diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|if true and flowerMPInitMin != flowerMPInitMax, plants created with different marker points are treated as different species (default=false)|
 |repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|Can seeds be dispersed at random across whole environment?|
-|repro-seed-dispersal-radius|reproSeedDispersalRadius|float|Expressed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
+|repro-seed-dispersal-radius-stddev|reproSeedDispersalRadiusStdDev|float|Expressed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
 
 ### Plant Distribution configuration parameters
 
@@ -438,11 +434,11 @@ A summary of some of the formats is shown below.
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc0MDUyOTMyNywxMTU3MDAwMTc1LDE0Mj
-A5MzU5NTMsLTExNzI2ODE3MDEsNzQ3NzMxNjcyLC0xOTE1NzEy
-MzM1LDY3MTAwNjQ1MSw2MjczNDY4NTYsLTE5NTQxMzczOTQsLT
-EyMjE4NTg5MTYsLTE5OTgyOTEyODIsLTY4MTM4Mzg4MCwtNTEw
-MzkxOTE1LC02NzI4OTA2OTksLTIwNTAyNTc0ODgsLTE0OTM2Mz
-gyMzMsMTkyNTY3MjExMiwtNzk0NzU4NTM1LDE4OTM3NDUyMzUs
-LTQwNTc5OTYwMF19
+eyJoaXN0b3J5IjpbNjY1ODU1Mzc3LDE3NDA1MjkzMjcsMTE1Nz
+AwMDE3NSwxNDIwOTM1OTUzLC0xMTcyNjgxNzAxLDc0NzczMTY3
+MiwtMTkxNTcxMjMzNSw2NzEwMDY0NTEsNjI3MzQ2ODU2LC0xOT
+U0MTM3Mzk0LC0xMjIxODU4OTE2LC0xOTk4MjkxMjgyLC02ODEz
+ODM4ODAsLTUxMDM5MTkxNSwtNjcyODkwNjk5LC0yMDUwMjU3ND
+g4LC0xNDkzNjM4MjMzLDE5MjU2NzIxMTIsLTc5NDc1ODUzNSwx
+ODkzNzQ1MjM1XX0=
 -->
