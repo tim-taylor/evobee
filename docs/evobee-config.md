@@ -385,7 +385,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |init-nectar|initNectar|int|Initial amount of nectar available in a new flower.|
 |diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|if true and flowerMPInitMin != flowerMPInitMax, plants created with different marker points are treated as different species (default=false)|
 |repro-seed-dispersal-global|reproSeedDispersalGlobal|bool|Can seeds be dispersed at random across whole environment?|
-|repro-seed-dispersal-radius-stddev|reproSeedDispersalRadiusStdDev|float|Expressed in env units (1.0=one patch), overridden if reproSeedDispersalGlobal=true|
+|repro-seed-dispersal-radius-stddev|reproSeedDispersalRadiusStdDev|float|The standard deviation of see dispersal around the parent Expressed in env units (1.0=one patch), ignored if reproSeedDispersalGlobal=true|
 
 ### Plant Distribution configuration parameters
 
@@ -434,11 +434,11 @@ A summary of some of the formats is shown below.
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjY1ODU1Mzc3LDE3NDA1MjkzMjcsMTE1Nz
-AwMDE3NSwxNDIwOTM1OTUzLC0xMTcyNjgxNzAxLDc0NzczMTY3
-MiwtMTkxNTcxMjMzNSw2NzEwMDY0NTEsNjI3MzQ2ODU2LC0xOT
-U0MTM3Mzk0LC0xMjIxODU4OTE2LC0xOTk4MjkxMjgyLC02ODEz
-ODM4ODAsLTUxMDM5MTkxNSwtNjcyODkwNjk5LC0yMDUwMjU3ND
-g4LC0xNDkzNjM4MjMzLDE5MjU2NzIxMTIsLTc5NDc1ODUzNSwx
-ODkzNzQ1MjM1XX0=
+eyJoaXN0b3J5IjpbMTQwNzc0NzgyOSwxNzQwNTI5MzI3LDExNT
+cwMDAxNzUsMTQyMDkzNTk1MywtMTE3MjY4MTcwMSw3NDc3MzE2
+NzIsLTE5MTU3MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1NiwtMT
+k1NDEzNzM5NCwtMTIyMTg1ODkxNiwtMTk5ODI5MTI4MiwtNjgx
+MzgzODgwLC01MTAzOTE5MTUsLTY3Mjg5MDY5OSwtMjA1MDI1Nz
+Q4OCwtMTQ5MzYzODIzMywxOTI1NjcyMTEyLC03OTQ3NTg1MzUs
+MTg5Mzc0NTIzNV19
 -->
