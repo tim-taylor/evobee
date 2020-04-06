@@ -292,6 +292,10 @@ void Hymenoptera::updateVisualPreferences(const Flower* pFlower, int nectarColle
             updateVisualPrefsStay(pFlower, nectarCollected);
             break;
         }
+        case PollinatorLearningStrategy::NONE: {
+            // do nothing
+            break;
+        }
         case PollinatorLearningStrategy::DELIBERATIVE_DECISIVE: // NOT YET IMPLEMENTED
         default: {
             throw std::runtime_error("Unhandled learning strategy encountered in Hymenoptera::updateVisualPreferences");

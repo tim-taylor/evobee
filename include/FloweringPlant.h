@@ -119,10 +119,11 @@ public:
     bool reproSeedDispersalGlobal();
 
     /**
-     * During reproduction, if seed dispersal is not global, what is the dispersal
-     * radius (expressed in environment units, so 1.0 equals one patch)
+     * During reproduction, if seed dispersal is not global, what is the
+     * standard deviation of the dispersal radius (expressed in environment units,
+     * so 1.0 is 1pdu stddev)
      */
-    float reproSeedDispersalRadius();
+    float reproSeedDispersalRadiusStdDev();
 
     /**
      * A static method to construct the clogging map, which should be called once only,

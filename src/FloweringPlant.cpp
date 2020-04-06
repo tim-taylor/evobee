@@ -326,15 +326,15 @@ bool FloweringPlant::reproSeedDispersalGlobal()
 }
 
 
-float FloweringPlant::reproSeedDispersalRadius()
+float FloweringPlant::reproSeedDispersalRadiusStdDev()
 {
     if (m_pPlantTypeConfig != nullptr)
     {
-        return m_pPlantTypeConfig->reproSeedDispersalRadius;
+        return m_pPlantTypeConfig->reproSeedDispersalRadiusStdDev;
     }
     else
     {
-        throw std::runtime_error("FloweringPlant::reproSeedDispersalRadius no config defined");
+        throw std::runtime_error("FloweringPlant::reproSeedDispersalRadiusStdDev no config defined");
         return 1.0;
     }
 }

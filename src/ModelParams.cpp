@@ -404,6 +404,8 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
         pc.learningStrategy = PollinatorLearningStrategy::DELIBERATIVE_DECISIVE;
     } else if (pc.strLearningStrategy == "fickle-circumspect") {
         pc.learningStrategy = PollinatorLearningStrategy::FICKLE_CIRCUMSPECT;
+    } else if (pc.strLearningStrategy == "none") {
+        pc.learningStrategy = PollinatorLearningStrategy::NONE;
     } else {
         pc.learningStrategy = PollinatorLearningStrategy::STAY;
         if (verbose()) {

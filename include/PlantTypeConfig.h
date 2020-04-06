@@ -28,7 +28,7 @@ struct PlantTypeConfig {
         numFlowers(1),
         hasLeaf(false),
         reproSeedDispersalGlobal(false),
-        reproSeedDispersalRadius(1.0),
+        reproSeedDispersalRadiusStdDev(1.0),
         diffMPIsDiffSpecies(false)
     {};
 
@@ -50,8 +50,8 @@ struct PlantTypeConfig {
     bool        hasLeaf;
     MarkerPoint leafMP;
     bool        reproSeedDispersalGlobal;   ///< can seeds be dispersed at random across whole environment?
-    float       reproSeedDispersalRadius;   ///< expressed in env units (1.0=one patch), overridden
-                                            ///<   if reproSeedDispersalGlobal=true
+    float       reproSeedDispersalRadiusStdDev; ///< expressed in env units (1.0=one patch), ignored
+                                                ///<   if reproSeedDispersalGlobal=true
     bool        diffMPIsDiffSpecies;        ///< if true and flowerMPInitMin != flowerMPInitMax, plants
                                             ///<   created with different marker points are treated as
                                             ///<   different species (default=false)

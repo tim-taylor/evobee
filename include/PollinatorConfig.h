@@ -47,7 +47,7 @@ struct PollinatorConfig {
     float constancyParam;
     std::string strForagingStrategy;        ///< allowed values: random, nearest-flower, random-flower, random-global
     PollinatorForagingStrategy foragingStrategy;
-    std::string strLearningStrategy;        ///< allowed values: stay, fickle-circumspect, deliberative-decisive
+    std::string strLearningStrategy;        ///< allowed values: stay, fickle-circumspect, deliberative-decisive, none
     PollinatorLearningStrategy learningStrategy;
     unsigned int visitedFlowerMemorySize;
 

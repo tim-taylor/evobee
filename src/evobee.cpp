@@ -157,7 +157,8 @@ void from_json(const json& j, PlantTypeConfig& pt)
     }
     json_read_param(j, sct, "pollen-clogging", pt.pollenCloggingSpecies);
     json_read_param(j, sct, "repro-seed-dispersal-global", pt.reproSeedDispersalGlobal);
-    json_read_opt_param(j, sct, "repro-seed-dispersal-radius", pt.reproSeedDispersalRadius, 1.0f);
+    //json_read_opt_param(j, sct, "repro-seed-dispersal-radius", pt.reproSeedDispersalRadius, 1.0f);
+    json_read_opt_param(j, sct, "repro-seed-dispersal-radius-stddev", pt.reproSeedDispersalRadiusStdDev, 1.0f);
     json_read_opt_param(j, sct, "init-nectar", pt.initNectar, 0);
     json_read_opt_param(j, sct, "diff-mp-is-diff-species", pt.diffMPIsDiffSpecies, false);
 }

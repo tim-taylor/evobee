@@ -673,7 +673,8 @@ void Environment::initialiseNewGeneration()
         else
         {
             // pick position from within a specified radius of the current position
-            std::uniform_real_distribution<float> distanceDistrib(0.0, pPlant->reproSeedDispersalRadius());
+            //std::uniform_real_distribution<float> headingDistrib(0.0, pPlant->reproSeedDispersalRadius());
+            std::normal_distribution<float> distanceDistrib(0.0f, pPlant->reproSeedDispersalRadiusStdDev());
             float distance = distanceDistrib(EvoBeeModel::m_sRngEngine);
             float heading  = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
             fPos delta { distance*std::cos(heading), distance*std::sin(heading) };
