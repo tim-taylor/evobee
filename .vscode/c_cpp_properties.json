@@ -5,9 +5,9 @@
             "includePath": [
                 "/home/tim/evobee/code/evobee/include",
                 "/home/tim/evobee/code/evobee/3rd-party/nlohmann-json",
-                "/usr/include/c++/7",
-                "/usr/include/x86_64-linux-gnu/c++/7",
-                "/usr/lib/gcc/x86_64-linux-gnu/7/include/"
+                "/usr/include/c++/9",
+                "/usr/include/x86_64-linux-gnu/c++/9",
+                "/usr/lib/gcc/x86_64-linux-gnu/9/include/"
             ],
             "defines": [],
             "browse": {
