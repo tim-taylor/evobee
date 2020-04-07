@@ -356,7 +356,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |constancy-type|strConstancyType|std::string|Defines the pollinator's constancy behaviour while foraging (NB 'simple'=if sees a flower of same species as last visited, land with probablity 0.9, if its a different species, land with probability (1.0-constancy-param). 'visual'=utilise the pollinator's full visual system and learning strategies for deciding which flowers to visit - this option should be used in conjunction with foraging-strategy='nearest-flower'). Allowed values: none, simple, visual|
 |constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1.0-constancy-param).|
 |foraging-strategy|strForagingStrategy|std::string|Defines how the pollinator forages (NB for foraging using visual system, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: random, nearest-flower, random-flower, random-global|
-|learning-strategy|strLearningStrategy|std::string|Defines how the pollinator learns from experience (NB for this parameter to have effect, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: stay, fickle-circumspect, deliberative-decisive, none. For 'none', pollinator never sets a target so effectively may land on any flower it sees (use in conjun|
+|learning-strategy|strLearningStrategy|std::string|Defines how the pollinator learns from experience (NB for this parameter to have effect, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: stay, fickle-circumspect, deliberative-decisive, none. For 'none', pollinator never sets a target so effectively may land with equal probability on any flower it sees (use in conjunction with a high value for vis-prob-land-no-target-set-delta).|
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it re-lands on a given flower, depending upon its foraging strategy.|
 |nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower on a single visit.|
 |vis-data|visData|6xN array|This array holds the data that specifies the pollinator's visual system. In the JSON config file it takes the form of a 6xN array, where each row contains 6 numbers representing (1) Marker Point of stimulus (int); (2) Pollinator's probability of detecting this marker point (float in range 0.0 to 1.0); (3) The green contrast value for this marker point (float in range 0.0 to 1.0); (4) X coordinate of this marker point in hexagon colour space (float); (5) Y coordinate of this marker point in hexagon colour space (float); (6) the pollinator's base innate probability of landing on this marker point when it is not the target marker point (float in range 0.0 to 1.0) [but see also vis-prob-land-nontarget-indiv-stddev].|
@@ -434,11 +434,11 @@ A summary of some of the formats is shown below.
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjU1MjMyMTI3LC0xMzU5ODMyNzYxLDE3ND
-A1MjkzMjcsMTE1NzAwMDE3NSwxNDIwOTM1OTUzLC0xMTcyNjgx
-NzAxLDc0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEwMDY0NTEsNj
-I3MzQ2ODU2LC0xOTU0MTM3Mzk0LC0xMjIxODU4OTE2LC0xOTk4
-MjkxMjgyLC02ODEzODM4ODAsLTUxMDM5MTkxNSwtNjcyODkwNj
-k5LC0yMDUwMjU3NDg4LC0xNDkzNjM4MjMzLDE5MjU2NzIxMTIs
-LTc5NDc1ODUzNV19
+eyJoaXN0b3J5IjpbLTg0MjcwNzQ4MywtMTM1OTgzMjc2MSwxNz
+QwNTI5MzI3LDExNTcwMDAxNzUsMTQyMDkzNTk1MywtMTE3MjY4
+MTcwMSw3NDc3MzE2NzIsLTE5MTU3MTIzMzUsNjcxMDA2NDUxLD
+YyNzM0Njg1NiwtMTk1NDEzNzM5NCwtMTIyMTg1ODkxNiwtMTk5
+ODI5MTI4MiwtNjgxMzgzODgwLC01MTAzOTE5MTUsLTY3Mjg5MD
+Y5OSwtMjA1MDI1NzQ4OCwtMTQ5MzYzODIzMywxOTI1NjcyMTEy
+LC03OTQ3NTg1MzVdfQ==
 -->
