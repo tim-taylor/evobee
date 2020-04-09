@@ -419,7 +419,9 @@ A summary of some of the formats is shown below.
  2. generation number
  3. step number
  4. flower species ID
- 5. 
+ 5. flower species name
+ 6. number of plants of this species existing at end of foraging phase
+ 7. number of pollina
 
 ### log-files=p  (Logger::logPollinatorsInterPhaseSummary)
 
@@ -458,11 +460,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcxNjU3NTgsLTEyNzkzNjE2MTksLTg0Mj
-cwNzQ4MywtMTM1OTgzMjc2MSwxNzQwNTI5MzI3LDExNTcwMDAx
-NzUsMTQyMDkzNTk1MywtMTE3MjY4MTcwMSw3NDc3MzE2NzIsLT
-E5MTU3MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1NiwtMTk1NDEz
-NzM5NCwtMTIyMTg1ODkxNiwtMTk5ODI5MTI4MiwtNjgxMzgzOD
-gwLC01MTAzOTE5MTUsLTY3Mjg5MDY5OSwtMjA1MDI1NzQ4OCwt
-MTQ5MzYzODIzM119
+eyJoaXN0b3J5IjpbLTE5ODM0MTM1NzcsLTEyNzkzNjE2MTksLT
+g0MjcwNzQ4MywtMTM1OTgzMjc2MSwxNzQwNTI5MzI3LDExNTcw
+MDAxNzUsMTQyMDkzNTk1MywtMTE3MjY4MTcwMSw3NDc3MzE2Nz
+IsLTE5MTU3MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1NiwtMTk1
+NDEzNzM5NCwtMTIyMTg1ODkxNiwtMTk5ODI5MTI4MiwtNjgxMz
+gzODgwLC01MTAzOTE5MTUsLTY3Mjg5MDY5OSwtMjA1MDI1NzQ4
+OCwtMTQ5MzYzODIzM119
 -->
