@@ -415,10 +415,20 @@ A summary of some of the formats is shown below.
 
 ### log-files=p  (Logger::logPollinatorsInterPhaseSummary)
 
+The first 3 fields are:
+
  1. "p"
  2. generation number
  3. pollinator ID
- 4. 
+
+These are followed by entries for each plantFollowed
+
+ 1. << "," << perfInfo.first << "," << perfInfo.second.numLandings
+
+<< "," << perfInfo.second.numPollinations << ","
+
+<< pPol->getNumPollenGrainsInStore(perfInfo.first);
+ 5. 
 
 ### log-files=Q  (Logger::logPollinatorsIntraPhaseFull)
 
@@ -441,7 +451,7 @@ A summary of some of the formats is shown below.
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExODYwNjQxMjgsLTEyNzkzNjE2MTksLT
+eyJoaXN0b3J5IjpbLTE5ODU2MDc4NDAsLTEyNzkzNjE2MTksLT
 g0MjcwNzQ4MywtMTM1OTgzMjc2MSwxNzQwNTI5MzI3LDExNTcw
 MDAxNzUsMTQyMDkzNTk1MywtMTE3MjY4MTcwMSw3NDc3MzE2Nz
 IsLTE5MTU3MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1NiwtMTk1
