@@ -415,7 +415,9 @@ A summary of some of the formats is shown below.
 
 ### log-files=p  (Logger::logPollinatorsInterPhaseSummary)
 
- 1. 
+ 1. "p"
+ 2. generation number
+ 3. 
 
 ### log-files=Q  (Logger::logPollinatorsIntraPhaseFull)
 
@@ -438,11 +440,11 @@ A summary of some of the formats is shown below.
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTk1NDMyOTExLC04NDI3MDc0ODMsLTEzNT
-k4MzI3NjEsMTc0MDUyOTMyNywxMTU3MDAwMTc1LDE0MjA5MzU5
-NTMsLTExNzI2ODE3MDEsNzQ3NzMxNjcyLC0xOTE1NzEyMzM1LD
-Y3MTAwNjQ1MSw2MjczNDY4NTYsLTE5NTQxMzczOTQsLTEyMjE4
-NTg5MTYsLTE5OTgyOTEyODIsLTY4MTM4Mzg4MCwtNTEwMzkxOT
-E1LC02NzI4OTA2OTksLTIwNTAyNTc0ODgsLTE0OTM2MzgyMzMs
-MTkyNTY3MjExMl19
+eyJoaXN0b3J5IjpbLTEyNzkzNjE2MTksLTg0MjcwNzQ4MywtMT
+M1OTgzMjc2MSwxNzQwNTI5MzI3LDExNTcwMDAxNzUsMTQyMDkz
+NTk1MywtMTE3MjY4MTcwMSw3NDc3MzE2NzIsLTE5MTU3MTIzMz
+UsNjcxMDA2NDUxLDYyNzM0Njg1NiwtMTk1NDEzNzM5NCwtMTIy
+MTg1ODkxNiwtMTk5ODI5MTI4MiwtNjgxMzgzODgwLC01MTAzOT
+E5MTUsLTY3Mjg5MDY5OSwtMjA1MDI1NzQ4OCwtMTQ5MzYzODIz
+MywxOTI1NjcyMTEyXX0=
 -->
