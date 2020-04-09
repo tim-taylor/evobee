@@ -37,7 +37,6 @@ def main():
 #SBATCH --mem=4000
 #SBATCH --array=1-{nruns}
 #SBATCH --output={bname}.out
-#SBATCH --open-mode=append
 
 EB_BUILD_DIR=/mnt/lustre/projects/ft13/ttay0006/evobee/code/evobee/build
 EB_EXEC=$EB_BUILD_DIR/evobee
