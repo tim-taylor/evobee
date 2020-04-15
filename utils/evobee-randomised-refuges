@@ -10,4 +10,5 @@ R=$RANDOM
 BASE='/mnt/lustre/projects/ft13/ttay0006/evobee/code/evobee'
 
 gawk -f $BASE/utils/gen-shuffled-refuges.awk $BASE/build/$T > $BASE/build/tmp-$R.cfg.json
-#$BASE/build/evobee -c tmp-$R.cfg.json
+$BASE/build/evobee -c $BASE/build/tmp-$R.cfg.json
+rm -f $BASE/build/tmp-$R.cfg.json
