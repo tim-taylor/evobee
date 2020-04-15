@@ -10,5 +10,5 @@ T=$1
 #P=$3
 #S=$4
 
-gawk -f /mnt/lustre/projects/ft13/ttay0006/evobee/code/evobee/utils/gen-shuffled-refuges.awk $T > tmp.cfg.json
+gawk -f /mnt/lustre/projects/ft13/ttay0006/evobee/code/evobee/utils/gen-shuffled-refuges.awk $T > tmp-$RANDOM.cfg.json
 #/mnt/lustre/projects/ft13/ttay0006/evobee/code/evobee/build/evobee -c tmp.cfg.json
