@@ -6,9 +6,8 @@ if [ "$#" -ne "1" ]; then
 fi
 
 T=$1
-#L=$2
-#P=$3
-#S=$4
+R=$RANDOM
+BASE='/mnt/lustre/projects/ft13/ttay0006/evobee/code/evobee'
 
-gawk -f /mnt/lustre/projects/ft13/ttay0006/evobee/code/evobee/utils/gen-shuffled-refuges.awk $T > tmp-$RANDOM.cfg.json
-#/mnt/lustre/projects/ft13/ttay0006/evobee/code/evobee/build/evobee -c tmp.cfg.json
+gawk -f $BASE/utils/gen-shuffled-refuges.awk $BASE/build/$T > $BASE/build/tmp-$R.cfg.json
+#$BASE/build/evobee -c tmp-$R.cfg.json
