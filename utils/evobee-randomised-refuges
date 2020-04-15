@@ -1,0 +1,14 @@
+#!/bin/env bash
+
+if [ "$#" -ne "4" ]; then
+    echo "usage: evobee-randomised-refuges template L P S"
+    exit
+fi
+
+T=$1
+L=$2
+P=$3
+S=$4
+
+gawk -f /mnt/lustre/projects/ft13/ttay0006/evobee/code/evobee/utils/gen-shuffled-refuges.awk $T > tmp.cfg.json
+#/mnt/lustre/projects/ft13/ttay0006/evobee/code/evobee/build/evobee -c tmp.cfg.json
