@@ -431,6 +431,8 @@ A summary of some of the formats is shown below.
  4. marker point
  5. number of plants with this flower marker point in this generation
  6. number of pollinated plants with this flower marker point at end of foraging phase in this generation
+ 7. number of plants in communal regions (non-refuges) with this flower marker point in this generation
+ 8. number of pollinated plants in communal regions (non-refuges)  with this flower marker point at end of foraging phase in this generation
 
 ### log-files=p  (Logger::logPollinatorsInterPhaseSummary)
 
@@ -469,11 +471,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjE5NDA0OTY5LC0xMjc5MzYxNjE5LC04ND
-I3MDc0ODMsLTEzNTk4MzI3NjEsMTc0MDUyOTMyNywxMTU3MDAw
-MTc1LDE0MjA5MzU5NTMsLTExNzI2ODE3MDEsNzQ3NzMxNjcyLC
-0xOTE1NzEyMzM1LDY3MTAwNjQ1MSw2MjczNDY4NTYsLTE5NTQx
-MzczOTQsLTEyMjE4NTg5MTYsLTE5OTgyOTEyODIsLTY4MTM4Mz
-g4MCwtNTEwMzkxOTE1LC02NzI4OTA2OTksLTIwNTAyNTc0ODgs
-LTE0OTM2MzgyMzNdfQ==
+eyJoaXN0b3J5IjpbOTg2MzU5Mjc3LDYxOTQwNDk2OSwtMTI3OT
+M2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMyNzYxLDE3NDA1Mjkz
+MjcsMTE1NzAwMDE3NSwxNDIwOTM1OTUzLC0xMTcyNjgxNzAxLD
+c0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEwMDY0NTEsNjI3MzQ2
+ODU2LC0xOTU0MTM3Mzk0LC0xMjIxODU4OTE2LC0xOTk4MjkxMj
+gyLC02ODEzODM4ODAsLTUxMDM5MTkxNSwtNjcyODkwNjk5LC0y
+MDUwMjU3NDg4XX0=
 -->
