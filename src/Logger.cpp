@@ -11,6 +11,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <tuple>
 #include <experimental/filesystem>
 #include <chrono>
 #include <utility>
@@ -380,25 +381,30 @@ void Logger::logFlowerMPsInterPhaseSummary()
     std::vector<Patch>& patches = m_pEnv->getPatches();
 
     // create a map of marker points to counts of number of plants
-    //std::map<MarkerPoint, unsigned int> mpCounts;
-    std::map<MarkerPoint,  std::pair<unsigned int,unsigned int>> mpCounts;
+    std::map<MarkerPoint,
+             std::tuple<unsigned int,unsigned int,unsigned int,unsigned int>> mpCounts;
 
     for (Patch& patch : patches)
     {
         if (patch.hasFloweringPlants())
         {
+            bool bCommunal = !(patch.refuge());
             PlantVector& plants = patch.getFloweringPlants();
             for (FloweringPlant& plant : plants)
             {
                 unsigned int pol = plant.pollinated() ? 1 : 0;
+                unsigned int communal_num = bCommunal ? 1 : 0;
+                unsigned int communal_pol = bCommunal ? pol : 0;
                 MarkerPoint mp = plant.getFlowerMarkerPoint();
                 auto it = mpCounts.find(mp);
                 if (it == mpCounts.end()) {
-                    mpCounts.insert(std::make_pair(mp, std::make_pair(1, pol)));
+                    mpCounts.insert(std::make_pair(mp, std::make_tuple(1, pol, communal_num, communal_pol)));
                 }
                 else {
-                    it->second.first++;
-                    it->second.second += pol;
+                    std::get<0>(it->second)++;
+                    std::get<1>(it->second) += pol;
+                    std::get<2>(it->second) += communal_num;
+                    std::get<3>(it->second) += communal_pol;
                 }
             }
         }
@@ -406,8 +412,10 @@ void Logger::logFlowerMPsInterPhaseSummary()
 
     for (auto& countInfo : mpCounts)
     {
-        ofs << "m," << gen << "," << m_pModel->getStepNumber() << ","
-            << countInfo.first << "," << countInfo.second.first << "," << countInfo.second.second << std::endl;
+        ofs << "m," << gen << "," << m_pModel->getStepNumber() << "," << countInfo.first
+            << "," << std::get<0>(countInfo.second) << "," << std::get<1>(countInfo.second)
+            << "," << std::get<2>(countInfo.second) << "," << std::get<3>(countInfo.second)
+            << std::endl;
     }
 }
 

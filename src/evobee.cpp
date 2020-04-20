@@ -153,7 +153,7 @@ void from_json(const json& j, PlantTypeConfig& pt)
     {
         // a user supplied value of 0 or negative means that the maximum capacity
         // is set to an effectively unlimited value
-        pt.stigmaMaxPollenCapacity = 99999;
+        pt.stigmaMaxPollenCapacity = 999999;
     }
     json_read_param(j, sct, "pollen-clogging", pt.pollenCloggingSpecies);
     json_read_param(j, sct, "repro-seed-dispersal-global", pt.reproSeedDispersalGlobal);

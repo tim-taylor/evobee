@@ -70,7 +70,10 @@
         "map": "cpp",
         "set": "cpp",
         "variant": "cpp",
-        "bit": "cpp"
+        "bit": "cpp",
+        "regex": "cpp",
+        "shared_mutex": "cpp",
+        "cfenv": "cpp"
     },
     "files.exclude": {
         "**/.git": true,

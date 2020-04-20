@@ -77,8 +77,10 @@ private:
 
     inline std::int16_t getScreenLength(float len);
 
+    bool checkUserInteraction();
 
-    // private data memebers
+
+    // private data members
     int     m_iScreenW;
     int     m_iScreenH;
     int     m_iPatchSize; /** determines the fundemental resolution for each patch
@@ -93,6 +95,7 @@ private:
 
     bool    m_bShowPollinators;
     bool    m_bShowTrails;
+    bool    m_bUpdate;
     std::map<unsigned int, std::vector<fPos>> m_PollMoveHists; /** map of Pollinator ids with the movement
                                                                 *  history of that pollinator */
     SDL_Window*   m_pWindow;

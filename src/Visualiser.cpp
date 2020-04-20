@@ -27,6 +27,7 @@ Visualiser::Visualiser(EvoBeeModel* pModel) :
     m_iScreenOffsetX(0),
     m_iScreenOffsetY(0),
     m_bShowPollinators(true),
+    m_bUpdate(true),
     m_pWindow(nullptr),
     m_pRenderer(nullptr),
     m_pModel(pModel)
@@ -122,6 +123,12 @@ int Visualiser::init()
 bool Visualiser::update()
 {
     bool bContinue = true;
+
+    if (!m_bUpdate) {
+        bContinue = checkUserInteraction();
+        return bContinue;
+    }
+
 
     SDL_RenderSetScale(m_pRenderer, m_fZoomLevel, m_fZoomLevel);
     SDL_SetRenderDrawColor(m_pRenderer, 0x0, 0x0, 0x0, 0xFF);
@@ -274,8 +281,22 @@ bool Visualiser::update()
     // Now everything is prepared, render the entire scence
     SDL_RenderPresent(m_pRenderer);
 
+    bContinue = checkUserInteraction();
+
+    if (m_iDelayMsPerFrame > 0)
+    {
+        SDL_Delay(m_iDelayMsPerFrame);
+    }
+
+    return bContinue;
+}
+
+
+bool Visualiser::checkUserInteraction()
+{
     // Deal with user interactivity
     bool pause = false;
+    bool bContinue = true;
 
     do
     {
@@ -335,15 +356,15 @@ bool Visualiser::update()
                         m_bShowTrails = !m_bShowTrails;
                         break;
                     }
+                    case SDLK_u:
+                    {
+                        m_bUpdate = !m_bUpdate;
+                        break;
+                    }
                 }
             }
         }
     } while (pause);
-
-    if (m_iDelayMsPerFrame > 0)
-    {
-        SDL_Delay(m_iDelayMsPerFrame);
-    }
 
     return bContinue;
 }
