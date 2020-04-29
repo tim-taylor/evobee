@@ -349,6 +349,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |---|---|---|---|
 |species|species|std::string|Text label designating species of pollinator (any text is allowed)|
 |bout-length|boutLength|int|Number of flower visits allowed before returning to hive [0=unlimited]|
+|step-length|stepLength|float|Determines the length of a single step of the pollinator's flight during foraging|
 |max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|
 |pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|
 |pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|
@@ -471,11 +472,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTg2MzU5Mjc3LDYxOTQwNDk2OSwtMTI3OT
-M2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMyNzYxLDE3NDA1Mjkz
-MjcsMTE1NzAwMDE3NSwxNDIwOTM1OTUzLC0xMTcyNjgxNzAxLD
-c0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEwMDY0NTEsNjI3MzQ2
-ODU2LC0xOTU0MTM3Mzk0LC0xMjIxODU4OTE2LC0xOTk4MjkxMj
-gyLC02ODEzODM4ODAsLTUxMDM5MTkxNSwtNjcyODkwNjk5LC0y
-MDUwMjU3NDg4XX0=
+eyJoaXN0b3J5IjpbLTQzNzg3MDQyOSw5ODYzNTkyNzcsNjE5ND
+A0OTY5LC0xMjc5MzYxNjE5LC04NDI3MDc0ODMsLTEzNTk4MzI3
+NjEsMTc0MDUyOTMyNywxMTU3MDAwMTc1LDE0MjA5MzU5NTMsLT
+ExNzI2ODE3MDEsNzQ3NzMxNjcyLC0xOTE1NzEyMzM1LDY3MTAw
+NjQ1MSw2MjczNDY4NTYsLTE5NTQxMzczOTQsLTEyMjE4NTg5MT
+YsLTE5OTgyOTEyODIsLTY4MTM4Mzg4MCwtNTEwMzkxOTE1LC02
+NzI4OTA2OTldfQ==
 -->
