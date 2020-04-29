@@ -168,6 +168,7 @@ void from_json(const json& j, PollinatorConfig& p)
     std::string sct = "PollinatorConfig";
     json_read_param(j, sct, "species", p.species);
     json_read_param(j, sct, "bout-length", p.boutLength);
+    json_read_opt_param(j, sct, "step-length", p.stepLength, 1.0f);
     json_read_param(j, sct, "pollen-deposit-per-flower-visit", p.pollenDepositPerFlowerVisit);
     json_read_param(j, sct, "pollen-loss-in-air", p.pollenLossInAir);
     json_read_param(j, sct, "pollen-carryover-num-visits", p.pollenCarryoverNumVisits);
@@ -183,6 +184,7 @@ void from_json(const json& j, PollinatorConfig& p)
     json_read_opt_param(j, sct, "vis-prob-land-increment-on-reward", p.visProbLandIncrementOnReward, 0.01f);
     json_read_opt_param(j, sct, "vis-prob-land-decrement-on-no-reward", p.visProbLandDecrementOnNoReward, 0.01f);
     json_read_opt_param(j, sct, "vis-prob-land-decrement-on-unseen", p.visProbLandDecrementOnUnseen, 0.005f);
+    json_read_opt_param(j, sct, "vis-target-exact-match-only", p.visTargetExactMatchOnly, false);
     json_read_opt_param(j, sct, "nectar-collect-per-flower-visit", p.nectarCollectPerFlowerVisit, 0);
 
     if (p.maxPollenCapacity < 1)

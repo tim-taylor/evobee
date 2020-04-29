@@ -211,18 +211,16 @@ protected:
     virtual int visitFlower(Flower* pFlower);
 
     /**
-     * Move by the given distance in a uniform random direction
-     * @param allowOffEnv Do we allow move to take pollinator out of the bounds of the environment?
-     * @return true if pollinator is within the bounds of the environment after the move, false otherwise
+     * Move in a random direction by a distance determined by m_fStepLength.
      */
-    void moveRandom(/*bool allowOffEnv = false,*/ float stepLength = 1.0);
+    void moveRandom();
 
     /**
      * Move by the given distance in a direction biassed by the experimental
      * bee flight data recorded by Waddington
      * @note CURRENTLY UNUSED AND UNIMPLEMENTED
      */
-    bool moveBiassed(bool allowOffEnv = false, float stepLength = 1.0);
+    //void moveBiassed();
 
     /**
      * Move according to a Levy flight pattern: direction of travel is
@@ -230,7 +228,7 @@ protected:
      * specific probability distribution (TBC)
      * @note CURRENTLY UNUSED AND UNIMPLEMENTED
      */
-    bool moveLevy(bool allowOffEnv = false, float stepLength = 1.0);
+    //void moveLevy();
 
     /**
      * Reset this pollinator's allowed movement area according to the
@@ -372,6 +370,7 @@ protected:
 
     // some constant parameters for this pollinator
     const int       m_iBoutLength;                  ///< Num flower visits allowed before returning to hive [0=unlimited]
+    const float     m_fStepLength;                  ///< Parameter determining size of individual hops while foraging
     const int       m_iPollenDepositPerFlowerVisit; ///< Amount of pollen deposited on a flower on each visit
     const int       m_iPollenLossInAir;             ///< Amount of pollen lost on each timestep when flying
     const int       m_iMaxPollenCapacity;           ///< Maximum amount of pollen the pollinator can carry

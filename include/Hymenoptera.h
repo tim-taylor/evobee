@@ -111,6 +111,10 @@ private:
     static float                    m_sVisProbLandDecrementOnUnseen;    ///< learning rate: decrease in landing probability when
                                                                         ///< pollinator hasn't seen a particular marker point recently
 
+    static bool                     m_sbVisTargetExactMatchOnly;///< Overrides the normal visual discrimination code and will only
+                                                                ///< match a stimulus with the target if they share the exact same
+                                                                ///< marker point
+
     static bool                     m_sbStaticsInitialised;     ///< Flags whether statics have been initialised from config file
 
     /**

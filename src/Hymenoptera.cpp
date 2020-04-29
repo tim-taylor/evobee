@@ -27,6 +27,7 @@ float Hymenoptera::m_sVisProbLandNoTargetSetDelta = 0.2;
 float Hymenoptera::m_sVisProbLandIncrementOnReward = 0.01;
 float Hymenoptera::m_sVisProbLandDecrementOnNoReward = 0.01;
 float Hymenoptera::m_sVisProbLandDecrementOnUnseen = 0.005;
+bool Hymenoptera::m_sbVisTargetExactMatchOnly = false;
 bool Hymenoptera::m_sbStaticsInitialised = false;
 
 
@@ -45,6 +46,7 @@ Hymenoptera::Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive) :
         m_sVisProbLandIncrementOnReward = pc.visProbLandIncrementOnReward;
         m_sVisProbLandDecrementOnNoReward = pc.visProbLandDecrementOnNoReward;
         m_sVisProbLandDecrementOnUnseen = pc.visProbLandDecrementOnUnseen;
+        m_sbVisTargetExactMatchOnly = pc.visTargetExactMatchOnly;
         m_sbStaticsInitialised = true;
     }
 
@@ -252,8 +254,15 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower, bool* pJudgedToMatchTa
     // (2) DISTINGUISH step
     if (!bNoTargetSet)
     {
-        float confidenceOfMatch = confidenceMatchesTarget(pFlower->getReflectanceInfo());
-        bJudgedToBeTarget = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < confidenceOfMatch);
+        if (m_sbVisTargetExactMatchOnly)
+        {
+            bJudgedToBeTarget = (m_TargetMP == pFlower->getMarkerPoint());
+        }
+        else
+        {
+            float confidenceOfMatch = confidenceMatchesTarget(pFlower->getReflectanceInfo());
+            bJudgedToBeTarget = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < confidenceOfMatch);
+        }
         if (pJudgedToMatchTarget != nullptr) {
             *pJudgedToMatchTarget = bJudgedToBeTarget;
         }

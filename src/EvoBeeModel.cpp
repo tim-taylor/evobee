@@ -23,6 +23,7 @@ constexpr double TWOPI = 2.0*PI;
 // Define EvoBeeModel's static members
 // -- create our static random number generator engine
 std::mt19937 EvoBeeModel::m_sRngEngine;
+//gsl_rng* EvoBeeModel::m_spGslRngEngine = nullptr;
 bool EvoBeeModel::m_sbRngInitialised = false;
 // -- and define some commonly used distributions
 std::uniform_real_distribution<float> EvoBeeModel::m_sDirectionDistrib(0.0, TWOPI);
@@ -78,6 +79,9 @@ void EvoBeeModel::seedRng()
     {
         std::cout << "Actual RNG seed used in run is: '" << ModelParams::getRngSeedStr() << "'" << std::endl;
     }
+
+    //m_spGslRngEngine = gsl_rng_alloc(gsl_rng_mt19937);
+    //gsl_rng_set(m_spGslRngEngine, 0);
 
     m_sbRngInitialised = true;
 }

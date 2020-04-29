@@ -12,6 +12,8 @@
 #include <iomanip>
 #include <algorithm>
 #include <iostream>
+//#include <gsl/gsl_rng.h>
+//#include <gsl/gsl_randist.h>
 #include "tools.h"
 #include "ModelParams.h"
 #include "EvoBeeModel.h"
@@ -37,6 +39,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_ForagingStrategy(pc.foragingStrategy),
     m_LearningStrategy(pc.learningStrategy),
     m_iBoutLength(pc.boutLength),
+    m_fStepLength(pc.stepLength),
     m_iPollenDepositPerFlowerVisit(pc.pollenDepositPerFlowerVisit),
     m_iPollenLossInAir(pc.pollenLossInAir),
     m_iMaxPollenCapacity(pc.maxPollenCapacity),
@@ -89,6 +92,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_ForagingStrategy(other.m_ForagingStrategy),
     m_LearningStrategy(other.m_LearningStrategy),
     m_iBoutLength(other.m_iBoutLength),
+    m_fStepLength(other.m_fStepLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
     m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
@@ -130,6 +134,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_ForagingStrategy(other.m_ForagingStrategy),
     m_LearningStrategy(other.m_LearningStrategy),
     m_iBoutLength(other.m_iBoutLength),
+    m_fStepLength(other.m_fStepLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
     m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
@@ -543,7 +548,7 @@ void Pollinator::forageNearestFlower()
 
     if (!flowerVisited)
     {
-        moveRandom(); ///@todo should we allow variable step lengths?
+        moveRandom();
         losePollenToAir(m_iPollenLossInAir);
     }
 }
@@ -742,15 +747,14 @@ int Pollinator::visitFlower(Flower* pFlower)
 }
 
 
-// Move by a given distance in a random direction.
+// Move in a random direction by a distance determined by the
+// pollinator's m_fStepLength.
 //
-// @todo Maybe implement a "stay/hover" option in future?
-//
-void Pollinator::moveRandom(/*bool allowOffEnv,*/ float stepLength)
+void Pollinator::moveRandom()
 {
     m_fHeading = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
 
-    fPos delta{stepLength*std::cos(m_fHeading), stepLength*std::sin(m_fHeading)};
+    fPos delta{(m_fStepLength * std::cos(m_fHeading)), (m_fStepLength * std::sin(m_fHeading))};
     m_Position += delta;
 
     if (!inAllowedArea())
@@ -759,38 +763,38 @@ void Pollinator::moveRandom(/*bool allowOffEnv,*/ float stepLength)
     }
 }
 
-
-bool Pollinator::moveBiassed(bool allowOffEnv, float stepLength)
+/*
+void Pollinator::moveBiassed()
 {
     ///@todo implement moveBiassed
-    fPos delta;
-
-    bool inEnv = inEnvironment();
-
-    if (!inEnv && !allowOffEnv)
-    {
-        repositionInEnv(delta);
-    }
-
-    return inEnv;
 }
 
-
-bool Pollinator::moveLevy(bool allowOffEnv, float stepLength)
-{
+void Pollinator::moveLevy()
+{{
     ///@todo implement moveLevy
-    fPos delta;
 
-    bool inEnv = inEnvironment();
+    m_fHeading = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
 
-    if (!inEnv && !allowOffEnv)
+    / *
+    gsl_rng * r = gsl_rng_alloc(gsl_rng_mt19937);
+    gsl_rng_set(r, 0);
+    //gsl_rng_free(r);
+
+    double c = 2.0;
+    double alpha = 0.5; // 0.5 for Levy distribution
+    double beta = 1.0; // 1.0 for Levy distribution
+    float stepLength = (float)gsl_ran_levy_skew(r, c, alpha, beta);
+    * /
+    float stepLength = 1.0;
+
+    fPos delta{stepLength*std::cos(m_fHeading), stepLength*std::sin(m_fHeading)};
+    m_Position += delta;
+    if (!inAllowedArea())
     {
-        repositionInEnv(delta);
+        repositionInAllowedArea(delta);
     }
-
-    return inEnv;
 }
-
+*/
 
 // for each Pollen grain in the store, update its landing count
 void Pollinator::updatePollenLandingCount()

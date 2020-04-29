@@ -68,6 +68,9 @@ set(PKG_CONFIG_USE_CMAKE_PREFIX_PATH)
 pkg_search_module(SDL2 REQUIRED sdl2)
 pkg_search_module(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
 
+## Configure GNU Scientific Library
+#find_package(GSL REQUIRED)
+
 # define sources
 # First explicitly specify all source files in the evobee project
 set(SOURCES
@@ -112,6 +115,7 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${SDL2_GFX_SOURCES})
 # link libraries
 ## (TODO: is there a more generic way to link to C++ filesystem lib?)
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${Boost_LIBRARIES} -lstdc++fs)
+#target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${Boost_LIBRARIES} -lstdc++fs GSL::gsl GSL::gslcblas)
 
 # specify compiler features
 # Approach 1: directly set compiler flags (assumes a specific compiler)
