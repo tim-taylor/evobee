@@ -367,6 +367,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-prob-land-increment-on-reward|visProbLandIncrementOnReward|float|Learning algorithm parameter for increase in probability of landing on a marker point if the current flower is rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowers. (default: 0.005) [see also visited-flower-memory-size]|
+|vis-target-exact-match-only|visTargetExactMatchOnly|bool|If true, this overrides the normal visual discrimination code and will only |
 
 ### Plant Type configuration parameters
 
@@ -472,11 +473,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzc0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MD
-Q5NjksLTEyNzkzNjE2MTksLTg0MjcwNzQ4MywtMTM1OTgzMjc2
-MSwxNzQwNTI5MzI3LDExNTcwMDAxNzUsMTQyMDkzNTk1MywtMT
-E3MjY4MTcwMSw3NDc3MzE2NzIsLTE5MTU3MTIzMzUsNjcxMDA2
-NDUxLDYyNzM0Njg1NiwtMTk1NDEzNzM5NCwtMTIyMTg1ODkxNi
-wtMTk5ODI5MTI4MiwtNjgxMzgzODgwLC01MTAzOTE5MTUsLTY3
-Mjg5MDY5OV19
+eyJoaXN0b3J5IjpbLTE1ODc1NTczMDMsMzc0MjAxNjcwLDk4Nj
+M1OTI3Nyw2MTk0MDQ5NjksLTEyNzkzNjE2MTksLTg0MjcwNzQ4
+MywtMTM1OTgzMjc2MSwxNzQwNTI5MzI3LDExNTcwMDAxNzUsMT
+QyMDkzNTk1MywtMTE3MjY4MTcwMSw3NDc3MzE2NzIsLTE5MTU3
+MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1NiwtMTk1NDEzNzM5NC
+wtMTIyMTg1ODkxNiwtMTk5ODI5MTI4MiwtNjgxMzgzODgwLC01
+MTAzOTE5MTVdfQ==
 -->
