@@ -323,7 +323,7 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-density|m_fPtdAutoDistribDensity|float|PlantTypeDistribution auto-generation density of plants in each area|
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stochastic pattern?|
-|rng-seed|m_strRngSeed|std::string|Seed string used to seed RNG|
+|rng-seed|m_strRngSeed|std::string|Seed string used to seed RNG. This is specified as an alphanumeric string of arbitrary length, composed of digits, uppercase letters and lowercase letters.|
 
 ### Hive configuration parameters
 
@@ -349,6 +349,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |---|---|---|---|
 |species|species|std::string|Text label designating species of pollinator (any text is allowed)|
 |bout-length|boutLength|int|Number of flower visits allowed before returning to hive [0=unlimited]|
+|step-length|stepLength|float|Determines the length of a single step of the pollinator's flight during foraging|
 |max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|
 |pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|
 |pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|
@@ -366,6 +367,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-prob-land-increment-on-reward|visProbLandIncrementOnReward|float|Learning algorithm parameter for increase in probability of landing on a marker point if the current flower is rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowers. (default: 0.005) [see also visited-flower-memory-size]|
+|vis-target-exact-match-only|visTargetExactMatchOnly|bool|If true, this overrides the normal visual discrimination code and will only match a stimulus with the target if they share the exact same marker point.|
 
 ### Plant Type configuration parameters
 
@@ -471,11 +473,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTg2MzU5Mjc3LDYxOTQwNDk2OSwtMTI3OT
-M2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMyNzYxLDE3NDA1Mjkz
-MjcsMTE1NzAwMDE3NSwxNDIwOTM1OTUzLC0xMTcyNjgxNzAxLD
-c0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEwMDY0NTEsNjI3MzQ2
-ODU2LC0xOTU0MTM3Mzk0LC0xMjIxODU4OTE2LC0xOTk4MjkxMj
-gyLC02ODEzODM4ODAsLTUxMDM5MTkxNSwtNjcyODkwNjk5LC0y
-MDUwMjU3NDg4XX0=
+eyJoaXN0b3J5IjpbLTE3MTk0NjIzLDM3NDIwMTY3MCw5ODYzNT
+kyNzcsNjE5NDA0OTY5LC0xMjc5MzYxNjE5LC04NDI3MDc0ODMs
+LTEzNTk4MzI3NjEsMTc0MDUyOTMyNywxMTU3MDAwMTc1LDE0Mj
+A5MzU5NTMsLTExNzI2ODE3MDEsNzQ3NzMxNjcyLC0xOTE1NzEy
+MzM1LDY3MTAwNjQ1MSw2MjczNDY4NTYsLTE5NTQxMzczOTQsLT
+EyMjE4NTg5MTYsLTE5OTgyOTEyODIsLTY4MTM4Mzg4MCwtNTEw
+MzkxOTE1XX0=
 -->
