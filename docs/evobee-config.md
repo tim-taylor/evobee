@@ -367,7 +367,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-prob-land-increment-on-reward|visProbLandIncrementOnReward|float|Learning algorithm parameter for increase in probability of landing on a marker point if the current flower is rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowers. (default: 0.005) [see also visited-flower-memory-size]|
-|vis-target-exact-match-only|visTargetExactMatchOnly|bool|If true, this overrides the normal visual discrimination code and will only |
+|vis-target-exact-match-only|visTargetExactMatchOnly|bool|If true, this overrides the normal visual discrimination code and will only match a stimulus with the target if they share the exact same marker point.|
 
 ### Plant Type configuration parameters
 
@@ -473,11 +473,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1ODc1NTczMDMsMzc0MjAxNjcwLDk4Nj
-M1OTI3Nyw2MTk0MDQ5NjksLTEyNzkzNjE2MTksLTg0MjcwNzQ4
-MywtMTM1OTgzMjc2MSwxNzQwNTI5MzI3LDExNTcwMDAxNzUsMT
-QyMDkzNTk1MywtMTE3MjY4MTcwMSw3NDc3MzE2NzIsLTE5MTU3
-MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1NiwtMTk1NDEzNzM5NC
-wtMTIyMTg1ODkxNiwtMTk5ODI5MTI4MiwtNjgxMzgzODgwLC01
-MTAzOTE5MTVdfQ==
+eyJoaXN0b3J5IjpbLTE3MTk0NjIzLDM3NDIwMTY3MCw5ODYzNT
+kyNzcsNjE5NDA0OTY5LC0xMjc5MzYxNjE5LC04NDI3MDc0ODMs
+LTEzNTk4MzI3NjEsMTc0MDUyOTMyNywxMTU3MDAwMTc1LDE0Mj
+A5MzU5NTMsLTExNzI2ODE3MDEsNzQ3NzMxNjcyLC0xOTE1NzEy
+MzM1LDY3MTAwNjQ1MSw2MjczNDY4NTYsLTE5NTQxMzczOTQsLT
+EyMjE4NTg5MTYsLTE5OTgyOTEyODIsLTY4MTM4Mzg4MCwtNTEw
+MzkxOTE1XX0=
 -->
