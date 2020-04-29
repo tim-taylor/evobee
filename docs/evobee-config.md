@@ -347,12 +347,12 @@ Pollinator configuration parameters for a single pollinator species are stored i
 
 |Parameter name in JSON config file|Corresponding variable name in PollinatorConfig.h|Type of variable|Description|
 |---|---|---|---|
-|species|species|std::string|Text label designating species of pollinator (any text is allowed).|
-|bout-length|boutLength|int|Number of flower visits allowed before returning to hive [0=unlimited].|
-|step-length|stepLength|float|Determines the length of a single step of the pollinator's flight during foraging.|
-|max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry.|
-|pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit.|
-|pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying.|
+|species|species|std::string|Text label designating species of pollinator (any text is allowed)|
+|bout-length|boutLength|int|Number of flower visits allowed before returning to hive [0=unlimited]|
+|step-length|stepLength|float|Determines the length of a single step of the pollinator's flight during foraging|
+|max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|
+|pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|
+|pollen-loss-in-air|pollenLossInAir|int|Amount of pollen lost on each timestep when flying|
 |pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|
 |constancy-type|strConstancyType|std::string|Defines the pollinator's constancy behaviour while foraging (NB 'simple'=if sees a flower of same species as last visited, land with probablity 0.9, if its a different species, land with probability (1.0-constancy-param). 'visual'=utilise the pollinator's full visual system and learning strategies for deciding which flowers to visit - this option should be used in conjunction with foraging-strategy='nearest-flower'). Allowed values: none, simple, visual|
 |constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1.0-constancy-param).|
@@ -472,11 +472,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NjI3Mjg1NzAsOTg2MzU5Mjc3LDYxOT
-QwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMy
-NzYxLDE3NDA1MjkzMjcsMTE1NzAwMDE3NSwxNDIwOTM1OTUzLC
-0xMTcyNjgxNzAxLDc0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEw
-MDY0NTEsNjI3MzQ2ODU2LC0xOTU0MTM3Mzk0LC0xMjIxODU4OT
-E2LC0xOTk4MjkxMjgyLC02ODEzODM4ODAsLTUxMDM5MTkxNSwt
-NjcyODkwNjk5XX0=
+eyJoaXN0b3J5IjpbMzc0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MD
+Q5NjksLTEyNzkzNjE2MTksLTg0MjcwNzQ4MywtMTM1OTgzMjc2
+MSwxNzQwNTI5MzI3LDExNTcwMDAxNzUsMTQyMDkzNTk1MywtMT
+E3MjY4MTcwMSw3NDc3MzE2NzIsLTE5MTU3MTIzMzUsNjcxMDA2
+NDUxLDYyNzM0Njg1NiwtMTk1NDEzNzM5NCwtMTIyMTg1ODkxNi
+wtMTk5ODI5MTI4MiwtNjgxMzgzODgwLC01MTAzOTE5MTUsLTY3
+Mjg5MDY5OV19
 -->
