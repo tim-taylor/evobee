@@ -323,7 +323,7 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-density|m_fPtdAutoDistribDensity|float|PlantTypeDistribution auto-generation density of plants in each area|
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stochastic pattern?|
-|rng-seed|m_strRngSeed|std::string|Seed string used to seed RNG. This is specified as an alphanumeric string of arbitrary length|
+|rng-seed|m_strRngSeed|std::string|Seed string used to seed RNG. This is specified as an alphanumeric string of arbitrary length, composed of digits, uppercase letters and lowercase letters.|
 
 ### Hive configuration parameters
 
@@ -472,11 +472,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjIyOTIwMDczLDk4NjM1OTI3Nyw2MTk0MD
-Q5NjksLTEyNzkzNjE2MTksLTg0MjcwNzQ4MywtMTM1OTgzMjc2
-MSwxNzQwNTI5MzI3LDExNTcwMDAxNzUsMTQyMDkzNTk1MywtMT
-E3MjY4MTcwMSw3NDc3MzE2NzIsLTE5MTU3MTIzMzUsNjcxMDA2
-NDUxLDYyNzM0Njg1NiwtMTk1NDEzNzM5NCwtMTIyMTg1ODkxNi
-wtMTk5ODI5MTI4MiwtNjgxMzgzODgwLC01MTAzOTE5MTUsLTY3
-Mjg5MDY5OV19
+eyJoaXN0b3J5IjpbLTE3NjI3Mjg1NzAsOTg2MzU5Mjc3LDYxOT
+QwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMy
+NzYxLDE3NDA1MjkzMjcsMTE1NzAwMDE3NSwxNDIwOTM1OTUzLC
+0xMTcyNjgxNzAxLDc0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEw
+MDY0NTEsNjI3MzQ2ODU2LC0xOTU0MTM3Mzk0LC0xMjIxODU4OT
+E2LC0xOTk4MjkxMjgyLC02ODEzODM4ODAsLTUxMDM5MTkxNSwt
+NjcyODkwNjk5XX0=
 -->
