@@ -168,6 +168,7 @@ void from_json(const json& j, PollinatorConfig& p)
     std::string sct = "PollinatorConfig";
     json_read_param(j, sct, "species", p.species);
     json_read_param(j, sct, "bout-length", p.boutLength);
+    json_read_opt_param(j, sct, "step-type", p.strStepType, std::string("constant"));
     json_read_opt_param(j, sct, "step-length", p.stepLength, 1.0f);
     json_read_param(j, sct, "pollen-deposit-per-flower-visit", p.pollenDepositPerFlowerVisit);
     json_read_param(j, sct, "pollen-loss-in-air", p.pollenLossInAir);

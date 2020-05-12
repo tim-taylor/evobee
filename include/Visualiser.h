@@ -93,6 +93,7 @@ private:
 
     int     m_iDelayMsPerFrame;
 
+    bool    m_bShowFlowers;
     bool    m_bShowPollinators;
     bool    m_bShowTrails;
     bool    m_bUpdate;

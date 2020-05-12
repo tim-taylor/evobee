@@ -14,11 +14,7 @@
 #include "Pollinator.h"
 #include "ModelParams.h"
 #include "EvoBeeModel.h"
-
-// Define some commonly used constant expressions
-constexpr double PI = 4.0*std::atan(1);
-constexpr double TWOPI = 2.0*PI;
-
+#include "tools.h"
 
 // Define EvoBeeModel's static members
 // -- create our static random number generator engine
@@ -26,7 +22,7 @@ std::mt19937 EvoBeeModel::m_sRngEngine;
 //gsl_rng* EvoBeeModel::m_spGslRngEngine = nullptr;
 bool EvoBeeModel::m_sbRngInitialised = false;
 // -- and define some commonly used distributions
-std::uniform_real_distribution<float> EvoBeeModel::m_sDirectionDistrib(0.0, TWOPI);
+std::uniform_real_distribution<float> EvoBeeModel::m_sDirectionDistrib(0.0, EvoBee::TWOPI);
 std::uniform_real_distribution<float> EvoBeeModel::m_sUniformProbDistrib(0.0, 1.0);
 
 

@@ -39,6 +39,8 @@ struct PollinatorConfig {
 
     std::string species;
     int boutLength;
+    std::string strStepType;                ///< allowed values: constant, levy
+    PollinatorStepType stepType;
     float stepLength;
     int maxPollenCapacity;
     int pollenDepositPerFlowerVisit;

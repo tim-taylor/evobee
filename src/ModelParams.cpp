@@ -414,6 +414,19 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
         }
     }
 
+    // Set the step type according to the given specification string
+    if (pc.strStepType == "constant") {
+        pc.stepType = PollinatorStepType::CONSTANT;
+    } else if (pc.strStepType == "levy") {
+        pc.stepType = PollinatorStepType::LEVY;
+    } else {
+        pc.stepType = PollinatorStepType::CONSTANT;
+        if (verbose()) {
+            std::cout << "Warning: unrecognised pollinator step type (" <<
+                pc.strStepType << "). Using constant." << std::endl;
+        }
+    }
+
     m_PollinatorConfigs.push_back(pc);
 }
 

@@ -12,6 +12,9 @@
 #include "Visualiser.h"
 #include "EvoBeeExperiment.h"
 #include "HoneyBee.h"
+#include "tools.h"
+
+#include <iostream>
 
 EvoBeeExperiment::EvoBeeExperiment() :
     m_Model(),
@@ -226,6 +229,25 @@ void EvoBeeExperiment::runStandardExperiment()
 
 void EvoBeeExperiment::runMarkerPointSimilarityTest()
 {
+    /*
+    float x, y, pdf;
+    float scale = 1.0;
+    float max = 50.0;
+
+    assert(scale > 1.0 - EvoBee::FLOAT_COMPARISON_EPSILON);
+
+    for (int i=0; i<50000; i++) {
+        do {
+            x = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) * max;
+            y = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) * 0.5;
+            pdf = std::sqrt(scale/EvoBee::TWOPI) * std::exp(-scale/(2.0*x)) / (std::pow(x,1.5));
+            //std::cout << x << "," << y << "," << pdf << std::endl;
+        } while (y > pdf);
+
+        std::cout << x << std::endl;
+    }
+    */
+
     auto pPolConfig = ModelParams::getPollinatorConfigPtr("HoneyBee");
     auto hives = m_Model.getEnv().getHives();
     auto pHive = hives.at(0);

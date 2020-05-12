@@ -216,19 +216,12 @@ protected:
     void moveRandom();
 
     /**
-     * Move by the given distance in a direction biassed by the experimental
-     * bee flight data recorded by Waddington
-     * @note CURRENTLY UNUSED AND UNIMPLEMENTED
-     */
-    //void moveBiassed();
-
-    /**
      * Move according to a Levy flight pattern: direction of travel is
      * uniform random, and distance travelled is selected according to a
-     * specific probability distribution (TBC)
-     * @note CURRENTLY UNUSED AND UNIMPLEMENTED
+     * Levy probability distribution. The scale parameter of the Levy
+     * probability density function is set by Pollinator::m_fStepLength.
      */
-    //void moveLevy();
+    void moveLevy();
 
     /**
      * Reset this pollinator's allowed movement area according to the
@@ -370,6 +363,7 @@ protected:
 
     // some constant parameters for this pollinator
     const int       m_iBoutLength;                  ///< Num flower visits allowed before returning to hive [0=unlimited]
+    const PollinatorStepType m_StepType;            ///< The type of steps the pollinator makes while foraging (e.g. constant, levy)
     const float     m_fStepLength;                  ///< Parameter determining size of individual hops while foraging
     const int       m_iPollenDepositPerFlowerVisit; ///< Amount of pollen deposited on a flower on each visit
     const int       m_iPollenLossInAir;             ///< Amount of pollen lost on each timestep when flying
@@ -389,7 +383,6 @@ protected:
      * - flower handling time
      * - [mass, shape]
      * - visual acuity spec
-     * - colour recog spec
      */
 
      // housekeeping variables to keeping track of pollinator's performance during a foraging phase

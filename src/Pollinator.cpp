@@ -12,8 +12,6 @@
 #include <iomanip>
 #include <algorithm>
 #include <iostream>
-//#include <gsl/gsl_rng.h>
-//#include <gsl/gsl_randist.h>
 #include "tools.h"
 #include "ModelParams.h"
 #include "EvoBeeModel.h"
@@ -39,6 +37,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_ForagingStrategy(pc.foragingStrategy),
     m_LearningStrategy(pc.learningStrategy),
     m_iBoutLength(pc.boutLength),
+    m_StepType(pc.stepType),
     m_fStepLength(pc.stepLength),
     m_iPollenDepositPerFlowerVisit(pc.pollenDepositPerFlowerVisit),
     m_iPollenLossInAir(pc.pollenLossInAir),
@@ -92,6 +91,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_ForagingStrategy(other.m_ForagingStrategy),
     m_LearningStrategy(other.m_LearningStrategy),
     m_iBoutLength(other.m_iBoutLength),
+    m_StepType(other.m_StepType),
     m_fStepLength(other.m_fStepLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -134,6 +134,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_ForagingStrategy(other.m_ForagingStrategy),
     m_LearningStrategy(other.m_LearningStrategy),
     m_iBoutLength(other.m_iBoutLength),
+    m_StepType(other.m_StepType),
     m_fStepLength(other.m_fStepLength),
     m_iPollenDepositPerFlowerVisit(other.m_iPollenDepositPerFlowerVisit),
     m_iPollenLossInAir(other.m_iPollenLossInAir),
@@ -548,7 +549,19 @@ void Pollinator::forageNearestFlower()
 
     if (!flowerVisited)
     {
-        moveRandom();
+        switch (m_StepType) {
+            case PollinatorStepType::CONSTANT: {
+                moveRandom();
+                break;
+            }
+            case PollinatorStepType::LEVY: {
+                moveLevy();
+                break;
+            }
+            default: {
+                throw std::runtime_error("Pollinator::forageNearestFlower() encountered unrecognised step type. Aborting.");
+            }
+        }
         losePollenToAir(m_iPollenLossInAir);
     }
 }
@@ -747,7 +760,7 @@ int Pollinator::visitFlower(Flower* pFlower)
 }
 
 
-// Move in a random direction by a distance determined by the
+// Move in a random direction by a constant distance determined by the
 // pollinator's m_fStepLength.
 //
 void Pollinator::moveRandom()
@@ -763,30 +776,17 @@ void Pollinator::moveRandom()
     }
 }
 
-/*
-void Pollinator::moveBiassed()
-{
-    ///@todo implement moveBiassed
-}
-
+// Move in a random direction by a distance determined by the Levy
+// probability distribution with scaling factor specified by
+// Pollinator::m_fStepLength.
+//
 void Pollinator::moveLevy()
-{{
-    ///@todo implement moveLevy
-
+{
+    float max = 15.0;
     m_fHeading = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
-
-    / *
-    gsl_rng * r = gsl_rng_alloc(gsl_rng_mt19937);
-    gsl_rng_set(r, 0);
-    //gsl_rng_free(r);
-
-    double c = 2.0;
-    double alpha = 0.5; // 0.5 for Levy distribution
-    double beta = 1.0; // 1.0 for Levy distribution
-    float stepLength = (float)gsl_ran_levy_skew(r, c, alpha, beta);
-    * /
-    float stepLength = 1.0;
-
+    float stepLength = EvoBee::randomLevy(max, m_fStepLength);
+    //float stepLength = EvoBee::randomLevy2();
+    std::cout << stepLength << std::endl;
     fPos delta{stepLength*std::cos(m_fHeading), stepLength*std::sin(m_fHeading)};
     m_Position += delta;
     if (!inAllowedArea())
@@ -794,7 +794,6 @@ void Pollinator::moveLevy()
         repositionInAllowedArea(delta);
     }
 }
-*/
 
 // for each Pollen grain in the store, update its landing count
 void Pollinator::updatePollenLandingCount()

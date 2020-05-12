@@ -26,6 +26,7 @@ Visualiser::Visualiser(EvoBeeModel* pModel) :
     m_fZoomLevel(1.0),
     m_iScreenOffsetX(0),
     m_iScreenOffsetY(0),
+    m_bShowFlowers(true),
     m_bShowPollinators(true),
     m_bUpdate(true),
     m_pWindow(nullptr),
@@ -152,43 +153,46 @@ bool Visualiser::update()
     }
 
     // render flowers
-    for (Patch& p : patches)
+    if (m_bShowFlowers)
     {
-        if (p.hasFloweringPlants())
+        for (Patch& p : patches)
         {
-            PlantVector & fplants = p.getFloweringPlants();
-            for (FloweringPlant & fplant : fplants)
+            if (p.hasFloweringPlants())
             {
-                ///@todo deal with multiple flowers on a plant?
-
-                Flower* pFlower = fplant.getFlower(0);
-                const fPos & flwrpos = pFlower->getPosition();
-                const Colour::RGB & c = Colour::getRgbFromMarkerPoint(pFlower->getMarkerPoint());
-
-                if (pFlower->pollinated())
+                PlantVector & fplants = p.getFloweringPlants();
+                for (FloweringPlant & fplant : fplants)
                 {
-                    // draw a pollinated flower
-                    boxRGBA(
-                        m_pRenderer,
-                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.15),
-                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.15),
-                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.85),
-                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.85),
-                        c.r, c.g, c.b, 200
-                        //150, 150, 150, 255
-                    );
-                }
-                else
-                {
-                    // draw an unpollinated flower
-                    boxRGBA(
-                        m_pRenderer,
-                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.30),
-                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.30),
-                        getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.70),
-                        getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.70),
-                        c.r, c.g, c.b, 255
-                    );
+                    ///@todo deal with multiple flowers on a plant?
+
+                    Flower* pFlower = fplant.getFlower(0);
+                    const fPos & flwrpos = pFlower->getPosition();
+                    const Colour::RGB & c = Colour::getRgbFromMarkerPoint(pFlower->getMarkerPoint());
+
+                    if (pFlower->pollinated())
+                    {
+                        // draw a pollinated flower
+                        boxRGBA(
+                            m_pRenderer,
+                            getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.15),
+                            getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.15),
+                            getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.85),
+                            getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.85),
+                            c.r, c.g, c.b, 200
+                            //150, 150, 150, 255
+                        );
+                    }
+                    else
+                    {
+                        // draw an unpollinated flower
+                        boxRGBA(
+                            m_pRenderer,
+                            getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.30),
+                            getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.30),
+                            getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.70),
+                            getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.70),
+                            c.r, c.g, c.b, 255
+                        );
+                    }
                 }
             }
         }
@@ -259,7 +263,9 @@ bool Visualiser::update()
                     if (posHist.size() > 1)
                     {
                         auto prevPosItr = posHist.begin();
-                        for (auto curPosItr = prevPosItr + 1; curPosItr != posHist.end(); ++curPosItr)
+                        auto curPosItr = posHist.begin();
+                        ++curPosItr;
+                        for (; curPosItr != posHist.end(); ++curPosItr, ++prevPosItr)
                         {
                             lineRGBA(
                                 m_pRenderer,
@@ -269,7 +275,6 @@ bool Visualiser::update()
                                 getScreenCoordFromFloatWithRelOffsetY(curPosItr->y, 0.5),
                                 r, g, b, 200
                             );
-                            prevPosItr = curPosItr;
                         }
                     }
                 }
@@ -344,6 +349,11 @@ bool Visualiser::checkUserInteraction()
                     case SDLK_p:
                     {
                         pause = !pause;
+                        break;
+                    }
+                    case SDLK_f:
+                    {
+                        m_bShowFlowers = !m_bShowFlowers;
                         break;
                     }
                     case SDLK_b:
