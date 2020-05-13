@@ -786,7 +786,7 @@ void Pollinator::moveLevy()
     m_fHeading = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
     float stepLength = EvoBee::randomLevy(max, m_fStepLength);
     //float stepLength = EvoBee::randomLevy2();
-    std::cout << stepLength << std::endl;
+    //std::cout << stepLength << std::endl;
     fPos delta{stepLength*std::cos(m_fHeading), stepLength*std::sin(m_fHeading)};
     m_Position += delta;
     if (!inAllowedArea())

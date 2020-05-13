@@ -92,7 +92,7 @@ namespace EvoBee
         length = std::min(length, max);
         //
 
-        std::cout << length << std::endl;
+        //std::cout << length << std::endl;
 
         return length;
     }
