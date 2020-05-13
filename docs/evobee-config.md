@@ -349,7 +349,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |---|---|---|---|
 |species|species|std::string|Text label designating species of pollinator (any text is allowed)|
 |bout-length|boutLength|int|Number of flower visits allowed before returning to hive [0=unlimited]|
-|step-type|strStepType|std::string|Determines how a pollinator moves if/when it decides to move in a giveAllowed values: constant, levy|
+|step-type|strStepType|std::string|Determines how a pollinator moves if/when it decides to move in a given step of a foraging run. For value 'constant' it will always attempt to move a constant distance in a uniform random direction with distance defined by the parameter step-length. For value 'levy' it will attempt to move by a distance determined by a levy distribution in a uniform random direction, wAllowed values: constant, levy|
 |step-length|stepLength|float|Determines the length of a single step of the pollinator's flight during foraging|
 |max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|
 |pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|
@@ -474,11 +474,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA4OTYwNTE2OSwtMTcxOTQ2MjMsMzc0Mj
-AxNjcwLDk4NjM1OTI3Nyw2MTk0MDQ5NjksLTEyNzkzNjE2MTks
-LTg0MjcwNzQ4MywtMTM1OTgzMjc2MSwxNzQwNTI5MzI3LDExNT
-cwMDAxNzUsMTQyMDkzNTk1MywtMTE3MjY4MTcwMSw3NDc3MzE2
-NzIsLTE5MTU3MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1NiwtMT
-k1NDEzNzM5NCwtMTIyMTg1ODkxNiwtMTk5ODI5MTI4MiwtNjgx
-MzgzODgwXX0=
+eyJoaXN0b3J5IjpbNzA0NTA0MjI3LC0xNzE5NDYyMywzNzQyMD
+E2NzAsOTg2MzU5Mjc3LDYxOTQwNDk2OSwtMTI3OTM2MTYxOSwt
+ODQyNzA3NDgzLC0xMzU5ODMyNzYxLDE3NDA1MjkzMjcsMTE1Nz
+AwMDE3NSwxNDIwOTM1OTUzLC0xMTcyNjgxNzAxLDc0NzczMTY3
+MiwtMTkxNTcxMjMzNSw2NzEwMDY0NTEsNjI3MzQ2ODU2LC0xOT
+U0MTM3Mzk0LC0xMjIxODU4OTE2LC0xOTk4MjkxMjgyLC02ODEz
+ODM4ODBdfQ==
 -->
