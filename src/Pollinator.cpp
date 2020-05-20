@@ -796,7 +796,7 @@ void Pollinator::moveLevy()
         repositionInAllowedArea(delta);
     }
 
-    std::cout << m_Position << std::endl;
+    //std::cout << m_Position << std::endl;
 }
 
 // for each Pollen grain in the store, update its landing count
