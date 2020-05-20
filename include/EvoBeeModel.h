@@ -25,7 +25,7 @@ public:
     void step();
 
     /**
-    * Initialise a new generation. 
+    * Initialise a new generation.
     * We need to construct a new generation of plants based upon those successfully
     * pollinated in the previous generation, taking into acconut any refuges and/or
     * restrictions to seed flow.
@@ -58,13 +58,15 @@ public:
     static std::mt19937 m_sRngEngine;
 
     static std::uniform_real_distribution<float> m_sDirectionDistrib;   ///< Uniform distrib 0.0--TWOPI
-    
-    static std::uniform_real_distribution<float> m_sUniformProbDistrib; ///< Uniform distrib 0.0--1.0    
+
+    static std::uniform_real_distribution<float> m_sUniformProbDistrib; ///< Uniform distrib 0.0--1.0
+
+    static std::cauchy_distribution<float> m_sCauchyProbDistrib;        ///< Standard Cauchy distrib, shift 0.0, scale 1.0
 
 private:
     unsigned int    m_iGen;     ///< Current generation number
     unsigned int    m_iStep;    ///< Current step number within current generation
-    Environment     m_Env;      ///< The model owns the one and only 
+    Environment     m_Env;      ///< The model owns the one and only
 
     static bool m_sbRngInitialised;
 };

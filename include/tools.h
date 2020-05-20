@@ -33,9 +33,14 @@ namespace EvoBee
      * @param max The maximum possible return value
      * @param scale Determines positions of the peak of the Levy PDF (must be > 0.0)
      */
-    float randomLevy(float max /*=50.0*/, float scale /*=1.0*/);
-    float randomLevy2();
+    float randomLevy(float max = 50.0, float scale = 1.0);
 
+    /**
+     * Return a random variate from a standard Cauchy distribution
+     * @param min The minimum possible return value
+     * @param max The maximum possible return value
+     */
+    float randomCauchy(float min = 0.5, float max = 20.0);
 
 } // namespace EvoBee
 

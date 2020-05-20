@@ -40,7 +40,7 @@ namespace EvoBee
      * @param scale Determines positions of the peak of the Levy PDF (must be > 0.0)
      *
      */
-    float randomLevy(float max = 50.0, float scale = 1.0)
+    float randomLevy(float max /*=50.0*/, float scale /*=1.0*/)
     {
         float x, y, pdf, ymax;
 
@@ -67,32 +67,43 @@ namespace EvoBee
         return x;
     }
 
-    float randomLevy2()
+    /*
+     * Return a random variate from a standard Cauchy distribution (with scale=1.0
+     * and shift=0.0).
+     *
+     * A Cauchy distribution is a stable distribution with a PDF f(x) is approximately
+     * proportional to x^-2. To be exact, the PDF of the standard Cauchy distribution
+     * is f(x)=1/(PI.(1+x^2)). It is therefore a suitable representation of the
+     * Levy distribution with an inverse-square law tail that Reynolds et al (2007)
+     * found to be a good fit to observations of real honeybee flight paths.
+     *
+     * To adjust the distribution to be suitable for use in our simulations, this method
+     * always returns a positive value (by taking the absolute value of the random
+     * variate returned from the Cauchy distribution). Furthermore, we define
+     * a minimum and maximum value that this method can return. Values below the minimum
+     * or above the maximum are replaced with the minimum allowed value.
+     *
+     * The maximum has a default value of 20.0 perceptual distance units (pdus), which
+     * corresponds to 14m. A honeybee has a typical maximum speed of ~25kmh = 7m/s.
+     * Hence 20pdus is the maximum a honeybee might be able to fly in about 2 seconds.
+     *
+     * References:
+     * - Andrew M. Reynolds et al. "Displaced Honey Bees Peform Optimal Scale-Free Search
+     *   Flights", Ecology, 88(8), 2007, pp. 1955-1961.
+     * - Oliver C. Ibe, "Elements of Random Walk and Diffusion Processes" (Chapter 8,
+     *   "Levy Walk"), John Wiley & Sons, 2013.
+     *
+     * @param min The minimum possible return value
+     * @param max The maximum possible return value
+     *
+     */
+    float randomCauchy(float min /*=0.5*/, float max /*=20.0*/)
     {
-        /*
-        // see: https://stackoverflow.com/questions/19208502/levy-walk-simulation-in-r
-        float alpha = 2.0;
-        float fmin = 1.0;
-        float fmax = 20.0;
-        std::uniform_real_distribution<float> dist(fmin, fmax);
-        float length = std::pow(dist(EvoBeeModel::m_sRngEngine), (-1.0/alpha));
-        */
+        float length = std::abs(EvoBeeModel::m_sCauchyProbDistrib(EvoBeeModel::m_sRngEngine));
 
-        //
-        // see https://dspace.mit.edu/bitstream/handle/1721.1/83632/864715848-MIT.pdf
-        float max = 50.0;
-        //float mu = 2.0;
-        float lmin = 1.0;
-        //float u = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
-        float umax = 0.95;
-        std::uniform_real_distribution<float> dist(0.0, umax);
-        float u = dist(EvoBeeModel::m_sRngEngine);
-        //float length = lmin * std::pow(1.0-u, 1.0/(-mu+1.0)); // general case for any mu
-        float length = lmin * 1.0 / (1.0-u); // for mu = 2.0
-        length = std::min(length, max);
-        //
-
-        //std::cout << length << std::endl;
+        if (length < min || length > max) {
+            length = min;
+        }
 
         return length;
     }

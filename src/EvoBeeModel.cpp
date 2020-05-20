@@ -24,6 +24,7 @@ bool EvoBeeModel::m_sbRngInitialised = false;
 // -- and define some commonly used distributions
 std::uniform_real_distribution<float> EvoBeeModel::m_sDirectionDistrib(0.0, EvoBee::TWOPI);
 std::uniform_real_distribution<float> EvoBeeModel::m_sUniformProbDistrib(0.0, 1.0);
+std::cauchy_distribution<float> EvoBeeModel::m_sCauchyProbDistrib(0.0, 1.0);
 
 
 EvoBeeModel::EvoBeeModel() :

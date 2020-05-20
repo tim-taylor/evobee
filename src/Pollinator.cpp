@@ -782,17 +782,21 @@ void Pollinator::moveRandom()
 //
 void Pollinator::moveLevy()
 {
-    float max = 15.0;
     m_fHeading = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
-    float stepLength = EvoBee::randomLevy(max, m_fStepLength);
-    //float stepLength = EvoBee::randomLevy2();
-    //std::cout << stepLength << std::endl;
+
+    //float stepLength = EvoBee::randomLevy(20.0, 1.0);
+    float stepLength = EvoBee::randomCauchy(0.5, 20.0);
+
     fPos delta{stepLength*std::cos(m_fHeading), stepLength*std::sin(m_fHeading)};
+
     m_Position += delta;
+
     if (!inAllowedArea())
     {
         repositionInAllowedArea(delta);
     }
+
+    std::cout << m_Position << std::endl;
 }
 
 // for each Pollen grain in the store, update its landing count
