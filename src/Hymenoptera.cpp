@@ -62,6 +62,10 @@ Hymenoptera::Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive) :
             m_VisualPreferences.emplace_back(mp, m_sVisBaseProbLandTarget, baseProbLandNonTarget);
         }
     }
+
+    if (m_LearningStrategy == PollinatorLearningStrategy::STAY_RND) {
+        pickRandomTarget();
+    }
 }
 
 Hymenoptera::Hymenoptera(const Hymenoptera& other) :
@@ -79,9 +83,29 @@ Hymenoptera::Hymenoptera(Hymenoptera&& other) noexcept :
 void Hymenoptera::reset()
 {
     Pollinator::reset();
+
     for (VisualPreferenceInfo& vpi : m_VisualPreferences)
     {
         vpi.reset();
+    }
+
+    if (m_LearningStrategy == PollinatorLearningStrategy::STAY_RND) {
+        pickRandomTarget();
+    }
+}
+
+void Hymenoptera::pickRandomTarget()
+{
+    assert(m_sbStaticsInitialised);
+
+    int numMPs = (int)((m_sVisDataMPMax - m_sVisDataMPMin) / m_sVisDataMPStep) + 1;
+    if (numMPs <= 1) {
+        m_TargetMP = m_sVisDataMPMin;
+    }
+    else {
+        std::uniform_int_distribution<int> dist(0, numMPs-1);
+        int idx = dist(EvoBeeModel::m_sRngEngine);
+        m_TargetMP = m_sVisDataMPMin + idx * m_sVisDataMPStep;
     }
 }
 
@@ -299,6 +323,10 @@ void Hymenoptera::updateVisualPreferences(const Flower* pFlower, int nectarColle
         }
         case PollinatorLearningStrategy::STAY: {
             updateVisualPrefsStay(pFlower, nectarCollected);
+            break;
+        }
+        case PollinatorLearningStrategy::STAY_RND: {
+            // do nothing
             break;
         }
         case PollinatorLearningStrategy::NONE: {

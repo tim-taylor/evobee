@@ -127,6 +127,7 @@ private:
     void attenuatePreferences();
     void updateVisualPrefsFickleCircumspect(const Flower* pFlower, int nectarCollected);
     void updateVisualPrefsStay(const Flower* pFlower, int nectarCollected);
+    void pickRandomTarget();
 
     static const VisualStimulusInfo& getVisStimInfoFromMP(MarkerPoint mp);
     static std::size_t getVisualDataVectorIdx(MarkerPoint mp);

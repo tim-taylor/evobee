@@ -31,7 +31,7 @@ enum class PollinatorCurrentStatus {ON_FLOWER, DECLINED_FLOWER, NO_FLOWER_SEEN};
 /**
  * The PollinatorLearningStrategy enum
  */
-enum class PollinatorLearningStrategy {DELIBERATIVE_DECISIVE, FICKLE_CIRCUMSPECT, STAY, NONE};
+enum class PollinatorLearningStrategy {DELIBERATIVE_DECISIVE, FICKLE_CIRCUMSPECT, STAY, STAY_RND, NONE};
 
 /**
  * The PollinatorStepType enum
