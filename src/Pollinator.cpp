@@ -295,8 +295,8 @@ void Pollinator::repositionInAllowedArea(fPos delta)
     repositionInArea(delta,
         (float)(m_MovementAreaTopLeft.x),
         (float)(m_MovementAreaTopLeft.y),
-        (float)(m_MovementAreaBottomRight.x+1),
-        (float)(m_MovementAreaBottomRight.y+1));
+        (float)(m_MovementAreaBottomRight.x+1)-EvoBee::SMALL_FLOAT_NUMBER,
+        (float)(m_MovementAreaBottomRight.y+1)-EvoBee::SMALL_FLOAT_NUMBER);
 
     Patch& patch = m_pEnv->getPatch(m_Position);
     if (patch.noGoArea()) {

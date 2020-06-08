@@ -60,10 +60,12 @@ public:
     static void setRngSeedStr(const std::string& seed, bool bRewriteJsonEntry = false);
     static void setPtdAutoDistribs(bool bAutoDistribs);
     static void setPtdAutoDistribNumRows(int rows);
-    static void setPtdAutoDistribNumCols(int colss);
+    static void setPtdAutoDistribNumCols(int cols);
+    static void setPtdAutoDistribEqualNums(bool equalnums);
     static void setPtdAutoDistribDensity(float density);
     static void setPtdAutoDistribAreaMargin(float margin);
     static void setPtdAutoDistribRegular(bool regular);
+    static void setPtdAutoDistribSeedOutflowAllowed(bool allowed);
 
     static void addHiveConfig(HiveConfig& hc);
     static void addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc);
@@ -176,10 +178,14 @@ private:
     static bool  m_bPtdAutoDistribs;        ///< Use auto-generation tool for Plant Type Distributions?
     static int   m_iPtdAutoDistribNumRows;  ///< PTD auto-generation number of rows of areas to generate
     static int   m_iPtdAutoDistribNumCols;  ///< PTD auto-generation number of columns of areas to generate
+    static bool  m_bPtdAutoDistribEqualNums;///< PTD auto-generation create an equal number of patches for each plant type
+                                            ///<   (leaving any remaining patches empty)?
     static float m_fPtdAutoDistribDensity;  ///< PTD auto-generation density of plants in each area
     static float m_fPtdAutoDistribAreaMargin;   ///< PTD auto-generation margin without flowers in each area
                                                 ///< (expressed in percentage of area's smaller side length)
     static bool  m_bPtdAutoDistribRegular;  ///< Are the patches distributed in a regular or stochastic pattern?
+    static bool  m_bPtdAutoDistribSeedOutflowAllowed; ///< Can seeds spread beyond patches between generations?
+    static std::string  m_strNoSpecies;     ///< String representing the absence of a plant species in an area, used internally only
     static unsigned int m_sNextFreePtdcId;  ///< Each PlantTypeDistributionConfig gets its own unique id
     static std::string m_strRngSeed;        ///< Seed string used to seed RNG
     static std::vector<HiveConfig> m_Hives; ///< Configuration info for each hive

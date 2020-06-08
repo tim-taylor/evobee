@@ -44,14 +44,17 @@ bool   ModelParams::m_bCommandLineQuiet = false;
 bool   ModelParams::m_bPtdAutoDistribs = false;
 int    ModelParams::m_iPtdAutoDistribNumRows = 1;
 int    ModelParams::m_iPtdAutoDistribNumCols = 1;
+bool   ModelParams::m_bPtdAutoDistribEqualNums = false;
 float  ModelParams::m_fPtdAutoDistribDensity = 0.5;
 float  ModelParams::m_fPtdAutoDistribAreaMargin = 0.0;
 bool   ModelParams::m_bPtdAutoDistribRegular = true;
+bool   ModelParams::m_bPtdAutoDistribSeedOutflowAllowed = false;
 unsigned int ModelParams::m_sNextFreePtdcId = 1;
 std::string ModelParams::m_strLogDir {"output"};
 std::string ModelParams::m_strLogFinalDir {""};
 std::string ModelParams::m_strLogRunName {"run"};
 std::string ModelParams::m_strRngSeed {""};
+std::string ModelParams::m_strNoSpecies {"NOSPECIES"};
 
 std::vector<HiveConfig> ModelParams::m_Hives;
 std::vector<PlantTypeDistributionConfig> ModelParams::m_PlantDists;
@@ -538,6 +541,12 @@ void ModelParams::setPtdAutoDistribNumCols(int cols)
 }
 
 
+void ModelParams::setPtdAutoDistribEqualNums(bool equalnums)
+{
+    m_bPtdAutoDistribEqualNums = equalnums;
+}
+
+
 void ModelParams::setPtdAutoDistribDensity(float density)
 {
     if (density < EvoBee::FLOAT_COMPARISON_EPSILON)
@@ -563,6 +572,12 @@ void ModelParams::setPtdAutoDistribAreaMargin(float margin)
 void ModelParams::setPtdAutoDistribRegular(bool regular)
 {
     m_bPtdAutoDistribRegular = regular;
+}
+
+
+void ModelParams::setPtdAutoDistribSeedOutflowAllowed(bool allowed)
+{
+    m_bPtdAutoDistribSeedOutflowAllowed = allowed;
 }
 
 
@@ -597,13 +612,24 @@ void ModelParams::autoGeneratePtds()
         {
             PlantTypeDistributionConfig ptdc;
             ptdc.species = getAutoGenPtdSpeciesForPatch(x, y, speciesPatchMap);
-            ptdc.areaTopLeft.x = curX + margin;
-            ptdc.areaTopLeft.y = curY + margin;
-            ptdc.areaBottomRight.x = curX + areaWidth - 1 - margin;
-            ptdc.areaBottomRight.y = curY + areaHeight - 1 - margin;
-            ptdc.density = m_fPtdAutoDistribDensity;
+            if (ptdc.species != ModelParams::m_strNoSpecies)
+            {
+                ptdc.areaTopLeft.x = curX + margin;
+                ptdc.areaTopLeft.y = curY + margin;
+                ptdc.areaBottomRight.x = curX + areaWidth - 1 - margin;
+                ptdc.areaBottomRight.y = curY + areaHeight - 1 - margin;
+                ptdc.density = m_fPtdAutoDistribDensity;
 
-            addPlantTypeDistributionConfig(ptdc);
+                ptdc.refuge = false;
+                ptdc.refugeAlienInflowProb = 0.0;   // not required if refuge = false
+                ptdc.seedOutflowAllowed = m_bPtdAutoDistribSeedOutflowAllowed;
+                ptdc.seedOutflowRestricted = false; // not required if seedOutflowAllowed = false
+                ptdc.seedOutflowProb = 1.0;         // not required if seedOutflowRestricted = false
+                ptdc.reproLocalDensityConstrained = true;
+                ptdc.reproLocalDensityMax = m_fPtdAutoDistribDensity;
+
+                addPlantTypeDistributionConfig(ptdc);
+            }
 
             curY += areaHeight;
         }
@@ -619,22 +645,34 @@ void ModelParams::initialiseAutoGenPtdSpeciesPatchMap(std::vector<const std::str
 {
     assert(speciesPatchMap.empty());
 
-    speciesPatchMap.reserve(m_iPtdAutoDistribNumCols * m_iPtdAutoDistribNumRows);
+    int numPatches = m_iPtdAutoDistribNumCols * m_iPtdAutoDistribNumRows;
+
+    speciesPatchMap.reserve(numPatches);
 
     const std::map<unsigned int, std::string>& flowerSpeciesMap = FloweringPlant::getSpeciesMap();
 
+    int numSpecies = flowerSpeciesMap.size();
+    int numPatchesToFill = m_bPtdAutoDistribEqualNums ? numPatches - (numPatches % numSpecies) : numPatches;
+
     // first allocate species to patches in a regular checkerboard pattern
+    int numPatchesFilled = 0;
     auto nextColFirstSpeciesItr = flowerSpeciesMap.begin();
     for (int x = 0; x < m_iPtdAutoDistribNumCols; x++)
     {
         auto nextSpeciesItr = nextColFirstSpeciesItr;
         for (int y = 0; y < m_iPtdAutoDistribNumRows; y++)
         {
-            speciesPatchMap.push_back(&(nextSpeciesItr->second));
-            nextSpeciesItr++;
-            if (nextSpeciesItr == flowerSpeciesMap.end())
-            {
-                nextSpeciesItr = flowerSpeciesMap.begin();
+            if (numPatchesFilled < numPatchesToFill) {
+                speciesPatchMap.push_back(&(nextSpeciesItr->second));
+                numPatchesFilled++;
+                nextSpeciesItr++;
+                if (nextSpeciesItr == flowerSpeciesMap.end())
+                {
+                    nextSpeciesItr = flowerSpeciesMap.begin();
+                }
+            }
+            else {
+                speciesPatchMap.push_back(&ModelParams::m_strNoSpecies);
             }
         }
         nextColFirstSpeciesItr++;

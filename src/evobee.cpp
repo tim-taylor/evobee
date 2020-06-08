@@ -663,6 +663,12 @@ void processJsonFile(std::ifstream& ifs)
                             }
                             ModelParams::setPtdAutoDistribNumCols(itPTDs.value());
                         }
+                        else if (key == "auto-distrib-equal-nums" && itPTDs.value().is_boolean()) {
+                            if (verbose) {
+                                std::cout << "PTD auto distrib equal nums -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdAutoDistribEqualNums(itPTDs.value());
+                        }
                         else if (key == "auto-distrib-density" && itPTDs.value().is_number()) {
                             if (verbose) {
                                 std::cout << "PTD auto distrib density -> " << itPTDs.value() << std::endl;
@@ -680,6 +686,12 @@ void processJsonFile(std::ifstream& ifs)
                                 std::cout << "PTD auto distrib regular -> " << itPTDs.value() << std::endl;
                             }
                             ModelParams::setPtdAutoDistribRegular(itPTDs.value());
+                        }
+                        else if (key == "auto-distrib-seed-outflow-allowed" && itPTDs.value().is_boolean()) {
+                            if (verbose) {
+                                std::cout << "PTD auto distrib seed outflow allowed -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdAutoDistribSeedOutflowAllowed(itPTDs.value());
                         }
                         else {
                             std::cerr << "Unexpected entry in PlantTypeDistributions section of json file: "

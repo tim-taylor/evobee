@@ -23,7 +23,7 @@ struct PlantTypeDistributionConfig {
         refugeAlienInflowProb(0.0),
         seedOutflowAllowed(true),
         seedOutflowRestricted(false),
-        seedOutflowProb(0.5),
+        seedOutflowProb(1.0),
         reproLocalDensityConstrained(false),
         reproLocalDensityMax(0.5)
     {}
