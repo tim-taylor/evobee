@@ -49,7 +49,7 @@ EvoBee configuration files are specified in JSON format. These follow a hierarch
                 # distribution area and related parameters. Note that
                 # multiple PlantTypeDistributions can overlap in
                 # their specified areas. Alternatively, rather than
-                # explicity givine PlantTypeDistribution areas, this
+                # explicity defining PlantTypeDistribution areas, this
                 # section can specify "auto-distribs : true" and use
                 # the related parameters to have EvoBee automatically
                 # distribute the plants described in the "PlantTypes"
@@ -474,11 +474,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
   
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04Nj
-M0MzM3MTAsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMzc0MjAxNjcw
-LDk4NjM1OTI3Nyw2MTk0MDQ5NjksLTEyNzkzNjE2MTksLTg0Mj
-cwNzQ4MywtMTM1OTgzMjc2MSwxNzQwNTI5MzI3LDExNTcwMDAx
-NzUsMTQyMDkzNTk1MywtMTE3MjY4MTcwMSw3NDc3MzE2NzIsLT
-E5MTU3MTIzMzUsNjcxMDA2NDUxLDYyNzM0Njg1NiwtMTk1NDEz
-NzM5NF19
+eyJoaXN0b3J5IjpbLTE4Nzk4MTk3MTQsLTg1MDI0NDc1OCwyMD
+QzMzc1NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5NiwtMTcxOTQ2
+MjMsMzc0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MDQ5NjksLTEyNz
+kzNjE2MTksLTg0MjcwNzQ4MywtMTM1OTgzMjc2MSwxNzQwNTI5
+MzI3LDExNTcwMDAxNzUsMTQyMDkzNTk1MywtMTE3MjY4MTcwMS
+w3NDc3MzE2NzIsLTE5MTU3MTIzMzUsNjcxMDA2NDUxLDYyNzM0
+Njg1Nl19
 -->
