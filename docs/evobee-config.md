@@ -320,6 +320,7 @@ The following table describes each parameter that can be specified in the config
 |auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|
 |auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PlantTypeDistribution auto-generation number of rows of areas to generate|
 |auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PlantTypeDistribution auto-generation number of columns of areas to generate|
+|auto-distrib-equal-nums|m_
 |auto-distrib-density|m_fPtdAutoDistribDensity|float|PlantTypeDistribution auto-generation density of plants in each area|
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stochastic pattern?|
@@ -426,6 +427,22 @@ A summary of some of the formats is shown below.
  6. number of plants of this species in this generation
  7. number of pollinated plants of this species at end of foraging phase in this generation
 
+### log-flags=G  (Logger::logFlowersIntraPhaseFull)
+
+For each plant in the environment, emit a line with the following format at regular intervals throughout a generation (determined by m_iLogUpdatePeriod):
+
+ 1. "G"
+ 2. generation number
+ 3. step number
+ 4. flower ID
+ 5. flower x position
+ 6. flower y position
+ 7. flower marker point
+ 8. pollinated? {"P" | "N"}
+ 9. amount of pollen available on anther
+ 10. amount of pollen deposited on stigma 
+ 11. amount of nectar available
+
 ### log-flags=m  (Logger::logFlowerMPsInterPhaseSummary)
 
  1. "m"
@@ -472,31 +489,16 @@ These are followed by entries for each plant species, each one comprising 4 furt
  15. pollinator's current target marker point
  16. "::"
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
- 
-### log-flags=G  (Logger::logFlowersIntraPhaseFull)
 
-For each plant in the environment, emit a line with the following format at regular intervals throughout a generation (determined by m_iLogUpdatePeriod):
-
- 1. "G"
- 2. generation number
- 3. step number
- 4. flower ID
- 5. flower x position
- 6. flower y position
- 7. flower marker point
- 8. pollinated? {"P" | "N"}
- 9. amount of pollen available on anther
- 10. amount of pollen deposited on stigma 
- 11. amount of nectar available
  
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM4NjM0NTAzOCwtMTg3OTgxOTcxNCwtOD
-UwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0NTYz
-NTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5Mjc3LDYxOT
-QwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMy
-NzYxLDE3NDA1MjkzMjcsMTE1NzAwMDE3NSwxNDIwOTM1OTUzLC
-0xMTcyNjgxNzAxLDc0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEw
-MDY0NTFdfQ==
+eyJoaXN0b3J5IjpbLTE5ODI0ODA5NjQsLTM4NjM0NTAzOCwtMT
+g3OTgxOTcxNCwtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQz
+MzcxMCwtNTY0NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOT
+g2MzU5Mjc3LDYxOTQwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3
+NDgzLC0xMzU5ODMyNzYxLDE3NDA1MjkzMjcsMTE1NzAwMDE3NS
+wxNDIwOTM1OTUzLC0xMTcyNjgxNzAxLDc0NzczMTY3MiwtMTkx
+NTcxMjMzNV19
 -->
