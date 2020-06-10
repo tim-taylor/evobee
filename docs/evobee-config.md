@@ -320,7 +320,7 @@ The following table describes each parameter that can be specified in the config
 |auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|
 |auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PlantTypeDistribution auto-generation number of rows of areas to generate|
 |auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PlantTypeDistribution auto-generation number of columns of areas to generate|
-|auto-distrib-equal-nums|m_
+|auto-distrib-equal-nums|m_bPtdAutoDistribEqualNums|bool|If true, allocates an equal number of patches to all defined plant types, leaving any remaining patches in the environment empty. If false, all patches are filled, so some plant types may get one more patch than others.|
 |auto-distrib-density|m_fPtdAutoDistribDensity|float|PlantTypeDistribution auto-generation density of plants in each area|
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stochastic pattern?|
@@ -494,11 +494,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5ODI0ODA5NjQsLTM4NjM0NTAzOCwtMT
-g3OTgxOTcxNCwtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQz
-MzcxMCwtNTY0NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOT
-g2MzU5Mjc3LDYxOTQwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3
-NDgzLC0xMzU5ODMyNzYxLDE3NDA1MjkzMjcsMTE1NzAwMDE3NS
-wxNDIwOTM1OTUzLC0xMTcyNjgxNzAxLDc0NzczMTY3MiwtMTkx
-NTcxMjMzNV19
+eyJoaXN0b3J5IjpbMTgzMjk1ODUxMSwtMzg2MzQ1MDM4LC0xOD
+c5ODE5NzE0LC04NTAyNDQ3NTgsMjA0MzM3NTYwMSwtODYzNDMz
+NzEwLC01NjQ1NjM1OTYsLTE3MTk0NjIzLDM3NDIwMTY3MCw5OD
+YzNTkyNzcsNjE5NDA0OTY5LC0xMjc5MzYxNjE5LC04NDI3MDc0
+ODMsLTEzNTk4MzI3NjEsMTc0MDUyOTMyNywxMTU3MDAwMTc1LD
+E0MjA5MzU5NTMsLTExNzI2ODE3MDEsNzQ3NzMxNjcyLC0xOTE1
+NzEyMzM1XX0=
 -->
