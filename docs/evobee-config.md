@@ -435,14 +435,15 @@ For each plant in the environment, emit a line with the following format at regu
  1. "G"
  2. generation number
  3. step number
- 4. flower ID
- 5. flower x position
- 6. flower y position
- 7. flower marker point
- 8. pollinated? {"P" | "N"}
- 9. amount of pollen available on anther
- 10. amount of pollen deposited on stigma 
- 11. amount of nectar available
+ 4. flower unique ID
+ 5. flower species ID
+ 6. flower x position
+ 7. flower y position
+ 8. flower marker point
+ 9. pollinated? {"P" | "N"}
+ 10. amount of pollen available on anther
+ 11. amount of pollen deposited on stigma 
+ 12. amount of nectar available
 
 ### log-flags=m  (Logger::logFlowerMPsInterPhaseSummary)
 
@@ -495,11 +496,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgxNjQzMTc0NSwtMzg2MzQ1MDM4LC0xOD
-c5ODE5NzE0LC04NTAyNDQ3NTgsMjA0MzM3NTYwMSwtODYzNDMz
-NzEwLC01NjQ1NjM1OTYsLTE3MTk0NjIzLDM3NDIwMTY3MCw5OD
-YzNTkyNzcsNjE5NDA0OTY5LC0xMjc5MzYxNjE5LC04NDI3MDc0
-ODMsLTEzNTk4MzI3NjEsMTc0MDUyOTMyNywxMTU3MDAwMTc1LD
-E0MjA5MzU5NTMsLTExNzI2ODE3MDEsNzQ3NzMxNjcyLC0xOTE1
-NzEyMzM1XX0=
+eyJoaXN0b3J5IjpbMTk4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zOD
+YzNDUwMzgsLTE4Nzk4MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1
+NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMz
+c0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MDQ5NjksLTEyNzkzNjE2
+MTksLTg0MjcwNzQ4MywtMTM1OTgzMjc2MSwxNzQwNTI5MzI3LD
+ExNTcwMDAxNzUsMTQyMDkzNTk1MywtMTE3MjY4MTcwMSw3NDc3
+MzE2NzJdfQ==
 -->
