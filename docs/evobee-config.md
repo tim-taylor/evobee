@@ -475,7 +475,7 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 ### log-flags=G  (Logger::logFlowersIntraPhaseFull)
 
-For each plant in the environment, emit a line with the following format:
+For each plant in the environment, emit a line with the following format at regular intervals throughout a generation (det
 
  1. "G"
  2. generation number
@@ -485,18 +485,14 @@ For each plant in the environment, emit a line with the following format:
  6. flower y position
  7. flower marker point
  8. pollinated? {"P" | "N"}
- 9. amount anther pollen available
- 10. 
-ssState << std::fixed << std::setprecision(3)
-
-<< m_id << "," << m_SpeciesId << "," << m_Position.x << "," << m_Position.y << ","
-
-<< getMarkerPoint() << "," << (m_bPollinated ? "P":"N") << ","
-
-<< m_iAntherPollen << "," << m_StigmaPollen.size() << "," << m_iAvailableNectar;
+ 9. amount of pollen available on anther
+ 10. amount of pollen deposited on stigma 
+ 11. amount of nectar available
+ 
+ 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU3NTc3OTg4MywtMTg3OTgxOTcxNCwtOD
+eyJoaXN0b3J5IjpbMTI2MTY3MTE5NSwtMTg3OTgxOTcxNCwtOD
 UwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0NTYz
 NTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5Mjc3LDYxOT
 QwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMy
