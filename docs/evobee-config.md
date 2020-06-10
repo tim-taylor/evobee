@@ -475,17 +475,19 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 ### log-flags=G  (Logger::logFlowersIntraPhaseFull)
 
+For each plant in the environment, emit a line with the following format:
+
  1. "G"
  2. generation number
  3. step number
  4. pollinator species name
  5. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjM5NDEwNjUsLTE4Nzk4MTk3MTQsLTg1MD
-I0NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5
-NiwtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MD
-Q5NjksLTEyNzkzNjE2MTksLTg0MjcwNzQ4MywtMTM1OTgzMjc2
-MSwxNzQwNTI5MzI3LDExNTcwMDAxNzUsMTQyMDkzNTk1MywtMT
-E3MjY4MTcwMSw3NDc3MzE2NzIsLTE5MTU3MTIzMzUsNjcxMDA2
-NDUxXX0=
+eyJoaXN0b3J5IjpbMTk4NDI2ODg4NCwtMTg3OTgxOTcxNCwtOD
+UwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0NTYz
+NTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5Mjc3LDYxOT
+QwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMy
+NzYxLDE3NDA1MjkzMjcsMTE1NzAwMDE3NSwxNDIwOTM1OTUzLC
+0xMTcyNjgxNzAxLDc0NzczMTY3MiwtMTkxNTcxMjMzNSw2NzEw
+MDY0NTFdfQ==
 -->
