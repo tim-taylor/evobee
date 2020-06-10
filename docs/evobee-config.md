@@ -416,7 +416,7 @@ To fully understand the specific format of each line, consult the corresponding 
 
 A summary of some of the formats is shown below.
 
-### log-files=f  (Logger::logFlowersInterPhaseSummary)
+### log-flags=f  (Logger::logFlowersInterPhaseSummary)
 
  1. "f"
  2. generation number
@@ -426,7 +426,7 @@ A summary of some of the formats is shown below.
  6. number of plants of this species in this generation
  7. number of pollinated plants of this species at end of foraging phase in this generation
 
-### log-files=m  (Logger::logFlowerMPsInterPhaseSummary)
+### log-flags=m  (Logger::logFlowerMPsInterPhaseSummary)
 
  1. "m"
  2. generation number
@@ -437,7 +437,7 @@ A summary of some of the formats is shown below.
  7. number of plants in communal regions (non-refuges) with this flower marker point in this generation
  8. number of pollinated plants in communal regions (non-refuges)  with this flower marker point at end of foraging phase in this generation
 
-### log-files=p  (Logger::logPollinatorsInterPhaseSummary)
+### log-flags=p  (Logger::logPollinatorsInterPhaseSummary)
 
 The first 3 fields are:
 
@@ -453,7 +453,7 @@ These are followed by entries for each plant species, each one comprising 4 furt
  7. number of pollen grains of this species carried by the pollinator at end of foraging phase
 
 
-### log-files=Q  (Logger::logPollinatorsIntraPhaseFull)
+### log-flags=Q  (Logger::logPollinatorsIntraPhaseFull)
 
  1. "Q"
  2. generation number
@@ -473,13 +473,19 @@ These are followed by entries for each plant species, each one comprising 4 furt
  16. "::"
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
  
-### log-flags=G (
+### log-flags=G  (Logger::logFlowersIntraPhaseFull)
+
+ 1. "G"
+ 2. generation number
+ 3. step number
+ 4. pollinator species name
+ 5. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzA5MTUzMjc3LC0xODc5ODE5NzE0LC04NT
-AyNDQ3NTgsMjA0MzM3NTYwMSwtODYzNDMzNzEwLC01NjQ1NjM1
-OTYsLTE3MTk0NjIzLDM3NDIwMTY3MCw5ODYzNTkyNzcsNjE5ND
-A0OTY5LC0xMjc5MzYxNjE5LC04NDI3MDc0ODMsLTEzNTk4MzI3
-NjEsMTc0MDUyOTMyNywxMTU3MDAwMTc1LDE0MjA5MzU5NTMsLT
-ExNzI2ODE3MDEsNzQ3NzMxNjcyLC0xOTE1NzEyMzM1LDY3MTAw
-NjQ1MV19
+eyJoaXN0b3J5IjpbMjM5NDEwNjUsLTE4Nzk4MTk3MTQsLTg1MD
+I0NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5
+NiwtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MD
+Q5NjksLTEyNzkzNjE2MTksLTg0MjcwNzQ4MywtMTM1OTgzMjc2
+MSwxNzQwNTI5MzI3LDExNTcwMDAxNzUsMTQyMDkzNTk1MywtMT
+E3MjY4MTcwMSw3NDc3MzE2NzIsLTE5MTU3MTIzMzUsNjcxMDA2
+NDUxXX0=
 -->
