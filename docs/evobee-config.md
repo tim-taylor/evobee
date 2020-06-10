@@ -475,7 +475,7 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 ### log-flags=G  (Logger::logFlowersIntraPhaseFull)
 
-For each plant in the environment, emit a line with the following format at regular intervals throughout a generation (det
+For each plant in the environment, emit a line with the following format at regular intervals throughout a generation (determined by m_iLogUpdatePeriod):
 
  1. "G"
  2. generation number
@@ -492,7 +492,7 @@ For each plant in the environment, emit a line with the following format at regu
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2MTY3MTE5NSwtMTg3OTgxOTcxNCwtOD
+eyJoaXN0b3J5IjpbLTM4NjM0NTAzOCwtMTg3OTgxOTcxNCwtOD
 UwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0NTYz
 NTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5Mjc3LDYxOT
 QwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMy
