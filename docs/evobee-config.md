@@ -480,10 +480,23 @@ For each plant in the environment, emit a line with the following format:
  1. "G"
  2. generation number
  3. step number
- 4. pollinator species name
- 5. 
+ 4. flower ID
+ 5. flower x position
+ 6. flower y position
+ 7. flower marker point
+ 8. pollinated? {"P" | "N"}
+ 9. amount anther pollen available
+ 10. 
+ssState << std::fixed << std::setprecision(3)
+
+<< m_id << "," << m_SpeciesId << "," << m_Position.x << "," << m_Position.y << ","
+
+<< getMarkerPoint() << "," << (m_bPollinated ? "P":"N") << ","
+
+<< m_iAntherPollen << "," << m_StigmaPollen.size() << "," << m_iAvailableNectar;
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk4NDI2ODg4NCwtMTg3OTgxOTcxNCwtOD
+eyJoaXN0b3J5IjpbMTU3NTc3OTg4MywtMTg3OTgxOTcxNCwtOD
 UwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0NTYz
 NTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5Mjc3LDYxOT
 QwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMy
