@@ -440,7 +440,7 @@ For each plant in the environment, emit a line with the following format at regu
  6. flower x position
  7. flower y position
  8. flower marker point
- 9. pollinated? {"P" | "N"}
+ 9. flower pollination status ("P"=pollinated, "N"=not pollinated)
  10. amount of pollen available on anther
  11. amount of pollen deposited on stigma 
  12. amount of nectar available
@@ -496,11 +496,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zOD
-YzNDUwMzgsLTE4Nzk4MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1
-NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMz
-c0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MDQ5NjksLTEyNzkzNjE2
-MTksLTg0MjcwNzQ4MywtMTM1OTgzMjc2MSwxNzQwNTI5MzI3LD
-ExNTcwMDAxNzUsMTQyMDkzNTk1MywtMTE3MjY4MTcwMSw3NDc3
-MzE2NzJdfQ==
+eyJoaXN0b3J5IjpbLTEzMzQ1MDA2MjYsMTk4NzQ4Mzc4OSwxOD
+E2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4MTk3MTQsLTg1MDI0
+NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5Ni
+wtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MDQ5
+NjksLTEyNzkzNjE2MTksLTg0MjcwNzQ4MywtMTM1OTgzMjc2MS
+wxNzQwNTI5MzI3LDExNTcwMDAxNzUsMTQyMDkzNTk1MywtMTE3
+MjY4MTcwMV19
 -->
