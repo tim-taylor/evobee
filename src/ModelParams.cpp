@@ -486,7 +486,12 @@ void ModelParams::addPlantTypeConfig(PlantTypeConfig& pt)
     }
 }
 
-
+/**
+ * Returns a pointer to the PlantTypeConfig structure associates with the given
+ * plant species name.
+ *
+ * @note If no match is found, nullptr is returned!
+ */
 const PlantTypeConfig* ModelParams::getPlantTypeConfig(std::string speciesName)
 {
     if (speciesName == "any")
@@ -509,6 +514,26 @@ const PlantTypeConfig* ModelParams::getPlantTypeConfig(std::string speciesName)
             if (pt.species == speciesName) return &pt;
         }
         return nullptr;
+    }
+}
+
+/**
+ * Returns a pointer to the PlantTypeConfig structure identified by the given speciesNum,
+ * which is simply the index number of the desired PlantTypeConfig in the m_PlantTypes
+ * vector.  If the given speciesNum is greater than the number of plant types held in the
+ * vector, an exception is thrown.  To guard against this, call getNumPlantTypes() to check
+ * how many there are before calling this method.
+ */
+const PlantTypeConfig* ModelParams::getPlantTypeConfig(unsigned int speciesNum)
+{
+    if (speciesNum >= m_PlantTypes.size())
+    {
+        std::stringstream msg;
+        msg << "Unknown plant species number " << speciesNum << " encountered in ModelParams::getPlantTypeConfig()";
+        throw std::runtime_error(msg.str());
+    }
+    else {
+        return &(m_PlantTypes.at(speciesNum));
     }
 }
 

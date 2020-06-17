@@ -119,6 +119,8 @@ public:
     static const std::vector<PlantTypeDistributionConfig>& getPlantTypeDistributionConfigs() {return m_PlantDists;}
     static const std::vector<PlantTypeConfig>& getPlantTypeConfigs() {return m_PlantTypes;}
     static const PlantTypeConfig* getPlantTypeConfig(std::string speciesName);
+    static const PlantTypeConfig* getPlantTypeConfig(unsigned int speciesNum);
+    static int   getNumPlantTypes() {return m_PlantTypes.size();}
     static PollinatorConfig* getPollinatorConfigPtr(const std::string& pollinatorName);
     static unsigned int getTestNumber() {return m_iTestNumber;}
 

@@ -139,10 +139,12 @@ void Environment::initialisePlants()
             patchInfo[iLocalX][iLocalY].push_back(fpos);
         }
 
-        // find the corresponding PlantTypeConfig (unless pdcfg.species is "any")
         const PlantTypeConfig* pPTC = nullptr;
+        std::vector<unsigned int> anyPlantDistribInfo;
+
         if ((pdcfg.species != "any") && (pdcfg.species != "nogo"))
         {
+            // find the corresponding PlantTypeConfig (unless pdcfg.species is "any" or "nogo")
             pPTC = ModelParams::getPlantTypeConfig(pdcfg.species);
             if (pPTC == nullptr)
             {
@@ -150,6 +152,19 @@ void Environment::initialisePlants()
                     "' specified in config file");
             }
         }
+        else if (pdcfg.species == "any")
+        {
+            // if pdcfg.species is "any", prepare a data structure to ensure we create an equal
+            // number of each plant species
+            int numSpecies = ModelParams::getNumPlantTypes();
+            for (int i=0; i<numPlants; i++)
+            {
+                anyPlantDistribInfo.push_back(i%numSpecies);
+            }
+            std::shuffle(anyPlantDistribInfo.begin(), anyPlantDistribInfo.end(), EvoBeeModel::m_sRngEngine);
+        }
+        auto anyPlantDistribInfoItr = anyPlantDistribInfo.begin();
+
 
         // now go through the patchInfo array, and for each patch, go through all plants
         // to be added to that patch
@@ -163,12 +178,18 @@ void Environment::initialisePlants()
                 {
                     if (pdcfg.species == "any")
                     {
+                        assert(anyPlantDistribInfoItr != anyPlantDistribInfo.end());
+                        pPTC = ModelParams::getPlantTypeConfig(*anyPlantDistribInfoItr);
+                        anyPlantDistribInfoItr++;
+
+                        /*
                         pPTC = ModelParams::getPlantTypeConfig(pdcfg.species);
                         if (pPTC == nullptr)
                         {
                             throw std::runtime_error("Unknown plant species '" + pdcfg.species +
                                 "' specified in config file");
                         }
+                        */
                     }
 
                     patch.addPlant(*pPTC, pos);
