@@ -36,7 +36,7 @@ def main():
         print("Stats file '{}' does not exist or is not a regular file!".format(datafile), file=sys.stderr)
         exit(1)
 
-    fixtimes = np.loadtxt(datafile)
+    fixtimes = np.loadtxt(datafile, comments="NOFIX")
 
     outname = "fixation-histogram-"+os.path.basename(datafile)+".png"
 
@@ -44,11 +44,11 @@ def main():
     if span <= 25:
         numbins = span
         tickspace = 5
-    elif span <= 50:
+    elif span <= 75:
         numbins = span
         tickspace = 10
     else:
-        numbins = 25
+        numbins = 50
         tickspace = 200
 
     plt.clf()
