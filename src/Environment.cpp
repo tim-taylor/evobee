@@ -585,6 +585,8 @@ float Environment::getPollinatedFracSpecies1() const
  *      (see implementation details below)
  *  approach:
  *      create a vector of all pollinated plants (pollinatedPlantPtrs) and shuffle it
+ *          [NB each plant can be added multiple times to the vector, once for each
+ *           conspecific pollen grain found on the stigma]
  *      create an empty newPlants vector to store new generation
  *      for each plant in pollinatedPlantPtrs (up to global max repro num for env)
  *          consider a nearby position in which to reproduce
