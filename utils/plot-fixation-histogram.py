@@ -58,7 +58,7 @@ def main():
 
     plt.ylim(top=ymax)
     plt.xticks(np.arange(tickspace,xmax,tickspace))
-    plt.hist(fixtimes, bins=np.linspace(xmin+0.5,xmax-0.5,numbins),  rwidth=0.8);
+    plt.hist(fixtimes, bins=np.linspace(xmin+0.5,xmax-0.5,numbins),  rwidth=0.8)
     plt.grid()
     plt.axis([xmin, xmax, 0, ymax])
     plt.xlabel("Fixation time (generations)")
