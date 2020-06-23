@@ -7,7 +7,10 @@
 #   contains a single number giving the fixation time for a single run
 #   The other parameters determine how the histogram is plotted.
 #
-# Outputs: a graphics file called fixation-histogram-<datafilebasename>.png
+# Outputs: two versions of the graph are output, one in png format
+#   and the other in svg format:
+#      fixation-histogram-<datafilebasename>.png
+#      fixation-histogram-<datafilebasename>.svg
 #
 # Author: Tim Taylor (http://www.tim-taylor.com)
 # Last update: 19 June 2020
@@ -38,7 +41,9 @@ def main():
 
     fixtimes = np.loadtxt(datafile, comments="NOFIX")
 
-    outname = "fixation-histogram-"+os.path.basename(datafile)+".png"
+    outnamepng = "fixation-histogram-"+os.path.basename(datafile)+".png"
+    outnamesvg = "fixation-histogram-"+os.path.basename(datafile)+".svg"
+
 
     span = (xmax-xmin)
     if span <= 25:
@@ -67,7 +72,8 @@ def main():
     #plt.title(title, fontsize=10)
 
     #plt.tight_layout()
-    plt.savefig(outname)
+    plt.savefig(outnamepng)
+    plt.savefig(outnamesvg)
 
 
 ##-------------------------------------------------------##
