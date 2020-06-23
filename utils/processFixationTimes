@@ -35,16 +35,16 @@ gawk -F',' '{
     getline;
     P2=$6;
     print GEN "," P1 "," P2}' $1 |
-    tac |
-    gawk -F',' '
-    BEGIN {G1=-1;G2=-1}
-    FNR==1 {
-        if ($2>0 && $3>0) {print "NOFIX"; exit}
-        else if ($2==0 && $3==0) {print "ALLEXTINCT"; exit}
-        else if ($2==0) {W=3;L=2}
-        else {W=2;L=3};
-        PMAX=$W
-    }
-    $L>0 && G2<0 {G2=$1+1}
-    $L>=$W && G1<0 {G1=$1+1}
-    END {print G1 "," G2 "," G2-G1}'
+tac |
+gawk -F',' '
+BEGIN {G1=-1;G2=-1}
+FNR==1 {
+    if ($2>0 && $3>0) {print "NOFIX"; exit}
+    else if ($2==0 && $3==0) {print "ALLEXTINCT"; exit}
+    else if ($2==0) {W=3;L=2}
+    else {W=2;L=3};
+    PMAX=$W
+}
+$L>0 && G2<0 {G2=$1+1}
+$L>=$W && G1<0 {G1=$1+1}
+END {print G1 "," G2 "," G2-G1}'
