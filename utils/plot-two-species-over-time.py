@@ -67,7 +67,7 @@ def main():
     plt.plot(x1faw, y1faw, label="Species X")
     plt.plot(x2faw, y2faw, label="Species Y")
     plt.axis([0, xmax, 0, ymax])
-    plt.legend(loc="center right")
+    plt.legend(loc="lower right")  # options for loc include "best", "center right", "lower right", etc
     plt.xlabel('Generation')
     plt.ylabel('Number of Plants')
     plt.title(plottitle)
