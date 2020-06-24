@@ -3,7 +3,7 @@
 # Script to plot histogram of fixation times from a number of runs
 #
 # Usage: plot-fixation-histogram.py datafile xmin xmax ymax title
-#   where each datafile is a text file with one line per run, where each line
+#   where datafile is a text file with one line per run, where each line
 #   contains a single number giving the fixation time for a single run
 #   The other parameters determine how the histogram is plotted.
 #
