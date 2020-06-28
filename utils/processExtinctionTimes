@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# Quick script to process output file of an evobee run involving
+# two plant species, and work when (or if) each species went extinct
+# (i.e. the first generation at which their population size hit zero).
+#
+# Output is two comma-separated numbers:
+#   E1,E2
+# where each number is either the generation at which that species
+# went extinct, or nothing (no character is printed) if the species
+# did not go extinct by the end of the run
+#
+# Usage:
+#   processExtinctionTimes logfile
+# where
+#   logfile is an evobee output file run with logging flag 'f'
+#
+# Author: Tim Taylor (http://www.tim-taylor.com)
+# Last updated: 28 June 2020
+
+if [ "$#" -ne "1" ]; then
+    echo "usage: processExtinctioTimes logfile"
+    exit
+fi
+
+E1=`gawk -F',' 'BEGIN {E1=-1} /Species1/ {if ($6==0 && E1<0) {E1=$2}} END {if (E1>=0) {print E1}}' $1`
+E2=`gawk -F',' 'BEGIN {E2=-1} /Species2/ {if ($6==0 && E2<0) {E2=$2}} END {if (E2>=0) {print E2}}' $1`
+
+echo $E1","$E2
