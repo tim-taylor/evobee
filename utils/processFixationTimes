@@ -22,7 +22,7 @@
 #   processFixationTimes logfile
 #
 # Author: Tim Taylor (http://www.tim-taylor.com)
-# Last updated: 1 November 2017
+# Last updated: 10 September 2020
 
 if [ "$#" -ne "1" ]; then
     echo "usage: processFixationTimes logfile"
@@ -47,4 +47,4 @@ FNR==1 {
 }
 $L>0 && G2<0 {G2=$1+1}
 $L>=$W && G1<0 {G1=$1+1}
-END {print G1 "," G2 "," G2-G1}'
+END {if (G1>-1 && G2>-1) {print G1 "," G2 "," G2-G1}}'
