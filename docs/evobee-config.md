@@ -441,15 +441,18 @@ For each plant in the environment, emit a line with the following format at the 
 
 These are followed by entries for each flower on the plant (NB the current implementation only allows a single flower on each plant):
  
- 8. ":"
- 9. flower unique ID
- 10. flower pollination status ("P"=pollinated, "N"=not pollinated)
- 11. flower marker point
- 12. "~"
- 13. pollen source flower species (marker point)
- 14. number of pollen grains on stigma from this source species
- 15. pollen source flower unique ID (only useful if there is only a single grain of pollen from this source species, as multiple grains may have come from multiple flowers)
- 16. "~"
+ 7. ":"
+ 8. flower unique ID
+ 9. flower pollination status ("P"=pollinated, "N"=not pollinated)
+ 10. flower marker point
+
+This is followed by entries for each pollen grain in the flower's stigma:
+
+ 11. "~"
+ 12. pollen source flower species (marker point)
+ 13. number of pollen grains on stigma from this source species
+ 14. pollen source flower unique ID (only useful if there is only a single grain of pollen from this source species, as multiple grains may have come from multiple flowers)
+ 15. "~"
 
 ### log-flags=G  (Logger::logFlowersIntraPhaseFull)
 
@@ -519,11 +522,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTExMTk5MzY5Niw3NDQxNjg2NjgsLTEyOT
-g2Nzc1MDgsLTEzMzQ1MDA2MjYsMTk4NzQ4Mzc4OSwxODE2NDMx
-NzQ1LC0zODYzNDUwMzgsLTE4Nzk4MTk3MTQsLTg1MDI0NDc1OC
-wyMDQzMzc1NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5NiwtMTcx
-OTQ2MjMsMzc0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MDQ5NjksLT
-EyNzkzNjE2MTksLTg0MjcwNzQ4MywtMTM1OTgzMjc2MSwxNzQw
-NTI5MzI3XX0=
+eyJoaXN0b3J5IjpbNTA4NTg1MDAyLDc0NDE2ODY2OCwtMTI5OD
+Y3NzUwOCwtMTMzNDUwMDYyNiwxOTg3NDgzNzg5LDE4MTY0MzE3
+NDUsLTM4NjM0NTAzOCwtMTg3OTgxOTcxNCwtODUwMjQ0NzU4LD
+IwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0NTYzNTk2LC0xNzE5
+NDYyMywzNzQyMDE2NzAsOTg2MzU5Mjc3LDYxOTQwNDk2OSwtMT
+I3OTM2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMyNzYxLDE3NDA1
+MjkzMjddfQ==
 -->
