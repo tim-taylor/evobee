@@ -443,8 +443,10 @@ For each plant in the environment, emit a line with the following format at the 
  9. flower pollination status ("P"=pollinated, "N"=not pollinated)
  10. flower marker point
  11. "~"
- 12. 
- 13. "~"
+ 12. pollen source marker point
+ 13. po
+ 14. pollen source flower ID
+ 15. "~"
 
 ### log-flags=G  (Logger::logFlowersIntraPhaseFull)
 
@@ -514,11 +516,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjQ2Mzk2MjA2LC0xMzM0NTAwNjI2LDE5OD
-c0ODM3ODksMTgxNjQzMTc0NSwtMzg2MzQ1MDM4LC0xODc5ODE5
-NzE0LC04NTAyNDQ3NTgsMjA0MzM3NTYwMSwtODYzNDMzNzEwLC
-01NjQ1NjM1OTYsLTE3MTk0NjIzLDM3NDIwMTY3MCw5ODYzNTky
-NzcsNjE5NDA0OTY5LC0xMjc5MzYxNjE5LC04NDI3MDc0ODMsLT
-EzNTk4MzI3NjEsMTc0MDUyOTMyNywxMTU3MDAwMTc1LDE0MjA5
-MzU5NTNdfQ==
+eyJoaXN0b3J5IjpbLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMT
+k4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4
+MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MT
+AsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1
+OTI3Nyw2MTk0MDQ5NjksLTEyNzkzNjE2MTksLTg0MjcwNzQ4My
+wtMTM1OTgzMjc2MSwxNzQwNTI5MzI3LDExNTcwMDAxNzUsMTQy
+MDkzNTk1M119
 -->
