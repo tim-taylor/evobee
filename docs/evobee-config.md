@@ -428,6 +428,11 @@ A summary of some of the formats is shown below.
  6. number of plants of this species in this generation
  7. number of pollinated plants of this species at end of foraging phase in this generation
 
+### log-flags=F  (Logger::logFlowersInterPhaseFull)
+
+ 1. "F"
+ 2. 
+
 ### log-flags=G  (Logger::logFlowersIntraPhaseFull)
 
 For each plant in the environment, emit a line with the following format at regular intervals throughout a generation (determined by m_iLogUpdatePeriod):
@@ -496,11 +501,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMzQ1MDA2MjYsMTk4NzQ4Mzc4OSwxOD
-E2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4MTk3MTQsLTg1MDI0
-NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5Ni
-wtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MDQ5
-NjksLTEyNzkzNjE2MTksLTg0MjcwNzQ4MywtMTM1OTgzMjc2MS
-wxNzQwNTI5MzI3LDExNTcwMDAxNzUsMTQyMDkzNTk1MywtMTE3
-MjY4MTcwMV19
+eyJoaXN0b3J5IjpbMTE4ODEzMDA2MiwtMTMzNDUwMDYyNiwxOT
+g3NDgzNzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgx
+OTcxNCwtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMC
+wtNTY0NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5
+Mjc3LDYxOTQwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3NDgzLC
+0xMzU5ODMyNzYxLDE3NDA1MjkzMjcsMTE1NzAwMDE3NSwxNDIw
+OTM1OTUzXX0=
 -->
