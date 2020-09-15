@@ -241,6 +241,10 @@ void Logger::logFlowersInterPhaseFull()
                         }
 
                         for (auto& info : pollenSourceMpMap) {
+                            // NB the final item in the output triplet is the unique idea of the pollen source
+                            // flower, but this only makes sense when there is just a single pollen grain of
+                            // a given species. If there is more than one pollen grain of the species present,
+                            // they may have come from various different source flowers.
                             ofs << info.first << "," << info.second.first << "," << info.second.second << ",";
                         }
 
