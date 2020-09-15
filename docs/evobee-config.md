@@ -433,11 +433,12 @@ A summary of some of the formats is shown below.
 For each plant in the environment, emit a line with the following format at the end of each generation:
 
  1. "F"
- 2. plant unique ID
- 3. plant species ID
- 4. plant x position
- 5. plant y position
- 6. patch locality ID
+ 2. 
+ 3. plant unique ID
+ 4. plant species ID
+ 5. plant x position
+ 6. plant y position
+ 7. patch locality ID
 
 These are followed by entries for each flower on the plant (NB the current implementation only allows a single flower on each plant):
  
@@ -522,11 +523,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTA4NTg1MDAyLDc0NDE2ODY2OCwtMTI5OD
-Y3NzUwOCwtMTMzNDUwMDYyNiwxOTg3NDgzNzg5LDE4MTY0MzE3
-NDUsLTM4NjM0NTAzOCwtMTg3OTgxOTcxNCwtODUwMjQ0NzU4LD
-IwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0NTYzNTk2LC0xNzE5
-NDYyMywzNzQyMDE2NzAsOTg2MzU5Mjc3LDYxOTQwNDk2OSwtMT
-I3OTM2MTYxOSwtODQyNzA3NDgzLC0xMzU5ODMyNzYxLDE3NDA1
-MjkzMjddfQ==
+eyJoaXN0b3J5IjpbLTIwMzg4NDQ5MzcsNTA4NTg1MDAyLDc0ND
+E2ODY2OCwtMTI5ODY3NzUwOCwtMTMzNDUwMDYyNiwxOTg3NDgz
+Nzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgxOTcxNC
+wtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0
+NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5Mjc3LD
+YxOTQwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3NDgzLC0xMzU5
+ODMyNzYxXX0=
 -->
