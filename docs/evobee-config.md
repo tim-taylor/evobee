@@ -433,11 +433,14 @@ A summary of some of the formats is shown below.
 For each plant in the environment, emit a line with the following format at the end of each generation:
 
  1. "F"
- 2. flower unique ID
- 3. flower species ID
+ 2. plant unique ID
+ 3.  species ID
  4. flower x position
  5. flower y position
- 6. 
+ 6. patch locality ID
+ 7. ":"
+ 8. flower unique ID
+ 9. 
 
 ### log-flags=G  (Logger::logFlowersIntraPhaseFull)
 
@@ -507,7 +510,7 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2OTcwMDkwNiwtMTMzNDUwMDYyNiwxOT
+eyJoaXN0b3J5IjpbMTEzNDY1OTk4MCwtMTMzNDUwMDYyNiwxOT
 g3NDgzNzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgx
 OTcxNCwtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMC
 wtNTY0NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5
