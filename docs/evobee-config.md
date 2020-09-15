@@ -443,8 +443,8 @@ For each plant in the environment, emit a line with the following format at the 
  9. flower pollination status ("P"=pollinated, "N"=not pollinated)
  10. flower marker point
  11. "~"
- 12. pollen source marker point
- 13. po
+ 12. pollen source flower species (marker point
+ 13. number of pollen grains on stigma from 
  14. pollen source flower ID
  15. "~"
 
@@ -516,11 +516,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMT
-k4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4
-MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MT
-AsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1
-OTI3Nyw2MTk0MDQ5NjksLTEyNzkzNjE2MTksLTg0MjcwNzQ4My
-wtMTM1OTgzMjc2MSwxNzQwNTI5MzI3LDExNTcwMDAxNzUsMTQy
-MDkzNTk1M119
+eyJoaXN0b3J5IjpbLTkxODUzNTc1MiwtMTI5ODY3NzUwOCwtMT
+MzNDUwMDYyNiwxOTg3NDgzNzg5LDE4MTY0MzE3NDUsLTM4NjM0
+NTAzOCwtMTg3OTgxOTcxNCwtODUwMjQ0NzU4LDIwNDMzNzU2MD
+EsLTg2MzQzMzcxMCwtNTY0NTYzNTk2LC0xNzE5NDYyMywzNzQy
+MDE2NzAsOTg2MzU5Mjc3LDYxOTQwNDk2OSwtMTI3OTM2MTYxOS
+wtODQyNzA3NDgzLC0xMzU5ODMyNzYxLDE3NDA1MjkzMjcsMTE1
+NzAwMDE3NV19
 -->
