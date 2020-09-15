@@ -430,10 +430,14 @@ A summary of some of the formats is shown below.
 
 ### log-flags=F  (Logger::logFlowersInterPhaseFull)
 
-For each plant in the environment, emit a line with the following format 
+For each plant in the environment, emit a line with the following format at the end of each generation:
 
  1. "F"
- 2. 
+ 2. flower unique ID
+ 3. flower species ID
+ 4. flower x position
+ 5. flower y position
+ 6. 
 
 ### log-flags=G  (Logger::logFlowersIntraPhaseFull)
 
@@ -503,11 +507,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQyNDk0MjU3LC0xMzM0NTAwNjI2LDE5OD
-c0ODM3ODksMTgxNjQzMTc0NSwtMzg2MzQ1MDM4LC0xODc5ODE5
-NzE0LC04NTAyNDQ3NTgsMjA0MzM3NTYwMSwtODYzNDMzNzEwLC
-01NjQ1NjM1OTYsLTE3MTk0NjIzLDM3NDIwMTY3MCw5ODYzNTky
-NzcsNjE5NDA0OTY5LC0xMjc5MzYxNjE5LC04NDI3MDc0ODMsLT
-EzNTk4MzI3NjEsMTc0MDUyOTMyNywxMTU3MDAwMTc1LDE0MjA5
-MzU5NTNdfQ==
+eyJoaXN0b3J5IjpbLTE2OTcwMDkwNiwtMTMzNDUwMDYyNiwxOT
+g3NDgzNzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgx
+OTcxNCwtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMC
+wtNTY0NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5
+Mjc3LDYxOTQwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3NDgzLC
+0xMzU5ODMyNzYxLDE3NDA1MjkzMjcsMTE1NzAwMDE3NSwxNDIw
+OTM1OTUzXX0=
 -->
