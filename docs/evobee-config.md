@@ -434,13 +434,16 @@ For each plant in the environment, emit a line with the following format at the 
 
  1. "F"
  2. plant unique ID
- 3.  species ID
- 4. flower x position
- 5. flower y position
+ 3. plant species ID
+ 4. plant x position
+ 5. plant y position
  6. patch locality ID
  7. ":"
  8. flower unique ID
- 9. 
+ 9. flower pollination status ("P"=pollinated, "N"=not pollinated)
+ 10. flower marker point
+ 11. "~"
+ 12. 
 
 ### log-flags=G  (Logger::logFlowersIntraPhaseFull)
 
@@ -510,7 +513,7 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEzNDY1OTk4MCwtMTMzNDUwMDYyNiwxOT
+eyJoaXN0b3J5IjpbLTk2NjI2NjU0MiwtMTMzNDUwMDYyNiwxOT
 g3NDgzNzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgx
 OTcxNCwtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMC
 wtNTY0NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5
