@@ -206,11 +206,13 @@ void Logger::logFlowersInterPhaseFull()
     {
         if (patch.hasFloweringPlants())
         {
-            const iPos& pos = patch.getPosition();
+            //const iPos& pos = patch.getPosition();
 
             PlantVector& plants = patch.getFloweringPlants();
             for (FloweringPlant& plant : plants)
             {
+                const fPos& pos = plant.getPosition();
+
                 ofs << "F," << gen << "," << plant.getId() << "," << plant.getSpeciesId()
                     << "," << pos << "," << patch.getLocalityId();
 
