@@ -445,7 +445,7 @@ For each plant in the environment, emit a line with the following format at the 
  11. "~"
  12. pollen source flower species (marker point)
  13. number of pollen grains on stigma from this source species
- 14. pollen source flower ID
+ 14. pollen source flower unique ID (only useful if there is only a single grain of pollen from t
  15. "~"
 
 ### log-flags=G  (Logger::logFlowersIntraPhaseFull)
@@ -516,11 +516,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzQ0MTY4NjY4LC0xMjk4Njc3NTA4LC0xMz
-M0NTAwNjI2LDE5ODc0ODM3ODksMTgxNjQzMTc0NSwtMzg2MzQ1
-MDM4LC0xODc5ODE5NzE0LC04NTAyNDQ3NTgsMjA0MzM3NTYwMS
-wtODYzNDMzNzEwLC01NjQ1NjM1OTYsLTE3MTk0NjIzLDM3NDIw
-MTY3MCw5ODYzNTkyNzcsNjE5NDA0OTY5LC0xMjc5MzYxNjE5LC
-04NDI3MDc0ODMsLTEzNTk4MzI3NjEsMTc0MDUyOTMyNywxMTU3
-MDAwMTc1XX0=
+eyJoaXN0b3J5IjpbLTE3MjU3Njk5NDksNzQ0MTY4NjY4LC0xMj
+k4Njc3NTA4LC0xMzM0NTAwNjI2LDE5ODc0ODM3ODksMTgxNjQz
+MTc0NSwtMzg2MzQ1MDM4LC0xODc5ODE5NzE0LC04NTAyNDQ3NT
+gsMjA0MzM3NTYwMSwtODYzNDMzNzEwLC01NjQ1NjM1OTYsLTE3
+MTk0NjIzLDM3NDIwMTY3MCw5ODYzNTkyNzcsNjE5NDA0OTY5LC
+0xMjc5MzYxNjE5LC04NDI3MDc0ODMsLTEzNTk4MzI3NjEsMTc0
+MDUyOTMyN119
 -->
