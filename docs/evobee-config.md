@@ -433,7 +433,7 @@ A summary of some of the formats is shown below.
 For each plant in the environment, emit a line with the following format at the end of each generation:
 
  1. "F"
- 2. 
+ 2. generation number
  3. plant unique ID
  4. plant species ID
  5. plant x position
@@ -523,7 +523,7 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMzg4NDQ5MzcsNTA4NTg1MDAyLDc0ND
+eyJoaXN0b3J5IjpbLTExNTY2Nzc5NjQsNTA4NTg1MDAyLDc0ND
 E2ODY2OCwtMTI5ODY3NzUwOCwtMTMzNDUwMDYyNiwxOTg3NDgz
 Nzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgxOTcxNC
 wtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0
