@@ -2,9 +2,9 @@
 # given point in time, using log data generated using the "F" flag (logFlowersInterPhaseFull).
 #
 # call this with, e.g.
-# > gnuplot -e "gen=0;filebase='flower-positions'" patch-visualisation.gnuplot
+# > gnuplot -e "gen=0;filebase='flower-positions';envsize=240" patch-visualisation.gnuplot
 # or
-# > for F in `seq 0 10 90`; do gnuplot -e "gen=$F;filebase='flower-positions'" patch-visualisation.gnuplot; done
+# > for G in `seq 0 10 90`; do gnuplot -e "gen=$G;filebase='flower-positions'" patch-visualisation.gnuplot; done
 #
 # with a specified filename base "filebase" and a generation number "gen", the script expects to find
 # an input file called "filebase"-g"gen".csv
@@ -16,8 +16,9 @@
 # for G in `seq 0 10 99`; do gawk -F',' -vG=$G '$1=="F" {if ($2==G) {print $5 "," $6 "," $4}}' run-log.txt > flower-positions-g$G.csv; done
 #
 
-if (!exists("gen")) gen = 0
+if (!exists("gen")) gen=0
 if (!exists("filebase")) filebase="flower-positions"
+if (!exists("envsize")) envsize=240
 
 mytitle = sprintf("Flower distribution at generation %d", gen)
 datafile = sprintf("%s-g%d.csv", filebase, gen)
@@ -28,8 +29,8 @@ set output outfile
 
 set size square
 set datafile separator ","
-set xrange [0:240]
-set yrange [240:0]
+set xrange [0:envsize]
+set yrange [envsize:0]
 set title mytitle
 unset key
 set xtics 20
