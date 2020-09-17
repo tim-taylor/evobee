@@ -637,24 +637,35 @@ void ModelParams::autoGeneratePtds()
         {
             PlantTypeDistributionConfig ptdc;
             ptdc.species = getAutoGenPtdSpeciesForPatch(x, y, speciesPatchMap);
-            if (ptdc.species != ModelParams::m_strNoSpecies)
+
+            ptdc.areaTopLeft.x = curX + margin;
+            ptdc.areaTopLeft.y = curY + margin;
+            ptdc.areaBottomRight.x = curX + areaWidth - 1 - margin;
+            ptdc.areaBottomRight.y = curY + areaHeight - 1 - margin;
+
+            if (ptdc.species == ModelParams::m_strNoSpecies)
             {
-                ptdc.areaTopLeft.x = curX + margin;
-                ptdc.areaTopLeft.y = curY + margin;
-                ptdc.areaBottomRight.x = curX + areaWidth - 1 - margin;
-                ptdc.areaBottomRight.y = curY + areaHeight - 1 - margin;
-                ptdc.density = m_fPtdAutoDistribDensity;
-
-                ptdc.refuge = false;
-                ptdc.refugeAlienInflowProb = 0.0;   // not required if refuge = false
-                ptdc.seedOutflowAllowed = m_bPtdAutoDistribSeedOutflowAllowed;
-                ptdc.seedOutflowRestricted = false; // not required if seedOutflowAllowed = false
-                ptdc.seedOutflowProb = 1.0;         // not required if seedOutflowRestricted = false
-                ptdc.reproLocalDensityConstrained = true;
-                ptdc.reproLocalDensityMax = m_fPtdAutoDistribDensity;
-
-                addPlantTypeDistributionConfig(ptdc);
+                // this is an area that will initially be empty (because m_bPtdAutoDistribEqualNums==true means
+                // that we may have a few empty areas). So in this case, we give the area an initial density of
+                // zero, and arbitrarily assign it to the first plant species in the map to keep the rest of
+                // the code happy
+                ptdc.density = 0.0;
+                ptdc.species = FloweringPlant::getSpeciesMap().begin()->second;
             }
+            else
+            {
+                ptdc.density = m_fPtdAutoDistribDensity;
+            }
+
+            ptdc.refuge = false;
+            ptdc.refugeAlienInflowProb = 0.0;   // not required if refuge = false
+            ptdc.seedOutflowAllowed = m_bPtdAutoDistribSeedOutflowAllowed;
+            ptdc.seedOutflowRestricted = false; // not required if seedOutflowAllowed = false
+            ptdc.seedOutflowProb = 1.0;         // not required if seedOutflowRestricted = false
+            ptdc.reproLocalDensityConstrained = true;
+            ptdc.reproLocalDensityMax = m_fPtdAutoDistribDensity;
+
+            addPlantTypeDistributionConfig(ptdc);
 
             curY += areaHeight;
         }
