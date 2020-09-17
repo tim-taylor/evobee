@@ -1,13 +1,20 @@
-# To generate input data file
+# Gnuplot script to generate a visualisation of the distribution of flowers in the environment at a
+# given point in time, using log data generated using the "F" flag (logFlowersInterPhaseFull).
 #
-# for G in `seq 0 10 99`; do gawk -F',' -vG=$G '$1=="F" {if ($2==G) {print $5 "," $6 "," $4}}' expt2-sd1-outflowT-s15-x-2020-09-15-16-48-48-042985-log.txt > flower-positions-g$G.csv; done
-
-# gnuplot stuff
-
 # call this with, e.g.
-# > gnuplot -e "gen=0;filebase='flower-positions'" patches-visualisation.gnuplot
+# > gnuplot -e "gen=0;filebase='flower-positions'" patch-visualisation.gnuplot
 # or
 # > for F in `seq 0 10 90`; do gnuplot -e "gen=$F;filebase='flower-positions'" patch-visualisation.gnuplot; done
+#
+# with a specified filename base "filebase" and a generation number "gen", the script expects to find
+# an input file called "filebase"-g"gen".csv
+#
+# The output is saved to a file called "filebase"-g"gen".png
+#
+# The input files can be generated from the raw log files as follows:
+#
+# for G in `seq 0 10 99`; do gawk -F',' -vG=$G '$1=="F" {if ($2==G) {print $5 "," $6 "," $4}}' run-log.txt > flower-positions-g$G.csv; done
+#
 
 if (!exists("gen")) gen = 0
 if (!exists("filebase")) filebase="flower-positions"
