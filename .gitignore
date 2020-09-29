@@ -37,6 +37,7 @@ Makefile
 # Project specific files and directories
 *.csv
 *.pdf
+*.orig
 evobeeConfig.h
 evobee
 src/old/
