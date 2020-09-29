@@ -405,6 +405,8 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
         pc.learningStrategy = PollinatorLearningStrategy::STAY;
     } else if (pc.strLearningStrategy == "stay-rnd") {
         pc.learningStrategy = PollinatorLearningStrategy::STAY_RND;
+    } else if (pc.strLearningStrategy == "stay-innate") {
+        pc.learningStrategy = PollinatorLearningStrategy::STAY_INNATE;
     } else if (pc.strLearningStrategy == "deliberative-decisive") {
         pc.learningStrategy = PollinatorLearningStrategy::DELIBERATIVE_DECISIVE;
     } else if (pc.strLearningStrategy == "fickle-circumspect") {

@@ -128,6 +128,7 @@ private:
     void updateVisualPrefsFickleCircumspect(const Flower* pFlower, int nectarCollected);
     void updateVisualPrefsStay(const Flower* pFlower, int nectarCollected);
     void pickRandomTarget();
+    void initialiseInnateTarget();
 
     static const VisualStimulusInfo& getVisStimInfoFromMP(MarkerPoint mp);
     static std::size_t getVisualDataVectorIdx(MarkerPoint mp);

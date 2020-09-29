@@ -66,6 +66,9 @@ Hymenoptera::Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive) :
     if (m_LearningStrategy == PollinatorLearningStrategy::STAY_RND) {
         pickRandomTarget();
     }
+    else if (m_LearningStrategy == PollinatorLearningStrategy::STAY_INNATE) {
+        initialiseInnateTarget();
+    }
 }
 
 Hymenoptera::Hymenoptera(const Hymenoptera& other) :
@@ -92,6 +95,9 @@ void Hymenoptera::reset()
     if (m_LearningStrategy == PollinatorLearningStrategy::STAY_RND) {
         pickRandomTarget();
     }
+    else if (m_LearningStrategy == PollinatorLearningStrategy::STAY_INNATE) {
+        initialiseInnateTarget();
+    }
 }
 
 void Hymenoptera::pickRandomTarget()
@@ -107,6 +113,59 @@ void Hymenoptera::pickRandomTarget()
         int idx = dist(EvoBeeModel::m_sRngEngine);
         m_TargetMP = m_sVisDataMPMin + idx * m_sVisDataMPStep;
     }
+}
+
+void Hymenoptera::initialiseInnateTarget()
+{
+    assert(m_sbStaticsInitialised);
+
+    // TODO... this is a temporary hard-coded implementation!  If we are going to use this
+    // method in the long term it should be reimplemented such that the data can be specified
+    // in the config file
+
+    assert(m_sVisDataMPMin == 380);
+    assert(m_sVisDataMPMax == 580);
+
+    // The following data is based upon the results shown in Fig 3 of Giurfa et al 1995 "Colour preferences
+    // of flower-naive honeybees". The data represents the cumulative normalised preferences for marker points
+    // over the range 380-580nm in steps of 10nm. The data was calculated in the Google spreadsheet
+    // https://docs.google.com/spreadsheets/d/1Ag2KZJXWme94-OCUq_0wfUpgLc0gx6QeXrfgxQnoL2g/edit#gid=0
+    //
+    static std::vector<float> giurfaCumulativeInnatePrefs380to580 {
+        0.04072,
+        0.09162,
+        0.20020,
+        0.30200,
+        0.37665,
+        0.43095,
+        0.48117,
+        0.52732,
+        0.56939,
+        0.60740,
+        0.64133,
+        0.66848,
+        0.68884,
+        0.72413,
+        0.77435,
+        0.83090,
+        0.88519,
+        0.93722,
+        0.97285,
+        0.98982,
+        1.00000 };
+
+    static auto itBegin = giurfaCumulativeInnatePrefs380to580.begin();
+    static auto itEnd = giurfaCumulativeInnatePrefs380to580.end();
+
+    float selection = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
+    MarkerPoint mp = 380;
+    for (auto it = itBegin; it != itEnd; ++it, mp+=10) {
+        if (*it >= selection) break;
+    }
+
+    assert (mp <= 580);
+
+    m_TargetMP = mp;
 }
 
 
@@ -326,6 +385,10 @@ void Hymenoptera::updateVisualPreferences(const Flower* pFlower, int nectarColle
             break;
         }
         case PollinatorLearningStrategy::STAY_RND: {
+            // do nothing
+            break;
+        }
+        case PollinatorLearningStrategy::STAY_INNATE: {
             // do nothing
             break;
         }
