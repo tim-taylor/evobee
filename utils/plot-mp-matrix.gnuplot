@@ -36,3 +36,8 @@ set title "Probability that two marker points are deemed to match (N=10,000)"
 plot 'total-mp-match-matrix-10000.csv' u 1:2:($3/10000) with image
 
 # can resize output window and export to image (png) from window menu
+
+##############################
+# to calculate averages for each marker points
+
+for M in `seq 380 10 580`; do gawk -vM=$M -F',' '$1 == M {if ($2>=380 && $2<=580) {C=C+$3; N=N+1}} END {A=C/N; print M","A}' heatmap-data-sigmoidal-k0p1.csv ; done
