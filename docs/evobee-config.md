@@ -360,7 +360,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |constancy-type|strConstancyType|std::string|Defines the pollinator's constancy behaviour while foraging (NB 'simple'=if sees a flower of same species as last visited, land with probablity 0.9, if its a different species, land with probability (1.0-constancy-param). 'visual'=utilise the pollinator's full visual system and learning strategies for deciding which flowers to visit - this option should be used in conjunction with foraging-strategy='nearest-flower'). Allowed values: none, simple, visual|
 |constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1.0-constancy-param).|
 |foraging-strategy|strForagingStrategy|std::string|Defines how the pollinator forages (NB for foraging using visual system, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: random, nearest-flower, random-flower, random-global|
-|learning-strategy|strLearningStrategy|std::string|Defines how the pollinator learns from experience (NB for this parameter to have effect, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: **stay**, **stay-rnd**, **fickle-circumspect**, **deliberative-decisive**, **none**. For 'stay', pollinator sets target to the first flower it lands on from which it receives a reward, and keeps it for the rest of the bout. For 'stay-rnd', pollinator is assigned a marker point at random (picked from all MPs defined in the vis-data section) at start of foraging bout and keeps it for the whole bout. For 'none', pollinator never sets a target so effectively may land with equal probability on any flower it sees (use in conjunction with a high value for vis-prob-land-no-target-set-delta).|
+|learning-strategy|strLearningStrategy|std::string|Defines how the pollinator learns from experience (NB for this parameter to have effect, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: **stay**, **stay-rnd**, **stay-innate**, **fickle-circumspect**, **deliberative-decisive**, **none**. For 'stay', pollinator sets target to the first flower it lands on from which it receives a reward, and keeps it for the rest of the bout. For 'stay-rnd', pollinator is assigned a marker point at uniform random (picked from all MPs defined in the vis-data section) at start of foraging bout and keeps it for the whole bout. 'stay-innate' is like 'stay-rnd' except the initial random allocation is weighted according to innate preference data for real bees as published in Giurfa et al 1995. For 'none', pollinator never sets a target so effectively may land with equal probability on any flower it sees (use in conjunction with a high value for vis-prob-land-no-target-set-delta).|
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it re-lands on a given flower, depending upon its foraging strategy.|
 |nectar-collect-per-flower-visit|nectarCollectPerFlowerVisit|int|Amount of nectar the pollinator attempts to extract from a flower on a single visit.|
 |vis-data|visData|6xN array|This array holds the data that specifies the pollinator's visual system. In the JSON config file it takes the form of a 6xN array, where each row contains 6 numbers representing (1) Marker Point of stimulus (int); (2) Pollinator's probability of detecting this marker point (float in range 0.0 to 1.0); (3) The green contrast value for this marker point (float in range 0.0 to 1.0); (4) X coordinate of this marker point in hexagon colour space (float); (5) Y coordinate of this marker point in hexagon colour space (float); (6) the pollinator's base innate probability of landing on this marker point when it is not the target marker point (float in range 0.0 to 1.0) [but see also vis-prob-land-nontarget-indiv-stddev].|
@@ -523,11 +523,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNTY2Nzc5NjQsNTA4NTg1MDAyLDc0ND
-E2ODY2OCwtMTI5ODY3NzUwOCwtMTMzNDUwMDYyNiwxOTg3NDgz
-Nzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgxOTcxNC
-wtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0
-NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5Mjc3LD
-YxOTQwNDk2OSwtMTI3OTM2MTYxOSwtODQyNzA3NDgzLC0xMzU5
-ODMyNzYxXX0=
+eyJoaXN0b3J5IjpbMTcwMjk4MTQ1LC0xMTU2Njc3OTY0LDUwOD
+U4NTAwMiw3NDQxNjg2NjgsLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2
+MjYsMTk4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLT
+E4Nzk4MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0
+MzM3MTAsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMzc0MjAxNjcwLD
+k4NjM1OTI3Nyw2MTk0MDQ5NjksLTEyNzkzNjE2MTksLTg0Mjcw
+NzQ4M119
 -->
