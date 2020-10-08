@@ -1,0 +1,61 @@
+%%% TT's CUSTOMISED PAGE LAYOUT STUFF %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt,twoside]{article}
+\usepackage{a4wide,charter}
+\usepackage[T1]{fontenc}
+%\usepackage{amssymb}
+%\usepackage[normalem]{ulem}
+\renewcommand{\labelitemi}{%
+  \raisebox{1.3pt}{\footnotesize$\blacktriangleright$}}
+
+\usepackage{fancyhdr}
+\addtolength{\headheight}{1.0pt}
+%\pagestyle{fancy}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO,RE]{}
+\fancyfoot{}
+\renewcommand{\headheight}{0.5pt}
+
+\setlength{\parskip}{1.1ex}
+\setlength{\parindent}{0 pt}
+
+\newcommand{\head}[1]{{\bf #1}}
+\newcommand{\colwidth}{10.5 cm}
+\newcommand{\colwidthtwo}{12.7 cm}
+\newenvironment{coltab}{%
+    \renewcommand{\arraystretch}{1}%
+    \begin{tabular}[t]{@{}l@{}}%
+  }{%
+    \end{tabular}%
+}
+\newcommand{\colbox}[1]{\parbox[t]{\colwidth}{#1}}
+\newcommand{\colboxtwo}[1]{\parbox[t]{\colwidthtwo}{#1}}
+%%% END OF TT's CUSTOMISED PAGE LAYOUT STUFF %%%%%%%%%%%%%%%%%%%%
+
+%\documentclass{article}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\DeclareGraphicsRule{*}{png}{*}{}
+
+\begin{document}
+\begin{figure}
+%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{mp-distrib-swarmplot-counts-at-gen499-giurfa-innate-expt-1a.pdf}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{mp-distrib-swarmplot-counts-at-gen499-giurfa-innate-expt-1b.pdf}
+\end{subfigure}
+%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{mp-distrib-swarmplot-counts-at-gen499-giurfa-innate-expt-2.pdf}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{mp-distrib-swarmplot-counts-at-gen499-giurfa-innate-expt-3.pdf}
+\end{subfigure}
+%
+\end{figure}
+\end{document}

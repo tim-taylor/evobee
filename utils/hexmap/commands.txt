@@ -1,0 +1,124 @@
+# octave commands for generating colour hex map data
+
+# (list currently defined vars)
+who
+whos
+
+# define the peak absorption values for the alpha, beta and gamma bands
+# of the "average bee" as defined in Adrian's 1998 paper
+
+lmax = [350, 340, 276;
+        440, 340, 276;
+        540, 340, 276];
+
+# calculate the spectral sensitivity of the UV, blue and green receptors
+
+ss = stavenga(lmax,3,10,1)
+
+save avgbee_spectral_sensitivity_300_830.dat -ascii ss
+
+# to use with simple_hex_2019, need to delete values above 650nm,
+# call this new file avgbee_spectral_sensitivity_300_650.dat
+
+# load illuminant data for midday cloudless sky
+load SPD.mat
+
+# load a variety of other data including ALG green leaf reflectance data
+
+load colour_space_refs.mat
+
+# load out precalculated bee sensitivity data and remove first
+# column (wavelengths)
+ss650 = dlmread('avgbee_spectral_sensitivity_300_650.dat')
+ss650 = ss650(:, 2:4)
+
+# load background data
+hks92n = dlmread('NGreyBg92_HKS92N_300_650.dat')
+hks92n = hks92n(:,2)
+
+# create a step function for stimulus (step from 0.02 to 0.50 at
+# specified wavelength)
+
+R = zeros(36,1);
+for i = 1:36; if i<1; R(i)=0.02; else; R(i)=0.5; end; end
+
+# calculate hex coordinates and green contrast values
+
+[xy, gc] = simple_hex_2019(R,ss650,ALG,SPD)
+
+# write matrix to csv file
+csvwrite('myhexmap_mp_gc_x_y.csv', hexmap);
+
+# plot the hexagon map
+scatter(hexmap(:,3),hexmap(:,4))
+axis([-0.9 0.9 -0.9 0.9])
+
+-------------------------------------------------------------------------------------------
+SUMMARY
+-------------------------------------------------------------------------------------------
+
+load SPD.mat;
+
+lmax = [350, 340, 276;
+        440, 340, 276;
+        540, 340, 276];
+
+ss650 = dlmread('avgbee_spectral_sensitivity_300_650.dat');
+ss650 = ss650(:, 2:4);
+
+hks92n = dlmread('NGreyBg92_HKS92N_300_650.dat');
+hks92n = hks92n(:,2);
+
+hexmap = zeros(36,6);
+for steppos = 1:36
+    R  = zeros(36,1);
+    for i = 1:36
+        if i < steppos
+            R(i) = 0.02;
+        else
+            R(i) = 0.5;
+        end
+    end
+    [xy, gc, u, b, g] = simple_hex_2019(R,ss650,hks92n,SPD);
+    hexmap(steppos,1) = 290 + 10*steppos;
+    hexmap(steppos,2) = u;
+    hexmap(steppos,3) = b;
+    hexmap(steppos,4) = g;
+    hexmap(steppos,5) = xy(1);
+    hexmap(steppos,6) = xy(2);
+end
+
+csvwrite('myhexmap_mp_u_b_g_x_y.csv', hexmap);
+
+
+
+########################################
+
+load SPD.mat;
+
+lmax = [350, 340, 276;
+        440, 340, 276;
+        540, 340, 276];
+
+ss650 = dlmread('avgbee_spectral_sensitivity_300_650.dat');
+ss650 = ss650(:, 2:4);
+
+alg = dlmread('ALG.dat');
+alg = alg(:,2)
+
+hexmap=zeros(36,6);
+for steppos = 1:36
+  R = zeros(36,1);
+  for i = 1:36
+    R(i) = 0.02+(0.48/(1.0+exp(-0.1*((290+10*i)-(290+10*steppos)))));
+  end
+  [xy, gc, u, b, g] = simple_hex_2019(R,ss650,alg,SPD);
+  hexmap(steppos,1) = 290 + 10*steppos;
+  hexmap(steppos,2) = u;
+  hexmap(steppos,3) = b;
+  hexmap(steppos,4) = g;
+  hexmap(steppos,5) = xy(1);
+  hexmap(steppos,6) = xy(2);
+end
+
+csvwrite('myhexmap-sigmoidal-k0p1-mp_u_b_g_x_y.csv', hexmap);

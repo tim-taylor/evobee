@@ -1,0 +1,45 @@
+#!/usr/bin/env octave 
+# 
+# Read in a stimulus file and output data about its reflectance values
+# and position in hex colour space
+#
+# Usage: calc-hex-pos stimfile label
+# where
+#   stimfile is a csv file of format "marker point, reflectance"
+#     (marker points should run from 300 to 650 in steps of 10)
+# and
+#   label is used for the first field in the output
+#
+# The output is a single line to stdout in csv format, of the form:
+#   label,u,b,g,x,y
+# where
+#   u,b,g are the calculated reflectance values
+#   x,y are the calculated coordinates in hex space
+
+if (nargin != 2)
+  printf("usage: %s stimfile label\n", program_name());
+  quit;
+endif
+
+arg_list = argv ();
+stimfile = arg_list{1};
+label = arg_list{2};
+
+load SPD.mat;
+
+lmax = [350, 340, 276;
+        440, 340, 276;
+        540, 340, 276];
+
+ss650 = dlmread('avgbee_spectral_sensitivity_300_650.dat');
+ss650 = ss650(:, 2:4);
+
+alg = dlmread('ALG.dat');
+alg = alg(:,2);
+
+STIM = dlmread(stimfile);
+R = STIM(:,2);
+
+[xy, gc, u, b, g] = simple_hex_2019(R,ss650,alg,SPD);
+
+printf("%s,%f,%f,%f,%f,%f\n",label,u,b,g,xy(1),xy(2));

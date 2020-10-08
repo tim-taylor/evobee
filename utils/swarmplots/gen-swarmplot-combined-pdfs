@@ -1,0 +1,13 @@
+#!/bin/bash
+F=""
+for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99; do
+    gawk -vG=$G '{sub(/gen499/,"gen"G,$1); print;}' swarmplot-display-template.tex > swarmplot-display-$G.tex
+    pdflatex swarmplot-display-$G.tex
+    X=swarmplot-display-$G.pdf
+    F="$F $X"  
+done
+pdfunite $F swarmplot-display-combined.pdf
+rm -f swarmplot-display-[0-9]*.aux
+rm -f swarmplot-display-[0-9]*.log
+rm -f swarmplot-display-[0-9]*.tex
+rm -f swarmplot-display-[0-9]*.pdf

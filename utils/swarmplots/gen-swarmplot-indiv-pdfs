@@ -1,0 +1,6 @@
+#!/bin/bash
+for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99; do
+    for E in 1a 1b 2 3; do
+        ./plot-mp-swarmplot.py counts-at-gen$G-giurfa-innate-expt-$E counts-giurfa-innate-expt-$E-gen$G*.csv
+    done;
+done
