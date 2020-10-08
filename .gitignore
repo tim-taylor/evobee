@@ -48,6 +48,7 @@ utils/processFixationTimes.old
 utils/fixation-sim/fixationsim
 utils/fixation-sim/results/
 utils/graphs/
+utils/hexmap/gen-stimuli
 #docs/html
 .vscode
 src/.vscode
