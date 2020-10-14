@@ -116,9 +116,9 @@ int main(int argc, char *argv[])
     bool verbose = true;
     */
 
+    // process command line arguments
     float inx = 0.0, iny = 0.0;
     bool verbose = false;
-
     bool args_ok = false;
     bool opt_arg_ok = true;
     int xpos = 1;
@@ -150,10 +150,8 @@ int main(int argc, char *argv[])
     }
 
     // a simple hack to avoid divide by zero problems
-    if (inx == 0.0f)
-        inx = 0.000001f;
-    if (iny == 0.0f)
-        iny = 0.000001f;
+    if (inx == 0.0f) inx = 0.000001f;
+    if (iny == 0.0f) iny = 0.000001f;
 
     // First establish which line segment (if any) on the pure spectral line the extension of the
     // line from the origin to the (inx, iny) will intersect. This is done by first establishing
@@ -176,11 +174,14 @@ int main(int argc, char *argv[])
     bool out_of_range = false;
     bool found = false;
     int num_pts = (int)pureline.size();
+
+    // Now loop through the entries in the pure spectral line table to figure out where
+    // the input point lies in relation to the pure spectral line segments by looking at
+    // the tangent of the angle extended by the line from the origin to the point versus
+    // from the origin to the ends of the line segments
     for (int i = 0; i < num_pts; ++i)
     {
         auto [w, q, x, y, t] = pureline.at(i);
-
-        //std::cout << i << ", " << q << ", " << t << ", " << intan << std::endl;
 
         if ((q == inq) && ((i == 0 && intan > t) || (i == num_pts - 1 && intan < t)))
         {
@@ -243,7 +244,9 @@ int main(int argc, char *argv[])
     // calculate the intersection point of the line from the origin to the input point with the pure spectral line segment
     float int_x = 0.0, int_y = 0.0;
 	bool ok = calcLineLineIntersect(0.0, 0.0, inx, iny, segline_x1, segline_y1, segline_x2, segline_y2, int_x, int_y);
-    if (!ok) {
+
+    if (!ok)
+    {
         std::cerr << "Error! Problem encountered when calculating intersection" << std::endl;
         return 1;
     }
@@ -255,9 +258,10 @@ int main(int argc, char *argv[])
 
     if (verbose)
     {
-        std::cout << std::setprecision(7) << domw << ", " << inq << ", " << segline_w1 << ", ("
-                  << segline_x1 << ", " << segline_y1 << "), " << segline_w2 << ", ("
-                  << segline_x2 << ", " << segline_y2 << "), (" << int_x << ", " << int_y << ")" << std::endl;
+        std::cout << std::setprecision(7) << domw << ", " << inx << ", " << iny << ", " << inq << ", " 
+                  << segline_w1 << ", " << segline_x1 << ", " << segline_y1 << ", "
+                  << segline_w2 << ", " << segline_x2 << ", " << segline_y2 << ", "
+                  << int_x << ", " << int_y << std::endl;
     }
     else
     {
