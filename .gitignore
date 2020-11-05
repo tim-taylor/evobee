@@ -52,3 +52,4 @@ utils/hexmap/gen-stimuli
 #docs/html
 .vscode
 src/.vscode
+*.1
