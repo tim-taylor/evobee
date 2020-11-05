@@ -15,13 +15,13 @@ EvoBee user and system documentation can be found at [https://tim-taylor.github.
 git clone --depth 1 --branch theor-ecol-2020 https://github.com/tim-taylor/evobee.git
 ```
     
-    - dhjskdhk
+    - The configuration and output files associated with the experiments reported in the paper are available at https://github.com/tim-taylor/e
 
 ## Authors
 * [Tim Taylor](http://timt.co) ([github](https://github.com/tim-taylor), [twitter](https://twitter.com/drtimt)), Monash University, Australia
 * [Alan Dorin](https://research.monash.edu/en/persons/alan-dorin) ([twitter](https://twitter.com/NRGBunny1)), Monash University, Australia
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk1ODI2OTQwLC0yMDE3NjI1ODM3LC0xNT
+eyJoaXN0b3J5IjpbLTIwMDg4NjM3LC0yMDE3NjI1ODM3LC0xNT
 U3Mjc2Nzc0LC0xODI1OTU0ODc4LC0xMDQzMjAwNDA3LC05OTk5
 NTk1NTQsLTE3OTgwODY2NTgsLTE0OTg4NzkzMTcsLTc5NTIwOD
 I3OCwtMTE1MDUyOTIyNV19
