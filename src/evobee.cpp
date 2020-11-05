@@ -134,18 +134,19 @@ void from_json(const json& j, PlantTypeConfig& pt)
 {
     std::string sct = "PlantTypeConfig";
     json_read_param(j, sct, "species", pt.species);
-    json_read_param(j, sct, "flower-reflectance-mp-init-min", pt.flowerMPInitMin);
-    json_read_param(j, sct, "flower-reflectance-mp-init-max", pt.flowerMPInitMax);
+    json_read_opt_param(j, sct, "flower-reflectance-mp-init-min", pt.flowerMPInitMin, (MarkerPoint)0);
+    json_read_opt_param(j, sct, "flower-reflectance-mp-init-max", pt.flowerMPInitMax, (MarkerPoint)0);
     json_read_opt_param(j, sct, "flower-reflectance-mp-init-step", pt.flowerMPInitStep, (MarkerPoint)10);
     if (pt.flowerMPInitMax < pt.flowerMPInitMin) {
         pt.flowerMPInitMax = pt.flowerMPInitMin;
     }
-    if (pt.flowerMPInitStep > (pt.flowerMPInitMax - pt.flowerMPInitMax)) {
-        pt.flowerMPInitStep = pt.flowerMPInitMax - pt.flowerMPInitMax;
+    if (pt.flowerMPInitStep > (pt.flowerMPInitMax - pt.flowerMPInitMin)) {
+        pt.flowerMPInitStep = pt.flowerMPInitMax - pt.flowerMPInitMin;
     }
     if (pt.flowerMPInitStep < 1) {
         pt.flowerMPInitStep = 1;
     }
+    json_read_opt_param(j, sct, "flower-vis-data-id", pt.flowerVisDataID, 0);
     json_read_param(j, sct, "anther-init-pollen", pt.antherInitPollen);
     json_read_param(j, sct, "anther-pollen-transfer-per-visit", pt.antherPollenTransferPerVisit);
     json_read_param(j, sct, "stigma-max-pollen-capacity", pt.stigmaMaxPollenCapacity);
@@ -157,7 +158,6 @@ void from_json(const json& j, PlantTypeConfig& pt)
     }
     json_read_param(j, sct, "pollen-clogging", pt.pollenCloggingSpecies);
     json_read_param(j, sct, "repro-seed-dispersal-global", pt.reproSeedDispersalGlobal);
-    //json_read_opt_param(j, sct, "repro-seed-dispersal-radius", pt.reproSeedDispersalRadius, 1.0f);
     json_read_opt_param(j, sct, "repro-seed-dispersal-radius-stddev", pt.reproSeedDispersalRadiusStdDev, 1.0f);
     json_read_opt_param(j, sct, "init-nectar", pt.initNectar, 0);
     json_read_opt_param(j, sct, "diff-mp-is-diff-species", pt.diffMPIsDiffSpecies, false);
@@ -205,7 +205,7 @@ void extractVisDataFromPollinatorConfig(const json& j, PollinatorConfig& p)
     // parse the vis-data part of the Pollinator configuration section of the config file and
     // store the data in the PollinatorConfig object
     if (j.find("vis-data") != j.end()) {
-        int  numEntries = 0;
+        int numEntries = 0;
         MarkerPoint mpPrev = 0;
 
         auto visdata = j.at("vis-data");
@@ -214,18 +214,37 @@ void extractVisDataFromPollinatorConfig(const json& j, PollinatorConfig& p)
             // we've found an array! It should be an array of arrays, so let's try iterating through it
             for (json::iterator itAA = visdata.begin(); itAA != visdata.end(); ++itAA)
             {
-                if (itAA.value().is_array() && itAA.value().size() == 6)
+                if (itAA.value().is_array() && ((itAA.value().size() == 6) || (itAA.value().size() == 9)))
                 {
                     // we've found an array within the array, so now read the values
                     json::iterator itV = itAA->begin();
                     try
                     {
-                        MarkerPoint mp = itV.value(); // marker point
-                        float dp = (++itV).value();   // detection probability
-                        float gc = (++itV).value();   // green contast
-                        float x = (++itV).value();    // hexagonal colour space x coord
-                        float y = (++itV).value();    // hexagonal colour space y coord
-                        float bpli = (++itV).value(); // pollinator's base probability of landing on this mp (non target, innate)
+                        int id = -1;
+                        MarkerPoint mp = 0;
+                        float dp = 0.0f, gc = 0.0f, hexx = 0.0f, hexy = 0.0f, purex = 0.0f, purey = 0.0f, bpli = 0.0f;                      
+
+                        if (itAA.value().size() == 6)
+                        {
+                            mp = itV.value(); // marker point
+                            dp = (++itV).value();   // detection probability
+                            gc = (++itV).value();   // green contast
+                            hexx = (++itV).value(); // hexagonal colour space x coord
+                            hexy = (++itV).value(); // hexagonal colour space y coord
+                            bpli = (++itV).value(); // pollinator's base probability of landing on this mp (non target, innate)
+                        }
+                        else // (itAA.value().size() == 9)
+                        {
+                            id = itV.value();        // id for this entry (these are referred to in the PlantType configs) 
+                            mp = (++itV).value();    // marker point
+                            dp = (++itV).value();    // detection probability
+                            gc = (++itV).value();    // green contast
+                            hexx  = (++itV).value(); // hexagonal colour space x coord
+                            hexy  = (++itV).value(); // hexagonal colour space y coord
+                            purex = (++itV).value(); // dominant wavelength pure spectral point x coord
+                            purey = (++itV).value(); // dominant wavelength pure spectral point y coord                            
+                            bpli  = (++itV).value(); // pollinator's base probability of landing on this mp (non target, innate)
+                        }
 
                         numEntries++;
                         if (numEntries == 1) {
@@ -242,7 +261,7 @@ void extractVisDataFromPollinatorConfig(const json& j, PollinatorConfig& p)
                             // We set the step size here, calculated as the difference between this marker
                             // point and the first one. We expect all subsequent entries to increase
                             // regularly according to the same step size.
-                            if (mp > p.visDataMPMin) {
+                            if (mp >= p.visDataMPMin) {
                                 p.visDataMPStep = mp - p.visDataMPMin;
                             }
                             else {
@@ -253,19 +272,21 @@ void extractVisDataFromPollinatorConfig(const json& j, PollinatorConfig& p)
                                 exit(1);
                             }
                         }
-                        else if (mp - mpPrev != p.visDataMPStep) {
-                            // This is at least the third entry in the array of arrays defining the visual data,
-                            // so we just check that the step size is consistant with what has come before.
-                            //
-                            // error! all entries must have same step size
-                            std::cerr << "Error in vis-data section of config file "
-                                      << "(line starting with marker point " << mp << "). " << std::endl
-                                      << "All entries must have the same wavelength step size. Aborting!" << std::endl;
-                            exit(1);
+                        else if ((numEntries > 2) && (mp - mpPrev != p.visDataMPStep)) {
+                            if (mp < mpPrev) {
+                                // error! data must be in ascending order
+                                std::cerr << "Error in vis-data section of config file "
+                                          << "(line starting with marker point " << mp << "). " << std::endl
+                                          << "Entries must appear in ascending order of wavelength. Aborting!" << std::endl;
+                                exit(1);
+                            }
+                            else {
+                                p.visDataEquallySpaced = false; // we check whether this is okay during post-processing in ModelParams::checkConsistency
+                            }
                         }
                         // All checks are complete and passed at this stage, so we can add the data
                         // to the visData vector
-                        p.visData.emplace_back(mp, dp, gc, x, y, bpli);
+                        p.visData.emplace_back(id, mp, dp, gc, hexx, hexy, purex, purey, bpli);
                         p.visDataMPMax = mp;
                         mpPrev = mp;
                     }
@@ -563,6 +584,12 @@ void processJsonFile(std::ifstream& ifs)
                         std::cout << "Vis max screen fraction H -> " << it.value() << std::endl;
                     }
                     ModelParams::setMaxScreenFracH(it.value());
+                }
+                else if (it.key() == "colour-system" && it.value().is_string()) {
+                    if (verbose) {
+                        std::cout << "Colour system -> '" << it.value() << "'" << std::endl;
+                    }
+                    ModelParams::setColourSystem(it.value());
                 }
                 else {
                     std::cerr << "Unexpected entry in SimulationParams section of json file: "

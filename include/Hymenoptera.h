@@ -115,6 +115,10 @@ private:
                                                                 ///< match a stimulus with the target if they share the exact same
                                                                 ///< marker point
 
+    static std::vector<std::tuple<MarkerPoint, float, float>> m_sGiurfaCumulativeInnatePrefs; ///< Stores information about innate
+                                                                ///< colour preferences for hymenoptera as described in Fig 3 of
+                                                                ///< Giurfa et al, J. Comp. Physiol A (1995).
+
     static bool                     m_sbStaticsInitialised;     ///< Flags whether statics have been initialised from config file
 
     /**
@@ -129,6 +133,9 @@ private:
     void updateVisualPrefsStay(const Flower* pFlower, int nectarCollected);
     void pickRandomTarget();
     void initialiseInnateTarget();
+    void initialiseInnateTargetRegular();
+    void initialiseInnateTargetArbitrary();
+    float getGiurfaPref(MarkerPoint lambda);
 
     static const VisualStimulusInfo& getVisStimInfoFromMP(MarkerPoint mp);
     static std::size_t getVisualDataVectorIdx(MarkerPoint mp);

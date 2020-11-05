@@ -12,6 +12,14 @@ using MarkerPoint = unsigned short;
 constexpr MarkerPoint NO_MARKER_POINT = 0;
 
 /**
+ * Definition of the different ways in which we can treat colour stimuli in these experiments
+ */
+enum class ColourSystem {
+    REGULAR_MARKER_POINTS,          ///< Marker points at regular intervals within a defined range
+    ARBITRARY_DOMINANT_WAVELENGTHS  ///< An arbitrary collection of allowable colours defined by their dominant wavelengths
+};
+
+/**
  * The ReflectanceInfo class ...
  */
 class ReflectanceInfo {

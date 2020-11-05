@@ -976,7 +976,7 @@ float Pollinator::confidenceMatchesTarget(const ReflectanceInfo& stimulus) const
 
     const VisualStimulusInfo& infoStimulus = getVisStimulusInfo(stimulus.getMarkerPoint());
     const VisualStimulusInfo& infoTarget = getVisStimulusInfo(m_TargetMP);
-    float hexDistance = getVisHexDistance(infoStimulus, infoTarget);
+    float hexDistance = getVisHexDistance(infoStimulus, infoTarget, false); // calculate distance using raw positions in hex space
 
     if (hexDistance <= minHexDistance)
     {
@@ -996,6 +996,8 @@ float Pollinator::confidenceMatchesTarget(const ReflectanceInfo& stimulus) const
 }
 
 
+// - this is now obsolete - use confidenceMatchesTarget() instead
+/*
 bool Pollinator::matchesTargetMP(const ReflectanceInfo& stimulus) const
 {
     const float minHexDistance = 0.05;
@@ -1024,12 +1026,21 @@ bool Pollinator::matchesTargetMP(const ReflectanceInfo& stimulus) const
 
     return bMatch;
 }
+*/
 
 
 float Pollinator::getVisHexDistance(const VisualStimulusInfo &infoStimulus,
-                                    const VisualStimulusInfo &infoTarget)
+                                    const VisualStimulusInfo &infoTarget,
+                                    bool usePureSpectralPoints /* = false*/)
 {
-    float x = infoStimulus.x - infoTarget.x;
-    float y = infoStimulus.y - infoTarget.y;
+    float x, y;
+    if (usePureSpectralPoints) {
+        x = infoStimulus.purex - infoTarget.purex;
+        y = infoStimulus.purey - infoTarget.purey;
+    }
+    else {
+        x = infoStimulus.hexx - infoTarget.hexx;
+        y = infoStimulus.hexy - infoTarget.hexy;
+    }
     return std::sqrt(x*x + y*y);
 }

@@ -7,7 +7,9 @@
                 "/home/tim/evobee/code/evobee/3rd-party/nlohmann-json",
                 "/usr/include/c++/9",
                 "/usr/include/x86_64-linux-gnu/c++/9",
-                "/usr/lib/gcc/x86_64-linux-gnu/9/include/"
+                "/usr/lib/gcc/x86_64-linux-gnu/9/include/",
+                "/hddhome/tim/Dropbox/research/evobee/code/evobee/include",
+                "/home/tim/Dropbox/research/evobee/code/evobee/include"
             ],
             "defines": [],
             "browse": {
@@ -28,7 +30,10 @@
         {
             "name": "EvoBee",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/hddhome/tim/Dropbox/research/evobee/code/evobee/include",
+                "/home/tim/Dropbox/research/evobee/code/evobee/include",
+                "/home/tim/evobee/code/evobee/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

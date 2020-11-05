@@ -34,7 +34,8 @@ struct PollinatorConfig {
         visProbLandIncrementOnReward(0.01),
         visProbLandDecrementOnNoReward(0.01),
         visProbLandDecrementOnUnseen(0.005),
-        visTargetExactMatchOnly(false)
+        visTargetExactMatchOnly(false),
+        visDataEquallySpaced(true)
     {};
 
     std::string species;
@@ -52,7 +53,7 @@ struct PollinatorConfig {
     float constancyParam;
     std::string strForagingStrategy;        ///< allowed values: random, nearest-flower, random-flower, random-global
     PollinatorForagingStrategy foragingStrategy;
-    std::string strLearningStrategy;        ///< allowed values: stay, fickle-circumspect, deliberative-decisive, none
+    std::string strLearningStrategy;        ///< allowed values: stay, stay-rnd, stay-innate, fickle-circumspect, deliberative-decisive, none
     PollinatorLearningStrategy learningStrategy;
     unsigned int visitedFlowerMemorySize;
 
@@ -69,6 +70,9 @@ struct PollinatorConfig {
     float visProbLandDecrementOnNoReward;   ///< Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding.
     float visProbLandDecrementOnUnseen;     ///< Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the Pollinator's m_RecentlyVisitedFlowers list.
     bool  visTargetExactMatchOnly;          ///< If set to true, this overrides the normal visual discrimination routine and only matches a stimulus with the target if they have the exact same marker point.
+    
+    bool  visDataEquallySpaced;             ///< This is set when reading in data from the config file and used in config post-processing
+                                            ///<   to check we have equally-spaced data is ModelParams::m_ColourSystem = REGULAR_MARKER_POINTS
 };
 
 #endif /* _POLLINATORCONFIG_H */

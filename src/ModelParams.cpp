@@ -55,13 +55,13 @@ std::string ModelParams::m_strLogFinalDir {""};
 std::string ModelParams::m_strLogRunName {"run"};
 std::string ModelParams::m_strRngSeed {""};
 std::string ModelParams::m_strNoSpecies {"NOSPECIES"};
-
 std::vector<HiveConfig> ModelParams::m_Hives;
 std::vector<PlantTypeDistributionConfig> ModelParams::m_PlantDists;
 std::vector<PlantTypeConfig> ModelParams::m_PlantTypes;
 std::vector<PollinatorConfig> ModelParams::m_PollinatorConfigs;
-
+ColourSystem ModelParams::m_ColourSystem = ColourSystem::REGULAR_MARKER_POINTS;
 unsigned int ModelParams::m_iTestNumber = 0;
+bool   ModelParams::m_bSyntheticRegularMarkerPointsAdded = false;
 
 nlohmann::json ModelParams::m_Json;
 
@@ -477,6 +477,7 @@ void ModelParams::addPlantTypeConfig(PlantTypeConfig& pt)
             newpt.diffMPIsDiffSpecies = false;
             m_PlantTypes.push_back(newpt);
             FloweringPlant::registerSpecies(newpt.species);
+            m_bSyntheticRegularMarkerPointsAdded = true; // we'll check whether this is okay in ModelParams::checkConsistency
         }
     }
     else
@@ -605,6 +606,23 @@ void ModelParams::setPtdAutoDistribRegular(bool regular)
 void ModelParams::setPtdAutoDistribSeedOutflowAllowed(bool allowed)
 {
     m_bPtdAutoDistribSeedOutflowAllowed = allowed;
+}
+
+
+void ModelParams::setColourSystem(const std::string& cs)
+{
+    if (cs == "regular-marker-points") {
+        m_ColourSystem = ColourSystem::REGULAR_MARKER_POINTS;
+    }
+    else if (cs == "arbitrary-dominant-wavelengths") {
+        m_ColourSystem = ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS;
+    }
+    else {
+        m_ColourSystem = ColourSystem::REGULAR_MARKER_POINTS;
+        if (verbose()) {
+            std::cout << "Warning: unrecognised colour system type (" << cs << "). Assuming regular-marker-points." << std::endl;
+        }
+    }
 }
 
 
@@ -749,6 +767,11 @@ void ModelParams::postprocess()
     // for each plant species, create a list of which other species it clogs, for
     // efficiency purposes
     FloweringPlant::constructCloggingMap(m_PlantTypes);
+
+    if (m_ColourSystem == ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS)
+    {
+        pairPlantTypeConfigsToVisData();
+    }
 }
 
 
@@ -795,6 +818,120 @@ void ModelParams::checkConsistency()
         }
     }
 
+    switch (m_ColourSystem) {
+        case ColourSystem::REGULAR_MARKER_POINTS:
+        {
+            for (auto &pc : m_PollinatorConfigs) {
+                if ((!pc.visDataEquallySpaced) || (pc.visDataMPStep < 1)) {
+                    throw std::runtime_error("Error: with colour-system set to 'regular-marker-points' visual data must be defined at equally-spaced marker points");
+                }
+            }
+            break;
+        }
+        case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS:
+        {
+            if (m_bSyntheticRegularMarkerPointsAdded) {
+                throw std::runtime_error("Error: with colour-system set to 'arbitrary-dominant-wavelengths' all PlantTypeConfigs must have flowerMPInitMin=flowerMPInitMax");
+            }
+
+            for (auto& pc : m_PollinatorConfigs) {
+                pc.visDataMPStep = 1; // step has no meaning for ARBITRARY_DOMINANT_WAVELENGTHS, so we just ensure it is set to 1 here rather than some random other number
+                if (pc.learningStrategy != PollinatorLearningStrategy::STAY_INNATE) {
+                    // At present the code has only been designed to cope with STAY_INNATE for ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS, so
+                    // throw an error if this is not the case
+                    throw std::runtime_error("Error: with colour-system set to 'arbitrary-dominant-wavelengths' all pollinator's learning strategies should be set to 'stay-innate'");
+                }
+            }
+
+            auto& visData = getVisData();
+
+            // Check that each entry in PollinatorConfig::visData matches a type of plant in the PlantTypeConfigs, and vice versa
+            bool allOK = true;
+            if (m_PlantTypes.size() != visData.size()) {
+                allOK = false;
+            }
+            else {
+                // go through plant types one by one looking for a match in the visData
+                for (auto& ptc : m_PlantTypes) {
+                    MarkerPoint mp = ptc.flowerMPInitMin;
+                    bool found = false;
+                    for (auto& v : visData) {
+                        if (v.mp == mp) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        allOK = false;
+                        break;
+                    }
+                }
+            }
+            if (!allOK) {
+                throw std::runtime_error("Error: each dominant wavelength associated with a PlantTypeConfig must match an entry in the vis-data array and vice versa");
+            }
+            break;
+        }
+        default:
+        {
+            throw std::runtime_error("Error: encountered unknown ColourSystem in ModelParams::checkConsistency(). Aborting!");
+        }
+    }
+
     ///@todo - other things to check re parameter consistency...
-    // - are all pollinator and hive areas completely within the envionrment area?
+    // - are all pollinator and hive areas completely within the environment area?
+}
+
+
+// for each PlantTypeConfig, check that its flowerVisDataID matches an ID in VisData, and initialise a pointer in the 
+// PlantTypeConfig to point to the corresponding VisData entry.  If no match is found for a PlantTypeConfig, throw an
+// exception.
+void ModelParams::pairPlantTypeConfigsToVisData()
+{
+    // this method is only designed to be used with ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS
+    assert(m_ColourSystem == ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS);
+
+    auto& visData = getVisData();
+
+    for (auto& ptc : m_PlantTypes)
+    {
+        // first check our assumption that flower marker points have not been set explicitly in this case
+        assert(ptc.flowerMPInitMin == 0);
+        assert(ptc.flowerMPInitMax == 0);
+
+        // and check that the vis-data-id has been set
+        assert(ptc.flowerVisDataID >= 0);
+
+        int visDataID = ptc.flowerVisDataID;
+
+        auto it = std::find_if(
+            visData.begin(),
+            visData.end(),
+            [visDataID](const VisualStimulusInfo& info) {return (visDataID == info.id);}
+        );
+
+        if (it == visData.end()) {
+            std::stringstream msg;
+            msg << "In ModelParams::pairPlantTypeConfigsToVisData(): unable to find matching entry in vis-data\n"
+                << " for PlantTypeConfig with flower-vis-data-id = " << visDataID << "\n";
+            throw std::runtime_error(msg.str());
+        }
+
+        ptc.flowerVisDataPtr = &(*it);
+    }
+}
+
+
+const std::vector<VisualStimulusInfo>& ModelParams::getVisData()
+{
+    // this method is only designed to be used with ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS
+    assert(m_ColourSystem == ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS);
+
+    // At present the code assumes that there is only one single pollinator type when using
+    // ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS 
+    if (m_PollinatorConfigs.size() != 1) {
+        throw std::runtime_error("Error: ModelParams::getVisData() only works with a single pollinator type at present");
+    }
+
+    return m_PollinatorConfigs.at(0).visData;    
 }

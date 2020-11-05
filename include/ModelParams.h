@@ -71,6 +71,7 @@ public:
     static void addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc);
     static void addPlantTypeConfig(PlantTypeConfig& pt);
     static void addPollinatorConfig(PollinatorConfig& pt);
+    static void setColourSystem(const std::string& cs);
 
     static void setTestNumber(unsigned int num);
 
@@ -123,6 +124,7 @@ public:
     static int   getNumPlantTypes() {return m_PlantTypes.size();}
     static PollinatorConfig* getPollinatorConfigPtr(const std::string& pollinatorName);
     static unsigned int getTestNumber() {return m_iTestNumber;}
+    static ColourSystem getColourSystem() {return m_ColourSystem;}
 
     static nlohmann::json& getJson() {return m_Json;}
 
@@ -134,6 +136,8 @@ private:
     static void autoGeneratePtds();
     static void initialiseAutoGenPtdSpeciesPatchMap(std::vector<const std::string*>& speciesPatchMap);
     static const std::string getAutoGenPtdSpeciesForPatch(int x, int y, std::vector<const std::string*>& speciesPatchMap);
+    static void pairPlantTypeConfigsToVisData();
+    static const std::vector<VisualStimulusInfo>& getVisData();    
 
 
     // data members
@@ -194,10 +198,13 @@ private:
     static std::vector<PlantTypeDistributionConfig> m_PlantDists;   ///< Config of plant distributions
     static std::vector<PlantTypeConfig> m_PlantTypes;               ///< Config of plant types
     static std::vector<PollinatorConfig> m_PollinatorConfigs;       ///< Config info for pollinator types
+    static ColourSystem m_ColourSystem;     ///< Defines how we interpret colour stimuli
 
     static unsigned int m_iTestNumber;      ///< Specifies that we should run a special test on the
                                             ///<   code rather than a normal run (default value is 0
                                             ///<   which means do a normal run).
+
+    static bool m_bSyntheticRegularMarkerPointsAdded; ///< This flag is used for internal checking during system initialisation
 
     static nlohmann::json m_Json;           ///< JSON representation of all Model Params
 };

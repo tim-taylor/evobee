@@ -10,15 +10,19 @@
 #include <string>
 #include "ReflectanceInfo.h"
 
+struct VisualStimulusInfo;
+
 /**
  * The PlantTypeConfig class ...
  */
 struct PlantTypeConfig {
     PlantTypeConfig() :
         species("Unknown"),
-        flowerMPInitMin(300),
-        flowerMPInitMax(650),
+        flowerMPInitMin(0),
+        flowerMPInitMax(0),
         flowerMPInitStep(10),
+        flowerVisDataID(-1),
+        flowerVisDataPtr(nullptr),
         antherInitPollen(100),
         antherPollenTransferPerVisit(10),
         stigmaMaxPollenCapacity(5),
@@ -36,6 +40,8 @@ struct PlantTypeConfig {
     MarkerPoint flowerMPInitMin;
     MarkerPoint flowerMPInitMax;
     MarkerPoint flowerMPInitStep;
+    int         flowerVisDataID;
+    const VisualStimulusInfo* flowerVisDataPtr;
     int         antherInitPollen;
     int         antherPollenTransferPerVisit;
     int         stigmaMaxPollenCapacity;

@@ -248,6 +248,7 @@ void EvoBeeExperiment::runMarkerPointSimilarityTest()
     }
     */
 
+   /*
     auto pPolConfig = ModelParams::getPollinatorConfigPtr("HoneyBee");
     auto hives = m_Model.getEnv().getHives();
     auto pHive = hives.at(0);
@@ -259,7 +260,10 @@ void EvoBeeExperiment::runMarkerPointSimilarityTest()
             bool matches = bee.matchesTargetMP(stimulus);
             std::cout << mp << "," << mp2 << "," << (matches ? "1" : "0") << std::endl;
         }
-    }
+    }*/
+
+    std::cerr << "EvoBeeExperiment::runMarkerPointSimilarityTest() is now obsolete. Use runMatchConfidenceTest() instead.\n";
+    
     return;
 }
 

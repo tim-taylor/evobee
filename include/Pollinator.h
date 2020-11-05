@@ -130,7 +130,8 @@ public:
      * Checks whether the pollinator classifies the given visual stimulus as a match against its
      * current target marker point.
      */
-    bool matchesTargetMP(const ReflectanceInfo& stimulus) const;
+    // This is now obsolete - use confidenceMatchesTarget() instead
+    //bool matchesTargetMP(const ReflectanceInfo& stimulus) const;
 
     /**
      * Compares a given stimulus to the pollinator's current target marker point and
@@ -305,8 +306,12 @@ protected:
 
     /**
      * Calculate the Euclidean distance between two points in hexagonal colour space
+     * If the optional parameter usePureSpectralPoints is set to true, the distance is calculated
+     * from the points on the pure spectral line of the two stimuli instead of their raw positions
+     * in hex space.
      */
-    static float getVisHexDistance(const VisualStimulusInfo& infoStimulus, const VisualStimulusInfo& infoTarget);
+    static float getVisHexDistance(const VisualStimulusInfo& infoStimulus, const VisualStimulusInfo& infoTarget,
+                                   bool usePureSpectralPoints = false);
 
 
     // protected data memebers
