@@ -8,7 +8,7 @@ EvoBee user and system documentation can be found at [https://tim-taylor.github.
 
 ## Versions and data associated with specific publications
 
-<div style="background-color: red">
+<div style="background-color:#0d020f">
 A. Dorin, T. Taylor, M. Burd, J. Garcia, M. Shrestha, A. G. Dyer. <strong><em>Competition and pollen wars: simulations reveal the dynamics of competition mediated through heterospecific pollen transfer by non-flower constant insects</em></strong> Theoretical Ecology, 13, 2020
 </div>
 
@@ -24,7 +24,7 @@ The configuration and output files associated with the experiments reported in t
 * [Tim Taylor](http://timt.co) ([github](https://github.com/tim-taylor), [twitter](https://twitter.com/drtimt)), Monash University, Australia
 * [Alan Dorin](https://research.monash.edu/en/persons/alan-dorin) ([twitter](https://twitter.com/NRGBunny1)), Monash University, Australia
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTI2OTgzODg2LDc1NTMyODE2OSwtMTc5Nz
+eyJoaXN0b3J5IjpbMjAxMzMzNzYyLDc1NTMyODE2OSwtMTc5Nz
 c0NTAxNCwtMjAxNzYyNTgzNywtMTU1NzI3Njc3NCwtMTgyNTk1
 NDg3OCwtMTA0MzIwMDQwNywtOTk5OTU5NTU0LC0xNzk4MDg2Nj
 U4LC0xNDk4ODc5MzE3LC03OTUyMDgyNzgsLTExNTA1MjkyMjVd
