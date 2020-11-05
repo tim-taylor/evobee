@@ -14,7 +14,7 @@ A. Dorin, T. Taylor, M. Burd, J. Garcia, M. Shrestha, A. G. Dyer. ***Competition
 >```bash
 >git clone --depth 1 --branch theor-ecol-2020 https://github.com/tim-taylor/evobee.git
 >``` 
->The configuration and output files associated with the experiments reported in the paper are available at [https://github.com/tim-taylor/evobee-data/theor-ecol-2020/](https://github.com/tim-taylor/evobee-data/theor-ecol-2020/)
+>The configuration and output files associated with the experiments reported in the paper are available at [https://github.com/tim-taylor/evobee-data](https://github.com/tim-taylor/evobee-data) in the folder `theor-ecol-2020`.
 
 ---
 
@@ -22,9 +22,9 @@ A. Dorin, T. Taylor, M. Burd, J. Garcia, M. Shrestha, A. G. Dyer. ***Competition
 * [Tim Taylor](http://timt.co) ([github](https://github.com/tim-taylor), [twitter](https://twitter.com/drtimt)), Monash University, Australia
 * [Alan Dorin](https://research.monash.edu/en/persons/alan-dorin) ([twitter](https://twitter.com/NRGBunny1)), Monash University, Australia
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjU5NDExNjQ2LDIwMTMzMzc2Miw3NTUzMj
-gxNjksLTE3OTc3NDUwMTQsLTIwMTc2MjU4MzcsLTE1NTcyNzY3
-NzQsLTE4MjU5NTQ4NzgsLTEwNDMyMDA0MDcsLTk5OTk1OTU1NC
-wtMTc5ODA4NjY1OCwtMTQ5ODg3OTMxNywtNzk1MjA4Mjc4LC0x
-MTUwNTI5MjI1XX0=
+eyJoaXN0b3J5IjpbNTEyMTEyNjY5LDI1OTQxMTY0NiwyMDEzMz
+M3NjIsNzU1MzI4MTY5LC0xNzk3NzQ1MDE0LC0yMDE3NjI1ODM3
+LC0xNTU3Mjc2Nzc0LC0xODI1OTU0ODc4LC0xMDQzMjAwNDA3LC
+05OTk5NTk1NTQsLTE3OTgwODY2NTgsLTE0OTg4NzkzMTcsLTc5
+NTIwODI3OCwtMTE1MDUyOTIyNV19
 -->
