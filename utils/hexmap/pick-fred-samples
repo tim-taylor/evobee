@@ -1,0 +1,18 @@
+#!/bin/bash
+for X in `seq -0.605 0.11 0.605`; do
+    X1="$X"
+    X2=`/usr/bin/calc "0+$X+0.11"`
+    for Y in `seq -0.605 0.11 0.605`; do
+        Y1="$Y"
+        Y2=`/usr/bin/calc "0+$Y+0.11"`
+#        echo $X1 ", " $X2 ", " $Y1 ", " $Y2
+        gawk -F',' -vX1="$X1" -vX2="$X2" -vY1="$Y1" -vY2="$Y2" '
+BEGIN {
+    if (X1>X2) {TMP=X1;X1=X2;X2=TMP;};
+    if (Y1>Y2) {TMP=Y1;Y1=Y2;Y2=TMP;}
+}
+$5>=X1 && $5<X2 && $6>=Y1 && $6<Y2 {
+    printf("%d,%f,%f\n",$1,$5,$6)
+}' fred-hex-pos-data.csv | shuf | head -1
+    done
+done

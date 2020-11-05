@@ -1,0 +1,31 @@
+
+gawk -F',' 'NR>3 {L=300; out_file = "fred-" $1 ".csv"; for (i=4;i<=354;i=i+10) {print L "," $i/100.0 >> out_file; L=L+10}}' FredData_all_13OCT2020.csv
+
+gawk -F',' 'NR>3 {out_file = "fred-ids.txt"; print $1 >> out_file;}' FredData_all_13OCT2020.csv 
+
+for S in `cat fred-ids.txt`; do ./calc-hex-pos fred-data/fred-$S.csv $S; done | tee fred-hex-pos-data.csv
+
+gawk -F',' '{cmd="./calc-dom-lambda -v "$5" "$6; while ( ( cmd | getline result ) > 0 ) {print $1", "result;}; close(cmd);}' fred-hex-pos-data.csv | tee fred-dom-wavelength-data.csv
+
+
+#### GRID-BASED SAMPLING
+
+for N in `seq 1 10`; do ./pick-fred-samples > fred-samples-$N.csv; done
+
+gawk -F',' '{cmd="./calc-dom-lambda -v "$2" "$3; while ( ( cmd | getline result ) > 0 ) {print $1", "result;}; close(cmd);}' fred-samples-1.csv | tee fred-dom-wavelength-data-sample-1.csv
+
+sort -t',' -k2 fred-dom-wavelength-data-sample-1.csv | gawk -F',' '$4!=" OUT_OF_RANGE" {printf("[%3.0f, 1, 0.0, %f, %f, 0.05],\n",$2,$12,$13);}' > fred-dom-wavelength-data-sample-1-config.json.1
+
+for L in `gawk -F',' '{sub(/\[/,"",$1); print $1}' fred-dom-wavelength-data-sample-1-config.json`; do echo '        "PlantTypeDW'$L'" : {'; echo '            "species" : "PlantTypeDW'$L'",'; echo '            "flower-reflectance-mp-init-min" : '$L','; echo '            "flower-reflectance-mp-init-max" : '$L','; echo '            "anther-init-pollen" : 100,'; echo '            "anther-pollen-transfer-per-visit" : 1,'; echo '            "stigma-max-pollen-capacity" : 5,'; echo '            "pollen-clogging" : "",'; echo '            "repro-seed-dispersal-global" : true,'; echo '            "repro-seed-dispersal-radius-stddev" : 2.0,'; echo '            "init-nectar" : 100'; echo '        },'; done > plant-types.json
+
+
+
+./evobee -c config-files-giurfa-dom-wavelength-tests/giurfa-innate-reg-mps-360-570-expt-1a.cfg.json | tee tmp1a.out
+gawk -F',' '$1=="T" {print $2}' tmp1a.out > tmp1a.csv
+
+
+##########################################
+
+sort -t',' -k2 fred-dom-wavelength-data-sample-1.csv | gawk -F',' 'BEGIN {N=1;} $4!=" OUT_OF_RANGE" {printf("[%i, %3.0f, 1, 0.0, %f, %f, %f, %f, 0.05],\n",N,$2,$3,$4,$12,$13);N++;}' > fred-dom-wavelength-data-sample-1-config.json
+
+for L in `gawk -F',' '{sub(/\[/,"",$1); print $1}' fred-dom-wavelength-data-sample-1-config.json`; do echo '        "PlantTypeDW'$L'" : {'; echo '            "species" : "PlantTypeDW'$L'",'; echo '            "flower-vis-data-id" : '$L','; echo '            "anther-init-pollen" : 100,'; echo '            "anther-pollen-transfer-per-visit" : 1,'; echo '            "stigma-max-pollen-capacity" : 5,'; echo '            "pollen-clogging" : "",'; echo '            "repro-seed-dispersal-global" : true,'; echo '            "repro-seed-dispersal-radius-stddev" : 2.0,'; echo '            "init-nectar" : 100'; echo '        },'; done
