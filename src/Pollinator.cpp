@@ -51,7 +51,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_pModel = m_pEnv->getModel();
 
     // At birth the pollinator has no target marker point
-    m_TargetMP = NO_MARKER_POINT;
+    //m_TargetMP = NO_MARKER_POINT;
 
     // Set the starting position and heading of the pollinator
     resetToStartPosition();
@@ -82,7 +82,8 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_PollenStore(other.m_PollenStore),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
-    m_TargetMP(other.m_TargetMP),
+    //m_TargetMP(other.m_TargetMP),
+    m_TargetReflectance(other.m_TargetReflectance),
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
     m_PreviousLandingSpeciesId(other.m_PreviousLandingSpeciesId),
@@ -125,7 +126,8 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_PollenStore(std::move(other.m_PollenStore)),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
-    m_TargetMP(other.m_TargetMP),
+    //m_TargetMP(other.m_TargetMP),
+    m_TargetReflectance(other.m_TargetReflectance),
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
     m_PreviousLandingSpeciesId(other.m_PreviousLandingSpeciesId),
@@ -182,7 +184,8 @@ void Pollinator::reset()
     m_iNumFlowersVisitedInBout = 0;
     m_iCollectedNectar = 0;
     m_PreviousLandingSpeciesId = 0;
-    m_TargetMP = NO_MARKER_POINT;
+    //m_TargetMP = NO_MARKER_POINT;
+    m_TargetReflectance.reset();
     m_RecentlyVisitedFlowers.clear();
     for (auto& perfInfo : m_PerformanceInfoMap)
     {
@@ -675,11 +678,11 @@ bool Pollinator::isVisitCandidateVisual(Flower* pFlower, bool* pJudgedToMatchTar
 }
 
 
-// Make a probabilistic decision, for a given marker point, on whether the pollinator
+// Make a probabilistic decision, for a given characteristic wavelength, on whether the pollinator
 // can detect it. This is the base class implementation of this method, which should
 // generally be overridden by subclass implementations for more specific types of
 // pollinator.
-bool Pollinator::isDetected(MarkerPoint mp) const
+bool Pollinator::isDetected(Wavelength lambda) const
 {
     throw std::runtime_error("Calling base class implementation of Pollinator::isDetected. Probably not what was wanted!");
     return true;
@@ -923,13 +926,13 @@ std::string Pollinator::getStateString() const
     switch (m_LatestAction.status) {
     case PollinatorCurrentStatus::ON_FLOWER: {
         assert(m_LatestAction.pFlower != nullptr);
-        ssState << m_LatestAction.pFlower->getMarkerPoint() << "," << m_LatestAction.rewardReceived << ","
+        ssState << m_LatestAction.pFlower->getCharacteristicWavelength() << "," << m_LatestAction.rewardReceived << ","
             << (m_LatestAction.bJudgedToMatchTarget ? "T" : "F");
         break;
     }
     case PollinatorCurrentStatus::DECLINED_FLOWER: {
         assert(m_LatestAction.pFlower != nullptr);
-        ssState << m_LatestAction.pFlower->getMarkerPoint() << ",-1,"
+        ssState << m_LatestAction.pFlower->getCharacteristicWavelength() << ",-1,"
             << (m_LatestAction.bJudgedToMatchTarget ? "T" : "F");
         break;
     }
@@ -974,9 +977,29 @@ float Pollinator::confidenceMatchesTarget(const ReflectanceInfo& stimulus) const
 
     float confidence = minConfidence;
 
-    const VisualStimulusInfo& infoStimulus = getVisStimulusInfo(stimulus.getMarkerPoint());
-    const VisualStimulusInfo& infoTarget = getVisStimulusInfo(m_TargetMP);
-    float hexDistance = getVisHexDistance(infoStimulus, infoTarget, false); // calculate distance using raw positions in hex space
+    float hexDistance;
+
+    switch (ModelParams::getColourSystem())
+    {
+        case ColourSystem::REGULAR_MARKER_POINTS:
+        {
+            const VisualStimulusInfo& infoStimulus = getVisStimulusInfo(stimulus.getMarkerPoint());
+            const VisualStimulusInfo& infoTarget = getVisStimulusInfo(getTargetWavelength());
+            hexDistance = getVisHexDistance(infoStimulus, infoTarget, false); // calculate distance using raw positions in hex space
+            break;
+        }
+        case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS:
+        {
+            const VisualStimulusInfo* pInfoStimulus = stimulus.getVisDataPtr();
+            const VisualStimulusInfo* pInfoTarget = m_TargetReflectance.getVisDataPtr();
+            hexDistance = getVisHexDistance(*pInfoStimulus, *pInfoTarget, false); // calculate distance using raw positions in hex space
+            break;
+        }
+        default:
+        {
+            throw std::runtime_error("Encountered an unknown ColourSystem in Pollinator::confidenceMatchesTarget()");
+        }
+    }
 
     if (hexDistance <= minHexDistance)
     {
@@ -1044,3 +1067,43 @@ float Pollinator::getVisHexDistance(const VisualStimulusInfo &infoStimulus,
     }
     return std::sqrt(x*x + y*y);
 }
+
+
+void Pollinator::setTargetWavelength(Wavelength lambda) {
+    switch (ModelParams::getColourSystem())
+    {
+        case ColourSystem::REGULAR_MARKER_POINTS:{
+            m_TargetReflectance.setMarkerPoint(lambda);
+            return;
+        }
+        case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS:{
+            // We cannot set the target wavelength given lambda in this case because there is
+            // not necessarily a 1-1 mapping between lambda and the desired VisualStimulusInfo.
+            // Any code in this situation should be calling ReflectanceInfo::setTargetWavelength(const VisualStimulusInfo*)
+            // instead of this!
+            throw std::runtime_error("Pollinator::setTargetWavelength() called with ColourSystem ARBITRARY_DOMINANT_WAVELENGTHS");
+        }
+        default:{
+            throw std::runtime_error("Unexpected ColourSystem encountered in Pollinator::setTargetWavelength(Wavelength)");
+        }
+    }
+}
+
+
+void Pollinator::setTargetWavelength(const VisualStimulusInfo* pVSI) {
+    switch (ModelParams::getColourSystem())
+    {
+        case ColourSystem::REGULAR_MARKER_POINTS:{
+            m_TargetReflectance.setMarkerPoint(pVSI->lambda);
+            return;
+        }
+        case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS:{
+            m_TargetReflectance.setVisDataPtr(pVSI);
+        }
+        default:{
+            throw std::runtime_error("Unexpected ColourSystem encountered in Pollinator::setTargetWavelength(const VisualStimulusInfo*)");
+        }
+    }
+}
+
+

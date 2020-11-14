@@ -16,7 +16,7 @@ Patch::Patch(Environment* pEnv, int posIdx, MarkerPoint mp, float temp) :
     m_pEnv(pEnv),
     m_fTemp(temp),
     m_posIdx(posIdx),
-    m_BackgroundReflectance(mp),
+    //m_BackgroundReflectance(mp),
     m_bReproConstraintsSetExplicitly(false),
     m_LocalityId(0),
     m_ReproRestrictionAreaTopLeft(0,0),

@@ -851,17 +851,10 @@ void ModelParams::checkConsistency()
                 allOK = false;
             }
             else {
-                // go through plant types one by one looking for a match in the visData
+                // go through plant types one by one checking that it has been successfully matched to an visdata entry
+                // (this should already be guaranteed by the action of ModelParams::pairPlantTypeConfigsToVisData())
                 for (auto& ptc : m_PlantTypes) {
-                    MarkerPoint mp = ptc.flowerMPInitMin;
-                    bool found = false;
-                    for (auto& v : visData) {
-                        if (v.mp == mp) {
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (!found) {
+                    if (ptc.flowerVisDataPtr == nullptr) {
                         allOK = false;
                         break;
                     }
@@ -883,7 +876,7 @@ void ModelParams::checkConsistency()
 }
 
 
-// for each PlantTypeConfig, check that its flowerVisDataID matches an ID in VisData, and initialise a pointer in the 
+// for each PlantTypeConfig, check that its flowerVisDataID matches an ID in VisData, and initialise a pointer in the
 // PlantTypeConfig to point to the corresponding VisData entry.  If no match is found for a PlantTypeConfig, throw an
 // exception.
 void ModelParams::pairPlantTypeConfigsToVisData()
@@ -928,10 +921,10 @@ const std::vector<VisualStimulusInfo>& ModelParams::getVisData()
     assert(m_ColourSystem == ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS);
 
     // At present the code assumes that there is only one single pollinator type when using
-    // ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS 
+    // ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS
     if (m_PollinatorConfigs.size() != 1) {
         throw std::runtime_error("Error: ModelParams::getVisData() only works with a single pollinator type at present");
     }
 
-    return m_PollinatorConfigs.at(0).visData;    
+    return m_PollinatorConfigs.at(0).visData;
 }

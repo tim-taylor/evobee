@@ -396,7 +396,8 @@ Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
                                         if ((!excludeCurrentPos) || (distSq > EvoBee::FLOAT_COMPARISON_EPSILON))
                                         {
                                             // it's either not at the central focus position or we don't care if it is...
-                                            if (pPollinator == nullptr || pPollinator->isDetected(flower.getMarkerPoint())) {
+                                            if (pPollinator == nullptr || 
+                                                pPollinator->isDetected(flower.getCharacteristicWavelength())) {
                                                 // if we care about whether the pollinator can detect the flower, then
                                                 // yes, it can detect it...
 

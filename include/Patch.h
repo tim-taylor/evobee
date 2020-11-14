@@ -30,7 +30,7 @@ public:
     /**
      *
      */
-    MarkerPoint getBackgroundMarkerPoint() const {return m_BackgroundReflectance.getMarkerPoint();}
+    //MarkerPoint getBackgroundMarkerPoint() const {return m_BackgroundReflectance.getMarkerPoint();}
 
     /**
      *
@@ -161,7 +161,7 @@ private:
     float           m_fTemp;        ///< Ambient temperature of the patch
     int             m_posIdx;       ///< The patch's unique index number in the Environment
     iPos            m_Position;     ///< The patch's coordinates in Environment (derived from m_posIdx)
-    ReflectanceInfo m_BackgroundReflectance; ///< The patch's background reflectance properties
+    //ReflectanceInfo m_BackgroundReflectance; ///< The patch's background reflectance properties
     PlantVector     m_FloweringPlants;       ///< All of the flowering plants on this patch
 
     // The following parameters place restrictions on plant reproduction

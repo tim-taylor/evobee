@@ -24,7 +24,7 @@ Flower::Flower( FloweringPlant* pPlant,
     m_id(m_sNextFreeId++),
     m_SpeciesId(pPlant->getSpeciesId()),
     m_Position(pos),
-    m_Reflectance(mp),
+    m_Reflectance(mp, ptc.flowerVisDataPtr),
     m_bPollinated(false),
     m_iAntherPollen(ptc.antherInitPollen),
     m_iAvailableNectar(ptc.initNectar),
@@ -186,7 +186,7 @@ std::string Flower::getStateString() const
     std::stringstream ssState;
     ssState << std::fixed << std::setprecision(3)
         << m_id << "," << m_SpeciesId << "," << m_Position.x << "," << m_Position.y << ","
-        << getMarkerPoint() << "," << (m_bPollinated ? "P":"N") << ","
+        << getCharacteristicWavelength() << "," << (m_bPollinated ? "P":"N") << ","
         << m_iAntherPollen << "," << m_StigmaPollen.size() << "," << m_iAvailableNectar;
     return ssState.str();
 }

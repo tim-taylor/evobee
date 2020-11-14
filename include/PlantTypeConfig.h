@@ -8,6 +8,7 @@
 #define _PLANTTYPECONFIG_H
 
 #include <string>
+#include <stdexcept>
 #include "ReflectanceInfo.h"
 
 struct VisualStimulusInfo;
@@ -36,12 +37,17 @@ struct PlantTypeConfig {
         diffMPIsDiffSpecies(false)
     {};
 
+    Wavelength getDominantWavelength() const;
+
     std::string species;
-    MarkerPoint flowerMPInitMin;
-    MarkerPoint flowerMPInitMax;
-    MarkerPoint flowerMPInitStep;
-    int         flowerVisDataID;
-    const VisualStimulusInfo* flowerVisDataPtr;
+    MarkerPoint flowerMPInitMin;            ///< This is only used for ColourSystem==REGULAR_MARKER_POINTS
+    MarkerPoint flowerMPInitMax;            ///< This is only used for ColourSystem==REGULAR_MARKER_POINTS
+    MarkerPoint flowerMPInitStep;           ///< This is only used for ColourSystem==REGULAR_MARKER_POINTS
+    int         flowerVisDataID;            ///< This is an id of a vis-data entry as specified in the config file
+                                            ///<   (only used for ColourSystem==ARBITRARY_DOMINANT_WAVELENGTHS)
+    const VisualStimulusInfo* flowerVisDataPtr; ///< In postprocessing after reading in the config file, flowerVisDataID
+                                                ///<   is used to find a pointer to the identified entry in vis-data, which is
+                                                ///<   recorded here (only used for ColourSystem==REGULAR_MARKER_POINTS)
     int         antherInitPollen;
     int         antherPollenTransferPerVisit;
     int         stigmaMaxPollenCapacity;

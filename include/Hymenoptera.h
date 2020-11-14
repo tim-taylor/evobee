@@ -34,9 +34,9 @@ public:
 
     /**
      * Overridden implementation of a method to make a probabilistic decision,
-     * for a given marker point, on whether the pollinator can detect it.
+     * for a given characteristic wavelength, on whether the pollinator can detect it.
      */
-    bool isDetected(MarkerPoint mp) const override;
+    bool isDetected(Wavelength lambda) const override;
 
 protected:
     /**
@@ -59,10 +59,10 @@ protected:
 
     /**
      * Returns information about the pollinator's current preferences for
-     * a stimulus with the specified marker point
+     * a stimulus with the specified characteristic wavelength
      */
-    const VisualPreferenceInfo& getVisPrefInfoFromMPConst(MarkerPoint mp) const;
-    VisualPreferenceInfo&       getVisPrefInfoFromMP(MarkerPoint mp);
+    const VisualPreferenceInfo& getVisPrefInfoFromWavelengthConst(Wavelength lambda) const;
+    VisualPreferenceInfo&       getVisPrefInfoFromWavelength(Wavelength lambda);
 
     /**
      * Overridden implementation of method to determine whether the pollinator should
@@ -135,7 +135,7 @@ private:
     void initialiseInnateTarget();
     void initialiseInnateTargetRegular();
     void initialiseInnateTargetArbitrary();
-    float getGiurfaPref(MarkerPoint lambda);
+    float getGiurfaPref(Wavelength lambda);
 
     static const VisualStimulusInfo& getVisStimInfoFromMP(MarkerPoint mp);
     static std::size_t getVisualDataVectorIdx(MarkerPoint mp);

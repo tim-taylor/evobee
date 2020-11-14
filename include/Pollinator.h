@@ -144,17 +144,22 @@ public:
      * Returns the pollinator's current target marker point.
      * N.B. If the pollinator does not yet have a target, the returned value will be 0 (=NO_MARKER_POINT)
      */
-    MarkerPoint getTargetMP() const {return m_TargetMP;}
+    Wavelength getTargetWavelength() const {return m_TargetReflectance.getCharacteristicWavelength();}
 
-    /// TODO this method is just included for testing purposes...
-    void setTargetMP(MarkerPoint mp) {m_TargetMP = mp;}
+    /*
+     * Set the pollinator's target marker point.
+     * This is only expected to be called by the pollinator's code itself or by external testing code. It
+     * should not be called by external code under normal circumstances.
+     */
+    void setTargetWavelength(Wavelength lambda);
+    void setTargetWavelength(const VisualStimulusInfo* pVSI);
 
     /**
      * Default implementation of a method to make a probabilistic decision,
-     * for a given marker point, on whether the pollinator can
+     * for a given characteristic wavelength, on whether the pollinator can
      * detect it. May be overriden by subclasses.
      */
-    virtual bool isDetected(MarkerPoint mp) const;
+    virtual bool isDetected(Wavelength lambda) const;
 
 
 protected:
@@ -340,8 +345,11 @@ protected:
                                                 ///<  (see AbstractHive::getInitForageAreaTopLeft() for
                                                 ///<   details of usage of this variable)
 
-    MarkerPoint     m_TargetMP;                 ///< This pollinator's current target flower colour
+    //MarkerPoint     m_TargetMP;               ///< This pollinator's current target flower colour
                                                 ///<   marker point
+                                                ///< THIS IS OBSOLETE - now replaced by m_TargetReflectance
+
+    ReflectanceInfo m_TargetReflectance;        ///< This pollinator's current target flower colour information
 
     PollinatorConstancyType m_ConstancyType;    ///< Specification of what type of constancy (if any)
                                                 ///<   this pollinator exhibits in flower visits

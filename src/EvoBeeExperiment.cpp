@@ -263,21 +263,24 @@ void EvoBeeExperiment::runMarkerPointSimilarityTest()
     }*/
 
     std::cerr << "EvoBeeExperiment::runMarkerPointSimilarityTest() is now obsolete. Use runMatchConfidenceTest() instead.\n";
-    
+
     return;
 }
 
 
 void EvoBeeExperiment::runMatchConfidenceTest()
 {
+    // this method in its current form is only designed to run with ColourSystem = REGULAR_MARKER_POINTS
+    assert(ModelParams::getColourSystem() == ColourSystem::REGULAR_MARKER_POINTS);
+
     auto pPolConfig = ModelParams::getPollinatorConfigPtr("HoneyBee");
     auto hives = m_Model.getEnv().getHives();
     auto pHive = hives.at(0);
     for (MarkerPoint mp = 300; mp <= 650; mp+=10) {
         HoneyBee bee{*pPolConfig, (AbstractHive*)&(*pHive)};
-        bee.setTargetMP(mp);
+        bee.setTargetWavelength(mp);
         for (MarkerPoint mp2 = 300; mp2 <= 650; mp2+=10) {
-            ReflectanceInfo stimulus{mp2};
+            ReflectanceInfo stimulus{mp2,nullptr};
             float confidence = bee.confidenceMatchesTarget(stimulus);
             std::cout << mp << "," << mp2 << "," << std::setprecision(5) << confidence << std::endl;
         }

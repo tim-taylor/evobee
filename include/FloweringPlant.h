@@ -75,7 +75,12 @@ public:
     /**
      * Returns the MarkerPoint of the specified flower
      */
-    MarkerPoint getFlowerMarkerPoint(unsigned int flower = 0);
+    //MarkerPoint getFlowerMarkerPoint(unsigned int flower = 0);
+
+    /**
+     * Returns the MarkerPoint of the specified flower
+     */
+    Wavelength getFlowerCharacteristicWavelength(unsigned int flower = 0);
 
     /**
      *

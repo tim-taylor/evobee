@@ -31,22 +31,24 @@ struct PollinatorPerformanceInfo {
  * This data is static (constant) for a given species of pollinator.
  */
 struct VisualStimulusInfo {
-    VisualStimulusInfo() : id(-1), mp(0), detectionProb(0.0), greenContrast(0.0), hexx(0.0), hexy(0.0),
+    VisualStimulusInfo() : id(-1), lambda(0), detectionProb(0.0), greenContrast(0.0), hexx(0.0), hexy(0.0),
                            purex(0.0), purey(0.0), baseProbLandNonTargetInnate(0.0) {}
 
-    VisualStimulusInfo(MarkerPoint _mp, float _dp, float _gc, float _hexx, float _hexy, float _baseProbLandNonTargetInnate)
-        : id(-1), mp(_mp), detectionProb(_dp), greenContrast(_gc), hexx(_hexx), hexy(_hexy), purex(0.0f), purey(0.0f),
+    VisualStimulusInfo(Wavelength _lambda, float _dp, float _gc, float _hexx, float _hexy, float _baseProbLandNonTargetInnate)
+        : id(-1), lambda(_lambda), detectionProb(_dp), greenContrast(_gc), hexx(_hexx), hexy(_hexy), purex(0.0f), purey(0.0f),
           baseProbLandNonTargetInnate(_baseProbLandNonTargetInnate)
     {}
 
-    VisualStimulusInfo(int _id, MarkerPoint _mp, float _dp, float _gc, float _hexx, float _hexy, float _purex, float _purey, 
+    VisualStimulusInfo(int _id, Wavelength _lambda, float _dp, float _gc, float _hexx, float _hexy, float _purex, float _purey,
                        float _baseProbLandNonTargetInnate)
-        : id(_id), mp(_mp), detectionProb(_dp), greenContrast(_gc), hexx(_hexx), hexy(_hexy), purex(0.0f), purey(0.0f),
+        : id(_id), lambda(_lambda), detectionProb(_dp), greenContrast(_gc), hexx(_hexx), hexy(_hexy), purex(0.0f), purey(0.0f),
           baseProbLandNonTargetInnate(_baseProbLandNonTargetInnate)
-    {}    
+    {}
+
+    Wavelength getWavelength() const {return lambda;}
 
     int id;                 ///< id used to refer to this entry (only used under ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS)
-    MarkerPoint mp;         ///< this represents a MarkerPoint under ColourSystem::REGULAR_MARKER_POINTS,
+    Wavelength lambda;      ///< this represents a MarkerPoint under ColourSystem::REGULAR_MARKER_POINTS,
                             ///<   or a dominant wavelength under ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS
     float detectionProb;
     float greenContrast;
@@ -64,10 +66,11 @@ struct VisualStimulusInfo {
  * This data may vary between individual pollinators of the same species.
  */
 struct VisualPreferenceInfo {
-    VisualPreferenceInfo() : mp(0), probLandTarget(1.0), probLandNonTarget(1.0), baseProbLandTarget(1.0), baseProbLandNonTarget(1.0) {}
+    VisualPreferenceInfo() : lambda(NO_MARKER_POINT), pVisStimInfo(nullptr),
+        probLandTarget(1.0), probLandNonTarget(1.0), baseProbLandTarget(1.0), baseProbLandNonTarget(1.0) {}
 
-    VisualPreferenceInfo(MarkerPoint _mp, float _baseProbLandTarget, float _baseProbLandNonTarget)
-        : mp(_mp),
+    VisualPreferenceInfo(Wavelength _lambda, float _baseProbLandTarget, float _baseProbLandNonTarget)
+        : lambda(_lambda), pVisStimInfo(nullptr),
           baseProbLandTarget((_baseProbLandTarget < 0.0) ? 0.0 : ((_baseProbLandTarget > 1.0) ? 1.0 : _baseProbLandTarget)),
           baseProbLandNonTarget((_baseProbLandNonTarget < 0.0) ? 0.0 : ((_baseProbLandNonTarget > 1.0) ? 1.0 : _baseProbLandNonTarget))
     {
@@ -75,7 +78,28 @@ struct VisualPreferenceInfo {
         probLandNonTarget = baseProbLandNonTarget;
     }
 
-    MarkerPoint getMarkerPoint() const  {return mp;}
+    VisualPreferenceInfo(const VisualStimulusInfo* _pVisStimInfo, float _baseProbLandTarget, float _baseProbLandNonTarget)
+        : lambda(_pVisStimInfo->getWavelength()), pVisStimInfo(_pVisStimInfo),
+          baseProbLandTarget((_baseProbLandTarget < 0.0) ? 0.0 : ((_baseProbLandTarget > 1.0) ? 1.0 : _baseProbLandTarget)),
+          baseProbLandNonTarget((_baseProbLandNonTarget < 0.0) ? 0.0 : ((_baseProbLandNonTarget > 1.0) ? 1.0 : _baseProbLandNonTarget))
+    {
+        probLandTarget = baseProbLandTarget;
+        probLandNonTarget = baseProbLandNonTarget;
+    }
+
+    const VisualStimulusInfo* getVisualStimulusInfoPtr() {return pVisStimInfo;}
+    Wavelength getWavelength() const {
+        return lambda;
+        /*
+        if (pVisStimInfo==nullptr) {
+            throw std::runtime_error("VisualPreferenceInfo::getWavelength() called when pVisStimInfo is not set");
+        }
+        else {
+            return pVisStimInfo->lambda;
+        }
+        */
+    }
+
     float getProbLandTarget() const     {return probLandTarget;}
     float getProbLandNonTarget() const  {return probLandNonTarget;}
 
@@ -104,12 +128,12 @@ struct VisualPreferenceInfo {
         constrainProbLandNonTarget();
     }
 
-    void setTarget()
+    void setAsTarget()
     {
         probLandTarget = baseProbLandTarget;
     }
 
-    void setNonTarget()
+    void setAsNonTarget()
     {
         probLandNonTarget = probLandTarget;
     }
@@ -144,9 +168,14 @@ struct VisualPreferenceInfo {
         probLandNonTarget = baseProbLandNonTarget;
     }
 
-//private:
-    MarkerPoint mp;             ///> The following info relates to a flower stimulus with this marker point
+private:
+    Wavelength lambda;          ///> The info in this struct relates to a flower stimulus with this characteristic wavelength
+    const VisualStimulusInfo* pVisStimInfo;
+                                ///> A (non-owning) pointer to the visual stimulus information structure
+                                ///> describing what stimulus this preference relates to
+                                ///> Careful! This may not be set if ColourSystem==REGULAR_MARKER_POINTS
 
+public:
     float probLandTarget;       ///> The pollinator's current probability of landing on a flower with this marker point
                                 ///> if it thinks the marker point matches its current target. Expressed as a number between 0.0 - 1.0.
                                 ///> Note that prefTarget and prefNonTarget are independent and do not need to sum to 1.0.

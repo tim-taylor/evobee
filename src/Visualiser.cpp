@@ -140,7 +140,8 @@ bool Visualiser::update()
     for (Patch& p : patches)
     {
         // render patches
-        const Colour::RGB & c = Colour::getRgbFromMarkerPoint(p.getBackgroundMarkerPoint());
+        //const Colour::RGB & c = Colour::getRgbFromMarkerPoint(p.getBackgroundMarkerPoint());
+        const Colour::RGB & c = Colour::getRgbFromMarkerPoint(400);
         const iPos & pos = p.getPosition();
         boxRGBA(
             m_pRenderer,
@@ -166,7 +167,7 @@ bool Visualiser::update()
 
                     Flower* pFlower = fplant.getFlower(0);
                     const fPos & flwrpos = pFlower->getPosition();
-                    const Colour::RGB & c = Colour::getRgbFromMarkerPoint(pFlower->getMarkerPoint());
+                    const Colour::RGB & c = Colour::getRgbFromMarkerPoint(pFlower->getCharacteristicWavelength());
 
                     if (pFlower->pollinated())
                     {
@@ -221,7 +222,7 @@ bool Visualiser::update()
             {
                 Pollinator* p = pHive->getPollinator(i);
                 const fPos& ppos = p->getPosition();
-                MarkerPoint mpTarget = p->getTargetMP();
+                MarkerPoint mpTarget = p->getTargetWavelength();
                 const Colour::RGB & c = Colour::getRgbFromMarkerPoint(mpTarget);
 
                 // draw the pollinator

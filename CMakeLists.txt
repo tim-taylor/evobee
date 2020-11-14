@@ -89,7 +89,9 @@ set(SOURCES
     src/ModelComponent.cpp
     src/ModelParams.cpp
     src/Patch.cpp
+    src/PlantTypeConfig.cpp
     src/Pollinator.cpp
+    src/ReflectanceInfo.cpp
     src/tools.cpp
     src/Visualiser.cpp
     )

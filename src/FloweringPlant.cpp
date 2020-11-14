@@ -51,29 +51,45 @@ FloweringPlant::FloweringPlant(const PlantTypeConfig& typeConfig,
 
     for (int i=0; i < typeConfig.numFlowers; ++i)
     {
-        MarkerPoint mp;
-
-        if (typeConfig.flowerMPInitMin == typeConfig.flowerMPInitMax)
+        switch (ModelParams::getColourSystem())
         {
-            mp = typeConfig.flowerMPInitMin;
-        }
-        else
-        {
-            // pick a marker point at uniform random between the min and max values supplied
-            assert(typeConfig.flowerMPInitStep > 0);
-            unsigned int mpRange = typeConfig.flowerMPInitMax - typeConfig.flowerMPInitMin;
-            unsigned int numPointsMinusOne = mpRange / typeConfig.flowerMPInitStep;
-            std::uniform_int_distribution<unsigned int> dist(0, numPointsMinusOne);
-            unsigned int rndIdx = dist(EvoBeeModel::m_sRngEngine);
-            mp = typeConfig.flowerMPInitMin + (rndIdx * typeConfig.flowerMPInitStep);
-            assert(mp >= typeConfig.flowerMPInitMin);
-            assert(mp <= typeConfig.flowerMPInitMax);
-        }
+            case ColourSystem::REGULAR_MARKER_POINTS:
+            {
+                MarkerPoint mp;
 
-        /// Note: for now, we are placing all flowers at the same position
-        /// (the same position as the plant itself). If/when we start looking
-        /// at plants with multiple flowers, we might want to change this
-        m_Flowers.emplace_back(this, typeConfig, m_Position, mp);
+                if (typeConfig.flowerMPInitMin == typeConfig.flowerMPInitMax)
+                {
+                    mp = typeConfig.flowerMPInitMin;
+                }
+                else
+                {
+                    // pick a marker point at uniform random between the min and max values supplied
+                    assert(typeConfig.flowerMPInitStep > 0);
+                    unsigned int mpRange = typeConfig.flowerMPInitMax - typeConfig.flowerMPInitMin;
+                    unsigned int numPointsMinusOne = mpRange / typeConfig.flowerMPInitStep;
+                    std::uniform_int_distribution<unsigned int> dist(0, numPointsMinusOne);
+                    unsigned int rndIdx = dist(EvoBeeModel::m_sRngEngine);
+                    mp = typeConfig.flowerMPInitMin + (rndIdx * typeConfig.flowerMPInitStep);
+                    assert(mp >= typeConfig.flowerMPInitMin);
+                    assert(mp <= typeConfig.flowerMPInitMax);
+                }
+
+                /// Note: for now, we are placing all flowers at the same position
+                /// (the same position as the plant itself). If/when we start looking
+                /// at plants with multiple flowers, we might want to change this
+                m_Flowers.emplace_back(this, typeConfig, m_Position, mp);
+                break;
+            }
+            case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS:
+            {
+                m_Flowers.emplace_back(this, typeConfig, m_Position, typeConfig.flowerMPInitMin);
+                break;
+            }
+            default:
+            {
+                throw std::runtime_error("Unknown ColourSystem encountered in FloweringPlant constructor");
+            }
+        }
     }
 }
 
@@ -262,10 +278,23 @@ unsigned int FloweringPlant::getSpeciesId(const std::string& name)
 //
 // @todo Asserts that the flower is valid, but should we throw an exception if not?
 //
+/* -- use getFlowerCharacteristicWavelength instead!
 MarkerPoint FloweringPlant::getFlowerMarkerPoint(unsigned int flower)
 {
     assert(flower < m_Flowers.size());
     return m_Flowers[flower].getMarkerPoint();
+}
+*/
+
+
+// Return the MarkerPoint of the specified flower
+//
+// @todo Asserts that the flower is valid, but should we throw an exception if not?
+//
+MarkerPoint FloweringPlant::getFlowerCharacteristicWavelength(unsigned int flower)
+{
+    assert(flower < m_Flowers.size());
+    return m_Flowers[flower].getCharacteristicWavelength();
 }
 
 

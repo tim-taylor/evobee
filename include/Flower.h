@@ -86,7 +86,12 @@ public:
     /**
      *
      */
-    MarkerPoint getMarkerPoint() const {return m_Reflectance.getMarkerPoint();}
+    //MarkerPoint getMarkerPoint() const {return m_Reflectance.getMarkerPoint();}
+
+    /**
+     *
+     */
+    Wavelength getCharacteristicWavelength() const {return m_Reflectance.getCharacteristicWavelength();}
 
     /*
      *

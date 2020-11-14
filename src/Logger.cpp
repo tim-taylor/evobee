@@ -223,18 +223,18 @@ void Logger::logFlowersInterPhaseFull()
                     {
                         pollenSourceMpMap.clear();
 
-                        MarkerPoint thisMP = flower.getMarkerPoint();
+                        MarkerPoint thisLambda = flower.getCharacteristicWavelength();
                         ofs << ",:," << flower.getId() << "," << (flower.pollinated() ? "P" : "N")
-                            << "," << thisMP << ",~,";
+                            << "," << thisLambda << ",~,";
 
                         const PollenVector& stigmaPollen = flower.getStigmaPollen();
                         for (const Pollen& pollen : stigmaPollen)
                         {
                             const Flower* pSourceFlower = pollen.pSource;
-                            MarkerPoint sourceMP = pSourceFlower->getMarkerPoint();
-                            auto it = pollenSourceMpMap.find(sourceMP);
+                            MarkerPoint sourceLambda = pSourceFlower->getCharacteristicWavelength();
+                            auto it = pollenSourceMpMap.find(sourceLambda);
                             if (it == pollenSourceMpMap.end()) {
-                                pollenSourceMpMap.insert(std::make_pair(sourceMP,
+                                pollenSourceMpMap.insert(std::make_pair(sourceLambda,
                                                             std::make_pair(1, pSourceFlower->getId())));
                             }
                             else {
@@ -387,7 +387,7 @@ void Logger::logFlowerMPsInterPhaseSummary()
     std::vector<Patch>& patches = m_pEnv->getPatches();
 
     // create a map of marker points to counts of number of plants
-    std::map<MarkerPoint,
+    std::map<Wavelength,
              std::tuple<unsigned int,unsigned int,unsigned int,unsigned int>> mpCounts;
 
     for (Patch& patch : patches)
@@ -401,10 +401,10 @@ void Logger::logFlowerMPsInterPhaseSummary()
                 unsigned int pol = plant.pollinated() ? 1 : 0;
                 unsigned int communal_num = bCommunal ? 1 : 0;
                 unsigned int communal_pol = bCommunal ? pol : 0;
-                MarkerPoint mp = plant.getFlowerMarkerPoint();
-                auto it = mpCounts.find(mp);
+                Wavelength lambda = plant.getFlowerCharacteristicWavelength();
+                auto it = mpCounts.find(lambda);
                 if (it == mpCounts.end()) {
-                    mpCounts.insert(std::make_pair(mp, std::make_tuple(1, pol, communal_num, communal_pol)));
+                    mpCounts.insert(std::make_pair(lambda, std::make_tuple(1, pol, communal_num, communal_pol)));
                 }
                 else {
                     std::get<0>(it->second)++;
