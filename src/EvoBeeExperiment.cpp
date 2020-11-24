@@ -199,6 +199,9 @@ void EvoBeeExperiment::runStandardExperiment()
             if (ModelParams::logFlowerMPsInterPhaseSummary()) {
                 callLoggerMethod(&Logger::logFlowerMPsInterPhaseSummary);
             }
+            if (ModelParams::logFlowerInfoInterPhaseSummary()) {
+                callLoggerMethod(&Logger::logFlowerInfoInterPhaseSummary);
+            }
             if (ModelParams::logPollinatorsInterPhaseFull()) {
                 callLoggerMethod(&Logger::logPollinatorsInterPhaseFull);
             }

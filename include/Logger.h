@@ -74,8 +74,15 @@ public:
     /*
      * Log summary details of flower marker points at the end of each foraging phase
      * Designated by log-flags="m" in the JSON config file
-    */
+     */
     void logFlowerMPsInterPhaseSummary();
+
+    /**
+     * @brief /Log summary details of flowers at the end of each foraging phase, aggregated by
+     * the VisualStimulusInfo.id associated with each flower.
+     * Designated by log-flags="n" in the JSON config file
+     */
+    void logFlowerInfoInterPhaseSummary();
 
     /**
      *

@@ -387,6 +387,11 @@ void Logger::logFlowerMPsInterPhaseSummary()
     std::vector<Patch>& patches = m_pEnv->getPatches();
 
     // create a map of marker points to counts of number of plants
+    // the entries in the tuple represent the following:
+    // 0. count of number of flowers with this ID
+    // 1. count of number of pollinated flowers with this ID
+    // 2. count of number of flowers with this ID in communal (non-refuge) areas of environment
+    // 3. count of number of pollinated flowers with this ID in communal (non-refuge) areas of environment
     std::map<Wavelength,
              std::tuple<unsigned int,unsigned int,unsigned int,unsigned int>> mpCounts;
 
@@ -421,6 +426,74 @@ void Logger::logFlowerMPsInterPhaseSummary()
         ofs << "m," << gen << "," << m_pModel->getStepNumber() << "," << countInfo.first
             << "," << std::get<0>(countInfo.second) << "," << std::get<1>(countInfo.second)
             << "," << std::get<2>(countInfo.second) << "," << std::get<3>(countInfo.second)
+            << std::endl;
+    }
+}
+
+
+// Log summary details of flowers at the end of each foraging phase, aggregated by
+// the VisualStimulusInfo.id associated with each flower
+//
+// This logging is designated by log-flags="n" in the JSON config file
+//
+void Logger::logFlowerInfoInterPhaseSummary()
+{
+    std::ofstream ofs = openLogFile();
+    auto gen = m_pModel->getGenNumber();
+    std::vector<Patch>& patches = m_pEnv->getPatches();
+
+    // create a map of vsi.ids to counts of number of plants
+    // the entries in the tuple represent the following:
+    // 0. count of number of flowers with this ID
+    // 1. count of number of pollinated flowers with this ID
+    // 2. count of number of flowers with this ID in communal (non-refuge) areas of environment
+    // 3. count of number of pollinated flowers with this ID in communal (non-refuge) areas of environment
+    // 4. the auxiliary ID associated with this flower ID (as defined in input data)
+    // 5. the auxiliary marker point associated with this flower ID (as defined in input data)
+    // 6. the characteristic (dominant) wavelength associated with this flower ID
+    std::map<int,
+             std::tuple<unsigned int, unsigned int, unsigned int, unsigned int, int, MarkerPoint, Wavelength>> mpCounts;
+
+    for (Patch& patch : patches)
+    {
+        if (patch.hasFloweringPlants())
+        {
+            bool bCommunal = !(patch.refuge());
+            PlantVector& plants = patch.getFloweringPlants();
+            for (FloweringPlant& plant : plants)
+            {
+                unsigned int pol = plant.pollinated() ? 1 : 0;
+                unsigned int communal_num = bCommunal ? 1 : 0;
+                unsigned int communal_pol = bCommunal ? pol : 0;
+                const ReflectanceInfo& reflectance = plant.getFlowerReflectanceInfo();
+                const VisualStimulusInfo* pVSI = reflectance.getVisDataPtr();
+                if (pVSI == nullptr) {
+
+                }
+                int id = pVSI->id;
+                auto it = mpCounts.find(id);
+                if (it == mpCounts.end()) {
+                    Wavelength lambda = plant.getFlowerCharacteristicWavelength();
+                    mpCounts.insert(std::make_pair(id,
+                        std::make_tuple(1, pol, communal_num, communal_pol, pVSI->aux_id, pVSI->aux_mp, lambda)));
+                }
+                else {
+                    std::get<0>(it->second)++;
+                    std::get<1>(it->second) += pol;
+                    std::get<2>(it->second) += communal_num;
+                    std::get<3>(it->second) += communal_pol;
+                }
+            }
+        }
+    }
+
+    for (auto& countInfo : mpCounts)
+    {
+        ofs << "n," << gen << "," << m_pModel->getStepNumber() << "," << countInfo.first
+            << "," << std::get<0>(countInfo.second) << "," << std::get<1>(countInfo.second)
+            << "," << std::get<2>(countInfo.second) << "," << std::get<3>(countInfo.second)
+            << "," << std::get<4>(countInfo.second) << "," << std::get<5>(countInfo.second)
+            << "," << std::get<6>(countInfo.second)
             << std::endl;
     }
 }

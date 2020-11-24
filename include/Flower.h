@@ -153,7 +153,7 @@ public:
     /**
      *
      */
-     bool pollenCloggingPartial() const {return m_bPollenCloggingPartial;}
+    bool pollenCloggingPartial() const {return m_bPollenCloggingPartial;}
 
 
 private:

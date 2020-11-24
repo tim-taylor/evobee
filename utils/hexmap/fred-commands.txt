@@ -12,20 +12,35 @@ gawk -F',' '{cmd="./calc-dom-lambda -v "$5" "$6; while ( ( cmd | getline result 
 
 for N in `seq 1 10`; do ./pick-fred-samples > fred-samples-$N.csv; done
 
+# list which entries in samples file belong in each cell
+for X in `seq -0.605 0.11 0.605`; do X1="$X"; X2=`/usr/bin/calc "0+$X+0.11"`; for Y in `seq -0.605 0.11 0.605`; do Y1="$Y"; Y2=`/usr/bin/calc "0+$Y+0.11"`; gawk -F',' -v X1="$X1" -v X2="$X2" -v Y1="$Y1" -v Y2="$Y2" 'BEGIN {printf("---(%f,%f) (%f,%f)---\n",X1,X2,Y1,Y2)} $2>X1 && $2<X2 && $3>Y1 && $3<Y2 {print}' fred-samples-1.csv ; done; done
+
+# check all entries in samples file that lie in a single specified cell
+gawk -F',' '$2>-0.11 && $2<0 && $3>0 && $3<0.11 {print}' fred-samples-1.csv
+
+## For each entry in a given sample, calculate the dominant wavelength and output a CSV file that contains this
+
 gawk -F',' '{cmd="./calc-dom-lambda -v "$2" "$3; while ( ( cmd | getline result ) > 0 ) {print $1", "result;}; close(cmd);}' fred-samples-1.csv | tee fred-dom-wavelength-data-sample-1.csv
 
+## Generate JSON vis-data format 
+
+# Version 1 (outputs lines of the form [367, 1, 0.0, -0.670720, -0.069177, 0.05],)
 sort -t',' -k2 fred-dom-wavelength-data-sample-1.csv | gawk -F',' '$4!=" OUT_OF_RANGE" {printf("[%3.0f, 1, 0.0, %f, %f, 0.05],\n",$2,$12,$13);}' > fred-dom-wavelength-data-sample-1-config.json.1
 
+# Version 2 (outputs lines of the form [1, 367, 1, 0.0, -0.417777, -0.043089, -0.670720, -0.069177, 0.05],)
+sort -t',' -k2 fred-dom-wavelength-data-sample-1.csv | gawk -F',' 'BEGIN {N=1;} $4!=" OUT_OF_RANGE" {printf("[%i, %3.0f, 1, 0.0, %f, %f, %f, %f, 0.05],\n",N,$2,$3,$4,$12,$13);N++;}' > fred-dom-wavelength-data-sample-1-config.json
+
+# Version 3 (outputs lines of the form [1, 367, 1, 0.0, -0.417777, -0.043089, -0.670720, -0.069177, 0.05, 4040, 0],)
+sort -t',' -k2 fred-dom-wavelength-data-sample-1.csv | gawk -F',' 'BEGIN {N=0;} $4!=" OUT_OF_RANGE" {printf("[%i, %3.0f, 1, 0.0, %f, %f, %f, %f, 0.05, %i, 0],\n",N,$2,$3,$4,$12,$13,$1);N++;}' > fred-dom-wavelength-data-sample-1-config.json
+
+## Generate JSON PlantType sections
+
+# Version 1 (using flower-reflectance-mp-init-min/max)
 for L in `gawk -F',' '{sub(/\[/,"",$1); print $1}' fred-dom-wavelength-data-sample-1-config.json`; do echo '        "PlantTypeDW'$L'" : {'; echo '            "species" : "PlantTypeDW'$L'",'; echo '            "flower-reflectance-mp-init-min" : '$L','; echo '            "flower-reflectance-mp-init-max" : '$L','; echo '            "anther-init-pollen" : 100,'; echo '            "anther-pollen-transfer-per-visit" : 1,'; echo '            "stigma-max-pollen-capacity" : 5,'; echo '            "pollen-clogging" : "",'; echo '            "repro-seed-dispersal-global" : true,'; echo '            "repro-seed-dispersal-radius-stddev" : 2.0,'; echo '            "init-nectar" : 100'; echo '        },'; done > plant-types.json
 
+# Version 2 (using flower-vis-data-id)
+for L in `gawk -F',' '{sub(/\[/,"",$1); print $1}' fred-dom-wavelength-data-sample-1-config.json`; do echo '        "PlantTypeDW'$L'" : {'; echo '            "species" : "PlantTypeDW'$L'",'; echo '            "flower-vis-data-id" : '$L','; echo '            "anther-init-pollen" : 100,'; echo '            "anther-pollen-transfer-per-visit" : 1,'; echo '            "stigma-max-pollen-capacity" : 5,'; echo '            "pollen-clogging" : "",'; echo '            "repro-seed-dispersal-global" : true,'; echo '            "repro-seed-dispersal-radius-stddev" : 2.0,'; echo '            "init-nectar" : 100'; echo '        },'; done
 
 
 ./evobee -c config-files-giurfa-dom-wavelength-tests/giurfa-innate-reg-mps-360-570-expt-1a.cfg.json | tee tmp1a.out
 gawk -F',' '$1=="T" {print $2}' tmp1a.out > tmp1a.csv
-
-
-##########################################
-
-sort -t',' -k2 fred-dom-wavelength-data-sample-1.csv | gawk -F',' 'BEGIN {N=1;} $4!=" OUT_OF_RANGE" {printf("[%i, %3.0f, 1, 0.0, %f, %f, %f, %f, 0.05],\n",N,$2,$3,$4,$12,$13);N++;}' > fred-dom-wavelength-data-sample-1-config.json
-
-for L in `gawk -F',' '{sub(/\[/,"",$1); print $1}' fred-dom-wavelength-data-sample-1-config.json`; do echo '        "PlantTypeDW'$L'" : {'; echo '            "species" : "PlantTypeDW'$L'",'; echo '            "flower-vis-data-id" : '$L','; echo '            "anther-init-pollen" : 100,'; echo '            "anther-pollen-transfer-per-visit" : 1,'; echo '            "stigma-max-pollen-capacity" : 5,'; echo '            "pollen-clogging" : "",'; echo '            "repro-seed-dispersal-global" : true,'; echo '            "repro-seed-dispersal-radius-stddev" : 2.0,'; echo '            "init-nectar" : 100'; echo '        },'; done

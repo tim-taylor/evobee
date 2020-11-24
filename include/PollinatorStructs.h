@@ -32,17 +32,18 @@ struct PollinatorPerformanceInfo {
  */
 struct VisualStimulusInfo {
     VisualStimulusInfo() : id(-1), lambda(0), detectionProb(0.0), greenContrast(0.0), hexx(0.0), hexy(0.0),
-                           purex(0.0), purey(0.0), baseProbLandNonTargetInnate(0.0) {}
+                           purex(0.0), purey(0.0), baseProbLandNonTargetInnate(0.0),
+                           aux_id(-1), aux_mp(NO_MARKER_POINT) {}
 
     VisualStimulusInfo(Wavelength _lambda, float _dp, float _gc, float _hexx, float _hexy, float _baseProbLandNonTargetInnate)
         : id(-1), lambda(_lambda), detectionProb(_dp), greenContrast(_gc), hexx(_hexx), hexy(_hexy), purex(0.0f), purey(0.0f),
-          baseProbLandNonTargetInnate(_baseProbLandNonTargetInnate)
+          baseProbLandNonTargetInnate(_baseProbLandNonTargetInnate), aux_id(-1), aux_mp(NO_MARKER_POINT)
     {}
 
     VisualStimulusInfo(int _id, Wavelength _lambda, float _dp, float _gc, float _hexx, float _hexy, float _purex, float _purey,
-                       float _baseProbLandNonTargetInnate)
+                       float _baseProbLandNonTargetInnate, int _aux_id, MarkerPoint _aux_mp)
         : id(_id), lambda(_lambda), detectionProb(_dp), greenContrast(_gc), hexx(_hexx), hexy(_hexy), purex(0.0f), purey(0.0f),
-          baseProbLandNonTargetInnate(_baseProbLandNonTargetInnate)
+          baseProbLandNonTargetInnate(_baseProbLandNonTargetInnate), aux_id(_aux_id), aux_mp(_aux_mp)
     {}
 
     Wavelength getWavelength() const {return lambda;}
@@ -57,6 +58,10 @@ struct VisualStimulusInfo {
     float purex;            ///< x coordinate of point on pure spectral line corresponding to dominant wavelength of this stimulus
     float purey;            ///< y coordinate of point on pure spectral line corresponding to dominant wavelength of this stimulus
     float baseProbLandNonTargetInnate;
+
+    int aux_id;             ///< An auxiliary ID such as a FReD database ID (optional, used only in output logs)
+    Wavelength aux_mp;      ///< An auxiliary marker point specification (optional, used only in output logs - could be
+                            ///<   useful when using ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS)
 };
 
 

@@ -291,10 +291,21 @@ MarkerPoint FloweringPlant::getFlowerMarkerPoint(unsigned int flower)
 //
 // @todo Asserts that the flower is valid, but should we throw an exception if not?
 //
-MarkerPoint FloweringPlant::getFlowerCharacteristicWavelength(unsigned int flower)
+MarkerPoint FloweringPlant::getFlowerCharacteristicWavelength(unsigned int flower) const
 {
     assert(flower < m_Flowers.size());
     return m_Flowers[flower].getCharacteristicWavelength();
+}
+
+
+// Return the ReflectanceInfo of the specified flower
+//
+// @todo Asserts that the flower is valid, but should we throw an exception if not?
+//
+const ReflectanceInfo& FloweringPlant::getFlowerReflectanceInfo(unsigned int flower) const
+{
+    assert(flower < m_Flowers.size());
+    return m_Flowers[flower].getReflectanceInfo();
 }
 
 

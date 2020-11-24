@@ -80,7 +80,15 @@ public:
     /**
      * Returns the MarkerPoint of the specified flower
      */
-    Wavelength getFlowerCharacteristicWavelength(unsigned int flower = 0);
+    Wavelength getFlowerCharacteristicWavelength(unsigned int flower = 0) const;
+
+    /**
+     * @brief Get the Flower Reflectance Info object belonging to the specified flower
+     *
+     * @param flower
+     * @return const ReflectanceInfo&
+     */
+    const ReflectanceInfo& getFlowerReflectanceInfo(unsigned int flower = 0) const;
 
     /**
      *

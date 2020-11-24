@@ -102,6 +102,7 @@ public:
     static bool  logFlowersIntraPhaseFull() {return m_bLogFlowersIntraPhaseFull;}
     static bool  logFlowersIntraPhaseSummary() {return m_bLogFlowersIntraPhaseSummary;}
     static bool  logFlowerMPsInterPhaseSummary() {return m_bLogFlowerMPsInterPhaseSummary;}
+    static bool  logFlowerInfoInterPhaseSummary() {return m_bLogFlowerInfoInterPhaseSummary;}
     static bool  logFinalDirSet() {return !m_strLogFinalDir.empty();}
     static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
     static bool  useLogThreads() {return m_bUseLogThreads;}
@@ -137,7 +138,7 @@ private:
     static void initialiseAutoGenPtdSpeciesPatchMap(std::vector<const std::string*>& speciesPatchMap);
     static const std::string getAutoGenPtdSpeciesForPatch(int x, int y, std::vector<const std::string*>& speciesPatchMap);
     static void pairPlantTypeConfigsToVisData();
-    static const std::vector<VisualStimulusInfo>& getVisData();    
+    static const std::vector<VisualStimulusInfo>& getVisData();
 
 
     // data members
@@ -167,6 +168,7 @@ private:
     static bool  m_bLogFlowersIntraPhaseFull;         ///< Log full flower info every m_iLogUpdatePeriod steps
     static bool  m_bLogFlowersIntraPhaseSummary;      ///< Log summary flower info every m_iLogUpdatePeriod steps
     static bool  m_bLogFlowerMPsInterPhaseSummary;    ///< Log summary of flower marker points at end of each generation
+    static bool  m_bLogFlowerInfoInterPhaseSummary;   ///< Log summary of flower info aggregared by VisualStimulusInfo id at each of each gen
     static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
     static std::string m_strLogDir;         ///< Directory name for logging output during a run
     static std::string m_strLogFinalDir;    ///< Directory to which to move all log files at end of run

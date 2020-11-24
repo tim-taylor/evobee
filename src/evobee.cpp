@@ -214,36 +214,38 @@ void extractVisDataFromPollinatorConfig(const json& j, PollinatorConfig& p)
             // we've found an array! It should be an array of arrays, so let's try iterating through it
             for (json::iterator itAA = visdata.begin(); itAA != visdata.end(); ++itAA)
             {
-                if (itAA.value().is_array() && ((itAA.value().size() == 6) || (itAA.value().size() == 9)))
+                if (itAA.value().is_array() && ((itAA.value().size() == 6) || (itAA.value().size() == 11)))
                 {
                     // we've found an array within the array, so now read the values
                     json::iterator itV = itAA->begin();
                     try
                     {
-                        int id = -1;
-                        MarkerPoint mp = 0;
-                        float dp = 0.0f, gc = 0.0f, hexx = 0.0f, hexy = 0.0f, purex = 0.0f, purey = 0.0f, bpli = 0.0f;                      
+                        int id = -1, auxid = -1;
+                        MarkerPoint mp = 0, auxmp = 0;
+                        float dp = 0.0f, gc = 0.0f, hexx = 0.0f, hexy = 0.0f, purex = 0.0f, purey = 0.0f, bpli = 0.0f;
 
                         if (itAA.value().size() == 6)
                         {
-                            mp = itV.value(); // marker point
+                            mp = itV.value();       // marker point
                             dp = (++itV).value();   // detection probability
                             gc = (++itV).value();   // green contast
                             hexx = (++itV).value(); // hexagonal colour space x coord
                             hexy = (++itV).value(); // hexagonal colour space y coord
                             bpli = (++itV).value(); // pollinator's base probability of landing on this mp (non target, innate)
                         }
-                        else // (itAA.value().size() == 9)
+                        else // (itAA.value().size() == 11)
                         {
-                            id = itV.value();        // id for this entry (these are referred to in the PlantType configs) 
-                            mp = (++itV).value();    // marker point
+                            id = itV.value();        // id for this entry (these are referred to in the PlantType configs)
+                            mp = (++itV).value();    // dominant wavelength
                             dp = (++itV).value();    // detection probability
                             gc = (++itV).value();    // green contast
                             hexx  = (++itV).value(); // hexagonal colour space x coord
                             hexy  = (++itV).value(); // hexagonal colour space y coord
                             purex = (++itV).value(); // dominant wavelength pure spectral point x coord
-                            purey = (++itV).value(); // dominant wavelength pure spectral point y coord                            
+                            purey = (++itV).value(); // dominant wavelength pure spectral point y coord
                             bpli  = (++itV).value(); // pollinator's base probability of landing on this mp (non target, innate)
+                            auxid = itV.value();     // auxiliary id for this entry (e.g. FReD id), only used in output logs
+                            auxmp = (++itV).value(); // auxiliary marker point, only used in output logs
                         }
 
                         numEntries++;
@@ -286,7 +288,7 @@ void extractVisDataFromPollinatorConfig(const json& j, PollinatorConfig& p)
                         }
                         // All checks are complete and passed at this stage, so we can add the data
                         // to the visData vector
-                        p.visData.emplace_back(id, mp, dp, gc, hexx, hexy, purex, purey, bpli);
+                        p.visData.emplace_back(id, mp, dp, gc, hexx, hexy, purex, purey, bpli, auxid, auxmp);
                         p.visDataMPMax = mp;
                         mpPrev = mp;
                     }
