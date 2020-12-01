@@ -3,7 +3,7 @@
 // Usage:
 //   calc-dom-lambda [-v] x y
 // where
-//   x and y give the pre-celculated position of the reflectance spectrum in hax space
+//   x and y give the pre-calculated position of the reflectance spectrum in hex space
 //   (this can be calculated using the utility program calc-hex-pos)
 //   the optional -v flag specifies verbose output
 //
@@ -11,7 +11,9 @@
 //   The calculated dominant wavelength, or zero if the point lies in the purple area
 //
 // Verbose output:
-//   Calculated dominant wavelength, quadrant in hex-space, lambda1,x1,y2 and lambda2,x2,y2 of intersected segment of pure spectral line, x,y of point of intersection
+//   Calculated dominant wavelength, quadrant in hex-space, ...
+//     lambda1,x1,y2 and lambda2,x2,y2 of intersected segment of pure spectral line, ...
+//     x,y of point of intersection
 //
 // This file can be compiled with the following command:
 //

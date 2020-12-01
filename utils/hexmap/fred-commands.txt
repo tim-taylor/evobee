@@ -33,6 +33,14 @@ sort -t',' -k2 fred-dom-wavelength-data-sample-1.csv | gawk -F',' 'BEGIN {N=1;} 
 # Version 3 (outputs lines of the form [1, 367, 1, 0.0, -0.417777, -0.043089, -0.670720, -0.069177, 0.05, 4040, 0],)
 sort -t',' -k2 fred-dom-wavelength-data-sample-1.csv | gawk -F',' 'BEGIN {N=0;} $4!=" OUT_OF_RANGE" {printf("[%i, %3.0f, 1, 0.0, %f, %f, %f, %f, 0.05, %i, 0],\n",N,$2,$3,$4,$12,$13,$1);N++;}' > fred-dom-wavelength-data-sample-1-config.json
 
+
+## Generate green contrast and detection data
+
+for L in `cut -d',' -f10 fred-dom-wavelength-data-sample-1x-config.json`; do grep "^"$L"," ../../fred-hex-pos-data.csv | gawk -F',' '{D=sqrt($5*$5+$6*$6); if (($4>=0.4 && $4<=0.6) || (D<0.11)) {PD=0} else {PD=1}; print $1","$4","$5","$6","PD;}'; done > fred-samples-1x-detection-data.csv
+
+for L in `cut -d',' -f10 fred-dom-wavelength-data-sample-1x-config.json`; do A=`grep "^"$L"," fred-samples-1x-detection-data.csv`; echo -n $A", "; grep " "$L"," fred-dom-wavelength-data-sample-1x-config.json; done | gawk -F',' '{print $6","$7", "$5", "$2","$10","$11","$12","$13","$14","$15"],"}' > fred-dom-wavelength-data-sample-1x-configx.json
+
+
 ## Generate JSON PlantType sections
 
 # Version 1 (using flower-reflectance-mp-init-min/max)
@@ -42,5 +50,27 @@ for L in `gawk -F',' '{sub(/\[/,"",$1); print $1}' fred-dom-wavelength-data-samp
 for L in `gawk -F',' '{sub(/\[/,"",$1); print $1}' fred-dom-wavelength-data-sample-1-config.json`; do echo '        "PlantTypeDW'$L'" : {'; echo '            "species" : "PlantTypeDW'$L'",'; echo '            "flower-vis-data-id" : '$L','; echo '            "anther-init-pollen" : 100,'; echo '            "anther-pollen-transfer-per-visit" : 1,'; echo '            "stigma-max-pollen-capacity" : 5,'; echo '            "pollen-clogging" : "",'; echo '            "repro-seed-dispersal-global" : true,'; echo '            "repro-seed-dispersal-radius-stddev" : 2.0,'; echo '            "init-nectar" : 100'; echo '        },'; done
 
 
+
+## Generate marker point files for each flower from output of https://ecosim.infotech.monash.edu/SpectralMP/
+
+cd sample-1
+mkdir reflectance
+cd reflectance
+
+for F in `cat ../fred-samples-1-ids.txt`; do mkdir $F; mv fred-id-$F.csv $F; done
+
+for F in `ls`; do cd $F/curves; gawk -F',' '{if ($5!="") {printf("%i\n",$1)}}' fred-id-$F.csv > fred-id-$F-mps.txt; cd ../..; done
+
+--> these fred-id-$F-mps.txt files are used by the script gen-mp-counts for generating graphs
+
+
+
+## test run of evobee
+
 ./evobee -c config-files-giurfa-dom-wavelength-tests/giurfa-innate-reg-mps-360-570-expt-1a.cfg.json | tee tmp1a.out
 gawk -F',' '$1=="T" {print $2}' tmp1a.out > tmp1a.csv
+
+
+### To generate individual CSV files of reflectance values for each entry in the FReD database
+
+gawk -F',' 'NR==4 {N=300; out_file="fred-id-"$1".csv"; print $1","$2 > out_file; for (i=4; i<=NF; i++) {print N","$i >> out_file; N++;}}' FredData_all_13OCT2020.csv

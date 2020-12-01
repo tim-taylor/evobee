@@ -49,6 +49,7 @@ utils/fixation-sim/fixationsim
 utils/fixation-sim/results/
 utils/graphs/
 utils/hexmap/gen-stimuli
+utils/hexmap/calc-dom-lambda
 #docs/html
 .vscode
 src/.vscode

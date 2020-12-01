@@ -1,0 +1,44 @@
+4040
+4001
+3999
+2838 - leaf - replace: 1594x leaf - 1686x leaf - 3090x leaf - 1873x leaf - 3264 yes
+2894
+3449 - leaf - replace: 2689x leaf - 1724 yes
+2160
+3348
+2515
+2398
+1275
+3995
+3132
+3167 - calyx - replace: 1269 yes
+3182
+1308
+3573
+3141
+3249
+2567
+1561
+1557
+160
+1913
+2485
+1410
+2550
+2100
+1665 - calyx - replace: 2500 yes
+3523
+2333 - sepal - replace: 3367x lip lower side - 1888 yes
+3256
+3500
+2520
+3534 - leaf - replace: 3939 yes
+1559 - stamen - replace: 1631x stamen - 2193 yes
+3478
+1435
+158
+2216
+4010
+3105
+1664
+3978
