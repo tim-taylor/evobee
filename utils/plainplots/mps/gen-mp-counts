@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Simple script to take a FReD ID and a count as arguments
+# and print to stdout a CSV format output of each marker
+# point associated with the FReD ID with the given count beside it
+
+if [ "$#" -ne "2" ]; then
+    echo "usage: "$0" fredid count"
+    exit
+fi
+
+FID="$1"
+CNT="$2"
+
+for M in `cat /home/tim/evobee/code/evobee/utils/hexmap/fred-samples/sample-1/reflectance/$FID/curves/fred-id-$FID-mps.txt`; do
+    echo $M","$CNT
+done

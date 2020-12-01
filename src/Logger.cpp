@@ -449,10 +449,9 @@ void Logger::logFlowerInfoInterPhaseSummary()
     // 2. count of number of flowers with this ID in communal (non-refuge) areas of environment
     // 3. count of number of pollinated flowers with this ID in communal (non-refuge) areas of environment
     // 4. the auxiliary ID associated with this flower ID (as defined in input data)
-    // 5. the auxiliary marker point associated with this flower ID (as defined in input data)
-    // 6. the characteristic (dominant) wavelength associated with this flower ID
+    // 5. the characteristic (dominant) wavelength associated with this flower ID
     std::map<int,
-             std::tuple<unsigned int, unsigned int, unsigned int, unsigned int, int, MarkerPoint, Wavelength>> mpCounts;
+             std::tuple<unsigned int, unsigned int, unsigned int, unsigned int, int, Wavelength>> mpCounts;
 
     for (Patch& patch : patches)
     {
@@ -475,7 +474,7 @@ void Logger::logFlowerInfoInterPhaseSummary()
                 if (it == mpCounts.end()) {
                     Wavelength lambda = plant.getFlowerCharacteristicWavelength();
                     mpCounts.insert(std::make_pair(id,
-                        std::make_tuple(1, pol, communal_num, communal_pol, pVSI->aux_id, pVSI->aux_mp, lambda)));
+                        std::make_tuple(1, pol, communal_num, communal_pol, pVSI->aux_id, lambda)));
                 }
                 else {
                     std::get<0>(it->second)++;
@@ -493,7 +492,6 @@ void Logger::logFlowerInfoInterPhaseSummary()
             << "," << std::get<0>(countInfo.second) << "," << std::get<1>(countInfo.second)
             << "," << std::get<2>(countInfo.second) << "," << std::get<3>(countInfo.second)
             << "," << std::get<4>(countInfo.second) << "," << std::get<5>(countInfo.second)
-            << "," << std::get<6>(countInfo.second)
             << std::endl;
     }
 }

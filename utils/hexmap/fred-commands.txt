@@ -18,9 +18,11 @@ for X in `seq -0.605 0.11 0.605`; do X1="$X"; X2=`/usr/bin/calc "0+$X+0.11"`; fo
 # check all entries in samples file that lie in a single specified cell
 gawk -F',' '$2>-0.11 && $2<0 && $3>0 && $3<0.11 {print}' fred-samples-1.csv
 
+
 ## For each entry in a given sample, calculate the dominant wavelength and output a CSV file that contains this
 
 gawk -F',' '{cmd="./calc-dom-lambda -v "$2" "$3; while ( ( cmd | getline result ) > 0 ) {print $1", "result;}; close(cmd);}' fred-samples-1.csv | tee fred-dom-wavelength-data-sample-1.csv
+
 
 ## Generate JSON vis-data format 
 
@@ -50,6 +52,19 @@ for L in `gawk -F',' '{sub(/\[/,"",$1); print $1}' fred-dom-wavelength-data-samp
 for L in `gawk -F',' '{sub(/\[/,"",$1); print $1}' fred-dom-wavelength-data-sample-1-config.json`; do echo '        "PlantTypeDW'$L'" : {'; echo '            "species" : "PlantTypeDW'$L'",'; echo '            "flower-vis-data-id" : '$L','; echo '            "anther-init-pollen" : 100,'; echo '            "anther-pollen-transfer-per-visit" : 1,'; echo '            "stigma-max-pollen-capacity" : 5,'; echo '            "pollen-clogging" : "",'; echo '            "repro-seed-dispersal-global" : true,'; echo '            "repro-seed-dispersal-radius-stddev" : 2.0,'; echo '            "init-nectar" : 100'; echo '        },'; done
 
 
+## test run of evobee
+
+./evobee -c config-files-giurfa-dom-wavelength-tests/giurfa-innate-reg-mps-360-570-expt-1a.cfg.json | tee tmp1a.out
+gawk -F',' '$1=="T" {print $2}' tmp1a.out > tmp1a.csv
+
+
+
+### To generate individual CSV files of reflectance values for each entry in the FReD database
+
+## Generate fred-id-N.csv files of reflectance values for each flower
+## -- these are all stored in hexmap/fred-reflectance-csvs/
+
+gawk -F',' 'NR==4 {N=300; out_file="fred-id-"$1".csv"; print $1","$2 > out_file; for (i=4; i<=NF; i++) {print N","$i >> out_file; N++;}}' FredData_all_13OCT2020.csv
 
 ## Generate marker point files for each flower from output of https://ecosim.infotech.monash.edu/SpectralMP/
 
@@ -63,14 +78,3 @@ for F in `ls`; do cd $F/curves; gawk -F',' '{if ($5!="") {printf("%i\n",$1)}}' f
 
 --> these fred-id-$F-mps.txt files are used by the script gen-mp-counts for generating graphs
 
-
-
-## test run of evobee
-
-./evobee -c config-files-giurfa-dom-wavelength-tests/giurfa-innate-reg-mps-360-570-expt-1a.cfg.json | tee tmp1a.out
-gawk -F',' '$1=="T" {print $2}' tmp1a.out > tmp1a.csv
-
-
-### To generate individual CSV files of reflectance values for each entry in the FReD database
-
-gawk -F',' 'NR==4 {N=300; out_file="fred-id-"$1".csv"; print $1","$2 > out_file; for (i=4; i<=NF; i++) {print N","$i >> out_file; N++;}}' FredData_all_13OCT2020.csv

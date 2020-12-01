@@ -1,0 +1,10 @@
+#!/bin/bash
+for E in 1a 1b 2; do
+    cd counts-mps/expt-$E
+    for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99 124 149 174 199; do
+        for S in `seq 1 100`; do 
+            gnuplot -e "filebase='counts-mps-giurfa-sample1-uniq-expt-"$E"-gen"$G"-seed"$S"'" ../../plot-mps-plain.gnuplot
+        done
+    done
+    cd ../..
+done
