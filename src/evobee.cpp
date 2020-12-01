@@ -244,7 +244,7 @@ void extractVisDataFromPollinatorConfig(const json& j, PollinatorConfig& p)
                             purex = (++itV).value(); // dominant wavelength pure spectral point x coord
                             purey = (++itV).value(); // dominant wavelength pure spectral point y coord
                             bpli  = (++itV).value(); // pollinator's base probability of landing on this mp (non target, innate)
-                            auxid = itV.value();     // auxiliary id for this entry (e.g. FReD id), only used in output logs
+                            auxid = (++itV).value(); // auxiliary id for this entry (e.g. FReD id), only used in output logs
                         }
 
                         numEntries++;
