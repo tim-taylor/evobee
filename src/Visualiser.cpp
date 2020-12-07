@@ -140,8 +140,8 @@ bool Visualiser::update()
     for (Patch& p : patches)
     {
         // render patches
-        //const Colour::RGB & c = Colour::getRgbFromMarkerPoint(p.getBackgroundMarkerPoint());
-        const Colour::RGB & c = Colour::getRgbFromMarkerPoint(400);
+        //const Colour::RGB & pc = Colour::getRgbFromMarkerPoint(p.getBackgroundMarkerPoint());
+        const Colour::RGB & pc = Colour::getRgbFromMarkerPoint(400);
         const iPos & pos = p.getPosition();
         boxRGBA(
             m_pRenderer,
@@ -149,11 +149,13 @@ bool Visualiser::update()
             getScreenCoordFromIntY(pos.y),
             getScreenCoordFromIntWithAbsOffsetX(pos.x+1, -1),
             getScreenCoordFromIntWithAbsOffsetY(pos.y+1, -1),
-            c.r, c.g, c.b, 50
+            pc.r, pc.g, pc.b, 50
         );
     }
 
     // render flowers
+    Colour c;
+
     if (m_bShowFlowers)
     {
         for (Patch& p : patches)
@@ -167,7 +169,11 @@ bool Visualiser::update()
 
                     Flower* pFlower = fplant.getFlower(0);
                     const fPos & flwrpos = pFlower->getPosition();
-                    const Colour::RGB & c = Colour::getRgbFromMarkerPoint(pFlower->getCharacteristicWavelength());
+
+                    //const Colour::RGB & c = Colour::getRgbFromMarkerPoint(pFlower->getCharacteristicWavelength());
+
+                    ///@todo prob want to replace the hardcoded limits in the following line with variables...
+                    Colour::setColourInRange(pFlower->getCharacteristicWavelength(), 300, 650, c);
 
                     if (pFlower->pollinated())
                     {
@@ -178,8 +184,7 @@ bool Visualiser::update()
                             getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.15),
                             getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.85),
                             getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.85),
-                            c.r, c.g, c.b, 200
-                            //150, 150, 150, 255
+                            c.getR(), c.getG(), c.getB(), 200
                         );
                     }
                     else
@@ -191,7 +196,7 @@ bool Visualiser::update()
                             getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.30),
                             getScreenCoordFromFloatWithRelOffsetX(flwrpos.x, 0.70),
                             getScreenCoordFromFloatWithRelOffsetY(flwrpos.y, 0.70),
-                            c.r, c.g, c.b, 255
+                            c.getR(), c.getG(), c.getB(), 255
                         );
                     }
                 }
@@ -223,7 +228,7 @@ bool Visualiser::update()
                 Pollinator* p = pHive->getPollinator(i);
                 const fPos& ppos = p->getPosition();
                 MarkerPoint mpTarget = p->getTargetWavelength();
-                const Colour::RGB & c = Colour::getRgbFromMarkerPoint(mpTarget);
+                const Colour::RGB & pc = Colour::getRgbFromMarkerPoint(mpTarget);
 
                 // draw the pollinator
                 boxRGBA(
@@ -232,7 +237,7 @@ bool Visualiser::update()
                     getScreenCoordFromFloatWithRelOffsetY(ppos.y, 0.35),
                     getScreenCoordFromFloatWithRelOffsetX(ppos.x, 0.65),
                     getScreenCoordFromFloatWithRelOffsetY(ppos.y, 0.65),
-                    c.r, c.g, c.b, 200
+                    pc.r, pc.g, pc.b, 200
                     //255, 255, 255, 255 ///@todo for now pollinator visualisation colour is hard-coded as white
                 );
 

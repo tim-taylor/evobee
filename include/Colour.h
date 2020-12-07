@@ -24,6 +24,8 @@
 class Colour {
 
 public:
+    Colour() {};
+
     /**
      * Constructor taking an explicit RGB value
      */
@@ -48,9 +50,14 @@ public:
     };
 
     /**
-     * Explicitly set the display colour (making it unlinked from Marker Point)
+     * Explicitly set the display colour RGB values (making it unlinked from Marker Point)
      */
     void setRgb(unsigned short r, unsigned short g, unsigned short b);
+
+    /**
+     * Explicitly set the display colour using H,S,V values
+     */
+    void setHSV(float H, float S, float V);
 
     /**
      * Explicitly set the display colour (making it unlinked from Marker Point)
@@ -62,10 +69,16 @@ public:
      */
     static const RGB& getRgbFromMarkerPoint(MarkerPoint mp);
 
+    static void setColourInRange(Wavelength value, Wavelength rangeMin, Wavelength rangeMax, Colour& returnVal);
+
     /**
      *
      */
     const RGB& getRgb() const {return m_RGB;}
+
+    unsigned short getR() const {return m_RGB.r;}
+    unsigned short getG() const {return m_RGB.g;}
+    unsigned short getB() const {return m_RGB.b;}
 
 private:
     //template<int lo, int peak, int hi>

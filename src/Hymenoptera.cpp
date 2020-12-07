@@ -183,8 +183,8 @@ void Hymenoptera::initialiseInnateTarget()
 // closest step value below that as the selected marker point.
 void Hymenoptera::initialiseInnateTargetRegular()
 {
-    assert(m_sVisDataMPMin == 360);
-    assert(m_sVisDataMPMax == 570);
+    assert(m_sVisDataMPMin == 300);
+    assert(m_sVisDataMPMax == 650);
     assert(ModelParams::getColourSystem() == ColourSystem::REGULAR_MARKER_POINTS);
 
     MarkerPoint mp = 0;
@@ -198,8 +198,8 @@ void Hymenoptera::initialiseInnateTargetRegular()
         }
     }
 
-    assert (mp >= 360);
-    assert (mp <= 570);
+    assert (mp >= 300);
+    assert (mp <= 650);
 
     if (m_sVisDataMPStep > 1) {
         mp = (mp / m_sVisDataMPStep) * m_sVisDataMPStep; // round marker point to the nearest step below the chosen point
@@ -284,49 +284,6 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     // if we get to this point, it means that the final PlambdaNorm recorded in prefData is less than 1.0, so
     // something has gone horribly wrong in the calculations...
     throw std::runtime_error("Unexpected error encountered in the calculations in Hymenoptera::initialiseInnateTargetArbitrary()");
-
-
-    /*
-    static std::vector<std::tuple<MarkerPoint, float>> cumulativeInnatePrefs;
-    static bool cumulativeInnatePrefsInitialised = false;
-
-    if (!cumulativeInnatePrefsInitialised) {
-        auto ptcs = ModelParams::getPlantTypeConfigs();
-        float cumPref = 0.0f;
-
-        for (auto& ptc : ptcs) {
-            // Things we can assume about this vector of PlantTypeConfigs...
-            // (1) it is ordered from smallest to largest MP
-            //     - this is ensured in evobee.cpp in function extractVisDataFromPollinatorConfig()
-            // (2) for each ptc, flowerMPInitMin==flowerMPInitMax
-            //     - this is ensured in the m_bSyntheticRegularMarkerPointsAdded check in ModelParams::checkConsistency()
-            MarkerPoint lambda = ptc.flowerMPInitMin;
-            cumPref += getGiurfaPref(lambda);
-            cumulativeInnatePrefs.emplace_back(lambda, cumPref);
-        }
-
-        // Having filled the vector we now need to normalise it
-        for (auto& entry : cumulativeInnatePrefs) {
-            std::get<1>(entry) /= cumPref;
-        }
-
-        cumulativeInnatePrefsInitialised = true;
-    }
-
-    float selection = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
-
-    MarkerPoint mp = 0;
-    for (auto it = cumulativeInnatePrefs.begin(); it != cumulativeInnatePrefs.end(); ++it) {
-        if (std::get<1>(*it) >= selection) {
-            mp = std::get<0>(*it);
-            break;
-        }
-    }
-
-    assert(mp > 0);
-
-    setTargetMP(mp);
-    */
 }
 
 

@@ -715,38 +715,66 @@ void ModelParams::initialiseAutoGenPtdSpeciesPatchMap(std::vector<const std::str
 
     int numSpecies = flowerSpeciesMap.size();
     int numPatchesToFill = m_bPtdAutoDistribEqualNums ? numPatches - (numPatches % numSpecies) : numPatches;
-
-    // first allocate species to patches in a regular checkerboard pattern
     int numPatchesFilled = 0;
-    auto nextColFirstSpeciesItr = flowerSpeciesMap.begin();
-    for (int x = 0; x < m_iPtdAutoDistribNumCols; x++)
+
+    if (m_bPtdAutoDistribRegular)
     {
-        auto nextSpeciesItr = nextColFirstSpeciesItr;
-        for (int y = 0; y < m_iPtdAutoDistribNumRows; y++)
+        // allocate species to patches in a regular checkerboard pattern
+
+        // NB This algorithm does not work well if numSpecies > m_iPtdAutoDistribNumRows/Cols!!
+        assert(numSpecies <= m_iPtdAutoDistribNumRows);
+        assert(numSpecies <= m_iPtdAutoDistribNumCols);
+
+        auto nextColFirstSpeciesItr = flowerSpeciesMap.begin();
+        for (int x = 0; x < m_iPtdAutoDistribNumCols; x++)
         {
-            if (numPatchesFilled < numPatchesToFill) {
-                speciesPatchMap.push_back(&(nextSpeciesItr->second));
-                numPatchesFilled++;
-                nextSpeciesItr++;
-                if (nextSpeciesItr == flowerSpeciesMap.end())
-                {
-                    nextSpeciesItr = flowerSpeciesMap.begin();
+            auto nextSpeciesItr = nextColFirstSpeciesItr;
+            for (int y = 0; y < m_iPtdAutoDistribNumRows; y++)
+            {
+                if (numPatchesFilled < numPatchesToFill) {
+                    speciesPatchMap.push_back(&(nextSpeciesItr->second));
+                    numPatchesFilled++;
+                    nextSpeciesItr++;
+                    if (nextSpeciesItr == flowerSpeciesMap.end())
+                    {
+                        nextSpeciesItr = flowerSpeciesMap.begin();
+                    }
+                }
+                else {
+                    speciesPatchMap.push_back(&ModelParams::m_strNoSpecies);
                 }
             }
-            else {
-                speciesPatchMap.push_back(&ModelParams::m_strNoSpecies);
+            nextColFirstSpeciesItr++;
+            if (nextColFirstSpeciesItr == flowerSpeciesMap.end())
+            {
+                nextColFirstSpeciesItr = flowerSpeciesMap.begin();
             }
         }
-        nextColFirstSpeciesItr++;
-        if (nextColFirstSpeciesItr == flowerSpeciesMap.end())
-        {
-            nextColFirstSpeciesItr = flowerSpeciesMap.begin();
-        }
     }
+    else {
+        // species are to be distributed stochastically across the environment
 
-    // now, if we want a stochastic allocation, just jumble everything up!
-    if (!m_bPtdAutoDistribRegular)
-    {
+        // first allocate species to patches in a regular checkerboard pattern
+        auto nextSpeciesItr = flowerSpeciesMap.begin();
+        for (int x = 0; x < m_iPtdAutoDistribNumCols; x++)
+        {
+            for (int y = 0; y < m_iPtdAutoDistribNumRows; y++)
+            {
+                if (numPatchesFilled < numPatchesToFill) {
+                    speciesPatchMap.push_back(&(nextSpeciesItr->second));
+                    numPatchesFilled++;
+                    nextSpeciesItr++;
+                    if (nextSpeciesItr == flowerSpeciesMap.end()) {
+                        nextSpeciesItr = flowerSpeciesMap.begin();
+                    }
+                }
+                else {
+                    speciesPatchMap.push_back(&ModelParams::m_strNoSpecies);
+                }
+            }
+        }
+
+        // now just jumble everything up!
         std::shuffle(speciesPatchMap.begin(), speciesPatchMap.end(), EvoBeeModel::m_sRngEngine);
     }
 }

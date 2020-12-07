@@ -10,6 +10,7 @@
 #include <cassert>
 #include <stdexcept>
 #include <map>
+#include <cmath>
 #include "Colour.h"
 
 const Colour::RGB Colour::m_sDefaultColour{0.5, 0.5, 0.5, 255};
@@ -444,6 +445,7 @@ void Colour::setRgb(unsigned short r, unsigned short g, unsigned short b)
     m_RGB.b = b;
 }
 
+
 const Colour::RGB& Colour::getRgbFromMarkerPoint(MarkerPoint mp)
 {
     auto it = m_sMarkerPoint2RgbMap.find(mp);
@@ -463,6 +465,60 @@ const Colour::RGB& Colour::getRgbFromMarkerPoint(MarkerPoint mp)
         return it->second;
     }
 }
+
+
+// Static method to set the colour passed in as the final argument
+// according to where value lies in the range rangeMin-rangeMax
+void Colour::setColourInRange(Wavelength value, Wavelength rangeMin, Wavelength rangeMax, Colour& returnVal)
+{
+    if ((rangeMin >= rangeMax) || (value < rangeMin) || (value > rangeMax)) {
+        throw std::runtime_error("");
+    }
+
+    float H = ((value-rangeMin)*360)/(rangeMax-rangeMin);
+
+    returnVal.setHSV(H, 60, 50);
+}
+
+
+// Set this Colour using HSV values
+// Internally, this method converts the given HSV colour to RGB
+// This code is from https://www.codespeedy.com/hsv-to-rgb-in-cpp/
+void Colour::setHSV(float H, float S, float V)
+{
+    if(H>360 || H<0 || S>100 || S<0 || V>100 || V<0) {
+        throw std::runtime_error("Colour::setHSV() parameters are out of range!");
+    }
+
+    float s = S/100;
+    float v = V/100;
+    float C = s*v;
+    float X = C*(1-std::abs(std::fmod(H/60.0, 2)-1));
+    float m = v-C;
+    float r,g,b;
+
+    if(H >= 0 && H < 60){
+        r = C,g = X,b = 0;
+    }
+    else if(H >= 60 && H < 120){
+        r = X,g = C,b = 0;
+    }
+    else if(H >= 120 && H < 180){
+        r = 0,g = C,b = X;
+    }
+    else if(H >= 180 && H < 240){
+        r = 0,g = X,b = C;
+    }
+    else if(H >= 240 && H < 300){
+        r = X,g = 0,b = C;
+    }
+    else{
+        r = C,g = 0,b = X;
+    }
+
+    setRgb((r+m)*255, (g+m)*255, (b+m)*255);
+}
+
 
 // these colour mappings were obtained from http://cloford.com/resources/colours/namedcol.htm
 const std::map<std::string, Colour::RGB> Colour::m_sColourName2RgbMap{

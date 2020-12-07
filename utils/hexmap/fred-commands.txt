@@ -72,9 +72,13 @@ cd sample-1
 mkdir reflectance
 cd reflectance
 
+# Version 1 (separate dirs for each FReD ID)
 for F in `cat ../fred-samples-1-ids.txt`; do mkdir $F; mv fred-id-$F.csv $F; done
-
 for F in `ls`; do cd $F/curves; gawk -F',' '{if ($5!="") {printf("%i\n",$1)}}' fred-id-$F.csv > fred-id-$F-mps.txt; cd ../..; done
+
+# Version 2 (all in same dir)
+cd curves
+for F in `cat ../../fred-samples-1x-ids-43.txt`; do gawk -F',' '{if ($5!="") {printf("%i\n",$1)}}' fred-id-$F.csv > fred-id-$F-mps.txt; done
 
 --> these fred-id-$F-mps.txt files are used by the script gen-mp-counts for generating graphs
 
