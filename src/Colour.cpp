@@ -472,7 +472,7 @@ const Colour::RGB& Colour::getRgbFromMarkerPoint(MarkerPoint mp)
 void Colour::setColourInRange(Wavelength value, Wavelength rangeMin, Wavelength rangeMax, Colour& returnVal)
 {
     if ((rangeMin >= rangeMax) || (value < rangeMin) || (value > rangeMax)) {
-        throw std::runtime_error("");
+        throw std::runtime_error("Colour::setColourInRange() callled with invalid parameters!");
     }
 
     float H = ((value-rangeMin)*360)/(rangeMax-rangeMin);
