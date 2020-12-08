@@ -490,7 +490,7 @@ For each plant in the environment, emit a line with the following format at regu
  1. "n"
  2. generation number
  3. step number
- 4. marker point
+ 4. stimulus ID (as defined by the first field of the vis-data 
 
 ### log-flags=p  (Logger::logPollinatorsInterPhaseSummary)
 
@@ -532,11 +532,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMxNTY3NzEzOSwtODQ5ODA2NTQ3LC03Mj
-g4OTMzNDQsMTcwMjk4MTQ1LC0xMTU2Njc3OTY0LDUwODU4NTAw
-Miw3NDQxNjg2NjgsLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMT
-k4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4
-MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MT
-AsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1
-OTI3N119
+eyJoaXN0b3J5IjpbLTE0NDk4MzAzNjYsLTg0OTgwNjU0NywtNz
+I4ODkzMzQ0LDE3MDI5ODE0NSwtMTE1NjY3Nzk2NCw1MDg1ODUw
+MDIsNzQ0MTY4NjY4LC0xMjk4Njc3NTA4LC0xMzM0NTAwNjI2LD
+E5ODc0ODM3ODksMTgxNjQzMTc0NSwtMzg2MzQ1MDM4LC0xODc5
+ODE5NzE0LC04NTAyNDQ3NTgsMjA0MzM3NTYwMSwtODYzNDMzNz
+EwLC01NjQ1NjM1OTYsLTE3MTk0NjIzLDM3NDIwMTY3MCw5ODYz
+NTkyNzddfQ==
 -->
