@@ -307,7 +307,7 @@ The following table describes each parameter that can be specified in the config
 |vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|
 |logging|m_bLogging|bool|Is logging required for this run?|
-|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseFull, m_bLogFlowersIntraPhaseSummary, m_bLogFlowerMPsInterPhaseSummary, m_bLogFlowerInfoInterPhaseSummary|std::string|Flags to control logging functionality. Any combination of the following flags may be listed in the string, no separator is required: Q=PollinatorsIntraPhaseFull, P=PollinatorsInterPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, G=FlowersIntraPhaseFull, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary, n=logFlowerInfoInterPhaseSummary. See the [Output log file formats](#output-log-file-formats) section below for further information.|
+|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseFull, m_bLogFlowersIntraPhaseSummary, m_bLogFlowerMPsInterPhaseSummary, m_bLogFlowerInfoInterPhaseSummary|std::string|Flags to control logging functionality. Any combination of the following flags may be listed in the string, no separator is required: Q=PollinatorsIntraPhaseFull, P=PollinatorsInterPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, G=FlowersIntraPhaseFull, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary, n=FlowerInfoInterPhaseSummary. See the [Output log file formats](#output-log-file-formats) section below for further information.|
 |log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of logger|
 |log-dir|m_strLogDir|std::string|Directory name for logging output during a run|
 |log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|
@@ -414,7 +414,7 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 ## Output log file formats
 
-As shown in the [General parameters](#general-parameters) section above, there are various types of logging data that may be requested from a run. The `log-flags` parameter specifies zero, one or more flags for different kinds of output. The output from all requested flags is recording in a single log file. Each logging event appears as a separate line in the log file, and each line is a list of comma separated values (so the log file is in .csv format). The first item of every line in a single letter showing the corresponding log-flag associated with the line (e.g. 'Q', 'P', 'F', 'G', 'p', 'f', 'g', 'm') --- uppercase letters refer to full reporting formats, and lowercase letters to summary reporting formats.
+As shown in the [General parameters](#general-parameters) section above, there are various types of logging data that may be requested from a run. The `log-flags` parameter specifies zero, one or more flags for different kinds of output. The output from all requested flags is recording in a single log file. Each logging event appears as a separate line in the log file, and each line is a list of comma separated values (so the log file is in .csv format). The first item of every line in a single letter showing the corresponding log-flag associated with the line (e.g. 'Q', 'P', 'F', 'G', 'p', 'f', 'g', 'm', 'n') --- uppercase letters refer to full reporting formats, and lowercase letters to summary reporting formats.
 
 To fully understand the specific format of each line, consult the corresponding methods in the `Logger` class.
 
@@ -485,8 +485,12 @@ For each plant in the environment, emit a line with the following format at regu
  7. number of plants in communal regions (non-refuges) with this flower marker point in this generation
  8. number of pollinated plants in communal regions (non-refuges)  with this flower marker point at end of foraging phase in this generation
 
-### log-flags=n
+### log-flags=n (Logger::logFlowerInfoInterPhaseSummary)
 
+ 1. "n"
+ 2. generation number
+ 3. step number
+ 4. marker point
 
 ### log-flags=p  (Logger::logPollinatorsInterPhaseSummary)
 
@@ -528,11 +532,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTg5MjMwMjY4LC04NDk4MDY1NDcsLTcyOD
-g5MzM0NCwxNzAyOTgxNDUsLTExNTY2Nzc5NjQsNTA4NTg1MDAy
-LDc0NDE2ODY2OCwtMTI5ODY3NzUwOCwtMTMzNDUwMDYyNiwxOT
-g3NDgzNzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgx
-OTcxNCwtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMC
-wtNTY0NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5
-Mjc3XX0=
+eyJoaXN0b3J5IjpbMTMxNTY3NzEzOSwtODQ5ODA2NTQ3LC03Mj
+g4OTMzNDQsMTcwMjk4MTQ1LC0xMTU2Njc3OTY0LDUwODU4NTAw
+Miw3NDQxNjg2NjgsLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMT
+k4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4
+MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MT
+AsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1
+OTI3N119
 -->
