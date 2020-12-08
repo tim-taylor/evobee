@@ -485,6 +485,9 @@ For each plant in the environment, emit a line with the following format at regu
  7. number of plants in communal regions (non-refuges) with this flower marker point in this generation
  8. number of pollinated plants in communal regions (non-refuges)  with this flower marker point at end of foraging phase in this generation
 
+### log-flags=n
+
+
 ### log-flags=p  (Logger::logPollinatorsInterPhaseSummary)
 
 The first 3 fields are:
@@ -525,11 +528,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzU0MDc2MjMxLC04NDk4MDY1NDcsLTcyOD
-g5MzM0NCwxNzAyOTgxNDUsLTExNTY2Nzc5NjQsNTA4NTg1MDAy
-LDc0NDE2ODY2OCwtMTI5ODY3NzUwOCwtMTMzNDUwMDYyNiwxOT
-g3NDgzNzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgx
-OTcxNCwtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMC
-wtNTY0NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5
-Mjc3XX0=
+eyJoaXN0b3J5IjpbLTk4MjM5MTY4NSwtODQ5ODA2NTQ3LC03Mj
+g4OTMzNDQsMTcwMjk4MTQ1LC0xMTU2Njc3OTY0LDUwODU4NTAw
+Miw3NDQxNjg2NjgsLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMT
+k4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4
+MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MT
+AsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1
+OTI3N119
 -->
