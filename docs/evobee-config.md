@@ -483,7 +483,7 @@ For each plant in the environment, emit a line with the following format at regu
  5. number of plants with this flower marker point in this generation
  6. number of pollinated plants with this flower marker point at end of foraging phase in this generation
  7. number of plants in communal regions (non-refuges) with this flower marker point in this generation
- 8. number of pollinated plants in communal regions (non-refuges)  with this flower marker point at end of foraging phase in this generation
+ 8. number of pollinated plants in communal regions (non-refuges) with this flower marker point at end of foraging phase in this generation
 
 ### log-flags=n (Logger::logFlowerInfoInterPhaseSummary)
 
@@ -491,10 +491,11 @@ For each plant in the environment, emit a line with the following format at regu
  2. generation number
  3. step number
  4. stimulus ID (as defined by the first field of the corresponding entry in the vis-data array)
- 5. number of plants with this flower marker point in this generation
- 6. number of pollinated plants with this flower marker point at end of foraging phase in this generation
- 7. number of plants in communal regions (non-refuges) with this flower marker point in this generation
- 8. number of pollinated plants in communal regions (non-refuges)  with this flower marker point at end of foraging phase in this generation
+ 5. number of plants of this flower stimulus type (colour) in this generation
+ 6. number of pollinated plants of this flower stimulus type (colour)  at end of foraging phase in this generation
+ 7. number of plants in communal regions (non-refuges) of this flower stimulus type (colour)  in this generation
+ 8. number of pollinated plants in communal regions (non-refuges) of this flower stimulus type (colour)  at end of foraging phase in this generation
+ 9. 
 
 ### log-flags=p  (Logger::logPollinatorsInterPhaseSummary)
 
@@ -536,11 +537,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzA4MDY4OTAzLC04NDk4MDY1NDcsLTcyOD
-g5MzM0NCwxNzAyOTgxNDUsLTExNTY2Nzc5NjQsNTA4NTg1MDAy
-LDc0NDE2ODY2OCwtMTI5ODY3NzUwOCwtMTMzNDUwMDYyNiwxOT
-g3NDgzNzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgx
-OTcxNCwtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMC
-wtNTY0NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5
-Mjc3XX0=
+eyJoaXN0b3J5IjpbMTY3NDk3OTkxMiwtODQ5ODA2NTQ3LC03Mj
+g4OTMzNDQsMTcwMjk4MTQ1LC0xMTU2Njc3OTY0LDUwODU4NTAw
+Miw3NDQxNjg2NjgsLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMT
+k4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4
+MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MT
+AsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1
+OTI3N119
 -->
