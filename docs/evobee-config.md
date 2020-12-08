@@ -317,7 +317,7 @@ The following table describes each parameter that can be specified in the config
 |sim-termination-num-gens|m_iSimTerminationNumGens|int|Terminate run after this number of generations|
 |generation-termination-type|m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation. Allowed values: num-sim-steps, num-pollinator-steps, pollinated-fraction, pollinated-fraction-all, pollinated-fraction-species1.|
 |generation-termination-param|m_iGenTerminationParam or m_fGenTerminationParam|int or float|Parameter associated with m_GenTerminationType (type of param depends on value of generation-termination-type)|
-|colour-system|m_ColourSystem|ColourSystem|Determines whether we are using regularly-spaced marker points to define the allowed flowers in this run, or whether we are using an arbitrary (not necessarily regularly-spaced) set of dominant wavelengths
+|colour-system|m_ColourSystem|ColourSystem|Determines whether we are using regularly-spaced marker points to define the allowed flowers in this run (in which case the PlantType config sections can use the flowerMPInitMin/Max/Step spe), or whether we are using an arbitrary (not necessarily regularly-spaced) set of dominant wavelengths
 |auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|
 |auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PlantTypeDistribution auto-generation number of rows of areas to generate|
 |auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PlantTypeDistribution auto-generation number of columns of areas to generate|
@@ -524,11 +524,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcyODg5MzM0NCwxNzAyOTgxNDUsLTExNT
-Y2Nzc5NjQsNTA4NTg1MDAyLDc0NDE2ODY2OCwtMTI5ODY3NzUw
-OCwtMTMzNDUwMDYyNiwxOTg3NDgzNzg5LDE4MTY0MzE3NDUsLT
-M4NjM0NTAzOCwtMTg3OTgxOTcxNCwtODUwMjQ0NzU4LDIwNDMz
-NzU2MDEsLTg2MzQzMzcxMCwtNTY0NTYzNTk2LC0xNzE5NDYyMy
-wzNzQyMDE2NzAsOTg2MzU5Mjc3LDYxOTQwNDk2OSwtMTI3OTM2
-MTYxOV19
+eyJoaXN0b3J5IjpbMzQ3MDMyNDg5LC03Mjg4OTMzNDQsMTcwMj
+k4MTQ1LC0xMTU2Njc3OTY0LDUwODU4NTAwMiw3NDQxNjg2Njgs
+LTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMTk4NzQ4Mzc4OSwxOD
+E2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4MTk3MTQsLTg1MDI0
+NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5Ni
+wtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MDQ5
+NjldfQ==
 -->
