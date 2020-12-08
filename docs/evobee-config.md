@@ -317,7 +317,7 @@ The following table describes each parameter that can be specified in the config
 |sim-termination-num-gens|m_iSimTerminationNumGens|int|Terminate run after this number of generations|
 |generation-termination-type|m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation. Allowed values: num-sim-steps, num-pollinator-steps, pollinated-fraction, pollinated-fraction-all, pollinated-fraction-species1.|
 |generation-termination-param|m_iGenTerminationParam or m_fGenTerminationParam|int or float|Parameter associated with m_GenTerminationType (type of param depends on value of generation-termination-type)|
-|colour-system|m_ColourSystem|ColourSystem|Determines whether we are using regularly-spaced marker points to define the allowed flowers in this run (in which case the PlantType config sections can use the flower-reflectance-mp-init-min/max/step specs), or whether we are using an arbitrary (not necessarily regularly-spaced) set of dominant wavelengths
+|colour-system|m_ColourSystem|ColourSystem|Determines whether we are using regularly-spaced marker points to define the allowed flowers in this run (in which case the PlantType config sections can use the flower-reflectance-mp-init-min/max/step specs), or whether we are using an arbitrary (not necessarily regularly-spaced) set of dominant wavelengths (in which case the PlantType config sections must use the flower-vis-data-id spec to refer to a specific entry in the vis-data array). Allowed values: 
 |auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|
 |auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PlantTypeDistribution auto-generation number of rows of areas to generate|
 |auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PlantTypeDistribution auto-generation number of columns of areas to generate|
@@ -524,7 +524,7 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIzMzk4MDI0OSwtNzI4ODkzMzQ0LDE3MD
+eyJoaXN0b3J5IjpbMTg4NDM0MTE0MCwtNzI4ODkzMzQ0LDE3MD
 I5ODE0NSwtMTE1NjY3Nzk2NCw1MDg1ODUwMDIsNzQ0MTY4NjY4
 LC0xMjk4Njc3NTA4LC0xMzM0NTAwNjI2LDE5ODc0ODM3ODksMT
 gxNjQzMTc0NSwtMzg2MzQ1MDM4LC0xODc5ODE5NzE0LC04NTAy
