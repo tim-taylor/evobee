@@ -317,6 +317,7 @@ The following table describes each parameter that can be specified in the config
 |sim-termination-num-gens|m_iSimTerminationNumGens|int|Terminate run after this number of generations|
 |generation-termination-type|m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation. Allowed values: num-sim-steps, num-pollinator-steps, pollinated-fraction, pollinated-fraction-all, pollinated-fraction-species1.|
 |generation-termination-param|m_iGenTerminationParam or m_fGenTerminationParam|int or float|Parameter associated with m_GenTerminationType (type of param depends on value of generation-termination-type)|
+|colour-system|
 |auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|
 |auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PlantTypeDistribution auto-generation number of rows of areas to generate|
 |auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PlantTypeDistribution auto-generation number of columns of areas to generate|
@@ -523,11 +524,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcwMjk4MTQ1LC0xMTU2Njc3OTY0LDUwOD
-U4NTAwMiw3NDQxNjg2NjgsLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2
-MjYsMTk4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLT
-E4Nzk4MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0
-MzM3MTAsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMzc0MjAxNjcwLD
-k4NjM1OTI3Nyw2MTk0MDQ5NjksLTEyNzkzNjE2MTksLTg0Mjcw
-NzQ4M119
+eyJoaXN0b3J5IjpbOTcxMTQzMTg3LDE3MDI5ODE0NSwtMTE1Nj
+Y3Nzk2NCw1MDg1ODUwMDIsNzQ0MTY4NjY4LC0xMjk4Njc3NTA4
+LC0xMzM0NTAwNjI2LDE5ODc0ODM3ODksMTgxNjQzMTc0NSwtMz
+g2MzQ1MDM4LC0xODc5ODE5NzE0LC04NTAyNDQ3NTgsMjA0MzM3
+NTYwMSwtODYzNDMzNzEwLC01NjQ1NjM1OTYsLTE3MTk0NjIzLD
+M3NDIwMTY3MCw5ODYzNTkyNzcsNjE5NDA0OTY5LC0xMjc5MzYx
+NjE5XX0=
 -->
