@@ -495,8 +495,8 @@ For each plant in the environment, emit a line with the following format at regu
  6. number of pollinated plants of this flower stimulus type (colour)  at end of foraging phase in this generation
  7. number of plants in communal regions (non-refuges) of this flower stimulus type (colour)  in this generation
  8. number of pollinated plants in communal regions (non-refuges) of this flower stimulus type (colour)  at end of foraging phase in this generation
- 9. auxiliary ID associated with this stimulus (as defined by 9th field in vis-data entry)
- 10. dominant wavelength of this stimulus
+ 9. auxiliary ID associated with this stimulus (as defined by ninth field in vis-data entry)
+ 10. dominant wavelength of this stimulus (as defined by second field in vis-data entry)
 
 ### log-flags=p  (Logger::logPollinatorsInterPhaseSummary)
 
@@ -538,7 +538,7 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA2MTIxODIxMCwtODQ5ODA2NTQ3LC03Mj
+eyJoaXN0b3J5IjpbMTg1NjY0OTU4MywtODQ5ODA2NTQ3LC03Mj
 g4OTMzNDQsMTcwMjk4MTQ1LC0xMTU2Njc3OTY0LDUwODU4NTAw
 Miw3NDQxNjg2NjgsLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMT
 k4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4
