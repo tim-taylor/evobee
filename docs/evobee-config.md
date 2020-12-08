@@ -380,7 +380,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|
 |species|species|std::string|Text label designating species of plant (any text is allowed)|
-|flower-vis-data-id|flowerVisDataID|int|Links this plant type to visual data stored in the vis-data array in the entry with the specified ID|
+|flower-vis-data-id|flowerVisDataID|int|Links this plant type to visual data stored in the vis-data array in the entry with the specified ID (the first field in the vis-data entry). This parameter is required when colour-system=arbitrary-dominant-wavelengths (and is ignored otherwise).|
 |flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint|Newly created flowers of this type are randomly assigned a marker point in the range flowerMPInitMin to flowerMPInitMax with step size flowerMPInitStep within this range. This parameter (along with the corresponding -max and -step parameters) is required when colour-system=regular-marker-points (and is ignored otherwise).|
 |flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint|See flowerMPInitMin|
 |flower-reflectance-mp-init-step|flowerMPInitStep|MarkerPoint|See flowerMPInitMin. Default value is 10.|
@@ -525,11 +525,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzE0MjgwNDI1LC03Mjg4OTMzNDQsMTcwMj
-k4MTQ1LC0xMTU2Njc3OTY0LDUwODU4NTAwMiw3NDQxNjg2Njgs
-LTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMTk4NzQ4Mzc4OSwxOD
-E2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4MTk3MTQsLTg1MDI0
-NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5Ni
-wtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MDQ5
-NjldfQ==
+eyJoaXN0b3J5IjpbMTcwMTQzNjQxMywtNzI4ODkzMzQ0LDE3MD
+I5ODE0NSwtMTE1NjY3Nzk2NCw1MDg1ODUwMDIsNzQ0MTY4NjY4
+LC0xMjk4Njc3NTA4LC0xMzM0NTAwNjI2LDE5ODc0ODM3ODksMT
+gxNjQzMTc0NSwtMzg2MzQ1MDM4LC0xODc5ODE5NzE0LC04NTAy
+NDQ3NTgsMjA0MzM3NTYwMSwtODYzNDMzNzEwLC01NjQ1NjM1OT
+YsLTE3MTk0NjIzLDM3NDIwMTY3MCw5ODYzNTkyNzcsNjE5NDA0
+OTY5XX0=
 -->
