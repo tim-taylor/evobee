@@ -317,7 +317,7 @@ The following table describes each parameter that can be specified in the config
 |sim-termination-num-gens|m_iSimTerminationNumGens|int|Terminate run after this number of generations|
 |generation-termination-type|m_GenTerminationType|GenTerminationType|Method used to define termination criterion for a generation. Allowed values: num-sim-steps, num-pollinator-steps, pollinated-fraction, pollinated-fraction-all, pollinated-fraction-species1.|
 |generation-termination-param|m_iGenTerminationParam or m_fGenTerminationParam|int or float|Parameter associated with m_GenTerminationType (type of param depends on value of generation-termination-type)|
-|colour-system|m_ColourSystem|ColourSystem|Determines whether we are using regularly-spaced marker points to define the allowed flowers in this run (in which case the PlantType config sections can use the flower-reflectance-mp-init-min/max/step specs), or whether we are using an arbitrary (not necessarily regularly-spaced) set of dominant wavelengths (in which case the PlantType config sections must use the flower-vis-data-id spec to refer to a specific entry in the vis-data array). Allowed values: regular-marker-points, arbitrary-dominant-wavelengths|
+|colour-system|m_ColourSystem|ColourSystem|Determines whether we are using regularly-spaced marker points to define the allowed flowers in this run (in which case the PlantType config sections can use the flower-reflectance-mp-init-min/max/step specs), or whether we are using an arbitrary (not necessarily regularly-spaced) set of dominant wavelengths (in which case the PlantType config sections must use the flower-vis-data-id spec to refer to a specific entry in the vis-data array). Allowed values: regular-marker-points, arbitrary-dominant-wavelengths. Default value is regular-marker-points|
 |auto-distribs|m_bPtdAutoDistribs|bool|Use auto-generation tool for Plant Type Distributions?|
 |auto-distrib-num-rows |m_iPtdAutoDistribNumRows|int|PlantTypeDistribution auto-generation number of rows of areas to generate|
 |auto-distrib-num-cols|m_iPtdAutoDistribNumCols|int|PlantTypeDistribution auto-generation number of columns of areas to generate|
@@ -380,7 +380,7 @@ Plant Type configuration parameters for a single plant type are stored in an ins
 |Parameter name in JSON config file|Corresponding variable name in PlantTypeConfig.h|Type of variable|Description|
 |---|---|---|---|
 |species|species|std::string|Text label designating species of plant (any text is allowed)|
-|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint|Newly created flowers of this type are randomly assigned a marker point in the range flowerMPInitMin to flowerMPInitMax with step size flowerMPInitStep within this range.|
+|flower-reflectance-mp-init-min|flowerMPInitMin|MarkerPoint|Newly created flowers of this type are randomly assigned a marker point in the range flowerMPInitMin to flowerMPInitMax with step size flowerMPInitStep within this range. This |
 |flower-reflectance-mp-init-max|flowerMPInitMax|MarkerPoint|See flowerMPInitMin|
 |flower-reflectance-mp-init-step|flowerMPInitStep|MarkerPoint|See flowerMPInitMin. Default value is 10.|
 |diff-mp-is-diff-species|diffMPIsDiffSpecies|bool|If true and flowerMPInitMax != flowerMPInitMin, then plants with different flower marker points generated from this configuration are treated as different species. In this case, each individual species is given a name "PlantSpeciesNNN" (where NNN is the wavelength of the marker point) - this naming scheme overrides anything specified in the "species" field in the Plant Type configuration.|
@@ -524,11 +524,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTkyNzMzNjE5LC03Mjg4OTMzNDQsMTcwMj
-k4MTQ1LC0xMTU2Njc3OTY0LDUwODU4NTAwMiw3NDQxNjg2Njgs
-LTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMTk4NzQ4Mzc4OSwxOD
-E2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4MTk3MTQsLTg1MDI0
-NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5Ni
-wtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1OTI3Nyw2MTk0MDQ5
-NjldfQ==
+eyJoaXN0b3J5IjpbMTA4NjMzMTk2OCwtNzI4ODkzMzQ0LDE3MD
+I5ODE0NSwtMTE1NjY3Nzk2NCw1MDg1ODUwMDIsNzQ0MTY4NjY4
+LC0xMjk4Njc3NTA4LC0xMzM0NTAwNjI2LDE5ODc0ODM3ODksMT
+gxNjQzMTc0NSwtMzg2MzQ1MDM4LC0xODc5ODE5NzE0LC04NTAy
+NDQ3NTgsMjA0MzM3NTYwMSwtODYzNDMzNzEwLC01NjQ1NjM1OT
+YsLTE3MTk0NjIzLDM3NDIwMTY3MCw5ODYzNTkyNzcsNjE5NDA0
+OTY5XX0=
 -->
