@@ -307,7 +307,7 @@ The following table describes each parameter that can be specified in the config
 |vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|
 |logging|m_bLogging|bool|Is logging required for this run?|
-|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseFull, m_bLogFlowersIntraPhaseSummary, m_bLogFlowerMPsInterPhaseSummary|std::string|Flags to control logging functionality. Any combination of the following flags may be listed in the string, no separator is required: Q=PollinatorsIntraPhaseFull, P=PollinatorsInterPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, G=FlowersIntraPhaseFull, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary. See the [Output log file formats](#output-log-file-formats) section below for further information.|
+|log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseFull, m_bLogFlowersIntraPhaseSummary, m_bLogFlowerMPsInterPhaseSummary, m_bLogFlowerInfoInterPhaseSummary|std::string|Flags to control logging functionality. Any combination of the following flags may be listed in the string, no separator is required: Q=PollinatorsIntraPhaseFull, P=PollinatorsInterPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, G=FlowersIntraPhaseFull, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary, n=logFlowerInfoInterPhaseSummary. See the [Output log file formats](#output-log-file-formats) section below for further information.|
 |log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of logger|
 |log-dir|m_strLogDir|std::string|Directory name for logging output during a run|
 |log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|
@@ -528,11 +528,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk4MjM5MTY4NSwtODQ5ODA2NTQ3LC03Mj
-g4OTMzNDQsMTcwMjk4MTQ1LC0xMTU2Njc3OTY0LDUwODU4NTAw
-Miw3NDQxNjg2NjgsLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMT
-k4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4
-MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MT
-AsLTU2NDU2MzU5NiwtMTcxOTQ2MjMsMzc0MjAxNjcwLDk4NjM1
-OTI3N119
+eyJoaXN0b3J5IjpbOTg5MjMwMjY4LC04NDk4MDY1NDcsLTcyOD
+g5MzM0NCwxNzAyOTgxNDUsLTExNTY2Nzc5NjQsNTA4NTg1MDAy
+LDc0NDE2ODY2OCwtMTI5ODY3NzUwOCwtMTMzNDUwMDYyNiwxOT
+g3NDgzNzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgx
+OTcxNCwtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMC
+wtNTY0NTYzNTk2LC0xNzE5NDYyMywzNzQyMDE2NzAsOTg2MzU5
+Mjc3XX0=
 -->
