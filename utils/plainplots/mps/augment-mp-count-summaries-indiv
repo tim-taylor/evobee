@@ -1,0 +1,24 @@
+#!/bin/bash
+for S in uniq multi; do
+    for E in 1b 2; do
+        for X in 240x240 300x300; do
+            cd $S/expt-$E/$X/counts-mp
+            BRAW="counts-mps-giurfa-sample1x-$S-expt-$E-$X"
+            BAUG="counts-mps-aug-giurfa-sample1x-$S-expt-$E-$X"            
+            for R in `seq 1 100`; do
+                cp "$BRAW-gen0-seed$R.csv" "$BAUG-gen0-seed$R.csv"
+                for G in 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99 124 149 174 199; do
+                    for L in `cut -d',' -f1 "$BRAW-gen0-seed$R.csv"`; do 
+                        Z=`grep -h "^$L" "$BRAW-gen$G-seed$R.csv"`
+                        if [ "$Z" ]; then 
+                            echo $Z
+                        else
+                            echo $L",0"
+                        fi
+                    done > "$BAUG-gen$G-seed$R.csv"
+                done
+            done          
+            cd ../../../..
+        done
+    done
+done

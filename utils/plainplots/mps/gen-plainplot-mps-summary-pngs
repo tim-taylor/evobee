@@ -4,9 +4,8 @@ for S in uniq multi; do
         for X in 240x240 300x300; do
             cd $S/expt-$E/$X
             for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99 124 149 174 199; do
-                for N in `seq 1 100`; do 
-                    gnuplot -e "filebase='counts-mp/counts-mps-giurfa-sample1x-"$S"-expt-"$E"-"$X"-gen"$G"-seed"$N"'" ../../../plot-mps-plain.gnuplot
-                done
+                BASE="summary-counts-mps-aug-giurfa-sample1x-$S-expt-$E-$X-gen$G"
+                gnuplot -e "filebase='counts-mp/$BASE'" ../../../plot-mps-summary.gnuplot
             done
             cd ../../..
         done

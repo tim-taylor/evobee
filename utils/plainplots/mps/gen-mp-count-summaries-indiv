@@ -1,0 +1,21 @@
+#!/bin/bash
+for S in uniq multi; do
+    for E in 1b 2; do
+        for X in 240x240 300x300; do
+            cd $S/expt-$E/$X
+            mkdir counts-mp
+            for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99 124 149 174 199; do
+                N=1
+                for O in `ls raw/*-log.txt`; do 
+                    gawk -F',' '{system("bash ../../../gen-mp-counts "$1" "$2);}' counts-fredid/counts-giurfa-sample1x-$S-expt-$E-$X-gen$G-seed$N.csv | sort > tmp1.out
+                    for F in `cut -d',' -f1 tmp1.out | uniq`; do
+                        echo -n $F","; grep $F"," tmp1.out | gawk -F',' '{C+=$2} END {print C}';
+                    done > counts-mp/counts-mps-giurfa-sample1x-$S-expt-$E-$X-gen$G-seed$N.csv
+                    rm -f tmp1.out
+                    N=$(( N+1 ))
+                done
+            done
+            cd ../../..
+        done
+    done
+done

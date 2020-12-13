@@ -1,17 +1,20 @@
 #!/bin/bash
-for E in 1a 1b 2; do
-    cd counts-mps/expt-$E
-    F=""
-    for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99 124 149 174 199; do
-        gawk -vG="$G" -vE="$E" '{sub(/XXX/,G,$0); sub(/NNN/,E,$0); print;}' ../../plainplot-mps-display-template.tex > plainplot-mps-display-$E-$G.tex
-        pdflatex plainplot-mps-display-$E-$G.tex
-        X=plainplot-mps-display-$E-$G.pdf
-        F="$F $X"  
+for S in uniq multi; do
+    for E in 1b 2; do
+        for X in 240x240 300x300; do
+            cd $S/expt-$E/$X
+            F=""
+            for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99 124 149 174 199; do
+                gawk -vS="$S" -vE="$E" -vX="$X" -vG="$G" '{sub(/SSS/,S,$0); sub(/EEE/,E,$0); sub(/XXX/,X,$0); sub(/GGG/,G,$0); print;}' ../../../plainplot-mps-display-template.tex > plainplot-mps-display-$E-$G.tex
+                pdflatex plainplot-mps-display-$E-$G.tex
+                F="$F "plainplot-mps-display-$E-$G.pdf
+            done
+            pdfunite $F plainplot-mps-display-combined-$S-expt-$E-$X.pdf
+            rm -f plainplot-mps-display-$E-*.aux
+            rm -f plainplot-mps-display-$E-*.log
+            rm -f plainplot-mps-display-$E-*.tex
+            rm -f plainplot-mps-display-$E-*.pdf
+            cd ../../..
+        done
     done
-    pdfunite $F plainplot-mps-display-combined-expt-$E.pdf
-    rm -f plainplot-mps-display-$E-*.aux
-    rm -f plainplot-mps-display-$E-*.log
-    rm -f plainplot-mps-display-$E-*.tex
-    rm -f plainplot-mps-display-$E-*.pdf
-    cd ../..
 done
