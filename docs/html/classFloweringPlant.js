@@ -9,7 +9,8 @@ var classFloweringPlant =
     [ "getDistance", "classFloweringPlant.html#a7a88e845574355ab9625189be9d625c9", null ],
     [ "getDistanceSq", "classFloweringPlant.html#a9a66873a7380de9903d22e2ff4f214f2", null ],
     [ "getFlower", "classFloweringPlant.html#a6bd907a2cbe03215d30ddd5f7b41cbfa", null ],
-    [ "getFlowerMarkerPoint", "classFloweringPlant.html#adfe261c92614155d857b7b22c9c7d565", null ],
+    [ "getFlowerCharacteristicWavelength", "classFloweringPlant.html#a2544ead34dc3f5d890a9ec21bd041f1d", null ],
+    [ "getFlowerReflectanceInfo", "classFloweringPlant.html#ac6fd9b754b3892dd3b907897ca91da57", null ],
     [ "getFlowers", "classFloweringPlant.html#a480bfca8f1d6e913ffc2d56a54d503a2", null ],
     [ "getId", "classFloweringPlant.html#a751b89d5d52d14d630663a713de9f247", null ],
     [ "getPatch", "classFloweringPlant.html#aa91da58f3ac6480eca0c0e79c3909e37", null ],
@@ -20,5 +21,5 @@ var classFloweringPlant =
     [ "operator=", "classFloweringPlant.html#aadf40fcce77b33fd7769bbb2458b028c", null ],
     [ "pollinated", "classFloweringPlant.html#af7517e7478479601d2dbffb53b0cccfa", null ],
     [ "reproSeedDispersalGlobal", "classFloweringPlant.html#a2c06540d02131708e427c85a918f9ad0", null ],
-    [ "reproSeedDispersalRadius", "classFloweringPlant.html#a01ef82d2a347fc704d9eaea28bb3d573", null ]
+    [ "reproSeedDispersalRadiusStdDev", "classFloweringPlant.html#af83a3a671910693e90e6d7dc060cbde8", null ]
 ];

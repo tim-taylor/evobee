@@ -1,11 +1,15 @@
 var structPlantTypeConfig =
 [
     [ "PlantTypeConfig", "structPlantTypeConfig.html#a19a73a7142f3ec6421504f77975df02b", null ],
+    [ "getDominantWavelength", "structPlantTypeConfig.html#a110b4f877a624e54f01b3c4e38a61f89", null ],
     [ "antherInitPollen", "structPlantTypeConfig.html#ac27ba665424436025af30f4da39a8bd6", null ],
     [ "antherPollenTransferPerVisit", "structPlantTypeConfig.html#afada9297bcc0f3e3ca11eed1b9789f35", null ],
     [ "diffMPIsDiffSpecies", "structPlantTypeConfig.html#afce13b8f3da18ea6e53028b182c6964d", null ],
     [ "flowerMPInitMax", "structPlantTypeConfig.html#a61dc1b2c9bb6445fc4401286eb1c531d", null ],
     [ "flowerMPInitMin", "structPlantTypeConfig.html#a81667c52fde8a84325e9a10eab53edc4", null ],
+    [ "flowerMPInitStep", "structPlantTypeConfig.html#a6508050a78d67f9add0b2816b9c282e6", null ],
+    [ "flowerVisDataID", "structPlantTypeConfig.html#ac493ffac67de21b6819e47e7375cb2c4", null ],
+    [ "flowerVisDataPtr", "structPlantTypeConfig.html#afce8f81be4a4f8508fb0cf1fe2dd6974", null ],
     [ "hasLeaf", "structPlantTypeConfig.html#a0584e7fdb3e522c60c5f697dac71b671", null ],
     [ "initNectar", "structPlantTypeConfig.html#a0208f48d8c9174ac6493993d857062b0", null ],
     [ "initTemp", "structPlantTypeConfig.html#a8163a11e10b14241d0d55087a5091439", null ],
@@ -15,7 +19,7 @@ var structPlantTypeConfig =
     [ "pollenCloggingPartial", "structPlantTypeConfig.html#aad8e1a91248364bc86eebb0516189e5a", null ],
     [ "pollenCloggingSpecies", "structPlantTypeConfig.html#a19cfac24f9431f91686059b5c06d8437", null ],
     [ "reproSeedDispersalGlobal", "structPlantTypeConfig.html#aa926f4a80d63c5021bda1896d0fbc589", null ],
-    [ "reproSeedDispersalRadius", "structPlantTypeConfig.html#a3d96c1fc0c970ab0ba68db62b187bb27", null ],
+    [ "reproSeedDispersalRadiusStdDev", "structPlantTypeConfig.html#a53027513bfdc0129e4c17c1108390221", null ],
     [ "species", "structPlantTypeConfig.html#ab4a3288e4a64f8f214d76c6f8948dd41", null ],
     [ "stigmaMaxPollenCapacity", "structPlantTypeConfig.html#a8ce6736aec0bf1a977ef17119c91ccf7", null ]
 ];

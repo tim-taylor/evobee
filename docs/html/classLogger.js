@@ -3,6 +3,7 @@ var classLogger =
     [ "Logger", "classLogger.html#a13dd8ff7071ff5c2c8f49ad9e140ff69", null ],
     [ "~Logger", "classLogger.html#acb668a9e186a25fbaad2e4af6d1ed00a", null ],
     [ "logExptSetup", "classLogger.html#a4e022e5d88331bb94e929aae7351c721", null ],
+    [ "logFlowerInfoInterPhaseSummary", "classLogger.html#ab98859bb98942f186ac8b6be06cd0f91", null ],
     [ "logFlowerMPsInterPhaseSummary", "classLogger.html#a6c678507c9308fd295c07e5158639ad0", null ],
     [ "logFlowersInterPhaseFull", "classLogger.html#a0c95ee4f80e0049ea18d67fc866b17fe", null ],
     [ "logFlowersInterPhaseSummary", "classLogger.html#a3bff47b782820a6d72d02f5a33733743", null ],

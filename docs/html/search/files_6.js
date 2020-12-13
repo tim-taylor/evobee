@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['modelcomponent_2ecpp',['ModelComponent.cpp',['../ModelComponent_8cpp.html',1,'']]],
-  ['modelcomponent_2eh',['ModelComponent.h',['../ModelComponent_8h.html',1,'']]],
-  ['modelparams_2ecpp',['ModelParams.cpp',['../ModelParams_8cpp.html',1,'']]],
-  ['modelparams_2eh',['ModelParams.h',['../ModelParams_8h.html',1,'']]]
+  ['logger_2ecpp_350',['Logger.cpp',['../Logger_8cpp.html',1,'']]],
+  ['logger_2eh_351',['Logger.h',['../Logger_8h.html',1,'']]]
 ];
