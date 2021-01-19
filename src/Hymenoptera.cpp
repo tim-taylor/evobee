@@ -271,10 +271,13 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     float selection = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
 
     // std::map is a sorted container, so we can be sure when we are traversing its members that we are
-    // going sequentially from lowest to highest wavelength
+    // going sequentially from lowest to highest wavelength.
+    // The second test below involving prefData.size() checks whether this is the last entry in
+    // the container. We do this extra check just to avoid any floating point problems when doing
+    // comparisons, to ensure that that last entry is definitely selected if we get to that point.
+    std::size_t item = 1;
     for (auto& entry : prefData) {
-        if ((std::get<4>(entry.second) + EvoBee::FLOAT_COMPARISON_EPSILON >= selection) || 
-            (EvoBee::equal(std::get<4>(entry.second), 1.0f) && EvoBee::equal(selection, 1.0f))) {
+        if ((std::get<4>(entry.second) >= selection) || (item++ == prefData.size())) {
             std::uniform_int_distribution<int> dist(0, std::get<5>(entry.second).size() - 1);
             const PlantTypeConfig* pPTC = std::get<5>(entry.second).at(dist(EvoBeeModel::m_sRngEngine));
             m_TargetReflectance.setVisDataPtr(pPTC->flowerVisDataPtr);
@@ -285,9 +288,10 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     // if we get to this point, it means that the final PlambdaNorm recorded in prefData is less than 1.0, so
     // something has gone horribly wrong in the calculations...
     std::stringstream msg;
-    float cumProbMax = 0.0;
     msg << "Unexpected error encountered in the calculations in Hymenoptera::initialiseInnateTargetArbitrary()\n";
+    /*
     msg << " Content of prefData map:\n";
+    float cumProbMax = 0.0;
     for (auto& entry : prefData) {
         msg << "   " << entry.first << " -> (" << std::get<0>(entry.second) << ", " << std::get<1>(entry.second) << ", "
             << std::get<2>(entry.second) << ", " << std::get<3>(entry.second) << ", " 
@@ -300,6 +304,7 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     msg << " cumProbMax==1 -> " << (EvoBee::equal(cumProbMax, 1.0f) ? "true" : "false") << "\n";
     msg << " cumProbMax>=selection -> " << ((cumProbMax>=selection) ? "true" : "false") << "\n";
     msg << " cumProbMax+FCD>=selection -> " << ((cumProbMax+EvoBee::FLOAT_COMPARISON_EPSILON>=selection) ? "true" : "false") << "\n";
+    */
     throw std::runtime_error(msg.str());
 }
 
