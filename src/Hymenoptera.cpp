@@ -273,7 +273,8 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     // std::map is a sorted container, so we can be sure when we are traversing its members that we are
     // going sequentially from lowest to highest wavelength
     for (auto& entry : prefData) {
-        if ((std::get<4>(entry.second) + EvoBee::FLOAT_COMPARISON_EPSILON) >= selection) {
+        if ((std::get<4>(entry.second) >= selection) || 
+            (EvoBee::equal(std::get<4>(entry.second), 1.0f) && EvoBee::equal(selection, 1.0f))) {
             std::uniform_int_distribution<int> dist(0, std::get<5>(entry.second).size() - 1);
             const PlantTypeConfig* pPTC = std::get<5>(entry.second).at(dist(EvoBeeModel::m_sRngEngine));
             m_TargetReflectance.setVisDataPtr(pPTC->flowerVisDataPtr);
