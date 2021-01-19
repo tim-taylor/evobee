@@ -285,12 +285,13 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     // something has gone horribly wrong in the calculations...
     std::stringstream msg;
     msg << "Unexpected error encountered in the calculations in Hymenoptera::initialiseInnateTargetArbitrary()\n";
-    msg << "Content of prefData map:\n";
+    msg << " Content of prefData map:\n";
     for (auto& entry : prefData) {
-        msg << "  " << entry.first << " -> (" << std::get<0>(entry.second) << ", " << std::get<1>(entry.second) << ", "
+        msg << "   " << entry.first << " -> (" << std::get<0>(entry.second) << ", " << std::get<1>(entry.second) << ", "
             << std::get<2>(entry.second) << ", " << std::get<3>(entry.second) << ", " 
             << std::get<4>(entry.second) << ")\n";
-    }   
+    }  
+    msg << " Value of selection was " << selection << "\n"; 
     throw std::runtime_error(msg.str());
 }
 
