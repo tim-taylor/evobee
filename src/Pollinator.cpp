@@ -966,7 +966,7 @@ int Pollinator::getNumPollenGrainsInStore(unsigned int speciesId) const
 // This method represents the pollinator's ability to discriminate between a given stimulus and
 // the pollinator's remembered target. The method returns a confidence level (between 0.0 and 1.0)
 // that the given stimulus *matches* the current target (i.e. the probability that the pollinator
-// does *not* descriminate a difference between the two).
+// does *not* discriminate a difference between the two).
 //
 float Pollinator::confidenceMatchesTarget(const ReflectanceInfo& stimulus) const
 {

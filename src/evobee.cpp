@@ -3,7 +3,7 @@
  *
  * Implementation of the simulation's main method. This deals with reading in the configuration file
  * and setting the static variables in ModelParams accordingly, performing necessary postprocessing
- * steps and consistency checks on the configurtation options, creating a new EvoBeeExperiment object
+ * steps and consistency checks on the configuration options, creating a new EvoBeeExperiment object
  * and calling its run() method.
  *
  * \mainpage EvoBee

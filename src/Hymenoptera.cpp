@@ -283,7 +283,15 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
 
     // if we get to this point, it means that the final PlambdaNorm recorded in prefData is less than 1.0, so
     // something has gone horribly wrong in the calculations...
-    throw std::runtime_error("Unexpected error encountered in the calculations in Hymenoptera::initialiseInnateTargetArbitrary()");
+    std::stringstream msg;
+    msg << "Unexpected error encountered in the calculations in Hymenoptera::initialiseInnateTargetArbitrary()\n";
+    msg << "Content of prefData map:\n";
+    for (auto& entry : prefData) {
+        msg << "  " << entry.first << " -> (" << std::get<0>(entry.second) << ", " << std::get<1>(entry.second) << ", "
+            << std::get<2>(entry.second) << ", " << std::get<3>(entry.second) << ", " 
+            << std::get<4>(entry.second) << ")\n";
+    }   
+    throw std::runtime_error(msg.str());
 }
 
 
@@ -620,8 +628,8 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower, bool* pJudgedToMatchTa
     }
     else
     {
-        float landingProb = bJudgedToBeTarget ? visPrefInfo.getProbLandTarget() : visPrefInfo.getProbLandNonTarget();
-        bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < landingProb);
+        float landProb = bJudgedToBeTarget ? visPrefInfo.getProbLandTarget() : visPrefInfo.getProbLandNonTarget();
+        bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < landProb);
     }
 
     return bIsVisitCandidate;
