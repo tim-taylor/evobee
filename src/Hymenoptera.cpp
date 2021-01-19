@@ -267,14 +267,14 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
 
 
     // to assign a target we use roulette wheel selection, picking a number at random between [0,1) and selecting
-    // the first wavelength whose cumulative
+    // the first wavelength whose entry shows a cumulative probability greater than that random number
     float selection = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
 
     // std::map is a sorted container, so we can be sure when we are traversing its members that we are
     // going sequentially from lowest to highest wavelength.
     // The second test below involving prefData.size() checks whether this is the last entry in
     // the container. We do this extra check just to avoid any floating point problems when doing
-    // comparisons, to ensure that that last entry is definitely selected if we get to that point.
+    // comparisons, to ensure that the last entry is definitely selected if we get to that point.
     std::size_t item = 1;
     for (auto& entry : prefData) {
         if ((std::get<4>(entry.second) >= selection) || (item++ == prefData.size())) {
