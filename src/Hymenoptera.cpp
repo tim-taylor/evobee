@@ -273,7 +273,7 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     // std::map is a sorted container, so we can be sure when we are traversing its members that we are
     // going sequentially from lowest to highest wavelength
     for (auto& entry : prefData) {
-        if ((std::get<4>(entry.second) >= selection) || 
+        if ((std::get<4>(entry.second) + EvoBee::FLOAT_COMPARISON_EPSILON >= selection) || 
             (EvoBee::equal(std::get<4>(entry.second), 1.0f) && EvoBee::equal(selection, 1.0f))) {
             std::uniform_int_distribution<int> dist(0, std::get<5>(entry.second).size() - 1);
             const PlantTypeConfig* pPTC = std::get<5>(entry.second).at(dist(EvoBeeModel::m_sRngEngine));
@@ -285,14 +285,21 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     // if we get to this point, it means that the final PlambdaNorm recorded in prefData is less than 1.0, so
     // something has gone horribly wrong in the calculations...
     std::stringstream msg;
+    float cumProbMax = 0.0;
     msg << "Unexpected error encountered in the calculations in Hymenoptera::initialiseInnateTargetArbitrary()\n";
     msg << " Content of prefData map:\n";
     for (auto& entry : prefData) {
         msg << "   " << entry.first << " -> (" << std::get<0>(entry.second) << ", " << std::get<1>(entry.second) << ", "
             << std::get<2>(entry.second) << ", " << std::get<3>(entry.second) << ", " 
             << std::get<4>(entry.second) << ")\n";
+        cumProbMax = std::get<4>(entry.second);
     }  
-    msg << " Value of selection was " << selection << "\n"; 
+    msg << " selection = " << selection << "\n";
+    msg << " cumProbMax = " << cumProbMax << "\n"; 
+    msg << " selection==1 -> " << (EvoBee::equal(selection, 1.0f) ? "true" : "false") << "\n";
+    msg << " cumProbMax==1 -> " << (EvoBee::equal(cumProbMax, 1.0f) ? "true" : "false") << "\n";
+    msg << " cumProbMax>=selection -> " << ((cumProbMax>=selection) ? "true" : "false") << "\n";
+    msg << " cumProbMax+FCD>=selection -> " << ((cumProbMax+EvoBee::FLOAT_COMPARISON_EPSILON>=selection) ? "true" : "false") << "\n";
     throw std::runtime_error(msg.str());
 }
 
