@@ -31,7 +31,6 @@
             "name": "EvoBee",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/hddhome/tim/Dropbox/research/evobee/code/evobee/include",
                 "/home/tim/Dropbox/research/evobee/code/evobee/include",
                 "/home/tim/evobee/code/evobee/include"
             ],
