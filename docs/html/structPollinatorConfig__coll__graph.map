@@ -1,5 +1,7 @@
 <map id="PollinatorConfig" name="PollinatorConfig">
-<area shape="rect" id="node3" href="$structVisualStimulusInfo.html" title="VisualStimulusInfo" alt="" coords="31,13,162,39"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="213,117,293,143"/>
-<area shape="rect" id="node5" title="STL class. " alt="" coords="189,5,316,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="117,272,231,299"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,109,188,151"/>
+<area shape="rect" id="node3" href="$structVisualStimulusInfo.html" title=" " alt="" coords="31,13,162,39"/>
+<area shape="rect" id="node4" title="STL class." alt="" coords="213,117,293,143"/>
+<area shape="rect" id="node5" title="STL class." alt="" coords="189,5,316,47"/>
 </map>

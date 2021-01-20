@@ -1,21 +1,36 @@
 <map id="include/ModelParams.h" name="include/ModelParams.h">
-<area shape="rect" id="node5" href="$HiveConfig_8h.html" title="HiveConfig.h" alt="" coords="1655,379,1754,405"/>
-<area shape="rect" id="node8" href="$PlantTypeDistributionConfig_8h.html" title="PlantTypeDistributionConfig.h" alt="" coords="1089,453,1285,480"/>
-<area shape="rect" id="node9" href="$PlantTypeConfig_8h.html" title="PlantTypeConfig.h" alt="" coords="435,528,566,555"/>
-<area shape="rect" id="node10" href="$ReflectanceInfo_8h.html" title="ReflectanceInfo.h" alt="" coords="335,603,460,629"/>
-<area shape="rect" id="node11" href="$PollinatorConfig_8h.html" title="PollinatorConfig.h" alt="" coords="132,304,258,331"/>
-<area shape="rect" id="node17" href="$EvoBeeExperiment_8h.html" title="EvoBeeExperiment.h" alt="" coords="1166,80,1312,107"/>
-<area shape="rect" id="node6" href="$Position_8h.html" title="Position.h" alt="" coords="1258,528,1338,555"/>
-<area shape="rect" id="node12" href="$PollinatorEnums_8h.html" title="PollinatorEnums.h" alt="" coords="28,453,156,480"/>
-<area shape="rect" id="node13" href="$PollinatorStructs_8h.html" title="PollinatorStructs.h" alt="" coords="78,379,208,405"/>
-<area shape="rect" id="node14" href="$Flower_8h.html" title="Flower.h" alt="" coords="536,453,608,480"/>
-<area shape="rect" id="node15" href="$Pollen_8h.html" title="Pollen.h" alt="" coords="640,528,710,555"/>
-<area shape="rect" id="node19" href="$EvoBeeModel_8h.html" title="EvoBeeModel.h" alt="" coords="1054,155,1168,181"/>
-<area shape="rect" id="node28" href="$EventManager_8h.html" title="EventManager.h" alt="" coords="1422,155,1539,181"/>
-<area shape="rect" id="node29" href="$Logger_8h.html" title="Logger.h" alt="" coords="1326,155,1398,181"/>
-<area shape="rect" id="node32" href="$Visualiser_8h.html" title="Visualiser.h" alt="" coords="1483,379,1574,405"/>
-<area shape="rect" id="node21" href="$Environment_8h.html" title="Environment.h" alt="" coords="1100,229,1207,256"/>
-<area shape="rect" id="node24" href="$Patch_8h.html" title="Patch.h" alt="" coords="704,304,771,331"/>
-<area shape="rect" id="node27" href="$AbstractHive_8h.html" title="AbstractHive.h" alt="" coords="1379,304,1488,331"/>
-<area shape="rect" id="node25" href="$FloweringPlant_8h.html" title="FloweringPlant.h" alt="" coords="840,379,958,405"/>
+<area shape="rect" id="node1" title=" " alt="" coords="683,5,842,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="469,528,528,555"/>
+<area shape="rect" id="node3" title=" " alt="" coords="1123,603,1178,629"/>
+<area shape="rect" id="node4" title=" " alt="" coords="305,80,375,107"/>
+<area shape="rect" id="node5" href="$HiveConfig_8h.html" title=" " alt="" coords="1280,379,1379,405"/>
+<area shape="rect" id="node8" href="$PlantTypeDistributionConfig_8h.html" title=" " alt="" coords="1053,453,1248,480"/>
+<area shape="rect" id="node9" href="$PlantTypeConfig_8h.html" title=" " alt="" coords="747,528,877,555"/>
+<area shape="rect" id="node11" href="$ReflectanceInfo_8h.html" title=" " alt="" coords="503,603,628,629"/>
+<area shape="rect" id="node12" href="$PollinatorConfig_8h.html" title=" " alt="" coords="175,304,300,331"/>
+<area shape="rect" id="node18" href="$EvoBeeExperiment_8h.html" title=" " alt="" coords="1243,80,1389,107"/>
+<area shape="rect" id="node6" href="$Position_8h.html" title=" " alt="" coords="1445,528,1525,555"/>
+<area shape="rect" id="node7" title=" " alt="" coords="1451,603,1520,629"/>
+<area shape="rect" id="node10" title=" " alt="" coords="773,603,851,629"/>
+<area shape="rect" id="node13" href="$PollinatorEnums_8h.html" title=" " alt="" coords="95,453,223,480"/>
+<area shape="rect" id="node14" href="$PollinatorStructs_8h.html" title=" " alt="" coords="145,379,274,405"/>
+<area shape="rect" id="node15" href="$Flower_8h.html" title=" " alt="" coords="654,453,725,480"/>
+<area shape="rect" id="node16" href="$Pollen_8h.html" title=" " alt="" coords="653,528,723,555"/>
+<area shape="rect" id="node17" title=" " alt="" coords="655,603,721,629"/>
+<area shape="rect" id="node19" title=" " alt="" coords="1341,155,1400,181"/>
+<area shape="rect" id="node20" href="$EvoBeeModel_8h.html" title=" " alt="" coords="1203,155,1317,181"/>
+<area shape="rect" id="node29" href="$EventManager_8h.html" title=" " alt="" coords="1062,155,1178,181"/>
+<area shape="rect" id="node30" href="$Logger_8h.html" title=" " alt="" coords="1429,155,1499,181"/>
+<area shape="rect" id="node33" href="$Visualiser_8h.html" title=" " alt="" coords="1699,379,1789,405"/>
+<area shape="rect" id="node21" title=" " alt="" coords="1117,229,1182,256"/>
+<area shape="rect" id="node22" href="$Environment_8h.html" title=" " alt="" coords="1207,229,1313,256"/>
+<area shape="rect" id="node23" title=" " alt="" coords="1453,379,1523,405"/>
+<area shape="rect" id="node24" title=" " alt="" coords="1268,304,1327,331"/>
+<area shape="rect" id="node25" href="$Patch_8h.html" title=" " alt="" coords="907,304,973,331"/>
+<area shape="rect" id="node28" href="$AbstractHive_8h.html" title=" " alt="" coords="1351,304,1460,331"/>
+<area shape="rect" id="node26" href="$FloweringPlant_8h.html" title=" " alt="" coords="881,379,999,405"/>
+<area shape="rect" id="node27" title=" " alt="" coords="1273,453,1319,480"/>
+<area shape="rect" id="node31" title=" " alt="" coords="1572,229,1644,256"/>
+<area shape="rect" id="node32" title=" " alt="" coords="1388,229,1548,256"/>
+<area shape="rect" id="node34" title=" " alt="" coords="1699,453,1773,480"/>
 </map>

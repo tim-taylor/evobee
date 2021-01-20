@@ -1,4 +1,6 @@
 <map id="PlantTypeConfig" name="PlantTypeConfig">
-<area shape="rect" id="node2" title="STL class. " alt="" coords="29,96,109,123"/>
-<area shape="rect" id="node3" title="STL class. " alt="" coords="5,5,132,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="78,200,197,227"/>
+<area shape="rect" id="node2" href="$structVisualStimulusInfo.html" title=" " alt="" coords="5,96,136,123"/>
+<area shape="rect" id="node3" title="STL class." alt="" coords="165,96,245,123"/>
+<area shape="rect" id="node4" title="STL class." alt="" coords="142,5,269,47"/>
 </map>

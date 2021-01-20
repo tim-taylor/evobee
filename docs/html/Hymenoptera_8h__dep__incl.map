@@ -1,8 +1,10 @@
 <map id="include/Hymenoptera.h" name="include/Hymenoptera.h">
-<area shape="rect" id="node2" href="$Hymenoptera_8cpp.html" title="src/Hymenoptera.cpp" alt="" coords="99,80,246,107"/>
-<area shape="rect" id="node3" href="$HoneyBee_8h.html" title="include/HoneyBee.h" alt="" coords="270,80,409,107"/>
-<area shape="rect" id="node4" href="$AbstractHive_8cpp.html" title="src/AbstractHive.cpp" alt="" coords="5,155,151,181"/>
-<area shape="rect" id="node5" href="$Environment_8cpp.html" title="src/Environment.cpp" alt="" coords="175,155,317,181"/>
-<area shape="rect" id="node6" href="$EvoBeeExperiment_8cpp.html" title="src/EvoBeeExperiment.cpp" alt="" coords="342,155,523,181"/>
-<area shape="rect" id="node7" href="$HoneyBee_8cpp.html" title="src/HoneyBee.cpp" alt="" coords="547,155,678,181"/>
+<area shape="rect" id="node1" title=" " alt="" coords="94,5,250,32"/>
+<area shape="rect" id="node2" href="$Hymenoptera_8cpp.html" title=" " alt="" coords="5,155,152,181"/>
+<area shape="rect" id="node3" href="$giurfa_8h.html" title=" " alt="" coords="117,80,227,107"/>
+<area shape="rect" id="node4" href="$HoneyBee_8h.html" title=" " alt="" coords="348,80,487,107"/>
+<area shape="rect" id="node5" href="$AbstractHive_8cpp.html" title=" " alt="" coords="177,155,322,181"/>
+<area shape="rect" id="node6" href="$Environment_8cpp.html" title=" " alt="" coords="346,155,489,181"/>
+<area shape="rect" id="node7" href="$EvoBeeExperiment_8cpp.html" title=" " alt="" coords="513,155,695,181"/>
+<area shape="rect" id="node8" href="$HoneyBee_8cpp.html" title=" " alt="" coords="719,155,849,181"/>
 </map>
