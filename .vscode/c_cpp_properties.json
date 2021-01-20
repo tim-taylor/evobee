@@ -32,7 +32,9 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/home/tim/Dropbox/research/evobee/code/evobee/include",
-                "/home/tim/evobee/code/evobee/include"
+                "/home/tim/evobee/code/evobee/include",
+                "${workspaceFolder}/3rd-party/nlohmann-json",
+                "${workspaceFolder}/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

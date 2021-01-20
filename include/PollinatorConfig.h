@@ -35,7 +35,11 @@ struct PollinatorConfig {
         visProbLandDecrementOnNoReward(0.01),
         visProbLandDecrementOnUnseen(0.005),
         visTargetExactMatchOnly(false),
-        visDataEquallySpaced(true)
+        visDataEquallySpaced(true),
+        visMatchMinHexDistance(0.05f),
+        visMatchMaxConfidence(0.95f),
+        visMatchMaxHexDistance(0.19f),
+        visMatchMinConfidence(0.05f)
     {};
 
     std::string species;
@@ -70,9 +74,14 @@ struct PollinatorConfig {
     float visProbLandDecrementOnNoReward;   ///< Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding.
     float visProbLandDecrementOnUnseen;     ///< Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the Pollinator's m_RecentlyVisitedFlowers list.
     bool  visTargetExactMatchOnly;          ///< If set to true, this overrides the normal visual discrimination routine and only matches a stimulus with the target if they have the exact same marker point.
-    
+
     bool  visDataEquallySpaced;             ///< This is set when reading in data from the config file and used in config post-processing
                                             ///<   to check we have equally-spaced data is ModelParams::m_ColourSystem = REGULAR_MARKER_POINTS
+
+    float visMatchMinHexDistance;           ///< The distance in hex space that yields the maximum confidence of match when comparing a stimulus with a target
+    float visMatchMaxConfidence;            ///< The highest confidence of match when comparing a stimulus with a target, associated with distances of visMatchMinHexDistance or less
+    float visMatchMaxHexDistance;           ///< The distance in hex space that yields the minimum confidence of match when comparing a stimulus with a target
+    float visMatchMinConfidence;            ///< The lowest confidence of match when comparing a stimulus with a target, associated with distances of visMatchMaxHexDistance or greater
 };
 
 #endif /* _POLLINATORCONFIG_H */

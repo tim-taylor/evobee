@@ -294,12 +294,12 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     float cumProbMax = 0.0;
     for (auto& entry : prefData) {
         msg << "   " << entry.first << " -> (" << std::get<0>(entry.second) << ", " << std::get<1>(entry.second) << ", "
-            << std::get<2>(entry.second) << ", " << std::get<3>(entry.second) << ", " 
+            << std::get<2>(entry.second) << ", " << std::get<3>(entry.second) << ", "
             << std::get<4>(entry.second) << ")\n";
         cumProbMax = std::get<4>(entry.second);
-    }  
+    }
     msg << " selection = " << selection << "\n";
-    msg << " cumProbMax = " << cumProbMax << "\n"; 
+    msg << " cumProbMax = " << cumProbMax << "\n";
     msg << " selection==1 -> " << (EvoBee::equal(selection, 1.0f) ? "true" : "false") << "\n";
     msg << " cumProbMax==1 -> " << (EvoBee::equal(cumProbMax, 1.0f) ? "true" : "false") << "\n";
     msg << " cumProbMax>=selection -> " << ((cumProbMax>=selection) ? "true" : "false") << "\n";

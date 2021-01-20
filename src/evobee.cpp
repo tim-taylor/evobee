@@ -187,6 +187,10 @@ void from_json(const json& j, PollinatorConfig& p)
     json_read_opt_param(j, sct, "vis-prob-land-decrement-on-unseen", p.visProbLandDecrementOnUnseen, 0.005f);
     json_read_opt_param(j, sct, "vis-target-exact-match-only", p.visTargetExactMatchOnly, false);
     json_read_opt_param(j, sct, "nectar-collect-per-flower-visit", p.nectarCollectPerFlowerVisit, 0);
+    json_read_opt_param(j, sct, "vis-match-min-hex-distance", p.visMatchMinHexDistance, 0.05f);
+    json_read_opt_param(j, sct, "vis-match-max-confidence", p.visMatchMaxConfidence, 0.95f);
+    json_read_opt_param(j, sct, "vis-match-max-hex-distance", p.visMatchMaxHexDistance, 0.19f);
+    json_read_opt_param(j, sct, "vis-match-min-confidence", p.visMatchMinConfidence, 0.05f);
 
     if (p.maxPollenCapacity < 1)
     {

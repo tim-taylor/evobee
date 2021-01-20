@@ -89,5 +89,6 @@
         "**/.factorypath": true
     },
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "files.trimTrailingWhitespace": true
 }

@@ -18,9 +18,14 @@
 #include "PollinatorConfig.h"
 #include "Pollinator.h"
 
+// Initialise static data members
 unsigned int Pollinator::m_sNextFreeId = 1;
 std::string Pollinator::m_sTypeNameStr{"POL"};
-
+float Pollinator::m_sVisMatchMinHexDistance = 0.05f;
+float Pollinator::m_sVisMatchMaxConfidence = 0.95f;
+float Pollinator::m_sVisMatchMaxHexDistance = 0.19f;
+float Pollinator::m_sVisMatchMinConfidence = 0.05f;
+bool Pollinator::m_sbStaticsInitialised = false;
 
 Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_id(m_sNextFreeId++),
@@ -45,13 +50,20 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_iPollenCarryoverNumVisits(pc.pollenCarryoverNumVisits),
     m_iNectarCollectPerFlowerVisit(pc.nectarCollectPerFlowerVisit)
 {
+    // first initialise the Pollinator class' static data relating to its visual system,
+    // if this has not already been done
+    if (!m_sbStaticsInitialised) {
+        m_sVisMatchMinHexDistance = pc.visMatchMinHexDistance;
+        m_sVisMatchMaxConfidence = pc.visMatchMaxConfidence;
+        m_sVisMatchMaxHexDistance = pc.visMatchMaxHexDistance;
+        m_sVisMatchMinConfidence = pc.visMatchMinConfidence;
+        m_sbStaticsInitialised = true;
+    }
+
     // Each pollinator has a pointer to the environment and to the model for
     // convenience, to save having to ask the Hive for these each time we need them
     m_pEnv = m_pHive->getEnvironment();
     m_pModel = m_pEnv->getModel();
-
-    // At birth the pollinator has no target marker point
-    //m_TargetMP = NO_MARKER_POINT;
 
     // Set the starting position and heading of the pollinator
     resetToStartPosition();
@@ -82,7 +94,6 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_PollenStore(other.m_PollenStore),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
-    //m_TargetMP(other.m_TargetMP),
     m_TargetReflectance(other.m_TargetReflectance),
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
@@ -126,7 +137,6 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_PollenStore(std::move(other.m_PollenStore)),
     m_MovementAreaTopLeft(other.m_MovementAreaTopLeft),
     m_MovementAreaBottomRight(other.m_MovementAreaBottomRight),
-    //m_TargetMP(other.m_TargetMP),
     m_TargetReflectance(other.m_TargetReflectance),
     m_ConstancyType(other.m_ConstancyType),
     m_fConstancyParam(other.m_fConstancyParam),
@@ -970,12 +980,14 @@ int Pollinator::getNumPollenGrainsInStore(unsigned int speciesId) const
 //
 float Pollinator::confidenceMatchesTarget(const ReflectanceInfo& stimulus) const
 {
+    /*
     const float minHexDistance = 0.05;
     const float maxHexDistance = 0.19;
     const float maxConfidence = 0.95;
     const float minConfidence = 0.05;
+    */
 
-    float confidence = minConfidence;
+    float confidence = m_sVisMatchMinConfidence;
 
     float hexDistance;
 
@@ -1001,18 +1013,18 @@ float Pollinator::confidenceMatchesTarget(const ReflectanceInfo& stimulus) const
         }
     }
 
-    if (hexDistance <= minHexDistance)
+    if (hexDistance <= m_sVisMatchMinHexDistance)
     {
-        confidence = maxConfidence;
+        confidence = m_sVisMatchMaxConfidence;
     }
-    else if (hexDistance >= maxHexDistance)
+    else if (hexDistance >= m_sVisMatchMaxHexDistance)
     {
-        confidence = minConfidence;
+        confidence = m_sVisMatchMinConfidence;
     }
     else
     {
-        float distanceFrac = (hexDistance - minHexDistance) / (maxHexDistance - minHexDistance);
-        confidence = maxConfidence - distanceFrac * (maxConfidence - minConfidence);
+        float distanceFrac = (hexDistance - m_sVisMatchMinHexDistance) / (m_sVisMatchMaxHexDistance - m_sVisMatchMinHexDistance);
+        confidence = m_sVisMatchMaxConfidence - distanceFrac * (m_sVisMatchMaxConfidence - m_sVisMatchMinConfidence);
     }
 
     return confidence;

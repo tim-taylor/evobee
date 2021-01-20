@@ -186,7 +186,7 @@ protected:
      * Default implementation of Random Flower foraging strategy.
      * May be overridden by subclasses.
      */
-     virtual void forageRandomFlower();
+    virtual void forageRandomFlower();
 
     /**
      * Default implementation of method to determine whether the pollinator should
@@ -319,7 +319,7 @@ protected:
                                    bool usePureSpectralPoints = false);
 
 
-    // protected data memebers
+    // protected data members
     unsigned int    m_id;       ///< Unique ID number for this pollinator
     fPos            m_Position; ///< Pollinator's current position in environment
     float           m_fHeading; ///< Pollinator's current heading (between 0.0 - TWOPI)
@@ -432,6 +432,31 @@ private:
      * String description of the Pollinator type, for use in log files
      */
     static std::string m_sTypeNameStr;
+
+    /**
+     * The distance in hex space that yields the maximum confidence of match when comparing a stimulus with a target
+     */
+    static float m_sVisMatchMinHexDistance;
+
+    /**
+     * The highest confidence of match when comparing a stimulus with a target, associated with distances of visMatchMinHexDistance or less
+     */
+    static float m_sVisMatchMaxConfidence;
+
+    /**
+     * The distance in hex space that yields the minimum confidence of match when comparing a stimulus with a target
+     */
+    static float m_sVisMatchMaxHexDistance;
+
+    /**
+     * The lowest confidence of match when comparing a stimulus with a target, associated with distances of visMatchMaxHexDistance or greater
+     */
+    static float m_sVisMatchMinConfidence;
+
+    /**
+     * Flags whether statics have been initialised from config file
+     */
+    static bool m_sbStaticsInitialised;
 };
 
 #endif /* _POLLINATOR_H */
