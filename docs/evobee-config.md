@@ -372,6 +372,10 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowers. (default: 0.005) [see also visited-flower-memory-size]|
 |vis-target-exact-match-only|visTargetExactMatchOnly|bool|If true, this overrides the normal visual discrimination code and will only match a stimulus with the target if they share the exact same marker point.|
+|vis-match-min-hex-distance||float||
+|vis-match-max-confidence||float||
+|vis-match-min-hex-distance||float||
+|vis-match-min-hex-distance||float||
 
 ### Plant Type configuration parameters
 
@@ -538,11 +542,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIzODczMjQ2LDE4NTY2NDk1ODMsLTg0OT
-gwNjU0NywtNzI4ODkzMzQ0LDE3MDI5ODE0NSwtMTE1NjY3Nzk2
-NCw1MDg1ODUwMDIsNzQ0MTY4NjY4LC0xMjk4Njc3NTA4LC0xMz
-M0NTAwNjI2LDE5ODc0ODM3ODksMTgxNjQzMTc0NSwtMzg2MzQ1
-MDM4LC0xODc5ODE5NzE0LC04NTAyNDQ3NTgsMjA0MzM3NTYwMS
-wtODYzNDMzNzEwLC01NjQ1NjM1OTYsLTE3MTk0NjIzLDM3NDIw
-MTY3MF19
+eyJoaXN0b3J5IjpbLTE3NzE2ODQ3NzUsMTIzODczMjQ2LDE4NT
+Y2NDk1ODMsLTg0OTgwNjU0NywtNzI4ODkzMzQ0LDE3MDI5ODE0
+NSwtMTE1NjY3Nzk2NCw1MDg1ODUwMDIsNzQ0MTY4NjY4LC0xMj
+k4Njc3NTA4LC0xMzM0NTAwNjI2LDE5ODc0ODM3ODksMTgxNjQz
+MTc0NSwtMzg2MzQ1MDM4LC0xODc5ODE5NzE0LC04NTAyNDQ3NT
+gsMjA0MzM3NTYwMSwtODYzNDMzNzEwLC01NjQ1NjM1OTYsLTE3
+MTk0NjIzXX0=
 -->
