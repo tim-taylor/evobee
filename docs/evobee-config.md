@@ -372,10 +372,10 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowers. (default: 0.005) [see also visited-flower-memory-size]|
 |vis-target-exact-match-only|visTargetExactMatchOnly|bool|If true, this overrides the normal visual discrimination code and will only match a stimulus with the target if they share the exact same marker point.|
-|vis-match-min-hex-distance||float||
-|vis-match-max-confidence||float||
-|vis-match-min-hex-distance||float||
-|vis-match-min-hex-distance||float||
+|vis-match-min-hex-distance|visMatchMinHexDistance|float||
+|vis-match-max-confidence|visMatchMaxConfidence|float||
+|vis-match-max-hex-distance|visMatchMaxHexDistance|float||
+|vis-match-min-confidence|visMatchMinConfidence|float||
 
 ### Plant Type configuration parameters
 
@@ -542,11 +542,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NzE2ODQ3NzUsMTIzODczMjQ2LDE4NT
-Y2NDk1ODMsLTg0OTgwNjU0NywtNzI4ODkzMzQ0LDE3MDI5ODE0
-NSwtMTE1NjY3Nzk2NCw1MDg1ODUwMDIsNzQ0MTY4NjY4LC0xMj
-k4Njc3NTA4LC0xMzM0NTAwNjI2LDE5ODc0ODM3ODksMTgxNjQz
-MTc0NSwtMzg2MzQ1MDM4LC0xODc5ODE5NzE0LC04NTAyNDQ3NT
-gsMjA0MzM3NTYwMSwtODYzNDMzNzEwLC01NjQ1NjM1OTYsLTE3
-MTk0NjIzXX0=
+eyJoaXN0b3J5IjpbMTk5MjI5NjI1NCwxMjM4NzMyNDYsMTg1Nj
+Y0OTU4MywtODQ5ODA2NTQ3LC03Mjg4OTMzNDQsMTcwMjk4MTQ1
+LC0xMTU2Njc3OTY0LDUwODU4NTAwMiw3NDQxNjg2NjgsLTEyOT
+g2Nzc1MDgsLTEzMzQ1MDA2MjYsMTk4NzQ4Mzc4OSwxODE2NDMx
+NzQ1LC0zODYzNDUwMzgsLTE4Nzk4MTk3MTQsLTg1MDI0NDc1OC
+wyMDQzMzc1NjAxLC04NjM0MzM3MTAsLTU2NDU2MzU5NiwtMTcx
+OTQ2MjNdfQ==
 -->
