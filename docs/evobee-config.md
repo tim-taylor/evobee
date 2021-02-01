@@ -372,10 +372,10 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowers. (default: 0.005) [see also visited-flower-memory-size]|
 |vis-target-exact-match-only|visTargetExactMatchOnly|bool|If true, this overrides the normal visual discrimination code and will only match a stimulus with the target if they share the exact same marker point.|
-|vis-match-min-hex-distance|visMatchMinHexDistance|float|Defines the left end of the slope on the colour hex distance axis of the piecewise linear discrimination function, such that any stimulus that is this near or nearer from the pollinator's current target stimulus will be given a confidence-of-match defined by vis-match-max-confidence.|
-|vis-match-max-confidence|visMatchMaxConfidence|float|The maxconfidence of match|
-|vis-match-max-hex-distance|visMatchMaxHexDistance|float|Defines the right end of the slope on the colour hex distance axis of the piecewise linear discrimination function, such that any stimulus that is this far or further away from the pollinator's current target stimulus will be given a confidence-of-match defined by vis-match-min-confidence.|
-|vis-match-min-confidence|visMatchMinConfidence|float||
+|vis-match-min-hex-distance|visMatchMinHexDistance|float|Defines the left end of the slope on the hex colour distance axis of the piecewise linear discrimination function, such that any stimulus that is this near or nearer from the pollinator's current target stimulus will be given a confidence-of-match defined by vis-match-max-confidence.|
+|vis-match-max-confidence|visMatchMaxConfidence|float|The maximum confidence of match associated with stimuli that are very close in hex colour space to the pollinator's current target.|
+|vis-match-max-hex-distance|visMatchMaxHexDistance|float|Defines the right end of the slope on the hex colour distance axis of the piecewise linear discrimination function, such that any stimulus that is this far or further away from the pollinator's current target stimulus will be given a confidence-of-match defined by vis-match-min-confidence.|
+|vis-match-min-confidence|visMatchMinConfidence|float|The minimum confidence-of-match associated with stimuli that are very far in hex colour space to the pollinator's current target.|
 
 ### Plant Type configuration parameters
 
@@ -542,11 +542,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU0NDM4MTMwLDE5OTIyOTYyNTQsMTIzOD
-czMjQ2LDE4NTY2NDk1ODMsLTg0OTgwNjU0NywtNzI4ODkzMzQ0
-LDE3MDI5ODE0NSwtMTE1NjY3Nzk2NCw1MDg1ODUwMDIsNzQ0MT
-Y4NjY4LC0xMjk4Njc3NTA4LC0xMzM0NTAwNjI2LDE5ODc0ODM3
-ODksMTgxNjQzMTc0NSwtMzg2MzQ1MDM4LC0xODc5ODE5NzE0LC
-04NTAyNDQ3NTgsMjA0MzM3NTYwMSwtODYzNDMzNzEwLC01NjQ1
-NjM1OTZdfQ==
+eyJoaXN0b3J5IjpbMTc1MjUyMzAwMiwxOTkyMjk2MjU0LDEyMz
+g3MzI0NiwxODU2NjQ5NTgzLC04NDk4MDY1NDcsLTcyODg5MzM0
+NCwxNzAyOTgxNDUsLTExNTY2Nzc5NjQsNTA4NTg1MDAyLDc0ND
+E2ODY2OCwtMTI5ODY3NzUwOCwtMTMzNDUwMDYyNiwxOTg3NDgz
+Nzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgxOTcxNC
+wtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0
+NTYzNTk2XX0=
 -->
