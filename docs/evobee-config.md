@@ -372,7 +372,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |vis-prob-land-decrement-on-no-reward|visProbLandDecrementOnNoReward|float|Learning algorithm parameter for decrease in probability of landing on a marker point if the current flower is not rewarding. (default: 0.01)|
 |vis-prob-land-decrement-on-unseen|visProbLandDecrementOnUnseen|float|Learning algorithm parameter for decrease in probability of landing on a marker point if no flower with the marker point is currently in the pollinator's list of recently visited flowers. (default: 0.005) [see also visited-flower-memory-size]|
 |vis-target-exact-match-only|visTargetExactMatchOnly|bool|If true, this overrides the normal visual discrimination code and will only match a stimulus with the target if they share the exact same marker point.|
-|vis-match-min-hex-distance|visMatchMinHexDistance|float|Defines the far end of the slope on the the piecewise linear discrimination function|
+|vis-match-min-hex-distance|visMatchMinHexDistance|float|Defines the far end of the slope on the colour hex distance axis of the piecewise linear discrimination function, such that any stimulus that is this far or further away from the pollinator's current target stimulus will be given a confidence-of-match defined by |
 |vis-match-max-confidence|visMatchMaxConfidence|float||
 |vis-match-max-hex-distance|visMatchMaxHexDistance|float||
 |vis-match-min-confidence|visMatchMinConfidence|float||
@@ -542,11 +542,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxNDExODM4NjEsMTk5MjI5NjI1NCwxMj
-M4NzMyNDYsMTg1NjY0OTU4MywtODQ5ODA2NTQ3LC03Mjg4OTMz
-NDQsMTcwMjk4MTQ1LC0xMTU2Njc3OTY0LDUwODU4NTAwMiw3ND
-QxNjg2NjgsLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2MjYsMTk4NzQ4
-Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLTE4Nzk4MTk3MT
-QsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0MzM3MTAsLTU2
-NDU2MzU5Nl19
+eyJoaXN0b3J5IjpbLTM1NjczODQ4NCwxOTkyMjk2MjU0LDEyMz
+g3MzI0NiwxODU2NjQ5NTgzLC04NDk4MDY1NDcsLTcyODg5MzM0
+NCwxNzAyOTgxNDUsLTExNTY2Nzc5NjQsNTA4NTg1MDAyLDc0ND
+E2ODY2OCwtMTI5ODY3NzUwOCwtMTMzNDUwMDYyNiwxOTg3NDgz
+Nzg5LDE4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgxOTcxNC
+wtODUwMjQ0NzU4LDIwNDMzNzU2MDEsLTg2MzQzMzcxMCwtNTY0
+NTYzNTk2XX0=
 -->
