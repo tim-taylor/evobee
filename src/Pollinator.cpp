@@ -762,6 +762,9 @@ int Pollinator::visitFlower(Flower* pFlower)
         }
     }
 
+    // update flower's count of number of landings
+    pFlower->updatePollinatorLandingCount();
+
     // update count of number of flowers visited, and end bout if done
     ++m_iNumFlowersVisitedInBout;
     if ((m_iBoutLength > 0) && (m_iNumFlowersVisitedInBout >= m_iBoutLength))

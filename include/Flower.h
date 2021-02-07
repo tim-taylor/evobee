@@ -17,6 +17,14 @@ using PollenVector = std::vector<Pollen>;
 
 class FloweringPlant;
 
+/**
+ * The LandingInfo struct
+ */
+struct LandingInfo {
+    LandingInfo() : numPollinatorLandings(0) {}
+    int numPollinatorLandings;
+};
+
 
 /**
  * The Flower class ...
@@ -30,7 +38,7 @@ public:
     Flower(FloweringPlant* pPlant, const PlantTypeConfig& ptc, const fPos& pos, MarkerPoint mp);
 
     /**
-     * Consructor to create an offspring flower based upon parent
+     * Constructor to create an offspring flower based upon parent
      */
     Flower( FloweringPlant* pPlant, const Flower& parentFlower,
             const fPos& pos, const ReflectanceInfo& reflectance);
@@ -155,6 +163,16 @@ public:
      */
     bool pollenCloggingPartial() const {return m_bPollenCloggingPartial;}
 
+    /**
+     *
+     */
+    void updatePollinatorLandingCount() {m_LandingInfo.numPollinatorLandings++;}
+
+    /**
+     *
+     */
+    int getPollinatorLandingCount() const {return m_LandingInfo.numPollinatorLandings;}
+
 
 private:
     /**
@@ -172,6 +190,7 @@ private:
     PollenVector    m_StigmaPollen;     ///< Collection of deposited Pollen grains on stigma
     int             m_iAvailableNectar; ///< Amount of nectar currently available for collection by pollinators
     float           m_fTemperature;     ///< Current temperature of flower
+    LandingInfo     m_LandingInfo;      ///< Information about homo- and heterospecific landings on this flower
     FloweringPlant* m_pPlant;           ///< (non-owning) pointer to the plant this flower belongs to
 
     // the following are constant parameters for this flower

@@ -450,8 +450,9 @@ void Logger::logFlowerInfoInterPhaseSummary()
     // 3. count of number of pollinated flowers with this ID in communal (non-refuge) areas of environment
     // 4. the auxiliary ID associated with this flower ID (as defined in input data)
     // 5. the characteristic (dominant) wavelength associated with this flower ID
+    // 6. count of number of landings by pollinators on flowers with this ID
     std::map<int,
-             std::tuple<unsigned int, unsigned int, unsigned int, unsigned int, int, Wavelength>> mpCounts;
+             std::tuple<unsigned int, unsigned int, unsigned int, unsigned int, int, Wavelength, unsigned int>> mpCounts;
 
     for (Patch& patch : patches)
     {
@@ -461,26 +462,29 @@ void Logger::logFlowerInfoInterPhaseSummary()
             PlantVector& plants = patch.getFloweringPlants();
             for (FloweringPlant& plant : plants)
             {
+                Flower* pFlower = plant.getFlower(); // assuming just one flower per plant
                 unsigned int pol = plant.pollinated() ? 1 : 0;
                 unsigned int communal_num = bCommunal ? 1 : 0;
                 unsigned int communal_pol = bCommunal ? pol : 0;
+                unsigned int landings = pFlower->getPollinatorLandingCount();
                 const ReflectanceInfo& reflectance = plant.getFlowerReflectanceInfo();
                 const VisualStimulusInfo* pVSI = reflectance.getVisDataPtr();
                 if (pVSI == nullptr) {
-
+                    throw std::runtime_error("Retrieved null pointer for plant's visual data in Logger::logFlowerInfoInterPhaseSummary. Aborting!");
                 }
                 int id = pVSI->id;
                 auto it = mpCounts.find(id);
                 if (it == mpCounts.end()) {
                     Wavelength lambda = plant.getFlowerCharacteristicWavelength();
                     mpCounts.insert(std::make_pair(id,
-                        std::make_tuple(1, pol, communal_num, communal_pol, pVSI->aux_id, lambda)));
+                        std::make_tuple(1, pol, communal_num, communal_pol, pVSI->aux_id, lambda, landings)));
                 }
                 else {
                     std::get<0>(it->second)++;
                     std::get<1>(it->second) += pol;
                     std::get<2>(it->second) += communal_num;
                     std::get<3>(it->second) += communal_pol;
+                    std::get<6>(it->second) += landings;
                 }
             }
         }
@@ -492,6 +496,7 @@ void Logger::logFlowerInfoInterPhaseSummary()
             << "," << std::get<0>(countInfo.second) << "," << std::get<1>(countInfo.second)
             << "," << std::get<2>(countInfo.second) << "," << std::get<3>(countInfo.second)
             << "," << std::get<4>(countInfo.second) << "," << std::get<5>(countInfo.second)
+            << "," << std::get<6>(countInfo.second)
             << std::endl;
     }
 }
