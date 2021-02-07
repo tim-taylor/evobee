@@ -1,0 +1,17 @@
+#!/bin/bash
+
+NUM_SAMPLES=30
+
+for S in `seq 1 $NUM_SAMPLES`; do 
+    cd sample-$S/counts-mp
+    PDFS=""
+    for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99 124 149 174 199; do
+        BASE="summary-counts-mps-sample-$S-gen$G"
+        gnuplot -e "filebase='$BASE'" ../../plot-mps-summary.gnuplot
+        PFILE="$BASE.pdf"
+        convert $BASE.png $PFILE
+        PDFS+=" $PFILE"
+    done
+    pdfunite $PDFS summary-counts-mps-sample-$S-all.pdf
+    cd ../..
+done

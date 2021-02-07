@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# this script should be run in the base folder of a set of results from various samples,
+# where results from each sample are stored in subfolders named sample-N
+
+NUM_REPLICATES=50
+NUM_SAMPLES=30
+MASTER_MP_DIR="/home/tim/evobee/code/evobee/utils/hexmap/aus-data-20210111/aus-data/mp-data/20-50-5-1/mps"
+MASTER_SAMPLE_DIR="/home/tim/evobee/code/evobee/utils/hexmap/aus-data-20210111/samples"
+FBASE="aus-data-20210111-batch-1"
+
+for S in `seq 1 $NUM_SAMPLES`; do  
+    cd sample-$S
+    mkdir counts-mp
+    for M in `cat $MASTER_SAMPLE_DIR/sample-$S/aus-sample-$S-mps.txt`; do
+        # use mp-to-ausid-map.csv to get all ausids associated with this MP
+        AUSIDS=`grep "^$M," $MASTER_MP_DIR/mp-to-ausid-map.csv | cut -d',' -f1 --complement`
+        AUSIDS=${AUSIDS/","/" "}
+        for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99 124 149 174 199; do
+            for N in `seq 1 $NUM_REPLICATES`; do  
+                SUM=0
+                for ID in $AUSIDS; do 
+                    # for each ausid, get count from counts-ausid/$FBASE-sample-$S-gen$G-seed$N.csv, sum all counts
+                    CNT=`grep "^$ID," counts-ausid/$FBASE-sample-$S-gen$G-seed$N.csv | cut -d',' -f2`
+                    SUM=$(( SUM + CNT ))
+                done
+                echo "$M,$SUM" >> counts-mp/counts-mps-sample-$S-gen$G-seed$N.csv
+            done
+        done
+    done
+    cd ..
+done

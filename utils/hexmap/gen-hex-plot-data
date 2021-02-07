@@ -1,0 +1,47 @@
+#!/bin/bash
+
+FDIR="/home/tim/evobee/code/evobee/utils/hexmap/aus-data-20210111"
+FDATA="aus-dom-wavelength-data.csv"
+
+if [ $# != 2 ]; then
+    echo "Usage: gen-hex-plot-data logfilename generation"
+    exit
+fi
+
+LOG="$1"
+GEN="$2"
+
+# build up $INFO as a space separated list of info about each flower species
+# where each entry is of the form "ID,NUMFLOWERS,NUMPOLLINATED,NUMLANDINGS"
+INFO=`gawk -F',' -vGEN=$GEN '$2==GEN {printf("%d,%d,%d,%d ",$9,$7,$8,$11)}' $LOG`
+
+# now loop through each entry in $INFO
+for INF in $INFO; do
+
+    FLD=(${INF//,/ })
+    ID=${FLD[0]}
+    NUM=${FLD[1]}
+    POL=${FLD[2]}
+    LND=${FLD[3]}
+    
+    XTRA=`grep "^$ID," $FDIR/$FDATA`
+    XFLD=(${XTRA//,/ })
+    XCO=${XFLD[2]}
+    YCO=${XFLD[3]}
+
+    # calculate angle of point from upper vertical axis in hex space
+    # (converted from radians to degrees)
+    
+    SEC=`calc -d "atan($XCO/$YCO)*57.29577951307855"`
+    
+    if [ "${XCO:0:1}" != "-" ] && [ "${YCO:0:1}" == "-" ]; then
+        SEC=`calc -d "180.0+$SEC"`
+    elif [ "${XCO:0:1}" == "-" ] && [ "${YCO:0:1}" == "-" ]; then
+        SEC=`calc -d "180.0+$SEC"`
+    elif [ "${XCO:0:1}" == "-" ] && [ "${YCO:0:1}" != "-" ]; then
+        SEC=`calc -d "360.0+$SEC"`
+    fi
+    
+    printf "%d, %.5f, %.5f, %.5f, %d, %d, %d\n" $ID $XCO $YCO $SEC $NUM $POL $LND
+    
+done

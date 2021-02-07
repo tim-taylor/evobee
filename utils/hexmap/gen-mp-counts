@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# Simple script to take a FReD/Aus ID and a count as arguments
+# and print to stdout a CSV format output of each marker
+# point associated with the ID with the given count beside it
+
+if [ "$#" -ne "2" ]; then
+    echo "usage: "$0" id count"
+    exit
+fi
+
+MPDIR="/home/tim/evobee/code/evobee/utils/hexmap/aus-data-20210111/aus-data/mp-data/20-50-5-1/mps/all"
+
+ID="$1"
+CNT="$2"
+
+for M in `cat $MPDIR/aus-$ID-reflectancePC-300-1-700-mps.txt`; do
+    echo $M","$CNT
+done

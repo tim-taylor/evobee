@@ -1,0 +1,11 @@
+#!/bin/bash
+
+PDFS=""
+for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99 124 149 174 199; do
+    BASE="summary-counts-mps-across-samples-gen$G"
+    gnuplot -e "filebase='$BASE'" plot-mps-summary.gnuplot
+    PFILE="$BASE.pdf"
+    convert $BASE.png $PFILE
+    PDFS+=" $PFILE"
+done
+pdfunite $PDFS summary-counts-mps-across-samples-all.pdf

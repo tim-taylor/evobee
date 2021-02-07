@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Calculate summary stats of MP counts across all seeds in a generation
+#
+# Outputs one summary file for each generation. Format of each line in summary file is:
+#
+# MP,SampleSize,Min,Q1,Median,Q3,Max,Mean,SampleSD
+#
+
+BASE="counts-mps"
+
+for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99 124 149 174 199; do
+    for L in `cut -d',' -f1 "sample-1/counts-mp/$BASE-sample-1-gen$G-seed1.csv"`; do
+        grep -h "^$L" sample-*/counts-mp/$BASE-sample-[0-9]*-gen$G-seed*.csv |
+        gawk -F',' '{print $2}' |
+        sta --brief --sample --mean --median --min --max --n --sd --q |
+        gawk -vL=$L '{printf("%i,%i,%i,%i,%.3f,%i,%i,%.3f,%.3f\n",L,$1,$2,$3,$4,$5,$6,$7,$8)}'
+    done > "summary-$BASE-across-samples-gen$G.csv"
+done
+

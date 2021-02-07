@@ -1,0 +1,16 @@
+#!/bin/bash
+FBASE="aus-data-20210111-batch-1"
+for S in `seq 1 30`; do
+    cd sample-$S
+    mkdir raw
+    mv aus* raw/
+    mkdir counts-ausid
+    for G in 0 1 2 3 4 5 6 7 8 9 19 29 39 49 59 69 79 89 99 124 149 174 199; do
+        N=1
+        for O in `ls raw/*-log.txt`; do 
+            gawk -F',' -vG=$G '($1=="n" && $2==G) {print $9 "," $7}' $O > counts-ausid/$FBASE-sample-$S-gen$G-seed$N.csv
+            N=$(( N+1 ))
+        done
+    done
+    cd ..
+done
