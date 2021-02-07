@@ -41,6 +41,6 @@ set ylabel "Count"
 set title "Generation ".gen
 set key
 PSZ=0.9
-set term png
+set term png size 800,600
 set output outfile
 plot infile using 4:5 pt 7 lc rgb "red" ps PSZ title "flowers", infile using 4:6 pt 7 lc rgb "blue" ps PSZ title "pollinations", infile using 4:7 pt 7 lc rgb "green" ps PSZ title "landings"
