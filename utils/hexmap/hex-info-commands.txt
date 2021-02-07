@@ -1,0 +1,5 @@
+for N in {10..90..10}; do ./gen-hex-plot-data aus-data-b2-sample-8-CLS-2021-02-02-19-07-02-379929-log.txt $N > hex-info-gen-$N.csv; gnuplot -c plot-hex-space.gnuplot hex-info $N; gnuplot -c plot-hex-sector.gnuplot hex-info $N; done
+
+F=""; for N in 0 {10..100..10} 199; do convert "hex-info-gen-"$N"-hex-sector.png" "hex-info-gen-"$N"-hex-sector.pdf"; F="$F hex-info-gen-"$N"-hex-sector.pdf"; done; pdfunite $F hex-inf-hex-sector-all.pdf
+
+F=""; for N in 0 {10..100..10} 199; do convert "hex-info-gen-"$N"-hex-space.png" "hex-info-gen-"$N"-hex-space.pdf"; F="$F hex-info-gen-"$N"-hex-space.pdf"; done; pdfunite $F hex-inf-hex-space-all.pdf
