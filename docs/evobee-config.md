@@ -501,6 +501,7 @@ For each plant in the environment, emit a line with the following format at regu
  8. number of pollinated plants in communal regions (non-refuges) of this flower stimulus type (colour)  at end of foraging phase in this generation
  9. auxiliary ID associated with this stimulus (as defined by ninth field in vis-data entry)
  10. dominant wavelength of this stimulus (as defined by second field in vis-data entry)
+ 11. number of landings on flowers of this type during the current generation
 
 ### log-flags=p  (Logger::logPollinatorsInterPhaseSummary)
 
@@ -542,11 +543,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjYwNDgxMTQ3LDE5OTIyOTYyNTQsMTIzOD
-czMjQ2LDE4NTY2NDk1ODMsLTg0OTgwNjU0NywtNzI4ODkzMzQ0
-LDE3MDI5ODE0NSwtMTE1NjY3Nzk2NCw1MDg1ODUwMDIsNzQ0MT
-Y4NjY4LC0xMjk4Njc3NTA4LC0xMzM0NTAwNjI2LDE5ODc0ODM3
-ODksMTgxNjQzMTc0NSwtMzg2MzQ1MDM4LC0xODc5ODE5NzE0LC
-04NTAyNDQ3NTgsMjA0MzM3NTYwMSwtODYzNDMzNzEwLC01NjQ1
-NjM1OTZdfQ==
+eyJoaXN0b3J5IjpbLTU2ODkyMTIzMiw2NjA0ODExNDcsMTk5Mj
+I5NjI1NCwxMjM4NzMyNDYsMTg1NjY0OTU4MywtODQ5ODA2NTQ3
+LC03Mjg4OTMzNDQsMTcwMjk4MTQ1LC0xMTU2Njc3OTY0LDUwOD
+U4NTAwMiw3NDQxNjg2NjgsLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2
+MjYsMTk4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLT
+E4Nzk4MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0
+MzM3MTBdfQ==
 -->
