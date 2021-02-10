@@ -41,6 +41,7 @@ unset xlabel
 unset ylabel
 set title "Positions in Hex Space at Generation ".gen
 unset key
-set term png
+#set term png
+set term png size 800,600
 set output outfile
 plot infile using 2:3 pt 7 ps 1.1

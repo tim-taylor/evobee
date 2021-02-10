@@ -34,13 +34,18 @@ infile = sprintf("%s.csv", fbase)
 outfile = sprintf("%s-hex-sector.png", fbase)
 
 set datafile separator ","
+set ytics nomirror
+#set yrange [0:20000]
+set yrange [0:10000]
+set y2range [0:25]
+set y2tics 0,5
 set xrange [0:360]
-set yrange [0:20000]
 set xlabel "Hex Sector (degrees)"
 set ylabel "Count"
+set y2label "Giurfa Preference"
 set title "Generation ".gen
 set key
 PSZ=0.9
 set term png size 800,600
 set output outfile
-plot infile using 4:5 pt 7 lc rgb "red" ps PSZ title "flowers", infile using 4:6 pt 7 lc rgb "blue" ps PSZ title "pollinations", infile using 4:7 pt 7 lc rgb "green" ps PSZ title "landings"
+plot infile using 4:5 pt 7 lc rgb "red" ps PSZ title "flowers" axis x1y1, infile using 4:6 pt 7 lc rgb "blue" ps PSZ title "pollinations" axis x1y1, infile using 4:7 pt 7 lc rgb "green" ps PSZ title "landings" axis x1y1, infile using 4:9 pt 7 lc rgb "black" ps PSZ title "Giurfa preference" axis x1y2

@@ -131,6 +131,17 @@ In samples dir:
 MPDIR="/home/tim/evobee/code/evobee/utils/hexmap/aus-data-20210111/aus-data/mp-data/20-50-5-1/mps/all"
 for N in {1..30}; do cd sample-$N; for A in `cat aus-sample-$N-ids.txt`; do cat $MPDIR/aus-$A-*; done|sort|uniq > aus-sample-$N-mps.txt; cd ..; done
 
+---------------------------------------
+
+## Generation of Giurfa preference mapping file
+
+# produce file aus-giurfa-prefs.csv with format AUSID, DOM_LAMBDA, GIURFA_PREF_PC
+
+GFILE="/home/tim/evobee/code/evobee/include/giurfa.h"
+
+gawk -F, '{if ($2>0) {printf("%d, %d\n",$1,($2+0.499));}}' aus-dom-wavelength-data.csv > aus-giurfa-prefs-tmp.csv
+
+while IFS=',' read -a ADDR; do for i in "${ADDR[@]}"; do echo -n $i", "; done; P="{$i,"; grep ${P/ /} $GFILE | head -1 | gawk -F, '{printf("%f\n",$2*2040.75);}'; done < aus-giurfa-prefs-tmp.csv > aus-giurfa-prefs.csv
 
 ---------------------------------------
 
