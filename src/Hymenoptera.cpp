@@ -217,11 +217,16 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     // This method makes use of the following static map that is populated the first time we call the method.
     // It maps a dominant wavelength to a tuple comprising the following elements:
     // 0. (int) Number of PlantTypeConfigs that match this dominant wavelength
-    // 1. (float) The Giurfa preference for this dominant wavelength
+    // 1. (float) The innate preference for this dominant wavelength (as determined by Giurfa or flat data - no necessarily normalised)
     // 2. (float) The raw (unnormalised) probability of picking this wavelength (PlambdaRaw)
     // 3. (float) The normalised probability of picking this wavelength (PlambdaNorm)
     // 4. (float) The cumulative sum of PlambdaNorms for all wavelengths up to and including this one
     // 5. (vector) A list of pointers to all the PlantTypeConfigs that have this wavelength
+    //
+    // where:
+    //   PlambdaRaw = (NumSpeciesWithThisWavelength / NumSpeciesTotal) * InnatePrefForThisWavelength
+    //   PlambdaNorm = PlambdaRaw / (sum of all PlambdaRaws across all wavelengths)
+
     static std::map<Wavelength, std::tuple<int, float, float, float, float, std::vector<const PlantTypeConfig*>>> prefData;
     static bool cumulativeInnatePrefsInitialised = false;
 
@@ -232,7 +237,7 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
             auto it = prefData.find(lambda);
             if (it == prefData.end()) {
                 std::vector<const PlantTypeConfig*> ptcvec {&ptc};
-                float gpref = getGiurfaPref(lambda);
+                float gpref = getInnatePref(lambda);
                 prefData.insert(std::make_pair(lambda, std::make_tuple(1, gpref, 0.0f, 0.0f, 0.0f, ptcvec)));
             }
             else {
@@ -270,6 +275,27 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     // the first wavelength whose entry shows a cumulative probability greater than that random number
     float selection = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
 
+    /*
+    if (true) {
+        std::stringstream msg;
+        msg << " Content of prefData map:\n";
+        float cumProbMax = 0.0;
+        for (auto& entry : prefData) {
+            msg << "   " << entry.first << " -> (" << std::get<0>(entry.second) << ", " << std::get<1>(entry.second) << ", "
+                << std::get<2>(entry.second) << ", " << std::get<3>(entry.second) << ", "
+                << std::get<4>(entry.second) << ")\n";
+            cumProbMax = std::get<4>(entry.second);
+        }
+        msg << " selection = " << selection << "\n";
+        msg << " cumProbMax = " << cumProbMax << "\n";
+        msg << " selection==1 -> " << (EvoBee::equal(selection, 1.0f) ? "true" : "false") << "\n";
+        msg << " cumProbMax==1 -> " << (EvoBee::equal(cumProbMax, 1.0f) ? "true" : "false") << "\n";
+        msg << " cumProbMax>=selection -> " << ((cumProbMax>=selection) ? "true" : "false") << "\n";
+        msg << " cumProbMax+FCD>=selection -> " << ((cumProbMax+EvoBee::FLOAT_COMPARISON_EPSILON>=selection) ? "true" : "false") << "\n";
+        std::cout << msg.str() << std::endl;
+    }
+    */
+
     // std::map is a sorted container, so we can be sure when we are traversing its members that we are
     // going sequentially from lowest to highest wavelength.
     // The second test below involving prefData.size() checks whether this is the last entry in
@@ -289,28 +315,29 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     // something has gone horribly wrong in the calculations...
     std::stringstream msg;
     msg << "Unexpected error encountered in the calculations in Hymenoptera::initialiseInnateTargetArbitrary()\n";
-    /*
-    msg << " Content of prefData map:\n";
-    float cumProbMax = 0.0;
-    for (auto& entry : prefData) {
-        msg << "   " << entry.first << " -> (" << std::get<0>(entry.second) << ", " << std::get<1>(entry.second) << ", "
-            << std::get<2>(entry.second) << ", " << std::get<3>(entry.second) << ", "
-            << std::get<4>(entry.second) << ")\n";
-        cumProbMax = std::get<4>(entry.second);
-    }
-    msg << " selection = " << selection << "\n";
-    msg << " cumProbMax = " << cumProbMax << "\n";
-    msg << " selection==1 -> " << (EvoBee::equal(selection, 1.0f) ? "true" : "false") << "\n";
-    msg << " cumProbMax==1 -> " << (EvoBee::equal(cumProbMax, 1.0f) ? "true" : "false") << "\n";
-    msg << " cumProbMax>=selection -> " << ((cumProbMax>=selection) ? "true" : "false") << "\n";
-    msg << " cumProbMax+FCD>=selection -> " << ((cumProbMax+EvoBee::FLOAT_COMPARISON_EPSILON>=selection) ? "true" : "false") << "\n";
-    */
     throw std::runtime_error(msg.str());
 }
 
+// return the preference level associated with the given wavelength.
+// This is the top-level method that decides which final method to call depending on the
+// value of m_InnatePreferenceType.
+float Hymenoptera::getInnatePref(Wavelength lambda)
+{
+    switch (m_InnatePreferenceType) {
+        case PollinatorInnatePrefType::GIURFA: {
+            return getGiurfaPref(lambda);
+        }
+        case PollinatorInnatePrefType::FLAT: {
+            return 0.5f;
+        }
+        default: {
+            throw std::runtime_error("Unknown innate preference type encountered in Hymenoptera::getInnatePref(Wavelength lambda)!");
+        }
+    }
+}
 
 // return the normalised giurfa preference level associated with the given wavelength
-float Hymenoptera::getGiurfaPref(MarkerPoint lambda)
+float Hymenoptera::getGiurfaPref(Wavelength lambda)
 {
     for (auto it = m_sGiurfaCumulativeInnatePrefs.begin(); it != m_sGiurfaCumulativeInnatePrefs.end(); ++it) {
         if (std::get<0>(*it) == lambda) {

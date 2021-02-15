@@ -174,7 +174,7 @@ protected:
      * Default implementation of Random foraging strategy.
      * May be overridden by subclasses.
      */
-     virtual void forageRandomGlobal();
+    virtual void forageRandomGlobal();
 
     /**
      * Default implementation of Nearest Flower foraging strategy.
@@ -390,6 +390,9 @@ protected:
                                                     */
     const int       m_iNectarCollectPerFlowerVisit; ///< Amount of nectar pollinator attempts to collect
                                                     ///< from a flower on a single visit
+
+    const PollinatorInnatePrefType m_InnatePreferenceType; ///< The pollinator's innate preference type (e.g. giurfa, flat)
+
     /*
      * Some other properties that might be implemented in future versions include:
      * - controller (commute speed, steering tendancy [random, biased, levy], )

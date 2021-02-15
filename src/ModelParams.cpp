@@ -440,6 +440,19 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
         }
     }
 
+    // Set the innate preference type according to the given specification string
+    if (pc.strInnatePrefType == "giurfa") {
+        pc.innatePrefType = PollinatorInnatePrefType::GIURFA;
+    } else if (pc.strInnatePrefType == "flat") {
+        pc.innatePrefType = PollinatorInnatePrefType::FLAT;
+    } else {
+        pc.innatePrefType = PollinatorInnatePrefType::GIURFA;
+        if (verbose()) {
+            std::cout << "Warning: unrecognised pollinator innate preference type (" <<
+                pc.strInnatePrefType << "). Using giurfa." << std::endl;
+        }
+    }
+
     m_PollinatorConfigs.push_back(pc);
 }
 

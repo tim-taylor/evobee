@@ -82,6 +82,9 @@ struct PollinatorConfig {
     float visMatchMaxConfidence;            ///< The highest confidence of match when comparing a stimulus with a target, associated with distances of visMatchMinHexDistance or less
     float visMatchMaxHexDistance;           ///< The distance in hex space that yields the minimum confidence of match when comparing a stimulus with a target
     float visMatchMinConfidence;            ///< The lowest confidence of match when comparing a stimulus with a target, associated with distances of visMatchMaxHexDistance or greater
+
+    std::string strInnatePrefType;          ///< allowed values: giurfa, flat
+    PollinatorInnatePrefType innatePrefType;
 };
 
 #endif /* _POLLINATORCONFIG_H */

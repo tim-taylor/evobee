@@ -135,6 +135,7 @@ private:
     void initialiseInnateTarget();
     void initialiseInnateTargetRegular();
     void initialiseInnateTargetArbitrary();
+    float getInnatePref(Wavelength lambda);
     float getGiurfaPref(Wavelength lambda);
 
     static const VisualStimulusInfo& getVisStimInfoFromMP(MarkerPoint mp);

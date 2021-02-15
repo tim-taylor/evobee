@@ -48,7 +48,8 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_iPollenLossInAir(pc.pollenLossInAir),
     m_iMaxPollenCapacity(pc.maxPollenCapacity),
     m_iPollenCarryoverNumVisits(pc.pollenCarryoverNumVisits),
-    m_iNectarCollectPerFlowerVisit(pc.nectarCollectPerFlowerVisit)
+    m_iNectarCollectPerFlowerVisit(pc.nectarCollectPerFlowerVisit),
+    m_InnatePreferenceType(pc.innatePrefType)
 {
     // first initialise the Pollinator class' static data relating to its visual system,
     // if this has not already been done
@@ -110,6 +111,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
     m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits),
     m_iNectarCollectPerFlowerVisit(other.m_iNectarCollectPerFlowerVisit),
+    m_InnatePreferenceType(other.m_InnatePreferenceType),
     m_PerformanceInfoMap(other.m_PerformanceInfoMap)
 {
     // NB we should not be in a situation where we are making a copy of a Pollinator
@@ -153,6 +155,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_iMaxPollenCapacity(other.m_iMaxPollenCapacity),
     m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits),
     m_iNectarCollectPerFlowerVisit(other.m_iNectarCollectPerFlowerVisit),
+    m_InnatePreferenceType(other.m_InnatePreferenceType),
     m_PerformanceInfoMap(other.m_PerformanceInfoMap)
 {
     other.m_id = 0;

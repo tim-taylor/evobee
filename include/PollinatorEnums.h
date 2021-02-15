@@ -38,5 +38,10 @@ enum class PollinatorLearningStrategy {DELIBERATIVE_DECISIVE, FICKLE_CIRCUMSPECT
  */
 enum class PollinatorStepType {CONSTANT, LEVY};
 
+/**
+ * The PollinatorInnatePrefType enum
+ */
+enum class PollinatorInnatePrefType {GIURFA, FLAT};
+
 
 #endif /* _POLLINATORENUMS_H */
