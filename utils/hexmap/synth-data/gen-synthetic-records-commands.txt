@@ -1,0 +1,19 @@
+for x in {-7..7}; do 
+    for y in {-7..7}; do 
+        echo $x","$y
+    done
+done | gawk -F, '{X=$1/10; Y=$2/10; cmd="./calc-dom-lambda -v "X" "Y; system(cmd);}' > vis-data-synth-tmp-1.csv
+
+sort -n vis-data-synth-tmp-1.csv > vis-data-synth-tmp-2.csv
+
+gawk 'NF>3 {
+    if (index($3,"e")>0) {$3="0.0,"};
+    if (index($12,"e")>0) {$12="0.0"};
+    LEN=$2*$2+$3*$3;
+    PLEN=$11*$11+$12*$12;
+    if (LEN<PLEN) {print}
+}' vis-data-synth-tmp-2.csv > vis-data-synth-tmp-3.csv
+
+gawk 'BEGIN {ID=0}
+    {ID++;
+    printf("[%d, %d, 1, 0, %.5f, %.5f, %.5f, %.5f, 0.05, %d],\n", ID,$1,$2,$3,$11,$12,ID);}' vis-data-synth-tmp-3.csv > vis-data-synth.json

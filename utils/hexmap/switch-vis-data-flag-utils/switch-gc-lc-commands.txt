@@ -1,0 +1,5 @@
+# rename a whole bunch of files
+ls|gawk '{O=$1;gsub(/20210215-flat-pref/,"20210216-gc-off-flat-pref",$0);N=$1;system("mv "O" "N);}'
+
+# switch green contrast (or low chromaticity) flags in a load of config files
+for F in `ls tmp/*`; do gawk -f switch-gc-off.awk $F > `basename $F`; done

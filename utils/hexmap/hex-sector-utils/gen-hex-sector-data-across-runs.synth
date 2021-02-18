@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# Script to generate data file suitable for plotting hex sector plots
+# showing data aggregated across a number of runs
+#
+# Call with
+# > ./gen-hex-sector-data-across-runs maxgen logdir outdir tmpdir [gentemps]
+#
+
+MINID=1
+MAXID=100
+
+if [ $# -lt 4 ] || [ $# -gt 5 ]; then
+    echo "Usage: gen-hex-sector-data-across-runs maxgen logdir outdir tmpdir [gentemps]"
+    exit
+fi
+
+MAXGEN="$1"
+LOGDIR="$2"
+OUTDIR="$3"
+TMPDIR="$4"
+
+if [ $# -eq 5 ]; then
+
+    if [[ -f $TMPDIR ]]; then
+        echo "Specified temp directory name $TMPDIR is a regular file!"
+        exit
+    fi
+
+    if [[ ! -d $TMPDIR ]]; then
+        mkdir $TMPDIR || { echo "Unable to create temporary director $TMPDIR"; exit; }
+    fi
+
+    # for each ID, create a temp file tmp-id-ID.csv that includes all entries 
+    # relating to that ID pooled across all log files
+
+    for ID in `seq $MINID $MAXID`; do
+        egrep -h "^n,[0-9]+,[0-9]+,[0-9]+,[0-9]+,[0-9]+,[0-9]+,[0-9]+,$ID,[0-9]+,[0-9]+$" $LOGDIR/*log.txt > $TMPDIR/tmp-id-$ID.csv 
+    done
+    
+fi
+
+# for each ID, for each generation, sum the records of num flowers, num pollinations and num landings
+# from the associated tmp-id-AUSID.csv file relating to the given generation, and output a file
+# hex-plot-data-across-runs-gen-$GEN.csv that contains a line for each ID of the format
+#   ID,NUMFLOWERS,NUMPOLLINATED,NUMLANDINGS
+
+# first remove any existing output files in the specified outdir
+rm -f $OUTDIR/hex-plot-data-across-runs-gen-*.csv
+
+for ID in `seq $MINID $MAXID`; do
+    # determine how many runs include this ID
+    NUMRUNS=`grep "n,0," $TMPDIR/tmp-id-$ID.csv|wc -l`
+    # now generate summary data, normalised by the number of runs involved
+    for GEN in `seq 0 $MAXGEN`; do
+        gawk -F, -vID=$ID -vGEN=$GEN -vNUMRUNS=$NUMRUNS 'BEGIN {FLW=0; POL=0; LND=0} $2==GEN {FLW+=$7; POL+=$8; LND+=$11;} END {if (NUMRUNS==0) {NUMRUNS=1} printf("%d,%d,%d,%d\n",ID,(FLW/NUMRUNS),(POL/NUMRUNS),(LND/NUMRUNS));}' $TMPDIR/tmp-id-$ID.csv >> $OUTDIR/hex-plot-data-across-runs-gen-$GEN.csv
+    done
+done
