@@ -1,0 +1,33 @@
+15 Jan 2021
+
+* The gen-mp-count-summaries-indiv script has been refactored to make it faster and also to incorporate the action of the previous augment-mp-count-summaries-indiv script (which is now obsolete).  The current analysis pipeline to produce the plots across all samples is:
+
+    • gen-ausid-count-summaries-indiv
+        ◦ generates csv files for each replicate, for each gen, where each entry is: ausid, count
+    • gen-mp-count-summaries-indiv
+        ◦ uses: gen-mp-counts
+        ◦ generates csv files for each replicate, for each gen, where each entry is: mp, count
+    • calc-summary-stats  [also calc-summary-stats-across-samples]
+    • gen-plainplot-mps-summary-pngs [also gen-plainplot-mps-summary-pngs-across-samples]
+        ◦ uses: plot-mps-summary.gnuplot
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OLDER CONTENT:
+
+8 Dec 2020
+
+* Current pipeline is:
+    • gen-fredid-count-summaries-indiv
+    • gen-mp-count-summaries-indiv
+        ◦ uses: gen-mp-counts
+        ◦ this is SLOW (refactor to avoid writing temp file)
+    • augment-mp-count-summaries-indiv
+    • calc-summary-stats
+    • gen-plainplot-mps-indiv-pngs
+        ◦ uses: plot-mps-plain.gnuplot
+    • gen-plainplot-mps-combined-pngs
+        ◦ uses: plainplot-mp-display-template.tex
+    • gen-plainplot-mps-summary-pngs
+        ◦ uses: plot-mps-summary.gnuplot
