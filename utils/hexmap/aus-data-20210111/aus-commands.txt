@@ -151,3 +151,6 @@ SDIR=/home/tim/evobee/code/evobee/utils/hexmap/aus-data-20210111/samples
 
 for S in `seq 1 30`; do cat aus-data-20210111-batch-1-sample-N.json-template-part1 $SDIR/sample-$S/aus-dom-wavelength-data-sample-$S-detect-restricted-config.json aus-data-20210111-batch-1-sample-N.json-template-part2 | gawk -vS=$S '/sample-1/ {sub(/sample-1/,"sample-"S,$0)} /\[92/ {sub(/\],/,"]",$0)} {print}' > aus-data-20210111-batch-1-sample-$S.cfg.json; done
 
+~or~ 
+
+for S in `seq 1 30`; do cat aus-dataset-1-only-20210223-sample-N.cfg.json-template-part1 $SDIR/sample-$S/aus-dom-wavelength-data-sample-$S-detect-restricted-config.json aus-dataset-1-only-20210223-sample-N.cfg.json-template-part2 | gawk -vS=$S '/sample-1/ {sub(/sample-1/,"sample-"S,$0)} /\[81/ {sub(/\],/,"]",$0)} {print}' > aus-dataset-1-only-20210223-sample-$S.cfg.json; done

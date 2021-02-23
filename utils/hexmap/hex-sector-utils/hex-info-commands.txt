@@ -13,6 +13,14 @@ rm -f $OUTDIR/hex-plot-data-gen-*-hex-sector.pdf
 rm -f $OUTDIR/hex-plot-data-gen-*-hex-sector.png
 
 
+---
+for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do gnuplot -c plot-hex-space-new.gnuplot $OUTDIR/hex-plot-data $N "$TITLE"; done
+---
+
+FOR SYNTH DATA::
+
+for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do ./gen-hex-plot-data-across-runs.synth $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF > $OUTDIR/hex-plot-data-gen-$N.csv; gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; gnuplot -c plot-hex-space-new.gnuplot $OUTDIR/hex-plot-data $N "$TITLE"; done
+
 -----------------------
 
 

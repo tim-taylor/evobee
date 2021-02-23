@@ -3,6 +3,9 @@
 # Script to generate data file suitable for plotting hex sector plots
 # showing data aggregated across a number of runs
 #
+# Outputs lines of the format
+#   ID,NUMFLOWERS,NUMPOLLINATED,NUMLANDINGS
+#
 # Call with
 # > ./gen-hex-sector-data-across-runs maxgen logdir outdir tmpdir [gentemps]
 #

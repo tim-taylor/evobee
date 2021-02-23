@@ -3,6 +3,17 @@
 # Script to generate data file suitable for plotting hex sector plots
 # showing data aggregated across a number of runs
 #
+# Step 1: (if these files are not already present - specify gentemps on command line)
+#  For each ID in the dataset (as specified in aus-ids.txt):
+#    Create a file $TMPDIR/tmp-id-ID.csv
+#    (this file includes all entries relating to that ID pooled across all log files)
+#
+# Step 2:
+#  For each generation from o to MAXGEN:
+#    Create a file hex-plot-data-across-runs-gen-$GEN.csv
+#    (each line is of format ID,NUMFLOWERS,NUMPOLLINATED,NUMLANDINGS)
+#      NB the NUMxxx figures are mean figures per run for each run in which that ID was present at the start
+#
 # Call with
 # > ./gen-hex-sector-data-across-runs maxgen logdir outdir tmpdir [gentemps]
 #

@@ -17,3 +17,22 @@ gawk 'NF>3 {
 gawk 'BEGIN {ID=0}
     {ID++;
     printf("[%d, %d, 1, 0, %.5f, %.5f, %.5f, %.5f, 0.05, %d],\n", ID,$1,$2,$3,$11,$12,ID);}' vis-data-synth-tmp-3.csv > vis-data-synth.json
+
+    
+----
+    
+# produce file synth-giurfa-prefs.csv with format AUSID, DOM_LAMBDA, GIURFA_PREF_PC
+
+GFILE="/home/tim/evobee/code/evobee/include/giurfa.h"
+
+gawk -F, -vGFILE=$GFILE '{
+    gsub(/\[/,"",$1); 
+    gsub(/\s/,"",$2); 
+    BK="{"; 
+    cmd="grep \""BK$2",\" "GFILE;
+    cmd | getline GLINE; 
+    close(cmd); 
+    split(GLINE, GARRAY); 
+    PREF=GARRAY[2]*2040.75 
+    print $1", "$2", "PREF;
+}' vis-data-synth-lc-on.json > synth-giurfa-prefs.csv
