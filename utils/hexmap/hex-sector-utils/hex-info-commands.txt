@@ -2,7 +2,6 @@
 
 ## uber-flexible
 
-
 ./gen-hex-sector-data-across-runs $GEN_END $LOGDIR $OUTDIR $TMPDIR gentemps
 
 for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do ./gen-hex-plot-data-across-runs $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF > $OUTDIR/hex-plot-data-gen-$N.csv; gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; done
@@ -17,15 +16,34 @@ rm -f $OUTDIR/hex-plot-data-gen-*-hex-sector.png
 for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do gnuplot -c plot-hex-space-new.gnuplot $OUTDIR/hex-plot-data $N "$TITLE"; done
 ---
 
+
 FOR SYNTH DATA::
 
 for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do ./gen-hex-plot-data-across-runs.synth $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF > $OUTDIR/hex-plot-data-gen-$N.csv; gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; gnuplot -c plot-hex-space-new.gnuplot $OUTDIR/hex-plot-data $N "$TITLE"; done
+
+
+----------------------------
+
+IMPROVED FOR AUS/SYNTH:
+
+DTYPE="ausid" / or DTYPE="synth"
+
+
+./gen-hex-sector-data-across-runs.$DTYPE $GEN_END $LOGDIR $OUTDIR $TMPDIR gentemps
+
+for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do ./gen-hex-plot-data-across-runs.$DTYPE $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF > $OUTDIR/hex-plot-data-gen-$N.csv; gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; gnuplot -c plot-hex-space-new.gnuplot $OUTDIR/hex-plot-data $N "$TITLE"; done
+
+F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do convert "$OUTDIR/hex-plot-data-gen-"$N"-hex-sector.png" "$OUTDIR/hex-plot-data-gen-"$N"-hex-sector.pdf"; F="$F $OUTDIR/hex-plot-data-gen-"$N"-hex-sector.pdf"; done; pdfunite $F $OUTDIR/$PDFFILE
+
+rm -f $OUTDIR/hex-plot-data-gen-*-hex-sector.pdf
+
 
 -----------------------
 
 
 /home/tim/monash-local/synth-data-20210217
 
+DTYPE="synth"
 GEN_START=0
 GEN_END=99
 GEN_DELTA=1
@@ -67,6 +85,7 @@ PDFFILE="synth-data-giurfa-pref-gc-off-lc-on-gens-0-99.pdf"
 
 /home/tim/monash-local/aus-data-20210215-flat-pref
 
+DTYPE="ausid"
 GEN_START=0
 GEN_END=99
 GEN_DELTA=1
@@ -81,6 +100,7 @@ PDFFILE="aus-data-flat-pref-gc-on-lc-on-gens-0-99.pdf"
 
 /home/tim/monash-local/aus-data-20210210
 
+DTYPE="ausid"
 GEN_START=0
 GEN_END=99
 GEN_DELTA=1
@@ -105,6 +125,7 @@ PDFFILE="aus-data-with-orchid-giurfa-pref-gc-on-lc-on-gens-0-99.pdf"
 
 /home/tim/monash-local/aus-data-20210216-gc-off
 
+DTYPE="ausid"
 GEN_START=0
 GEN_END=99
 GEN_DELTA=1
@@ -124,8 +145,48 @@ TMPDIR="output-giurfa/tmp"
 TITLE="Australian Data, Giurfa Preferences, GC off, LC on"
 PDFFILE="aus-data-giurfa-pref-gc-off-lc-on-gens-0-99.pdf"
 
+-----------------------
 
 
+/home/tim/monash-local/aus-dataset-1-only-20210223
+
+DTYPE="ausid"
+GEN_START=0
+GEN_END=99
+GEN_DELTA=1
+PREF="giurfa"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Australian DATASET 1 ONLY, Giurfa Preferences, GC on, LC on"
+PDFFILE="aus-dataset-1-only-giurfa-pref-gc-on-lc-on-gens-0-99.pdf"
+
+-----------------------
+
+
+/home/tim/monash-local/aus-data-flipped-20210224-gc-off
+
+DTYPE="ausid"
+GEN_START=0
+GEN_END=99
+GEN_DELTA=1
+PREF="flat"
+LOGDIR="flat"
+OUTDIR="output-flat"
+TMPDIR="output-flat/tmp"
+TITLE="Australian Data FLIPPED, Flat Preferences, GC off, LC on"
+PDFFILE="aus-data-flipped-flat-pref-gc-off-lc-on-gens-0-99.pdf"
+
+~~~
+
+PREF="giurfa"
+LOGDIR="giurfa"
+OUTDIR="output-giurfa"
+TMPDIR="output-giurfa/tmp"
+TITLE="Australian Data FLIPPED, Giurfa Preferences, GC off, LC on"
+PDFFILE="aus-data-flipped-giurfa-pref-gc-off-lc-on-gens-0-99.pdf"
+
+for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do ./gen-hex-plot-data-across-runs.$DTYPE $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF 1 flipx > $OUTDIR/hex-plot-data-gen-$N.csv; gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; gnuplot -c plot-hex-space-new.gnuplot $OUTDIR/hex-plot-data $N "$TITLE"; done
 
 
 ##############################################
