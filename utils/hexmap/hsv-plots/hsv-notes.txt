@@ -15,6 +15,7 @@ The following procedure will generate the expected input files, which have lines
 Note that this procedure requires the log file to contain data from both flags "F" and "n".
 
 ---
+
 LOGFILE=aus-dataset-1-only-20210223-sample-1-2021-03-08-16-23-14-496119-log.txt
 MFILE=/home/tim/evobee-hexmap/aus-data-20210111/aus-hex-space-info.csv
 R2AFILE=runid-to-auxid-map.csv
@@ -25,6 +26,9 @@ GENSTEP=1
 gawk -F, '$1=="n" && $2==0 {print $4","$9}' $LOGFILE > $R2AFILE
 
 for G in `seq $GENFIRST $GENSTEP $GENLAST`; do gawk -vMFILE=$MFILE -vR2AFILE=$R2AFILE -vG=$G -f gen-data-for-patch-visualisation-hsv.awk $LOGFILE > flower-positions-hsv-gen-$G.csv; done
+
+for G in `seq $GENFIRST $GENSTEP $GENLAST`; do gnuplot -c patch-visualisation-hsv.gnuplot flower-positions-hsv $G; done
+
 ---
 
 
