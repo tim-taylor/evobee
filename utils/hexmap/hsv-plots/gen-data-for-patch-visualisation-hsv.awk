@@ -7,6 +7,13 @@
 # R2AFILE=(csv file giving mappings from RunID to AuxID numbers)
 # G=(generation number)
 #
+# (for info on how to produce the file specified by MFILE [aus-hex-space-info.csv]
+#  see the file hsv-notes.txt)
+#
+# This script produces output with lines of the following format:
+#
+#    ENV_X, ENV_Y, RUN_ID, AUX_ID, HEX_X, HEX_Y, THETA, DOM_LAMBDA, DIST_FROM_ORIGIN
+#
 # Example real-world usage:
 #
 # LOGFILE=aus-dataset-1-only-20210223-sample-1-2021-03-08-16-23-14-496119-log.txt

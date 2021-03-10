@@ -12,6 +12,14 @@
 #
 # The output is saved in a file named [filebase]-gen-000N.png
 #
+# ---------------------------
+# Some handy guides that helped in creating this script
+# - https://stackoverflow.com/questions/35560805/gnuplot-line-color-in-hsv-hue-saturation-value-model
+# - http://www.gnuplot.info/demo_5.1/pm3dcolors.html
+# - http://gnuplot.sourceforge.net/demo_5.5/complex_trig.html
+# - Manning Gnuplot book
+# - http://www.bersch.net/gnuplot-doc/linetypes,-colors,-and-styles.html
+#
 
 filebase="flower-positions-hsv"
 gen=0
@@ -22,22 +30,26 @@ if (exists("ARG1")) {
     filebase=ARG1
 }
 
-if (exists("ARG2")) {
-    gen=ARG2
+if (exists("ARG2") && ARGC >= 2) {
+    gen=ARG2+0
+}
+else {
+    print "Must specify filebase and generation number on command line"
+    exit 1
 }
 
-if (exists("ARG3")) {
+if (exists("ARG3") && ARGC >= 3) {
     envsize=ARG3
 }
 
-if (exists("ARG4")) {
+if (exists("ARG4") && ARGC >= 4) {
     titletext=ARG4." / "
 }
 
 infile = sprintf("%s-gen-%d.csv", filebase, gen)
 outfile = sprintf("%s-gen-%04d.png", filebase, gen)
 
-set terminal png size 800,800
+set terminal png size 900,800
 set output outfile
 
 set size square
@@ -49,4 +61,18 @@ unset key
 set xtics 20
 set ytics 20
 
+# We don't use the palette for plotting, but defining it allows us to
+# draw a colorbar showing the phase angle color scheme
+#
+# the colorbar can only be shown in pm3d mode
+set pm3d
+# the following specifies that 0 appears as HSV (0,0.9,1) and 1 appears as HSV (1,0.9,1)
+set palette model HSV defined ( 0 0 0.9 1, 1 1 0.9 1 )
+set cbrange [0 : 1]
+set cbtics nomirror ("0" 0, "90" 0.25, "180" 0.5, "235" 0.75, "360" 1)
+set cblabel "Point theta in hex color space" rotate offset 2,0
+
+# Finally, we are in a position to do the main plot
+# Each flower is displayed with a colour where the hue represents it's theta angle in hex colour space
+# and saturation represents its distance from the origin of hex colour space
 plot infile using 1:2:(hsv2rgb($7/360.0,0.3+$9/0.7,1)) with points pt 7 ps 0.5 lc rgbcolor variable
