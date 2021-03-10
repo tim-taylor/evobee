@@ -11,3 +11,12 @@ for F in `ls orig/*`; do gawk -f ../flip-x-coord.awk $F > `basename $F`; done
 # recalculate the dominant wavelength info in the vis-data section
 
 for S in {1..30}; do gawk -f recalc-doms-in-json.awk giurfa-pref-incorrect-doms/aus-data-flipped-20210224-gc-off-giurfa-pref-sample-$S.cfg.json > giurfa-pref/aus-data-flipped-20210301-gc-off-giurfa-pref-sample-$S.cfg.json; done
+
+# NB will probably also need to reverse the entries in the vis-data section as they
+# are expected to appear in ascending order of dom wavelength.
+# This can be done with something like:
+head -973 $F > $O; head -1054 $F|tail -81|tac >> $O; tail -4 $F >> $O
+# (then tidy up trailing commas in first and last entries afterwards)
+
+for F in `ls pre-reverse/flat-pref/*json`; do O="flat-pref/"`basename $F`; head -973 $F > $O; head -1054 $F|tail -81|tac >> $O; tail -4 $F >> $O; done
+
