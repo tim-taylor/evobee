@@ -7,8 +7,7 @@
 # R2AFILE=(csv file giving mappings from RunID to AuxID numbers)
 # G=(generation number)
 #
-# (for info on how to produce the file specified by MFILE [aus-hex-space-info.csv]
-#  see the file hsv-notes.txt)
+# For info on how to produce the files specified by MFILE and R2AFILE, see hsv-notes.txt
 #
 # This script produces output with lines of the following format:
 #
@@ -19,13 +18,8 @@
 # LOGFILE=aus-dataset-1-only-20210223-sample-1-2021-03-08-16-23-14-496119-log.txt
 # MFILE=/home/tim/evobee-hexmap/aus-data-20210111/aus-hex-space-info.csv
 # R2AFILE=runid-to-auxid-map.csv
-# GENFIRST=0
-# GENLAST=99
-# GENSTEP=1
 #
-# gawk -F, '$1=="n" && $2==0 {print $4","$9}' $LOGFILE > $R2AFILE
-#
-# for G in `seq $GENFIRST $GENSTEP $GENLAST`; do gawk -vMFILE=$MFILE -vR2AFILE=$R2AFILE -vG=$G -f gen-data-for-hsv-plots.awk $LOGFILE > flower-positions-hsv-gen-$G.csv; done
+# gawk -vMFILE=$MFILE -vR2AFILE=$R2AFILE -vG=0 -f gen-data-for-hsv-plots.awk $LOGFILE > flower-positions-hsv-gen-0.csv
 #
 
 BEGIN {
