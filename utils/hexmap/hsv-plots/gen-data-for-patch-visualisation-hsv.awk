@@ -18,7 +18,7 @@
 #
 # gawk -F, '$1=="n" && $2==0 {print $4","$9}' $LOGFILE > $R2AFILE
 #
-# for G in `seq $GENFIRST $GENSTEP $GENLAST`; do gawk -vMFILE=$MFILE -vR2AFILE=$R2AFILE -vG=$G -f gen-data-for-hsv-plots.awk $LOGFILE > flower-positions-g$G-extra.csv; done
+# for G in `seq $GENFIRST $GENSTEP $GENLAST`; do gawk -vMFILE=$MFILE -vR2AFILE=$R2AFILE -vG=$G -f gen-data-for-hsv-plots.awk $LOGFILE > flower-positions-hsv-gen-$G.csv; done
 #
 
 BEGIN {
