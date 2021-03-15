@@ -33,10 +33,16 @@ DTYPE="ausid" / or DTYPE="synth"
 
 for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do ./gen-hex-plot-data-across-runs.$DTYPE $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF > $OUTDIR/hex-plot-data-gen-$N.csv; gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; gnuplot -c plot-hex-space-new.gnuplot $OUTDIR/hex-plot-data $N "$TITLE"; done
 
-F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do convert "$OUTDIR/hex-plot-data-gen-"$N"-hex-sector.png" "$OUTDIR/hex-plot-data-gen-"$N"-hex-sector.pdf"; F="$F $OUTDIR/hex-plot-data-gen-"$N"-hex-sector.pdf"; done; pdfunite $F $OUTDIR/$PDFFILE
+F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do PFILE="$OUTDIR/hex-plot-data-gen-"$N"-hex-sector.pdf"; convert "$OUTDIR/hex-plot-data-gen-"$N"-hex-sector.png" $PFILE; F="$F $PFILE"; done; pdfunite $F $OUTDIR/$PDFFILE
 
 rm -f $OUTDIR/hex-plot-data-gen-*-hex-sector.pdf
 
+
+HEXSPACEPDF="aus-dataset-1-only-giurfa-pref-gc-on-lc-on-HEX-SPACE-gens-0-500.pdf"
+ 
+F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do PFILE="$OUTDIR/hex-plot-data-gen-"$N"-hex-space.pdf"; convert "$OUTDIR/hex-plot-data-gen-"$N"-hex-space.png" $PFILE; F="$F $PFILE"; done; pdfunite $F $OUTDIR/$HEXSPACEPDF
+
+rm -f $OUTDIR/hex-plot-data-gen-*-hex-space.pdf
 
 -----------------------
 
@@ -223,6 +229,28 @@ TITLE="Australian Data FLIPPED, Flat Preferences, GC off, LC on"
 PDFFILE="aus-data-flipped-flat-pref-gc-off-lc-on-gens-0-99.pdf"
 
 for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do ./gen-hex-plot-data-across-runs.$DTYPE $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF 1 flipx > $OUTDIR/hex-plot-data-gen-$N.csv; gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; gnuplot -c plot-hex-space-new.gnuplot $OUTDIR/hex-plot-data $N "$TITLE"; done
+
+
+---
+
+/home/tim/monash-local/aus-dataset-1-only-20210223-rerun-example-with-F-flag/output-500
+
+DTYPE="ausid"
+GEN_START=0
+GEN_END=500
+GEN_DELTA=1
+PREF="giurfa"
+LOGDIR="."
+OUTDIR="graphs"
+TMPDIR="graphs/tmp"
+TITLE="Australian DATASET 1 ONLY, Giurfa Preferences, GC on, LC on"
+HEXSPACEPDF="aus-dataset-1-only-giurfa-pref-gc-on-lc-on-HEX-SPACE-gens-0-500.pdf"
+ 
+F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do PFILE="$OUTDIR/hex-plot-data-gen-"$N"-hex-space.pdf"; convert "$OUTDIR/hex-plot-data-gen-"$N"-hex-space.png" $PFILE; F="$F $PFILE"; done; pdfunite $F $OUTDIR/$HEXSPACEPDF
+
+
+
+
 
 ##############################################
 

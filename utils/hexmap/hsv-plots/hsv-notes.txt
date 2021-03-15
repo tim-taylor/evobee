@@ -1,6 +1,3 @@
-# Info on using HSV in Gnuplot:
-# https://stackoverflow.com/questions/35560805/gnuplot-line-color-in-hsv-hue-saturation-value-model
-
 
 gen-data-for-patch-visualisation-hsv.awk  /  patch-visualisation-hsv.gnuplot 
 ============================================================================
@@ -32,11 +29,16 @@ for G in `seq $GENFIRST $GENSTEP $GENLAST`; do gnuplot -c patch-visualisation-hs
 
 ---
 
+To create an mp4 movie from a bunch of these png files, use:
+
+ffmpeg -framerate 30 -i flower-positions-hsv-gen-%04d.png -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-aus-hex-space-info.csv
+aus-hex-space-info.csv (aka MFILE)
 ======================
+(in evobee/utils/hexmap/aus-data-20210111)
 
 ## Generation of hex space info file
 
@@ -48,6 +50,9 @@ gawk -F, '{D=sqrt($2^2 + $3^2); printf("%d, %.5f, %.5f, %.5f, %d, %.5f\n", $1,$2
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
 
 OBSOLETE STUFF BELOW THIS LINE
 ==============================
