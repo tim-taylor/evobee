@@ -1,5 +1,55 @@
 #######################
 
+# for c01-cNN new paper runs, March 2021
+
+----------------------------
+
+DTYPE="ausid" / or DTYPE="synth"
+
+mkdir output
+mkdir output/tmp
+
+~~~~~~~~~~~~~
+
+./gen-hex-sector-data-across-runs.$DTYPE $GEN_END $LOGDIR $OUTDIR $TMPDIR gentemps
+
+for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do ./gen-hex-plot-data-across-runs.$DTYPE $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF > $OUTDIR/hex-plot-data-gen-$N.csv; gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; gnuplot -c plot-hex-space-new.gnuplot $OUTDIR/hex-plot-data $N "$TITLE"; done
+
+F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do PFILE="$OUTDIR/hex-plot-data-gen-"$N"-hex-sector.pdf"; convert "$OUTDIR/hex-plot-data-gen-"$N"-hex-sector.png" $PFILE; F="$F $PFILE"; done; pdfunite $F $OUTDIR/$HEXSECTORPDF
+
+rm -f $OUTDIR/hex-plot-data-gen-*-hex-sector.pdf
+ 
+F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do PFILE="$OUTDIR/hex-plot-data-gen-"$N"-hex-space.pdf"; convert "$OUTDIR/hex-plot-data-gen-"$N"-hex-space.png" $PFILE; F="$F $PFILE"; done; pdfunite $F $OUTDIR/$HEXSPACEPDF
+
+rm -f $OUTDIR/hex-plot-data-gen-*-hex-space.pdf
+
+-----------------------
+
+
+/home/tim/monash-local/c01-ausDS1-giurfa-gcON-lcON
+
+
+DTYPE="ausid"
+GEN_START=0
+GEN_END=249
+GEN_DELTA=1
+PREF="giurfa"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1 (minus orchids), Giurfa Preferences, GC on, LC on"
+HEXSECTORPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SECTOR-gens-0-249.pdf"
+HEXSPACEPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SPACE-gens-0-249.pdf"
+
+
+
+
+###################################################################################################################
+
+Previous runs
+
+#######################
+
 ## uber-flexible
 
 ./gen-hex-sector-data-across-runs $GEN_END $LOGDIR $OUTDIR $TMPDIR gentemps

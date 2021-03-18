@@ -1,0 +1,34 @@
+for G in {0..249}; do
+    rm -f hex-sector-bin-means-stds-gen-$G.csv
+    for N in {0..350..10}; do
+        gawk -F, -vN=$N '
+BEGIN {
+    CNT=0;
+    SUM=0;
+    SD=0;
+}
+
+$4>=N && $4<(N+10) {
+    CNT++;
+    SUM+=$5;
+    ARY[CNT]=$5;
+}
+
+END {
+    if (CNT==0) {
+        printf("%d, %d, %.4f, %.4f\n",N,0,0,0);
+    }
+    else {
+        AVG=SUM/CNT;
+        for (i in ARY) {
+            y += (ARY[i]-AVG)^2;
+        };
+        if (CNT>1) {
+            SD=sqrt(y/(CNT-1));
+        }
+        printf("%d, %d, %.4f, %.4f\n",N,CNT,(SUM/CNT),SD);
+    }
+}
+        ' hex-plot-data-gen-$G.csv >> hex-sector-bin-means-stds-gen-$G.csv
+    done
+done

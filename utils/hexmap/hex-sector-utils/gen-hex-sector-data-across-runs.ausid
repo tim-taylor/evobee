@@ -19,7 +19,8 @@
 #
 
 FDIR="/home/tim/evobee/code/evobee/utils/hexmap/aus-data-20210111"
-IDS="aus-ids.txt"
+#IDS="aus-ids.txt"
+IDS="aus-ids-dataset-1-only-no-orchids.txt"
 
 if [ $# -lt 4 ] || [ $# -gt 5 ]; then
     echo "Usage: gen-hex-sector-data-across-runs maxgen logdir outdir tmpdir [gentemps]"
