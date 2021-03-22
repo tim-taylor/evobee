@@ -6,14 +6,23 @@
 
 DTYPE="ausid" / or DTYPE="synth"
 
+mkdir raw
+mv * raw/
 mkdir output
 mkdir output/tmp
+ln -s /home/tim/evobee-hexmap/hex-sector-utils/* .
+rm old
+
 
 ~~~~~~~~~~~~~
 
 ./gen-hex-sector-data-across-runs.$DTYPE $GEN_END $LOGDIR $OUTDIR $TMPDIR gentemps
 
-for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do ./gen-hex-plot-data-across-runs.$DTYPE $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF > $OUTDIR/hex-plot-data-gen-$N.csv; gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; gnuplot -c plot-hex-space-new.gnuplot $OUTDIR/hex-plot-data $N "$TITLE"; done
+for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+    ./gen-hex-plot-data-across-runs.$DTYPE $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF > $OUTDIR/hex-plot-data-gen-$N.csv;
+    gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; 
+    gnuplot -c plot-hex-space-new.gnuplot $OUTDIR/hex-plot-data $N "$TITLE"; 
+done
 
 F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do PFILE="$OUTDIR/hex-plot-data-gen-"$N"-hex-sector.pdf"; convert "$OUTDIR/hex-plot-data-gen-"$N"-hex-sector.png" $PFILE; F="$F $PFILE"; done; pdfunite $F $OUTDIR/$HEXSECTORPDF
 
@@ -23,11 +32,26 @@ F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do PFILE="$OUTDIR/hex-plot-
 
 rm -f $OUTDIR/hex-plot-data-gen-*-hex-space.pdf
 
+cd $OUTDIR
+../gen-hex-sector-bin-means-stds
+for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+    gnuplot -c ../plot-hex-sector-bins.gnuplot hex-sector-bin-means-stds $N "$TITLE";    
+done
+cd ..
+
+F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do PFILE="$OUTDIR/hex-sector-bin-means-stds-gen-"$N".pdf"; convert "$OUTDIR/hex-sector-bin-means-stds-gen-"$N".png" $PFILE; F="$F $PFILE"; done; pdfunite $F $OUTDIR/$HEXSECTORBINSPDF
+
+rm -f $OUTDIR/hex-sector-bin-means-stds-gen-*.pdf
+
 -----------------------
 
 
-/home/tim/monash-local/c01-ausDS1-giurfa-gcON-lcON
+for F in `ls -d run-*[0-9]`; do LOGDIR=$F; OUTDIR=$F"-output"; TMPDIR=$OUTDIR"/tmp"; mkdir $OUTDIR; mkdir $TMPDIR; TITLE="Aus Dataset 1 (minus orchids), Giurfa Preferences, GC on, LC on - "$LOGDIR; ./gen-hex-sector-data-across-runs.$DTYPE $GEN_END $LOGDIR $OUTDIR $TMPDIR gentemps; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do ./gen-hex-plot-data-across-runs.$DTYPE $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF > $OUTDIR/hex-plot-data-gen-$N.csv; gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; done; done
 
+
+-----------------------
+
+/home/tim/monash-local/c01-ausDS1-giurfa-gcON-lcON
 
 DTYPE="ausid"
 GEN_START=0
@@ -38,8 +62,65 @@ LOGDIR="raw"
 OUTDIR="output"
 TMPDIR="output/tmp"
 TITLE="Aus Dataset 1 (minus orchids), Giurfa Preferences, GC on, LC on"
-HEXSECTORPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SECTOR-gens-0-249.pdf"
-HEXSPACEPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SPACE-gens-0-249.pdf"
+HEXSECTORPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SECTOR-gens-1-250.pdf"
+HEXSPACEPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SPACE-gens-1-250.pdf"
+HEXSECTORBINSPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SECTOR-BINS-gens-1-250.pdf"
+
+
+-----------------------
+
+/home/tim/monash-local/c03-ausDS1-giurfa-gcOFF-lcON
+
+DTYPE="ausid"
+GEN_START=0
+GEN_END=249
+GEN_DELTA=1
+PREF="giurfa"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1 (minus orchids), Giurfa Preferences, GC off, LC on"
+HEXSECTORPDF="c03-ausDS1-giurfa-gcOFF-lcON-HEX-SECTOR-gens-1-250.pdf"
+HEXSPACEPDF="c03-ausDS1-giurfa-gcOFF-lcON-HEX-SPACE-gens-1-250.pdf"
+HEXSECTORBINSPDF="c03-ausDS1-giurfa-gcOFF-lcON-HEX-SECTOR-BINS-gens-1-250.pdf"
+
+
+-----------------------
+
+/home/tim/monash-local/c05-ausDS1-flat-gcON-lcON
+
+DTYPE="ausid"
+GEN_START=0
+GEN_END=249
+GEN_DELTA=1
+PREF="flat"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1 (minus orchids), Flat Preferences, GC on, LC on"
+HEXSECTORPDF="c05-ausDS1-flat-gcON-lcON-HEX-SECTOR-gens-1-250.pdf"
+HEXSPACEPDF="c05-ausDS1-flat-gcON-lcON-HEX-SPACE-gens-1-250.pdf"
+HEXSECTORBINSPDF="c05-ausDS1-flat-gcON-lcON-HEX-SECTOR-BINS-gens-1-250.pdf"
+
+
+-----------------------
+
+/home/tim/monash-local/c07-ausDS1-flat-gcOFF-lcON
+
+DTYPE="ausid"
+GEN_START=0
+GEN_END=249
+GEN_DELTA=1
+PREF="flat"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1 (minus orchids), Flat Preferences, GC off, LC on"
+HEXSECTORPDF="c07-ausDS1-flat-gcOFF-lcON-HEX-SECTOR-gens-1-250.pdf"
+HEXSPACEPDF="c07-ausDS1-flat-gcOFF-lcON-HEX-SPACE-gens-1-250.pdf"
+HEXSECTORBINSPDF="c07-ausDS1-flat-gcOFF-lcON-HEX-SECTOR-BINS-gens-1-250.pdf"
+
+
 
 
 

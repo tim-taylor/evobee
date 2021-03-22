@@ -50,7 +50,7 @@ set xrange [0:360]
 set xlabel "Hex Sector (degrees)"
 set ylabel "Count"
 set y2label "Preference (".ptype.")"
-set title titletext."Generation ".gen
+set title titletext."Generation ".(gen+1)
 set key
 PSZ=0.9
 set term png size 800,600

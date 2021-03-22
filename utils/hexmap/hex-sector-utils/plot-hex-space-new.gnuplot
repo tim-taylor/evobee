@@ -43,7 +43,7 @@ set yrange[-0.9:0.9]
 set grid
 unset xlabel
 unset ylabel
-set title titletext."Generation ".gen
+set title titletext."Generation ".(gen+1)
 unset key
 set palette gray negative
 set term png size 800,600
