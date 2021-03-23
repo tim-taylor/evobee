@@ -36,7 +36,7 @@ fi
 
 # build up $INFO as a space separated list of info about each flower species
 # where each entry is of the form "AUSID,NUMFLOWERS,NUMPOLLINATED,NUMLANDINGS"
-INFO=`gawk -F',' -vGEN=$GEN '$2==GEN {printf("%d,%d,%d,%d ",$9,$7,$8,$11)}' $LOG`
+INFO=`gawk -F',' -vGEN=$GEN '$1=="n" && $2==GEN {printf("%d,%d,%d,%d ",$9,$7,$8,$11)}' $LOG`
 
 # now loop through each entry in $INFO
 for INF in $INFO; do

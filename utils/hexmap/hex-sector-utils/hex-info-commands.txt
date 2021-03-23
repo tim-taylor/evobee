@@ -32,19 +32,78 @@ F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do PFILE="$OUTDIR/hex-plot-
 
 rm -f $OUTDIR/hex-plot-data-gen-*-hex-space.pdf
 
-cd $OUTDIR
-../gen-hex-sector-bin-means-stds
-for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
-    gnuplot -c ../plot-hex-sector-bins.gnuplot hex-sector-bin-means-stds $N "$TITLE";    
-done
-cd ..
+## cd $OUTDIR
+## ../gen-hex-sector-bin-means-stds
+## for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+##     gnuplot -c ../plot-hex-sector-bins.gnuplot hex-sector-bin-means-stds $N "$TITLE";    
+## done
+## cd ..
 
-F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do PFILE="$OUTDIR/hex-sector-bin-means-stds-gen-"$N".pdf"; convert "$OUTDIR/hex-sector-bin-means-stds-gen-"$N".png" $PFILE; F="$F $PFILE"; done; pdfunite $F $OUTDIR/$HEXSECTORBINSPDF
+## F=""; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do PFILE="$OUTDIR/hex-sector-bin-means-stds-gen-"$N".pdf"; convert "$OUTDIR/hex-sector-bin-means-stds-gen-"$N".png" $PFILE; F="$F $PFILE"; done; pdfunite $F $OUTDIR/$HEXSECTORBINSPDF
 
-rm -f $OUTDIR/hex-sector-bin-means-stds-gen-*.pdf
+## rm -f $OUTDIR/hex-sector-bin-means-stds-gen-*.pdf
 
 -----------------------
 
+
+PRODIR="processed"
+GEN_DELTA=5
+
+## STEP 1.
+## For each run, for each gen, create an augmented log file that includes
+## data for each species present, including number of flowers and hex info
+
+for F in `ls $LOGDIR/*log.txt`; do 
+    for G in `seq $GEN_START $GEN_DELTA $GEN_END`; do 
+        OUTFILE1=$PRODIR/`basename $F`".processed-gen-$G.csv"
+        ./gen-hex-plot-data $F $G > $OUTFILE1
+    done
+done
+
+## STEP 2.
+## For each of the augmented files just created, now combine the 
+## individual species data into bins, showing the number of flowers in each bin
+##
+## In the following, there may be too many files for ls to cope with, so use find instead
+## See https://unix.stackexchange.com/questions/38955/argument-list-too-long-for-ls
+#########for F in `ls $PRODIR/*processed-gen-[0-9]*.csv`; do
+
+for F in `find $PRODIR -name "*processed-gen-[0-9]*.csv"`; do 
+    OUTFILE2=$PRODIR/`basename $F`".binned-w10.csv"
+    gawk -f gen-binned-hex-plot-data.awk $F > $OUTFILE2
+done
+
+## STEP 3.
+## Now create files that show, for each generation and each bin, the total
+## counts of flowers in that bin for each run
+
+cd $PRODIR
+for G in `seq $GEN_START $GEN_DELTA $GEN_END`; do 
+    for B in {0..35}; do
+        grep -h "^$B," *gen-$G.*binned-w10.csv | gawk -F, '{$2+=0; print $2}' > binned-numflowers-across-runs-gen-$G-bin-$B.csv
+    done
+done
+cd ..
+
+## STEP 4.
+## Finally, calculate the mean and standard deviation of the previously calculated
+## counts of flowers in each bin at each gen, and plot a histogram for each
+## generation showing the mean and std dev count for each bin
+##
+## NB SHOULD IMPROVE gen-binned-means-stds so it takes arguments (they are currently hardcoded at top of script)
+##
+
+cd $PRODIR
+    ../gen-binned-means-stds
+    for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+        gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE";    
+    done    
+cd ..
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Previous attempt - obsolete
 
 for F in `ls -d run-*[0-9]`; do LOGDIR=$F; OUTDIR=$F"-output"; TMPDIR=$OUTDIR"/tmp"; mkdir $OUTDIR; mkdir $TMPDIR; TITLE="Aus Dataset 1 (minus orchids), Giurfa Preferences, GC on, LC on - "$LOGDIR; ./gen-hex-sector-data-across-runs.$DTYPE $GEN_END $LOGDIR $OUTDIR $TMPDIR gentemps; for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do ./gen-hex-plot-data-across-runs.$DTYPE $OUTDIR/hex-plot-data-across-runs-gen-$N.csv $PREF > $OUTDIR/hex-plot-data-gen-$N.csv; gnuplot -c plot-hex-sector.gnuplot $OUTDIR/hex-plot-data $N $PREF "$TITLE"; done; done
 

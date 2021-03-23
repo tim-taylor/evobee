@@ -17,7 +17,7 @@ INFILE_BASE="hex-plot-data"
 OUTFILE_BASE="hex-sector-bin-means-stds"
 BIN_START=0
 BIN_END=350
-BIN_WIDTH=10
+BIN_WIDTH=75
 
 for G in `seq $GEN_START $GEN_DELTA $GEN_END`; do
     rm -f $OUTFILE_BASE-gen-$G.csv
@@ -53,6 +53,3 @@ END {
         ' $INFILE_BASE-gen-$G.csv >> $OUTFILE_BASE-w$BIN_WIDTH-gen-$G.csv
     done
 done
-
-
-# for N in {0..350..10}; do

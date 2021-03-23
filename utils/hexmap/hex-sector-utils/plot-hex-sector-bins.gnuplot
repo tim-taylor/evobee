@@ -31,9 +31,10 @@ if (exists("ARG3")) {
     titletext=ARG3." / "
 }
 
-fbase = sprintf("%s-gen-%s", filebase, gen)
-infile = sprintf("%s.csv", fbase)
-outfile = sprintf("%s.png", fbase)
+fbaseIN = sprintf("%s-gen-%s", filebase, gen)
+infile = sprintf("%s.csv", fbaseIN)
+fbaseOUT = sprintf("%s-gen-%04d", filebase, (gen+0))
+outfile = sprintf("%s.png", fbaseOUT)
 
 set datafile separator ","
 set size square
@@ -46,7 +47,7 @@ set boxwidth 6 absolute
 set style fill solid 1.0 border lc "gray30"
 unset key
 set xrange[0:365]
-set yrange[0:3000]
+set yrange[0:22500]
 set term png size 800,800
 set output outfile
-plot infile using ($1+10):3:4 with boxerrorbars fillcolor "gray70"
+plot infile using (($1*10)+10):3:4 with boxerrorbars fillcolor "gray70"
