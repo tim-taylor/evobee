@@ -9,7 +9,7 @@
 #    (this file includes all entries relating to that ID pooled across all log files)
 #
 # Step 2:
-#  For each generation from o to MAXGEN:
+#  For each generation from 0 to MAXGEN:
 #    Create a file hex-plot-data-across-runs-gen-$GEN.csv
 #    (each line is of format ID,NUMFLOWERS,NUMPOLLINATED,NUMLANDINGS)
 #      NB the NUMxxx figures are mean figures per run for each run in which that ID was present at the start

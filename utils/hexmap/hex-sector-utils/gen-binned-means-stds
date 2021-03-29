@@ -12,7 +12,7 @@
 
 GEN_START=0
 GEN_END=249
-GEN_DELTA=5
+GEN_DELTA=249
 INFILE_BASE="binned-numflowers-across-runs"
 OUTFILE_BASE="binned-numflowers-across-runs-means-stds"
 NUM_BINS=36
