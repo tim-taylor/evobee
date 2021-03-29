@@ -16,6 +16,7 @@ bool   ModelParams::m_bVisPollinatorTrails = false;
 int    ModelParams::m_iVisUpdatePeriod = 1;
 int    ModelParams::m_iVisDelayPerFrame = 0;
 int    ModelParams::m_iLogUpdatePeriod = 1;
+int    ModelParams::m_iLogInterGenUpdatePeriod = 1;
 int    ModelParams::m_iEnvSizeX = 50;
 int    ModelParams::m_iEnvSizeY = 50;
 float  ModelParams::m_fEnvDefaultAmbientTemp = 20.0;
@@ -244,6 +245,14 @@ void ModelParams::setLogUpdatePeriod(int p)
     if (p > 0)
     {
         m_iLogUpdatePeriod = p;
+    }
+}
+
+void ModelParams::setLogInterGenUpdatePeriod(int p)
+{
+    if (p > 0)
+    {
+        m_iLogInterGenUpdatePeriod = p;
     }
 }
 

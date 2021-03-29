@@ -17,6 +17,7 @@
 #include "ModelParams.h"
 #include "tools.h"
 #include "giurfa.h"
+#include "hoverflyPrefs.h"
 
 
 // Instantiate static data members

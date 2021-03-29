@@ -521,6 +521,12 @@ void processJsonFile(std::ifstream& ifs)
                     }
                     ModelParams::setLogUpdatePeriod(it.value());
                 }
+                else if (it.key() == "log-inter-gen-update-period" && it.value().is_number()) {
+                    if (verbose) {
+                        std::cout << "Log inter-gen update period -> " << it.value() << std::endl;
+                    }
+                    ModelParams::setLogInterGenUpdatePeriod(it.value());
+                }
                 else if (it.key() == "log-dir" && it.value().is_string()) {
                     if (verbose) {
                         std::cout << "Log dir -> '" << it.value() << "'" << std::endl;

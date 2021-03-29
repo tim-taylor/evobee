@@ -188,7 +188,8 @@ void EvoBeeExperiment::runStandardExperiment()
         //////////////////////////////////////
 
         // perform logging of flowers at the end of the generation if required
-        if (ModelParams::logging())
+        if (ModelParams::logging() &&
+            ((gen % ModelParams::getLogInterGenUpdatePeriod() == 0) || (gen == ModelParams::getSimTerminationNumGens() - 1)))
         {
             if (ModelParams::logFlowersInterPhaseFull()) {
                 callLoggerMethod(&Logger::logFlowersInterPhaseFull);

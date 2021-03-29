@@ -119,6 +119,10 @@ private:
                                                                 ///< colour preferences for hymenoptera as described in Fig 3 of
                                                                 ///< Giurfa et al, J. Comp. Physiol A (1995).
 
+    static std::vector<std::tuple<MarkerPoint, float, float>> m_sHoverflyCumulativeInnatePrefs; ///< Stores information about innate
+                                                                ///< colour preferences for hoverflies as described in Fig 5 of
+                                                                ///< Lunau & Wacht, J. Comp. Physiol A (1994).
+
     static bool                     m_sbStaticsInitialised;     ///< Flags whether statics have been initialised from config file
 
     /**

@@ -44,6 +44,7 @@ public:
     static void setLogging(bool logging);
     static void setLogFlags(const std::string& flags);
     static void setLogUpdatePeriod(int p);
+    static void setLogInterGenUpdatePeriod(int p);
     static void setLogThreads(bool useThreads) {m_bUseLogThreads = useThreads;}
     static void setLogDir(const std::string& dir);
     static void setLogFinalDir(const std::string& dir);
@@ -105,6 +106,7 @@ public:
     static bool  logFlowerInfoInterPhaseSummary() {return m_bLogFlowerInfoInterPhaseSummary;}
     static bool  logFinalDirSet() {return !m_strLogFinalDir.empty();}
     static int   getLogUpdatePeriod() {return m_iLogUpdatePeriod;}
+    static int   getLogInterGenUpdatePeriod() {return m_iLogInterGenUpdatePeriod;}
     static bool  useLogThreads() {return m_bUseLogThreads;}
     static bool  verbose() {return m_bVerbose;}
     static bool  commandLineQuiet() {return m_bCommandLineQuiet;}
@@ -161,15 +163,16 @@ private:
                                             ///<   visualisation code
     static bool  m_bLogging;                ///< Is logging required for this run?
     static bool  m_bLogPollinatorsIntraPhaseFull;     ///< Log full pollinator info every m_iLogUpdatePeriod steps
-    static bool  m_bLogPollinatorsInterPhaseFull;     ///< Log full pollinator info at end of each generation
-    static bool  m_bLogPollinatorsInterPhaseSummary;  ///< Log summary pollinator info at end of each generation
-    static bool  m_bLogFlowersInterPhaseFull;         ///< Log full flower info at end of each generation
-    static bool  m_bLogFlowersInterPhaseSummary;      ///< Log summary flower info at end of each generation
+    static bool  m_bLogPollinatorsInterPhaseFull;     ///< Log full pollinator info at end of each generation, every m_iLogInterGenUpdatePeriod gens
+    static bool  m_bLogPollinatorsInterPhaseSummary;  ///< Log summary pollinator info at end of each generation, every m_iLogInterGenUpdatePeriod gens
+    static bool  m_bLogFlowersInterPhaseFull;         ///< Log full flower info at end of each generation, every m_iLogInterGenUpdatePeriod gens
+    static bool  m_bLogFlowersInterPhaseSummary;      ///< Log summary flower info at end of each generation, every m_iLogInterGenUpdatePeriod gens
     static bool  m_bLogFlowersIntraPhaseFull;         ///< Log full flower info every m_iLogUpdatePeriod steps
     static bool  m_bLogFlowersIntraPhaseSummary;      ///< Log summary flower info every m_iLogUpdatePeriod steps
-    static bool  m_bLogFlowerMPsInterPhaseSummary;    ///< Log summary of flower marker points at end of each generation
-    static bool  m_bLogFlowerInfoInterPhaseSummary;   ///< Log summary of flower info aggregared by VisualStimulusInfo id at each of each gen
-    static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger
+    static bool  m_bLogFlowerMPsInterPhaseSummary;    ///< Log summary of flower marker points at end of each generation, every m_iLogInterGenUpdatePeriod gens
+    static bool  m_bLogFlowerInfoInterPhaseSummary;   ///< Log summary of flower info aggregared by VisualStimulusInfo id at each of each gen, every m_iLogInterGenUpdatePeriod gens
+    static int   m_iLogUpdatePeriod;        ///< Number of model steps between each update of logger for log..IntraPhase methods
+    static int   m_iLogInterGenUpdatePeriod;///< Number of generations between each update of logger for log..InterPhase methods
     static std::string m_strLogDir;         ///< Directory name for logging output during a run
     static std::string m_strLogFinalDir;    ///< Directory to which to move all log files at end of run
                                             ///<   (if blank, files are kept in m_strLogDir)
