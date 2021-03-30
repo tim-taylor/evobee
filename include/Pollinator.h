@@ -391,7 +391,7 @@ protected:
     const int       m_iNectarCollectPerFlowerVisit; ///< Amount of nectar pollinator attempts to collect
                                                     ///< from a flower on a single visit
 
-    const PollinatorInnatePrefType m_InnatePreferenceType; ///< The pollinator's innate preference type (e.g. giurfa, flat)
+    const PollinatorInnatePrefType m_InnatePreferenceType; ///< The pollinator's innate preference type (e.g. giurfa, flat, hoverfly)
 
     /*
      * Some other properties that might be implemented in future versions include:

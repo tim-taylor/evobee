@@ -331,6 +331,9 @@ float Hymenoptera::getInnatePref(Wavelength lambda)
         case PollinatorInnatePrefType::FLAT: {
             return 0.5f;
         }
+        case PollinatorInnatePrefType::HOVERFLY: {
+            return getHoverflyPref(lambda);
+        }
         default: {
             throw std::runtime_error("Unknown innate preference type encountered in Hymenoptera::getInnatePref(Wavelength lambda)!");
         }
@@ -348,6 +351,22 @@ float Hymenoptera::getGiurfaPref(Wavelength lambda)
 
     std::stringstream msg;
     msg << "Error: unable to find matching preference level for wavelength " << lambda << " in Hymenoptera::getGiurfaPref()";
+    throw std::runtime_error(msg.str());
+
+    return 0.0f; // to keep the compiler happy
+}
+
+// return the normalised hoverfly preference level associated with the given wavelength
+float Hymenoptera::getHoverflyPref(Wavelength lambda)
+{
+    for (auto it = m_sHoverflyCumulativeInnatePrefs.begin(); it != m_sHoverflyCumulativeInnatePrefs.end(); ++it) {
+        if (std::get<0>(*it) == lambda) {
+            return std::get<1>(*it);
+        }
+    }
+
+    std::stringstream msg;
+    msg << "Error: unable to find matching preference level for wavelength " << lambda << " in Hymenoptera::getHoverflyPref()";
     throw std::runtime_error(msg.str());
 
     return 0.0f; // to keep the compiler happy

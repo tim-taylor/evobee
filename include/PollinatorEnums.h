@@ -41,7 +41,7 @@ enum class PollinatorStepType {CONSTANT, LEVY};
 /**
  * The PollinatorInnatePrefType enum
  */
-enum class PollinatorInnatePrefType {GIURFA, FLAT};
+enum class PollinatorInnatePrefType {GIURFA, FLAT, HOVERFLY};
 
 
 #endif /* _POLLINATORENUMS_H */

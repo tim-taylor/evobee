@@ -454,6 +454,8 @@ void ModelParams::addPollinatorConfig(PollinatorConfig& pc)
         pc.innatePrefType = PollinatorInnatePrefType::GIURFA;
     } else if (pc.strInnatePrefType == "flat") {
         pc.innatePrefType = PollinatorInnatePrefType::FLAT;
+    } else if (pc.strInnatePrefType == "hoverfly") {
+        pc.innatePrefType = PollinatorInnatePrefType::HOVERFLY;
     } else {
         pc.innatePrefType = PollinatorInnatePrefType::GIURFA;
         if (verbose()) {
