@@ -1,0 +1,70 @@
+Note - in Gnuplot we need to pass in the half-interval for the error bar
+(see http://www.bersch.net/gnuplot-doc/boxerrorbars.html)
+
+We want to use the t-test method to calculate the confidence interval, because
+we don't know the population standard deviation
+
+We've done some hand calculations in a Google spreadsheet for the 900 values for bin 3 at generation 249 in the C01 run:
+https://docs.google.com/spreadsheets/d/13fU6nuDRXL5TNdDXoPl8SKA0Woz0dgsl2HkMc5K5FFI/edit#gid=0
+also see the following for info on the spreadsheet functions:
+https://www.informit.com/articles/article.aspx?p=1717265&seqNum=3#:~:text=You%20use%20CONFIDENCE.,it%20from%20the%20sample%20data.
+
+
+How to do this in R:
+https://www.cyclismo.org/tutorial/R/confidence.html
+http://www.stat.ucla.edu/~rgould/110as02/bsci
+
+
+We now have an R script that can do this. It takes in a list of 900 values
+for a given bin at a given generation, and outputs
+->   mean, n, half-95%-confidence-interval
+
+call with:
+
+Rscript ../calc-95-conf-int.r binned-numflowers-across-runs-gen-249-bin-3.csv 3
+
+for B in {0..35}; do echo -n $B", "; Rscript ../calc-95-conf-int.r binned-numflowers-across-runs-gen-249-bin-$B.csv $B; done > 95confint-test-binned-numflowers-across-runs-means-stds-w10-gen-249.csv
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+R setup
+
+Install r-core package
+
+
+Calculating confidence limits
+
+In R:
+
+args <- commandArgs(trailingOnly = TRUE)
+myfile <- args[1]
+mydata<-read.csv(myfile,header=F,sep=",")
+n <- nrow(mydata)
+m <- mean(mydata$V1)
+ci95 <- qt(.975,n-1)*sd(mydata$V1)/sqrt(n)
+cat(sprintf("%.5f, %d, %.5f\n",m,n,ci95))
+
+
+
+
+In Rscript
+
+Rscript -e 'a <- 17184; s <- 3159.44 (as.numeric (readLines ("stdin")))' < counts-bin-3-gen-249.txt
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Obsolete....
+
+In R -> install.packages('tigerstats')
+
+library(tigerstats)
+mydata<-read.csv("counts-bin-3-gen-249.txt",header=F,sep=",")
+ttestGC(~V1,data=mydata)
+
+printf <- function(...) cat(sprintf(...))
+

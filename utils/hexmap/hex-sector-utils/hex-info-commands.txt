@@ -107,6 +107,26 @@ cd ..
 ## Finally, calculate the mean and standard deviation of the previously calculated
 ## counts of flowers in each bin at each gen, and plot a histogram for each
 ## generation showing the mean and std dev count for each bin
+
+INFILE_BASE="binned-numflowers-across-runs"
+OUTFILE_BASE="binned-numflowers-across-runs-means-stds"
+NUM_BINS=36
+BIN_WIDTH=10
+cd $PRODIR
+    for G in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+        rm -f $OUTFILE_BASE-w$BIN_WIDTH-gen-$G.csv
+        for B in `seq 0 $(( NUM_BINS - 1 ))`; do
+            Rscript ../calc-95-conf-int.r $INFILE_BASE-gen-$G-bin-$B.csv $B >> $OUTFILE_BASE-w$BIN_WIDTH-gen-$G.csv
+        done
+    done
+    for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+        gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE";    
+    done    
+cd ..
+
+~~~~~~~~~~~
+OLD VERSION
+
 ##
 ## NB SHOULD IMPROVE gen-binned-means-stds so it takes arguments (they are currently hardcoded at top of script)
 ##
@@ -117,7 +137,6 @@ cd $PRODIR
         gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE";    
     done    
 cd ..
-
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -475,6 +494,34 @@ mkdir processed
 ln -s ~/evobee-hexmap/hex-sector-utils/* .
 
 
+-----------------------
+-----------------------
+-----------------------
+
+
+/home/tim/monash-local/c17-ausDS1-hoverfly-gcOFF-lcON
+
+DTYPE="ausid"
+GEN_START=0
+GEN_END=249
+GEN_DELTA=249
+PREF="hoverfly"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1 (minus orchids), Hoverfly Preferences, GC off, LC on"
+HEXSECTORPDF="c17-ausDS1-hoverfly-gcOFF-lcON-HEX-SECTOR-gens-1-250.pdf"
+HEXSPACEPDF="c17-ausDS1-hoverfly-gcOFF-lcON-HEX-SPACE-gens-1-250.pdf"
+HEXSECTORBINSPDF="c17-ausDS1-hoverfly-gcOFF-lcON-HEX-SECTOR-BINS-gens-1-250.pdf"
+PRODIR="processed"
+FLIPX=""
+
+mkdir raw
+mv c* raw
+mkdir output
+mkdir output/raw
+mkdir processed
+ln -s ~/evobee-hexmap/hex-sector-utils/* .
 
 
 
