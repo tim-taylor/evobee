@@ -28,6 +28,8 @@
 #include <cmath>
 
 // table of data about the pure spectral line
+//    source: spectral_locus_honeybee-hex_loci_honeybee.csv,
+//       see: https://docs.google.com/spreadsheets/d/1ZC61vkvGWBylBSUsmSng5A-3Fmxd9WeqDYZGyXyqbw4/edit?usp=sharing
 // each line is of the following format:
 //   wavelength, quadrant in hex-space (0=LL,1=UL,2=UR,3=LR), hex-space x coord, hex-space y coord, tan theta (y/x)
 std::vector<std::tuple<int, int, float, float, float>> pureline {

@@ -124,7 +124,16 @@ cd $PRODIR
     done    
 cd ..
 
+
 ~~~~~~~~~~~
+cd processed
+mkdir histograms-std-dev
+mv binned-numflowers-across-runs-means-stds* histograms-std-dev/
+cd ..
+ln -s ~/evobee-hexmap/hex-sector-utils/* .
+~~~~~~~~~~~
+
+
 OLD VERSION
 
 ##
@@ -152,16 +161,17 @@ for F in `ls -d run-*[0-9]`; do LOGDIR=$F; OUTDIR=$F"-output"; TMPDIR=$OUTDIR"/t
 DTYPE="ausid"
 GEN_START=0
 GEN_END=249
-GEN_DELTA=1
+GEN_DELTA=249
 PREF="giurfa"
 LOGDIR="raw"
-PRODIR="processed"
 OUTDIR="output"
 TMPDIR="output/tmp"
 TITLE="Aus Dataset 1 (minus orchids), Giurfa Preferences, GC on, LC on"
 HEXSECTORPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SECTOR-gens-1-250.pdf"
 HEXSPACEPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SPACE-gens-1-250.pdf"
 HEXSECTORBINSPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SECTOR-BINS-gens-1-250.pdf"
+PRODIR="processed"
+FLIPX=""
 
 
 -----------------------
@@ -182,6 +192,7 @@ HEXSECTORPDF="c02-ausDS1-giurfa-gcON-lcOFF-HEX-SECTOR-gens-1-250.pdf"
 HEXSPACEPDF="c02-ausDS1-giurfa-gcON-lcOFF-HEX-SPACE-gens-1-250.pdf"
 HEXSECTORBINSPDF="c02-ausDS1-giurfa-gcON-lcOFF-HEX-SECTOR-BINS-gens-1-250.pdf"
 PRODIR="processed"
+FLIPX=""
 
 mkdir raw
 mv c* raw
@@ -199,7 +210,7 @@ ln -s ~/evobee-hexmap/hex-sector-utils/* .
 DTYPE="ausid"
 GEN_START=0
 GEN_END=249
-GEN_DELTA=1
+GEN_DELTA=249
 PREF="giurfa"
 LOGDIR="raw"
 OUTDIR="output"
@@ -208,7 +219,8 @@ TITLE="Aus Dataset 1 (minus orchids), Giurfa Preferences, GC off, LC on"
 HEXSECTORPDF="c03-ausDS1-giurfa-gcOFF-lcON-HEX-SECTOR-gens-1-250.pdf"
 HEXSPACEPDF="c03-ausDS1-giurfa-gcOFF-lcON-HEX-SPACE-gens-1-250.pdf"
 HEXSECTORBINSPDF="c03-ausDS1-giurfa-gcOFF-lcON-HEX-SECTOR-BINS-gens-1-250.pdf"
-
+PRODIR="processed"
+FLIPX=""
 
 -----------------------
 
@@ -228,6 +240,7 @@ HEXSECTORPDF="c04-ausDS1-giurfa-gcOFF-lcOFF-HEX-SECTOR-gens-1-250.pdf"
 HEXSPACEPDF="c04-ausDS1-giurfa-gcOFF-lcOFF-HEX-SPACE-gens-1-250.pdf"
 HEXSECTORBINSPDF="c04-ausDS1-giurfa-gcOFF-lcOFF-HEX-SECTOR-BINS-gens-1-250.pdf"
 PRODIR="processed"
+FLIPX=""
 
 mkdir raw
 mv c* raw
@@ -244,7 +257,7 @@ ln -s ~/evobee-hexmap/hex-sector-utils/* .
 DTYPE="ausid"
 GEN_START=0
 GEN_END=249
-GEN_DELTA=1
+GEN_DELTA=249
 PREF="flat"
 LOGDIR="raw"
 OUTDIR="output"
@@ -253,7 +266,8 @@ TITLE="Aus Dataset 1 (minus orchids), Flat Preferences, GC on, LC on"
 HEXSECTORPDF="c05-ausDS1-flat-gcON-lcON-HEX-SECTOR-gens-1-250.pdf"
 HEXSPACEPDF="c05-ausDS1-flat-gcON-lcON-HEX-SPACE-gens-1-250.pdf"
 HEXSECTORBINSPDF="c05-ausDS1-flat-gcON-lcON-HEX-SECTOR-BINS-gens-1-250.pdf"
-
+PRODIR="processed"
+FLIPX=""
 
 -----------------------
 
@@ -272,6 +286,7 @@ HEXSECTORPDF="c06-ausDS1-flat-gcON-lcOFF-HEX-SECTOR-gens-1-250.pdf"
 HEXSPACEPDF="c06-ausDS1-flat-gcON-lcOFF-HEX-SPACE-gens-1-250.pdf"
 HEXSECTORBINSPDF="c06-ausDS1-flat-gcON-lcOFF-HEX-SECTOR-BINS-gens-1-250.pdf"
 PRODIR="processed"
+FLIPX=""
 
 mkdir raw
 mv c* raw
@@ -288,7 +303,7 @@ ln -s ~/evobee-hexmap/hex-sector-utils/* .
 DTYPE="ausid"
 GEN_START=0
 GEN_END=249
-GEN_DELTA=1
+GEN_DELTA=249
 PREF="flat"
 LOGDIR="raw"
 OUTDIR="output"
@@ -297,7 +312,8 @@ TITLE="Aus Dataset 1 (minus orchids), Flat Preferences, GC off, LC on"
 HEXSECTORPDF="c07-ausDS1-flat-gcOFF-lcON-HEX-SECTOR-gens-1-250.pdf"
 HEXSPACEPDF="c07-ausDS1-flat-gcOFF-lcON-HEX-SPACE-gens-1-250.pdf"
 HEXSECTORBINSPDF="c07-ausDS1-flat-gcOFF-lcON-HEX-SECTOR-BINS-gens-1-250.pdf"
-
+PRODIR="processed"
+FLIPX=""
 
 -----------------------
 
@@ -317,6 +333,7 @@ HEXSECTORPDF="c08-ausDS1-flat-gcOFF-lcOFF-HEX-SECTOR-gens-1-250.pdf"
 HEXSPACEPDF="c08-ausDS1-flat-gcOFF-lcOFF-HEX-SPACE-gens-1-250.pdf"
 HEXSECTORBINSPDF="c08-ausDS1-flat-gcOFF-lcOFF-HEX-SECTOR-BINS-gens-1-250.pdf"
 PRODIR="processed"
+FLIPX=""
 
 mkdir raw
 mv c* raw
@@ -495,7 +512,61 @@ ln -s ~/evobee-hexmap/hex-sector-utils/* .
 
 
 -----------------------
+
+
+/home/tim/monash-local/c15-ausDS1-hoverfly-gcON-lcON
+
+DTYPE="ausid"
+GEN_START=0
+GEN_END=249
+GEN_DELTA=249
+PREF="hoverfly"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1 (minus orchids), Hoverfly Preferences, GC on, LC on"
+HEXSECTORPDF="c15-ausDS1-hoverfly-gcON-lcON-HEX-SECTOR-gens-1-250.pdf"
+HEXSPACEPDF="c15-ausDS1-hoverfly-gcON-lcON-HEX-SPACE-gens-1-250.pdf"
+HEXSECTORBINSPDF="c15-ausDS1-hoverfly-gcON-lcON-HEX-SECTOR-BINS-gens-1-250.pdf"
+PRODIR="processed"
+FLIPX=""
+
+mkdir raw
+mv c* raw
+mkdir output
+mkdir output/raw
+mkdir processed
+ln -s ~/evobee-hexmap/hex-sector-utils/* .
+
+
 -----------------------
+
+
+/home/tim/monash-local/c16-ausDS1-hoverfly-gcON-lcOFF
+
+DTYPE="ausid"
+GEN_START=0
+GEN_END=249
+GEN_DELTA=249
+PREF="hoverfly"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1 (minus orchids), Hoverfly Preferences, GC on, LC off"
+HEXSECTORPDF="c16-ausDS1-hoverfly-gcON-lcOFF-HEX-SECTOR-gens-1-250.pdf"
+HEXSPACEPDF="c16-ausDS1-hoverfly-gcON-lcOFF-HEX-SPACE-gens-1-250.pdf"
+HEXSECTORBINSPDF="c16-ausDS1-hoverfly-gcON-lcOFF-HEX-SECTOR-BINS-gens-1-250.pdf"
+PRODIR="processed"
+FLIPX=""
+
+mkdir raw
+mv c* raw
+mkdir output
+mkdir output/raw
+mkdir processed
+ln -s ~/evobee-hexmap/hex-sector-utils/* .
+
+
 -----------------------
 
 
@@ -522,6 +593,36 @@ mkdir output
 mkdir output/raw
 mkdir processed
 ln -s ~/evobee-hexmap/hex-sector-utils/* .
+
+
+-----------------------
+
+
+/home/tim/monash-local/c18-ausDS1-hoverfly-gcOFF-lcOFF
+
+DTYPE="ausid"
+GEN_START=0
+GEN_END=249
+GEN_DELTA=249
+PREF="hoverfly"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1 (minus orchids), Hoverfly Preferences, GC off, LC off"
+HEXSECTORPDF="c18-ausDS1-hoverfly-gcOFF-lcOFF-HEX-SECTOR-gens-1-250.pdf"
+HEXSPACEPDF="c18-ausDS1-hoverfly-gcOFF-lcOFF-HEX-SPACE-gens-1-250.pdf"
+HEXSECTORBINSPDF="c18-ausDS1-hoverfly-gcOFF-lcOFF-HEX-SECTOR-BINS-gens-1-250.pdf"
+PRODIR="processed"
+FLIPX=""
+
+mkdir raw
+mv c* raw
+mkdir output
+mkdir output/raw
+mkdir processed
+ln -s ~/evobee-hexmap/hex-sector-utils/* .
+
+
 
 
 
