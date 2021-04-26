@@ -120,9 +120,20 @@ cd $PRODIR
         done
     done
     for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+        gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" M;
+        gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" Q;
+        gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" L;  
+    done
+cd ..
+
+
+
+~~~~~~~~~~~
+To plot graphs with 0 at LHS
+
+    for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
         gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE";    
     done    
-cd ..
 
 
 ~~~~~~~~~~~

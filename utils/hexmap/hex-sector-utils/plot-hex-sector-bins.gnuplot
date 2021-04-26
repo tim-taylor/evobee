@@ -7,7 +7,7 @@
 # gen-hex-sector-bin-means-stds
 #
 # Call like this, e.g.
-# > gnuplot -c plot-hex-sector-bins.gnuplot filebase N titletext
+# > gnuplot -c plot-hex-sector-bins.gnuplot filebase N titletext [L|Q|M]
 # e.g.
 # > gnuplot -c plot-hex-sector-bins.gnuplot hex-sector-bin-means-stds 0
 #
@@ -18,6 +18,7 @@
 filebase="hex-sector-bin-means-stds"
 gen=0
 titletext=""
+zeropos="L"
 
 if (exists("ARG1")) {
     filebase=ARG1
@@ -31,9 +32,21 @@ if (exists("ARG3")) {
     titletext=ARG3." / "
 }
 
+if (exists("ARG4")) {
+    zeropos=ARG4
+}
+
 fbaseIN = sprintf("%s-gen-%s", filebase, gen)
 infile = sprintf("%s.csv", fbaseIN)
-fbaseOUT = sprintf("%s-gen-%04d", filebase, (gen+0))
+if (zeropos eq "M") {
+    fbaseOUT = sprintf("%s-0m-gen-%04d", filebase, (gen+0))
+} else {
+    if (zeropos eq "Q") {
+        fbaseOUT = sprintf("%s-0q-gen-%04d", filebase, (gen+0))
+    } else {
+        fbaseOUT = sprintf("%s-0l-gen-%04d", filebase, (gen+0))
+    }
+}
 outfile = sprintf("%s.png", fbaseOUT)
 
 set datafile separator ","
@@ -46,8 +59,24 @@ set ytics nomirror out
 set boxwidth 6 absolute
 set style fill solid 1.0 border lc "gray30"
 unset key
-set xrange[0:365]
+if (zeropos eq "M") {
+    set xrange[-175:185]
+} else {
+    if (zeropos eq "Q") {
+        set xrange[-85:275]
+    } else {
+        set xrange[0:365]
+    }
+}
 set yrange[0:22500]
 set term png size 800,800
 set output outfile
-plot infile using (($1*10)+10):3:4 with boxerrorbars fillcolor "gray70"
+if (zeropos eq "M") {
+    plot infile using (($1*10)+10)-(int($1/18)*360):3:4 with boxerrorbars fillcolor "gray70"
+} else {
+    if (zeropos eq "Q") {
+        plot infile using (($1*10)+10)-(int($1/27)*360):3:4 with boxerrorbars fillcolor "gray70"
+    } else {
+        plot infile using (($1*10)+10):3:4 with boxerrorbars fillcolor "gray70"
+    }
+}
