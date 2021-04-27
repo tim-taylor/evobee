@@ -7,7 +7,7 @@
 # gen-hex-sector-bin-means-stds
 #
 # Call like this, e.g.
-# > gnuplot -c plot-hex-sector-bins.gnuplot filebase N titletext [L|Q|M]
+# > gnuplot -c plot-hex-sector-bins.gnuplot filebase gennum titletext x0pos[L|Q|M] xshift[10|5] prefplot[none|bee|hoverfly] 
 # e.g.
 # > gnuplot -c plot-hex-sector-bins.gnuplot hex-sector-bin-means-stds 0
 #
@@ -15,10 +15,16 @@
 #
 # The output is saved in a file named [filebase]-gen-N-hex-sector.png
 
+beePrefFile="~/evobee-hexmap/giurfa-pref-by-theta.csv"
+hoverflyPrefFile="~/evobee-hexmap/hoverfly-pref-by-theta.csv"
+
 filebase="hex-sector-bin-means-stds"
-gen=0
+gen="0"
 titletext=""
 zeropos="L"
+xshift=10
+prefs="none"
+prefFile=beePrefFile
 
 if (exists("ARG1")) {
     filebase=ARG1
@@ -34,6 +40,17 @@ if (exists("ARG3")) {
 
 if (exists("ARG4")) {
     zeropos=ARG4
+}
+
+if (exists("ARG5")) {
+    xshift=ARG5
+}
+
+if (exists("ARG6")) {
+    prefs=ARG6
+    if (prefs eq "hoverfly") {
+        prefFile=hoverflyPrefFile
+    }
 }
 
 fbaseIN = sprintf("%s-gen-%s", filebase, gen)
@@ -53,10 +70,17 @@ set datafile separator ","
 set size square
 set title font ",13"
 set title titletext."Generation ".(gen+1)
+set xlabel font ",12"
+set xlabel "Hexagon sector"
+set ylabel font ",12"
+set ylabel "Plant count"
 set xtics nomirror out 20
 set xtics font ",11"
 set ytics nomirror out
-set boxwidth 6 absolute
+set y2tics
+set y2label font ",12"
+set y2label "Pollinator Innate Preference (normalised units)"
+set boxwidth 10 absolute
 set style fill solid 1.0 border lc "gray30"
 unset key
 if (zeropos eq "M") {
@@ -69,14 +93,20 @@ if (zeropos eq "M") {
     }
 }
 set yrange[0:22500]
+set y2range [0:0.015]
+
 set term png size 800,800
 set output outfile
 if (zeropos eq "M") {
-    plot infile using (($1*10)+10)-(int($1/18)*360):3:4 with boxerrorbars fillcolor "gray70"
+    plot infile using (($1*10)+xshift)-(int($1/18)*360):3:4 with boxerrorbars fillcolor "gray70"
 } else {
     if (zeropos eq "Q") {
-        plot infile using (($1*10)+10)-(int($1/27)*360):3:4 with boxerrorbars fillcolor "gray70"
+        if (prefs eq "none") {
+            plot infile using (($1*10)+xshift)-(int($1/27)*360):3:4 with boxerrorbars fillcolor "gray70"
+        } else {
+            plot infile using (($1*10)+xshift)-(int($1/27)*360):3:4 with boxerrorbars fillcolor "gray80", prefFile using ($1-int($1/270)*360):6 axes x1y2 w lp lt 6
+        }
     } else {
-        plot infile using (($1*10)+10):3:4 with boxerrorbars fillcolor "gray70"
+        plot infile using (($1*10)+int(xshift)):3:4 with boxerrorbars fillcolor "gray70"
     }
 }

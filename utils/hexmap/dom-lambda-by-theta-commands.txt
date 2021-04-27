@@ -1,0 +1,5 @@
+# To generate a list of dominant wavelengths according to x and y positions given in a file
+# (e.g. the file x-y-of-theta-0-360-step-5.csv)
+
+gawk -F, '{t=$1;x=$2;y=$3;cmd="./calc-dom-lambda "x" "y;while ((cmd|getline d)>0) {printf("%s,%s,%s,%.0f\n",t,x,y,d)}; close(cmd);}'  x-y-of-theta-0-360-step-5.csv > dom-lambda-by-theta.csv
+
