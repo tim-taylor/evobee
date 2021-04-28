@@ -7,7 +7,7 @@
 # gen-hex-sector-bin-means-stds
 #
 # Call like this, e.g.
-# > gnuplot -c plot-hex-sector-bins.gnuplot filebase gennum titletext x0pos[L|Q|M] xshift[10|5] prefplot[none|bee|hoverfly] 
+# > gnuplot -c plot-hex-sector-bins.gnuplot filebase gennum titletext x0pos[L|Q|M] xshift[10|5] prefplot[none|bee|hoverfly|flat] 
 # e.g.
 # > gnuplot -c plot-hex-sector-bins.gnuplot hex-sector-bin-means-stds 0
 #
@@ -17,6 +17,7 @@
 
 beePrefFile="~/evobee-hexmap/giurfa-pref-by-theta.csv"
 hoverflyPrefFile="~/evobee-hexmap/hoverfly-pref-by-theta.csv"
+flatPrefFile="~/evobee-hexmap/flat-pref-by-theta.csv"
 
 filebase="hex-sector-bin-means-stds"
 gen="0"
@@ -50,6 +51,10 @@ if (exists("ARG6")) {
     prefs=ARG6
     if (prefs eq "hoverfly") {
         prefFile=hoverflyPrefFile
+    } else {
+        if (prefs eq "flat") {
+            prefFile=flatPrefFile
+        }    
     }
 }
 

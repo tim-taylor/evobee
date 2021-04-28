@@ -127,6 +127,21 @@ cd $PRODIR
 cd ..
 
 
+~~~~~~~~~~~
+mkdir old-pngs
+mv *png old-pngs/
+
+for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+    gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" Q 5 bee;
+done
+
+for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+    gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" Q 5 flat;
+done
+
+for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+    gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" Q 5 hoverfly;
+done
 
 ~~~~~~~~~~~
 To plot graphs with 0 at LHS
