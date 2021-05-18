@@ -36,6 +36,16 @@ ffmpeg -framerate 30 -i flower-positions-hsv-gen-%04d.png -c:v libx264 -r 30 -pi
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+runid-to-auxid-map.csv (aka R2AFILE)
+======================
+
+This can be generated from the vis-data array in the run's JSON config file, by extracting the 1st and 10th field of each line
+
+grep "\[" $JSONFILE | gawk -F, '{gsub(/\[/,"",$1); gsub(/ /,"",$1); gsub(/\]/,"",$10); gsub(/ /,"",$10); print $1","$10}' > runid-to-auxid-map.csv
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 aus-hex-space-info.csv (aka MFILE)
 ======================
 (in evobee/utils/hexmap/aus-data-20210111)
