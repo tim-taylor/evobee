@@ -1,0 +1,35 @@
+#!/bin/bash
+for PS in 1.0 2.5 10.0 20.0; do 
+    for SR in 2.0 5.0 10.0 20.0; do 
+        SD="polstep-$PS-seedrad-$SR"
+        cd $SD
+        for LOGFILE in `ls *log.txt`; do
+cat > slurm-$LOGFILE <<- EOM
+#!/bin/env bash
+#SBATCH --job-name=$LOGFILE
+#SBATCH --time=10:00:00
+#SBATCH --mem=4000
+#SBATCH --output=$LOGFILE.out
+
+module load gnuplot
+
+BASEDIR="/mnt/lustre/projects/ft13/ttay0006/data/20210526-constancy-none-param-sweep"
+RUNSUBDIR="$SD"
+FULLLOGFILE="\$BASEDIR/\$RUNSUBDIR/$LOGFILE"
+MFILE="\$BASEDIR/aus-hex-space-info.csv"
+R2AFILE="\$BASEDIR/\$RUNSUBDIR/runid-to-auxid-map.csv"
+DFILEBASE="flower-positions-hsv-$LOGFILE"
+GENFIRST=0
+GENLAST=1000
+GENSTEP=50
+
+cd \$BASEDIR/\$RUNSUBDIR
+
+for G in \`seq \$GENFIRST \$GENSTEP \$GENLAST\`; do gawk -vMFILE=\$MFILE -vR2AFILE=\$R2AFILE -vG=\$G -f \$BASEDIR/gen-data-for-patch-visualisation-hsv.awk \$FULLLOGFILE > \$BASEDIR/\$RUNSUBDIR/\$DFILEBASE-gen-\$G.csv; done
+
+for G in \`seq \$GENFIRST \$GENSTEP \$GENLAST\`; do gnuplot -c \$BASEDIR/patch-visualisation-hsv.gnuplot \$DFILEBASE \$G; done
+EOM
+        done
+        cd ..
+    done
+done

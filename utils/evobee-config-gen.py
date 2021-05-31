@@ -53,7 +53,7 @@ def main():
     with open (templatefilename, 'r' ) as f:
         content = f.read()
 
-    # For each of the parameters specidied on the command line
+    # For each of the parameters specified on the command line
     for param, val in params.items():
         # Swap the current entry in the file with the specified value
 
