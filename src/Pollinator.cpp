@@ -435,17 +435,31 @@ void Pollinator::forageRandom()
     unsigned int stepnum = m_pModel->getStepNumber();
 
     // first move in a random direction
-    moveRandom();
+    switch (m_StepType) {
+        case PollinatorStepType::CONSTANT: {
+            moveRandom();
+            break;
+        }
+        case PollinatorStepType::LEVY: {
+            moveLevy();
+            break;
+        }
+        default: {
+            throw std::runtime_error("Pollinator::forageNearestFlower() encountered unrecognised step type. Aborting.");
+        }
+    }
 
     // now look for flowers nearby
-    ///@todo - for now we are looking for nearest plant, not nearest flower
-    /// (so assuming plants just have one flower)
     bool flowerVisited = false;
 
-    FloweringPlant* pPlant = getEnvironment()->findNearestFloweringPlant(m_Position);
-    if (pPlant != nullptr)
+    // NB for now we are looking for nearest plant, not nearest flower (so assuming plants just have one flower)
+    //FloweringPlant* pPlant = getEnvironment()->findNearestFloweringPlant(m_Position);
+    //if (pPlant != nullptr)
+
+    Flower* pFlower = getEnvironment()->findNearestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers);
+    if (pFlower != nullptr)
     {
-        Flower* pFlower = pPlant->getFlower(0);
+        //Flower* pFlower = pPlant->getFlower(0);
         if (isVisitCandidate(pFlower))
         {
             m_Position = pFlower->getPosition();
