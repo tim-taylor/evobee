@@ -45,7 +45,7 @@ namespace EvoBee
         float x, y, pdf, ymax;
 
         if (scale <= 0.0) {
-            throw std::runtime_error("In randomLevy(): scale parameter must be greate than 0.0!");
+            throw std::runtime_error("In randomLevy(): scale parameter must be greater than 0.0!");
         }
 
         // find a suitable maximum value for the proposal distribution, based upon the
@@ -88,8 +88,8 @@ namespace EvoBee
      * Hence 20pdus is the maximum a honeybee might be able to fly in about 2 seconds.
      *
      * References:
-     * - Andrew M. Reynolds et al. "Displaced Honey Bees Peform Optimal Scale-Free Search
-     *   Flights", Ecology, 88(8), 2007, pp. 1955-1961.
+     * - Andrew M. Reynolds et al. "Displaced Honey Bees Perform Optimal Scale-Free
+     *   Search Flights", Ecology, 88(8), 2007, pp. 1955-1961.
      * - Oliver C. Ibe, "Elements of Random Walk and Diffusion Processes" (Chapter 8,
      *   "Levy Walk"), John Wiley & Sons, 2013.
      *

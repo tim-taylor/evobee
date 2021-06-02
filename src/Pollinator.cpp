@@ -452,14 +452,9 @@ void Pollinator::forageRandom()
     // now look for flowers nearby
     bool flowerVisited = false;
 
-    // NB for now we are looking for nearest plant, not nearest flower (so assuming plants just have one flower)
-    //FloweringPlant* pPlant = getEnvironment()->findNearestFloweringPlant(m_Position);
-    //if (pPlant != nullptr)
-
     Flower* pFlower = getEnvironment()->findNearestUnvisitedFlower(m_Position, m_RecentlyVisitedFlowers);
     if (pFlower != nullptr)
     {
-        //Flower* pFlower = pPlant->getFlower(0);
         if (isVisitCandidate(pFlower))
         {
             m_Position = pFlower->getPosition();
@@ -817,8 +812,14 @@ void Pollinator::moveLevy()
 {
     m_fHeading = EvoBeeModel::m_sDirectionDistrib(EvoBeeModel::m_sRngEngine);
 
+    // We have opted to used the Cauchy distribution rather then the EvoBee::randomLevy()
+    // method here, as the latter has an inefficient implementation and there are solid
+    // reasons for using the Cauchy distribution in any case.
     //float stepLength = EvoBee::randomLevy(20.0, 1.0);
-    float stepLength = EvoBee::randomCauchy(0.5, 20.0);
+
+    // for Levy flight we use the parameter m_fStepLength as a multiplier of the value
+    // returned by the EvoBee::randomCauchy() method
+    float stepLength = EvoBee::randomCauchy(0.5, 20.0) * m_fStepLength;
 
     fPos delta{stepLength*std::cos(m_fHeading), stepLength*std::sin(m_fHeading)};
 
@@ -828,8 +829,6 @@ void Pollinator::moveLevy()
     {
         repositionInAllowedArea(delta);
     }
-
-    //std::cout << m_Position << std::endl;
 }
 
 // for each Pollen grain in the store, update its landing count
