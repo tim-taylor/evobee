@@ -352,7 +352,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |---|---|---|---|
 |species|species|std::string|Text label designating species of pollinator (any text is allowed)|
 |bout-length|boutLength|int|Number of flower visits allowed before returning to hive [0=unlimited]|
-|step-type|strStepType|std::string|Determines how a pollinator moves if/when it decides to move in a given step of a foraging run. For value 'constant' it will always attempt to move a constant distance in a uniform random direction with distance defined by the parameter step-length. For value 'levy' it will attempt to move by a distance determined by a standard Cauchy distribution (which provides an inverse-square law tail) in a uniform random direction, with a minimum step of 0.5 units and maximum of 20.0 units (currently hard-wired in Pollinator::moveLevy()). In all cases, if the attempted move would take the pollinator out of its allowed foraging area, the attempted movement is reflected back into the allowed area. Allowed values: constant, levy|
+|step-type|strStepType|std::string|Determines how a pollinator moves if/when it decides to move in a given step of a foraging run. For value 'constant' it will always attempt to move a constant distance in a uniform random direction with distance defined by the parameter step-length. For value 'levy' it will attempt to move by a distance determined by a standard Cauchy distribution (which provides an inverse-square law tail) in a uniform random direction, with a minimum step of 0.5 units and maximum of 20.0 units (these limits are modified by the step-length parameter, so, e.g. step-length=0.5 gives a mi). In all cases, if the attempted move would take the pollinator out of its allowed foraging area, the attempted movement is reflected back into the allowed area. Allowed values: constant, levy|
 |step-length|stepLength|float|For step-type=constant, step-length determines the length of a single step of the pollinator's flight during foraging|
 |max-pollen-capacity|maxPollenCapacity|int|Maximum amount of pollen the pollinator can carry|
 |pollen-deposit-per-flower-visit|pollenDepositPerFlowerVisit|int|Amount of pollen deposited on a flower on each visit|
@@ -565,11 +565,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMTExNjA3ODYsLTU2ODkyMTIzMiw2Nj
-A0ODExNDcsMTk5MjI5NjI1NCwxMjM4NzMyNDYsMTg1NjY0OTU4
-MywtODQ5ODA2NTQ3LC03Mjg4OTMzNDQsMTcwMjk4MTQ1LC0xMT
-U2Njc3OTY0LDUwODU4NTAwMiw3NDQxNjg2NjgsLTEyOTg2Nzc1
-MDgsLTEzMzQ1MDA2MjYsMTk4NzQ4Mzc4OSwxODE2NDMxNzQ1LC
-0zODYzNDUwMzgsLTE4Nzk4MTk3MTQsLTg1MDI0NDc1OCwyMDQz
-Mzc1NjAxXX0=
+eyJoaXN0b3J5IjpbMTUxMDI2NjEzMiwtMjAxMTE2MDc4NiwtNT
+Y4OTIxMjMyLDY2MDQ4MTE0NywxOTkyMjk2MjU0LDEyMzg3MzI0
+NiwxODU2NjQ5NTgzLC04NDk4MDY1NDcsLTcyODg5MzM0NCwxNz
+AyOTgxNDUsLTExNTY2Nzc5NjQsNTA4NTg1MDAyLDc0NDE2ODY2
+OCwtMTI5ODY3NzUwOCwtMTMzNDUwMDYyNiwxOTg3NDgzNzg5LD
+E4MTY0MzE3NDUsLTM4NjM0NTAzOCwtMTg3OTgxOTcxNCwtODUw
+MjQ0NzU4XX0=
 -->
