@@ -503,6 +503,28 @@ For each plant in the environment, emit a line with the following format at regu
  10. dominant wavelength of this stimulus (as defined by second field in vis-data entry)
  11. number of landings on flowers of this type during the current generation
 
+### log-flags=P (Logger::logPollinatorsInterPhaseFull)
+(The outpyu
+
+ 1. "Q"
+ 2. generation number
+ 3. step number
+ 4. pollinator species name
+ 5. pollinator ID
+ 6. pollinator x position
+ 7. pollinator y position
+ 8. pollinator heading
+ 9. number of flowers visited
+ 10. step number of most recent action
+ 11. flower marker point (if action=ON_FLOWER or DECLINED_FLOWER) or 0 (if action=NO_FLOWER_SEEN)
+ 12. reward received (if action=ON_FLOWER) or -1 (if action=DECLINED_FLOWER) or -2 (if action=NO_FLOWER_SEEN)
+ 13. "T" if pollinator judged flower to match its current target, otherwise "F"
+ 14. "//"
+ 15. pollinator's current target marker point
+ 16. "::"
+ 17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
+
+
 ### log-flags=p  (Logger::logPollinatorsInterPhaseSummary)
 
 The first 3 fields are:
@@ -543,11 +565,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU2ODkyMTIzMiw2NjA0ODExNDcsMTk5Mj
-I5NjI1NCwxMjM4NzMyNDYsMTg1NjY0OTU4MywtODQ5ODA2NTQ3
-LC03Mjg4OTMzNDQsMTcwMjk4MTQ1LC0xMTU2Njc3OTY0LDUwOD
-U4NTAwMiw3NDQxNjg2NjgsLTEyOTg2Nzc1MDgsLTEzMzQ1MDA2
-MjYsMTk4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYzNDUwMzgsLT
-E4Nzk4MTk3MTQsLTg1MDI0NDc1OCwyMDQzMzc1NjAxLC04NjM0
-MzM3MTBdfQ==
+eyJoaXN0b3J5IjpbLTE4NzQyNzAxMzEsLTU2ODkyMTIzMiw2Nj
+A0ODExNDcsMTk5MjI5NjI1NCwxMjM4NzMyNDYsMTg1NjY0OTU4
+MywtODQ5ODA2NTQ3LC03Mjg4OTMzNDQsMTcwMjk4MTQ1LC0xMT
+U2Njc3OTY0LDUwODU4NTAwMiw3NDQxNjg2NjgsLTEyOTg2Nzc1
+MDgsLTEzMzQ1MDA2MjYsMTk4NzQ4Mzc4OSwxODE2NDMxNzQ1LC
+0zODYzNDUwMzgsLTE4Nzk4MTk3MTQsLTg1MDI0NDc1OCwyMDQz
+Mzc1NjAxXX0=
 -->
