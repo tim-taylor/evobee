@@ -504,9 +504,9 @@ For each plant in the environment, emit a line with the following format at regu
  11. number of landings on flowers of this type during the current generation
 
 ### log-flags=P (Logger::logPollinatorsInterPhaseFull)
-(The outpyu
+(The output format with log-flags=P is the same as for log-flags=Q, except just a single line is logged for each pollinator at the end of each foraging phase rather than at every step of the foraging phase)
 
- 1. "Q"
+ 1. "P"
  2. generation number
  3. step number
  4. pollinator species name
@@ -565,7 +565,7 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NzQyNzAxMzEsLTU2ODkyMTIzMiw2Nj
+eyJoaXN0b3J5IjpbLTIwMTExNjA3ODYsLTU2ODkyMTIzMiw2Nj
 A0ODExNDcsMTk5MjI5NjI1NCwxMjM4NzMyNDYsMTg1NjY0OTU4
 MywtODQ5ODA2NTQ3LC03Mjg4OTMzNDQsMTcwMjk4MTQ1LC0xMT
 U2Njc3OTY0LDUwODU4NTAwMiw3NDQxNjg2NjgsLTEyOTg2Nzc1
