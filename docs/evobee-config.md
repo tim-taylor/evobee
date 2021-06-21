@@ -360,7 +360,7 @@ Pollinator configuration parameters for a single pollinator species are stored i
 |pollen-carryover-num-visits|pollenCarryoverNumVisits|int|After collecting a grain of pollen from a flower, the pollinator can visit this number of subsequent flowers to potentially deposit it. If the pollen is still not deposited after this number of visits, it is removed from the pollinator (i.e. it is lost). A value of 0 indicates no limit in number of visits.|
 |constancy-type|strConstancyType|std::string|Defines the pollinator's constancy behaviour while foraging (NB 'simple'=if sees a flower of same species as last visited, land with probablity 0.9, if its a different species, land with probability (1.0-constancy-param). 'visual'=utilise the pollinator's full visual system and learning strategies for deciding which flowers to visit - this option should be used in conjunction with foraging-strategy='nearest-flower'). Allowed values: none, simple, visual|
 |constancy-param|constancyParam|float|If constancy-type=simple, constancy-param is a number between 0.0 and 1.0. In this case, when the pollinator sees a flower of the same species it has landed on before, it lands on it with probability 0.9. If it is of a different species, it lands on it with probability (1.0-constancy-param).|
-|innate-preference-type|strInnatePrefType|std::string|Allowed values: giurfa (default), hoverfly, flat, preset|
+|innate-preference-type|strInnatePrefType|std::string|Specifies the pollinators' innate preferences. This parameter is used when colour-system="" and . Allowed values: giurfa (default), hoverfly, flat, preset|
 |foraging-strategy|strForagingStrategy|std::string|Defines how the pollinator forages (NB for foraging using visual system, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: random, nearest-flower, random-flower, random-global|
 |learning-strategy|strLearningStrategy|std::string|Defines how the pollinator learns from experience (NB for this parameter to have effect, foraging-strategy must be 'nearest-flower' and constancy-type must be 'visual'). Allowed values: **stay**, **stay-rnd**, **stay-innate**, **fickle-circumspect**, **deliberative-decisive**, **none**. For 'stay', pollinator sets target to the first flower it lands on from which it receives a reward, and keeps it for the rest of the bout. For 'stay-rnd', pollinator is assigned a marker point at uniform random (picked from all MPs defined in the vis-data section) at start of foraging bout and keeps it for the whole bout. 'stay-innate' is like 'stay-rnd' except the initial random allocation is weighted according to innate preference data for real bees as published in Giurfa et al 1995. For 'none', pollinator never sets a target so effectively may land with equal probability on any flower it sees (use in conjunction with a high value for vis-prob-land-no-target-set-delta).|
 |visited-flower-memory-size|visitedFlowerMemorySize|unsigned int|The maximum number of recently visited flowers that the pollinator can remember. This may affect whether or not it re-lands on a given flower, depending upon its foraging strategy.|
@@ -566,11 +566,11 @@ These are followed by entries for each plant species, each one comprising 4 furt
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MDIzNzgwMDUsMTYzNzU5ODY4OCwxOD
-Q4ODIwMDMxLC0yMDExMTYwNzg2LC01Njg5MjEyMzIsNjYwNDgx
-MTQ3LDE5OTIyOTYyNTQsMTIzODczMjQ2LDE4NTY2NDk1ODMsLT
-g0OTgwNjU0NywtNzI4ODkzMzQ0LDE3MDI5ODE0NSwtMTE1NjY3
-Nzk2NCw1MDg1ODUwMDIsNzQ0MTY4NjY4LC0xMjk4Njc3NTA4LC
-0xMzM0NTAwNjI2LDE5ODc0ODM3ODksMTgxNjQzMTc0NSwtMzg2
-MzQ1MDM4XX0=
+eyJoaXN0b3J5IjpbMTI1OTAzMzY5NCwxNjM3NTk4Njg4LDE4ND
+g4MjAwMzEsLTIwMTExNjA3ODYsLTU2ODkyMTIzMiw2NjA0ODEx
+NDcsMTk5MjI5NjI1NCwxMjM4NzMyNDYsMTg1NjY0OTU4MywtOD
+Q5ODA2NTQ3LC03Mjg4OTMzNDQsMTcwMjk4MTQ1LC0xMTU2Njc3
+OTY0LDUwODU4NTAwMiw3NDQxNjg2NjgsLTEyOTg2Nzc1MDgsLT
+EzMzQ1MDA2MjYsMTk4NzQ4Mzc4OSwxODE2NDMxNzQ1LC0zODYz
+NDUwMzhdfQ==
 -->
