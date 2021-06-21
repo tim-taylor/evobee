@@ -142,6 +142,7 @@ private:
     float getInnatePref(Wavelength lambda);
     float getGiurfaPref(Wavelength lambda);
     float getHoverflyPref(Wavelength lambda);
+    float getPresetPref(Wavelength lambda);
 
     static const VisualStimulusInfo& getVisStimInfoFromMP(MarkerPoint mp);
     static std::size_t getVisualDataVectorIdx(MarkerPoint mp);

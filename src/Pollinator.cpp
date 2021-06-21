@@ -41,6 +41,7 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_uiVisitedFlowerMemorySize(pc.visitedFlowerMemorySize),
     m_ForagingStrategy(pc.foragingStrategy),
     m_LearningStrategy(pc.learningStrategy),
+    m_iPresetPrefVisDataID(pc.presetPrefVisDataID),
     m_iBoutLength(pc.boutLength),
     m_StepType(pc.stepType),
     m_fStepLength(pc.stepLength),
@@ -49,7 +50,8 @@ Pollinator::Pollinator(const PollinatorConfig& pc, AbstractHive* pHive) :
     m_iMaxPollenCapacity(pc.maxPollenCapacity),
     m_iPollenCarryoverNumVisits(pc.pollenCarryoverNumVisits),
     m_iNectarCollectPerFlowerVisit(pc.nectarCollectPerFlowerVisit),
-    m_InnatePreferenceType(pc.innatePrefType)
+    m_InnatePreferenceType(pc.innatePrefType),
+    m_PresetPrefVisDataPtr(nullptr)
 {
     // first initialise the Pollinator class' static data relating to its visual system,
     // if this has not already been done
@@ -103,6 +105,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_RecentlyVisitedFlowers(other.m_RecentlyVisitedFlowers),
     m_ForagingStrategy(other.m_ForagingStrategy),
     m_LearningStrategy(other.m_LearningStrategy),
+    m_iPresetPrefVisDataID(other.m_iPresetPrefVisDataID),
     m_iBoutLength(other.m_iBoutLength),
     m_StepType(other.m_StepType),
     m_fStepLength(other.m_fStepLength),
@@ -112,6 +115,7 @@ Pollinator::Pollinator(const Pollinator& other) :
     m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits),
     m_iNectarCollectPerFlowerVisit(other.m_iNectarCollectPerFlowerVisit),
     m_InnatePreferenceType(other.m_InnatePreferenceType),
+    m_PresetPrefVisDataPtr(other.m_PresetPrefVisDataPtr),
     m_PerformanceInfoMap(other.m_PerformanceInfoMap)
 {
     // NB we should not be in a situation where we are making a copy of a Pollinator
@@ -147,6 +151,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_RecentlyVisitedFlowers(other.m_RecentlyVisitedFlowers),
     m_ForagingStrategy(other.m_ForagingStrategy),
     m_LearningStrategy(other.m_LearningStrategy),
+    m_iPresetPrefVisDataID(other.m_iPresetPrefVisDataID),
     m_iBoutLength(other.m_iBoutLength),
     m_StepType(other.m_StepType),
     m_fStepLength(other.m_fStepLength),
@@ -156,6 +161,7 @@ Pollinator::Pollinator(Pollinator&& other) noexcept :
     m_iPollenCarryoverNumVisits(other.m_iPollenCarryoverNumVisits),
     m_iNectarCollectPerFlowerVisit(other.m_iNectarCollectPerFlowerVisit),
     m_InnatePreferenceType(other.m_InnatePreferenceType),
+    m_PresetPrefVisDataPtr(other.m_PresetPrefVisDataPtr),
     m_PerformanceInfoMap(other.m_PerformanceInfoMap)
 {
     other.m_id = 0;
@@ -197,6 +203,8 @@ void Pollinator::reset()
     m_iNumFlowersVisitedInBout = 0;
     m_iCollectedNectar = 0;
     m_PreviousLandingSpeciesId = 0;
+    //m_iPresetPrefVisDataID = -1;
+    //m_PresetPrefVisDataPtr = nullptr; // this is constant between generations, so only need to set it once in Hymenoptera constructor
     //m_TargetMP = NO_MARKER_POINT;
     m_TargetReflectance.reset();
     m_RecentlyVisitedFlowers.clear();

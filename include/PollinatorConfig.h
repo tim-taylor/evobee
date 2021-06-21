@@ -39,7 +39,8 @@ struct PollinatorConfig {
         visMatchMinHexDistance(0.05f),
         visMatchMaxConfidence(0.95f),
         visMatchMaxHexDistance(0.19f),
-        visMatchMinConfidence(0.05f)
+        visMatchMinConfidence(0.05f),
+        presetPrefVisDataID(-1)
     {};
 
     std::string species;
@@ -85,6 +86,7 @@ struct PollinatorConfig {
 
     std::string strInnatePrefType;          ///< allowed values: giurfa, flat, hoverfly
     PollinatorInnatePrefType innatePrefType;
+    int   presetPrefVisDataID;
 };
 
 #endif /* _POLLINATORCONFIG_H */

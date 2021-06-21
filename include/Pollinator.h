@@ -374,6 +374,10 @@ protected:
                                                     ///<    for landing on different types of flower in light
                                                     ///<    on its experience of rewards gained
 
+    int             m_iPresetPrefVisDataID;         ///< id number to identify the preset innate preference,
+                                                    ///<    set when param innate-preference-type=preset
+                                                    ///<    The id number is a key in the Hymenoptera::m_sVisData vector
+
     // some constant parameters for this pollinator
     const int       m_iBoutLength;                  ///< Num flower visits allowed before returning to hive [0=unlimited]
     const PollinatorStepType m_StepType;            ///< The type of steps the pollinator makes while foraging (e.g. constant, levy)
@@ -392,6 +396,12 @@ protected:
                                                     ///< from a flower on a single visit
 
     const PollinatorInnatePrefType m_InnatePreferenceType; ///< The pollinator's innate preference type (e.g. giurfa, flat, hoverfly)
+
+    // and some other parameters that have some dependence on the constant parameters above
+
+    const VisualStimulusInfo* m_PresetPrefVisDataPtr; ///< In postprocessing after reading in the config file, m_iPresetPrefVisDataID
+                                                    ///<   is used to find a pointer to the identified entry in vis-data, which is
+                                                    ///<   recorded here (only used when innate-preference-type=preset)
 
     /*
      * Some other properties that might be implemented in future versions include:

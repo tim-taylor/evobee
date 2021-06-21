@@ -192,6 +192,7 @@ void from_json(const json& j, PollinatorConfig& p)
     json_read_opt_param(j, sct, "vis-match-max-hex-distance", p.visMatchMaxHexDistance, 0.19f);
     json_read_opt_param(j, sct, "vis-match-min-confidence", p.visMatchMinConfidence, 0.05f);
     json_read_opt_param(j, sct, "innate-preference-type", p.strInnatePrefType, std::string("giurfa"));
+    json_read_opt_param(j, sct, "innate-pref-preset-target-vis-data-id", p.presetPrefVisDataID, -1);
 
     if (p.maxPollenCapacity < 1)
     {

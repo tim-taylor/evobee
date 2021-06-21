@@ -78,7 +78,7 @@ Hymenoptera::Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive) :
                 //
                 // This way of doing it is actually better because it makes explicit a property that
                 // we rely on elsewhere in the code (e.g. in the Hymenoptera::getVisXXXFromMP methods) -
-                // that the m_VisualPrefences and m_sVisData vectors mirror each other in terms of
+                // that the m_VisualPreferences and m_sVisData vectors mirror each other in terms of
                 // number and order of entries with respect to markerpoints/wavelengths (so the same index
                 // refers to the same wavelength in both vectors).
                 //
@@ -90,6 +90,10 @@ Hymenoptera::Hymenoptera(const PollinatorConfig& pc, AbstractHive* pHive) :
                     float baseProbLandNonTargetIndivDelta = dist(EvoBeeModel::m_sRngEngine);
                     float baseProbLandNonTarget = baseProbLandNonTargetInnate + baseProbLandNonTargetIndivDelta;
                     m_VisualPreferences.emplace_back(&vsi, m_sVisBaseProbLandTarget, baseProbLandNonTarget);
+
+                    if (vsi.id == m_iPresetPrefVisDataID) {
+                        m_PresetPrefVisDataPtr = &vsi;
+                    }
                 }
                 break;
             }
@@ -334,6 +338,9 @@ float Hymenoptera::getInnatePref(Wavelength lambda)
         case PollinatorInnatePrefType::HOVERFLY: {
             return getHoverflyPref(lambda);
         }
+        case PollinatorInnatePrefType::PRESET: {
+            return getPresetPref(lambda);
+        }
         default: {
             throw std::runtime_error("Unknown innate preference type encountered in Hymenoptera::getInnatePref(Wavelength lambda)!");
         }
@@ -370,6 +377,20 @@ float Hymenoptera::getHoverflyPref(Wavelength lambda)
     throw std::runtime_error(msg.str());
 
     return 0.0f; // to keep the compiler happy
+}
+
+// return the preset preference level associated with the given wavelength
+float Hymenoptera::getPresetPref(Wavelength lambda)
+{
+    assert(m_PresetPrefVisDataPtr != nullptr);
+
+    float pref = 0.0f;
+
+    if (m_PresetPrefVisDataPtr->getWavelength() == lambda) {
+        return 1.0f;
+    }
+
+    return pref;
 }
 
 
