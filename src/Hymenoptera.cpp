@@ -556,8 +556,24 @@ const VisualStimulusInfo& Hymenoptera::getVisStimInfoFromMP(MarkerPoint mp)
     }
 }
 
+// Find the first entry in the m_VisualPreferences vector that matches the given wavelength.
+// N.B. if there are multiple entries in the vector that share the same wavelength (remember that
+// wavelengths are stored as ints, rounded to the nearest whole number) then only the first entry
+// will ever get returned by this method.
 VisualPreferenceInfo& Hymenoptera::getVisPrefInfoFromWavelength(Wavelength lambda)
 {
+    // We already have a const version of this method, which is called
+    // Hymenoptera::getVisPrefInfoFromWavelengthConst(Wavelength lambda). Here we wish to do exactly
+    // the same as that method but just return a non-const reference rather than a const one.
+    // The following list uses casts to allow us to do that without duplicating the code. It looks
+    // a bit scarey but is safe in this context. For more info on this approach, see
+    // https://stackoverflow.com/questions/123758/how-do-i-remove-code-duplication-between-similar-const-and-non-const-member-func/123995
+
+    return const_cast<VisualPreferenceInfo&>(static_cast<const Hymenoptera&>(*this).getVisPrefInfoFromWavelengthConst(lambda));
+
+    // Below is the previous explicit implementation, which is an exact duplicate of the const version of
+    // the method.
+    /*
     switch (ModelParams::getColourSystem())
     {
         case ColourSystem::REGULAR_MARKER_POINTS:
@@ -582,11 +598,15 @@ VisualPreferenceInfo& Hymenoptera::getVisPrefInfoFromWavelength(Wavelength lambd
             throw std::runtime_error("Encountered unexpected ColourSystem specification in Hymenoptera::getVisPrefInfoFromWavelength. Aborting!\n");
         }
     }
+    */
 }
 
+// Find the first entry in the m_VisualPreferences vector that matches the given wavelength.
+// N.B. if there are multiple entries in the vector that share the same wavelength (remember that
+// wavelengths are stored as ints, rounded to the nearest whole number) then only the first entry
+// will ever get returned by this method.
 const VisualPreferenceInfo& Hymenoptera::getVisPrefInfoFromWavelengthConst(Wavelength lambda) const
 {
-
     switch (ModelParams::getColourSystem())
     {
         case ColourSystem::REGULAR_MARKER_POINTS:
