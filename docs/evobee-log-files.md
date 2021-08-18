@@ -2,7 +2,7 @@
 
 ## Output log file formats
 
-As shown in the [General parameters](https://tim-taylor.github.io/evobee/evobee-config.html#general-parameters) section of the run configuration page, there are various types of logging data that may be requested from a run. The `log-flags` parameter specifies zero, one or more flags for different kinds of output. The output from all requested flags is recording in a single log file (with filename ending "-log.txt"). Each logging event appears as a separate line in the log file, and each line is a list of comma separated values (so the log file is in .csv format). The first item of every line in a single letter showing the corresponding log-flag associated with the line (e.g. 'Q', 'P', 'F', 'G', 'p', 'f', 'g', 'm', 'n') --- uppercase letters refer to full reporting formats, and lowercase letters to summary reporting formats.
+As shown in the [General parameters](evobee-config.md#general-parameters) section of the [run configuration](evobee-config.md) page, there are various types of logging data that may be requested from a run. The `log-flags` parameter specifies zero, one or more flags for different kinds of output. The output from all requested flags is recording in a single log file (with filename ending "-log.txt"). Each logging event appears as a separate line in the log file, and each line is a list of comma separated values (so the log file is in .csv format). The first item of every line in a single letter showing the corresponding log-flag associated with the line (e.g. 'Q', 'P', 'F', 'G', 'p', 'f', 'g', 'm', 'n') --- uppercase letters refer to full reporting formats, and lowercase letters to summary reporting formats.
 
 To fully understand the specific format of each line, consult the corresponding methods in the `Logger` class.
 
@@ -144,3 +144,6 @@ These are followed by entries for each plant species, each one comprising 4 furt
  15. pollinator's current target marker point
  16. "::"
  17. fields 17 onward record the pollinator's current visual preference data, in groups of three fields. The first field gives the marker point for which the following two fields apply, the second gives the probability of the pollinator landing on that marker point if it is the current target MP, and the third gives the probability of the pollinator landing on that marking point if it is not the current target MP. After these triplets have been recorded for every marker point that the pollinator knows about, the final field of the line in the log file is another "::"
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTk3MTEwMzg3XX0=
+-->
