@@ -8,6 +8,7 @@ The EvoBee source code can be found at [https://github.com/tim-taylor/evobee](ht
 - [High-level description of system (ODD format)](evobee-odd.md)
 - [Installation and compilation](evobee-install.md)
 - [Simulation configuration and execution](evobee-config.md)
+- [Format of output log files](evobee-log-files.md)
 - [Code architecture and documentation](evobee-architecture.md)
 
 ## Authors
