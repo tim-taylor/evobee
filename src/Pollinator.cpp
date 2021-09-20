@@ -822,7 +822,9 @@ void Pollinator::moveLevy()
 
     // We have opted to used the Cauchy distribution rather then the EvoBee::randomLevy()
     // method here, as the latter has an inefficient implementation and there are solid
-    // reasons for using the Cauchy distribution in any case.
+    // reasons for using the Cauchy distribution in any case (see the comments for the
+    // EvoBee::randomCauchy() method in tools.cpp).
+
     //float stepLength = EvoBee::randomLevy(20.0, 1.0);
 
     // for Levy flight we use the parameter m_fStepLength as a multiplier of the value

@@ -71,7 +71,7 @@ namespace EvoBee
      * Return a random variate from a standard Cauchy distribution (with scale=1.0
      * and shift=0.0).
      *
-     * A Cauchy distribution is a stable distribution with a PDF f(x) is approximately
+     * A Cauchy distribution is a stable distribution with a PDF f(x) approximately
      * proportional to x^-2. To be exact, the PDF of the standard Cauchy distribution
      * is f(x)=1/(PI.(1+x^2)). It is therefore a suitable representation of the
      * Levy distribution with an inverse-square law tail that Reynolds et al (2007)
