@@ -329,7 +329,7 @@ FloweringPlant* Environment::findNearestFloweringPlant( const fPos& fpos,
 // that is not in the supplied list of excluded flowers, or nullptr if none found.
 // Optionally, a Pollinator may be supplied as the final argument
 // (pPollinator), which, if present, only considers flowers that the
-// Pollinator can detect (as determined by calling its isDetected(MarkerPoint)
+// Pollinator can detect (as determined by calling its isDetected(reflectanceInfo)
 // method).
 //
 // The third parameter (default value = 1.0) specifies a maximum search radius.
@@ -396,8 +396,8 @@ Flower *Environment::findNearestUnvisitedFlower(const fPos &fpos,
                                         if ((!excludeCurrentPos) || (distSq > EvoBee::FLOAT_COMPARISON_EPSILON))
                                         {
                                             // it's either not at the central focus position or we don't care if it is...
-                                            if (pPollinator == nullptr || 
-                                                pPollinator->isDetected(flower.getCharacteristicWavelength())) {
+                                            if (pPollinator == nullptr ||
+                                                pPollinator->isDetected(flower.getReflectanceInfo())) {
                                                 // if we care about whether the pollinator can detect the flower, then
                                                 // yes, it can detect it...
 

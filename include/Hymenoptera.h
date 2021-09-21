@@ -36,7 +36,7 @@ public:
      * Overridden implementation of a method to make a probabilistic decision,
      * for a given characteristic wavelength, on whether the pollinator can detect it.
      */
-    bool isDetected(Wavelength lambda) const override;
+    bool isDetected(const ReflectanceInfo& rinfo) const override;
 
 protected:
     /**
@@ -63,6 +63,9 @@ protected:
      */
     const VisualPreferenceInfo& getVisPrefInfoFromWavelengthConst(Wavelength lambda) const;
     VisualPreferenceInfo&       getVisPrefInfoFromWavelength(Wavelength lambda);
+
+    const VisualPreferenceInfo& getVisPrefInfoFromStimulusInfo(const VisualStimulusInfo* pVisStimInfo) const;
+    VisualPreferenceInfo&       getVisPrefInfoFromStimulusInfo(const VisualStimulusInfo* pVisStimInfo);
 
     /**
      * Overridden implementation of method to determine whether the pollinator should

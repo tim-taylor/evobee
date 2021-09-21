@@ -712,7 +712,7 @@ bool Pollinator::isVisitCandidateVisual(Flower* pFlower, bool* pJudgedToMatchTar
 // can detect it. This is the base class implementation of this method, which should
 // generally be overridden by subclass implementations for more specific types of
 // pollinator.
-bool Pollinator::isDetected(Wavelength lambda) const
+bool Pollinator::isDetected(const ReflectanceInfo& rinfo) const
 {
     throw std::runtime_error("Calling base class implementation of Pollinator::isDetected. Probably not what was wanted!");
     return true;

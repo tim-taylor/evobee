@@ -633,6 +633,42 @@ const VisualPreferenceInfo& Hymenoptera::getVisPrefInfoFromWavelengthConst(Wavel
     }
 }
 
+const VisualPreferenceInfo& Hymenoptera::getVisPrefInfoFromStimulusInfo(const VisualStimulusInfo* pVisStimInfo) const
+{
+    assert(pVisStimInfo != nullptr);
+
+    switch (ModelParams::getColourSystem())
+    {
+        case ColourSystem::REGULAR_MARKER_POINTS:
+        {
+            std::size_t idx = getVisualDataVectorIdx(pVisStimInfo->getWavelength());
+            return m_VisualPreferences.at(idx);
+        }
+        case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS:
+        {
+            auto it = std::find_if( m_VisualPreferences.begin(),
+                                    m_VisualPreferences.end(),
+                                    [pVisStimInfo](const VisualPreferenceInfo& vpi){return (vpi.getVisualStimulusInfoPtr() == pVisStimInfo);});
+            if (it == m_VisualPreferences.end()) {
+                std::stringstream msg;
+                msg << "Unable to find entry in m_VisualPreferences for pVisStimInfo=" << pVisStimInfo->aux_id << " in Hymenoptera::getVisPrefInfoFromStimulusInfo! Aborting.\n";
+                throw std::runtime_error(msg.str());
+            }
+            return (*it);
+        }
+        default:
+        {
+            throw std::runtime_error("Encountered unexpected ColourSystem specification in Hymenoptera::getVisPrefInfoFromStimulusInfo. Aborting!\n");
+        }
+    }
+}
+
+VisualPreferenceInfo& Hymenoptera::getVisPrefInfoFromStimulusInfo(const VisualStimulusInfo* pVisStimInfo)
+{
+    return const_cast<VisualPreferenceInfo&>(static_cast<const Hymenoptera&>(*this).getVisPrefInfoFromStimulusInfo(pVisStimInfo));
+}
+
+
 float Hymenoptera::getBaseProbLandNonTargetInnate(MarkerPoint mp)
 {
     return getVisStimInfoFromMP(mp).baseProbLandNonTargetInnate;
@@ -641,7 +677,7 @@ float Hymenoptera::getBaseProbLandNonTargetInnate(MarkerPoint mp)
 
 // Make a probabilistic decision, for a given marker point, on whether the pollinator
 // can detect it.
-bool Hymenoptera::isDetected(Wavelength lambda) const
+bool Hymenoptera::isDetected(const ReflectanceInfo& rinfo) const
 {
     float detectionProb = 0.0;
 
@@ -649,13 +685,18 @@ bool Hymenoptera::isDetected(Wavelength lambda) const
     {
         case ColourSystem::REGULAR_MARKER_POINTS:
         {
-            detectionProb  = getMPDetectionProb(lambda);
+            detectionProb  = getMPDetectionProb(rinfo.getCharacteristicWavelength());
             break;
         }
         case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS:
         {
-            const VisualStimulusInfo* pVSI = m_TargetReflectance.getVisDataPtr();
-            if (pVSI == nullptr) throw std::runtime_error("Encountered a null pointer in Hymenoptera::isDetected()");
+            // TODO - QUESTION.... WHY IS THE FOLLOWING CODE LOOKING AT m_TargetReflectance????? It should be
+            // looking at the detection probability associated with the specific flower stimulus under consideration
+            //const VisualStimulusInfo* pVSI = m_TargetReflectance.getVisDataPtr();
+            //if (pVSI == nullptr) throw std::runtime_error("Encountered a null pointer in Hymenoptera::isDetected()");
+            //detectionProb = pVSI->detectionProb;
+
+            const VisualStimulusInfo* pVSI = rinfo.getVisDataPtr();
             detectionProb = pVSI->detectionProb;
             break;
         }
@@ -725,6 +766,7 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower, bool* pJudgedToMatchTa
 
     if (bNoTargetSet)
     {
+        // TODO: check that this is getting applied properly if each species has diff problandnontarget
         float landProb = visPrefInfo.getProbLandNonTarget() + m_sVisProbLandNoTargetSetDelta;
         bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < landProb);
     }
@@ -820,13 +862,36 @@ void Hymenoptera::updateVisualPrefsFickleCircumspect(const Flower* pFlower, int 
 // Update the pollinator's visual preference info according to the stay strategy
 void Hymenoptera::updateVisualPrefsStay(const Flower* pFlower, int nectarCollected)
 {
-    if ((getTargetWavelength() == NO_MARKER_POINT) && (nectarCollected > 0))
-    {
-        const ReflectanceInfo& flowerReflectance = pFlower->getReflectanceInfo();
-        Wavelength flowerLambda = flowerReflectance.getCharacteristicWavelength();
-        VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromWavelength(flowerLambda);
-        setTargetWavelength(flowerLambda);
-        visPrefInfo.setAsTarget();
+    switch (ModelParams::getColourSystem()) {
+        case ColourSystem::REGULAR_MARKER_POINTS: {
+            if ((getTargetWavelength() == NO_MARKER_POINT) && (nectarCollected < 1))
+            {
+                const ReflectanceInfo& flowerReflectance = pFlower->getReflectanceInfo();
+                Wavelength flowerLambda = flowerReflectance.getCharacteristicWavelength();
+                setTargetWavelength(flowerLambda);
+                VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromWavelength(flowerLambda);
+                visPrefInfo.setAsTarget();
+            }
+            break;
+        }
+        case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS: {
+            const VisualStimulusInfo * pTargetVisStimInfo = m_TargetReflectance.getVisDataPtr();
+            if ((pTargetVisStimInfo == nullptr) && (nectarCollected < 1)) {
+                const ReflectanceInfo& flowerReflectance = pFlower->getReflectanceInfo();
+                const VisualStimulusInfo* pVisStimInfo = flowerReflectance.getVisDataPtr();
+                m_TargetReflectance.setVisDataPtr(pVisStimInfo);
+                // TODO the implementation of this method for ARB_DOM_WAVELENGTHS is not fully
+                // implemented. It is fine to run it if we just want the bee to set its target
+                // according to the first rewarding flower it lands on. But it does not currently
+                // update any learning parameters on the go.
+                //VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromStimulusInfo(pVisStimInfo);
+                //visPrefInfo.setAsTarget();
+            }
+            break;
+        }
+        default: {
+            throw std::runtime_error("Hymenoptera::updateVisualPrefsStay() called with unexpected colour system");
+        }
     }
 }
 

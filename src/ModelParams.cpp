@@ -896,10 +896,11 @@ void ModelParams::checkConsistency()
 
             for (auto& pc : m_PollinatorConfigs) {
                 pc.visDataMPStep = 1; // step has no meaning for ARBITRARY_DOMINANT_WAVELENGTHS, so we just ensure it is set to 1 here rather than some random other number
-                if (pc.learningStrategy != PollinatorLearningStrategy::STAY_INNATE) {
-                    // At present the code has only been designed to cope with STAY_INNATE for ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS, so
-                    // throw an error if this is not the case
-                    throw std::runtime_error("Error: with colour-system set to 'arbitrary-dominant-wavelengths' all pollinator's learning strategies should be set to 'stay-innate'");
+                if ((pc.learningStrategy != PollinatorLearningStrategy::STAY_INNATE) &&
+                    (pc.learningStrategy != PollinatorLearningStrategy::STAY)) {
+                    // At present the code has only been designed to cope with STAY_INNATE and STAY for
+                    // ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS, so throw an error if this is not the case
+                    throw std::runtime_error("Error: with colour-system set to 'arbitrary-dominant-wavelengths' all pollinator's learning strategies should be set to 'stay' or 'stay-innate'");
                 }
             }
 

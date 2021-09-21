@@ -164,7 +164,7 @@ public:
      * that is not in the supplied list of excluded flowers, or nullptr if none found.
      * Optionally, a Pollinator may be supplied as the final argument
      * (pPollinator), which, if present, only considers flowers that the
-     * Pollinator can detect (as determined by calling its isDetected(MarkerPoint)
+     * Pollinator can detect (as determined by calling its isDetected(reflectanceInfo)
      * method).
      *
      * @param fRadius (default value = 1.0) specifies a maximum search radius.

@@ -89,7 +89,7 @@ struct VisualPreferenceInfo {
         probLandNonTarget = baseProbLandNonTarget;
     }
 
-    const VisualStimulusInfo* getVisualStimulusInfoPtr() {return pVisStimInfo;}
+    const VisualStimulusInfo* getVisualStimulusInfoPtr() const {return pVisStimInfo;}
     Wavelength getWavelength() const {
         return lambda;
         /*

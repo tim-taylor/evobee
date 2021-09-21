@@ -159,7 +159,7 @@ public:
      * for a given characteristic wavelength, on whether the pollinator can
      * detect it. May be overriden by subclasses.
      */
-    virtual bool isDetected(Wavelength lambda) const;
+    virtual bool isDetected(const ReflectanceInfo& rinfo) const;
 
 
 protected:
