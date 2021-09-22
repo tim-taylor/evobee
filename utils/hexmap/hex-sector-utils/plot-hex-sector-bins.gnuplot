@@ -23,7 +23,7 @@ filebase="hex-sector-bin-means-stds"
 gen="0"
 titletext=""
 zeropos="L"
-xshift=10
+xshift=10.0
 prefs="none"
 prefFile=beePrefFile
 
@@ -39,12 +39,12 @@ if (exists("ARG3")) {
     titletext=ARG3." / "
 }
 
-if (exists("ARG4")) {
+if (exists("ARG4") && ARG4 ne "") {
     zeropos=ARG4
 }
 
-if (exists("ARG5")) {
-    xshift=ARG5
+if (exists("ARG5") && ARG5 ne "") {
+    xshift = real(ARG5)
 }
 
 if (exists("ARG6")) {
@@ -102,6 +102,7 @@ set y2range [0:0.015]
 
 set term png size 800,800
 set output outfile
+
 if (zeropos eq "M") {
     plot infile using (($1*10)+xshift)-(int($1/18)*360):3:4 with boxerrorbars fillcolor "gray70"
 } else {

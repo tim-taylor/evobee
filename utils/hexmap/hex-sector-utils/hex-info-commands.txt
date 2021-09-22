@@ -10,6 +10,7 @@ mkdir raw
 mv * raw/
 mkdir output
 mkdir output/tmp
+mkdir processed
 ln -s /home/tim/evobee-hexmap/hex-sector-utils/* .
 rm old
 
@@ -120,11 +121,17 @@ cd $PRODIR
         done
     done
     for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
-        gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" M;
         gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" Q;
-        gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" L;  
     done
 cd ..
+
+~~~
+
+Alternative forms of the gnuplot command:
+
+> gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" M;
+> gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" L;  
+
 
 
 ~~~~~~~~~~~

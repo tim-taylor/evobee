@@ -238,14 +238,22 @@ void Hymenoptera::initialiseInnateTargetArbitrary()
     if (!cumulativeInnatePrefsInitialised) {
         auto& ptcs = ModelParams::getPlantTypeConfigs();
         for (auto& ptc : ptcs) {
+            // ignore flower if not detectable
+            if (ptc.flowerVisDataPtr->detectionProb < EvoBee::FLOAT_COMPARISON_EPSILON) {
+                continue;
+            }
+
             Wavelength lambda = ptc.getDominantWavelength();
+            // do we already have a record for flowers with this dominant wavelength?
             auto it = prefData.find(lambda);
             if (it == prefData.end()) {
+                // no, this is the first example of this dominant wavelength, so create a new record
                 std::vector<const PlantTypeConfig*> ptcvec {&ptc};
                 float gpref = getInnatePref(lambda);
                 prefData.insert(std::make_pair(lambda, std::make_tuple(1, gpref, 0.0f, 0.0f, 0.0f, ptcvec)));
             }
             else {
+                // yes, we already have other flowers with this dominant wavelength, so update the existing record
                 std::get<0>(it->second)++;               // increment count of number of PTCs with this wavelength
                 std::get<5>(it->second).push_back(&ptc); // add a pointer to this PTC to the vector of pointers
             }
