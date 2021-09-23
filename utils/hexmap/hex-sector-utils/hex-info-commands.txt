@@ -4,15 +4,18 @@
 
 ----------------------------
 
-DTYPE="ausid" / or DTYPE="synth"
+DTYPE="ausid"
+or
+DTYPE="synth"
 
 mkdir raw
 mv * raw/
-mkdir output
-mkdir output/tmp
 mkdir processed
 ln -s /home/tim/evobee-hexmap/hex-sector-utils/* .
 rm old
+
+mkdir output
+mkdir output/tmp
 
 
 ~~~~~~~~~~~~~

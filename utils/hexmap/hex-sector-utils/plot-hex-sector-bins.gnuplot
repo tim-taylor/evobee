@@ -23,7 +23,7 @@ filebase="hex-sector-bin-means-stds"
 gen="0"
 titletext=""
 zeropos="L"
-xshift=10.0
+xshift=5.0
 prefs="none"
 prefFile=beePrefFile
 
