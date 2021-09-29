@@ -429,10 +429,14 @@ const std::string& Hymenoptera::getTypeName() const
 
 float Hymenoptera::getMPDetectionProb(MarkerPoint mp) const
 {
+    // the use of getSingleVisStimInfoFromWavelength(mp) in this method is only a 1-to-1 mapping
+    // for the Regular Marker Points colour system
+    assert(ModelParams::getColourSystem() == ColourSystem::REGULAR_MARKER_POINTS);
+
     float dp = 0.0;
     try
     {
-        const VisualStimulusInfo& info = getVisStimInfoFromMP(mp);
+        const VisualStimulusInfo& info = getSingleVisStimInfoFromWavelength(mp);
         dp = info.detectionProb;
     }
     catch(const std::exception& e)
@@ -447,6 +451,10 @@ float Hymenoptera::getMPDetectionProb(MarkerPoint mp) const
 
 const VisualStimulusInfo& Hymenoptera::getVisStimulusInfo(MarkerPoint mp) const
 {
+    // the use of getSingleVisStimInfoFromWavelength(mp) in this method is only a 1-to-1 mapping
+    // for the Regular Marker Points colour system
+    assert(ModelParams::getColourSystem() == ColourSystem::REGULAR_MARKER_POINTS);
+
     // Define an empty VisualStimulusInfo object and return it at end of method to
     // please the compiler. If the method works correctly we'll actually return
     // the correct data within the try block and ignore this dummy object.
@@ -454,7 +462,7 @@ const VisualStimulusInfo& Hymenoptera::getVisStimulusInfo(MarkerPoint mp) const
 
     try
     {
-        const VisualStimulusInfo& info = getVisStimInfoFromMP(mp);
+        const VisualStimulusInfo& info = getSingleVisStimInfoFromWavelength(mp);
         return info;
     }
     catch(const std::exception& e)
@@ -470,7 +478,7 @@ const VisualStimulusInfo& Hymenoptera::getVisStimulusInfo(MarkerPoint mp) const
 
 // A helper method to calculate the index of a specific entry in the m_sVisData or m_VisualPreferences vectors
 // that corresponds to the given Marker Point
-std::size_t Hymenoptera::getVisualDataVectorIdx(MarkerPoint mp)
+std::size_t Hymenoptera::getVisualDataVectorIdx(Wavelength lambda)
 {
     assert(m_sbStaticsInitialised);
 
@@ -480,32 +488,32 @@ std::size_t Hymenoptera::getVisualDataVectorIdx(MarkerPoint mp)
     {
         case ColourSystem::REGULAR_MARKER_POINTS:
         {
-            if (mp < m_sVisDataMPMin)
+            if (lambda < m_sVisDataMPMin)
             {
                 std::stringstream msg;
                 msg << "Error in Hymenoptera::getVisualDataVectorIdx:" << std::endl
-                    << "  Marker point " << mp << " below minimum value defined in config file (" << m_sVisDataMPMin << ")" << std::endl;
+                    << "  Marker point " << lambda << " below minimum value defined in config file (" << m_sVisDataMPMin << ")" << std::endl;
                 throw std::runtime_error(msg.str());
             }
 
-            if ((mp - m_sVisDataMPMin) % m_sVisDataMPStep != 0)
+            if ((lambda - m_sVisDataMPMin) % m_sVisDataMPStep != 0)
             {
                 std::stringstream msg;
                 msg << "Error in Hymenoptera::getVisualDataVectorIdx:" << std::endl
-                    << "  Marker point " << mp << " is not at expected step size (" << m_sVisDataMPStep
+                    << "  Marker point " << lambda << " is not at expected step size (" << m_sVisDataMPStep
                     << ") above minimum value (" << m_sVisDataMPMin << ")" << std::endl;
                 throw std::runtime_error(msg.str());
             }
 
-            if (mp > m_sVisDataMPMax)
+            if (lambda > m_sVisDataMPMax)
             {
                 std::stringstream msg;
                 msg << "Error in Hymenoptera::getVisualDataVectorIdx:" << std::endl
-                    << "  Marker point " << mp << " is above maximum value defined in config file (" << m_sVisDataMPMax << ")" << std::endl;
+                    << "  Marker point " << lambda << " is above maximum value defined in config file (" << m_sVisDataMPMax << ")" << std::endl;
                 throw std::runtime_error(msg.str());
             }
 
-            idx = (std::size_t)((mp - m_sVisDataMPMin) / m_sVisDataMPStep);
+            idx = (std::size_t)((lambda - m_sVisDataMPMin) / m_sVisDataMPStep);
             break;
         }
         case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS:
@@ -515,14 +523,14 @@ std::size_t Hymenoptera::getVisualDataVectorIdx(MarkerPoint mp)
 
             for (idx = 0; idx < m_sVisData.size(); ++idx)
             {
-                if (m_sVisData[idx].getWavelength() == mp) {
+                if (m_sVisData[idx].getWavelength() == lambda) {
                     break;
                 }
             }
             if (idx >= m_sVisData.size()) {
                 std::stringstream msg;
                 msg << "Error in Hymenoptera::getVisualDataVectorIdx:"
-                    << "  Wavelength " << mp << " not found in vis-data.\n";
+                    << "  Wavelength " << lambda << " not found in vis-data.\n";
                 throw std::runtime_error(msg.str());
             }
             break;
@@ -537,22 +545,28 @@ std::size_t Hymenoptera::getVisualDataVectorIdx(MarkerPoint mp)
 }
 
 
-const VisualStimulusInfo& Hymenoptera::getVisStimInfoFromMP(MarkerPoint mp)
+const VisualStimulusInfo& Hymenoptera::getSingleVisStimInfoFromWavelength(Wavelength lambda)
 {
     switch (ModelParams::getColourSystem())
     {
         case ColourSystem::REGULAR_MARKER_POINTS:
         {
-            std::size_t idx = getVisualDataVectorIdx(mp);
+            std::size_t idx = getVisualDataVectorIdx(lambda);
             return m_sVisData.at(idx);
         }
         case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS: {
+            // NB there may be multiple VisStimInfo records in m_sVisData associated
+            // with a given dominant wavelength (lambda), and if that is the case then
+            // the following code will only return the first one found.
+            // So calling this method is legitimate only if we know that the information we want to
+            // extract from the returned VisualStimulusInfo record will be the same across all
+            // records with this wavelength (e.g. this IS the case for baseProbLandNonTargetInnate).
             auto it = std::find_if( m_sVisData.begin(),
                                     m_sVisData.end(),
-                                    [mp](VisualStimulusInfo& vsi){return (vsi.getWavelength() == mp);});
+                                    [lambda](VisualStimulusInfo& vsi){return (vsi.getWavelength() == lambda);});
             if (it == m_sVisData.end()) {
                 std::stringstream msg;
-                msg << "Unable to find entry in m_sVisData for mp=" << mp << " in Hymenoptera::getVisStimInfoFromMP! Aborting.\n";
+                msg << "Unable to find entry in m_sVisData for lambda=" << lambda << " in Hymenoptera::getVisStimInfoFromMP! Aborting.\n";
                 throw std::runtime_error(msg.str());
             }
             return (*it);
@@ -677,9 +691,14 @@ VisualPreferenceInfo& Hymenoptera::getVisPrefInfoFromStimulusInfo(const VisualSt
 }
 
 
-float Hymenoptera::getBaseProbLandNonTargetInnate(MarkerPoint mp)
+float Hymenoptera::getBaseProbLandNonTargetInnate(Wavelength lambda)
 {
-    return getVisStimInfoFromMP(mp).baseProbLandNonTargetInnate;
+    // NB although there may be multiple VisStimInfo records associated with a
+    // given dominant wavelength (lambda), all records with the same lambda should
+    // have the same baseProbLandNonTargetInnate (because innate preferences are
+    // determined according to dominant wavelength). So we can legitimately have
+    // a 1-to-1 mapping from wavelength to baseProb here.
+    return getSingleVisStimInfoFromWavelength(lambda).baseProbLandNonTargetInnate;
 }
 
 
@@ -698,12 +717,6 @@ bool Hymenoptera::isDetected(const ReflectanceInfo& rinfo) const
         }
         case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS:
         {
-            // TODO - QUESTION.... WHY IS THE FOLLOWING CODE LOOKING AT m_TargetReflectance????? It should be
-            // looking at the detection probability associated with the specific flower stimulus under consideration
-            //const VisualStimulusInfo* pVSI = m_TargetReflectance.getVisDataPtr();
-            //if (pVSI == nullptr) throw std::runtime_error("Encountered a null pointer in Hymenoptera::isDetected()");
-            //detectionProb = pVSI->detectionProb;
-
             const VisualStimulusInfo* pVSI = rinfo.getVisDataPtr();
             detectionProb = pVSI->detectionProb;
             break;
@@ -867,12 +880,14 @@ void Hymenoptera::updateVisualPrefsFickleCircumspect(const Flower* pFlower, int 
 }
 
 
-// Update the pollinator's visual preference info according to the stay strategy
+// Update the pollinator's visual preference info according to the stay strategy, i.e.
+// pollinator sets target to the first flower it lands on from which it receives a reward,
+// and keeps it for the rest of the bout
 void Hymenoptera::updateVisualPrefsStay(const Flower* pFlower, int nectarCollected)
 {
     switch (ModelParams::getColourSystem()) {
         case ColourSystem::REGULAR_MARKER_POINTS: {
-            if ((getTargetWavelength() == NO_MARKER_POINT) && (nectarCollected < 1))
+            if ((getTargetWavelength() == NO_MARKER_POINT) && (nectarCollected > 0))
             {
                 const ReflectanceInfo& flowerReflectance = pFlower->getReflectanceInfo();
                 Wavelength flowerLambda = flowerReflectance.getCharacteristicWavelength();
@@ -884,16 +899,12 @@ void Hymenoptera::updateVisualPrefsStay(const Flower* pFlower, int nectarCollect
         }
         case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS: {
             const VisualStimulusInfo * pTargetVisStimInfo = m_TargetReflectance.getVisDataPtr();
-            if ((pTargetVisStimInfo == nullptr) && (nectarCollected < 1)) {
+            if ((pTargetVisStimInfo == nullptr) && (nectarCollected > 0)) {
                 const ReflectanceInfo& flowerReflectance = pFlower->getReflectanceInfo();
                 const VisualStimulusInfo* pVisStimInfo = flowerReflectance.getVisDataPtr();
                 m_TargetReflectance.setVisDataPtr(pVisStimInfo);
-                // TODO the implementation of this method for ARB_DOM_WAVELENGTHS is not fully
-                // implemented. It is fine to run it if we just want the bee to set its target
-                // according to the first rewarding flower it lands on. But it does not currently
-                // update any learning parameters on the go.
-                //VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromStimulusInfo(pVisStimInfo);
-                //visPrefInfo.setAsTarget();
+                VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromStimulusInfo(pVisStimInfo);
+                visPrefInfo.setAsTarget();
             }
             break;
         }

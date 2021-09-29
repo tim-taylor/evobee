@@ -147,9 +147,9 @@ private:
     float getHoverflyPref(Wavelength lambda);
     float getPresetPref(Wavelength lambda);
 
-    static const VisualStimulusInfo& getVisStimInfoFromMP(MarkerPoint mp);
-    static std::size_t getVisualDataVectorIdx(MarkerPoint mp);
-    static float getBaseProbLandNonTargetInnate(MarkerPoint mp);
+    static const VisualStimulusInfo& getSingleVisStimInfoFromWavelength(Wavelength lambda);
+    static std::size_t getVisualDataVectorIdx(Wavelength lambda);
+    static float getBaseProbLandNonTargetInnate(Wavelength lambda);
 };
 
 #endif /* _HYMENOPTERA_H */

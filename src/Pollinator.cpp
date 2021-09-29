@@ -1060,39 +1060,6 @@ float Pollinator::confidenceMatchesTarget(const ReflectanceInfo& stimulus) const
 }
 
 
-// - this is now obsolete - use confidenceMatchesTarget() instead
-/*
-bool Pollinator::matchesTargetMP(const ReflectanceInfo& stimulus) const
-{
-    const float minHexDistance = 0.05;
-    const float maxHexDistance = 0.19;
-
-    bool bMatch = false;
-
-    const VisualStimulusInfo& infoStimulus = getVisStimulusInfo(stimulus.getMarkerPoint());
-    const VisualStimulusInfo& infoTarget = getVisStimulusInfo(m_TargetMP);
-    float hexDistance = getVisHexDistance(infoStimulus, infoTarget);
-
-    if (hexDistance <= minHexDistance)
-    {
-        bMatch = true;
-    }
-    else if (hexDistance >= maxHexDistance)
-    {
-        bMatch = false;
-    }
-    else
-    {
-        float randNum = EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine);
-        float probOfRecognisingDiff = (hexDistance - minHexDistance) / (maxHexDistance - minHexDistance);
-        bMatch = (randNum > probOfRecognisingDiff);
-    }
-
-    return bMatch;
-}
-*/
-
-
 float Pollinator::getVisHexDistance(const VisualStimulusInfo &infoStimulus,
                                     const VisualStimulusInfo &infoTarget,
                                     bool usePureSpectralPoints /* = false*/)
