@@ -592,35 +592,6 @@ VisualPreferenceInfo& Hymenoptera::getVisPrefInfoFromWavelength(Wavelength lambd
     // https://stackoverflow.com/questions/123758/how-do-i-remove-code-duplication-between-similar-const-and-non-const-member-func/123995
 
     return const_cast<VisualPreferenceInfo&>(static_cast<const Hymenoptera&>(*this).getVisPrefInfoFromWavelengthConst(lambda));
-
-    // Below is the previous explicit implementation, which is an exact duplicate of the const version of
-    // the method.
-    /*
-    switch (ModelParams::getColourSystem())
-    {
-        case ColourSystem::REGULAR_MARKER_POINTS:
-        {
-            std::size_t idx = getVisualDataVectorIdx(lambda);
-            return m_VisualPreferences.at(idx);
-        }
-        case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS:
-        {
-            auto it = std::find_if( m_VisualPreferences.begin(),
-                                    m_VisualPreferences.end(),
-                                    [lambda](VisualPreferenceInfo& vpi){return (vpi.getWavelength() == lambda);});
-            if (it == m_VisualPreferences.end()) {
-                std::stringstream msg;
-                msg << "Unable to find entry in m_VisualPreferences for wavelength=" << lambda << " in Hymenoptera::getVisPrefInfoFromWavelength! Aborting.\n";
-                throw std::runtime_error(msg.str());
-            }
-            return (*it);
-        }
-        default:
-        {
-            throw std::runtime_error("Encountered unexpected ColourSystem specification in Hymenoptera::getVisPrefInfoFromWavelength. Aborting!\n");
-        }
-    }
-    */
 }
 
 // Find the first entry in the m_VisualPreferences vector that matches the given wavelength.
@@ -670,7 +641,7 @@ const VisualPreferenceInfo& Hymenoptera::getVisPrefInfoFromStimulusInfo(const Vi
         {
             auto it = std::find_if( m_VisualPreferences.begin(),
                                     m_VisualPreferences.end(),
-                                    [pVisStimInfo](const VisualPreferenceInfo& vpi){return (vpi.getVisualStimulusInfoPtr() == pVisStimInfo);});
+                                    [pVisStimInfo](const VisualPreferenceInfo& vpi){return (vpi.getVisualStimulusInfoPtr()->id == pVisStimInfo->id);});
             if (it == m_VisualPreferences.end()) {
                 std::stringstream msg;
                 msg << "Unable to find entry in m_VisualPreferences for pVisStimInfo=" << pVisStimInfo->aux_id << " in Hymenoptera::getVisPrefInfoFromStimulusInfo! Aborting.\n";
