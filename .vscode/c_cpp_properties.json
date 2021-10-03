@@ -31,7 +31,9 @@
             "name": "EvoBee",
             "includePath": [
                 "${workspaceFolder}/**",
+                "/home/tim/evobee/code/evobee/include",                
                 "/home/tim/Dropbox/research/evobee/code/evobee/include",
+                "/hddhome/tim/Dropbox/research/evobee/code/evobee/include",
                 "/home/tim/evobee/code/evobee/include",
                 "${workspaceFolder}/3rd-party/nlohmann-json",
                 "${workspaceFolder}/include"
@@ -40,7 +42,7 @@
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64",
+            "intelliSenseMode": "${default}",
             "configurationProvider": "vector-of-bool.cmake-tools"
         }
     ],

@@ -758,7 +758,6 @@ bool Hymenoptera::isVisitCandidateVisual(Flower* pFlower, bool* pJudgedToMatchTa
 
     if (bNoTargetSet)
     {
-        // TODO: check that this is getting applied properly if each species has diff problandnontarget
         float landProb = visPrefInfo.getProbLandNonTarget() + m_sVisProbLandNoTargetSetDelta;
         bIsVisitCandidate = (EvoBeeModel::m_sUniformProbDistrib(EvoBeeModel::m_sRngEngine) < landProb);
     }
@@ -863,8 +862,6 @@ void Hymenoptera::updateVisualPrefsStay(const Flower* pFlower, int nectarCollect
                 const ReflectanceInfo& flowerReflectance = pFlower->getReflectanceInfo();
                 Wavelength flowerLambda = flowerReflectance.getCharacteristicWavelength();
                 setTargetWavelength(flowerLambda);
-                VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromWavelength(flowerLambda);
-                visPrefInfo.setAsTarget();
             }
             break;
         }
@@ -873,9 +870,7 @@ void Hymenoptera::updateVisualPrefsStay(const Flower* pFlower, int nectarCollect
             if ((pTargetVisStimInfo == nullptr) && (nectarCollected > 0)) {
                 const ReflectanceInfo& flowerReflectance = pFlower->getReflectanceInfo();
                 const VisualStimulusInfo* pVisStimInfo = flowerReflectance.getVisDataPtr();
-                m_TargetReflectance.setVisDataPtr(pVisStimInfo);
-                VisualPreferenceInfo& visPrefInfo = getVisPrefInfoFromStimulusInfo(pVisStimInfo);
-                visPrefInfo.setAsTarget();
+                setTargetWavelength(pVisStimInfo);
             }
             break;
         }

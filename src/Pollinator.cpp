@@ -1103,10 +1103,11 @@ void Pollinator::setTargetWavelength(const VisualStimulusInfo* pVSI) {
     {
         case ColourSystem::REGULAR_MARKER_POINTS:{
             m_TargetReflectance.setMarkerPoint(pVSI->lambda);
-            return;
+            break;
         }
         case ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS:{
             m_TargetReflectance.setVisDataPtr(pVSI);
+            break;
         }
         default:{
             throw std::runtime_error("Unexpected ColourSystem encountered in Pollinator::setTargetWavelength(const VisualStimulusInfo*)");
