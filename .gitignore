@@ -56,3 +56,4 @@ utils/hexmap/old/
 .vscode
 src/.vscode
 *.1
+.cspell/

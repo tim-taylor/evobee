@@ -83,7 +83,11 @@ protected:
 
 private:
     std::vector<VisualPreferenceInfo>       m_VisualPreferences;///< record of the pollinator's current preferences for
-                                                                ///< difference visual stimuli
+                                                                ///< difference visual stimuli. This visual preferences vector
+                                                                ///< contains an entry for every entry in m_sVisData.
+                                                                ///< When ColourSystem == ARBITRARY_DOMINANT_WAVELENGTHS each
+                                                                ///< VisualPreferenceInfo entry in the vector has a pointer to
+                                                                ///< the corresponding VisualStimulusInfo entry in m_sVisData.
 
     static std::vector<VisualStimulusInfo>  m_sVisData;         ///< vector containing data relating to pollinator's
                                                                 ///< visual sensation of stimuli at different
