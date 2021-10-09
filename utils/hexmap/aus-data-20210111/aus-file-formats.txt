@@ -1,0 +1,51 @@
+======> aus-dom-wavelength-data.csv (and similar files)
+Aus ID, Dominant Wavelength, 
+Sample hex x, Sample hex y,
+Quadrant, 
+Pure Spectral intersect segment end 1 wavelength, 
+Pure Spectral intersect segment end 1 hex x, Pure Spectral intersect segment end 1 hex y,
+Pure Spectral intersect segment end 2 wavelength, 
+Pure Spectral intersect segment end 2 hex x, Pure Spectral intersect segment end 2 hex y, 
+Sample intersect hex x, Sample intersect hex y
+
+
+aus-dom-wavelength-data.csv
+1, 468.7088, 0.233699, 0.181745, 2, 460, 0.50516, 0.61102, 470, 0.73044, 0.53571, 0.7013525, 0.5454337
+aus-dom-wavelength-data-ex-orchid-and-no-dom-dataset-1-only.csv
+1, 468.7088, 0.233699, 0.181745, 2, 460, 0.50516, 0.61102, 470, 0.73044, 0.53571, 0.7013525, 0.5454337
+
+
+======> aus-giurfa-prefs.csv
+AUSID, DOM_LAMBDA, PREF
+1, 469, 5.918175
+
+
+======> aus-hex-pos-data.csv
+AUSID, E(U), E(B), E(G), HEXX, HEXY
+1,0.538043,0.854714,0.807895,0.233699,0.181745   
+
+
+
+======> aus-hex-space-info.csv
+AUSID, HEXX, HEXY, THETA, DOM_LAMBDA, DIST_FROM_ORIGIN
+1, 0.23370, 0.18175, 37.87179, 469, 0.29606
+
+
+
+======> aus-species-info.csv
+1,Apiaceae,Actinotus_helianthi
+
+
+
+
+vis-data in cfg.json files of new runs
+
+ [28, 448, 1, 0.359025, 0.126955, 0.284811, 0.294475, 0.660625, 0.0714262, 255],
+ EID, DOML, DETECT, E(G), HEXX, HEXY, INTX, INTY, BASEPROBLNT, AUSID
+ 
+ grep "^255," aus-dom-wavelength-data-ex-orchid-and-no-dom-dataset-1-only.csv
+255, 447.9692, 0.126955, 0.284811, 2, 440, 0.14129, 0.6723, 450, 0.33351, 0.65765, 0.2944748, 0.660625
+
+
+
+for N in `cat aus-ids-dataset-1-only-no-orchids.txt`; do D=`grep "^"$N"," aus-hex-pos-data.csv`; D=$D", "`grep "^"$N"," aus-hex-space-info.csv`; IFS=', ' read -r -a ARY <<< "$D"; echo ${ARY[0]}", "${ARY[9]}", "${ARY[3]}; done > aus-ds1-no-orchids-gc-by-sector.csv
