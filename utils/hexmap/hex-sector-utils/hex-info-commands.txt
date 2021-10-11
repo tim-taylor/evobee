@@ -107,6 +107,22 @@ for G in `seq $GEN_START $GEN_DELTA $GEN_END`; do
 done
 cd ..
 
+
+
+~~~~~ALTERNATIVE FOR SAMPLE-WISE ANALYSIS~~~~~
+
+cd $PRODIR
+for G in `seq $GEN_START $GEN_DELTA $GEN_END`; do 
+    for S in `seq 1 30`; do
+        for B in {0..35}; do
+            grep -h "^$B," *sample-$S-*-gen-$G.csv.binned-w10.csv | gawk -F, '{$2+=0; print $2}' > binned-numflowers-across-runs-sample-$S-gen-$G-bin-$B.csv
+        done
+    done
+done
+cd ..
+
+
+
 ## STEP 4.
 ## Finally, calculate the mean and standard deviation of the previously calculated
 ## counts of flowers in each bin at each gen, and plot a histogram for each
@@ -127,6 +143,30 @@ cd $PRODIR
         gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" Q 5 bee;
     done
 cd ..
+
+
+
+~~~~~ALTERNATIVE FOR SAMPLE-WISE ANALYSIS~~~~~
+
+INFILE_BASE="binned-numflowers-across-runs"
+OUTFILE_BASE="binned-numflowers-across-runs-means-stds"
+NUM_BINS=36
+BIN_WIDTH=10
+cd $PRODIR
+    for S in `seq 1 30`; do 
+        for G in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+            rm -f $OUTFILE_BASE-w$BIN_WIDTH-sample-$S-gen-$G.csv
+            for B in `seq 0 $(( NUM_BINS - 1 ))`; do
+                Rscript ../calc-95-conf-int.r $INFILE_BASE-sample-$S-gen-$G-bin-$B.csv $B >> $OUTFILE_BASE-w$BIN_WIDTH-sample-$S-gen-$G.csv
+            done
+        done
+        for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+            gnuplot -c ../plot-hex-sector-bins.gnuplot $OUTFILE_BASE-w$BIN_WIDTH-sample-$S $N "$TITLE" Q 5 bee;
+        done
+    done
+cd ..
+
+
 
 ~~~
 
