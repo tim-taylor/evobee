@@ -83,6 +83,7 @@ for F in `ls $LOGDIR/*log.txt`; do
 done
 
 
+
 ## STEP 2.
 ## For each of the augmented files just created, now combine the 
 ## individual species data into bins, showing the number of flowers in each bin
@@ -90,10 +91,29 @@ done
 ## In the following, there may be too many files for ls to cope with, so use find instead
 ## See https://unix.stackexchange.com/questions/38955/argument-list-too-long-for-ls
 
+
+for G in `seq $GEN_START $GEN_DELTA $GEN_END`; do 
+    for F in `find $PRODIR -regex ".*processed-gen-$G.csv"`; do 
+        OUTFILE2=$PRODIR/`basename $F`".binned-w10.csv"
+        gawk -f gen-binned-hex-plot-data.awk $F > $OUTFILE2
+    done
+done
+
+
+~~~ OLD ~~~
+for F in `find $PRODIR -regex ".*processed-gen-[0-9]+.csv"`; do 
+    OUTFILE2=$PRODIR/`basename $F`".binned-w10.csv"
+    gawk -f gen-binned-hex-plot-data.awk $F > $OUTFILE2
+done
+
+
+~~~ OBSOLETE ~~~
 for F in `find $PRODIR -name "*processed-gen-[0-9]*.csv"`; do 
     OUTFILE2=$PRODIR/`basename $F`".binned-w10.csv"
     gawk -f gen-binned-hex-plot-data.awk $F > $OUTFILE2
 done
+
+
 
 ## STEP 3.
 ## Now create files that show, for each generation and each bin, the total
@@ -146,6 +166,12 @@ cd ..
 
 
 
+~~~TO GENERATE A MOVIE FROM PNG FILES~~~
+
+ffmpeg -framerate 5 -pattern_type glob -i '*.png' -c:v libx264 -pix_fmt yuv420p out.mp4
+
+
+
 ~~~~~ALTERNATIVE FOR SAMPLE-WISE ANALYSIS~~~~~
 
 INFILE_BASE="binned-numflowers-across-runs"
@@ -161,7 +187,8 @@ cd $PRODIR
             done
         done
         for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
-            gnuplot -c ../plot-hex-sector-bins.gnuplot $OUTFILE_BASE-w$BIN_WIDTH-sample-$S $N "$TITLE" Q 5 bee;
+            PLOT_TITLE=$TITLE" SAMPLE $S"
+            gnuplot -c ../plot-hex-sector-bins.gnuplot $OUTFILE_BASE-w$BIN_WIDTH-sample-$S $N "$PLOT_TITLE" Q 5 bee;
         done
     done
 cd ..
