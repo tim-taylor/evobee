@@ -6,6 +6,7 @@
 
 #include <random>
 #include <cassert>
+#include <cmath>
 #include <algorithm>
 #include <iostream>
 #include <sstream>
@@ -15,12 +16,16 @@
 #include "FloweringPlant.h"
 #include "Patch.h"
 #include "ModelParams.h"
+#include "Hymenoptera.h"
+#include "tools.h"
 
 
 // Initialise static members of class
 unsigned int FloweringPlant::m_sNextFreeId = 1;
 unsigned int FloweringPlant::m_sNextFreeSpeciesId = 1;
 std::map<unsigned int, std::string> FloweringPlant::m_sSpeciesMap;
+std::map<unsigned int, std::string> FloweringPlant::m_sInitialSpeciesMap;
+std::map<unsigned int, std::vector<unsigned int>> FloweringPlant::m_sSpeciesHexBinMap;
 std::map<unsigned int, std::vector<unsigned int>> FloweringPlant::m_sCloggingMap;
 bool FloweringPlant::m_sbCloggingAll = false;
 bool FloweringPlant::m_sbCloggingNone = false;
@@ -274,6 +279,25 @@ unsigned int FloweringPlant::getSpeciesId(const std::string& name)
 }
 
 
+// Static method to return a string representing the species indicated by the given speciesId
+const std::string& FloweringPlant::getSpecies(unsigned int speciesId)
+{
+    auto it = std::find_if( m_sSpeciesMap.begin(),
+                            m_sSpeciesMap.end(),
+                            [speciesId](const std::pair<unsigned int, std::string>& pair)
+                                {return (pair.first == speciesId);} );
+
+    if (it == m_sSpeciesMap.end())
+    {
+        std::stringstream msg;
+        msg << "Unable to find name for plant species " << speciesId;
+        throw std::runtime_error(msg.str());
+    }
+
+    return it->second;
+}
+
+
 // Return the MarkerPoint of the specified flower
 //
 // @todo Asserts that the flower is valid, but should we throw an exception if not?
@@ -377,6 +401,86 @@ float FloweringPlant::reproSeedDispersalRadiusStdDev()
         throw std::runtime_error("FloweringPlant::reproSeedDispersalRadiusStdDev no config defined");
         return 1.0;
     }
+}
+
+
+void FloweringPlant::initialiseRandomIntroMaps(int initNumSpeciesPerBin)
+{
+    assert(ModelParams::randomIntro());
+    assert(ModelParams::getColourSystem() == ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS);
+    assert(m_sSpeciesHexBinMap.empty());
+    assert(m_sInitialSpeciesMap.empty());
+
+    // initialise the species hex bin map
+    //
+    // for each entry in the PlantTypeConfig array, calculate its hex sector bin and
+    // add it to the appropriate entry in m_sSpeciesHexBinMap (or create a new entry
+    // if none exists already)
+
+    const std::vector<PlantTypeConfig>& ptcs = ModelParams::getPlantTypeConfigs();
+
+    for (auto& ptc : ptcs) {
+        unsigned int speciesId = getSpeciesId(ptc.species);
+        const VisualStimulusInfo* pVSI = ptc.flowerVisDataPtr;
+
+        float angle = ((std::atan2(pVSI->hexx, pVSI->hexy) * 180.0) / EvoBee::PI);
+        if (angle < 0.0) angle += 360.0;
+        unsigned int bin = (int)(angle / 10.0);
+
+        assert(bin < 36);
+
+        auto it = m_sSpeciesHexBinMap.find(bin);
+        if (it != m_sSpeciesHexBinMap.end()) {
+            it->second.push_back(speciesId);
+        }
+        else {
+            std::vector<unsigned int> newvec { speciesId };
+            m_sSpeciesHexBinMap.insert(std::make_pair(bin, newvec));
+        }
+    }
+
+    if (ModelParams::verbose()) {
+        std::cout << "&&&& Species Bin Hex Map has " << m_sSpeciesHexBinMap.size() << " bins:" << std::endl;
+        int i=0;
+        for (auto it : m_sSpeciesHexBinMap) {
+            std::cout << "Index " << i++ << ", hex bin " << it.first << ", num species " << it.second.size() << std::endl;
+        }
+    }
+
+    // initialise the initial species map
+    for (auto& bin : m_sSpeciesHexBinMap) {
+        int numSpeciesInBin = bin.second.size();
+        int numSpeciesToAdd = std::min(numSpeciesInBin, initNumSpeciesPerBin);
+        std::vector<unsigned int> indicesAll;
+        for (int n=0; n<numSpeciesInBin; n++) {
+            indicesAll.push_back(n);
+        }
+        if (numSpeciesToAdd < numSpeciesInBin) {
+            std::shuffle(indicesAll.begin(), indicesAll.end(), EvoBeeModel::m_sRngEngine);
+        }
+        for (int n=0; n<numSpeciesToAdd; n++) {
+            unsigned int speciesId = bin.second.at(n);
+            std::string speciesName = getSpecies(speciesId);
+            m_sInitialSpeciesMap.insert(std::make_pair(speciesId, speciesName));
+        }
+    }
+}
+
+
+const std::map<unsigned int, std::string>& FloweringPlant::getInitialSpeciesMap()
+{
+    if (ModelParams::randomIntro()) {
+        assert(!m_sInitialSpeciesMap.empty());
+        return m_sInitialSpeciesMap;
+    }
+    else {
+        return m_sSpeciesMap;
+    }
+}
+
+const std::map<unsigned int, std::vector<unsigned int>>& FloweringPlant::getSpeciesHexBinMap()
+{
+    return m_sSpeciesHexBinMap;
 }
 
 

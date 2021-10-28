@@ -67,6 +67,12 @@ public:
     static void setPtdAutoDistribAreaMargin(float margin);
     static void setPtdAutoDistribRegular(bool regular);
     static void setPtdAutoDistribSeedOutflowAllowed(bool allowed);
+    static void setPtdRandomIntro(bool randomIntro);
+    static void setPtdRandomIntroInitNumSpeciesPerBin(int numSpeciesPerBin);
+    static void setPtdRandomIntroInitNumPatchesPerSpecies(int numPatchesPerSpecies);
+    static void setPtdRandomIntroOngoingPeriod(int period);
+    static void setPtdRandomIntroOngoingPatchDensity(float density);
+    static void setPtdRandomIntroOngoingPatchSquareLength(int length);
 
     static void addHiveConfig(HiveConfig& hc);
     static void addPlantTypeDistributionConfig(PlantTypeDistributionConfig& pc);
@@ -114,6 +120,10 @@ public:
     static GenTerminationType getGenTerminationType() {return m_GenTerminationType;}
     static int   getGenTerminationIntParam() {return m_iGenTerminationParam;}
     static float getGenTerminationFloatParam() {return m_fGenTerminationParam;}
+    static bool  randomIntro() {return m_bPtdRandomIntro;}
+    static int   getPtdRandomIntroOngoingPeriod() {return m_iPtdRandomIntroOngoingPeriod;}
+    static float getPtdRandomIntroOngoingPatchDensity() {return m_fPtdRandomIntroOngoingPatchDensity;}
+    static int   getPtdRandomIntroOngoingPatchSquareLength() {return m_iPtdRandomIntroOngoingPatchSquareLength;}
     static MarkerPoint getEnvBackgroundReflectanceMP() {return m_EnvBackgroundReflectanceMP;}
     static const std::string& getRngSeedStr() {return m_strRngSeed;}
     static const std::string& getLogDir() {return m_strLogDir;}
@@ -196,6 +206,15 @@ private:
                                                 ///< (expressed in percentage of area's smaller side length)
     static bool  m_bPtdAutoDistribRegular;  ///< Are the patches distributed in a regular or stochastic pattern?
     static bool  m_bPtdAutoDistribSeedOutflowAllowed; ///< Can seeds spread beyond patches between generations?
+    static bool  m_bPtdRandomIntro;                     ///< Are plant species to be introduced at random at gen 0 and as run progresses?
+    static int   m_iPtdRandomIntroInitNumSpeciesPerBin; ///< if m_bPtdRandomIntro=true, this is the number of species we pick
+                                                        ///<   from each hex sector bin to initialise gen 0
+    static int   m_iPtdRandomIntroOngoingPeriod;        ///< if m_PtdRandomIntro=true, this is the period (number of generations)
+                                                        ///<   at which new species are introduced into the environment
+    static float m_fPtdRandomIntroOngoingPatchDensity;  ///< if m_PtdRandomIntro=true, this is the density of plants of a random species
+                                                        ///<   that are introduced into the environment each period
+    static int   m_iPtdRandomIntroOngoingPatchSquareLength;///< if m_PtdRandomIntro=true, this is the size (side length of square) of patch
+                                                        ///<   into which the new plants will be placed
     static std::string  m_strNoSpecies;     ///< String representing the absence of a plant species in an area, used internally only
     static unsigned int m_sNextFreePtdcId;  ///< Each PlantTypeDistributionConfig gets its own unique id
     static std::string m_strRngSeed;        ///< Seed string used to seed RNG

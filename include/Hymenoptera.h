@@ -38,6 +38,8 @@ public:
      */
     bool isDetected(const ReflectanceInfo& rinfo) const override;
 
+    static const std::vector<VisualStimulusInfo>& getVisData() {return m_sVisData;}
+
 protected:
     /**
      * Returns the probability that this pollinator detects a visual stimulus which

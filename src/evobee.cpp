@@ -733,6 +733,36 @@ void processJsonFile(std::ifstream& ifs)
                             }
                             ModelParams::setPtdAutoDistribSeedOutflowAllowed(itPTDs.value());
                         }
+                        else if (key == "random-intro" && itPTDs.value().is_boolean()) {
+                            if (verbose) {
+                                std::cout << "PTD random intro -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdRandomIntro(itPTDs.value());
+                        }
+                        else if (key == "random-intro-init-num-species-per-bin" && itPTDs.value().is_number()) {
+                            if (verbose) {
+                                std::cout << "PTD random intro init num species per bin -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdRandomIntroInitNumSpeciesPerBin(itPTDs.value());
+                        }
+                        else if (key == "random-intro-ongoing-period" && itPTDs.value().is_number()) {
+                            if (verbose) {
+                                std::cout << "PTD random intro ongoing period -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdRandomIntroOngoingPeriod(itPTDs.value());
+                        }
+                        else if (key == "random-intro-ongoing-patch-density" && itPTDs.value().is_number()) {
+                            if (verbose) {
+                                std::cout << "PTD random intro ongoing patch density -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdRandomIntroOngoingPatchDensity(itPTDs.value());
+                        }
+                        else if (key == "random-intro-ongoing-patch-square-length" && itPTDs.value().is_number()) {
+                            if (verbose) {
+                                std::cout << "PTD random intro ongoing patch square length -> " << itPTDs.value() << std::endl;
+                            }
+                            ModelParams::setPtdRandomIntroOngoingPatchSquareLength(itPTDs.value());
+                        }
                         else {
                             std::cerr << "Unexpected entry in PlantTypeDistributions section of json file: "
                                 << itPTDs.key() << " : " << itPTDs.value() << std::endl;

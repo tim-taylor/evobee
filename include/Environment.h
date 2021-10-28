@@ -275,6 +275,8 @@ private:
     bool localDensityLimitReached(const iPos& newPatchPos) const;
     void incrementLocalDensityCount(const iPos& newPatchPos);
 
+    void introduceRandomNewFlowerSpecies(std::vector<FloweringPlant>& newPlants);
+
     PatchVector   m_Patches;     ///< All patches are stored in a 1D vector for speed of access
     HivePtrVector m_Hives;       ///< Collection of all hives in the environment
     int           m_iNumPatches; ///< Num patches (stored for convenience)

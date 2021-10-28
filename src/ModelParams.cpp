@@ -51,6 +51,11 @@ float  ModelParams::m_fPtdAutoDistribDensity = 0.5;
 float  ModelParams::m_fPtdAutoDistribAreaMargin = 0.0;
 bool   ModelParams::m_bPtdAutoDistribRegular = true;
 bool   ModelParams::m_bPtdAutoDistribSeedOutflowAllowed = false;
+bool   ModelParams::m_bPtdRandomIntro = false;
+int    ModelParams::m_iPtdRandomIntroInitNumSpeciesPerBin = 5;
+int    ModelParams::m_iPtdRandomIntroOngoingPeriod = 1;
+float  ModelParams::m_fPtdRandomIntroOngoingPatchDensity = 0.4;
+int    ModelParams::m_iPtdRandomIntroOngoingPatchSquareLength = 15;
 unsigned int ModelParams::m_sNextFreePtdcId = 1;
 std::string ModelParams::m_strLogDir {"output"};
 std::string ModelParams::m_strLogFinalDir {""};
@@ -640,6 +645,30 @@ void ModelParams::setPtdAutoDistribSeedOutflowAllowed(bool allowed)
     m_bPtdAutoDistribSeedOutflowAllowed = allowed;
 }
 
+void ModelParams::setPtdRandomIntro(bool randomIntro)
+{
+    m_bPtdRandomIntro = randomIntro;
+}
+
+void ModelParams::setPtdRandomIntroInitNumSpeciesPerBin(int numSpeciesPerBin)
+{
+    m_iPtdRandomIntroInitNumSpeciesPerBin = numSpeciesPerBin;
+}
+
+void ModelParams::setPtdRandomIntroOngoingPeriod(int period)
+{
+    m_iPtdRandomIntroOngoingPeriod = period;
+}
+
+void ModelParams::setPtdRandomIntroOngoingPatchDensity(float density)
+{
+    m_fPtdRandomIntroOngoingPatchDensity = density;
+}
+
+void ModelParams::setPtdRandomIntroOngoingPatchSquareLength(int length)
+{
+    m_iPtdRandomIntroOngoingPatchSquareLength = length;
+}
 
 void ModelParams::setColourSystem(const std::string& cs)
 {
@@ -665,7 +694,7 @@ void ModelParams::autoGeneratePtds()
 {
     assert(m_bPtdAutoDistribs);
 
-    // First we initialise an 2D array (actually stored in a 1D vector) which contains
+    // First we initialise a 2D array (actually stored in a 1D vector) which contains
     // info about which species will go into which patch. This initialisation is done by
     // the helper method initialiseAutoGenPtdSpeciesPatchMap(), which takes into account
     // whether the param m_bPtdAutoDistribRegular is true or false, to determine
@@ -737,7 +766,8 @@ void ModelParams::initialiseAutoGenPtdSpeciesPatchMap(std::vector<const std::str
 
     speciesPatchMap.reserve(numPatches);
 
-    const std::map<unsigned int, std::string>& flowerSpeciesMap = FloweringPlant::getSpeciesMap();
+    //const std::map<unsigned int, std::string>& flowerSpeciesMap = FloweringPlant::getSpeciesMap();
+    const std::map<unsigned int, std::string>& flowerSpeciesMap = FloweringPlant::getInitialSpeciesMap();
 
     int numSpecies = flowerSpeciesMap.size();
     int numPatchesToFill = m_bPtdAutoDistribEqualNums ? numPatches - (numPatches % numSpecies) : numPatches;
@@ -817,13 +847,6 @@ const std::string ModelParams::getAutoGenPtdSpeciesForPatch(int x, int y, std::v
 // details have been read from the configuration file at the start of a run
 void ModelParams::postprocess()
 {
-    // if the auto generation tool has been requested for generated Plant Type Distributions,
-    // run it now
-    if (m_bPtdAutoDistribs)
-    {
-        autoGeneratePtds();
-    }
-
     // for each plant species, create a list of which other species it clogs, for
     // efficiency purposes
     FloweringPlant::constructCloggingMap(m_PlantTypes);
@@ -831,6 +854,21 @@ void ModelParams::postprocess()
     if (m_ColourSystem == ColourSystem::ARBITRARY_DOMINANT_WAVELENGTHS)
     {
         pairPlantTypeConfigsToVisData();
+
+        // if running under random-intro = true, we need to initialise the associated maps
+        // NB this should be called AFTER we have called pairPlantTypeConfigsToVisData()
+        //    and it should be called BEFORE we have called autoGeneratePtds()
+        if (m_bPtdRandomIntro)
+        {
+            FloweringPlant::initialiseRandomIntroMaps(m_iPtdRandomIntroInitNumSpeciesPerBin);
+        }
+    }
+
+    // if the auto generation tool has been requested for generated Plant Type Distributions,
+    // run it now
+    if (m_bPtdAutoDistribs)
+    {
+        autoGeneratePtds();
     }
 }
 

@@ -73,6 +73,11 @@ public:
     const std::string& getSpecies() const;
 
     /**
+     * Return a string representing the species indicated by the given speciesId
+     */
+    static const std::string& getSpecies(unsigned int speciesId);
+
+    /**
      * Returns the MarkerPoint of the specified flower
      */
     //MarkerPoint getFlowerMarkerPoint(unsigned int flower = 0);
@@ -139,6 +144,12 @@ public:
     float reproSeedDispersalRadiusStdDev();
 
     /**
+     * @brief A static method to construct the speciesHexBinMap and initialiSpeciesMap
+     * which are used when running with random-intro = true
+     */
+    static void initialiseRandomIntroMaps(int initNumSpeciesPerBin);
+
+    /**
      * A static method to construct the clogging map, which should be called once only,
      * at the start of a run when all params have been read from the config file
      */
@@ -154,6 +165,16 @@ public:
      * Returns the map of all known species, mapping speciesId to species name
      */
     static const std::map<unsigned int, std::string>& getSpeciesMap() {return m_sSpeciesMap;}
+
+    /**
+     * Returns the map of species to be created in the initial generation, mapping speciesId to species name
+     */
+    static const std::map<unsigned int, std::string>& getInitialSpeciesMap();
+
+    /**
+     * Returns the map of sector bins in hexagon space to species ID numbers
+     */
+    static const std::map<unsigned int, std::vector<unsigned int>>& getSpeciesHexBinMap();
 
     /**
      * Determine whether the specified pollen is allowed to stick to the stigma of the specified destination
@@ -209,6 +230,23 @@ private:
      * A record of all currently known species IDs and their corresponding name
      */
     static std::map<unsigned int, std::string> m_sSpeciesMap;
+
+    /**
+     * A record of the species IDs (and their corresponding name) that have been selected to
+     * comprise the initial generation.
+     *
+     * This map is only populated and used when running with the parameter random-intro = true.
+     */
+    static std::map<unsigned int, std::string> m_sInitialSpeciesMap;
+
+    /**
+     * @brief A mapping of sector bins in hexagon space to species ID numbers of the flower species
+     * that exist in each bin. Bin numbers run from 0 to 35, with bin 0 representing the hexagon
+     * sector from 0 up to 10 degrees, etc., and 35 representing 350 up to 360 degrees.
+     *
+     * This map is only populated and used when running with the parameter random-intro = true.
+     */
+    static std::map<unsigned int, std::vector<unsigned int>> m_sSpeciesHexBinMap;
 
     /**
      * A record of which species are clogged by each species

@@ -151,6 +151,11 @@ void Environment::initialisePlants()
                 throw std::runtime_error("Unknown plant species '" + pdcfg.species +
                     "' specified in config file");
             }
+
+            if (ModelParams::verbose()) {
+                std::cout << "~~~~ Gen 0 adding " << numPlants << " plants of species " << pdcfg.species
+                    << " to patch TLX = " << pdcfg.areaTopLeft.x << ", TLY = " << pdcfg.areaTopLeft.y << std::endl;
+            }
         }
         else if (pdcfg.species == "any")
         {
@@ -767,13 +772,23 @@ void Environment::initialiseNewGeneration()
         }
     }
 
-    // -- Step 1d: empty plant vectors for all patches
+    // -- Step 1d: if necessary, introduce some now flowers of a randomly selected species
+    //    (and remove some other ones at random to make space)
+    //    We add 1 to the gen number in this check so we don't introduce new flowers at gen 0
+    //    unless the IntroOngoingPeriod is set to 1
+    if (ModelParams::randomIntro() &&
+        (((m_pModel->getGenNumber()+1) % ModelParams::getPtdRandomIntroOngoingPeriod()) == 0))
+    {
+        introduceRandomNewFlowerSpecies(newPlants);
+    }
+
+    // -- Step 1e: empty plant vectors for all patches
     for (Patch& p : m_Patches)
     {
         p.killAllPlants();
     }
 
-    // -- Step 1e: for each plant in newPlants, move it to appropriate Patch vec
+    // -- Step 1f: for each plant in newPlants, move it to appropriate Patch vec
     for (FloweringPlant& plant : newPlants)
     {
         plant.getPatch().addPlant(plant);
@@ -792,6 +807,122 @@ void Environment::initialiseNewGeneration()
     m_bFlowerPtrVectorInitialised = false; // ensure m_AllFlowers will get refreshed
 }
 
+void Environment::introduceRandomNewFlowerSpecies(std::vector<FloweringPlant>& newPlants)
+{
+    // NB this implementation does not take into account any refuges or no-go areas in the
+    // environment. It assumes that this option will be run without any such areas.
+
+    int len = ModelParams::getPtdRandomIntroOngoingPatchSquareLength();
+    float density = ModelParams::getPtdRandomIntroOngoingPatchDensity();
+
+    int numPatchesX = m_iSizeX / len;
+    int numPatchesY = m_iSizeY / len;
+    int numPatches = numPatchesX * numPatchesY;
+    int numNewPlants = (int)((float)len * (float)len * density);
+
+    // calculate how many plants are currently planned for each patch
+    // the index of the vector is the flattened x,y coord in Patch space (i.e. second patch on top row is at coord 1,0)
+    std::vector<int> patchCounts(numPatches, 0);
+    for (auto& fp : newPlants) {
+        fPos fppos = fp.getPosition();
+        int ix = (int)fppos.x / len;
+        int iy = (int)fppos.y / len;
+        assert(ix * iy < numPatches);
+        int idx = iy*numPatchesX + ix;
+        patchCounts.at(idx)++;
+    }
+    // calculate the minimum count of flowers in a patch across all patches
+    int minCount = 9999999;
+    for (int count : patchCounts) {
+        if (count < minCount) {
+            minCount = count;
+        }
+    }
+    // create a list of all patches that share the minimum value
+    std::vector<int> minIndices;
+    for (int i = 0; i < numPatches; ++i) {
+        if (patchCounts.at(i) == minCount) {
+            minIndices.push_back(i);
+        }
+    }
+    // select one patch from the list of minima as out target patch
+    int miIdx = 0;
+    if (minIndices.size() > 1) {
+        std::uniform_int_distribution<unsigned int> dist(0, minIndices.size()-1);
+        miIdx = dist(EvoBeeModel::m_sRngEngine);
+    }
+    int chosenPatchIdx = minIndices.at(miIdx);
+    int chosenPatchX = (chosenPatchIdx % numPatchesX)*len; // this is the x coord in Env space of top-left of chosen patch of size len
+    int chosenPatchY = (chosenPatchIdx / numPatchesX)*len; // this is the y coord in Env space of top-left of chosen patch of size len
+
+    assert(chosenPatchX < m_iSizeX);
+    assert(chosenPatchY < m_iSizeY);
+
+    // next, figure out what species of plant we will introduce
+    const std::map<unsigned int, std::vector<unsigned int>>& hexmap = FloweringPlant::getSpeciesHexBinMap();
+    std::uniform_int_distribution<unsigned int> binDist(0, hexmap.size()-1);
+    int binIdx = binDist(EvoBeeModel::m_sRngEngine);
+    auto it = hexmap.begin();
+    for (int i=0; i<binIdx; i++, it++);
+    const std::vector<unsigned int>& speciesVec = it->second;
+    std::uniform_int_distribution<unsigned int> speciesDist(0, speciesVec.size()-1);
+    int speciesIdx = speciesDist(EvoBeeModel::m_sRngEngine);
+    unsigned int speciesId = speciesVec.at(speciesIdx);
+    const std::string& speciesName = FloweringPlant::getSpecies(speciesId);
+
+    // and obtain the PlantTypeConfig associated with this species
+    const PlantTypeConfig* pPTC = nullptr;
+    const std::vector<PlantTypeConfig>& ptcs = ModelParams::getPlantTypeConfigs();
+    for (auto& ptc : ptcs) {
+        if (ptc.species == speciesName) {
+            pPTC = &(ptc);
+            break;
+        }
+    }
+
+    assert(pPTC != nullptr);
+
+    // now remove a number of plants in the current newPlants vector to make way for the new ones we are about to insert
+    // NB we can simply erase the plants from the end of the newPlants vector - there is no need to shuffle the
+    // vector beforehand, because we already shuffled in the pollinatedPlantPts vector in initialiseNewGeneration()
+    // before using it to populate the newPlants vector
+    int numPlantsToRemove = std::min(numNewPlants, (int)(newPlants.size()));
+    newPlants.erase(newPlants.end()-numPlantsToRemove, newPlants.end());
+
+    // also need to reset and recalculate local density counts
+    resetLocalDensityCounts();
+    for (auto& plant : newPlants) {
+        const fPos fpos = plant.getPosition();
+        const iPos ipos{ (int)fpos.x, (int)fpos.y };
+        incrementLocalDensityCount(ipos);
+    }
+
+    if (ModelParams::verbose()) {
+        std::cout << "**** Introducing new species " << speciesName << " (" << speciesId << "). Num plants = " << numNewPlants
+            << ", patchTLX = " << chosenPatchX << ", patchTLY = " << chosenPatchY << ", old plants removed = "
+            << numPlantsToRemove << std::endl;
+    }
+
+    // now create the required number of the new species, in the chosen patch, and add them to the newPlants vector
+    std::uniform_real_distribution<float> posDist(0.0, (float)len);
+    for (int i = 0; i < numNewPlants; ++i)
+    {
+        float localX = posDist(EvoBeeModel::m_sRngEngine);
+        float localY = posDist(EvoBeeModel::m_sRngEngine);
+        fPos fNewPos {chosenPatchX + localX, chosenPatchY + localY};
+        iPos iNewPos {(int)fNewPos.x, (int)fNewPos.y};
+
+        Patch& newPatch = getPatch(iNewPos);
+
+        assert(!newPatch.refuge());
+        assert(!newPatch.noGoArea());
+
+        newPlants.emplace_back(*pPTC, fNewPos, &newPatch);
+
+        // and also update local density count
+        incrementLocalDensityCount(iNewPos);
+    }
+}
 
 void Environment::initialiseLocalDensityCounts()
 {
