@@ -766,7 +766,6 @@ void ModelParams::initialiseAutoGenPtdSpeciesPatchMap(std::vector<const std::str
 
     speciesPatchMap.reserve(numPatches);
 
-    //const std::map<unsigned int, std::string>& flowerSpeciesMap = FloweringPlant::getSpeciesMap();
     const std::map<unsigned int, std::string>& flowerSpeciesMap = FloweringPlant::getInitialSpeciesMap();
 
     int numSpecies = flowerSpeciesMap.size();
