@@ -327,8 +327,8 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stochastic pattern?|
 |auto-distrib-seed-outflow-allowed|m_bPtdAutoDistribSeedOutflowAllowed|bool|Defines whether seed-outflow-allowed is set true or false for the automatically generated patches.|
 |random-intro|m_bPtdRandomIntro|bool|Specifies whether to randomly introduce new plant species as the run proceeds. If true then a single patch of new plants of a randomly chosen species from all those listed in the configuration file is introduced every random-intro-ongoing-period generations. Also, if true, then not all species listed in the configuration file are necessarily represented in the environment in generation 0; a maximum number of species for each hexagon sector bin in selected at random for gen 0, as determined by random-intro-init-num-species-per-bin. Note, the current implementation of this functionality assumes that colour-system = arbitrary-dominant-wavelengths and that there are no refuges or no-go areas specified in the environment. Default: false.|
-|random-intro-init-num-species-per-bin|m_iPtdRandomIntroInitNumSpeciesPerBin|int|If random-intro = true, only a selection of all the flower species listed in the configuration file are picked to be represented in the environment at generation 0. A certain number of species from each hexagon sector bin are selected at random, determined by this parameter. Each bin is 10 degrees wide, so bin 0|
-|random-intro-ongoing-period|m_iPtdRandomIntroOngoingPeriod|int||
+|random-intro-init-num-species-per-bin|m_iPtdRandomIntroInitNumSpeciesPerBin|int|If random-intro = true, only a selection of all the flower species listed in the configuration file are picked to be represented in the environment at generation 0. A certain number of species from each hexagon sector bin are selected at random, determined by this parameter. Each bin is 10 degrees wide, so bin 0 represents the hexagon sector from 0 to 10 degrees in hexagon space, and bin 35 is from 350 to 360 degrees.|
+|random-intro-ongoing-period|m_iPtdRandomIntroOngoingPeriod|int|If random-intro = true, this parameter defines the period (number of generations)at which new species are introduced. Default: 1.|
 |random-intro-ongoing-patch-density|m_fPtdRandomIntroOngoingPatchDensity|float||
 |random-intro-ongoing-patch-square-length|m_iPtdRandomIntroOngoingPatchSquareLength|int||
 |rng-seed|m_strRngSeed|std::string|Seed string used to seed RNG. This is specified as an alphanumeric string of arbitrary length, composed of digits, uppercase letters and lowercase letters.|
@@ -427,5 +427,5 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 The format of the output log files is described [here](https://tim-taylor.github.io/evobee/evobee-log-files.html).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDQwMzE0MDEzLDEyODQ3NjI3MDZdfQ==
+eyJoaXN0b3J5IjpbNzI1NjY4MDkyLDEyODQ3NjI3MDZdfQ==
 -->
