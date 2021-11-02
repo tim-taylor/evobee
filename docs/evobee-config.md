@@ -326,8 +326,11 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stochastic pattern?|
 |auto-distrib-seed-outflow-allowed|m_bPtdAutoDistribSeedOutflowAllowed|bool|Defines whether seed-outflow-allowed is set true or false for the automatically generated patches.|
-|random-intro|x|bool|x|
-
+|random-intro|m_bPtdRandomIntro|bool|x|
+|random-intro-init-num-species-per-bin|m_iPtdRandomIntroInitNumSpeciesPerBin|int||
+|random-intro-ongoing-period||||
+|random-intro-ongoing-patch-density||||
+|random-intro-ongoing-patch-square-length||||
 |rng-seed|m_strRngSeed|std::string|Seed string used to seed RNG. This is specified as an alphanumeric string of arbitrary length, composed of digits, uppercase letters and lowercase letters.|
 
 ### Hive configuration parameters
@@ -424,5 +427,5 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 The format of the output log files is described [here](https://tim-taylor.github.io/evobee/evobee-log-files.html).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc0ODI5NTk4M119
+eyJoaXN0b3J5IjpbMTczNTE1NDgwNF19
 -->
