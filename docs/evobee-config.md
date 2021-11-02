@@ -326,7 +326,7 @@ The following table describes each parameter that can be specified in the config
 |auto-distrib-area-margin|m_fPtdAutoDistribAreaMargin|float|PlantTypeDistribution auto-generation margin without flowers in each area (expressed in percentage of area's smaller side length)|
 |auto-distrib-regular|m_bPtdAutoDistribRegular|bool|Are the patches distributed in a regular or stochastic pattern?|
 |auto-distrib-seed-outflow-allowed|m_bPtdAutoDistribSeedOutflowAllowed|bool|Defines whether seed-outflow-allowed is set true or false for the automatically generated patches.|
-|random-intro|m_bPtdRandomIntro|bool|Specifies whether to randomly introduce new plant species as the run proceeds. If true then a single patch of new plants of a randomly chosen species from all those listed in the configuration file |
+|random-intro|m_bPtdRandomIntro|bool|Specifies whether to randomly introduce new plant species as the run proceeds. If true then a single patch of new plants of a randomly chosen species from all those listed in the configuration file is introduced every random-intro-ongoing-period generations. Default: false. Note, the current implementation of this functionality assumes the following: colour-system = arbitrary-dominant-wavelengths|
 |random-intro-init-num-species-per-bin|m_iPtdRandomIntroInitNumSpeciesPerBin|int||
 |random-intro-ongoing-period|m_iPtdRandomIntroOngoingPeriod|int||
 |random-intro-ongoing-patch-density|m_fPtdRandomIntroOngoingPatchDensity|float||
@@ -427,5 +427,5 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 The format of the output log files is described [here](https://tim-taylor.github.io/evobee/evobee-log-files.html).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNTczNTA2MDMsMTI4NDc2MjcwNl19
+eyJoaXN0b3J5IjpbLTEwODA1Mzk2ODQsMTI4NDc2MjcwNl19
 -->
