@@ -52,7 +52,7 @@ utils/hexmap/gen-stimuli
 utils/hexmap/calc-dom-lambda
 utils/hexmap/aus-data.old/
 utils/hexmap/old/
-utils/hexmap/hex-sector-confusion/calc-hex-sector-confusion-stats
+*/calc-hex-sector-confusion-stats
 #docs/html
 .vscode
 src/.vscode
