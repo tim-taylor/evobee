@@ -1,5 +1,8 @@
 // Compile with:
 //   g++ -o calc-hex-sector-confusion-stats calc-hex-sector-confusion-stats.cpp
+//
+// Run with, e.g.:
+//   ./calc-hex-sector-confusion-stats aus-data-simple.csv
 
 #include <string>
 #include <cmath>
@@ -111,9 +114,12 @@ int main() {
                     float distance = flower.distance(flower2);
                     cumdist1 += distance;
                     count1++;
+
                     //std::cout << "flower (" << flower.hexx << "," << flower.hexy << "),"
                     //<< "flower2 (" << flower2.hexx << "," << flower2.hexy << "),"
                     //<< "distance " << distance << std::endl;
+
+                    //std::cout << bin << ",1," << distance << std::endl;
                 }
             }
             // look at bin 1 below
@@ -123,6 +129,7 @@ int main() {
                     float distance = flower.distance(flower2);
                     cumdist1 += distance;
                     count1++;
+                    //std::cout << bin << ",1," << distance << std::endl;
                 }
             }
             // look at bin 2 above
@@ -132,6 +139,7 @@ int main() {
                     float distance = flower.distance(flower2);
                     cumdist2 += distance;
                     count2++;
+                    //std::cout << bin << ",2," << distance << std::endl;
                 }
             }
             // look at bin 2 below
@@ -141,6 +149,7 @@ int main() {
                     float distance = flower.distance(flower2);
                     cumdist2 += distance;
                     count2++;
+                    //std::cout << bin << ",2," << distance << std::endl;
                 }
             }
         }

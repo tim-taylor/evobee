@@ -53,6 +53,7 @@ utils/hexmap/calc-dom-lambda
 utils/hexmap/aus-data.old/
 utils/hexmap/old/
 utils/hexmap/hex-sector-confusion/calc-hex-sector-confusion-stats
+utils/hexmap/hex-sector-confusion/hex-sector-confusion-stats.png
 #docs/html
 .vscode
 src/.vscode
