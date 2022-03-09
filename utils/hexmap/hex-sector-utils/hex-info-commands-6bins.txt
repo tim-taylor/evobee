@@ -53,6 +53,16 @@ cd $PRODIR
 cd ..
 
 
+~~~~~ 
+Just redo the graphics...
+~~~~~
+
+cd $PRODIR
+    for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+        gnuplot -c ../plot-hex-sector-bins-6bins.gnuplot $OUTFILE_BASE-w$BIN_WIDTH $N "$TITLE" Q 30 bee $BIN_WIDTH;
+    done
+cd ..
+
 =====================================================================================================
 
 
@@ -123,7 +133,8 @@ GEN_END=2499
 GEN_DELTA=2499
 PREF="giurfa"
 LOGDIR="raw"
-TITLE="Aus Dataset 1 (minus orchids), Giurfa Preferences, GC on, LC on"
+#TITLE="Aus Dataset 1 (minus orchids), Giurfa Preferences, GC on, LC on"
+TITLE="Aus Dataset 1 (minus orchids) RND INTRO, Giurfa Prefs SWIP, GC on 0.15, LC on"
 HEXSECTORPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SECTOR-gens-1-250.pdf"
 HEXSPACEPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SPACE-gens-1-250.pdf"
 HEXSECTORBINSPDF="c01-ausDS1-giurfa-gcON-lcON-HEX-SECTOR-BINS-gens-1-250.pdf"

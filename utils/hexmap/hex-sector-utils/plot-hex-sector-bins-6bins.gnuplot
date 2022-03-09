@@ -108,6 +108,10 @@ set y2range [0:0.015]
 set term png size 800,800
 set output outfile
 
+# the following simple RGB utility function is from 
+# https://livebook.manning.com/book/gnuplot-in-action-second-edition/chapter-9/33
+pack( r, g, b ) = 2**16*r + 2**8*g + b
+
 if (zeropos eq "M") {
     plot infile using (($1*10)+xshift)-(int($1/18)*360):3:4 with boxerrorbars fillcolor "gray70"
 } else {
@@ -117,15 +121,17 @@ if (zeropos eq "M") {
         } else {
             #plot infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):3:4 with boxerrorbars fillcolor "gray80", prefFile using ($1-int($1/270)*360):6 axes x1y2 w lp lt 6
             
-            set style line 1 lt 1 lc rgb "light-turquoise"
-            set style line 2 lt 1 lc rgb "light-blue"
-            set style line 3 lt 1 lc rgb "midnight-blue"
-            set style line 4 lt 1 lc rgb "black"
-            set style line 5 lt 1 lc rgb "dark-olivegreen"
-            set style line 6 lt 1 lc rgb "green"
-            set style fill solid
+            plot infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):($1==5 ? $3 : 0):($1==5 ? $4 : 0) with boxerrorbars fillcolor rgb pack(119,184,56), infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):($1==0 ? $3 : 0):($1==0 ? $4 : 0) with boxerrorbars fillcolor rgb pack(20,156,156), infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):($1==1 ? $3 : 0):($1==1 ? $4 : 0) with boxerrorbars fillcolor rgb pack(10,93,161), prefFile using ($1-int($1/270)*360):6 axes x1y2 w lp lt 6, infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):($1==2 ? $3 : 0):($1==2 ? $4 : 0) with boxerrorbars fillcolor rgb pack(0,22,105), prefFile using ($1-int($1/270)*360):6 axes x1y2 w lp lt 6, infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):($1==3 ? $3 : 0):($1==3 ? $4 : 0) with boxerrorbars fillcolor rgb pack(0,9,8), prefFile using ($1-int($1/270)*360):6 axes x1y2 w lp lt 6 lc "red"
             
-            plot infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):3:4:1 with boxerrorbars fillcolor "gray80" lc variable, prefFile using ($1-int($1/270)*360):6 axes x1y2 w lp lt 6            
+            #set style line 1 lt 1 lc rgb "gray20"
+            #set style line 2 lt 1 lc rgb "gray30"
+            #set style line 3 lt 1 lc rgb "gray40"
+            #set style line 4 lt 1 lc rgb "gray50"
+            #set style line 5 lt 1 lc rgb "gray60"
+            #set style line 6 lt 1 lc rgb "gray70"
+            #set style fill solid
+            
+            #plot infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):3:4:1 with boxerrorbars , prefFile using ($1-int($1/270)*360):6 axes x1y2 w lp lt 6            
             
             #plot infile u (($1*binwidth)+xshift)-(int($1/4.5)*360):3:4:(0.5):($2>0?1:2):xtic(1) w boxes lc variable
             #                  #xval:ydata:errorbars:boxwidth:color_index:xtic_labels
