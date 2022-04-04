@@ -38,6 +38,7 @@ Makefile
 *.csv
 *.pdf
 *.orig
+*.png
 evobeeConfig.h
 evobee
 src/old/

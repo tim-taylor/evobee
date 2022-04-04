@@ -63,6 +63,15 @@ cd $PRODIR
     done
 cd ..
 
+.... or with flat prefs ...
+
+cd $PRODIR
+    for N in `seq $GEN_START $GEN_DELTA $GEN_END`; do
+        gnuplot -c ../plot-hex-sector-bins-6bins.gnuplot $OUTFILE_BASE-w$BIN_WIDTH $N "$TITLE" Q 30 flat $BIN_WIDTH;
+    done
+cd ..
+
+
 =====================================================================================================
 
 
