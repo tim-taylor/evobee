@@ -1,0 +1,71 @@
+~~~
+Processing of a run to produce a matrix for Jair, using theta_b angles
+~~~
+
+cd processed
+
+for F in `ls c*gen-2499.csv`; do gawk -F, '{if ($4<90.0) {tb=90.0-$4} else {tb=450.0-$4}; for (i=0;i<$5;i++) {print tb}}' $F > jair-col-$F; done
+
+paste -d, jair-col-c01-ausDS1-giurfa-gcON-lcON-SWIP-sample-9-2022-03-10-12-5* > jair-all-c01-ausDS1-giurfa-gcON-lcON-SWIP.csv
+
+rm -f jair-col-*
+
+zip jair-all-c01-ausDS1-giurfa-gcON-lcON-SWIP.csv.zip jair-all-c01-ausDS1-giurfa-gcON-lcON-SWIP.csv
+
+
+####
+
+and for theta offset 30...
+
+gawk -f /home/tim/evobee/code/evobee/utils/hexmap/hex-sector-utils/jair-adjust-angles.awk jair-all-c01-ausDS1-giurfa-gcON-0p225-lcON-SWIP.csv > jair-all-c01-ausDS1-giurfa-gcON-0p225-lcON-SWIPtheta_offset_30.csv
+
+
+#########################################################################
+
+~~~
+Processing of Aus Data in ~/evobee/code/evobee/utils/hexmap/aus-data-20210111 to add theta_b angles
+~~~
+
+gawk -F, '{if ($4<90.0) {tb=90.0-$4} else {tb=450.0-$4}; printf "%d, %.5f, %.5f, %.5f, %d, %.5f, %.5f\n", $1, $2, $3, $4, $5, $6, tb}' aus-hex-space-info-ex-orchid-and-no-dom-dataset-1-only.csv > aus-hex-space-info-ex-orchid-no-dom-ds1-only-thetab.csv
+
+
+#############################
+
+Plotting ground truth distrib of full Aus dataset
+
+- in ~/evobee/code/evobee/utils/hexmap/aus-data-20210111
+- infile="aus-ex-orchid-and-no-dom-dataset-1-only-histogram-6-bins.csv"
+
+
+Gnuplot commands:
+
+prefFile="~/evobee-hexmap/giurfa-pref-by-theta.csv"
+titletext="Aus Dataset 1 (minus orchids) FULL DATASET"
+xshift=30
+binwidth=60
+infile="aus-ex-orchid-and-no-dom-dataset-1-only-histogram-6-bins.csv"
+outfile="aus-ex-orchid-and-no-dom-dataset-1-only-histogram-6-bins.png"
+set datafile separator ","
+set size square
+set title font ",13"
+set title titletext
+set xlabel font ",12"
+set xlabel "Hexagon sector"
+set ylabel font ",12"
+set ylabel "Species count"
+set xtics nomirror out 20
+set xtics font ",11"
+set ytics nomirror out
+set y2tics
+set y2label font ",12"
+set y2label "Pollinator Innate Preference (normalised units)"
+set boxwidth binwidth absolute
+set style fill solid 1.0 border lc "gray30"
+unset key
+set xrange[-85:275]
+set yrange[0:150]
+set y2range [0:0.015]
+set term png size 800,800
+set output outfile
+pack( r, g, b ) = 2**16*r + 2**8*g + b
+plot infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):($1==5 ? $3 : 0):($1==5 ? $4 : 0) with boxerrorbars fillcolor rgb pack(119,184,56), infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):($1==0 ? $3 : 0):($1==0 ? $4 : 0) with boxerrorbars fillcolor rgb pack(20,156,156), infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):($1==1 ? $3 : 0):($1==1 ? $4 : 0) with boxerrorbars fillcolor rgb pack(10,93,161), prefFile using ($1-int($1/270)*360):6 axes x1y2 w lp lt 6, infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):($1==2 ? $3 : 0):($1==2 ? $4 : 0) with boxerrorbars fillcolor rgb pack(0,22,105), prefFile using ($1-int($1/270)*360):6 axes x1y2 w lp lt 6, infile using (($1*binwidth)+xshift)-(int($1/4.5)*360):($1==3 ? $3 : 0):($1==3 ? $4 : 0) with boxerrorbars fillcolor rgb pack(0,9,8), prefFile using ($1-int($1/270)*360):6 axes x1y2 w lp lt 6 lc "red"
