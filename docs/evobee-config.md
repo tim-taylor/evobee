@@ -308,8 +308,8 @@ The following table describes each parameter that can be specified in the config
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|
 |logging|m_bLogging|bool|Is logging required for this run?|
 |log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseFull, m_bLogFlowersIntraPhaseSummary, m_bLogFlowerMPsInterPhaseSummary, m_bLogFlowerInfoInterPhaseSummary|std::string|Flags to control logging functionality. Any combination of the following flags may be listed in the string, no separator is required: Q=PollinatorsIntraPhaseFull, P=PollinatorsInterPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, G=FlowersIntraPhaseFull, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary, n=FlowerInfoInterPhaseSummary. See the [Output log file formats](#output-log-file-formats) section below for further information.|
-|log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of logger|
-|log-inter-gen-update-period|m_iLogInterGenUpdatePeriod|int|NUmber of generations between each |
+|log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of intra-phase logs|
+|log-inter-gen-update-period|m_iLogInterGenUpdatePeriod|int|Number of generations between each update of inter-phase logs|
 |log-dir|m_strLogDir|std::string|Directory name for logging output during a run|
 |log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|
 |log-run-name|m_strLogRunName|std::string|Run name to be used as prefix for log filenames|
@@ -428,6 +428,6 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 The format of the output log files is described [here](https://tim-taylor.github.io/evobee/evobee-log-files.html).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAzOTM3ODk3MSwtNDQzNDUxMTEsMTI4ND
+eyJoaXN0b3J5IjpbLTgzMjIyNTU1MSwtNDQzNDUxMTEsMTI4ND
 c2MjcwNl19
 -->
