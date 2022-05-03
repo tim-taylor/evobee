@@ -304,11 +304,12 @@ The following table describes each parameter that can be specified in the config
 |repro-global-density-constrained|m_bReproGlobalDensityContrained|bool|During a reproduction cycle, is global plant density constrained?|
 |repro-global-density-max|m_fReproGlobalDensityMax|float|If m_bReproGlobalDensityContrained, what is the maximum allowed density?|
 |vis-pollinator-trails|m_bVisPollinatorTrails|bool|Display trails of pollinators' past movements?|
-|vis_update_period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|
+|vis-update-period|m_iVisUpdatePeriod|int|Number of model steps between each update of visualisation|
 |vis-delay-per-frame|m_iVisDelayPerFrame|int|Specifies a delay (in ms) per frame of the visualisation code|
 |logging|m_bLogging|bool|Is logging required for this run?|
 |log-flags|m_bLogPollinatorsIntraPhaseFull, m_bLogPollinatorsInterPhaseFull, m_bLogPollinatorsInterPhaseSummary, m_bLogFlowersInterPhaseFull, m_bLogFlowersInterPhaseSummary, m_bLogFlowersIntraPhaseFull, m_bLogFlowersIntraPhaseSummary, m_bLogFlowerMPsInterPhaseSummary, m_bLogFlowerInfoInterPhaseSummary|std::string|Flags to control logging functionality. Any combination of the following flags may be listed in the string, no separator is required: Q=PollinatorsIntraPhaseFull, P=PollinatorsInterPhaseFull, p=PollinatorsInterPhaseSummary, F=FlowersInterPhaseFull, f=FlowersInterPhaseSummary, G=FlowersIntraPhaseFull, g=FlowersIntraPhaseSummary, m=FlowerMPsInterPhaseSummary, n=FlowerInfoInterPhaseSummary. See the [Output log file formats](#output-log-file-formats) section below for further information.|
 |log-update-period|m_iLogUpdatePeriod|int|Number of model steps between each update of logger|
+|log-inter-gen-update-period||int||
 |log-dir|m_strLogDir|std::string|Directory name for logging output during a run|
 |log-final-dir|m_strLogFinalDir|std::string|Directory to which to move all log files at end of run (if blank, files are kept in m_strLogDir)|
 |log-run-name|m_strLogRunName|std::string|Run name to be used as prefix for log filenames|
@@ -427,5 +428,6 @@ Plant distribution configuration parameters for a specified plant type in a spec
 
 The format of the output log files is described [here](https://tim-taylor.github.io/evobee/evobee-log-files.html).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ0MzQ1MTExLDEyODQ3NjI3MDZdfQ==
+eyJoaXN0b3J5IjpbLTE3MDg3NjI3NjgsLTQ0MzQ1MTExLDEyOD
+Q3NjI3MDZdfQ==
 -->
