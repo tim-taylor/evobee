@@ -7,7 +7,7 @@
 # gen-hex-sector-bin-means-stds
 #
 # Call like this, e.g.
-# > gnuplot -c plot-hex-sector-bins.gnuplot filebase gennum titletext x0pos[L|Q|M] xshift[10|5] prefplot[none|bee|hoverfly|flat] 
+# > gnuplot -c plot-hex-sector-bins.gnuplot filebase gennum titletext x0pos[L|Q|M] xshift[10|5] prefplot[none|bee|hoverfly|flat] W
 # e.g.
 # > gnuplot -c plot-hex-sector-bins.gnuplot hex-sector-bin-means-stds 0
 #
@@ -21,68 +21,31 @@ flatPrefFile="~/evobee-hexmap/flat-pref-by-theta.csv"
 
 filebase="hex-sector-bin-means-stds"
 gen="0"
-titletext=""
-zeropos="L"
+titletext="Aus Dataset 1 (minus orchids) FULL DATASET"
+zeropos="Q"
 xshift=5.0
-prefs="none"
+prefs="bee"
 prefFile=beePrefFile
+binwidth=10
 
-if (exists("ARG1")) {
-    filebase=ARG1
-}
-
-if (exists("ARG2")) {
-    gen=ARG2
-}
-
-if (exists("ARG3")) {
-    titletext=ARG3." / "
-}
-
-if (exists("ARG4") && ARG4 ne "") {
-    zeropos=ARG4
-}
-
-if (exists("ARG5") && ARG5 ne "") {
-    xshift = real(ARG5)
-}
-
-if (exists("ARG6")) {
-    prefs=ARG6
-    if (prefs eq "hoverfly") {
-        prefFile=hoverflyPrefFile
-    } else {
-        if (prefs eq "flat") {
-            prefFile=flatPrefFile
-        }
-    }
-}
-
-fbaseIN = sprintf("%s-gen-%s", filebase, gen)
-infile = sprintf("%s.csv", fbaseIN)
-if (zeropos eq "M") {
-    fbaseOUT = sprintf("%s-0m-gen-%04d", filebase, (gen+0))
-} else {
-    if (zeropos eq "Q") {
-        fbaseOUT = sprintf("%s-0q-gen-%04d", filebase, (gen+0))
-    } else {
-        fbaseOUT = sprintf("%s-0l-gen-%04d", filebase, (gen+0))
-    }
-}
-outfile = sprintf("%s.png", fbaseOUT)
+infile="/home/tim/evobee/code/evobee/utils/hexmap/aus-data-20210111/aus-ex-orchid-and-no-dom-dataset-1-only-histogram-36-bins.csv"
+outfile="/home/tim/evobee/code/evobee/utils/hexmap/aus-data-20210111/aus-ex-orchid-and-no-dom-dataset-1-only-histogram-36-bins.png"
 
 set datafile separator ","
 set size square
 set title font ",13"
-set title titletext."Generation ".(gen+1)
+set title titletext
 set xlabel font ",12"
 set xlabel "Hexagon sector"
 set ylabel font ",12"
-set ylabel "Plant count"
+set ylabel "Species count"
 set xtics nomirror out 20
 set xtics font ",11"
 set ytics nomirror out
-set boxwidth 10 absolute
+set y2tics
+set y2label font ",12"
+set y2label "Pollinator Innate Preference (normalised units)"
+set boxwidth binwidth absolute
 set style fill solid 1.0 border lc "gray30"
 unset key
 if (zeropos eq "M") {
@@ -94,24 +57,22 @@ if (zeropos eq "M") {
         set xrange[0:365]
     }
 }
-set yrange[0:36100]
-if (prefs eq "none") {
-} else {
-    set y2tics
-    set y2label font ",12"
-    set y2label "Pollinator Innate Preference (normalised units)"
-    set y2range [0:0.015]
-}
+set yrange[0:150]
+set y2range [0:0.015]
 
 set term png size 800,800
 set output outfile
+
+# the following simple RGB utility function is from 
+# https://livebook.manning.com/book/gnuplot-in-action-second-edition/chapter-9/33
+pack( r, g, b ) = 2**16*r + 2**8*g + b
 
 if (zeropos eq "M") {
     plot infile using (($1*10)+xshift)-(int($1/18)*360):3:4 with boxerrorbars fillcolor "gray70"
 } else {
     if (zeropos eq "Q") {
         if (prefs eq "none") {
-            plot infile using (($1*10)+xshift)-(int($1/27)*360):3:4 with boxerrorbars fillcolor "gray80"
+            plot infile using (($1*10)+xshift)-(int($1/27)*360):3:4 with boxerrorbars fillcolor "gray70"
         } else {
             plot infile using (($1*10)+xshift)-(int($1/27)*360):3:4 with boxerrorbars fillcolor "gray80", prefFile using ($1-int($1/270)*360):6 axes x1y2 w lp lt 6
         }

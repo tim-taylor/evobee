@@ -1,0 +1,187 @@
+mkdir raw
+mv * raw/
+mkdir processed
+ln -s /home/tim/evobee-hexmap/hex-sector-utils/* .
+rm -f old
+
+## --- 36 bins ---
+
+## STEP 1.
+for F in `ls $LOGDIR/*log.txt`; do 
+    for G in $GENS; do 
+        OUTFILE1=$PRODIR/`basename $F`".processed-gen-$G.csv"
+        ./gen-hex-plot-data $F $G $PREF > $OUTFILE1
+    done
+done
+
+## STEP 2.
+for G in $GENS; do 
+    for F in `find $PRODIR -regex ".*processed-gen-$G.csv"`; do 
+        OUTFILE2=$PRODIR/`basename $F`".binned-w10.csv"
+        gawk -f gen-binned-hex-plot-data.awk $F > $OUTFILE2
+    done
+done
+
+## STEP 3.
+cd $PRODIR
+for G in $GENS; do 
+    for B in {0..35}; do
+        grep -h "^$B," *gen-$G.*binned-w10.csv | gawk -F, '{$2+=0; print $2}' > binned-numflowers-across-runs-gen-$G-bin-$B.csv
+    done
+done
+cd ..
+
+## STEP 4.
+INFILE_BASE="binned-numflowers-across-runs"
+OUTFILE_BASE="binned-numflowers-across-runs-means-stds"
+NUM_BINS=36
+BIN_WIDTH=10
+cd $PRODIR
+    for G in $GENS; do
+        rm -f $OUTFILE_BASE-w$BIN_WIDTH-gen-$G.csv
+        for B in `seq 0 $(( NUM_BINS - 1 ))`; do
+            Rscript ../calc-95-conf-int.r $INFILE_BASE-gen-$G-bin-$B.csv $B >> $OUTFILE_BASE-w$BIN_WIDTH-gen-$G.csv
+        done
+    done
+    for N in $GENS; do
+        gnuplot -c ../plot-hex-sector-bins.gnuplot binned-numflowers-across-runs-means-stds-w10 $N "$TITLE" Q 5 $PREF;
+    done
+cd ..
+
+## --- 6 bins ---
+
+#cp -r processed processed-6bins
+#cd processed-6bins
+#find . -name "*binned*" -delete
+#cd ..
+#PRODIR="processed-6bins"
+
+
+PRODIR="processed-6bins"
+for G in $GENS; do
+  cp processed/*.processed-gen-$G.csv $PRODIR
+done
+
+
+## STEP 2B
+for G in $GENS; do 
+    for F in `find $PRODIR -regex ".*processed-gen-$G.csv"`; do 
+        OUTFILE2=$PRODIR/`basename $F`".binned-w60.csv"
+        gawk -vW=60 -f gen-binned-hex-plot-data.awk $F > $OUTFILE2
+    done
+done
+
+## STEP 3B
+cd $PRODIR
+for G in $GENS; do 
+    for B in {0..5}; do
+        grep -h "^$B," *gen-$G.*binned-w60.csv | gawk -F, '{$2+=0; print $2}' > binned-numflowers-across-runs-gen-$G-bin-$B.csv
+    done
+done
+cd ..
+
+## STEP 4B
+INFILE_BASE="binned-numflowers-across-runs"
+OUTFILE_BASE="binned-numflowers-across-runs-means-stds"
+NUM_BINS=6
+BIN_WIDTH=60
+cd $PRODIR
+    for G in $GENS; do
+        rm -f $OUTFILE_BASE-w$BIN_WIDTH-gen-$G.csv
+        for B in `seq 0 $(( NUM_BINS - 1 ))`; do
+            Rscript ../calc-95-conf-int.r $INFILE_BASE-gen-$G-bin-$B.csv $B >> $OUTFILE_BASE-w$BIN_WIDTH-gen-$G.csv
+        done
+    done
+    for N in $GENS; do
+        gnuplot -c ../plot-hex-sector-bins-6bins.gnuplot $OUTFILE_BASE-w$BIN_WIDTH $N "$TITLE" Q 30 $PREF $BIN_WIDTH;
+    done
+cd ..
+
+
+
+
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# ~~~~~ WITHOUT REINTRO ~~~~~
+
+# without-reintro/flat/gc-0p100
+
+DTYPE="ausid"
+GENS="0 999 1999 2999 3999 4999 5999"
+PREF="flat"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1, Flat Prefs, No Reintro, GC 0.100"
+PRODIR="processed"
+FLIPX=""
+
+# without-reintro/giurfa/gc0p000
+
+DTYPE="ausid"
+GENS="0 999 1999 2999 3999 4999 5999"
+PREF="giurfa"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1, Giurfa Prefs, No Reintro, GC 0.000"
+PRODIR="processed"
+
+#
+TITLE="Aus Dataset 1, Giurfa Prefs, No Reintro, GC 0.100"
+PRODIR="processed"
+
+#
+TITLE="Aus Dataset 1, Giurfa Prefs, No Reintro, GC 0.150"
+PRODIR="processed"
+
+#
+TITLE="Aus Dataset 1, Giurfa Prefs, No Reintro, GC 0.200"
+PRODIR="processed"
+
+#
+TITLE="Aus Dataset 1, Giurfa Prefs, No Reintro, GC 0.250"
+PRODIR="processed"
+
+
+# ~~~~~ WITH REINTRO ~~~~~
+
+# with-reintro/flat/gc-0p100
+
+DTYPE="ausid"
+GENS="0 999 1999 2999 3999 4999 5999"
+PREF="flat"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1, Flat Prefs, Random Reintro, GC 0.100"
+PRODIR="processed"
+FLIPX=""
+
+# with-reintro/giurfa/gc0p000
+
+DTYPE="ausid"
+GENS="0 999 1999 2999 3999 4999 5999"
+PREF="giurfa"
+LOGDIR="raw"
+OUTDIR="output"
+TMPDIR="output/tmp"
+TITLE="Aus Dataset 1, Giurfa Prefs, Random Reintro, GC 0.000"
+PRODIR="processed"
+
+#
+TITLE="Aus Dataset 1, Giurfa Prefs, Random Reintro, GC 0.100"
+PRODIR="processed"
+
+#
+TITLE="Aus Dataset 1, Giurfa Prefs, Random Reintro, GC 0.150"
+PRODIR="processed"
+
+#
+TITLE="Aus Dataset 1, Giurfa Prefs, Random Reintro, GC 0.200"
+PRODIR="processed"
+
+#
+TITLE="Aus Dataset 1, Giurfa Prefs, Random Reintro, GC 0.250"
+PRODIR="processed"
+
