@@ -20,6 +20,8 @@ A. Dorin, T. Taylor, & A. G. Dyer (2022). ***Goldilocks’ quarter-hectare urban
 >```
 >The configuration and output files associated with the experiments reported in the paper are available at [https://github.com/tim-taylor/evobee-data](https://github.com/tim-taylor/evobee-data) in the folder `plos-sustain-transform-2022`.
 
+---
+
 A. Dorin, T. Taylor, M. Burd, J. Garcia, M. Shrestha, A. G. Dyer (2021) ***Competition and pollen wars: simulations reveal the dynamics of competition mediated through heterospecific pollen transfer by non-flower constant insects*** Theoretical Ecology, 14(2), 207–218. [https://doi.org/10.1007/s12080-020-00490-7](https://doi.org/10.1007/s12080-020-00490-7)
 
 >The experiments reported in this paper were run using commit `#17453a5` which is tagged as `theor-ecol-2020`. This version of the code can be downloaded using the following command:
