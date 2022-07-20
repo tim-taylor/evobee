@@ -12,12 +12,20 @@ EvoBee user and system documentation can be found at [https://tim-taylor.github.
 
 ## Versions and data associated with specific publications
 
-A. Dorin, T. Taylor, M. Burd, J. Garcia, M. Shrestha, A. G. Dyer. ***Competition and pollen wars: simulations reveal the dynamics of competition mediated through heterospecific pollen transfer by non-flower constant insects*** Theoretical Ecology, 13, 2020
+A. Dorin, T. Taylor, & A. G. Dyer (2022). ***Goldilocks’ quarter-hectare urban farm: An agent-based model for improved pollination of community gardens and small-holder farms*** PLOS Sustainability and Transformation, 1(7), e0000021. [https://doi.org/10.1371/journal.pstr.0000021](https://doi.org/10.1371/journal.pstr.0000021)
+
+>The experiments reported in this paper were run using commit `#db514eb` which is tagged as `plos-sustain-transform-2022`. This version of the code can be downloaded using the following command:
+>```bash
+>git clone --depth 1 --branch plos-sustain-transform-2022 https://github.com/tim-taylor/evobee.git
+>```
+>The configuration and output files associated with the experiments reported in the paper are available at [https://github.com/tim-taylor/evobee-data](https://github.com/tim-taylor/evobee-data) in the folder `plos-sustain-transform-2022`.
+
+A. Dorin, T. Taylor, M. Burd, J. Garcia, M. Shrestha, A. G. Dyer (2021) ***Competition and pollen wars: simulations reveal the dynamics of competition mediated through heterospecific pollen transfer by non-flower constant insects*** Theoretical Ecology, 14(2), 207–218. [https://doi.org/10.1007/s12080-020-00490-7](https://doi.org/10.1007/s12080-020-00490-7)
 
 >The experiments reported in this paper were run using commit `#17453a5` which is tagged as `theor-ecol-2020`. This version of the code can be downloaded using the following command:
 >```bash
 >git clone --depth 1 --branch theor-ecol-2020 https://github.com/tim-taylor/evobee.git
->``` 
+>```
 >The configuration and output files associated with the experiments reported in the paper are available at [https://github.com/tim-taylor/evobee-data](https://github.com/tim-taylor/evobee-data) in the folder `theor-ecol-2020`.
 
 ---
