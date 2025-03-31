@@ -1,0 +1,3 @@
+NB In the past I have used stackedit.io to edit these markdown files and push them to GitHub pages.
+
+But it might be just as easy to edit them locally and push them directly to github.com/tim-taylor/evobee/docs (the docs on GitHub pages are generated directly from this dir).
