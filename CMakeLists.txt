@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 project(evobee VERSION 1.1.0.0 LANGUAGES CXX C)
 
 # Specification of custom installation prefixes for required libraries
