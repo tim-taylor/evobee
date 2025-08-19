@@ -2,30 +2,35 @@
 
 ## External dependencies
 
-To compile evobee from source, you will need the following libraries  (including header files) installed on your system:
+To compile evobee from source, you will need the following library (including header files) installed on your system:
 
 - Boost libraries ([http://www.boost.org/](http://www.boost.org/))
 	* specifically the `program_options` library
 	* version 1.32.0 or higher
 	* on Ubuntu systems, installing the `libboost-program-options-dev` package should give you everything you need.
 
-- SDL 2.0 ([https://www.libsdl.org/](https://www.libsdl.org/))
-	* on Ubuntu systems, installing the `libsdl2-dev` and `libsdl2-image-dev` packages should give you everything you need.
+_The project used to also depend on SDL and related libraries, but the required parts of these have
+now been brought into the project's repository, so there are no longer any external dependencies
+for these libraries._
 
 
 ## To build EvoBee
 
 The following instructions are for the Linux command line. Adapt as appropriate according to your OS.
 
-From the evobee base directory:
+First generate the makefiles:
 
     > cmake -S . -B build
+
+Then build the code:
+
     > cmake --build build
 
 If all worked well, the evobee executable file should now be found in the `build/Debug` directory.
 
-> Note for Linux users: should you ever need to do a completely fresh build of the system, there is a bash script named `clean` in the `build` folder, which can be run before repeating the steps listed above.
+Should you ever need to do a completely fresh build of the system, use the following command to clean the build directory before doing the build step shown above:
 
+    > cmake --build build --target clean
 
 ## To compile the documentation
 
