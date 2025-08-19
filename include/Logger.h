@@ -9,7 +9,7 @@
 
 #include <string>
 #include <iostream>
-#include <experimental/filesystem>
+#include <filesystem>
 
 class EvoBeeModel;
 class Environment;
@@ -93,10 +93,10 @@ private:
 
     std::ofstream openLogFile(); // a private helper method
 
-    std::experimental::filesystem::path m_LogDir;
-    std::experimental::filesystem::path m_MainLogFilePath;
-    std::experimental::filesystem::path m_ConfigFilePath;
-    std::experimental::filesystem::path m_RunInfoFilePath;
+    std::filesystem::path m_LogDir;
+    std::filesystem::path m_MainLogFilePath;
+    std::filesystem::path m_ConfigFilePath;
+    std::filesystem::path m_RunInfoFilePath;
 
     std::string m_strFilePrefix;
 

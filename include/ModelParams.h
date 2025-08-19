@@ -9,7 +9,7 @@
 
 #include <vector>
 #include <string>
-#include "json.hpp"
+#include <nlohmann/json.hpp>
 #include "HiveConfig.h"
 #include "PlantTypeDistributionConfig.h"
 #include "PlantTypeConfig.h"

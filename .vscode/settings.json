@@ -73,7 +73,10 @@
         "bit": "cpp",
         "regex": "cpp",
         "shared_mutex": "cpp",
-        "cfenv": "cpp"
+        "cfenv": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "format": "cpp"
     },
     "files.exclude": {
         "**/.git": true,
@@ -99,5 +102,6 @@
             "scope": "workspace"
         }
     },
-    "cSpell.words": []
+    "cSpell.words": [],
+    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64"
 }

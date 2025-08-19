@@ -4,11 +4,11 @@
  * Implementation of the Visualiser class
  */
 
-#include <SDL.h>
+#include <SDL3/SDL.h>
 #include <iostream>
 #include <algorithm> // for min and max
 #include <cassert>
-#include "SDL2_gfxPrimitives.h"
+#include "SDL3_gfxPrimitives.h"
 #include "sdl_tools.h"
 #include "ModelParams.h"
 #include "EvoBeeModel.h"
@@ -49,7 +49,7 @@ Visualiser::~Visualiser()
 int Visualiser::init()
 {
     // Initialise SDL (test)
-    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+    if (!SDL_Init(SDL_INIT_VIDEO))
     {
         std::cerr << "SDL_Init Error: " << SDL_GetError() << std::endl;
         return 1;
@@ -59,14 +59,24 @@ int Visualiser::init()
     // Calculate appropriate width and height for window
     //-------------------------------------------------------------------------
 
-    SDL_DisplayMode dm;
-    if (SDL_GetDesktopDisplayMode(0, &dm) != 0) {
+    int num_displays;
+    SDL_DisplayID *displays = SDL_GetDisplays(&num_displays);
+    if (displays == nullptr || num_displays < 1)
+    {
+        std::cerr << "SDL_Init Error: no displays found" << std::endl;
+        return 1;
+    }
+    int displayInstanceID = displays[0];
+    SDL_free(displays);
+
+    const SDL_DisplayMode* pDM = SDL_GetDesktopDisplayMode(displayInstanceID);
+    if (pDM == nullptr) {
         SDL_Log("SDL_GetDesktopDisplayMode failed: %s", SDL_GetError());
         return 1;
     }
 
-    m_iScreenW = (int)(ModelParams::getMaxScreenFracW() * (float)dm.w);
-    m_iScreenH = (int)(ModelParams::getMaxScreenFracH() * (float)dm.h);
+    m_iScreenW = (int)(ModelParams::getMaxScreenFracW() * (float)(pDM->w));
+    m_iScreenH = (int)(ModelParams::getMaxScreenFracH() * (float)(pDM->h));
 
     float fScreenToEnvRatio = std::min<float>(
         (float)m_iScreenW / (float)ModelParams::getEnvSizeX(),
@@ -86,8 +96,8 @@ int Visualiser::init()
 
     m_pWindow = SDL_CreateWindow(
         "EvoBee",
-        SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED,
+        //SDL_WINDOWPOS_CENTERED,
+        //SDL_WINDOWPOS_CENTERED,
         m_iScreenW, m_iScreenH,
         SDL_WINDOW_OPENGL);
     if (m_pWindow == nullptr)
@@ -96,6 +106,7 @@ int Visualiser::init()
         SDL_Quit();
         return 1;
     }
+    SDL_SetWindowPosition(m_pWindow, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 
     //-------------------------------------------------------------------------
     // Create Renderer
@@ -103,8 +114,9 @@ int Visualiser::init()
 
     m_pRenderer = SDL_CreateRenderer(
         m_pWindow,
-        -1,
-        0 /*SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC*/
+        nullptr
+        //-1,
+        //0 /*SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC*/
         );
     if (m_pRenderer == nullptr)
     {
@@ -115,7 +127,7 @@ int Visualiser::init()
     }
 
     // Make scaled rendering look smoother
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+    //SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 
     return 0;
 }
@@ -131,7 +143,7 @@ bool Visualiser::update()
     }
 
 
-    SDL_RenderSetScale(m_pRenderer, m_fZoomLevel, m_fZoomLevel);
+    SDL_SetRenderScale(m_pRenderer, m_fZoomLevel, m_fZoomLevel);
     SDL_SetRenderDrawColor(m_pRenderer, 0x0, 0x0, 0x0, 0xFF);
     SDL_RenderClear(m_pRenderer);
 
@@ -314,20 +326,20 @@ bool Visualiser::checkUserInteraction()
         SDL_Event e;
         while (SDL_PollEvent(&e) != 0)
         {
-            if (e.type == SDL_QUIT)
+            if (e.type == SDL_EVENT_QUIT)
             {
                 bContinue = false;
             }
-            else if (e.type == SDL_KEYDOWN)
+            else if (e.type == SDL_EVENT_KEY_DOWN)
             {
-                switch (e.key.keysym.sym)
+                switch (e.key.key)
                 {
-                    case SDLK_x:
+                    case SDLK_X:
                     {
                         m_fZoomLevel = std::min(m_fZoomLevel + 0.1, 10.0);
                         break;
                     }
-                    case SDLK_z:
+                    case SDLK_Z:
                     {
                         m_fZoomLevel = std::max(m_fZoomLevel - 0.1, 0.1);
                         break;
@@ -352,27 +364,27 @@ bool Visualiser::checkUserInteraction()
                         m_iScreenOffsetY += 5;
                         break;
                     }
-                    case SDLK_p:
+                    case SDLK_P:
                     {
                         pause = !pause;
                         break;
                     }
-                    case SDLK_f:
+                    case SDLK_F:
                     {
                         m_bShowFlowers = !m_bShowFlowers;
                         break;
                     }
-                    case SDLK_b:
+                    case SDLK_B:
                     {
                         m_bShowPollinators = !m_bShowPollinators;
                         break;
                     }
-                    case SDLK_t:
+                    case SDLK_T:
                     {
                         m_bShowTrails = !m_bShowTrails;
                         break;
                     }
-                    case SDLK_u:
+                    case SDLK_U:
                     {
                         m_bUpdate = !m_bUpdate;
                         break;

@@ -19,13 +19,10 @@ The following instructions are for the Linux command line. Adapt as appropriate 
 
 From the evobee base directory:
 
+    > cmake -S . -B build
+    > cmake --build build
 
-    > cd build
-    > cmake ..
-    > make
-
-
-If all worked well, the evobee executable file should now be found in the `build` directory.
+If all worked well, the evobee executable file should now be found in the `build/Debug` directory.
 
 > Note for Linux users: should you ever need to do a completely fresh build of the system, there is a bash script named `clean` in the `build` folder, which can be run before repeating the steps listed above.
 

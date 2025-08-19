@@ -26,7 +26,7 @@
 #include <fstream>
 #include <string>
 #include <boost/program_options.hpp>
-#include "json.hpp"
+#include <nlohmann/json.hpp>
 #include "evobeeConfig.h"
 #include "ModelParams.h"
 #include "EvoBeeModel.h"

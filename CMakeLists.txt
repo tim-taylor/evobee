@@ -1,13 +1,6 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 project(evobee VERSION 1.1.0.0 LANGUAGES CXX C)
 
-# Specification of custom installation prefixes for required libraries
-# At present, we have just added the location of the manual build of the SDL2
-# library on MonARCH
-set(CMAKE_PREFIX_PATH "/home/ttay0006/evobee/code/sdl2")
-set(CMAKE_LIBRARY_PATH "/home/ttay0006/evobee/code/sdl2/lib")
-link_directories("/home/ttay0006/evobee/code/sdl2/lib")
-
 # The following lines query the current git branch and commit hash.
 # Later in this file we make these available to the C++ code by using configure_file()
 #
@@ -59,19 +52,26 @@ configure_file(
 # fail if this is not found
 find_package(Boost 1.32.0 REQUIRED COMPONENTS program_options)
 
-# Configure SDL2
-# Note: Using FindPkgConfig seems to be the most flexible approach.
-# An alternative would be to use CMake's FindSDL module
-# See http://stackoverflow.com/questions/28395833/using-sdl2-with-cmake for more info
-include(FindPkgConfig)
-set(PKG_CONFIG_USE_CMAKE_PREFIX_PATH)
-pkg_search_module(SDL2 REQUIRED sdl2)
-pkg_search_module(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
+# Configure SDL and SDL_image libraries
+#
+# (NB the SDL3_gfx library does not come with a standard CMake configuration.
+# As it is only a small library, the easiest thing to do was to add its source
+# and header files directly to the main project below, rather than adding
+# it as a library)
 
-## Configure GNU Scientific Library
-#find_package(GSL REQUIRED)
+## First set the output directory for built objects.
+## This makes sure that the dynamic library goes into the build directory automatically.
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
 
-# define sources
+## Now add the libraries
+add_subdirectory(3rd-party/SDL EXCLUDE_FROM_ALL)
+add_subdirectory(3rd-party/SDL_image EXCLUDE_FROM_ALL)
+
+# Add the JSON library
+add_subdirectory(3rd-party/json EXCLUDE_FROM_ALL)
+
+# Define sources of main project
 # First explicitly specify all source files in the evobee project
 set(SOURCES
     src/AbstractHive.cpp
@@ -94,30 +94,25 @@ set(SOURCES
     src/ReflectanceInfo.cpp
     src/tools.cpp
     src/Visualiser.cpp
+    3rd-party/SDL3_gfx/SDL3_framerate.c
+    3rd-party/SDL3_gfx/SDL3_gfxPrimitives.c
+    3rd-party/SDL3_gfx/SDL3_imageFilter.c
+    3rd-party/SDL3_gfx/SDL3_rotozoom.c
     )
-# Now specify SDL2_GFX source files
-set(SDL2_GFX_SRCDIR "3rd-party/sdl2-gfx/src")
-file(GLOB SDL2_GFX_SOURCES "${SDL2_GFX_SRCDIR}/*.c")
-# And JSON source files
-set(JSON_SRCDIR "3rd-party/nlohmann-json")
 
 # include directories
 include_directories(
     "${PROJECT_SOURCE_DIR}/include"
-    "${SDL2_GFX_SRCDIR}"
-    "${JSON_SRCDIR}"
-    "${SDL2_INCLUDE_DIRS}"
-    "${SDL2IMAGE_INCLUDE_DIRS}"
-    "${Boost_INCLUDE_DIRS}"
+    "3rd-party/SDL3_gfx"
 )
 
 # build targets
-add_executable(${PROJECT_NAME} ${SOURCES} ${SDL2_GFX_SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES})
 
-# link libraries
-## (TODO: is there a more generic way to link to C++ filesystem lib?)
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${Boost_LIBRARIES} -lstdc++fs)
-#target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${Boost_LIBRARIES} -lstdc++fs GSL::gsl GSL::gslcblas)
+# set up including and linking to related libraries
+target_include_directories(${PROJECT_NAME} PRIVATE ${SDL3_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} PRIVATE Boost::program_options nlohmann_json::nlohmann_json SDL3_image::SDL3_image SDL3::SDL3)
+
 
 # specify compiler features
 # Approach 1: directly set compiler flags (assumes a specific compiler)

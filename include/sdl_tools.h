@@ -13,7 +13,7 @@
 #include <utility>
 #include <iostream>
 #include <string>
-#include <SDL.h>
+#include <SDL3/SDL.h>
 
 /**
  * Log an SDL error with some error message to the output stream of our choice
@@ -72,7 +72,7 @@ inline void sdl_cleanup<SDL_Surface>(SDL_Surface *surf){
 	if (!surf){
 		return;
 	}
-	SDL_FreeSurface(surf);
+	SDL_DestroySurface(surf);
 }
 
 /*
@@ -101,11 +101,11 @@ std::string getResourcePath(const std::string &subDir = ""){
 	static std::string baseRes;
 	if (baseRes.empty()){
 		//SDL_GetBasePath will return NULL if something went wrong in retrieving the path
-		char *basePath = SDL_GetBasePath();
+		const char *basePath = SDL_GetBasePath();		// [[ made const by TT ]]
 		if (basePath){
 			//baseRes = basePath;
-			baseRes = basePath + std::string("/../"); // [[ Modified by TT ]]
-			SDL_free(basePath);
+			baseRes = basePath + std::string("/../");	// [[ Modified by TT ]]
+			//SDL_free(basePath); 						// [[ Removes by TT ]]
 		}
 		else {
 			std::cerr << "Error getting resource path: " << SDL_GetError() << std::endl;
