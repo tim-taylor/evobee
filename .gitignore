@@ -32,7 +32,7 @@
 CMakeCache.txt
 CMakeFiles/
 Makefile
-*.cmake
+#*.cmake
 
 # Project specific files and directories
 *.csv
