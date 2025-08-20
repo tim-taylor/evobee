@@ -35,11 +35,20 @@
                 "${workspaceFolder}/3rd-party/SDL3_gfx"
             ],
             "defines": [],
+                        "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "intelliSenseMode": "${default}",
+            //"intelliSenseMode": "gcc-x64",
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
             "cppStandard": "c++20",
-            "intelliSenseMode": "${default}",
-            "configurationProvider": "vector-of-bool.cmake-tools"
+            "configurationProvider": "vector-of-bool.cmake-tools",
+            "compilerArgs": []
         }
     ],
     "version": 4
