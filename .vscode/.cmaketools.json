@@ -13,55 +13,61 @@
         "name": "Debug",
         "projects": [
           {
-            "buildDirectory": "/home/tim/evobee/code/evobee/build",
+            "buildDirectory": "${workspaceFolder}/build",
             "name": "evobee",
-            "sourceDirectory": "/home/tim/evobee/code/evobee",
+            "sourceDirectory": "${workspaceFolder}",
             "targets": [
               {
                 "artifacts": [
-                  "/home/tim/evobee/code/evobee/build/evobee"
+                  "${workspaceFolder}/build/evobee"
                 ],
-                "buildDirectory": "/home/tim/evobee/code/evobee/build",
+                "buildDirectory": "${workspaceFolder}/build",
                 "fileGroups": [
                   {
                     "compileFlags": "-g  ",
                     "includePath": [
                       {
-                        "path": "/home/tim/evobee/code/evobee/include"
+                        "path": "${workspaceFolder}/include"
                       },
                       {
-                        "path": "/home/tim/evobee/code/evobee/3rd-party/sdl2-gfx/src"
+                        "path": "${workspaceFolder}/3rd-party/json/include"
                       },
                       {
-                        "path": "/home/tim/evobee/code/evobee/3rd-party/nlohmann-json"
+                        "path": "${workspaceFolder}/3rd-party/SDL/include"
                       },
                       {
-                        "path": "/usr/include/SDL2"
+                        "path": "${workspaceFolder}/3rd-party/SDL_image/include"
+                      },
+                      {
+                        "path": "${workspaceFolder}/3rd-party/SDL3_gfx"
                       }
                     ],
                     "isGenerated": false,
                     "language": "C",
                     "sources": [
-                      "3rd-party/sdl2-gfx/src/SDL2_framerate.c",
-                      "3rd-party/sdl2-gfx/src/SDL2_gfxPrimitives.c",
-                      "3rd-party/sdl2-gfx/src/SDL2_imageFilter.c",
-                      "3rd-party/sdl2-gfx/src/SDL2_rotozoom.c"
+                      "${workspaceFolder}/3rd-party/SDL3_gfx/SDL3_framerate.c",
+                      "${workspaceFolder}/3rd-party/SDL3_gfx/SDL3_gfxPrimitives.c",
+                      "${workspaceFolder}/3rd-party/SDL3_gfx/SDL3_imageFilter.c",
+                      "${workspaceFolder}/3rd-party/SDL3_gfx/SDL3_rotozoom.c"
                     ]
                   },
                   {
-                    "compileFlags": "-g -Wall -std=c++11 -pthread   -std=gnu++11",
+                    "compileFlags": "-g -Wall -std=c++20 -pthread -std=gnu++11",
                     "includePath": [
                       {
-                        "path": "/home/tim/evobee/code/evobee/include"
+                        "path": "${workspaceFolder}/include"
                       },
                       {
-                        "path": "/home/tim/evobee/code/evobee/3rd-party/sdl2-gfx/src"
+                        "path": "${workspaceFolder}/3rd-party/json/include"
                       },
                       {
-                        "path": "/home/tim/evobee/code/evobee/3rd-party/nlohmann-json"
+                        "path": "${workspaceFolder}/3rd-party/SDL/include"
                       },
                       {
-                        "path": "/usr/include/SDL2"
+                        "path": "${workspaceFolder}/3rd-party/SDL_image/include"
+                      },
+                      {
+                        "path": "${workspaceFolder}/3rd-party/SDL3_gfx"
                       }
                     ],
                     "isGenerated": false,
@@ -82,17 +88,24 @@
                       "src/ModelComponent.cpp",
                       "src/ModelParams.cpp",
                       "src/Patch.cpp",
+                      "src/PlantTypeConfig.cpp",
                       "src/Pollinator.cpp",
-                      "src/Visualiser.cpp"
+                      "src/ReflectanceInfo.cpp",
+                      "src/tools.cpp",
+                      "src/Visualiser.cpp",
+                      "3rd-party/SDL3_gfx/SDL3_framerate.c",
+                      "3rd-party/SDL3_gfx/SDL3_gfxPrimitives.c",
+                      "3rd-party/SDL3_gfx/SDL3_imageFilter.c",
+                      "3rd-party/SDL3_gfx/SDL3_rotozoom.c"
                     ]
                   }
                 ],
                 "fullName": "evobee",
-                "linkLanguageFlags": "-g -Wall -std=c++11 -pthread",
-                "linkLibraries": "-rdynamic -lSDL2 -lSDL2_image -lSDL2 -lboost_program_options -lstdc++fs -lSDL2_image -lboost_program_options -lstdc++fs",
+                "linkLanguageFlags": "-g -Wall -std=c++20 -pthread",
+                "linkLibraries": "-rdynamic -lSDL3 -lSDL3_image -lboost_program_options",
                 "linkerLanguage": "CXX",
                 "name": "evobee",
-                "sourceDirectory": "/home/tim/evobee/code/evobee",
+                "sourceDirectory": "${workspaceFolder}",
                 "type": "EXECUTABLE"
               }
             ]

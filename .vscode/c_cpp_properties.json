@@ -3,18 +3,19 @@
         {
             "name": "null",
             "includePath": [
-                "/home/tim/evobee/code/evobee/include",
-                "/home/tim/evobee/code/evobee/3rd-party/nlohmann-json",
-                "/usr/include/c++/9",
-                "/usr/include/x86_64-linux-gnu/c++/9",
-                "/usr/lib/gcc/x86_64-linux-gnu/9/include/",
-                "/hddhome/tim/Dropbox/research/evobee/code/evobee/include",
-                "/home/tim/Dropbox/research/evobee/code/evobee/include"
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/3rd-party/json/include",
+                "${workspaceFolder}/3rd-party/SDL/include",
+                "${workspaceFolder}/3rd-party/SDL_image/include",
+                "${workspaceFolder}/3rd-party/SDL3_gfx"
+                //"/usr/include/c++/14",
+                //"/usr/include/x86_64-linux-gnu/c++/14",
+                //"/usr/lib/gcc/x86_64-linux-gnu/14/include/"
             ],
             "defines": [],
             "browse": {
                 "path": [
-                    "${workspaceRoot}"
+                    "${workspaceFolder}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
@@ -22,7 +23,7 @@
             "intelliSenseMode": "gcc-x64",
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
-            "cppStandard": "c++17",
+            "cppStandard": "c++20",
             "configurationProvider": "vector-of-bool.cmake-tools",
             "compileCommands": "${workspaceFolder}/build/compile_commands.json",
             "compilerArgs": []
@@ -30,18 +31,16 @@
         {
             "name": "EvoBee",
             "includePath": [
-                "${workspaceFolder}/**",
-                "/home/tim/evobee/code/evobee/include",                
-                "/home/tim/Dropbox/research/evobee/code/evobee/include",
-                "/hddhome/tim/Dropbox/research/evobee/code/evobee/include",
-                "/home/tim/evobee/code/evobee/include",
-                "${workspaceFolder}/3rd-party/nlohmann-json",
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/3rd-party/json/include",
+                "${workspaceFolder}/3rd-party/SDL/include",
+                "${workspaceFolder}/3rd-party/SDL_image/include",
+                "${workspaceFolder}/3rd-party/SDL3_gfx"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/clang",
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
-            "cppStandard": "c++17",
+            "cppStandard": "c++20",
             "intelliSenseMode": "${default}",
             "configurationProvider": "vector-of-bool.cmake-tools"
         }

@@ -7,10 +7,10 @@
             "name": "C++ Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/build/evobee",
+            "program": "${workspaceFolder}/build/Debug/evobee",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceRoot}/build",
+            "cwd": "${workspaceFolder}/build/Debug",
             "environment": [],
             "externalConsole": true,
             "linux": {
@@ -41,7 +41,7 @@
             "name": "C++ Attach",
             "type": "cppdbg",
             "request": "attach",
-            "program": "${workspaceRoot}/build/evobee",
+            "program": "${workspaceFolder}/build/evobee",
             "processId": "${command:pickProcess}",
             "linux": {
                 "MIMode": "gdb",
