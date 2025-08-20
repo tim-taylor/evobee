@@ -18,6 +18,8 @@ for these libraries._
 
 The following instructions are for the Linux command line. Adapt as appropriate according to your OS.
 
+These command should be run from the base directory of the project.
+
 First generate the makefiles:
 
     > cmake -S . -B build
