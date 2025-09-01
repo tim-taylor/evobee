@@ -288,7 +288,9 @@ These files are shown below, followed by the [Configuration options](#configurat
 
 ## Configuration options
 
-The following table describes each parameter that can be specified in the configuration file. Parameters are read in from the configuration file and parsed by code in source file `evobee.cpp`. They are then stored in a static instance of the `ModelParams` class. See comments in the files `evobee.cpp` and `ModelParams.h` for further details of each parameter and the allowed values for each one.
+The following tables describe each parameter that can be specified in the configuration file. Parameters are read in from the configuration file and parsed by code in source file `evobee.cpp`. They are then stored in a static instance of the `ModelParams` class. See comments in the files `evobee.cpp` and `ModelParams.h` for further details of each parameter and the allowed values for each one.
+
+The tables include a column "Default value" that shows what value is used for that parameter if nothing is specified in the configuration file. For some parameters, "n/a" is listed in this column; this means that no default value is provided and that the program will thefore halt with an error message if a value is not specifically provided in the configuration file.
 
 ### General parameters
 
